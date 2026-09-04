@@ -48,9 +48,12 @@ pagine = sorted((dict(ins=r['insegna'], periodo=r['validita'], pdf=PDF.get(r['ch
                  for r in idx if (r['chiave'], r['pagina']) in validi),
                 key=lambda r: (r['ins'], r['periodo'], r['pag']))
 
+import datetime as _dt
+_oggi = _dt.date.today()
 volantini = [v for v in (dict(ins=i, periodo=p, pdf=f,
-                              pagine=len([x for x in pagine if x['pdf'] == f]))
-                         for c, i, p, f, _, _ in VOLANTINI) if v['pagine']]
+                              pagine=len([x for x in pagine if x['pdf'] == f]),
+                              scaduto=_dt.date.fromisoformat(fino) < _oggi)
+                         for c, i, p, f, fino, _ in VOLANTINI) if v['pagine']]
 
 partenza = [dict(nome=n, parole=p, cat=c) for n, p, c in PARTENZA]
 
@@ -289,10 +292,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   link, da qualsiasi telefono.</p>
   <p>L'unica copia che <b>non</b> si aggiorna è il file salvato sul telefono: quello resta fermo
   al giorno in cui è stato fatto. Se ti interessa avere sempre i prezzi giusti, usa il link.</p>
-  <p><b>La lista dei prodotti è una sola, condivisa.</b> Chi apre il link vede la stessa, e se
-  la cambia la cambia per tutti: aggiungere e togliere prodotti lo può fare chiunque abbia il
-  link. Quando qualcuno la tocca, gli altri schermi si aggiornano da soli. In cima alla pagina
-  c'è scritto se la copia che stai guardando è condivisa o no.</p>
+  <p id="p-lista"></p>
   <p>Un prodotto aggiunto adesso mostra <b>subito le pagine</b> dove compare, ma i
   <b>prezzi arrivano dopo</b>: quelli vanno letti dalle pagine dei volantini a occhio, non c'è
   modo di ricavarli da soli. Quando li ho letti compaiono anche quelli, senza che dobbiate
@@ -304,7 +304,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   formato che si riesca a scaricare.</p>
 </section>
 
-<footer>Volantini letti il 2 settembre 2026. I numeri di pagina sono quelli dei PDF.</footer>
+<footer id="pie"></footer>
 </div>
 
 <script>
@@ -672,7 +672,8 @@ DATI.volantini.forEach(v => {
   const li = document.createElement('li');
   li.innerHTML = `<span><span class="i"></span> <span class="p"></span></span><span class="n"></span>`;
   li.querySelector('.i').textContent = v.ins;
-  li.querySelector('.p').textContent = v.periodo;
+  li.querySelector('.p').textContent = v.periodo + (v.scaduto ? ' — scaduto' : '');
+  if (v.scaduto) li.querySelector('.p').style.color = 'var(--ambra)';
   li.querySelector('.n').textContent = v.pagine + ' pag.';
   ul.appendChild(li);
 });
@@ -723,10 +724,31 @@ btnCopia.onclick = async () => {
   }
 };
 
+/* Una data sola per tutta la pagina. Prima quella in fondo era scritta a mano e
+   restava indietro: la pagina diceva 4 settembre in mezzo e 2 settembre in fondo,
+   e se n'e accorto Manlio. */
 document.getElementById('letto').textContent = 'letti il ' + DATI.letto;
+document.getElementById('pie').textContent =
+  'Volantini letti il ' + DATI.letto + '. I numeri di pagina sono quelli dei volantini.';
+aggiornaTestoLista();
 
 /* Il riquadro per rimandarmi la lista a mano ha senso solo dove la lista non e
    condivisa: se lo e, la leggo dalla pagina pubblicata senza chiedere niente. */
+/* Cosa dire della lista dipende dalla copia che si sta guardando: sul sito e
+   una per telefono, sulla copia di Claude e una sola per tutti. Scriverne una
+   sola delle due era una bugia per meta dei lettori. */
+function aggiornaTestoLista() {
+  const p = document.getElementById('p-lista');
+  if (!p) return;
+  p.innerHTML = soloMio
+    ? '<b>La lista dei prodotti è tua e resta su questo telefono.</b> Puoi aggiungere e '
+      + 'togliere quello che vuoi senza toccare quella di nessun altro. Chi apre da un altro '
+      + 'telefono riparte dai prodotti di partenza e se la regola per conto suo.'
+    : '<b>La lista dei prodotti è una sola, condivisa.</b> Chi apre il link vede la stessa, e se '
+      + 'la cambia la cambia per tutti. Quando qualcuno la tocca, gli altri schermi si aggiornano '
+      + 'da soli.';
+}
+
 function aggiornaRiquadroManda() {
   const r = document.getElementById('riquadro-manda');
   const p = document.getElementById('perche-manda');
@@ -758,6 +780,7 @@ disegna();
     stato('Questa copia è solo tua: le modifiche restano su questo telefono.');
   }
   aggiornaRiquadroManda();
+  aggiornaTestoLista();
   disegna();
 })();
 </script>'''
