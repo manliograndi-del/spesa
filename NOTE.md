@@ -172,6 +172,36 @@ sbagliato non dà errore: dà righe che portano a una pagina bianca.
 Le righe senza numero di pagina (quelle prese dai riassunti online) restano
 scritte e non cliccabili, ed è giusto: non so a quale pagina puntare.
 
+### Il tasto delle lingue: cambia l'involucro, mai la sostanza
+
+Chiesto da Manlio il 2026-09-04, con la distinzione giusta già nella domanda:
+«cambiare la visualizzazione delle scritte ma non la sostanza del sito, che deve
+funzionare in italiano perché va su volantino italiano».
+
+Quattro lingue (IT, EN, FR, ES), il tasto in alto a destra nella testa.
+`LINGUE` in `pagina.py` tiene tutte le scritte; `t('chiave')` le pesca, e
+**l'italiano fa da rete**: una chiave che manca in un'altra lingua esce in
+italiano invece di lasciare un buco.
+
+**Restano in italiano in tutte le lingue**, e non è una dimenticanza: i nomi dei
+prodotti (li sceglie lui e servono a cercare dentro volantini italiani), le
+insegne, la descrizione di ogni offerta come sta sul volantino, le condizioni
+(«PREZZO SOCI», «con la carta Lidl Plus»), i periodi di validità e le parole
+lette dall'OCR. Tradurre quelle vorrebbe dire riscrivere il volantino, e su un
+prezzo un'imprecisione costa.
+
+Le **unità** invece sono etichette e si traducono: `CHIAVI_UNITA` mappa l'unità
+italiana che arriva dai dati sulla chiave della lingua.
+
+La lingua scelta si ricorda nel browser; se non c'è niente di salvato si guarda
+quella del telefono, e in mancanza si parte in italiano.
+
+`strumenti/prova-lingue.js` cambia lingua una per una e controlla che le scritte
+cambino, che non resti nessun buco, e che **i dati restino italiani**. Attento
+scrivendo i test: jsdom finge un telefono inglese, quindi un test che cerca una
+scritta italiana fallisce senza che ci sia niente di rotto — meglio controllare i
+dati che il testo.
+
 ### `prova.js`: aprire la pagina per davvero, sempre
 
 Il 2026-09-03 la pagina è uscita rotta **tre volte di fila**, e ogni volta

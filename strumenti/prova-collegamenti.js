@@ -4,6 +4,7 @@ const file = process.argv[2];
 const errori = [];
 const dom = new JSDOM(fs.readFileSync(file, 'utf8'), {
   runScripts: 'dangerously', pretendToBeVisual: true,
+  beforeParse(w) { try { w.localStorage.setItem('spesa.lingua.v1', 'it'); } catch (e) {} },
   url: 'https://manliograndi-del.github.io/palestra/spesa/',
   virtualConsole: new VirtualConsole().on('jsdomError', e => errori.push(String(e.detail || e.message).split('\n')[0])),
 });
@@ -17,7 +18,7 @@ setTimeout(() => {
     for (const r of ris.querySelectorAll('.prezzo-riga')) {
       righe++;
       const a = r.querySelector('a.dove');
-      if (a) tutti.add(a.href); else if (!/non individuata/.test(r.textContent)) senza++;
+      if (a) tutti.add(a.href); else if (!r.querySelector('.dove')) senza++;
     }
     for (const a of ris.querySelectorAll('a.pag-riga')) tutti.add(a.href);
   }
