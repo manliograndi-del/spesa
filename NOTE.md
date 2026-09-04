@@ -51,9 +51,14 @@ Adesso la Spesa è un progetto suo:
     manliograndi-del/spesa  →  https://manliograndi-del.github.io/spesa/
 
 Niente più sovrapposizione: scope diversi, service worker diversi, identità
-diverse. **Il vecchio indirizzo sotto `/palestra/spesa/` non va più
-aggiornato**; quando è sicuro che tutti usano il nuovo, lì va lasciato un
-rimando e basta.
+diverse. **Il vecchio indirizzo sotto `/palestra/spesa/` non esiste più**: il 2026-09-04
+Manlio ha scelto di cancellare la cartella invece di lasciarci un rimando, e
+adesso quell'indirizzo risponde «pagina non trovata». Il progetto della palestra
+è tornato a essere solo l'app della palestra.
+
+Il controllo giornaliero è stato spostato qui lo stesso giorno
+(`trig_01UMkRYxHXJfPBSEZLo7Snzb`): se qualcuno lo modifica, deve puntare a
+**questo** progetto, non più a `palestra/spesa/`.
 
 Il sito lo pubblica il ramo `main` di QUESTO progetto, dalla radice.
 
