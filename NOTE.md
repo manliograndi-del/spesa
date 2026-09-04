@@ -505,6 +505,18 @@ stare **dentro il progetto**, perché la sessione che rigenera parte da un clone
 e da niente altro. Se un passo dipende da un file che non è committato, quel
 passo non funzionerà mai in automatico — e fallirà in silenzio.
 
+**Il rinnovo del 2026-09-04, fatto a mano ma con la strada nuova**, è la prova
+che il giro funziona: via il Carrefour Iper del 20 agosto (scaduto il 3), letti
+a occhio 14 prezzi dalle pagine del suo sostituto, e sul sito in linea si
+contano 126 prezzi e sette volantini, nessuno scaduto. Prima erano 113 e otto,
+con quello vecchio ancora in elenco.
+
+**La prova vera è il 2026-09-05**: Eurospin e MD scadono il 6, quindi tocca alla
+Routine rinnovarli da sola. Se il giorno dopo il sito nomina ancora «dal 24
+agosto al 6 settembre», la Routine non ha funzionato e va guardata prima di
+fidarsene di nuovo. Nel prompt c'è scritto a chiare lettere che un giro con
+qualcosa da fare **non può finire in silenzio**.
+
 **I PDF non si accumulano da nessuna parte**: vivono nella cartella di lavoro
 della sessione, che è temporanea e sparisce da sola. Le copie che ha Manlio sono
 quelle nella chat, sul suo telefono, e quelle le cancella lui.
