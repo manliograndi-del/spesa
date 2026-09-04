@@ -172,35 +172,22 @@ sbagliato non dà errore: dà righe che portano a una pagina bianca.
 Le righe senza numero di pagina (quelle prese dai riassunti online) restano
 scritte e non cliccabili, ed è giusto: non so a quale pagina puntare.
 
-### Il tasto delle lingue: cambia l'involucro, mai la sostanza
+### Il tasto delle lingue: fatto e tolto
 
-Chiesto da Manlio il 2026-09-04, con la distinzione giusta già nella domanda:
-«cambiare la visualizzazione delle scritte ma non la sostanza del sito, che deve
-funzionare in italiano perché va su volantino italiano».
+Il 2026-09-04 Manlio ha chiesto un tasto per cambiare lingua alle scritte,
+lasciando in italiano i dati che vengono dai volantini. È stato fatto — quattro
+lingue, tasto in alto a destra — e **poche ore dopo ha chiesto di toglierlo**.
+Tolto.
 
-Quattro lingue (IT, EN, FR, ES), il tasto in alto a destra nella testa.
-`LINGUE` in `pagina.py` tiene tutte le scritte; `t('chiave')` le pesca, e
-**l'italiano fa da rete**: una chiave che manca in un'altra lingua esce in
-italiano invece di lasciare un buco.
+Resta scritto qui perché non venga rimesso per iniziativa di qualcun altro: non
+è stato tolto perché funzionava male, ma perché non lo voleva. Se un domani lo
+richiede, sta nella storia del progetto al commit «Un tasto per le lingue» e si
+riprende da lì invece di rifarlo.
 
-**Restano in italiano in tutte le lingue**, e non è una dimenticanza: i nomi dei
-prodotti (li sceglie lui e servono a cercare dentro volantini italiani), le
-insegne, la descrizione di ogni offerta come sta sul volantino, le condizioni
-(«PREZZO SOCI», «con la carta Lidl Plus»), i periodi di validità e le parole
-lette dall'OCR. Tradurre quelle vorrebbe dire riscrivere il volantino, e su un
-prezzo un'imprecisione costa.
-
-Le **unità** invece sono etichette e si traducono: `CHIAVI_UNITA` mappa l'unità
-italiana che arriva dai dati sulla chiave della lingua.
-
-La lingua scelta si ricorda nel browser; se non c'è niente di salvato si guarda
-quella del telefono, e in mancanza si parte in italiano.
-
-`strumenti/prova-lingue.js` cambia lingua una per una e controlla che le scritte
-cambino, che non resti nessun buco, e che **i dati restino italiani**. Attento
-scrivendo i test: jsdom finge un telefono inglese, quindi un test che cerca una
-scritta italiana fallisce senza che ci sia niente di rotto — meglio controllare i
-dati che il testo.
+Quello che vale la pena ricordare comunque, se si ritocca l'interfaccia: **le
+scritte si possono cambiare, i dati no**. Nomi dei prodotti, insegne,
+descrizione delle offerte e loro condizioni vengono dai volantini italiani e
+servono a cercarci dentro; su un prezzo un'imprecisione la si paga alla cassa.
 
 ### `prova.js`: aprire la pagina per davvero, sempre
 

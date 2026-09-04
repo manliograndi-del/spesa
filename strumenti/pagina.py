@@ -21,194 +21,6 @@ import json, os, glob
 from dati import PRODOTTI, VOLANTINI, UNITA, D
 from lista import PARTENZA
 
-# ---------------------------------------------------------------------------
-# Le scritte dell'interfaccia, nelle lingue che si possono scegliere.
-#
-# CAMBIA SOLO L'INVOLUCRO, MAI LA SOSTANZA. Restano in italiano, in tutte le
-# lingue: i nomi dei prodotti (li scrive Manlio e servono a cercare dentro
-# volantini italiani), i nomi delle insegne, la descrizione di ogni offerta
-# come sta sul volantino, le condizioni («PREZZO SOCI», «con la carta Lidl
-# Plus»), i periodi di validità e le parole lette dall'OCR. Tradurre quelle
-# vorrebbe dire riscrivere il volantino, e su un prezzo un'imprecisione costa.
-#
-# L'italiano è la lingua di riserva: una chiave che manca in un'altra lingua
-# esce in italiano invece di sparire.
-# ---------------------------------------------------------------------------
-LINGUE = {
- 'it': {
-  'spiega': '<h2>Come leggerla</h2>\n<p>I prezzi sono <b>letti a mano</b>, uno per uno, dalle pagine dei volantini: le scritte grandi il computer non le legge. Il confronto è <b>per unità</b> e cambia col prodotto — la carne al chilo, il latte al litro, le uova all\'uovo, il detersivo a lavaggio.</p>\n<p>Se <b>aggiungi un prodotto nuovo</b>, i prezzi non ce li ha ancora: ti dice in quali pagine compare la parola, e il prezzo lo leggi tu aprendo la pagina. Puoi mettere <b>più nomi separati da virgola</b> — <i>yogurt, yogurth, vasetti</i> — e trova le pagine dove c\'è almeno uno.</p>\n<p>Le righe segnate <span class="ev">da controllare</span> vengono da riassunti trovati online e possono essere sbagliate. Certi prezzi valgono <b>solo con la tessera</b> — soci Coop, Lidl Plus, Bennet Club, SpesAmica — e sta scritto nella riga.</p>\n<p>Ogni riga <b>apre il volantino</b> alla pagina giusta, in una scheda nuova.</p>',
-  'nome': 'Italiano', 'sigla': 'IT',
-  'titolo': 'La lista della spesa',
-  'sottotitolo': 'Tocca un prodotto: qui sotto compaiono le offerte, dalla più conveniente in giù. Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.',
-  'agg_ph': 'Nome del prodotto, o più nomi separati da virgola',
-  'agg_aria': 'Nomi del prodotto da aggiungere, separati da virgola',
-  'agg_btn': 'Aggiungi', 'piu': '+ aggiungi',
-  'cambia': 'Cambia nome', 'togli': 'Togli «{x}» dalla lista', 'salva': 'Salva',
-  'rin_aria': 'Nomi del prodotto, separati da virgola',
-  'cerca_anche': 'cerca anche:',
-  'st_condivisa': 'Lista condivisa: quello che cambi lo vede anche chi ha il link.',
-  'st_solo': 'Questa copia è solo tua: le modifiche restano su questo telefono.',
-  'st_salvando': 'Sto salvando per tutti…',
-  'st_salvata': 'Salvata. La vedono tutti quelli che hanno il link.',
-  'st_conflitto': "Nel frattempo l'ha cambiata qualcun altro: fra un attimo vedi la sua.",
-  'st_lettore': "Puoi solo guardare la lista di chi te l'ha mandata: le tue modifiche restano su questo telefono.",
-  'st_errore': 'Non sono riuscito a salvarla per tutti. Resta su questo telefono.',
-  'conta_off': '{n} {parola} dal volantino · {m} pagine da guardare',
-  'off_una': 'offerta letta', 'off_tante': 'offerte lette',
-  'conta_pag_una': '{n} pagina lo nomina', 'conta_pag': '{n} pagine lo nominano',
-  'f_prezzi': 'Prezzi letti dal volantino',
-  'f_altre': 'Altre pagine che lo nominano', 'f_pagine': 'Pagine da guardare',
-  'meno_caro': 'il meno caro', 'da_controllare': 'da controllare',
-  'confezione': '{p} € la confezione',
-  'apri': 'Apri la pagina {n} del volantino',
-  'senza_pagina': '{f} — pagina non individuata',
-  'pag': 'pag. {n}', 'altre_pag': 'Mostra le altre {n} pagine',
-  'niente_pag': 'Il computer non ha letto questa parola in nessuna pagina. Può esserci lo stesso: prova a chiamare il prodotto in un altro modo, con una parola più comune.',
-  'lista_vuota': 'La lista è vuota. Tocca «+ aggiungi» per rimetterci qualcosa.',
-  'manda_tit': 'Mandami la tua lista',
-  'manda_cond': 'Se la lista è condivisa non serve: la leggo da solo dalla pagina. Serve solo su una copia che gira per conto suo, come il file salvato sul telefono.',
-  'manda_solo': 'Questa copia non è collegata alle altre: quello che cambi qui non arriva a me. Tocca il bottone e incolla nella chat, ci sono anche i nomi alternativi.',
-  'manda_btn': 'Copia la mia lista',
-  'manda_ok': 'Copiata. Adesso incollala nella chat.',
-  'manda_no': 'Non sono riuscito a copiarla da solo: tienila premuta qui sotto, «Seleziona tutto», copia.',
-  'manda_aria': 'La tua lista, da copiare',
-  'vol_tit': 'I volantini', 'vol_pag': '{n} pag.',
-  'letto': 'letti il {d}',
-  'pie': 'I numeri di pagina sono quelli dei volantini.',
-  'lingua_aria': 'Lingua delle scritte',
-  'u_kg': 'al kg', 'u_l': 'al litro', 'u_uovo': "all'uovo", 'u_rotolo': 'al rotolo', 'u_lav': 'a lavaggio',
- },
- 'en': {
-  'spiega': '<h2>How to read it</h2>\n<p>Prices are <b>read by hand</b>, one by one, from the leaflet pages: a computer cannot read the big display type. The comparison is <b>per unit</b> and changes with the product — meat per kg, milk per litre, eggs per egg, detergent per wash.</p>\n<p>If you <b>add a new product</b>, it has no prices yet: it tells you which pages mention the word, and you read the price by opening the page. You can enter <b>several names separated by commas</b> — <i>yogurt, yogurth, vasetti</i> — and it finds pages containing at least one.</p>\n<p>Rows marked <span class="ev">needs checking</span> come from summaries found online and may be wrong. Some prices apply <b>only with the shop\'s card</b> — soci Coop, Lidl Plus, Bennet Club, SpesAmica — and the row says so.</p>\n<p>Every row <b>opens the leaflet</b> at the right page, in a new tab. Product names and offer details stay in Italian: they are quoted from Italian leaflets.</p>',
-  'nome': 'English', 'sigla': 'EN',
-  'titolo': 'The shopping list',
-  'sottotitolo': 'Tap a product: the offers appear below, cheapest first. Leaflets from Lidl, Eurospin, MD, Bennet, Ipercoop and Carrefour Iper. Product names and offer details stay in Italian — they come from Italian leaflets.',
-  'agg_ph': 'Product name, or several names separated by commas',
-  'agg_aria': 'Names of the product to add, separated by commas',
-  'agg_btn': 'Add', 'piu': '+ add',
-  'cambia': 'Change name', 'togli': 'Remove “{x}” from the list', 'salva': 'Save',
-  'rin_aria': 'Product names, separated by commas',
-  'cerca_anche': 'also searches:',
-  'st_condivisa': 'Shared list: what you change is seen by everyone with the link.',
-  'st_solo': 'This copy is yours alone: changes stay on this phone.',
-  'st_salvando': 'Saving for everyone…',
-  'st_salvata': 'Saved. Everyone with the link sees it.',
-  'st_conflitto': 'Someone else changed it meanwhile: you will see their version in a moment.',
-  'st_lettore': 'You can only view the list you were sent: your changes stay on this phone.',
-  'st_errore': 'I could not save it for everyone. It stays on this phone.',
-  'conta_off': '{n} {parola} from the leaflet · {m} pages to check',
-  'off_una': 'offer read', 'off_tante': 'offers read',
-  'conta_pag_una': '{n} page mentions it', 'conta_pag': '{n} pages mention it',
-  'f_prezzi': 'Prices read from the leaflet',
-  'f_altre': 'Other pages that mention it', 'f_pagine': 'Pages to check',
-  'meno_caro': 'cheapest', 'da_controllare': 'needs checking',
-  'confezione': '€{p} per pack',
-  'apri': 'Open page {n} of the leaflet',
-  'senza_pagina': '{f} — page not identified',
-  'pag': 'p. {n}', 'altre_pag': 'Show the other {n} pages',
-  'niente_pag': 'The computer did not read this word on any page. It may still be there: try another word for the product, a more common one.',
-  'lista_vuota': 'The list is empty. Tap “+ add” to put something back.',
-  'manda_tit': 'Send me your list',
-  'manda_cond': 'Not needed when the list is shared: I read it from the page myself. It only helps on a copy that runs on its own, like the file saved on your phone.',
-  'manda_solo': 'This copy is not connected to the others: what you change here does not reach me. Tap the button and paste it into the chat — the alternative names come too.',
-  'manda_btn': 'Copy my list',
-  'manda_ok': 'Copied. Now paste it into the chat.',
-  'manda_no': 'I could not copy it myself: press and hold the text below, “Select all”, copy.',
-  'manda_aria': 'Your list, to copy',
-  'vol_tit': 'The leaflets', 'vol_pag': '{n} pp.',
-  'letto': 'read on {d}',
-  'pie': 'Page numbers are the leaflets\' own.',
-  'lingua_aria': 'Interface language',
-  'u_kg': 'per kg', 'u_l': 'per litre', 'u_uovo': 'per egg', 'u_rotolo': 'per roll', 'u_lav': 'per wash',
- },
- 'fr': {
-  'spiega': '<h2>Comment la lire</h2>\n<p>Les prix sont <b>lus à la main</b>, un par un, sur les pages des prospectus : les gros caractères, un ordinateur ne les lit pas. La comparaison se fait <b>à l\'unité</b> et change selon le produit — la viande au kilo, le lait au litre, les œufs à l\'œuf, la lessive au lavage.</p>\n<p>Si vous <b>ajoutez un produit</b>, il n\'a pas encore de prix : la page vous dit où le mot apparaît, et vous lisez le prix en ouvrant la page. Vous pouvez mettre <b>plusieurs noms séparés par des virgules</b> — <i>yogurt, yogurth, vasetti</i> — et elle trouve les pages qui en contiennent au moins un.</p>\n<p>Les lignes marquées <span class="ev">à vérifier</span> viennent de résumés trouvés en ligne et peuvent être fausses. Certains prix ne valent <b>qu\'avec la carte du magasin</b> — soci Coop, Lidl Plus, Bennet Club, SpesAmica — et la ligne le précise.</p>\n<p>Chaque ligne <b>ouvre le prospectus</b> à la bonne page, dans un nouvel onglet. Les noms des produits et le détail des offres restent en italien : ils sont cités des prospectus italiens.</p>',
-  'nome': 'Français', 'sigla': 'FR',
-  'titolo': 'La liste de courses',
-  'sottotitolo': "Touchez un produit : les offres apparaissent ci-dessous, de la moins chère à la plus chère. Prospectus de Lidl, Eurospin, MD, Bennet, Ipercoop et Carrefour Iper. Les noms des produits et le détail des offres restent en italien : ils viennent de prospectus italiens.",
-  'agg_ph': 'Nom du produit, ou plusieurs noms séparés par des virgules',
-  'agg_aria': 'Noms du produit à ajouter, séparés par des virgules',
-  'agg_btn': 'Ajouter', 'piu': '+ ajouter',
-  'cambia': 'Changer le nom', 'togli': 'Retirer « {x} » de la liste', 'salva': 'Enregistrer',
-  'rin_aria': 'Noms du produit, séparés par des virgules',
-  'cerca_anche': 'cherche aussi :',
-  'st_condivisa': 'Liste partagée : ce que vous changez est vu par tous ceux qui ont le lien.',
-  'st_solo': 'Cette copie est à vous seul : les modifications restent sur ce téléphone.',
-  'st_salvando': 'Enregistrement pour tous…',
-  'st_salvata': 'Enregistrée. Tous ceux qui ont le lien la voient.',
-  'st_conflitto': "Quelqu'un d'autre l'a modifiée entre-temps : vous verrez sa version dans un instant.",
-  'st_lettore': 'Vous pouvez seulement consulter la liste reçue : vos modifications restent sur ce téléphone.',
-  'st_errore': "Je n'ai pas réussi à l'enregistrer pour tous. Elle reste sur ce téléphone.",
-  'conta_off': '{n} {parola} du prospectus · {m} pages à regarder',
-  'off_una': 'offre lue', 'off_tante': 'offres lues',
-  'conta_pag_una': '{n} page le mentionne', 'conta_pag': '{n} pages le mentionnent',
-  'f_prezzi': 'Prix lus sur le prospectus',
-  'f_altre': 'Autres pages qui le mentionnent', 'f_pagine': 'Pages à regarder',
-  'meno_caro': 'le moins cher', 'da_controllare': 'à vérifier',
-  'confezione': '{p} € le paquet',
-  'apri': 'Ouvrir la page {n} du prospectus',
-  'senza_pagina': '{f} — page non identifiée',
-  'pag': 'p. {n}', 'altre_pag': 'Afficher les {n} autres pages',
-  'niente_pag': "L'ordinateur n'a lu ce mot sur aucune page. Il peut quand même y être : essayez un autre mot, plus courant.",
-  'lista_vuota': 'La liste est vide. Touchez « + ajouter » pour y remettre quelque chose.',
-  'manda_tit': 'Envoyez-moi votre liste',
-  'manda_cond': "Inutile si la liste est partagée : je la lis moi-même sur la page. Cela ne sert que sur une copie autonome, comme le fichier enregistré sur le téléphone.",
-  'manda_solo': "Cette copie n'est pas reliée aux autres : ce que vous changez ici ne me parvient pas. Touchez le bouton et collez dans la conversation, les autres noms viennent aussi.",
-  'manda_btn': 'Copier ma liste',
-  'manda_ok': 'Copiée. Collez-la maintenant dans la conversation.',
-  'manda_no': "Je n'ai pas réussi à la copier : appuyez longuement sur le texte ci-dessous, « Tout sélectionner », copiez.",
-  'manda_aria': 'Votre liste, à copier',
-  'vol_tit': 'Les prospectus', 'vol_pag': '{n} p.',
-  'letto': 'lus le {d}',
-  'pie': 'Les numéros de page sont ceux des prospectus.',
-  'lingua_aria': "Langue de l'interface",
-  'u_kg': 'le kg', 'u_l': 'le litre', 'u_uovo': "l'œuf", 'u_rotolo': 'le rouleau', 'u_lav': 'le lavage',
- },
- 'es': {
-  'spiega': '<h2>Cómo leerla</h2>\n<p>Los precios están <b>leídos a mano</b>, uno por uno, de las páginas de los folletos: la letra grande el ordenador no la lee. La comparación es <b>por unidad</b> y cambia con el producto — la carne al kilo, la leche al litro, los huevos al huevo, el detergente al lavado.</p>\n<p>Si <b>añades un producto nuevo</b>, todavía no tiene precios: te dice en qué páginas aparece la palabra, y el precio lo lees abriendo la página. Puedes poner <b>varios nombres separados por comas</b> — <i>yogurt, yogurth, vasetti</i> — y encuentra las páginas donde hay al menos uno.</p>\n<p>Las filas marcadas <span class="ev">por comprobar</span> vienen de resúmenes encontrados en internet y pueden estar equivocadas. Algunos precios valen <b>solo con la tarjeta de la tienda</b> — soci Coop, Lidl Plus, Bennet Club, SpesAmica — y la fila lo dice.</p>\n<p>Cada fila <b>abre el folleto</b> por la página correcta, en una pestaña nueva. Los nombres de los productos y el detalle de las ofertas siguen en italiano: están citados de folletos italianos.</p>',
-  'nome': 'Español', 'sigla': 'ES',
-  'titolo': 'La lista de la compra',
-  'sottotitolo': 'Toca un producto: debajo aparecen las ofertas, de la más barata en adelante. Folletos de Lidl, Eurospin, MD, Bennet, Ipercoop y Carrefour Iper. Los nombres de los productos y el detalle de las ofertas siguen en italiano: vienen de folletos italianos.',
-  'agg_ph': 'Nombre del producto, o varios nombres separados por comas',
-  'agg_aria': 'Nombres del producto a añadir, separados por comas',
-  'agg_btn': 'Añadir', 'piu': '+ añadir',
-  'cambia': 'Cambiar el nombre', 'togli': 'Quitar «{x}» de la lista', 'salva': 'Guardar',
-  'rin_aria': 'Nombres del producto, separados por comas',
-  'cerca_anche': 'busca también:',
-  'st_condivisa': 'Lista compartida: lo que cambies lo ve todo el que tenga el enlace.',
-  'st_solo': 'Esta copia es solo tuya: los cambios se quedan en este teléfono.',
-  'st_salvando': 'Guardando para todos…',
-  'st_salvata': 'Guardada. La ve todo el que tenga el enlace.',
-  'st_conflitto': 'Mientras tanto la ha cambiado otra persona: en un momento verás la suya.',
-  'st_lettore': 'Solo puedes mirar la lista que te han enviado: tus cambios se quedan en este teléfono.',
-  'st_errore': 'No he podido guardarla para todos. Se queda en este teléfono.',
-  'conta_off': '{n} {parola} del folleto · {m} páginas que mirar',
-  'off_una': 'oferta leída', 'off_tante': 'ofertas leídas',
-  'conta_pag_una': '{n} página lo nombra', 'conta_pag': '{n} páginas lo nombran',
-  'f_prezzi': 'Precios leídos del folleto',
-  'f_altre': 'Otras páginas que lo nombran', 'f_pagine': 'Páginas que mirar',
-  'meno_caro': 'el más barato', 'da_controllare': 'por comprobar',
-  'confezione': '{p} € el paquete',
-  'apri': 'Abrir la página {n} del folleto',
-  'senza_pagina': '{f} — página no identificada',
-  'pag': 'pág. {n}', 'altre_pag': 'Mostrar las otras {n} páginas',
-  'niente_pag': 'El ordenador no ha leído esta palabra en ninguna página. Puede estar igualmente: prueba a llamar al producto de otra manera, con una palabra más común.',
-  'lista_vuota': 'La lista está vacía. Toca «+ añadir» para volver a poner algo.',
-  'manda_tit': 'Mándame tu lista',
-  'manda_cond': 'No hace falta si la lista es compartida: la leo yo mismo de la página. Solo sirve en una copia que va por su cuenta, como el archivo guardado en el teléfono.',
-  'manda_solo': 'Esta copia no está conectada con las otras: lo que cambies aquí no me llega. Toca el botón y pégala en el chat, van también los nombres alternativos.',
-  'manda_btn': 'Copiar mi lista',
-  'manda_ok': 'Copiada. Ahora pégala en el chat.',
-  'manda_no': 'No he podido copiarla yo: mantén pulsado el texto de abajo, «Seleccionar todo», copia.',
-  'manda_aria': 'Tu lista, para copiar',
-  'vol_tit': 'Los folletos', 'vol_pag': '{n} pág.',
-  'letto': 'leídos el {d}',
-  'pie': 'Los números de página son los de los folletos.',
-  'lingua_aria': 'Idioma de la interfaz',
-  'u_kg': 'el kg', 'u_l': 'el litro', 'u_uovo': 'el huevo', 'u_rotolo': 'el rollo', 'u_lav': 'el lavado',
- },
-}
-
 PDF     = {c: f for c, _, _, f, _, _ in VOLANTINI}
 MODELLO = {c: m for c, _, _, _, _, m in VOLANTINI}
 
@@ -260,7 +72,6 @@ DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        letto='4 settembre 2026'),
                   ensure_ascii=False, separators=(',', ':'))
 LISTA0 = json.dumps(partenza, ensure_ascii=False, separators=(',', ':'))
-LINGUE_JSON = json.dumps(LINGUE, ensure_ascii=False, separators=(',', ':'))
 
 HTML = r'''<title>Spesa</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Asap:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap">
@@ -291,16 +102,6 @@ body{background:var(--carta);color:var(--inchiostro);font-family:var(--f-testo);
 button{font-family:var(--f-testo);color:inherit}
 :focus-visible{outline:3px solid var(--rosso);outline-offset:2px}
 .guscio{max-width:800px;margin:0 auto;padding:0 15px 60px}
-
-/* ---- selettore della lingua, in alto a destra ---- */
-.testa-alta{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
-.lingue{display:flex;gap:0;margin-top:18px;flex:0 0 auto;border:1.5px solid var(--linea-forte);
-  border-radius:99px;overflow:hidden;background:var(--carta)}
-.lingue button{background:none;border:0;border-left:1px solid var(--linea);cursor:pointer;
-  padding:7px 11px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--tenue);
-  min-height:36px;line-height:1}
-.lingue button:first-child{border-left:0}
-.lingue button[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
 
 /* ---- testa ---- */
 header{padding:20px 0 2px}
@@ -430,11 +231,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <div class="guscio">
 <header>
-  <div class="testa-alta">
-    <h1><span>Torino · Corso Siracusa</span><span id="h-titolo"></span></h1>
-    <div class="lingue" id="lingue" role="group"></div>
-  </div>
-  <p class="sottotitolo" id="h-sottotitolo"></p>
+  <h1><span>Torino · Corso Siracusa</span>La lista della spesa</h1>
+  <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
+  conveniente in giù. Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
 </header>
 
 <div class="barra">
@@ -450,20 +249,62 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <div id="risultato"></div>
 
 <section class="manda" id="riquadro-manda">
-  <h2 id="h-manda"></h2>
-  <p id="perche-manda"></p>
-  <button type="button" id="btn-copia"></button>
+  <h2>Mandami la tua lista</h2>
+  <p id="perche-manda">Se la lista è condivisa non serve: la leggo da solo dalla pagina.
+  Serve solo su una copia che gira per conto suo, come il file salvato sul telefono.</p>
+  <button type="button" id="btn-copia">Copia la mia lista</button>
   <p class="esito" id="esito" role="status"></p>
   <textarea id="testo-lista" readonly aria-label="La tua lista, da copiare"></textarea>
 </section>
 
 <section class="spiega">
-  <div id="spiega"></div>
-  <h2 style="margin-top:18px" id="h-volantini"></h2>
+  <h2>Come leggerla</h2>
+  <p>I <b>dodici prodotti di partenza</b> hanno i prezzi letti a mano, uno per uno, dalle pagine
+  dei volantini. Il confronto è per unità e cambia col prodotto: la carne al chilo, il latte al
+  litro, le uova all'uovo, la carta igienica al rotolo, il detersivo a lavaggio. Al chilo il
+  detersivo darebbe un numero vero e inutile.</p>
+  <p>Se <b>aggiungi un prodotto nuovo</b>, quello i prezzi non ce li ha ancora: ti dice in quali pagine
+  dei volantini compare la parola, e il prezzo lo leggi tu aprendo il PDF a quella pagina. Se
+  però scrivi una parola che questa pagina già conosce — «caffe», «bovino», «uovo» — si
+  riaggancia da sola ai prezzi giusti.</p>
+  <p><b>La stessa cosa si chiama in modi diversi</b>, e il volantino ne usa uno solo: quello che
+  tu chiami detersivo lì è scritto «lavatrice», la carne di bue è «bovino» o «scottona». Perciò
+  puoi mettere <b>più nomi separati da virgola</b> — per esempio
+  <i>yogurt, yogurth, vasetti</i> — e la pagina ti trova tutte le pagine dove compare
+  <b>almeno uno</b> di quei nomi. Il primo è quello che leggi sul bottone, gli altri lavorano
+  sotto e te li fa vedere sotto il titolo. Vale anche su «Cambia nome»: si apre già con tutti i
+  nomi che sta usando, e li correggi.</p>
+  <p>Le righe segnate <span class="ev">da controllare</span> vengono da riassunti trovati
+  online e possono essere sbagliate: di errori così ne ho già trovati tre.</p>
+  <p>Certi prezzi valgono <b>solo con la tessera</b> — soci Coop, Lidl Plus, Bennet Club — e
+  qualche riga confronta cose diverse fra loro: il caffè in capsule al chilo costa sempre molto
+  più del macinato, e l'ammorbidente non è detersivo. Sta scritto nella riga.</p>
+  <p>Le parole le ha lette il computer dalle immagini: sulle scritte grandi spesso sbaglia. Se
+  un prodotto dà zero pagine può esserci lo stesso, prova a chiamarlo in un altro modo.</p>
+
+  <h2 style="margin-top:18px">Quando arrivano le offerte nuove</h2>
+  <p>I prezzi qui sopra sono dei volantini <b id="letto"></b>. Quando escono quelli nuovi
+  <b>la pagina si aggiorna da sola</b>: chi l'ha aperta col link ricarica e vede i prezzi nuovi,
+  senza premere niente e senza che nessuno debba rimandare niente. Vale per chiunque abbia il
+  link, da qualsiasi telefono.</p>
+  <p>L'unica copia che <b>non</b> si aggiorna è il file salvato sul telefono: quello resta fermo
+  al giorno in cui è stato fatto. Se ti interessa avere sempre i prezzi giusti, usa il link.</p>
+  <p><b>La lista dei prodotti è una sola, condivisa.</b> Chi apre il link vede la stessa, e se
+  la cambia la cambia per tutti: aggiungere e togliere prodotti lo può fare chiunque abbia il
+  link. Quando qualcuno la tocca, gli altri schermi si aggiornano da soli. In cima alla pagina
+  c'è scritto se la copia che stai guardando è condivisa o no.</p>
+  <p>Un prodotto aggiunto adesso mostra <b>subito le pagine</b> dove compare, ma i
+  <b>prezzi arrivano dopo</b>: quelli vanno letti dalle pagine dei volantini a occhio, non c'è
+  modo di ricavarli da soli. Quando li ho letti compaiono anche quelli, senza che dobbiate
+  rifare niente.</p>
+
+  <h2 style="margin-top:18px">I volantini</h2>
   <ul class="vol" id="vol"></ul>
+  <p style="margin-top:12px">Mercatò non c'è: il loro sito non pubblica il volantino in un
+  formato che si riesca a scaricare.</p>
 </section>
 
-<footer><span id="h-letto"></span> <span id="h-pie"></span></footer>
+<footer>Volantini letti il 2 settembre 2026. I numeri di pagina sono quelli dei PDF.</footer>
 </div>
 
 <script>
@@ -484,40 +325,6 @@ const TEMPLATE = __TEMPLATE__;
    sparirebbero a ogni ricaricamento. */
 const CONDIVISA = __CONDIVISA__;
 const CHIAVE = 'spesa.lista.v1';
-
-/* LE SCRITTE CAMBIANO, I DATI NO. Restano in italiano in tutte le lingue i
-   nomi dei prodotti, le insegne, la descrizione delle offerte e le loro
-   condizioni: vengono dai volantini italiani e servono a cercarci dentro.
-   Tradurli vorrebbe dire riscrivere il volantino, e su un prezzo
-   un'imprecisione costa. */
-const T = __LINGUE__;
-const CHIAVE_LINGUA = 'spesa.lingua.v1';
-
-function leggiLingua() {
-  try {
-    const g = localStorage.getItem(CHIAVE_LINGUA);
-    if (g && T[g]) return g;
-  } catch (e) { /* niente memoria: si parte in italiano */ }
-  try {
-    const n = (navigator.language || '').slice(0, 2).toLowerCase();
-    if (T[n]) return n;
-  } catch (e) { /* nemmeno la lingua del telefono: italiano */ }
-  return 'it';
-}
-let lingua = leggiLingua();
-
-/* L'italiano fa da rete: una chiave che manca in un'altra lingua esce in
-   italiano invece di lasciare un buco. */
-function t(chiave, valori) {
-  let testo = (T[lingua] && T[lingua][chiave]) || T.it[chiave] || '';
-  if (valori) for (const k in valori) testo = testo.split('{' + k + '}').join(valori[k]);
-  return testo;
-}
-
-/* Le unita arrivano dai dati in italiano: qui si traducono per l'etichetta. */
-const CHIAVI_UNITA = { 'al kg': 'u_kg', 'al litro': 'u_l', "all'uovo": 'u_uovo',
-                       'al rotolo': 'u_rotolo', 'a lavaggio': 'u_lav' };
-const unitaDi = cat => t(CHIAVI_UNITA[DATI.unita[cat]] || 'u_kg');
 
 /* Rimette insieme il documento intero con dentro una lista nuova. L'ordine
    conta: prima la lista, poi il template. Al contrario, il template appena
@@ -606,23 +413,23 @@ function stato(testo, brutto) {
 function salva() {
   salvaLocale();
   if (!ART || soloMio || !TEMPLATE) return;
-  stato(t('st_salvando'));
+  stato('Sto salvando per tutti…');
   clearTimeout(attesa);
   attesa = setTimeout(async () => {
     try {
       await ART.publish(documento(lista));
-      stato(t('st_salvata'));
+      stato('Salvata. La vedono tutti quelli che hanno il link.');
     } catch (err) {
       const c = err && err.code;
       if (c === 'conflict') {
         /* qualcun altro ha salvato nel frattempo: ogni schermo si ricarica
            sulla sua versione, quindi qui non si insiste */
-        stato(t('st_conflitto'));
+        stato('Nel frattempo l\'ha cambiata qualcun altro: fra un attimo vedi la sua.');
       } else if (c === 'not_writer' || c === 'not_granted') {
         soloMio = true;
-        stato(t('st_lettore'), true);
+        stato('Puoi solo guardare la lista di chi te l\'ha mandata: le tue modifiche restano su questo telefono.', true);
       } else {
-        stato(t('st_errore'), true);
+        stato('Non sono riuscito a salvarla per tutti. Resta su questo telefono.', true);
       }
     }
   }, 1200);
@@ -690,7 +497,7 @@ function disegnaTasti() {
     box.appendChild(b);
   });
   const piu = document.createElement('button');
-  piu.type = 'button'; piu.className = 'tasto agg'; piu.textContent = t('piu');
+  piu.type = 'button'; piu.className = 'tasto agg'; piu.textContent = '+ aggiungi';
   piu.onclick = () => {
     const f = document.getElementById('form-agg');
     f.classList.add('on');
@@ -711,12 +518,12 @@ function rigaPrezzo(o, primo) {
   s.innerHTML = '<b></b> · <span></span> · <span></span>';
   s.querySelector('b').textContent = o.ins;
   s.querySelectorAll('span')[0].textContent = o.fmt;
-  s.querySelectorAll('span')[1].textContent = t('confezione', { p: eur(o.prezzo) });
+  s.querySelectorAll('span')[1].textContent = eur(o.prezzo) + ' € la confezione';
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
-  d.querySelector('.val .u').textContent = unitaDi(o.cat);
+  d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const coda = d.querySelector('.coda');
-  if (primo) { const x = document.createElement('span'); x.className = 'bollo meno'; x.textContent = t('meno_caro'); coda.appendChild(x); }
-  if (o.dubbio) { const x = document.createElement('span'); x.className = 'bollo dubbio'; x.textContent = t('da_controllare'); coda.appendChild(x); }
+  if (primo) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
+  if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
   if (o.note) {
     const n = document.createElement('p'); n.className = 'nota'; n.textContent = o.note;
@@ -734,7 +541,7 @@ function dove(o) {
   if (!o.url) {
     const p = document.createElement('p');
     p.className = 'dove';
-    p.textContent = t('senza_pagina', { f: o.pdf });
+    p.textContent = o.pag ? `${o.pdf} — pagina ${o.pag}` : `${o.pdf} — pagina non individuata`;
     return p;
   }
   const a = document.createElement('a');
@@ -742,7 +549,7 @@ function dove(o) {
   a.href = o.url;
   a.target = '_blank';
   a.rel = 'noopener noreferrer';
-  a.textContent = t('apri', { n: o.pag });
+  a.textContent = `Apri la pagina ${o.pag} del volantino`;
   return a;
 }
 
@@ -753,7 +560,7 @@ function rigaPagina(p) {
   d.innerHTML = `<span><span class="ins"></span><span class="per"></span></span><span class="np"></span>`;
   d.querySelector('.ins').textContent = p.ins;
   d.querySelector('.per').textContent = p.periodo;
-  d.querySelector('.np').textContent = t('pag', { n: p.pag });
+  d.querySelector('.np').textContent = 'pag. ' + p.pag;
   return d;
 }
 
@@ -763,7 +570,7 @@ function disegna() {
   const out = document.getElementById('risultato');
   out.textContent = '';
   if (!lista.length) {
-    const v0 = document.createElement('p'); v0.className = 'vuoto'; v0.textContent = t('lista_vuota'); out.appendChild(v0);
+    out.innerHTML = '<p class="vuoto">La lista è vuota. Tocca «+ aggiungi» per rimetterci qualcosa.</p>';
     return;
   }
   if (scelto >= lista.length) scelto = lista.length - 1;
@@ -776,8 +583,8 @@ function disegna() {
   capo.innerHTML = '<h2></h2><span class="quanti"></span>';
   capo.querySelector('h2').textContent = v.nome;
   capo.querySelector('.quanti').textContent = off.length
-    ? t('conta_off', { n: off.length, parola: t(off.length === 1 ? 'off_una' : 'off_tante'), m: pag.length })
-    : t(pag.length === 1 ? 'conta_pag_una' : 'conta_pag', { n: pag.length });
+    ? `${off.length} ${off.length === 1 ? 'offerta letta' : 'offerte lette'} dal volantino · ${pag.length} pagine da guardare`
+    : `${pag.length} ${pag.length === 1 ? 'pagina lo nomina' : 'pagine lo nominano'}`;
   out.appendChild(capo);
 
   const altri = nomiDi(v).slice(1);
@@ -785,7 +592,7 @@ function disegna() {
     const p = document.createElement('p');
     p.className = 'sinonimi';
     p.innerHTML = '<span></span> ';
-    p.querySelector('span').textContent = t('cerca_anche');
+    p.querySelector('span').textContent = 'cerca anche:';
     altri.forEach(a => {
       const c = document.createElement('em');
       c.textContent = a;
@@ -797,10 +604,10 @@ function disegna() {
   const g = document.createElement('div');
   g.className = 'gestisci';
   const bRin = document.createElement('button');
-  bRin.type = 'button'; bRin.textContent = t('cambia');
+  bRin.type = 'button'; bRin.textContent = 'Cambia nome';
   const bTog = document.createElement('button');
   bTog.type = 'button'; bTog.className = 'togli';
-  bTog.textContent = t('togli', { x: v.nome });
+  bTog.textContent = 'Togli «' + v.nome + '» dalla lista';
   bTog.onclick = () => {
     lista.splice(scelto, 1);
     if (scelto > 0) scelto--;
@@ -811,9 +618,7 @@ function disegna() {
 
   const fr = document.createElement('form');
   fr.className = 'form-rin';
-  fr.innerHTML = '<input type="text"><button type="submit"></button>';
-  fr.querySelector('input').setAttribute('aria-label', t('rin_aria'));
-  fr.querySelector('button').textContent = t('salva');
+  fr.innerHTML = '<input type="text" aria-label="Nomi del prodotto, separati da virgola"><button type="submit">Salva</button>';
   const inp = fr.querySelector('input');
   fr.onsubmit = ev => {
     ev.preventDefault();
@@ -833,14 +638,14 @@ function disegna() {
 
   if (off.length) {
     const f = document.createElement('p');
-    f.className = 'fascia'; f.textContent = t('f_prezzi');
+    f.className = 'fascia'; f.textContent = 'Prezzi letti dal volantino';
     out.appendChild(f);
     off.forEach((o, i) => out.appendChild(rigaPrezzo(o, i === 0)));
   }
 
   const f2 = document.createElement('p');
   f2.className = 'fascia';
-  f2.textContent = off.length ? t('f_altre') : t('f_pagine');
+  f2.textContent = off.length ? 'Altre pagine che lo nominano' : 'Pagine da guardare';
   out.appendChild(f2);
 
   if (pag.length) {
@@ -849,14 +654,14 @@ function disegna() {
     if (pag.length > quante) {
       const b = document.createElement('button');
       b.type = 'button'; b.className = 'altre';
-      b.textContent = t('altre_pag', { n: pag.length - quante });
+      b.textContent = `Mostra le altre ${pag.length - quante} pagine`;
       b.onclick = () => { tutteLePagine = true; disegna(); };
       out.appendChild(b);
     }
   } else {
     const p = document.createElement('p');
     p.className = 'vuoto';
-    p.textContent = t('niente_pag');
+    p.textContent = 'Il computer non ha letto questa parola in nessuna pagina. Può esserci lo stesso: prova a chiamare il prodotto in un altro modo, con una parola più comune.';
     out.appendChild(p);
   }
 }
@@ -868,7 +673,7 @@ DATI.volantini.forEach(v => {
   li.innerHTML = `<span><span class="i"></span> <span class="p"></span></span><span class="n"></span>`;
   li.querySelector('.i').textContent = v.ins;
   li.querySelector('.p').textContent = v.periodo;
-  li.querySelector('.n').textContent = t('vol_pag', { n: v.pagine });
+  li.querySelector('.n').textContent = v.pagine + ' pag.';
   ul.appendChild(li);
 });
 
@@ -910,73 +715,27 @@ btnCopia.onclick = async () => {
   areaLista.classList.add('on');
   try {
     await navigator.clipboard.writeText(testo);
-    esito.textContent = t('manda_ok');
+    esito.textContent = 'Copiata. Adesso incollala nella chat.';
   } catch (e) {
-    esito.textContent = t('manda_no');
+    esito.textContent = 'Non sono riuscito a copiarla da solo: tienila premuta qui sotto, «Seleziona tutto», copia.';
     areaLista.focus();
     areaLista.select();
   }
 };
 
-disegnaLingue();
-traduciFissi();
+document.getElementById('letto').textContent = 'letti il ' + DATI.letto;
 
 /* Il riquadro per rimandarmi la lista a mano ha senso solo dove la lista non e
    condivisa: se lo e, la leggo dalla pagina pubblicata senza chiedere niente. */
-/* Riempie tutto quello che non passa da disegna(): testa, spiegazione, riquadri.
-   Si richiama a ogni cambio di lingua. */
-function traduciFissi() {
-  document.documentElement.lang = lingua;
-  const metti = (id, testo) => { const e = document.getElementById(id); if (e) e.textContent = testo; };
-  metti('h-titolo', t('titolo'));
-  metti('h-sottotitolo', t('sottotitolo'));
-  metti('h-volantini', t('vol_tit'));
-  metti('h-manda', t('manda_tit'));
-  metti('h-letto', t('letto', { d: DATI.letto }));
-  metti('h-pie', t('pie'));
-  metti('btn-copia', t('manda_btn'));
-  const sp = document.getElementById('spiega');
-  if (sp) sp.innerHTML = t('spiega');          // testo mio, non di chi apre
-  const n = document.getElementById('nuovo');
-  if (n) { n.placeholder = t('agg_ph'); n.setAttribute('aria-label', t('agg_aria')); }
-  const ab = document.querySelector('#form-agg button');
-  if (ab) ab.textContent = t('agg_btn');
-  const ta = document.getElementById('testo-lista');
-  if (ta) ta.setAttribute('aria-label', t('manda_aria'));
-  const vol = document.getElementById('vol');
-  if (vol) [...vol.children].forEach((li, i) => {
-    const v = DATI.volantini[i];
-    if (v) li.querySelector('.n').textContent = t('vol_pag', { n: v.pagine });
-  });
-  aggiornaRiquadroManda();
-}
-
-function disegnaLingue() {
-  const box = document.getElementById('lingue');
-  if (!box) return;
-  box.setAttribute('aria-label', t('lingua_aria'));
-  box.textContent = '';
-  for (const k of Object.keys(T)) {
-    const b = document.createElement('button');
-    b.type = 'button';
-    b.textContent = T[k].sigla;
-    b.title = T[k].nome;
-    b.setAttribute('aria-pressed', String(k === lingua));
-    b.onclick = () => {
-      lingua = k;
-      try { localStorage.setItem(CHIAVE_LINGUA, k); } catch (e) { /* non la ricordera */ }
-      disegnaLingue(); traduciFissi(); disegna();
-    };
-    box.appendChild(b);
-  }
-}
-
 function aggiornaRiquadroManda() {
   const r = document.getElementById('riquadro-manda');
   const p = document.getElementById('perche-manda');
   if (!r) return;
   r.style.display = soloMio ? '' : 'none';
-  if (p) p.textContent = soloMio ? t('manda_solo') : t('manda_cond');
+  if (p && soloMio) {
+    p.textContent = 'Questa copia non è collegata alle altre: quello che cambi qui non arriva a me. '
+      + 'Tocca il bottone e incolla nella chat, ci sono anche i nomi alternativi.';
+  }
 }
 
 disegna();
@@ -993,10 +752,10 @@ disegna();
   } catch (e) { ART = null; }
   if (ART) {
     soloMio = false;
-    stato(t('st_condivisa'));
+    stato('Lista condivisa: quello che cambi lo vede anche chi ha il link.');
     lista = leggiLista();
   } else {
-    stato(t('st_solo'));
+    stato('Questa copia è solo tua: le modifiche restano su questo telefono.');
   }
   aggiornaRiquadroManda();
   disegna();
@@ -1022,7 +781,7 @@ def racchiudi(testo):
     """JSON da mettere dentro un <script>: </script> va spezzato o chiude il tag."""
     return json.dumps(testo, ensure_ascii=False).replace('</', '<\\/')
 
-CORPO = HTML.replace('__DATI__', DATI).replace('__LINGUE__', LINGUE_JSON)
+CORPO = HTML.replace('__DATI__', DATI)
 
 INTESTA = ('<!doctype html>\n<html lang="it">\n<head>\n<meta charset="utf-8">\n'
            '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
