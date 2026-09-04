@@ -7,19 +7,14 @@ forma di una parola italiana; i prezzi non passano quasi mai, perche sono
 numeri grandi e stilizzati che tesseract non riconosce. Per questo l'indice
 serve a trovare LA PAGINA, e il prezzo si legge poi sul PDF.
 """
-import glob, os, re, json
+import glob, os, re, json, sys
+from dati import VOLANTINI
 
-# aggiornare le date a ogni volantino nuovo
-META = {
- 'lidl':          ('Lidl',             'dal 3 al 9 settembre 2026 (sottocosto fino al 12)'),
- 'eurospin':      ('Eurospin',         'dal 24 agosto al 6 settembre 2026'),
- 'md':            ('MD',               'dal 25 agosto al 6 settembre 2026'),
- 'bennet':        ('Bennet',           'dal 27 agosto al 9 settembre 2026'),
- 'ipercoop':      ('Ipercoop',         'Sottocosto, dal 31 agosto al 9 settembre 2026'),
- 'ipercoop_extra':('Ipercoop',         'Extra offerte, dal 27 agosto al 9 settembre 2026'),
- 'carriper20':    ('Carrefour Iper',   'dal 20 agosto al 3 settembre 2026'),
- 'carriper04':    ('Carrefour Iper',   'dal 4 settembre 2026'),
-}
+# Le insegne e i periodi NON si riscrivono qui: vengono da dati.py, che è
+# l'unico posto dove stanno. Prima erano copiati anche qui dentro, e la copia
+# restava indietro: il 2026-09-04 nominava ancora un volantino tolto.
+META = {c: (i, p) for c, i, p, _, _, _ in VOLANTINI}
+
 VOC = set('aeiouàèéìòù')
 
 def plausibile(w):
@@ -36,16 +31,41 @@ def plausibile(w):
         return None
     return lw
 
-righe = []
+# INCREMENTALE. indice.json sta nel progetto ed è già buono per i volantini
+# vecchi: qui si rileggono solo le pagine di cui c'è l'OCR sul disco, e il
+# resto si tiene. Così il controllo giornaliero scarica e legge SOLO il
+# volantino nuovo invece di rifare tutti e sette da capo — che è la ragione
+# per cui prima non finiva mai in tempo.
+DOVE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'indice.json')
+sorgente = 'indice.json' if os.path.exists('indice.json') else DOVE
+righe = json.load(open(sorgente, encoding='utf-8')) if os.path.exists(sorgente) else []
+righe = [r for r in righe if r['chiave'] in META]      # via i volantini tolti da dati.py
+for r in righe:                                        # periodi sempre quelli di dati.py
+    r['insegna'], r['validita'] = META[r['chiave']]
+avute = {(r['chiave'], r['pagina']) for r in righe}
+
+nuove = 0
 for chiave, (insegna, validita) in sorted(META.items()):
     for f in sorted(glob.glob(f'ocr/{chiave}/*.txt')):
+        pagina = int(os.path.basename(f)[:-4])
         parole = []
         for w in re.split(r'\s+', open(f, encoding='utf-8', errors='ignore').read()):
-            p = plausibile(w)
-            if p and p not in parole:
-                parole.append(p)
-        righe.append(dict(chiave=chiave, insegna=insegna, validita=validita,
-                          pagina=int(os.path.basename(f)[:-4]),
-                          parole=' '.join(sorted(parole))))
-json.dump(righe, open('indice.json', 'w', encoding='utf-8'), ensure_ascii=False)
-print('pagine indicizzate:', len(righe))
+            pp = plausibile(w)
+            if pp and pp not in parole:
+                parole.append(pp)
+        riga = dict(chiave=chiave, insegna=insegna, validita=validita,
+                    pagina=pagina, parole=' '.join(sorted(parole)))
+        if (chiave, pagina) in avute:
+            for i, r in enumerate(righe):
+                if (r['chiave'], r['pagina']) == (chiave, pagina):
+                    righe[i] = riga; break
+        else:
+            righe.append(riga); nuove += 1
+
+righe.sort(key=lambda r: (r['chiave'], r['pagina']))
+if not righe:
+    sys.exit('indice vuoto: fermati, rigenerare adesso svuoterebbe la pagina.')
+json.dump(righe, open(DOVE, 'w', encoding='utf-8'), ensure_ascii=False)
+if os.path.abspath('indice.json') != DOVE:
+    json.dump(righe, open('indice.json', 'w', encoding='utf-8'), ensure_ascii=False)
+print(f'pagine indicizzate: {len(righe)} (nuove: {nuove})')

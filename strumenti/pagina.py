@@ -17,7 +17,7 @@ prima versione:
 
 La lista vive in localStorage, non sul server: vedi NOTE.md.
 """
-import json, os, glob
+import json, os
 from dati import PRODOTTI, VOLANTINI, UNITA, D
 from lista import PARTENZA
 
@@ -39,17 +39,30 @@ offerte = [dict(cat=cat, ins=ins, rep=rep, pro=pro, fmt=fmt, prezzo=pre,
                 periodo=PERIODO[chiave], dubbio=(fon == D), note=note)
            for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI]
 
-idx = json.load(open('indice.json', encoding='utf-8'))
-validi = {(os.path.basename(os.path.dirname(f)), int(os.path.basename(f)[:-4]))
-          for f in glob.glob('pg/*/*.jpg')}
+# indice.json sta nel progetto, non nella cartella di lavoro: le immagini dei
+# volantini non si tengono (non sono nostre) e prima l'elenco delle pagine
+# veniva filtrato guardando i file jpg sul disco. Risultato: chi rigenerava la
+# pagina senza aver riscaricato tutto si ritrovava zero pagine. L'indice
+# contiene già solo pagine esistite davvero: basta lui.
+QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+_ind = 'indice.json' if os.path.exists('indice.json') else os.path.join(QUI, 'indice.json')
+idx = json.load(open(_ind, encoding='utf-8'))
+idx = [r for r in idx if r['chiave'] in PDF]      # via i volantini tolti da dati.py
+if not idx:
+    raise SystemExit('indice.json vuoto o senza volantini noti: fermati.')
 pagine = sorted((dict(ins=r['insegna'], periodo=r['validita'], pdf=PDF.get(r['chiave'], ''),
                       pag=r['pagina'], parole=r['parole'],
                       url=indirizzo(r['chiave'], r['pagina']))
-                 for r in idx if (r['chiave'], r['pagina']) in validi),
+                 for r in idx),
                 key=lambda r: (r['ins'], r['periodo'], r['pag']))
 
 import datetime as _dt
 _oggi = _dt.date.today()
+MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
+        'settembre ottobre novembre dicembre').split()
+# La data in fondo alla pagina si calcola: scritta a mano era rimasta indietro
+# di due giorni e Manlio l'ha fotografata mentre si contraddiceva da sola.
+OGGI = f'{_oggi.day} {MESI[_oggi.month - 1]} {_oggi.year}'
 volantini = [v for v in (dict(ins=i, periodo=p, pdf=f,
                               pagine=len([x for x in pagine if x['pdf'] == f]),
                               scaduto=_dt.date.fromisoformat(fino) < _oggi)
@@ -72,7 +85,7 @@ if os.path.exists(lista_viva):
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        partenza=partenza, unita={k: v[0] for k, v in UNITA.items()},
-                       letto='4 settembre 2026'),
+                       letto=OGGI),
                   ensure_ascii=False, separators=(',', ':'))
 LISTA0 = json.dumps(partenza, ensure_ascii=False, separators=(',', ':'))
 

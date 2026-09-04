@@ -65,17 +65,17 @@ Il sito lo pubblica il ramo `main` di QUESTO progetto, dalla radice.
 ## L'indirizzo che conta è il sito, non l'artifact
 
 Il 2026-09-03 Manlio ha detto: «questa pagina non deve essere un artefatto tuo,
-voglio l'indirizzo internet della pagina». Ha ragione, e c'era già il posto
-giusto: il sito della Palestra su GitHub Pages. La Spesa sta in una cartella
-accanto.
+voglio l'indirizzo internet della pagina». Ha ragione. Il giorno dopo il
+progetto è diventato suo e l'indirizzo si è accorciato.
 
-    https://manliograndi-del.github.io/palestra/spesa/     ← QUESTO
+    https://manliograndi-del.github.io/spesa/     ← QUESTO
     https://claude.ai/code/artifact/a6782ea0-6822-4026-87e7-705012966595  (secondario)
 
-Il sito lo pubblica il ramo **`main`**, cartella `spesa/`: per mandare in linea
-una modifica bisogna portarla lì, non basta il ramo di lavoro. **Toccare solo
-dentro `spesa/`**: `index.html`, `sw.js` e il resto dell'app della palestra
-stanno alla radice e non si toccano mai.
+Il sito lo pubblica il ramo **`main`** di questo progetto, dalla radice: per
+mandare in linea una modifica bisogna portarla lì, non basta il ramo di lavoro.
+**Vanno aggiornate tutte e due le copie**: il sito con un commit su `main`,
+l'artifact ripubblicandolo. Aggiornarne una sola lascia l'altra a raccontare
+i prezzi della settimana scorsa — successo il 2026-09-04.
 
 **La rinuncia, scelta da lui sapendola:** sul sito non c'è nessun server, quindi
 la lista torna a essere una per telefono. La lista condivisa vive solo
@@ -475,8 +475,35 @@ servono a poter ancora controllare l'offerta di ieri contro lo scontrino.
 C'è una **Routine giornaliera** (`trig_01UMkRYxHXJfPBSEZLo7Snzb`, ogni giorno
 alle 04:00 UTC) che apre una sessione nuova, esegue `pulisci.py` e, se non c'è
 niente da fare, **si ferma senza scrivere a nessuno** — è il caso normale. Se
-invece qualcosa scade, rifà il giro completo e ripubblica. Il prompt della
-Routine contiene tutti i passi; è il posto da correggere se il giro cambia.
+invece qualcosa scade, rifà il giro e ripubblica. Il prompt della Routine
+contiene tutti i passi; è il posto da correggere se il giro cambia.
+
+**Il 2026-09-04 non funzionava, e il perché è istruttivo.** La Routine è partita
+due volte, ha lavorato cinque minuti, e non ha pubblicato niente: nessun commit,
+nessuna ripubblicazione. Manlio l'aveva chiesto lui stesso — «non so se funziona
+la cosa che toglie i volantini vecchi e mette quelli nuovi» — e aveva ragione a
+dubitare.
+
+Le cause erano tre, tutte perché **la sessione che parte non trova quello che
+serve già pronto**:
+
+1. **`indice.json` non stava nel progetto.** Viveva nella cartella di lavoro
+   della sessione che l'aveva costruito, e quella cartella sparisce. Senza,
+   `pagina.py` non parte proprio. Adesso `indice.json` è dentro il progetto e
+   `indice.py` lo **aggiorna** invece di rifarlo: si scarica e si legge soltanto
+   il volantino nuovo. Rifarli tutti e sette voleva dire ~240 pagine da scaricare
+   e passare all'OCR, cinque minuti buoni prima ancora di cominciare.
+2. **`pagina.py` guardava i file `pg/*/*.jpg`** per sapere quali pagine
+   esistono. Senza le immagini sul disco l'elenco veniva vuoto. Adesso si fida
+   dell'indice, che contiene solo pagine esistite davvero.
+3. **Le date dei volantini erano scritte in tre posti** (`dati.py`, `indice.py`,
+   `scarica.sh`) e le copie divergevano. Adesso stanno solo in `dati.py`:
+   `indice.py` e `scarica.py` le leggono da lì.
+
+**La regola che ne esce:** tutto ciò che serve per rigenerare la pagina deve
+stare **dentro il progetto**, perché la sessione che rigenera parte da un clone
+e da niente altro. Se un passo dipende da un file che non è committato, quel
+passo non funzionerà mai in automatico — e fallirà in silenzio.
 
 **I PDF non si accumulano da nessuna parte**: vivono nella cartella di lavoro
 della sessione, che è temporanea e sparisce da sola. Le copie che ha Manlio sono
@@ -533,19 +560,23 @@ quella in corso.**
 
 ## Come si rifà
 
-Gli strumenti sono in `strumenti/`. Serve `pip install pillow openpyxl` e
-`apt-get install -y tesseract-ocr tesseract-ocr-ita`.
+Gli strumenti sono in `strumenti/`. Serve
+`apt-get install -y tesseract-ocr tesseract-ocr-ita`. Si lavora in una cartella
+qualsiasi, con `strumenti/` nel `PYTHONPATH`:
 
-1. `scarica.sh` — pagine dei volantini da anteprimavolantino.it
-2. `leggi.sh` — OCR di ogni pagina
-3. `indice.py` — da OCR a `indice.json`
-4. `pdf.py` — un PDF per volantino
-5. `build_xlsx.py` — l'Excel
-6. `cache_vals.py` — **obbligatorio dopo build_xlsx.py**, vedi sotto
+    export PYTHONPATH=<progetto>/strumenti
+    python3 -m scarica <chiave>     # pagine del volantino, indirizzi da dati.py
+    bash <progetto>/strumenti/leggi.sh   # OCR di ogni pagina scaricata
+    python3 -m indice               # aggiorna indice.json DENTRO il progetto
+    python3 -m pagina               # le tre copie in out/
 
-**A ogni volantino nuovo** vanno aggiornate a mano tre cose: le date dentro
-`scarica.sh`, quelle dentro `indice.py`, e la tabella `DATI` di `build_xlsx.py`
-(quella è compilata a occhio leggendo le pagine, non si genera da sola).
+**A ogni volantino nuovo si tocca solo `dati.py`**: la riga in `VOLANTINI` (con
+l'ultimo giorno e l'indirizzo delle pagine) e le righe dei prezzi in `PRODOTTI`,
+lette a occhio dalle pagine. `scarica.py` e `indice.py` leggono le date da lì, e
+la data in fondo alla pagina la calcola `pagina.py` da sola.
+
+`pdf.py` fa un PDF per volantino, se serve guardarlo tutto intero. **Non si
+committa**: le pagine non sono nostre.
 
 Le pagine stanno su `anteprimavolantino.it/public/uploads/AAAA/MM/` col nome
 `volantino-<insegna>-<AAAA-MM-GG>-p-<NN>.jpg`. **Il numero di pagina ha 2 cifre

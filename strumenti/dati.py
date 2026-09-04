@@ -61,16 +61,15 @@ VOLANTINI = [
  ('bennet',         'Bennet',         'dal 27 agosto al 9 settembre',                 'Bennet — 27 agosto-9 settembre.pdf',                '2026-09-09', _AV + '/2026/08/volantino-bennet-2026-08-27-p-{n:05d}.jpg'),
  ('ipercoop',       'Ipercoop',       'Sottocosto, dal 31 agosto al 9 settembre',     'Ipercoop Sottocosto — 31 agosto-9 settembre.pdf',   '2026-09-09', _VP + '/2/8/4/8/0/pagine/{n}.jpg'),
  ('ipercoop_extra', 'Ipercoop',       'Extra offerte, dal 27 agosto al 9 settembre',  'Ipercoop Extra offerte — 27 agosto-9 settembre.pdf','2026-09-09', _VP + '/2/8/4/5/1/pagine/{n}.jpg'),
- ('carriper20',     'Carrefour Iper', 'dal 20 agosto al 3 settembre',                 'Carrefour Iper — 20 agosto-3 settembre.pdf',        '2026-09-03', _AV + '/2026/08/volantino-carrefour-iper-2026-08-20-p-{n:02d}.jpg'),
  ('carriper04',     'Carrefour Iper', 'dal 4 settembre (fine stimata)',               'Carrefour Iper — dal 4 settembre.pdf',              '2026-09-17', _AV + '/2026/09/volantino-carrefour-iper-2026-09-04-p-{n:05d}.jpg'),
 ]
 
 PRODOTTI = [
  # ------------------------------- CARNE DI BUE (kg) -------------------------------
+ ("Carne di bue","Carrefour Iper","carriper04","Macelleria","Fettine di bovino adulto","al kg, almeno 1 kg",1,12.99,10,V,"«Prendi Spendi»: 12,99 al kg da 1 kg in su. Sotto il chilo 14,99. Prima 19,99."),
  ("Carne di bue","MD","md","Surgelati","10 hamburger di bovino – Le Specialità di Beppe","750 g",0.750,4.99,3,V,"Surgelato. Il volantino stampa 6,65 al kg."),
  ("Carne di bue","Eurospin","eurospin","Macelleria","Macinato per ragù di bovino adulto","Confezione Famiglia, al kg",1,8.99,11,V,"È la confezione grande, il prezzo è già al chilo."),
  ("Carne di bue","Lidl","lidl","Macelleria","Macinato di bovino adulto Scottona","400 g",0.400,4.49,16,V,"Prima 5,99. Il volantino stampa 11,23 al kg."),
- ("Carne di bue","Carrefour Iper","carriper20","Macelleria","Costata di bovino adulto – da 3 kg in su","al kg, almeno 3 kg",1,11.90,1,D,"Sconto a quantità: sotto i 3 kg costa 13,90 al kg."),
  ("Carne di bue","Bennet","bennet","Surgelati","4 hamburger di carne bovina con bacon – Montana","400 g",0.400,4.79,10,V,"Surgelato, −20%, prima 5,99."),
  ("Carne di bue","Ipercoop","ipercoop_extra","Macelleria","Macinato di bovino – Fattorie Natura","800 g",0.800,9.90,14,V,"PREZZO SOCI (−20%). Senza tessera 12,38, cioè 15,48 al kg."),
  ("Carne di bue","Eurospin","eurospin","Macelleria","Maxi hamburger di scottona","200 g",0.200,2.49,11,V,"Il volantino stampa 12,45 al kg."),
@@ -79,6 +78,10 @@ PRODOTTI = [
  ("Carne di bue","Ipercoop","ipercoop_extra","Macelleria","Fettine di reale di bovino adulto – Fattorie Natura","al kg",1,16.38,14,V,"Etichetta «Conviene»."),
  ("Carne di bue","Eurospin","eurospin","Macelleria","Fettine sottili di bovino adulto","al kg",1,17.99,11,V,""),
  # ------------------------------- TONNO (kg) -------------------------------
+ ("Tonno","Carrefour Iper","carriper04","Dispensa","Tonno in olio di oliva Filo d'olio – Mare Aperto","360 g (6 × 60 g)",0.360,3.99,25,V,"Sottocosto −50%, prima 7,99. Solo con la tessera SpesAmica Payback."),
+ ("Tonno","Carrefour Iper","carriper04","Dispensa","Tonno pinne gialle in olio di girasole – Maruzzella","480 g (6 × 80 g)",0.480,4.99,25,V,"−44%, prima 8,92. Solo con la tessera SpesAmica Payback. Confezione grande."),
+ ("Tonno","Carrefour Iper","carriper04","Dispensa","Filetti di tonno all'olio di oliva – Nostromo","180 g",0.180,2.99,25,V,"−38%, prima 4,83. Solo con la tessera SpesAmica Payback."),
+ ("Tonno","Carrefour Iper","carriper04","Pescheria","Trancio di tonno pinne gialle","al kg",1,17.90,11,V,"−30%, prima 25,90. È tonno fresco decongelato al banco, non in scatola."),
  ("Tonno","Bennet","bennet","Dispensa","Tonno all'olio di oliva – Flotta Azzurra","840 g (12 × 70 g)",0.840,7.48,12,V,"−30%, prima 10,69. Confezione grande."),
  ("Tonno","MD","md","Dispensa","Tonno all'olio d'oliva – Poseidon","840 g (12 × 70 g)",0.840,7.79,1,V,"Prima 9,49. Confezione grande."),
  ("Tonno","Carrefour Iper","carriper04","Dispensa","Tonno all'olio di oliva – Rio Mare","960 g (12 × 80 g)",0.960,10.45,4,V,"Sottocosto −47%, prima 19,73. Confezione grande."),
@@ -88,6 +91,8 @@ PRODOTTI = [
  ("Tonno","Bennet","bennet","Dispensa","Filetti di tonno – Rio Mare","250 g",0.250,4.99,12,V,"−40%, prima 8,32."),
  ("Tonno","Bennet","bennet","Dispensa","Tonno in olio – Consorcio","175 g",0.175,3.99,12,V,"−50%, ma solo con la tessera Bennet Club."),
  # ------------------------------- SALMONE (kg) -------------------------------
+ ("Salmone","Carrefour Iper","carriper04","Pescheria","Salmone affumicato Essential – Mowi","50 g",0.050,1.99,11,V,"Sottocosto −50%, prima 3,98. Il volantino stampa 39,80 al kg."),
+ ("Salmone","Carrefour Iper","carriper04","Pescheria","Saku di salmone – Gimar","140 g",0.140,7.90,11,V,"−20%, prima 9,90. Per sushi e sashimi. Il volantino stampa 56,43 al kg."),
  ("Salmone","Bennet","bennet","Pescheria","Filetto di salmone","al kg",1,17.69,None,D,"Sottocosto in copertina. Non valido nel Bennet di Alessandria."),
  ("Salmone","Lidl","lidl","Pesce","Filetto di salmone con pelle – Gastronomia di Mare","500 g",0.500,8.99,17,V,"Solo con carta Lidl Plus. Senza carta 10,49, cioè 20,98 al kg."),
  ("Salmone","Ipercoop","ipercoop","Freschi","Salmone scozzese affumicato – Icelander","100 g",0.100,1.99,4,V,"Sottocosto −50%, prima 3,98. Max 6 confezioni."),
@@ -116,6 +121,10 @@ PRODOTTI = [
  ("Olio d'oliva","Ipercoop","ipercoop","Dispensa","Olio extravergine di oliva Classico – Monini","1 litro",1,4.59,3,V,"Sottocosto −51%, prima 9,49. Max 4 confezioni."),
  ("Olio d'oliva","Bennet","bennet","Dispensa","Olio extravergine di oliva grezzo Il Casolare – Farchioni","1 litro",1,7.99,12,V,"−33%, prima 11,93."),
  # ------------------------------- POLLO (kg) -------------------------------
+ ("Pollo","Carrefour Iper","carriper04","Macelleria","Quarto posteriore di pollo – Aia","al kg",1,4.73,10,V,"−25%, prima 6,31."),
+ ("Pollo","Carrefour Iper","carriper04","Macelleria","Filettini di pollo","al kg, almeno 3 kg",1,7.99,10,V,"«Prendi Spendi»: 7,99 al kg da 3 kg in su. Sotto i 3 kg 9,99. Prima 16,49."),
+ ("Pollo","Carrefour Iper","carriper04","Macelleria","Linea Bon Roll – Aia","680 g",0.680,6.89,10,V,"−40%, prima 11,59. Il volantino stampa 10,14 al kg."),
+ ("Pollo","Carrefour Iper","carriper04","Macelleria","Kebab di pollo – Aia","300 g",0.300,4.99,10,V,"−21%, prima 6,39. Il volantino stampa 16,64 al kg."),
  ("Pollo","Eurospin","eurospin","Macelleria","Cordon bleu di pollo e tacchino","490 g",0.490,1.99,11,V,"Il volantino stampa 4,06 al kg."),
  ("Pollo","Ipercoop","ipercoop_extra","Macelleria","Alette arrosto di pollo – Origine Coop","450 g",0.450,2.19,14,V,"Da polli allevati senza antibiotici."),
  ("Pollo","Lidl","lidl","Macelleria","Pollo allevato all'aperto Campese – Amadori","al kg",1,5.99,16,V,"Senza uso di antibiotici."),
@@ -147,6 +156,9 @@ PRODOTTI = [
  ("Detersivo","MD","md","Cura casa","24 Fresh Caps 3 in 1 per lavatrice – Actiff","24 capsule",24,4.29,18,V,"Prima 4,89."),
  ("Detersivo","MD","md","Cura casa","24 capsule per lavatrice bouquet floreale – DAT5","24 capsule",24,4.29,18,V,"Prima 4,99."),
  # ------------------------------- SUINO (kg) -------------------------------
+ ("Suino","Carrefour Iper","carriper04","Macelleria","Fettine di coscia di suino","al kg",1,5.99,10,V,"−40%, prima 9,99."),
+ ("Suino","Carrefour Iper","carriper04","Macelleria","Spezzato di suino","al kg",1,5.99,10,V,"−33%, prima 8,99."),
+ ("Suino","Carrefour Iper","carriper04","Macelleria","Salamella di suino – confezione famiglia","al kg",1,7.99,10,V,"−20%, prima 9,99."),
  # Ci stanno sia i tagli freschi sia i salumi: sono tutti maiale, e il formato
  # di ogni riga dice cos'e. Se un domani vuole separarli, basta una categoria in piu.
  ("Suino","Lidl","lidl","Macelleria","Bocconcini di salsiccia","250 g",0.250,1.69,16,V,"−21%, prima 2,15. Il volantino stampa 6,76 al kg."),

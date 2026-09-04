@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+out/
+pg/
+ocr/
+urls.txt
+pagina-viva.html
+lista-attuale.json

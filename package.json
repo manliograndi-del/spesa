@@ -1,0 +1,9 @@
+{
+  "name": "spesa",
+  "private": true,
+  "description": "Solo per le prove: aprono le pagine generate in un browser finto e controllano che funzionino davvero.",
+  "scripts": {
+    "prova": "node strumenti/prova.js && node strumenti/prova-collegamenti.js && node strumenti/prova-maiuscole.js && node strumenti/prova-testi.js"
+  },
+  "devDependencies": { "jsdom": "^25.0.0" }
+}
