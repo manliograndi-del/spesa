@@ -377,14 +377,16 @@ let tutteLePagine = false;
    I volantini nuovi si leggono in anticipo — quello dell'Eurospin letto il
    5 settembre partiva il 10 — e senza questo si sarebbero piazzate in cima
    con tanto di bollo «il meno caro» pur non valendo ancora niente in cassa. */
-/* «2026-09-10» -> «10 settembre»: la data grezza in mezzo a un bollo non si
-   legge, e l'anno non serve a chi guarda le offerte di questa settimana. */
+/* «2026-09-10» -> «dal 10 settembre»: la data grezza in mezzo a un bollo non
+   si legge, e l'anno non serve a chi guarda le offerte di questa settimana.
+   L'8 e l'11 vogliono «dall'», non «dal»: il bollo diceva «vale dal 8
+   settembre» e si leggeva come una svista. */
 const MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
   + 'settembre ottobre novembre dicembre').split(' ');
 function giorno(iso) {
   if (!iso) return '';
-  const p = iso.split('-');
-  return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1];
+  const p = iso.split('-'), n = Number(p[2]);
+  return (n === 8 || n === 11 ? "dall'" : 'dal ') + n + ' ' + MESI[Number(p[1]) - 1];
 }
 
 /* Scaduto e «non ancora cominciato» si decidono QUI, a ogni apertura, contro
@@ -482,7 +484,7 @@ function rigaPrezzo(o, primo) {
   const coda = d.querySelector('.coda');
   if (primo && !futuro(o)) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
   if (futuro(o)) coda.insertAdjacentHTML('beforeend',
-    '<span class="bollo dopo">vale dal ' + giorno(o.inizio) + '</span>');
+    '<span class="bollo dopo">vale ' + giorno(o.inizio) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
   if (o.note) {
