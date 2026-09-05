@@ -107,7 +107,7 @@ if os.path.exists(lista_viva):
 catalogo = [dict(nome=v['nome'], rep=v['reparto'], parole=v['parole']) for v in CATALOGO]
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
-                       partenza=partenza, catalogo=catalogo,
+                       catalogo=catalogo,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        letto=OGGI),
@@ -271,7 +271,21 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .manda .esito{font-size:13.5px;margin:10px 0 0;color:var(--verde);font-weight:600;min-height:1.2em}
 .spiega{margin-top:34px;background:var(--pannello);border-radius:12px;padding:16px 16px 4px}
 .spiega h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:15px;
-  letter-spacing:.04em;margin:0 0 10px}
+  letter-spacing:.04em;margin:0;display:flex;align-items:center;gap:9px}
+.manda h2{display:flex;align-items:center;gap:9px}
+/* Il bollino «i». Manlio: «la pagina è molto lunga, le spiegazioni meglio che
+   appaiano solo quando si fa clic su un bollino di informazioni». Tondo, con
+   la i minuscola, grande abbastanza da prendersi col dito. */
+.info{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--linea-forte);
+  background:var(--carta);color:var(--tenue);font-family:var(--f-testo);font-size:14px;
+  font-weight:700;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center}
+.info:hover{border-color:var(--rosso);color:var(--rosso)}
+.info[aria-expanded="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
+.dettaglio[hidden]{display:none}
+.dettaglio{margin-top:10px}
+.spiega .dettaglio > p:last-child{margin-bottom:12px}
+.spiega > h2 + .dettaglio{margin-bottom:0}
+.spiega > h2:not(:first-child){margin-top:18px}
 .spiega p{font-size:14px;margin:0 0 12px}
 .spiega .ev{color:var(--ambra);font-weight:700}
 .vol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:1px;background:var(--linea);
@@ -314,16 +328,20 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <div id="risultato"></div>
 
 <section class="manda" id="riquadro-manda">
-  <h2>Mandami la tua lista</h2>
-  <p id="perche-manda">Se la lista è condivisa non serve: la leggo da solo dalla pagina.
-  Serve solo su una copia che gira per conto suo, come il file salvato sul telefono.</p>
+  <h2>Mandami la tua lista <button type="button" class="info" aria-expanded="false"
+      aria-label="Mostra la spiegazione">i</button></h2>
+  <div class="dettaglio" hidden>
+    <p id="perche-manda">Se la lista è condivisa non serve: la leggo da solo dalla pagina.
+    Serve solo su una copia che gira per conto suo, come il file salvato sul telefono.</p>
+  </div>
   <button type="button" id="btn-copia">Copia la mia lista</button>
   <p class="esito" id="esito" role="status"></p>
   <textarea id="testo-lista" readonly aria-label="La tua lista, da copiare"></textarea>
 </section>
 
 <section class="spiega">
-  <h2>Come leggerla</h2>
+  <h2>Come leggerla <button type="button" class="info" aria-expanded="false" aria-label="Mostra la spiegazione">i</button></h2>
+  <div class="dettaglio" hidden>
   <p>In cima ci sono <b>i prodotti che hai scelto tu</b>. Per cambiarli tocca
   <b>«+ altri prodotti»</b>: si apre un cassetto con tutto il catalogo, diviso per reparto come
   il negozio. Tocca un prodotto per accenderlo, toccalo di nuovo per spegnerlo, poi «Fatto».
@@ -350,7 +368,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <p>Le parole le ha lette il computer dalle immagini: sulle scritte grandi spesso sbaglia. Se
   un prodotto dà zero pagine può esserci lo stesso, prova a chiamarlo in un altro modo.</p>
 
-  <h2 style="margin-top:18px">Quando arrivano le offerte nuove</h2>
+  </div>
+
+  <h2>Quando arrivano le offerte nuove <button type="button" class="info" aria-expanded="false" aria-label="Mostra la spiegazione">i</button></h2>
+  <div class="dettaglio" hidden>
   <p>I prezzi qui sopra sono dei volantini <b id="letto"></b>. Quando escono quelli nuovi
   <b>la pagina si aggiorna da sola</b>: chi l'ha aperta col link ricarica e vede i prezzi nuovi,
   senza premere niente e senza che nessuno debba rimandare niente. Vale per chiunque abbia il
@@ -363,7 +384,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   modo di ricavarli da soli. Quando li ho letti compaiono anche quelli, senza che dobbiate
   rifare niente.</p>
 
-  <h2 style="margin-top:18px">I volantini</h2>
+  </div>
+
+  <h2>I volantini</h2>
   <ul class="vol" id="vol"></ul>
   <p style="margin-top:12px">Mercatò non c'è: il loro sito non pubblica il volantino in un
   formato che si riesca a scaricare.</p>
@@ -437,7 +460,12 @@ function leggiLista() {
     const g = localStorage.getItem(CHIAVE);
     if (g) { const v = JSON.parse(g); if (Array.isArray(v) && v.length) return aggiungiNuovi(v.map(riaggancia), dentro); }
   } catch (e) { /* memoria non disponibile: si riparte da quella incorporata */ }
-  return dentro || DATI.partenza.map(p => ({ ...p }));
+  /* «dentro» è la lista incorporata quando la pagina è stata generata, e non è
+     mai vuota. Il ramo di scorta lascia la lista vuota invece di ripescare una
+     seconda copia: fino al 2026-09-05 la lista di partenza viaggiava DUE volte
+     nella pagina, una come LISTA_PUBBLICATA e una dentro DATI. Con il catalogo,
+     una lista vuota non è più un vicolo cieco: si apre «+ altri prodotti». */
+  return dentro || [];
 }
 
 /* I PRODOTTI NUOVI ARRIVANO ANCHE SUL TELEFONO DI CHI HA GIA UNA SUA LISTA.
@@ -957,6 +985,20 @@ DATI.volantini.forEach(v => {
   if (scaduto(v) || futuro(v)) li.querySelector('.p').style.color = 'var(--ambra)';
   li.querySelector('.n').textContent = v.pagine + ' pag.';
   ul.appendChild(li);
+});
+
+/* Ogni bollino «i» apre e chiude il pannello che gli sta subito dopo il
+   titolo. Un solo giro per tutti: aggiungendo una sezione basta scriverci il
+   bollino e il pannello, senza toccare questo. */
+document.querySelectorAll('.info').forEach(b => {
+  const pannello = b.closest('h2').nextElementSibling;
+  if (!pannello || !pannello.classList.contains('dettaglio')) return;
+  b.onclick = () => {
+    const apri = pannello.hidden;
+    pannello.hidden = !apri;
+    b.setAttribute('aria-expanded', String(apri));
+    b.setAttribute('aria-label', apri ? 'Nascondi la spiegazione' : 'Mostra la spiegazione');
+  };
 });
 
 document.getElementById('cerca').oninput = disegnaScaffali;

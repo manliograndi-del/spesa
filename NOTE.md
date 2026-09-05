@@ -776,6 +776,38 @@ prima volta ha detto «non se ne accorge» e **aveva torto lei**: aveva pescato 
 caso il tonno che era già il più conveniente, e abbassarlo non cambiava padrone.
 Il tonno da far calare adesso viene scelto apposta fra quelli che non lo sono.
 
+## `pulizia.py`: cercare il codice rimasto in giro
+
+Manlio, 2026-09-05: «sono state fatte molte modifiche e potrebbe essere rimasto
+codice spurio». Aveva ragione a sospettarlo — in quattro giorni sono spariti un
+tasto delle lingue, una casella per aggiungere prodotti, tre categorie di
+prezzi e un modo intero di scegliere.
+
+`pulizia.py` guarda **la pagina generata**, non il programma che la genera: è lì
+che il codice morto pesa. Segnala classi CSS mai usate, nomi JavaScript
+dichiarati e mai chiamati, identificatori cercati e non presenti (o viceversa),
+file in `strumenti/` che nessuno nomina, e costanti Python definite e mai usate.
+
+**Non è un giudice, è un cane da tartufi.** Il primo giro ha dato un falso
+allarme — `.apribile` — perché quella classe la costruisce il programma unendo
+due pezzi (`'pag-riga' + (p.url ? ' apribile' : '')`). Adesso vale come uso
+anche una parola sola fra apici. E prima di fidarsi di un «tutto pulito» gli si
+pianta davanti del codice morto apposta: se non lo trova, non sta guardando.
+
+**Le due cose vere che ha trovato**, e che leggendo non si vedevano:
+
+1. **`lista.py` ripeteva i sinonimi del catalogo, e si erano rovinati.**
+   «Formaggio» cercava ancora *parmigiano*, *grana* e *mozzarella*, diventate
+   categorie a sé il giorno prima. Una pagina nata da quella lista avrebbe
+   rimesso il parmigiano fra i formaggi generici. Adesso in `lista.py` ci sono
+   **solo i nomi** e le parole vengono dal catalogo, che è l'unico posto dove
+   stanno.
+2. **La lista di partenza viaggiava due volte in ogni pagina**, come
+   `LISTA_PUBBLICATA` e dentro `DATI`. La seconda copia non la leggeva nessuno.
+
+E una cosa che mancava: **`prove.sh` non era scritto da nessuna parte**. Il
+comando che lancia tutte le prove esisteva e non lo sapeva nessuno.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
@@ -797,6 +829,13 @@ qualsiasi, con `strumenti/` nel `PYTHONPATH`:
     bash <progetto>/strumenti/leggi.sh   # OCR di ogni pagina scaricata
     python3 -m indice               # aggiorna indice.json DENTRO il progetto
     python3 -m pagina               # le tre copie in out/
+    python3 -m storia               # il diario delle novità del giorno
+    bash <progetto>/strumenti/prove.sh   # TUTTE le prove, si ferma alla prima che fallisce
+    python3 -m pulizia out/sito.html     # cerca il codice rimasto in giro
+
+**`prove.sh` è il comando che conta**: le prove singole si lanciano da sole solo
+per capire un guasto. Serve `npm install` **dentro il progetto**, perché node
+cerca `node_modules` accanto allo script e non accanto alla cartella di lavoro.
 
 **A ogni volantino nuovo si tocca solo `dati.py`**: la riga in `VOLANTINI` (con
 l'ultimo giorno e l'indirizzo delle pagine) e le righe dei prezzi in `PRODOTTI`,
