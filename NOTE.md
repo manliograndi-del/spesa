@@ -674,6 +674,36 @@ pagine invece di 22.
 tutti e due, barrato e scontato. Nell'Excel e nella pagina ho messo il prezzo
 soci scrivendolo nelle note, perché è quello che paga lui se ha la tessera.
 
+## La pagina delle novità — chiesta, non ancora fatta
+
+Manlio, 2026-09-05: una pagina che si apre in un'altra finestra con **le novità
+del giorno**, e a scelta **quelle degli ultimi sette giorni**, messe insieme
+dalle novità salvate ogni giorno.
+
+**Il diario è già acceso, la pagina no**, ed è voluto: le novità di lunedì si
+possono raccontare solo se domenica qualcuno ha segnato com'era. Aspettare la
+pagina per cominciare a segnare avrebbe regalato una prima settimana vuota.
+
+`storia.py` tiene `storia/stato.json` — la fotografia di adesso, una sola, che
+viene sovrascritta — e a ogni giro scrive la differenza in
+`storia/AAAA-MM-GG.json`. Le differenze restano e sono piccole: è da quelle che
+la pagina metterà insieme la settimana. **Va lanciato dopo `pagina.py` a ogni
+aggiornamento**, o il giorno dopo non c'è niente da confrontare.
+
+Un'offerta è la stessa offerta se sono uguali categoria, insegna, prodotto e
+formato; il prezzo no, che è proprio la cosa da veder cambiare.
+
+Il diario registra cinque cose, e la quinta è quella che conta davvero:
+volantini arrivati, volantini finiti, offerte nuove, offerte sparite, prezzi
+cambiati — e **il più conveniente che cambia padrone**. Sapere che è comparso
+un tonno non serve a niente; sapere che il tonno più conveniente adesso è un
+altro sì, ed è quello che va scritto in cima alla pagina quando la faremo.
+
+`prova-storia.py` finge un domani e pretende che il diario racconti il vero. La
+prima volta ha detto «non se ne accorge» e **aveva torto lei**: aveva pescato a
+caso il tonno che era già il più conveniente, e abbassarlo non cambiava padrone.
+Il tonno da far calare adesso viene scelto apposta fra quelli che non lo sono.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)

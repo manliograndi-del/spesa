@@ -6,3 +6,6 @@ ocr/
 urls.txt
 pagina-viva.html
 lista-attuale.json
+
+# il diario delle novità: le fotografie no, le differenze sì
+storia/stato.json

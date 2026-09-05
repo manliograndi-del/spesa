@@ -20,6 +20,9 @@ for f in out/sito.html out/pagina.html out/spesa-da-sola.html; do
     node "$S/prova-testi.js" "$f"
   fi
 done
+echo "########## il diario delle novità"
+python3 "$S/prova-storia.py"
+
 echo "########## un telefono con una lista vecchia"
 node "$S/prova-arrivi.js" out/sito.html
 
