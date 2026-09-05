@@ -54,6 +54,11 @@ setTimeout(() => {
     });
   }
   console.log('  giorno: ' + (finto || 'oggi'));
+  // ogni riga deve dire quanto dura: i volantini durano periodi diversi
+  const senzaDurata = [...d.querySelectorAll('.prezzo-riga')]
+    .filter(r => !/fino al |vale dal|vale dall/.test(r.querySelector('.sotto').textContent));
+  if (senzaDurata.length)
+    guai.push(`${senzaDurata.length} righe non dicono fino a quando valgono`);
   console.log(`  righe guardate: ${visti}, di cui non ancora valide: ${futuri}`);
   const segnati = f => [...d.querySelectorAll('#vol li')]
     .filter(li => f.test(li.textContent))

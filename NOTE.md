@@ -507,12 +507,24 @@ prodotto acceso dal cassetto mostri davvero i suoi prezzi.
 
 ### Trappole del leggere i volantini per il catalogo
 
-**Certe pagine hanno date loro.** Nel volantino MD dell'8-20 settembre la
-pagina 35 è un «Weekend più uno» valido **18-21 settembre**. Filarne le offerte
-come le altre vorrebbe dire dire che valgono dall'8: falso. Per ora quelle
-pagine **si saltano** — `inizio` e `fino` stanno sul volantino, non sulla
-singola offerta. Se capitasse spesso, andrebbero messi anche sulla riga del
-prezzo.
+**Certe pagine hanno date loro, e adesso si sanno dire.** Nel volantino MD
+dell'8-20 settembre la pagina 35 è un «Weekend più uno» valido **18-21
+settembre**. Prima quelle pagine si saltavano; il 2026-09-05 Manlio ha chiesto
+di farle per bene, e una riga di `PRODOTTI` può avere **due campi in più in
+fondo**, primo e ultimo giorno. Le righe senza restano come sono: `Offerta` è
+una namedtuple con valori vuoti di scorta, e nessuna delle 230 righe già
+scritte è stata toccata.
+
+Un'offerta con date sue **si vede solo nei giorni in cui vale**, e in quei
+giorni porta un bollo rosso «solo dal 18 al 21 settembre». Un **volantino
+intero** non ancora cominciato invece resta visibile in fondo con «vale dal»:
+quello è voluto, serve a sapere cosa arriva, e lì è tutto il volantino e si
+vede. La differenza è deliberata, non una svista.
+
+**Ogni riga dice fino a quando vale.** I volantini durano periodi diversi —
+Lidl una settimana, Carrefour due, Ipercoop dieci giorni — e guardando un
+prezzo non si sapeva se valeva ancora domani. `prova-quando.js` pretende che
+NESSUNA riga sia senza durata.
 
 **Le pagine si scelgono con l'OCR, non a caso.** Contando quante parole di ogni
 categoria vuota compaiono in ogni pagina si ottiene l'elenco delle pagine che

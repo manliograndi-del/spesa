@@ -72,6 +72,7 @@ VOLANTINI = [
 
 PRODOTTI = [
  # ------------------------------- CARNE DI BUE (kg) -------------------------------
+ ("Carne di bue","MD","md08","Macelleria","Hamburger di Angus – Mister Meat","180 g",0.180,3.79,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Carne 100% irlandese. Il volantino stampa 21,06 al kg.","2026-09-18","2026-09-21"),
  ("Carne di bue","Carrefour Iper","carriper04","Surgelati","4 hamburger classici – 1934","400 g",0.400,4.59,18,V,"Surgelati. −23%, prima 5,97. Solo con la tessera SpesAmica Payback."),
  ("Carne di bue","MD","md08","Macelleria","Hamburger di suino e bovino","al kg",1,10.90,9,V,"È misto suino e bovino, non solo bue."),
  ("Carne di bue","Eurospin","eurospin10","Macelleria","Spalla e reale a fette di bovino adulto","al kg",1,13.99,13,V,""),
@@ -138,6 +139,7 @@ PRODOTTI = [
  ("Olio d'oliva","Ipercoop","ipercoop","Dispensa","Olio extravergine di oliva Classico – Monini","1 litro",1,4.59,3,V,"Sottocosto −51%, prima 9,49. Max 4 confezioni."),
  ("Olio d'oliva","Bennet","bennet","Dispensa","Olio extravergine di oliva grezzo Il Casolare – Farchioni","1 litro",1,7.99,12,V,"−33%, prima 11,93."),
  # ------------------------------- POLLO (kg) -------------------------------
+ ("Pollo","MD","md08","Freschi","Würstel di pollo e tacchino – La Fattoria","1 kg",1,2.29,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 2,59. Senza glutine.","2026-09-18","2026-09-21"),
  ("Pollo","Eurospin","eurospin10","Macelleria","Fusi e sovracosce di pollo","Confezione Famiglia, al kg",1,3.29,13,V,""),
  ("Pollo","MD","md08","Macelleria","Sovracosce di pollo","al kg",1,4.49,9,V,""),
  ("Pollo","MD","md08","Macelleria","Fuselli di pollo","al kg",1,4.49,9,V,""),
@@ -220,6 +222,7 @@ PRODOTTI = [
  ("Prosciutto crudo","Bennet","bennet","Salumi","Prosciutto crudo o cotto di alta qualità – Citterio","240 g (3 × 80 g)",0.240,4.99,8,V,"−50% con la tessera Bennet Club, prima 9,99."),
  ("Carne di bue","Ipercoop","ipercoop_extra","Gastronomia","Carne salada del Trentino per carpaccio","100 g",0.100,3.36,14,V,"PREZZO SOCI (−25%). Senza tessera 4,49, cioè 44,90 al kg."),
  # ------------------------------- BISCOTTI (kg) -------------------------------
+ ("Biscotti","MD","md08","Colazione","Biscotti Oswego – Le Bon","500 g",0.500,1.39,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,69.","2026-09-18","2026-09-21"),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Grisbì gusti assortiti","135 g",0.135,0.99,23,V,"Sottocosto −55%, prima 2,20. Solo con la tessera SpesAmica Payback."),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Biscotto – Plasmon","720 g",0.720,4.99,23,V,"−33%, prima 7,46. Solo con la tessera SpesAmica Payback."),
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con cacao e nocciole – Dolciando","700 g",0.700,1.69,6,V,"Prima 2,19. Senza olio di palma."),
@@ -285,12 +288,14 @@ PRODOTTI = [
  # ------------------------------- POMODORO E PASSATA (kg) -------------------------------
  ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Polpa di pomodoro a pezzetti","2,4 kg (6 × 400 g)",2.4,2.49,3,V,"Quantità limitata. 100% pomodori italiani."),
  # ------------------------------- OLIO DI SEMI (litri) -------------------------------
+ ("Olio di semi","MD","md08","Dispensa","Olio di semi vari – Semì","1 litro",1,1.55,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,79.","2026-09-18","2026-09-21"),
  ("Olio di semi","Eurospin","eurospin10","Dispensa","Olio di semi di girasole","5 litri",5,6.59,3,V,"Prima 7,75."),
  # ------------------------------- LEGUMI IN SCATOLA (kg) -------------------------------
  ("Legumi in scatola","Eurospin","eurospin10","Dispensa","Fagioli borlotti","6 × 400 g, sgocciolati 1,44 kg",1.44,1.99,3,V,"Quantità limitata. Il conto usa il peso sgocciolato."),
  # ------------------------------- SUGHI PRONTI (kg) -------------------------------
  ("Sughi pronti","Carrefour Iper","carriper04","Surgelati","Sugo pronto per spaghettata di mare – Esca","400 g",0.400,3.49,18,V,"Surgelato. −34%, prima 5,29. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- VERDURE IN SCATOLA (kg) -------------------------------
+ ("Verdure in scatola","MD","md08","Dispensa","Mais, piselli e peperoni cotti a vapore – Buona Spesa!","420 g (3 × 140 g)",0.420,1.39,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 2,29.","2026-09-18","2026-09-21"),
  ("Verdure in scatola","Carrefour Iper","carriper04","Dispensa","Mais – Bonduelle","420 g (3 × 140 g)",0.420,1.99,23,V,"−45%, prima 3,62. Solo con la tessera SpesAmica Payback."),
  ("Verdure in scatola","Eurospin","eurospin10","Dispensa","Carciofini alla contadina sott'olio","535 g",0.535,1.99,3,V,"Quantità limitata."),
  ("Verdure in scatola","Carrefour Iper","carriper04","Dispensa","Funghetti interi – Polli","190 g",0.190,1.95,23,V,"−35%, prima 3,16. Solo con la tessera SpesAmica Payback."),
@@ -307,6 +312,7 @@ PRODOTTI = [
  # ------------------------------- PIZZA SURGELATA (kg) -------------------------------
  ("Pizza surgelata","Carrefour Iper","carriper04","Surgelati","Pizza Bella Napoli farcite gusti assortiti – Buitoni","375 g",0.375,2.49,18,V,"−28%, prima 3,47. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- FRUTTA (kg) -------------------------------
+ ("Frutta","MD","md08","Ortofrutta","Uva bianca in bauletto","2 kg",2,2.78,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Il volantino stampa 1,39 al kg.","2026-09-18","2026-09-21"),
  ("Frutta","Carrefour Iper","carriper04","Ortofrutta","Banane sfuse – Chiquita","al kg",1,1.49,12,V,"−25%, prima 1,99."),
  ("Frutta","Carrefour Iper","carriper04","Ortofrutta","Uva bianca senza semi, sfusa","al kg",1,2.99,12,V,"−20%, prima 3,74. Prodotta in Italia."),
  # ------------------------------- VERDURA (kg) -------------------------------
@@ -318,6 +324,7 @@ PRODOTTI = [
  ("Patate","Carrefour Iper","carriper04","Ortofrutta","Patate","2 kg",2,1.78,12,V,"−30%. Il volantino stampa 0,89 al kg. Prodotte in Italia."),
  ("Patate","Carrefour Iper","carriper04","Surgelati","Patate Forno Country – McCain","650 g",0.650,1.99,18,V,"Surgelate. −35%, prima 3,07. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- ACQUA (litri) -------------------------------
+ ("Acqua","MD","md08","Bevande","Acqua naturale – Sant'Anna","2 litri",2,0.45,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 0,65.","2026-09-18","2026-09-21"),
  ("Acqua","Carrefour Iper","carriper04","Bevande","Acqua naturale o frizzante – Vera","9 litri (6 × 1,5 l)",9,1.79,26,V,"−40%, prima 3,10. Solo con la tessera SpesAmica Payback."),
  ("Acqua","Carrefour Iper","carriper04","Bevande","Acqua effervescente naturale – Uliveto","9 litri (6 × 1,5 l)",9,2.49,26,V,"−33%, prima 3,78. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- VINO (litri) -------------------------------
@@ -344,6 +351,19 @@ PRODOTTI = [
  ("Dentifricio","Carrefour Iper","carriper04","Cura persona","Dentifricio Microgranuli – Mentadent","225 ml (3 × 75 ml)",0.225,4.49,30,V,"−39%, prima 7,37. Solo con la tessera SpesAmica Payback."),
 ]
 
+# LE OFFERTE CON DATE LORO.
+# Quasi tutte le offerte durano quanto il volantino che le contiene. Alcune no:
+# nel volantino MD dell'8-20 settembre c'è una pagina «Weekend più uno» valida
+# solo dal 18 al 21. Metterla con le altre vorrebbe dire dire a Manlio che quel
+# prezzo vale da lunedì, e mandarlo in negozio a prenderlo. L'avevo risolta
+# saltando la pagina; il 2026-09-05 lui ha chiesto di farlo per bene.
+#
+# Quindi una riga può avere DUE CAMPI IN PIÙ in fondo, primo e ultimo giorno.
+# Le righe senza restano come sono: la namedtuple ci mette i valori vuoti da
+# sola, e nessuna delle 230 righe già scritte è stata toccata.
+Offerta = _nt('Offerta', 'cat ins chiave rep pro fmt qta prezzo pag fonte note inizio fino')
+Offerta.__new__.__defaults__ = (None, None)
+
 # Ogni prezzo deve stare in una categoria che esiste nel catalogo: se no la
 # pagina lo carica e non lo mostra a nessuno, in silenzio.
 _orfani = sorted({p[0] for p in PRODOTTI} - set(NOMI))
@@ -353,3 +373,8 @@ if _orfani:
 # Dentro ogni categoria, dal meno caro per unità. Fra categorie, l'ordine del
 # catalogo, cioè quello dei reparti del negozio.
 PRODOTTI.sort(key=lambda p: (NOMI.index(p[0]), p[7] / p[6]))
+
+# Da qui in poi si lavora su OFFERTE, coi nomi dei campi. PRODOTTI resta come
+# lista di tuple perché è così che si scrive a mano leggendo i volantini: 230
+# righe con undici nomi di campo l'una sarebbero illeggibili.
+OFFERTE = [Offerta(*r) for r in PRODOTTI]

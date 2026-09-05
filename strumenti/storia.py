@@ -23,7 +23,7 @@ cambio di reparto si racconta a parte, e il prezzo invece deve poter cambiare:
 quella è proprio la cosa che vogliamo vedere.
 """
 import datetime, json, os, sys
-from dati import PRODOTTI, VOLANTINI, UNITA
+from dati import OFFERTE, VOLANTINI, UNITA
 
 QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOVE = os.path.join(QUI, 'storia')
@@ -31,10 +31,10 @@ FOTO = os.path.join(DOVE, 'stato.json')
 
 def fotografia():
     offerte = {}
-    for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI:
-        offerte['\t'.join((ins, pro, fmt))] = dict(
-            cat=cat, ins=ins, pro=pro, fmt=fmt, prezzo=pre,
-            unitario=round(pre / qta, 3), chiave=chiave)
+    for o in OFFERTE:
+        offerte['\t'.join((o.ins, o.pro, o.fmt))] = dict(
+            cat=o.cat, ins=o.ins, pro=o.pro, fmt=o.fmt, prezzo=o.prezzo,
+            unitario=round(o.prezzo / o.qta, 3), chiave=o.chiave)
     return dict(
         giorno=datetime.date.today().isoformat(),
         volantini={v.chiave: dict(ins=v.insegna, periodo=v.periodo,

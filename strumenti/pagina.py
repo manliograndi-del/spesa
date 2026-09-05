@@ -18,7 +18,7 @@ prima versione:
 La lista vive in localStorage, non sul server: vedi NOTE.md.
 """
 import json, os
-from dati import PRODOTTI, VOLANTINI, UNITA, D
+from dati import OFFERTE, VOLANTINI, UNITA, D
 from catalogo import CATALOGO, REPARTI
 from lista import PARTENZA
 
@@ -47,12 +47,17 @@ _oggi = _dt.date.today()
 INIZIO = {v.chiave: v.inizio for v in VOLANTINI}
 FINO   = {v.chiave: v.fino for v in VOLANTINI}
 
-offerte = [dict(cat=cat, ins=ins, rep=rep, pro=pro, fmt=fmt, prezzo=pre,
-                unitario=round(pre / qta, 3), pag=pag, pdf=PDF[chiave],
-                url=indirizzo(chiave, pag),
-                periodo=PERIODO[chiave], dubbio=(fon == D), note=note,
-                inizio=INIZIO[chiave], fino=FINO[chiave])
-           for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI]
+# Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
+# abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
+# «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
+offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.prezzo,
+                unitario=round(o.prezzo / o.qta, 3), pag=o.pag, pdf=PDF[o.chiave],
+                url=indirizzo(o.chiave, o.pag),
+                periodo=PERIODO[o.chiave], dubbio=(o.fonte == D), note=o.note,
+                inizio=o.inizio or INIZIO[o.chiave],
+                fino=o.fino or FINO[o.chiave],
+                ristretta=bool(o.inizio or o.fino))
+           for o in OFFERTE]
 
 # indice.json sta nel progetto, non nella cartella di lavoro: le immagini dei
 # volantini non si tengono (non sono nostre) e prima l'elenco delle pagine
@@ -222,6 +227,9 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
 .bollo.meno{background:var(--verde-tenue);color:var(--verde)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
 .bollo.dopo{background:#E9EEF6;color:#2B4A7A}
+.bollo.stretta{background:var(--rosso);color:var(--su-rosso)}
+.prezzo-riga .sotto .quando{white-space:nowrap}
+.prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
 .prezzo-riga .nota{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--tenue)}
 .prezzo-riga .dove{grid-column:1/-1;margin:6px 0 0;font-size:13px;color:var(--tenue);
   border-left:3px solid var(--linea);padding-left:9px}
@@ -563,10 +571,15 @@ let tutteLePagine = false;
    settembre» e si leggeva come una svista. */
 const MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
   + 'settembre ottobre novembre dicembre').split(' ');
+function soloGiorno(iso) {
+  if (!iso) return '';
+  const p = iso.split('-');
+  return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1];
+}
 function giorno(iso) {
   if (!iso) return '';
-  const p = iso.split('-'), n = Number(p[2]);
-  return (n === 8 || n === 11 ? "dall'" : 'dal ') + n + ' ' + MESI[Number(p[1]) - 1];
+  const n = Number(iso.split('-')[2]);
+  return (n === 8 || n === 11 ? "dall'" : 'dal ') + soloGiorno(iso);
 }
 
 /* Scaduto e «non ancora cominciato» si decidono QUI, a ogni apertura, contro
@@ -577,8 +590,25 @@ const OGGI_ISO = new Date().toLocaleDateString('sv');   // «2026-09-05»
 const futuro  = x => !!x.inizio && x.inizio > OGGI_ISO;
 const scaduto = x => !!x.fino   && x.fino   < OGGI_ISO;
 
+/* «2026-09-09» -> «9 settembre». Le date su ogni riga servono perche i
+   volantini durano periodi diversi: senza, guardando un prezzo non si sa se
+   vale ancora domani o per altre due settimane. Chiesto da Manlio. */
+function durata(o) {
+  if (futuro(o))  return 'vale ' + giorno(o.inizio) + (o.fino ? ' al ' + soloGiorno(o.fino) : '');
+  if (o.fino)     return 'fino al ' + soloGiorno(o.fino);
+  return '';
+}
+
+/* UN'OFFERTA CHE DURA MENO DEL SUO VOLANTINO SI VEDE SOLO NEI GIORNI IN CUI
+   VALE. Nel volantino MD dell'8-20 settembre c'e una pagina valida solo dal 18
+   al 21: mostrarla prima vorrebbe dire mandare Manlio in negozio a chiedere un
+   prezzo che non gli fanno. Un VOLANTINO INTERO non ancora cominciato invece
+   resta visibile in fondo con «vale dal»: quello e voluto, serve a sapere cosa
+   arriva. La differenza e che li e tutto il volantino, e si vede. */
+const nascosta = o => scaduto(o) || (o.ristretta && futuro(o));
+
 const offerteDi = v => v.cat
-  ? DATI.offerte.filter(o => o.cat === v.cat && !scaduto(o))
+  ? DATI.offerte.filter(o => o.cat === v.cat && !nascosta(o))
       .slice().sort((a, b) => (futuro(a) ? 1 : 0) - (futuro(b) ? 1 : 0))
   : [];
 
@@ -748,11 +778,21 @@ function rigaPrezzo(o, primo) {
   s.querySelector('b').textContent = o.ins;
   s.querySelectorAll('span')[0].textContent = o.fmt;
   s.querySelectorAll('span')[1].textContent = eur(o.prezzo) + ' € la confezione';
+  const q = durata(o);
+  if (q) {
+    const d2 = document.createElement('span');
+    d2.className = 'quando' + (o.ristretta ? ' stretta' : '');
+    d2.textContent = q;
+    s.appendChild(document.createTextNode(' · '));
+    s.appendChild(d2);
+  }
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const coda = d.querySelector('.coda');
   if (primo && !futuro(o)) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
-  if (futuro(o)) coda.insertAdjacentHTML('beforeend',
+  if (o.ristretta) coda.insertAdjacentHTML('beforeend',
+    '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
+  else if (futuro(o)) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo dopo">vale ' + giorno(o.inizio) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
