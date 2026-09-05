@@ -40,7 +40,9 @@ function apri(dopo) {
   // adesso ne toglie uno apposta
   const c = await apri((d, w) => {
     [...d.querySelectorAll('.tasto')].find(x => x.textContent.trim() === 'Marmellata').click();
-    d.querySelector('.gestisci .togli').click();
+    // dal 2026-09-05 si toglie con la crocetta accanto al nome, e va confermato
+    d.querySelector('.capo .croce').click();
+    d.querySelector('.conferma .si').click();
   });
   console.log('tolta Marmellata → ' + c.tasti.join(' · '));
   const e = await apri();

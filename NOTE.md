@@ -467,6 +467,33 @@ e il caffè in capsule sta col macinato (al chilo costa cinque volte tanto). E l
 carta igienica Regina è «4 rotoloni pari a 12 rotoli»: il conto usa i 12
 dichiarati sul pacco, e la nota dice quanto fa sui 4 veri.
 
+### Sotto il nome del prodotto non ci va niente
+
+Manlio, 2026-09-05, con una foto e l'evidenziatore: sottotitolo, riga «questa
+copia è solo tua», conteggio delle offerte, sinonimi e «Cambia nome» tutti
+segnati da togliere. «Toglierei tutto quello che c'è scritto dopo carne di bue
+e lascerei solo una piccola scritta o un'icona per cancellarla.»
+
+Adesso accanto al nome ci sono **due soli bottoni**: il bollino «i», che apre
+conteggio, sinonimi e cambio nome, e una **crocetta** per togliere il prodotto.
+La crocetta **chiede conferma lì dov'è**, con «Togli» e «Lascia»: è piccola e
+sta accanto al nome, un tocco per sbaglio non deve far sparire un prodotto. Non
+si usa la finestrella di sistema, che sul telefono arriva da tutt'altra parte.
+
+Sotto i bottoni la riga di stato dice **solo le novità di adesso** («Aggiunti
+alla tua lista: …»). «Questa copia è solo tua» è vero per sempre e occupava due
+righe di schermo: è finito dietro il bollino in cima.
+
+**IL BOLLINO IN CIMA HA UCCISO LA PAGINA, per venti minuti.** Il codice che
+collega i bollini faceva `b.closest('h2').nextElementSibling`. Il bollino nuovo
+sta in un `h1`, quindi `closest('h2')` ha dato niente, l'errore ha fermato tutto
+lo script e la pagina è uscita **muta** — bottoni compresi. Stesso guasto del
+tag di chiusura scritto per esteso: da fuori sembra a posto e non funziona
+niente. Adesso cerca `h1, h2`; se un bollino finisce in un `h3` va aggiunto lì.
+
+`prova-intestazione.js` pretende che a pagina appena aperta si vedano solo il
+nome, il bollino e la crocetta, e che «Lascia» non cancelli niente.
+
 ### Il catalogo e il cassetto
 
 Chiesto da Manlio il 2026-09-05, dopo aver visto tre proposte disegnate e
@@ -806,6 +833,10 @@ prezzi e un modo intero di scegliere.
 che il codice morto pesa. Segnala classi CSS mai usate, nomi JavaScript
 dichiarati e mai chiamati, identificatori cercati e non presenti (o viceversa),
 file in `strumenti/` che nessuno nomina, e costanti Python definite e mai usate.
+
+**Anche le prove contano come uso.** Senza, `pulizia` segnalava come «mai
+cercato» un identificatore che serviva soltanto a `prova-intestazione.js`. Un
+attrezzo che grida al lupo smette di essere letto.
 
 **Non è un giudice, è un cane da tartufi.** Il primo giro ha dato un falso
 allarme — `.apribile` — perché quella classe la costruisce il programma unendo

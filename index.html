@@ -42,6 +42,7 @@ header{padding:20px 0 2px}
 h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01em;
   line-height:1.05;margin:0;text-transform:uppercase}
 h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;margin-bottom:6px}
+h1 .info{vertical-align:middle;margin-left:8px}
 .sottotitolo{color:var(--tenue);margin:8px 0 0;font-size:14px;max-width:62ch}
 
 /* ---- barra dei prodotti ---- */
@@ -77,11 +78,26 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
   padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
 /* ---- intestazione del risultato ---- */
-.capo{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;margin:20px 0 2px}
+.capo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
+.capo .info{flex:none}
+/* La crocetta per togliere un prodotto: piccola, ma con dentro un bersaglio da
+   dito. Il bordo la fa vedere come un tasto, il rosso solo quando la si tocca. */
+.croce{flex:none;margin-left:auto;width:34px;height:34px;border-radius:9px;
+  border:1.5px solid var(--linea-forte);background:var(--carta);color:var(--tenue);
+  font-size:19px;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center}
+.croce:hover{border-color:var(--rosso);color:var(--rosso)}
+.conferma[hidden]{display:none}
+.conferma{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;
+  background:#FBEEF0;border:1.5px solid var(--rosso);border-radius:10px;padding:10px 12px}
+.conferma span{font-size:14.5px;font-weight:600;flex:1;min-width:9em}
+.conferma button{border-radius:9px;padding:9px 15px;font-size:14.5px;font-weight:600;
+  cursor:pointer;min-height:42px;border:1.5px solid var(--rosso);background:var(--carta);
+  color:var(--rosso)}
+.conferma .si{background:var(--rosso);color:var(--su-rosso)}
 .capo h2{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.02em;
   font-size:22px;font-weight:600;margin:0}
-.capo .quanti{color:var(--tenue);font-size:13px;font-variant-numeric:tabular-nums}
+#risultato .quanti{color:var(--tenue);font-size:13px;font-variant-numeric:tabular-nums;
+  margin:0 0 8px}
 .sinonimi{margin:6px 0 0;font-size:13.5px;color:var(--tenue);display:flex;
   flex-wrap:wrap;gap:6px;align-items:baseline}
 .sinonimi em{font-style:normal;background:var(--pannello);border:1px solid var(--linea);
@@ -89,7 +105,6 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
 .gestisci{display:flex;gap:9px;margin:12px 0 0;flex-wrap:wrap}
 .gestisci button{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:9px;
   padding:10px 16px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:44px}
-.gestisci .togli{border-color:var(--rosso);color:var(--rosso)}
 .form-rin{display:none;gap:8px;margin-top:10px}
 .form-rin.on{display:flex}
 .form-rin input{flex:1;min-width:0;border:1.5px solid var(--rosso);border-radius:10px;
@@ -196,10 +211,15 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <body>
 <div class="guscio">
 <header>
-  <h1><span>Torino · Corso Siracusa</span>La lista della spesa</h1>
-  <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
-  conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
-  Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
+  <h1><span>Torino · Corso Siracusa</span>La lista della spesa
+    <button type="button" class="info" aria-expanded="false"
+            aria-label="Come funziona questa pagina">i</button></h1>
+  <div class="dettaglio" id="dett-testa" hidden>
+    <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
+    conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
+    Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
+    <p class="sottotitolo" id="dove-vive"></p>
+  </div>
 </header>
 
 <div class="barra">
@@ -787,14 +807,50 @@ function disegna() {
   const v = lista[scelto];
   const off = offerteDi(v), pag = pagineDi(v);
 
+  /* SOTTO IL NOME DEL PRODOTTO NON CI VA PIÙ NIENTE.
+     Manlio, 2026-09-05, foto alla mano: «toglierei tutto quello che c'è
+     scritto dopo carne di bue e lascerei solo una piccola scritta o un'icona
+     per cancellarla». Quanti prezzi ci sono, con che altri nomi si cerca e il
+     cambio nome sono roba da guardare una volta ogni tanto: stanno dietro il
+     bollino «i», come le spiegazioni in fondo. Restano il nome e la crocetta. */
   const capo = document.createElement('div');
   capo.className = 'capo';
-  capo.innerHTML = '<h2></h2><span class="quanti"></span>';
+  capo.innerHTML = '<h2></h2>'
+    + '<button type="button" class="info" aria-expanded="false"'
+    + ' aria-label="Mostra i dettagli del prodotto">i</button>'
+    + '<button type="button" class="croce" aria-label="Togli dalla lista">\u00d7</button>';
   capo.querySelector('h2').textContent = v.nome;
-  capo.querySelector('.quanti').textContent = off.length
+  capo.querySelector('.croce').setAttribute('aria-label', 'Togli «' + v.nome + '» dalla lista');
+  out.appendChild(capo);
+
+  /* La crocetta è piccola e sta accanto al nome: un tocco per sbaglio non deve
+     far sparire un prodotto. Chiede conferma lì dove si è toccato, senza
+     finestrelle di sistema che sul telefono arrivano da tutt'altra parte. */
+  const conferma = document.createElement('div');
+  conferma.className = 'conferma';
+  conferma.hidden = true;
+  conferma.innerHTML = '<span></span><button type="button" class="si">Togli</button>'
+    + '<button type="button" class="no">Lascia</button>';
+  conferma.querySelector('span').textContent = 'Tolgo «' + v.nome + '»?';
+  conferma.querySelector('.si').onclick = () => {
+    lista.splice(scelto, 1);
+    if (scelto > 0) scelto--;
+    salva(); disegna();
+  };
+  conferma.querySelector('.no').onclick = () => { conferma.hidden = true; };
+  capo.querySelector('.croce').onclick = () => { conferma.hidden = !conferma.hidden; };
+  out.appendChild(conferma);
+
+  const dett = document.createElement('div');
+  dett.className = 'dettaglio';
+  dett.hidden = true;
+
+  const quanti = document.createElement('p');
+  quanti.className = 'quanti';
+  quanti.textContent = off.length
     ? `${off.length} ${off.length === 1 ? 'offerta letta' : 'offerte lette'} dal volantino · ${pag.length} pagine da guardare`
     : `${pag.length} ${pag.length === 1 ? 'pagina lo nomina' : 'pagine lo nominano'}`;
-  out.appendChild(capo);
+  dett.appendChild(quanti);
 
   const altri = nomiDi(v).slice(1);
   if (altri.length) {
@@ -807,23 +863,15 @@ function disegna() {
       c.textContent = a;
       p.appendChild(c);
     });
-    out.appendChild(p);
+    dett.appendChild(p);
   }
 
   const g = document.createElement('div');
   g.className = 'gestisci';
   const bRin = document.createElement('button');
   bRin.type = 'button'; bRin.textContent = 'Cambia nome';
-  const bTog = document.createElement('button');
-  bTog.type = 'button'; bTog.className = 'togli';
-  bTog.textContent = 'Togli «' + v.nome + '» dalla lista';
-  bTog.onclick = () => {
-    lista.splice(scelto, 1);
-    if (scelto > 0) scelto--;
-    salva(); disegna();
-  };
-  g.append(bRin, bTog);
-  out.appendChild(g);
+  g.appendChild(bRin);
+  dett.appendChild(g);
 
   const fr = document.createElement('form');
   fr.className = 'form-rin';
@@ -843,7 +891,14 @@ function disegna() {
     inp.value = nomiDi(v).join(', ');
     inp.focus(); inp.select();
   };
-  out.appendChild(fr);
+  dett.appendChild(fr);
+  out.appendChild(dett);
+
+  capo.querySelector('.info').onclick = () => {
+    const apri = dett.hidden;
+    dett.hidden = !apri;
+    capo.querySelector('.info').setAttribute('aria-expanded', String(apri));
+  };
 
   if (off.length) {
     const f = document.createElement('p');
@@ -901,7 +956,14 @@ DATI.volantini.forEach(v => {
    titolo. Un solo giro per tutti: aggiungendo una sezione basta scriverci il
    bollino e il pannello, senza toccare questo. */
 document.querySelectorAll('.info').forEach(b => {
-  const pannello = b.closest('h2').nextElementSibling;
+  /* h1 O h2: il primo bollino di questa pagina stava in un h2, e cercare solo
+     quello bastava. Aggiungendone uno nel titolone in cima, closest('h2') ha
+     dato niente e la pagina è uscita MUTA — bottoni compresi, perché l'errore
+     fermava tutto il resto dello script. È lo stesso guasto del tag di
+     chiusura scritto per esteso: da fuori sembra a posto e non funziona
+     niente. Se un giorno un bollino finisce in un h3, va aggiunto qui. */
+  const testa = b.closest('h1, h2');
+  const pannello = testa && testa.nextElementSibling;
   if (!pannello || !pannello.classList.contains('dettaglio')) return;
   b.onclick = () => {
     const apri = pannello.hidden;
@@ -1010,15 +1072,18 @@ disegna();
   } catch (e) { ART = null; }
   if (ART) {
     soloMio = false;
-    stato('Lista condivisa: quello che cambi lo vede anche chi ha il link.');
     lista = leggiLista();
   } else {
-    /* Se sono arrivati prodotti nuovi, dirlo: altrimenti compaiono dei bottoni
-       in piu senza che si capisca da dove. */
-    stato(arrivati.length
-      ? 'Aggiunti alla tua lista: ' + arrivati.join(', ') + '.'
-      : 'Questa copia è solo tua: le modifiche restano su questo telefono.');
+    /* La riga sotto i bottoni dice SOLO le novità di adesso. «Questa copia è
+       solo tua» è vero per sempre e stava lì a occupare due righe di schermo:
+       Manlio l'ha evidenziata fra le cose da togliere. È finita dietro il
+       bollino in cima, dove si va a leggere quando si vuole. */
+    stato(arrivati.length ? 'Aggiunti alla tua lista: ' + arrivati.join(', ') + '.' : '');
   }
+  const dv = document.getElementById('dove-vive');
+  if (dv) dv.textContent = soloMio
+    ? 'Questa copia è solo tua: quello che cambi resta su questo telefono.'
+    : 'Questa copia è condivisa: quello che cambi lo vede anche chi ha il link.';
   aggiornaRiquadroManda();
   aggiornaTestoLista();
   disegna();

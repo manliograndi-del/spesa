@@ -14,6 +14,9 @@ che la genera — è lì che il codice morto pesa davvero:
   3. identificatori HTML cercati dal programma e non presenti (o viceversa)
   4. file in strumenti/ che nessuno nomina
 
+Gli identificatori usati SOLO dalle prove non sono orfani: le prove sono un
+uso legittimo, e vengono lette anche loro.
+
 Non è un giudice: segnala, e chi legge decide. Certe classi le mette il
 browser, certi nomi servono solo alle prove.
 
@@ -38,8 +41,20 @@ def classi_css(stile):
             fuori.setdefault(c, regola.strip().split('\n')[0][:60])
     return fuori
 
+def testi_delle_prove():
+    """Anche le prove cercano gli identificatori della pagina, e sono un uso
+    legittimo: senza questo, `pulizia` segnalava come «mai cercato» un id che
+    serviva soltanto a `prova-intestazione.js`. Un attrezzo che grida al lupo
+    smette di essere letto."""
+    fuori = []
+    for f in os.listdir(QUI):
+        if f.startswith('prova') and f.endswith(('.js', '.py')):
+            fuori.append(open(os.path.join(QUI, f), encoding='utf-8').read())
+    return '\n'.join(fuori)
+
 def controlla(percorso):
     html = open(percorso, encoding='utf-8').read()
+    prove = testi_delle_prove()
     stile, script, corpo = pezzi(html)
     trovati = []
 
@@ -74,7 +89,7 @@ def controlla(percorso):
     for i in sorted(cercati - presenti):
         trovati.append(('il programma cerca un id che non c\'è', '#' + i, ''))
     for i in sorted(presenti - cercati):
-        if not re.search(r'[\'"#]' + re.escape(i) + r'\b', script):
+        if not re.search(r'[\'"#]' + re.escape(i) + r'\b', script + prove):
             trovati.append(('id scritto e mai cercato', '#' + i, ''))
 
     return trovati
