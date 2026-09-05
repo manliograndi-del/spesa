@@ -24,7 +24,7 @@ del domani['volantini'][finito]
 chiavi = sorted(domani['offerte'])
 sparita = chiavi[0]
 del domani['offerte'][sparita]
-domani['offerte']['Tonno\tPippo\tTonno finto\t100 g'] = dict(
+domani['offerte']['Pippo\tTonno finto\t100 g'] = dict(
     cat='Tonno', ins='Pippo', pro='Tonno finto', fmt='100 g',
     prezzo=0.10, unitario=1.0, chiave='finto')
 
@@ -40,6 +40,10 @@ gia_meno_caro = min(tonni, key=lambda k: domani['offerte'][k]['unitario'])
 calato = next(k for k in tonni if k != gia_meno_caro)
 domani['offerte'][calato] = dict(domani['offerte'][calato], unitario=0.5, prezzo=0.5)
 
+# 6. una cambia reparto senza cambiare niente altro
+trasloco = [k for k in domani['offerte'] if domani['offerte'][k]['cat'] == 'Biscotti'][0]
+domani['offerte'][trasloco] = dict(domani['offerte'][trasloco], cat='Merendine')
+
 d = differenza(oggi, domani)
 
 def pretendi(quanti, quali, nome):
@@ -51,6 +55,10 @@ pretendi(0, d['volantini_arrivati'], 'volantini arrivati')
 pretendi(1, d['offerte_nuove'], 'offerte nuove')
 pretendi(1, d['offerte_sparite'], 'offerte sparite')
 pretendi(1, d['prezzi_cambiati'], 'prezzi cambiati')
+pretendi(1, d['cambiati_reparto'], 'cambiati di reparto')
+# un trasloco non deve mai comparire come «sparita» più «nuova»
+if any(o['pro'] == domani['offerte'][trasloco]['pro'] for o in d['offerte_sparite']):
+    guai.append('un prodotto spostato di reparto risulta sparito')
 
 cam = d['prezzi_cambiati']
 if cam and cam[0]['unitario'] >= cam[0]['prima']:
@@ -69,6 +77,9 @@ if cam:
     print(f"  prezzo calato:     {cam[0]['pro'][:34]} da {cam[0]['prima']:.2f} a {cam[0]['unitario']:.2f}")
 if capo:
     print(f"  più conveniente:   {capo[0]['cat']} passa a {capo[0]['pro'][:34]} ({capo[0]['ins']})")
+if d['cambiati_reparto']:
+    x = d['cambiati_reparto'][0]
+    print(f"  cambia reparto:    {x['pro'][:34]} da {x['cat_prima']} a {x['cat']}")
 
 if guai:
     print('\nNON VA:')

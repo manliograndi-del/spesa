@@ -505,6 +505,24 @@ catalogo non c'è.
 `prova-cassetto.js` apre, cerca, accende, spegne e richiude, e pretende che un
 prodotto acceso dal cassetto mostri davvero i suoi prezzi.
 
+### Trappole del leggere i volantini per il catalogo
+
+**Certe pagine hanno date loro.** Nel volantino MD dell'8-20 settembre la
+pagina 35 è un «Weekend più uno» valido **18-21 settembre**. Filarne le offerte
+come le altre vorrebbe dire dire che valgono dall'8: falso. Per ora quelle
+pagine **si saltano** — `inizio` e `fino` stanno sul volantino, non sulla
+singola offerta. Se capitasse spesso, andrebbero messi anche sulla riga del
+prezzo.
+
+**Le pagine si scelgono con l'OCR, non a caso.** Contando quante parole di ogni
+categoria vuota compaiono in ogni pagina si ottiene l'elenco delle pagine che
+rendono di più: la 26 del Carrefour da sola ha riempito acqua, vino, birra e
+bibite. Leggere in quell'ordine cambia il lavoro di una giornata.
+
+**Conviene leggere prima i volantini che durano.** Il 2026-09-05 il vecchio
+Eurospin e il vecchio MD scadevano il giorno dopo: leggerne le pagine per le
+categorie nuove sarebbe stato lavoro buttato.
+
 ### Più nomi per lo stesso prodotto
 
 Chiesto da Manlio il 2026-09-02: «ci sono delle cose che possono essere salvate
@@ -728,8 +746,12 @@ viene sovrascritta — e a ogni giro scrive la differenza in
 la pagina metterà insieme la settimana. **Va lanciato dopo `pagina.py` a ogni
 aggiornamento**, o il giorno dopo non c'è niente da confrontare.
 
-Un'offerta è la stessa offerta se sono uguali categoria, insegna, prodotto e
-formato; il prezzo no, che è proprio la cosa da veder cambiare.
+Un'offerta è la stessa offerta se sono uguali **insegna, prodotto e formato**.
+La categoria NON entra nel riconoscimento, e il perché è una lezione: la prima
+volta ci entrava, e dividendo «Formaggio» in mozzarella, grana, spalmabili e
+ricotta il diario ha annunciato **38 offerte sparite e altrettante nuove**.
+Erano le stesse, spostate di scaffale. Un cambio di reparto adesso si racconta
+a parte (`cambiati_reparto`), e non sporca le novità vere.
 
 Il diario registra cinque cose, e la quinta è quella che conta davvero:
 volantini arrivati, volantini finiti, offerte nuove, offerte sparite, prezzi

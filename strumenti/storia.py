@@ -15,8 +15,12 @@ metterà insieme la settimana.
     python3 -m storia            scrive la differenza e aggiorna la fotografia
     python3 -m storia --guarda   dice soltanto cosa cambierebbe
 
-Un'offerta è la stessa offerta se sono uguali categoria, insegna, prodotto e
-formato. Il prezzo no: quello è proprio la cosa che vogliamo veder cambiare.
+Un'offerta è la stessa offerta se sono uguali insegna, prodotto e formato. La
+categoria NON entra nel riconoscimento: il 2026-09-05, dividendo «Formaggio» in
+mozzarella, grana, spalmabili e ricotta, il diario ha annunciato 38 offerte
+sparite e altrettante nuove — erano le stesse, spostate di scaffale. Un
+cambio di reparto si racconta a parte, e il prezzo invece deve poter cambiare:
+quella è proprio la cosa che vogliamo vedere.
 """
 import datetime, json, os, sys
 from dati import PRODOTTI, VOLANTINI, UNITA
@@ -28,7 +32,7 @@ FOTO = os.path.join(DOVE, 'stato.json')
 def fotografia():
     offerte = {}
     for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI:
-        offerte['\t'.join((cat, ins, pro, fmt))] = dict(
+        offerte['\t'.join((ins, pro, fmt))] = dict(
             cat=cat, ins=ins, pro=pro, fmt=fmt, prezzo=pre,
             unitario=round(pre / qta, 3), chiave=chiave)
     return dict(
@@ -55,10 +59,12 @@ def differenza(prima, adesso):
     op, oa = prima.get('offerte', {}), adesso['offerte']
     mp, ma = meno_caro(op), meno_caro(oa)
 
-    cambiati = []
+    cambiati, traslocati = [], []
     for k in set(op) & set(oa):
         if abs(op[k]['unitario'] - oa[k]['unitario']) > 0.005:
             cambiati.append(dict(oa[k], prima=op[k]['unitario']))
+        if op[k]['cat'] != oa[k]['cat']:
+            traslocati.append(dict(oa[k], cat_prima=op[k]['cat']))
     capovolti = []
     for cat, nuovo in ma.items():
         vecchio = mp.get(cat)
@@ -75,6 +81,7 @@ def differenza(prima, adesso):
         offerte_nuove=[oa[k] for k in oa if k not in op],
         offerte_sparite=[op[k] for k in op if k not in oa],
         prezzi_cambiati=sorted(cambiati, key=lambda o: o['unitario'] - o['prima']),
+        cambiati_reparto=sorted(traslocati, key=lambda o: o['cat']),
         meno_caro_cambiato=sorted(capovolti, key=lambda x: x['cat']),
     )
 
@@ -104,6 +111,8 @@ if __name__ == '__main__':
     print(f"  offerte nuove       {len(d['offerte_nuove'])}")
     print(f"  offerte sparite     {len(d['offerte_sparite'])}")
     print(f"  prezzi cambiati     {len(d['prezzi_cambiati'])}")
+    if d['cambiati_reparto']:
+        print(f"  cambiati di reparto {len(d['cambiati_reparto'])}")
     for c in d['meno_caro_cambiato']:
         print(f"  → il {c['cat'].lower()} più conveniente adesso è "
               f"{c['pro']} ({c['ins']}), {c['unitario']:.2f} {c['unita']}")

@@ -72,6 +72,7 @@ VOLANTINI = [
 
 PRODOTTI = [
  # ------------------------------- CARNE DI BUE (kg) -------------------------------
+ ("Carne di bue","Carrefour Iper","carriper04","Surgelati","4 hamburger classici – 1934","400 g",0.400,4.59,18,V,"Surgelati. −23%, prima 5,97. Solo con la tessera SpesAmica Payback."),
  ("Carne di bue","MD","md08","Macelleria","Hamburger di suino e bovino","al kg",1,10.90,9,V,"È misto suino e bovino, non solo bue."),
  ("Carne di bue","Eurospin","eurospin10","Macelleria","Spalla e reale a fette di bovino adulto","al kg",1,13.99,13,V,""),
  ("Carne di bue","MD","md08","Macelleria","Polpa scelta per roastbeef di bovino adulto","al kg",1,15.90,9,V,""),
@@ -123,6 +124,7 @@ PRODOTTI = [
  ("Latte","Lidl","lidl","Sottocosto","Latte UHT Bontà e Leggerezza 1,2% – Parmalat","1 litro",1,0.79,1,V,"Sottocosto fino al 12 settembre."),
  ("Latte","Ipercoop","ipercoop","Dispensa","Latte UHT parzialmente scremato – Granarolo","4 litri (4 × 1 l)",4,3.99,4,V,"Sottocosto −49%, prima 7,96. Max 6 confezioni."),
  # ------------------------------- PASTA (kg) -------------------------------
+ ("Pasta","Carrefour Iper","carriper04","Dispensa","Pasta di semola Al Bronzo – Barilla","500 g",0.500,0.79,23,V,"−38%, prima 1,29. Solo con la tessera SpesAmica Payback."),
  ("Pasta","Ipercoop","ipercoop","Dispensa","Pasta di semola formati classici – Barilla","500 g",0.500,0.48,3,V,"Sottocosto −50%, prima 0,97. Max 20 confezioni."),
  ("Pasta","MD","md","Freschi","Pasta fresca orecchiette o trofie – Ca' Bianca","1 kg",1,1.29,3,V,"Prima 1,99."),
  ("Pasta","MD","md","Freschi","Pasta sfoglia rettangolare","550 g (2 × 275 g)",0.550,1.69,3,V,"Prima 2,69."),
@@ -176,6 +178,7 @@ PRODOTTI = [
  # ------------------------------- UOVA (uova) -------------------------------
  ("Uova","Bennet","bennet","Freschi","10 uova fresche medie da allevamento a terra – Ovonovo","10 uova",10,2.99,8,V,"−25%, prima 3,99. È l'unica offerta sulle uova che ho trovato."),
  # ------------------------------- CARTA IGIENICA (rotoli) -------------------------------
+ ("Carta igienica","Carrefour Iper","carriper04","Cura casa","Carta igienica Sensation Extra – Regina","4 rotoli",4,1.99,30,V,"−42%, prima 3,49."),
  ("Carta igienica","MD","md","Cura casa","4 rotoloni carta igienica – Regina","4 rotoloni, dichiarati pari a 12 rotoli",12,2.89,18,V,"Prima 3,29. Il conto al rotolo usa i 12 dichiarati sul pacco: sui 4 rotoloni veri fa 0,72 l'uno."),
  ("Carta igienica","Ipercoop","ipercoop","Cura casa","Carta igienica Scottonelle – Scottex","18 rotoli",18,4.99,5,V,"Sottocosto −50%, prima 9,98. Max 3 confezioni."),
  # ------------------------------- DETERSIVO (lavaggi) -------------------------------
@@ -217,6 +220,8 @@ PRODOTTI = [
  ("Prosciutto crudo","Bennet","bennet","Salumi","Prosciutto crudo o cotto di alta qualità – Citterio","240 g (3 × 80 g)",0.240,4.99,8,V,"−50% con la tessera Bennet Club, prima 9,99."),
  ("Carne di bue","Ipercoop","ipercoop_extra","Gastronomia","Carne salada del Trentino per carpaccio","100 g",0.100,3.36,14,V,"PREZZO SOCI (−25%). Senza tessera 4,49, cioè 44,90 al kg."),
  # ------------------------------- BISCOTTI (kg) -------------------------------
+ ("Biscotti","Carrefour Iper","carriper04","Colazione","Grisbì gusti assortiti","135 g",0.135,0.99,23,V,"Sottocosto −55%, prima 2,20. Solo con la tessera SpesAmica Payback."),
+ ("Biscotti","Carrefour Iper","carriper04","Colazione","Biscotto – Plasmon","720 g",0.720,4.99,23,V,"−33%, prima 7,46. Solo con la tessera SpesAmica Payback."),
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con cacao e nocciole – Dolciando","700 g",0.700,1.69,6,V,"Prima 2,19. Senza olio di palma."),
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con granelli di zucchero di canna","700 g",0.700,1.79,15,V,"Prima 2,19. Senza olio di palma."),
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con gocce di cioccolato – Dolciando","1 kg",1,2.69,3,V,"Quantità limitata. Senza olio di palma."),
@@ -250,6 +255,7 @@ PRODOTTI = [
  ("Yogurt","Carrefour Iper","carriper04","Freschi","Kefir gusti assortiti – Milk","160 g",0.160,0.99,16,V,"−31%, prima 1,45."),
  ("Yogurt","Carrefour Iper","carriper04","Freschi","Kefir bianco senza lattosio – Polenghi","500 ml",0.500,0.79,16,V,"−20%, prima 0,99. È da bere: mezzo litro pesa circa mezzo chilo, il confronto regge."),
  # ------------------------------- MARMELLATA (kg) -------------------------------
+ ("Marmellata","Carrefour Iper","carriper04","Colazione","Confettura ai frutti di bosco senza zuccheri aggiunti","220 g",0.220,1.49,23,V,"−21%, prima 1,89. Solo con la tessera SpesAmica Payback."),
  ("Marmellata","MD","md08","Colazione","Confettura light ciliegia, albicocca, fragola o prugna – Vivo Meglio","310 g",0.310,1.59,3,V,"Prima 1,99. Con stevia."),
  ("Marmellata","Eurospin","eurospin10","Colazione","Confettura extra di lamponi – Alpenspitz","340 g",0.340,2.39,10,V,"Quantità limitata."),
  ("Marmellata","Eurospin","eurospin","Colazione","Confettura extra albicocca o ciliegia","370 g",0.370,1.29,3,V,"Prima 1,69."),
@@ -257,6 +263,8 @@ PRODOTTI = [
  ("Marmellata","Ipercoop","ipercoop_extra","Colazione","Confetture Fiordifrutta – Rigoni di Asiago","330 g",0.330,3.45,6,V,"PREZZO SOCI. Bio, 100% da frutta."),
  ("Marmellata","Carrefour Iper","carriper04","Colazione","Confettura Zero Residui – Zuegg","230 g",0.230,2.49,21,V,"−22% con la tessera SpesAmica Payback, prima 3,20."),
  # ------------------------------- CIOCCOLATO (kg) -------------------------------
+ ("Cioccolato","Carrefour Iper","carriper04","Dispensa","Tavolette gusti assortiti – Milka","250 g",0.250,3.95,23,V,""),
+ ("Cioccolato","Carrefour Iper","carriper04","Dispensa","Tavolette Excellence 85% cacao – Lindt","100 g",0.100,2.89,23,V,"−20%, prima 3,62. Solo con la tessera SpesAmica Payback."),
  ("Cioccolato","Eurospin","eurospin","Colazione","Crema alla nocciola","750 g",0.750,2.79,3,V,"Prima 3,59. È una crema da spalmare, non una tavoletta."),
  ("Cioccolato","Ipercoop","ipercoop","Dispensa","Nutella – Ferrero","750 g",0.750,4.99,2,V,"Sottocosto −25%, prima 6,68. Crema da spalmare."),
  ("Cioccolato","Carrefour Iper","carriper04","Colazione","Nutella – Ferrero","950 g",0.950,6.89,21,V,"Crema da spalmare. Il barattolo grande."),
@@ -265,6 +273,75 @@ PRODOTTI = [
  ("Cioccolato","Bennet","bennet","Dispensa","KitKat – Nestlé","124 g (conf. da 3)",0.124,2.29,12,V,"−30%, prima 3,28."),
  ("Cioccolato","Ipercoop","ipercoop_extra","Dispensa","Mini Tower Movie Night – Ritter Sport","150 g",0.150,2.89,6,V,"PREZZO SOCI."),
  ("Cioccolato","Bennet","bennet","Dispensa","Tavoletta cioccolato nero fondente extra – Perugina","85 g",0.085,1.98,12,V,"−25%, prima 2,65. Tavoletta vera, non crema."),
+ # ------------------------------- MERLUZZO E BACCALÀ (kg) -------------------------------
+ ("Merluzzo e baccalà","Carrefour Iper","carriper04","Surgelati","Polpette di pesce merluzzo dalla Norvegia – Frosta","240 g",0.240,3.99,18,V,"Surgelate. −20%, prima 4,99. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- RISO (kg) -------------------------------
+ ("Riso","Eurospin","eurospin10","Dispensa","Riso Arborio","5 kg (5 × 1 kg)",5,6.96,3,V,"Quantità limitata. Riso italiano."),
+ # ------------------------------- PANE (kg) -------------------------------
+ ("Pane","Carrefour Iper","carriper04","Colazione","Pan Bauletto Bianco – Mulino Bianco","400 g",0.400,0.85,23,V,"−22%, prima 1,09. Solo con la tessera SpesAmica Payback."),
+ ("Pane","Eurospin","eurospin10","Dispensa","Taralli multipack","500 g (10 × 50 g)",0.500,1.49,3,V,"Quantità limitata. Senza olio di palma."),
+ ("Pane","Carrefour Iper","carriper04","Colazione","Piadelle Toast – Mulino Bianco","240 g",0.240,1.49,23,V,"−32%, prima 2,20. Solo con la tessera SpesAmica Payback."),
+ ("Pane","Carrefour Iper","carriper04","Colazione","Gallette Bio mais o riso – Carrefour Bio","120 g",0.120,0.79,23,V,"−20%, prima 0,99. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- POMODORO E PASSATA (kg) -------------------------------
+ ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Polpa di pomodoro a pezzetti","2,4 kg (6 × 400 g)",2.4,2.49,3,V,"Quantità limitata. 100% pomodori italiani."),
+ # ------------------------------- OLIO DI SEMI (litri) -------------------------------
+ ("Olio di semi","Eurospin","eurospin10","Dispensa","Olio di semi di girasole","5 litri",5,6.59,3,V,"Prima 7,75."),
+ # ------------------------------- LEGUMI IN SCATOLA (kg) -------------------------------
+ ("Legumi in scatola","Eurospin","eurospin10","Dispensa","Fagioli borlotti","6 × 400 g, sgocciolati 1,44 kg",1.44,1.99,3,V,"Quantità limitata. Il conto usa il peso sgocciolato."),
+ # ------------------------------- SUGHI PRONTI (kg) -------------------------------
+ ("Sughi pronti","Carrefour Iper","carriper04","Surgelati","Sugo pronto per spaghettata di mare – Esca","400 g",0.400,3.49,18,V,"Surgelato. −34%, prima 5,29. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- VERDURE IN SCATOLA (kg) -------------------------------
+ ("Verdure in scatola","Carrefour Iper","carriper04","Dispensa","Mais – Bonduelle","420 g (3 × 140 g)",0.420,1.99,23,V,"−45%, prima 3,62. Solo con la tessera SpesAmica Payback."),
+ ("Verdure in scatola","Eurospin","eurospin10","Dispensa","Carciofini alla contadina sott'olio","535 g",0.535,1.99,3,V,"Quantità limitata."),
+ ("Verdure in scatola","Carrefour Iper","carriper04","Dispensa","Funghetti interi – Polli","190 g",0.190,1.95,23,V,"−35%, prima 3,16. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- MERENDINE (kg) -------------------------------
+ ("Merendine","Carrefour Iper","carriper04","Colazione","Panini con gocce di cioccolato","252 g",0.252,0.99,23,V,"−37%, prima 1,58. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- MIELE (kg) -------------------------------
+ ("Miele","Carrefour Iper","carriper04","Dispensa","Miele millefiori","500 g",0.500,4.39,23,V,"−20%, prima 5,49. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- VERDURE SURGELATE (kg) -------------------------------
+ ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Fagiolini e patate – Bonduelle","450 g",0.450,1.45,18,V,"−25%, prima 1,94. Solo con la tessera SpesAmica Payback."),
+ ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Piselli finissimi – La Valle degli Orti","850 g",0.850,2.99,18,V,"−28%, prima 4,16. Solo con la tessera SpesAmica Payback."),
+ ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Carciofi a spicchi – Orogel","300 g",0.300,2.39,18,V,"−36%, prima 3,74. Solo con la tessera SpesAmica Payback."),
+ ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Tortini spinaci o ortolano – Frosta","240 g",0.240,1.99,18,V,"−25%, prima 2,66. Solo con la tessera SpesAmica Payback."),
+ ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Funghi porcini a cubetti","300 g",0.300,3.99,18,V,"−20%, prima 4,99. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- PIZZA SURGELATA (kg) -------------------------------
+ ("Pizza surgelata","Carrefour Iper","carriper04","Surgelati","Pizza Bella Napoli farcite gusti assortiti – Buitoni","375 g",0.375,2.49,18,V,"−28%, prima 3,47. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- FRUTTA (kg) -------------------------------
+ ("Frutta","Carrefour Iper","carriper04","Ortofrutta","Banane sfuse – Chiquita","al kg",1,1.49,12,V,"−25%, prima 1,99."),
+ ("Frutta","Carrefour Iper","carriper04","Ortofrutta","Uva bianca senza semi, sfusa","al kg",1,2.99,12,V,"−20%, prima 3,74. Prodotta in Italia."),
+ # ------------------------------- VERDURA (kg) -------------------------------
+ ("Verdura","Carrefour Iper","carriper04","Ortofrutta","Pomodoro datterino","250 g",0.250,0.99,12,V,"Prodotto in Italia. Il volantino stampa 3,96 al kg."),
+ ("Verdura","Carrefour Iper","carriper04","Ortofrutta","Funghi champignon affettati","300 g",0.300,1.59,12,V,"−30%, prima 2,28. Prodotti in Italia."),
+ # ------------------------------- INSALATA IN BUSTA (kg) -------------------------------
+ ("Insalata in busta","Carrefour Iper","carriper04","Ortofrutta","Insalata Baby Iceberg – Vertical Farms","80 g, almeno 2 buste",0.080,1.29,12,V,"«Prendi Spendi»: 1,29 comprandone due o più, se no 1,59. Prima 1,99."),
+ # ------------------------------- PATATE (kg) -------------------------------
+ ("Patate","Carrefour Iper","carriper04","Ortofrutta","Patate","2 kg",2,1.78,12,V,"−30%. Il volantino stampa 0,89 al kg. Prodotte in Italia."),
+ ("Patate","Carrefour Iper","carriper04","Surgelati","Patate Forno Country – McCain","650 g",0.650,1.99,18,V,"Surgelate. −35%, prima 3,07. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- ACQUA (litri) -------------------------------
+ ("Acqua","Carrefour Iper","carriper04","Bevande","Acqua naturale o frizzante – Vera","9 litri (6 × 1,5 l)",9,1.79,26,V,"−40%, prima 3,10. Solo con la tessera SpesAmica Payback."),
+ ("Acqua","Carrefour Iper","carriper04","Bevande","Acqua effervescente naturale – Uliveto","9 litri (6 × 1,5 l)",9,2.49,26,V,"−33%, prima 3,78. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- VINO (litri) -------------------------------
+ ("Vino","Carrefour Iper","carriper04","Bevande","Bonarda o Barbera Oltrepò Pavese DOC – Le Cascine","750 ml",0.750,1.99,26,V,"−56%, prima 4,54. Solo con la tessera SpesAmica Payback."),
+ ("Vino","Carrefour Iper","carriper04","Bevande","Gutturnio DOC Colli Piacentini – Cantina Valtidone","750 ml",0.750,2.69,26,V,"−46%, prima 4,99. Solo con la tessera SpesAmica Payback."),
+ ("Vino","Carrefour Iper","carriper04","Bevande","Linea vini – La Calenzana","750 ml",0.750,2.79,26,V,"−54%, prima 6,08. Solo con la tessera SpesAmica Payback. Abruzzo."),
+ ("Vino","Carrefour Iper","carriper04","Bevande","Collezione Oro – Piccini","750 ml",0.750,3.99,26,V,"−50%, prima 7,99. Solo con la tessera SpesAmica Payback. Toscana."),
+ ("Vino","Carrefour Iper","carriper04","Bevande","Valpolicella Superiore DOC Radole – Sartori","750 ml",0.750,5.99,26,V,"−24%, prima 7,89. Solo con la tessera SpesAmica Payback. Veneto."),
+ ("Vino","Carrefour Iper","carriper04","Bevande","Franciacorta DOCG Millesimato Brut – Terre d'Italia","750 ml",0.750,14.50,26,V,"−22%, prima 18,59. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- BIRRA (litri) -------------------------------
+ ("Birra","Carrefour Iper","carriper04","Bevande","Birra – Peroni","1,98 litri (6 × 330 ml)",1.98,3.99,26,V,"−31%, prima 5,79. Solo con la tessera SpesAmica Payback."),
+ ("Birra","Carrefour Iper","carriper04","Bevande","Birra Metodo Lento – Ichnusa","500 ml",0.500,1.09,26,V,"−31%, prima 1,59. Solo con la tessera SpesAmica Payback."),
+ ("Birra","Carrefour Iper","carriper04","Bevande","Birra Cristalli di Sale – Messina","990 ml (3 × 330 ml)",0.990,2.99,26,V,"−25%, prima 3,99. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- SUCCHI E BIBITE (litri) -------------------------------
+ ("Succhi e bibite","Carrefour Iper","carriper04","Bevande","Thè Linea Standard o Zero – Sant'Anna","1,5 litri",1.5,0.69,26,V,"−45%, prima 1,29. Solo con la tessera SpesAmica Payback."),
+ ("Succhi e bibite","Carrefour Iper","carriper04","Bevande","Bibite gusti assortiti – Tomarchio","1,25 litri",1.25,0.79,26,V,"−25%, prima 1,09. Solo con la tessera SpesAmica Payback."),
+ ("Succhi e bibite","Carrefour Iper","carriper04","Bevande","Coca Cola Regular o Zero Zuccheri","6 litri (4 × 1,5 l)",6,4.65,26,V,"−40%, prima 8,02. Solo con la tessera SpesAmica Payback."),
+ ("Succhi e bibite","Carrefour Iper","carriper04","Bevande","Succhi di frutta senza zuccheri aggiunti – Skipper","1 litro",1,1.49,26,V,"−20%, prima 1,89. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- SAPONE E BAGNOSCHIUMA (litri) -------------------------------
+ ("Sapone e bagnoschiuma","Carrefour Iper","carriper04","Cura persona","Bagnodoccia Dermazero – Neutro Roberts","900 ml (2 × 450 ml)",0.900,2.85,30,V,"−64%, prima 7,94. Solo con la tessera SpesAmica Payback."),
+ ("Sapone e bagnoschiuma","Carrefour Iper","carriper04","Cura persona","Detergente intimo – Lactacyd","200 ml",0.200,2.39,30,V,"−26%, prima 3,24. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- DENTIFRICIO (litri) -------------------------------
+ ("Dentifricio","Carrefour Iper","carriper04","Cura persona","Collutorio Denti e Gengive – Listerine","1 litro (2 × 500 ml)",1,4.99,30,V,"−58%, prima 11,89. È collutorio, non dentifricio. Solo con la tessera SpesAmica Payback."),
+ ("Dentifricio","Carrefour Iper","carriper04","Cura persona","Dentifricio Microgranuli – Mentadent","225 ml (3 × 75 ml)",0.225,4.49,30,V,"−39%, prima 7,37. Solo con la tessera SpesAmica Payback."),
 ]
 
 # Ogni prezzo deve stare in una categoria che esiste nel catalogo: se no la
