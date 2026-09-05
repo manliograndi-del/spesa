@@ -37,8 +37,8 @@ setTimeout(() => {
   if (!capo) { console.log('NON VA:\n  ✗ non c’è l’intestazione del prodotto'); process.exit(1); }
   const tasti = [...capo.querySelectorAll('button')].map(b => b.className);
   console.log('  accanto al nome: ' + (tasti.join(' + ') || 'niente'));
-  if (tasti.join() !== 'info,croce')
-    guai.push('accanto al nome ci sono ' + (tasti.join(' + ') || 'zero bottoni') + ', devono essere info + croce');
+  if (tasti.join() !== 'elimina,info')
+    guai.push('accanto al nome ci sono ' + (tasti.join(' + ') || 'zero bottoni') + ', devono essere elimina + info');
 
   for (const [che, sel] of [['il conteggio', '#risultato .quanti'],
                             ['i sinonimi', '#risultato .sinonimi'],
@@ -54,16 +54,16 @@ setTimeout(() => {
 
   // la crocetta chiede conferma, e «Lascia» non cancella niente
   const prima = prodotti();
-  capo.querySelector('.croce').click();
+  capo.querySelector('.elimina').click();
   const conf = d.querySelector('.conferma');
-  if (!vede(conf)) guai.push('la crocetta cancella senza chiedere conferma');
-  else console.log('  la crocetta chiede: ' + conf.querySelector('span').textContent);
+  if (!vede(conf)) guai.push('«Elimina prodotto» cancella senza chiedere conferma');
+  else console.log('  «Elimina prodotto» chiede: ' + conf.querySelector('span').textContent);
   conf.querySelector('.no').click();
   if (prodotti() !== prima) guai.push('«Lascia» ha cancellato lo stesso');
-  d.querySelector('.capo .croce').click();
+  d.querySelector('.capo .elimina').click();
   d.querySelector('.conferma .si').click();
-  if (prodotti() !== prima - 1) guai.push('«Togli» non ha tolto il prodotto');
-  console.log(`  «Lascia» lascia (${prima}), «Togli» toglie (${prodotti()})`);
+  if (prodotti() !== prima - 1) guai.push('«Elimina» non ha tolto il prodotto');
+  console.log(`  «Lascia» lascia (${prima}), «Elimina» elimina (${prodotti()})`);
 
   if (errori.length) guai.push('errori in pagina: ' + errori.join(' | '));
   if (guai.length) { console.log('\nNON VA:'); guai.forEach(g => console.log('  ✗ ' + g)); process.exit(1); }

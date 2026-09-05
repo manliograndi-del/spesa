@@ -41,8 +41,18 @@ button{font-family:var(--f-testo);color:inherit}
 header{padding:20px 0 2px}
 h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01em;
   line-height:1.05;margin:0;text-transform:uppercase}
-h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;margin-bottom:6px}
-h1 .info{vertical-align:middle;margin-left:8px}
+/* La riga in alto: il luogo con accanto il bollino, e a destra le novità.
+   Il bollino stava attaccato al titolo grande e andava a capo da solo, su una
+   riga tutta sua: Manlio l'ha visto e ha chiesto di alzarlo. Qui la riga è
+   corta e ci sta. */
+.riga-alta{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;margin-bottom:6px}
+.dove{color:var(--rosso);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+  font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
+.novita{flex:none;background:var(--inchiostro);color:var(--carta);border-radius:99px;
+  padding:7px 14px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:.02em;
+  min-height:34px;display:inline-flex;align-items:center}
+.novita::after{content:' \2197';margin-left:4px}
 .sottotitolo{color:var(--tenue);margin:8px 0 0;font-size:14px;max-width:62ch}
 
 /* ---- barra dei prodotti ---- */
@@ -80,12 +90,10 @@ h1 .info{vertical-align:middle;margin-left:8px}
 /* ---- intestazione del risultato ---- */
 .capo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
 .capo .info{flex:none}
-/* La crocetta per togliere un prodotto: piccola, ma con dentro un bersaglio da
-   dito. Il bordo la fa vedere come un tasto, il rosso solo quando la si tocca. */
-.croce{flex:none;margin-left:auto;width:34px;height:34px;border-radius:9px;
-  border:1.5px solid var(--linea-forte);background:var(--carta);color:var(--tenue);
-  font-size:19px;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center}
-.croce:hover{border-color:var(--rosso);color:var(--rosso)}
+/* Dice cosa fa, invece di una crocetta da interpretare. */
+.elimina{flex:none;background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
+  border-radius:99px;padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer;
+  min-height:38px;line-height:1.1;white-space:nowrap}
 .conferma[hidden]{display:none}
 .conferma{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;
   background:#FBEEF0;border:1.5px solid var(--rosso);border-radius:10px;padding:10px 12px}
@@ -165,22 +173,9 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
   border-radius:10px;padding:14px}
 
 /* ---- coda ---- */
-.manda{margin-top:30px;border:2px solid var(--inchiostro);border-radius:12px;padding:16px}
-.manda h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:15px;
-  letter-spacing:.04em;margin:0 0 8px}
-.manda p{font-size:14px;margin:0 0 12px;color:var(--tenue)}
-.manda button{background:var(--inchiostro);color:var(--carta);border:0;border-radius:10px;
-  padding:13px 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px;width:100%}
-.manda textarea{display:none;width:100%;margin-top:12px;min-height:150px;resize:vertical;
-  font-family:ui-monospace,'SF Mono',Menlo,monospace;font-size:13px;line-height:1.5;
-  background:var(--pannello);color:var(--inchiostro);border:1.5px solid var(--linea);
-  border-radius:10px;padding:11px}
-.manda textarea.on{display:block}
-.manda .esito{font-size:13.5px;margin:10px 0 0;color:var(--verde);font-weight:600;min-height:1.2em}
 .spiega{margin-top:34px;background:var(--pannello);border-radius:12px;padding:16px 16px 4px}
 .spiega h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:15px;
   letter-spacing:.04em;margin:0;display:flex;align-items:center;gap:9px}
-.manda h2{display:flex;align-items:center;gap:9px}
 /* Il bollino «i». Manlio: «la pagina è molto lunga, le spiegazioni meglio che
    appaiano solo quando si fa clic su un bollino di informazioni». Tondo, con
    la i minuscola, grande abbastanza da prendersi col dito. */
@@ -211,9 +206,14 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <body>
 <div class="guscio">
 <header>
-  <h1><span>Torino · Corso Siracusa</span>La lista della spesa
-    <button type="button" class="info" aria-expanded="false"
-            aria-label="Come funziona questa pagina">i</button></h1>
+  <div class="riga-alta">
+    <p class="dove">Torino · Corso Siracusa
+      <button type="button" class="info" aria-expanded="false"
+              aria-label="Come funziona questa pagina">i</button></p>
+    <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
+       target="_blank" rel="noopener">Novità</a>
+  </div>
+  <h1>La lista della spesa</h1>
   <div class="dettaglio" id="dett-testa" hidden>
     <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
     conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
@@ -248,17 +248,6 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <div id="risultato"></div>
 
-<section class="manda" id="riquadro-manda">
-  <h2>Mandami la tua lista <button type="button" class="info" aria-expanded="false"
-      aria-label="Mostra la spiegazione">i</button></h2>
-  <div class="dettaglio" hidden>
-    <p id="perche-manda">Se la lista è condivisa non serve: la leggo da solo dalla pagina.
-    Serve solo su una copia che gira per conto suo, come il file salvato sul telefono.</p>
-  </div>
-  <button type="button" id="btn-copia">Copia la mia lista</button>
-  <p class="esito" id="esito" role="status"></p>
-  <textarea id="testo-lista" readonly aria-label="La tua lista, da copiare"></textarea>
-</section>
 
 <section class="spiega">
   <h2>Come leggerla <button type="button" class="info" aria-expanded="false" aria-label="Mostra la spiegazione">i</button></h2>
@@ -637,6 +626,10 @@ function apriCassetto(si) {
   cassettoAperto = si;
   const c = document.getElementById('cassetto');
   c.hidden = !si;
+  /* Col cassetto aperto l'elenco dei prezzi di prima non c'entra più niente e
+     stava lì sotto a confondere: Manlio l'ha visto subito. Torna quando si
+     chiude, sul prodotto che nel frattempo si è acceso. */
+  document.getElementById('risultato').hidden = si;
   disegnaTasti();
   /* Niente focus sulla casella: aprendo il cassetto faceva saltare su la
      tastiera del telefono, che copre mezzo schermo proprio mentre uno vuole
@@ -815,12 +808,15 @@ function disegna() {
      bollino «i», come le spiegazioni in fondo. Restano il nome e la crocetta. */
   const capo = document.createElement('div');
   capo.className = 'capo';
+  /* Il bottone dice cosa fa. Prima c'era una crocetta, e Manlio: «la x per
+     togliere il prodotto mi sembra poco comprensibile, metterei invece un
+     bottone elimina prodotto». La «i» viene subito dopo, come ha chiesto. */
   capo.innerHTML = '<h2></h2>'
+    + '<button type="button" class="elimina">Elimina prodotto</button>'
     + '<button type="button" class="info" aria-expanded="false"'
-    + ' aria-label="Mostra i dettagli del prodotto">i</button>'
-    + '<button type="button" class="croce" aria-label="Togli dalla lista">\u00d7</button>';
+    + ' aria-label="Mostra i dettagli del prodotto">i</button>';
   capo.querySelector('h2').textContent = v.nome;
-  capo.querySelector('.croce').setAttribute('aria-label', 'Togli «' + v.nome + '» dalla lista');
+  capo.querySelector('.elimina').setAttribute('aria-label', 'Elimina «' + v.nome + '» dalla lista');
   out.appendChild(capo);
 
   /* La crocetta è piccola e sta accanto al nome: un tocco per sbaglio non deve
@@ -829,16 +825,16 @@ function disegna() {
   const conferma = document.createElement('div');
   conferma.className = 'conferma';
   conferma.hidden = true;
-  conferma.innerHTML = '<span></span><button type="button" class="si">Togli</button>'
+  conferma.innerHTML = '<span></span><button type="button" class="si">Elimina</button>'
     + '<button type="button" class="no">Lascia</button>';
-  conferma.querySelector('span').textContent = 'Tolgo «' + v.nome + '»?';
+  conferma.querySelector('span').textContent = 'Elimino «' + v.nome + '»?';
   conferma.querySelector('.si').onclick = () => {
     lista.splice(scelto, 1);
     if (scelto > 0) scelto--;
     salva(); disegna();
   };
   conferma.querySelector('.no').onclick = () => { conferma.hidden = true; };
-  capo.querySelector('.croce').onclick = () => { conferma.hidden = !conferma.hidden; };
+  capo.querySelector('.elimina').onclick = () => { conferma.hidden = !conferma.hidden; };
   out.appendChild(conferma);
 
   const dett = document.createElement('div');
@@ -991,36 +987,6 @@ document.getElementById('form-agg').onsubmit = ev => {
   salva(); disegna();
 };
 
-/* La lista vive solo qui dentro (localStorage) e non torna indietro a chi ha fatto
-   la pagina. Questo bottone la impacchetta in testo da incollare in chat. La
-   textarea non e un ripiego per il telefono: negli artifact la scrittura negli
-   appunti puo essere negata senza dire niente, e allora il testo dev'essere li
-   pronto da selezionare a mano. */
-function listaInTesto() {
-  const righe = lista.map(v => {
-    const altri = nomiDi(v).slice(1);
-    return '- ' + v.nome + (altri.length ? '  (anche: ' + altri.join(', ') + ')' : '');
-  });
-  return 'LA MIA LISTA DELLA SPESA — ' + lista.length +
-         (lista.length === 1 ? ' prodotto' : ' prodotti') + '\n' + righe.join('\n');
-}
-
-const btnCopia = document.getElementById('btn-copia');
-const areaLista = document.getElementById('testo-lista');
-const esito = document.getElementById('esito');
-btnCopia.onclick = async () => {
-  const testo = listaInTesto();
-  areaLista.value = testo;
-  areaLista.classList.add('on');
-  try {
-    await navigator.clipboard.writeText(testo);
-    esito.textContent = 'Copiata. Adesso incollala nella chat.';
-  } catch (e) {
-    esito.textContent = 'Non sono riuscito a copiarla da solo: tienila premuta qui sotto, «Seleziona tutto», copia.';
-    areaLista.focus();
-    areaLista.select();
-  }
-};
 
 /* Una data sola per tutta la pagina. Prima quella in fondo era scritta a mano e
    restava indietro: la pagina diceva 4 settembre in mezzo e 2 settembre in fondo,
@@ -1030,8 +996,6 @@ document.getElementById('pie').textContent =
   'Volantini letti il ' + DATI.letto + '. I numeri di pagina sono quelli dei volantini.';
 aggiornaTestoLista();
 
-/* Il riquadro per rimandarmi la lista a mano ha senso solo dove la lista non e
-   condivisa: se lo e, la leggo dalla pagina pubblicata senza chiedere niente. */
 /* Cosa dire della lista dipende dalla copia che si sta guardando: sul sito e
    una per telefono, sulla copia di Claude e una sola per tutti. Scriverne una
    sola delle due era una bugia per meta dei lettori. */
@@ -1047,16 +1011,6 @@ function aggiornaTestoLista() {
       + 'da soli.';
 }
 
-function aggiornaRiquadroManda() {
-  const r = document.getElementById('riquadro-manda');
-  const p = document.getElementById('perche-manda');
-  if (!r) return;
-  r.style.display = soloMio ? '' : 'none';
-  if (p && soloMio) {
-    p.textContent = 'Questa copia non è collegata alle altre: quello che cambi qui non arriva a me. '
-      + 'Tocca il bottone e incolla nella chat, ci sono anche i nomi alternativi.';
-  }
-}
 
 disegna();
 
@@ -1084,7 +1038,6 @@ disegna();
   if (dv) dv.textContent = soloMio
     ? 'Questa copia è solo tua: quello che cambi resta su questo telefono.'
     : 'Questa copia è condivisa: quello che cambi lo vede anche chi ha il link.';
-  aggiornaRiquadroManda();
   aggiornaTestoLista();
   disegna();
 })();

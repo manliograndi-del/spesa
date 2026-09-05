@@ -788,75 +788,39 @@ pagine invece di 22.
 tutti e due, barrato e scontato. Nell'Excel e nella pagina ho messo il prezzo
 soci scrivendolo nelle note, perché è quello che paga lui se ha la tessera.
 
-## La pagina delle novità — chiesta, non ancora fatta
+## La pagina delle novità
 
-Manlio, 2026-09-05: una pagina che si apre in un'altra finestra con **le novità
-del giorno**, e a scelta **quelle degli ultimi sette giorni**, messe insieme
-dalle novità salvate ogni giorno.
+Chiesta da Manlio il 2026-09-05: le novità dell'ultimo giorno e, volendo,
+quelle dei sette precedenti, in una pagina che si apre in un'altra finestra col
+suo tasto in cima alla pagina dei prezzi.
 
-**Il diario è già acceso, la pagina no**, ed è voluto: le novità di lunedì si
-possono raccontare solo se domenica qualcuno ha segnato com'era. Aspettare la
-pagina per cominciare a segnare avrebbe regalato una prima settimana vuota.
+`novita.py` legge i file che `storia.py` lascia in `storia/` — uno per giorno,
+scritto solo quando è successo qualcosa — e ne fa `novita.html`, statica come
+tutto il resto. Il tasto **Novità** sta in alto a destra e punta all'indirizzo
+completo, così funziona anche dalla copia di Claude, che non ha una cartella
+accanto a sé.
 
-`storia.py` tiene `storia/stato.json` — la fotografia di adesso, una sola, che
-viene sovrascritta — e a ogni giro scrive la differenza in
-`storia/AAAA-MM-GG.json`. Le differenze restano e sono piccole: è da quelle che
-la pagina metterà insieme la settimana. **Va lanciato dopo `pagina.py` a ogni
-aggiornamento**, o il giorno dopo non c'è niente da confrontare.
+**L'ordine dei blocchi non è estetico.** In cima **il più conveniente che ha
+cambiato padrone**: è l'unica novità che cambia dove si va a fare la spesa.
+Poi i volantini arrivati e finiti, i prezzi scesi e saliti (con quanto), le
+offerte nuove e quelle finite, e in fondo in grigio gli spostamenti di reparto.
 
-Un'offerta è la stessa offerta se sono uguali **insegna, prodotto e formato**.
-La categoria NON entra nel riconoscimento, e il perché è una lezione: la prima
-volta ci entrava, e dividendo «Formaggio» in mozzarella, grana, spalmabili e
-ricotta il diario ha annunciato **38 offerte sparite e altrettante nuove**.
-Erano le stesse, spostate di scaffale. Un cambio di reparto adesso si racconta
-a parte (`cambiati_reparto`), e non sporca le novità vere.
+**Il conto del più conveniente deve guardare le date.** La prima versione non lo
+faceva, e appena entrate le sette offerte del «Weekend più uno» il diario ha
+annunciato che il pollo più conveniente erano dei würstel a 2,29 — veri, ma
+validi dal 18 settembre, tredici giorni dopo. **Una novità falsa è peggio di
+nessuna novità: manda uno in negozio.**
 
-Il diario registra cinque cose, e la quinta è quella che conta davvero:
-volantini arrivati, volantini finiti, offerte nuove, offerte sparite, prezzi
-cambiati — e **il più conveniente che cambia padrone**. Sapere che è comparso
-un tonno non serve a niente; sapere che il tonno più conveniente adesso è un
-altro sì, ed è quello che va scritto in cima alla pagina quando la faremo.
+E `quanto()` conta anche i cambi di padrone, non solo le offerte che si
+muovono: il più conveniente può cambiare **senza che nessuna offerta cambi**,
+semplicemente perché quella di ieri è scaduta stanotte. Senza contarlo, il
+giorno in cui scade il volantino dell'Eurospin il diario direbbe «niente di
+nuovo».
 
-`prova-storia.py` finge un domani e pretende che il diario racconti il vero. La
-prima volta ha detto «non se ne accorge» e **aveva torto lei**: aveva pescato a
-caso il tonno che era già il più conveniente, e abbassarlo non cambiava padrone.
-Il tonno da far calare adesso viene scelto apposta fra quelli che non lo sono.
-
-## `pulizia.py`: cercare il codice rimasto in giro
-
-Manlio, 2026-09-05: «sono state fatte molte modifiche e potrebbe essere rimasto
-codice spurio». Aveva ragione a sospettarlo — in quattro giorni sono spariti un
-tasto delle lingue, una casella per aggiungere prodotti, tre categorie di
-prezzi e un modo intero di scegliere.
-
-`pulizia.py` guarda **la pagina generata**, non il programma che la genera: è lì
-che il codice morto pesa. Segnala classi CSS mai usate, nomi JavaScript
-dichiarati e mai chiamati, identificatori cercati e non presenti (o viceversa),
-file in `strumenti/` che nessuno nomina, e costanti Python definite e mai usate.
-
-**Anche le prove contano come uso.** Senza, `pulizia` segnalava come «mai
-cercato» un identificatore che serviva soltanto a `prova-intestazione.js`. Un
-attrezzo che grida al lupo smette di essere letto.
-
-**Non è un giudice, è un cane da tartufi.** Il primo giro ha dato un falso
-allarme — `.apribile` — perché quella classe la costruisce il programma unendo
-due pezzi (`'pag-riga' + (p.url ? ' apribile' : '')`). Adesso vale come uso
-anche una parola sola fra apici. E prima di fidarsi di un «tutto pulito» gli si
-pianta davanti del codice morto apposta: se non lo trova, non sta guardando.
-
-**Le due cose vere che ha trovato**, e che leggendo non si vedevano:
-
-1. **`lista.py` ripeteva i sinonimi del catalogo, e si erano rovinati.**
-   «Formaggio» cercava ancora *parmigiano*, *grana* e *mozzarella*, diventate
-   categorie a sé il giorno prima. Una pagina nata da quella lista avrebbe
-   rimesso il parmigiano fra i formaggi generici. Adesso in `lista.py` ci sono
-   **solo i nomi** e le parole vengono dal catalogo, che è l'unico posto dove
-   stanno.
-2. **La lista di partenza viaggiava due volte in ogni pagina**, come
-   `LISTA_PUBBLICATA` e dentro `DATI`. La seconda copia non la leggeva nessuno.
-
-E una cosa che mancava: **`prove.sh` non era scritto da nessuna parte**. Il
-comando che lancia tutte le prove esisteva e non lo sapeva nessuno.
+**Una pagina vuota non si può giudicare.** Il diario è partito oggi, quindi non
+c'era niente da mostrare: per guardarla davvero le ho costruito un diario finto
+con offerte vere — un volantino che arriva, due prezzi che si muovono, un
+capovolgimento — e poi l'ho cancellato.
 
 ## La rete
 

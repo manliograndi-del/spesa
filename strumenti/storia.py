@@ -31,10 +31,13 @@ FOTO = os.path.join(DOVE, 'stato.json')
 
 def fotografia():
     offerte = {}
+    vol = {v.chiave: v for v in VOLANTINI}
     for o in OFFERTE:
+        v = vol[o.chiave]
         offerte['\t'.join((o.ins, o.pro, o.fmt))] = dict(
             cat=o.cat, ins=o.ins, pro=o.pro, fmt=o.fmt, prezzo=o.prezzo,
-            unitario=round(o.prezzo / o.qta, 3), chiave=o.chiave)
+            unitario=round(o.prezzo / o.qta, 3), chiave=o.chiave,
+            inizio=o.inizio or v.inizio, fino=o.fino or v.fino)
     return dict(
         giorno=datetime.date.today().isoformat(),
         volantini={v.chiave: dict(ins=v.insegna, periodo=v.periodo,
@@ -42,13 +45,22 @@ def fotografia():
                    for v in VOLANTINI},
         offerte=offerte)
 
-def meno_caro(offerte):
-    """Per ogni categoria l'offerta che costa meno per unità.
+def meno_caro(offerte, giorno):
+    """Per ogni categoria l'offerta che costa meno per unità, FRA QUELLE CHE
+    VALGONO QUEL GIORNO.
 
     È la novità che conta davvero: sapere che è comparso un tonno non serve,
-    sapere che il tonno più conveniente adesso è un altro sì."""
+    sapere che il tonno più conveniente adesso è un altro sì.
+
+    Le date non sono un dettaglio. La prima volta questo conto le ignorava, e
+    appena entrate le sette offerte del «Weekend più uno» il diario ha
+    annunciato che il pollo più conveniente erano dei würstel a 2,29 — veri, ma
+    validi dal 18 settembre, tredici giorni dopo. Una novità falsa è peggio di
+    nessuna novità: manda uno in negozio."""
     fuori = {}
     for o in offerte.values():
+        if (o.get('inizio') or '') > giorno or (o.get('fino') or '9') < giorno:
+            continue
         c = o['cat']
         if c not in fuori or o['unitario'] < fuori[c]['unitario']:
             fuori[c] = o
@@ -57,7 +69,8 @@ def meno_caro(offerte):
 def differenza(prima, adesso):
     vp, va = prima.get('volantini', {}), adesso['volantini']
     op, oa = prima.get('offerte', {}), adesso['offerte']
-    mp, ma = meno_caro(op), meno_caro(oa)
+    mp = meno_caro(op, prima.get('giorno', adesso['giorno']))
+    ma = meno_caro(oa, adesso['giorno'])
 
     cambiati, traslocati = [], []
     for k in set(op) & set(oa):
@@ -86,9 +99,13 @@ def differenza(prima, adesso):
     )
 
 def quanto(d):
+    """Quante cose sono successe. Il cambio del più conveniente conta, e non è
+    ovvio: può cambiare SENZA che nessuna offerta si muova, semplicemente
+    perché quella di ieri è scaduta stanotte. Senza contarlo, il giorno in cui
+    scade il volantino dell'Eurospin il diario direbbe «niente di nuovo»."""
     return (len(d['volantini_arrivati']) + len(d['volantini_finiti'])
             + len(d['offerte_nuove']) + len(d['offerte_sparite'])
-            + len(d['prezzi_cambiati']))
+            + len(d['prezzi_cambiati']) + len(d['meno_caro_cambiato']))
 
 if __name__ == '__main__':
     solo_guardare = '--guarda' in sys.argv
