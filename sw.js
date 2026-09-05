@@ -9,7 +9,7 @@
 
    Alza il numero a ogni rilascio, altrimenti resta in giro la copia vecchia. */
 const PREFISSO = "spesa-";
-const CACHE = PREFISSO + "v21";
+const CACHE = PREFISSO + "v22";
 const FILE = ["./", "./index.html", "./manifest.webmanifest",
               "./icon-192.png", "./icon-512.png"];
 

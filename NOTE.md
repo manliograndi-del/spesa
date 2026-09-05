@@ -988,6 +988,51 @@ indirizzo pubblico: `https://manliograndi-del.github.io/spesa/catalogo.pdf`.
 Serve perché Manlio non usa il terminale: un file in una cartella temporanea,
 per lui, non esiste. Va ricommittato quando cambia.
 
+## Il pesce, e la terza volta che il buco era mio
+
+Il 2026-09-05 Manlio: «continuo a notare una poca quantità di offerte di
+merluzzo e di gamberi». Gamberi **zero**, merluzzo **due**, con sette volantini
+in casa. Era di nuovo un buco mio, il terzo dopo le pizze e Mercatò.
+
+**Dove stava.** Non avevo mai aperto la pagina 3 del Bennet — una pescheria
+intera, sottocosto — né la pagina «Pesce» del Carrefour. Non erano pagine
+difficili: erano pagine che non avevo guardato. Adesso gamberi 5, merluzzo 9,
+bastoncini 3, calamari e seppie 4, e per strada sono venuti fuori altri 40
+prezzi (surgelati, yogurt, gelati) sulle stesse pagine.
+
+**Come si trovano le pagine giuste senza riscaricare tutto.** `indice.json` ha
+già le parole di ogni pagina di ogni volantino, anche quando le immagini non
+sono più sul disco. Si interroga quello per sapere *quali* pagine parlano di
+una certa cosa, e si riscaricano solo quelle. Sette pagine invece di
+trecentotrentadue.
+
+**La regola, ormai confermata tre volte:** *una categoria con zero o una sola
+offerta è quasi sempre un buco mio, non il mondo.* Tutti i supermercati
+vendono pesce. Se non lo trovo, non ho guardato.
+
+### Niente righe doppie
+
+Rileggendo i volantini per il pesce ho riscritto da capo dieci prodotti del
+Carrefour che avevo già letto in una sessione precedente. **I prezzi
+combaciavano tutti** — la rilettura confermava la prima, il che è di per sé una
+buona notizia sul metodo — ma nell'elenco la stessa offerta compariva due
+volte, e chi guarda pensa che siano due negozi.
+
+Adesso `dati.py` si ferma da solo se due righe hanno stessa insegna, stesso
+prodotto e stesso formato. Provato piantandone uno finto. Il confronto non è
+sulla riga intera apposta: due righe che dicono la stessa cosa con una nota
+diversa restano un doppione.
+
+### Quello che il catalogo non sa ancora dire
+
+Sulle stesse pagine ci sono offerte vere che **non hanno una casa**: orata,
+branzino, polpo, vongole, pesce spada, trota, cefalo, scampi. Il catalogo ha
+Gamberi, Merluzzo e baccalà, Calamari e seppie, Salmone, Tonno, Bastoncini —
+e basta. Non le ho messe da nessuna parte a forza: infilare l'orata dentro
+«Merluzzo e baccalà» vorrebbe dire che il confronto non vuol più dire niente.
+Serve una voce nuova (**Pesce fresco**, o due: pesce azzurro e pesce bianco) e
+la decisione è di Manlio, che ha il catalogo stampato in mano.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
