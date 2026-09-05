@@ -840,11 +840,21 @@ schema. Si rifanno **a ogni volantino nuovo**, insieme alle date: si tengono
 gli indirizzi che contengono `/0x0/` (le pagine intere; quelli con `240x240`
 sono le miniature) e si ordinano per il numero prima di `.jpg`.
 
-**Quale Mercatò.** Ce ne sono quattro insegne (Mercatò, Local, Big, Extra) con
-volantini diversi. Il punto vendita più vicino a corso Siracusa è quello di
-**via Filadelfia 232**, che è un Mercatò semplice: si legge quello. Se un
-giorno Manlio dicesse che va in un altro, va cambiato il volantino, non solo le
-date.
+**Quale Mercatò: via Filadelfia 232, e non è una deduzione.** Ce ne sono quattro
+insegne (Mercatò, Local, Big, Extra) con volantini diversi, e a Torino ci sono
+quattordici punti vendita. Il primo giorno l'avevo scelto io, per distanza; il
+2026-09-05 Manlio ha chiesto di vederli tutti — «fammeli vedere che te lo
+dico» — **e ha confermato via Filadelfia 232**. Adesso è un fatto, non una
+supposizione: chi riprende in mano il progetto non deve ricalcolarlo.
+
+**La distanza da sola avrebbe sbagliato.** Il punto vendita più vicino a corso
+Siracusa è via Demargherita (0,4 km), ma è un **Mercatò Local**, che ha un
+volantino suo: se avessi tirato a indovinare col metro avrei caricato i prezzi
+di un altro negozio. Quando la scelta cambia i dati e solo lui la sa, si
+chiede.
+
+Se un giorno dicesse che va in un altro, va cambiato il volantino, non solo le
+date — e va guardata l'insegna, non solo il nome della via.
 
 **L'Ipercoop di Torino è Nova Coop**, non la Coop nazionale: il volantino è
 quello piemontese. Si prende da `novacoop.it`, che rimanda a
