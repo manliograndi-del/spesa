@@ -7,13 +7,29 @@
    sarebbero finiti in cima, e Manlio avrebbe letto un prezzo che in cassa non
    gli avrebbero fatto.
 
-       node prova-quando.js out/sito.html                 */
+       node prova-quando.js out/sito.html
+       node prova-quando.js out/sito.html 2026-09-07   (fingendo un altro giorno)
+
+   Il secondo modo serve a provare la cosa piu difficile da vedere: la pagina
+   decide scaduto e «non ancora» a ogni apertura, contro la data di chi guarda.
+   Cosi una pagina lasciata li una settimana non spaccia per buone offerte
+   finite nel frattempo. Fingendo il giorno si controlla che sia vero davvero. */
 const fs = require('fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const errori = [];
+const finto = process.argv[3];            // «2026-09-07», facoltativo
 const dom = new JSDOM(fs.readFileSync(process.argv[2], 'utf8'), {
   runScripts: 'dangerously', pretendToBeVisual: true,
   url: 'https://manliograndi-del.github.io/spesa/',
+  beforeParse(w) {
+    if (!finto) return;
+    const Vero = w.Date;
+    // basta il giorno: la pagina chiede solo new Date().toLocaleDateString('sv')
+    function Finta(...a) { return a.length ? new Vero(...a) : new Vero(finto + 'T12:00:00'); }
+    Finta.prototype = Vero.prototype;
+    Finta.now = () => new Vero(finto + 'T12:00:00').getTime();
+    w.Date = Finta;
+  },
   virtualConsole: new VirtualConsole().on('jsdomError', e => errori.push(String(e.detail || e.message).split('\n')[0])),
 });
 setTimeout(() => {
@@ -37,11 +53,13 @@ setTimeout(() => {
       if (r.dopo && r.meno) guai.push(`«${nome}»: riga ${i + 1} non vale ancora e ha il bollo «il meno caro»`);
     });
   }
+  console.log('  giorno: ' + (finto || 'oggi'));
   console.log(`  righe guardate: ${visti}, di cui non ancora valide: ${futuri}`);
-  const vol = [...d.querySelectorAll('#vol li')]
-    .filter(li => /non ancora cominciato/.test(li.textContent))
-    .map(li => li.querySelector('.i').textContent);
-  console.log('  volantini segnati «non ancora cominciato»: ' + (vol.join(', ') || 'nessuno'));
+  const segnati = f => [...d.querySelectorAll('#vol li')]
+    .filter(li => f.test(li.textContent))
+    .map(li => li.querySelector('.i').textContent + ' ' + li.querySelector('.p').textContent.split('—')[0].trim());
+  console.log('  «non ancora cominciato»: ' + (segnati(/non ancora cominciato/).join(' · ') || 'nessuno'));
+  console.log('  «scaduto»: ' + (segnati(/— scaduto/).join(' · ') || 'nessuno'));
   if (errori.length) guai.push('errori in pagina: ' + errori.join(' | '));
   if (guai.length) {
     console.log('\nNON VA:'); guai.forEach(g => console.log('  ✗ ' + g));

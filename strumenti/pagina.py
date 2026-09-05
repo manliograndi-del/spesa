@@ -36,24 +36,21 @@ PERIODO = {v.chiave: v.periodo for v in VOLANTINI}
 import datetime as _dt
 _oggi = _dt.date.today()
 
-def _futuro(vol):
-    """Vero se il volantino non e ancora cominciato.
+# SCADUTO E «NON ANCORA COMINCIATO» LI DECIDE LA PAGINA, NON QUESTO PROGRAMMA.
+# Qui si scrivono solo le due date; il confronto con oggi lo fa il browser di
+# chi apre. Se lo facessimo qui, il giudizio resterebbe congelato al giorno in
+# cui la pagina e stata generata: il 7 settembre avrebbe continuato a dare per
+# buone offerte scadute il 6, finche qualcuno non rigenerava. E chi rigenera,
+# per ora, non e affidabile — vedi il controllo giornaliero.
 
-    Serve perche i volantini nuovi si leggono in anticipo: quello dell'Eurospin
-    del 2026-09-05 partiva il 10. Senza questo, i suoi prezzi sarebbero finiti
-    in cima all'elenco come se valessero oggi — proprio la cosa che Manlio ha
-    chiesto di evitare quando ha detto di prendere il volantino nuovo il giorno
-    prima «perche tutto rimanga sempre aggiornato»."""
-    return bool(vol.inizio) and _dt.date.fromisoformat(vol.inizio) > _oggi
-
-FUTURO = {v.chiave: _futuro(v) for v in VOLANTINI}
 INIZIO = {v.chiave: v.inizio for v in VOLANTINI}
+FINO   = {v.chiave: v.fino for v in VOLANTINI}
 
 offerte = [dict(cat=cat, ins=ins, rep=rep, pro=pro, fmt=fmt, prezzo=pre,
                 unitario=round(pre / qta, 3), pag=pag, pdf=PDF[chiave],
                 url=indirizzo(chiave, pag),
                 periodo=PERIODO[chiave], dubbio=(fon == D), note=note,
-                futuro=FUTURO[chiave], inizio=INIZIO[chiave])
+                inizio=INIZIO[chiave], fino=FINO[chiave])
            for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI]
 
 # indice.json sta nel progetto, non nella cartella di lavoro: le immagini dei
@@ -80,8 +77,7 @@ MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
 OGGI = f'{_oggi.day} {MESI[_oggi.month - 1]} {_oggi.year}'
 volantini = [x for x in (dict(ins=v.insegna, periodo=v.periodo, pdf=v.pdf,
                               pagine=len([y for y in pagine if y['pdf'] == v.pdf]),
-                              scaduto=_dt.date.fromisoformat(v.fino) < _oggi,
-                              futuro=FUTURO[v.chiave])
+                              inizio=v.inizio, fino=v.fino)
                          for v in VOLANTINI) if x['pagine']]
 
 partenza = [dict(nome=n, parole=p, cat=c) for n, p, c in PARTENZA]
@@ -484,9 +480,17 @@ function giorno(iso) {
   return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1];
 }
 
+/* Scaduto e «non ancora cominciato» si decidono QUI, a ogni apertura, contro
+   la data del telefono di chi guarda — non a tavolino quando la pagina viene
+   fatta. Cosi una pagina lasciata li una settimana non spaccia per buone le
+   offerte finite nel frattempo: al massimo non ne ha di nuove. */
+const OGGI_ISO = new Date().toLocaleDateString('sv');   // «2026-09-05»
+const futuro  = x => !!x.inizio && x.inizio > OGGI_ISO;
+const scaduto = x => !!x.fino   && x.fino   < OGGI_ISO;
+
 const offerteDi = v => v.cat
-  ? DATI.offerte.filter(o => o.cat === v.cat)
-      .slice().sort((a, b) => (a.futuro ? 1 : 0) - (b.futuro ? 1 : 0))
+  ? DATI.offerte.filter(o => o.cat === v.cat && !scaduto(o))
+      .slice().sort((a, b) => (futuro(a) ? 1 : 0) - (futuro(b) ? 1 : 0))
   : [];
 
 /* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
@@ -569,8 +573,8 @@ function rigaPrezzo(o, primo) {
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const coda = d.querySelector('.coda');
-  if (primo && !o.futuro) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
-  if (o.futuro) coda.insertAdjacentHTML('beforeend',
+  if (primo && !futuro(o)) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
+  if (futuro(o)) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo dopo">vale dal ' + giorno(o.inizio) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
@@ -690,6 +694,15 @@ function disegna() {
     f.className = 'fascia'; f.textContent = 'Prezzi letti dal volantino';
     out.appendChild(f);
     off.forEach((o, i) => out.appendChild(rigaPrezzo(o, i === 0)));
+  } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
+    /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
+       vuoto: senza questa riga sembrerebbe che il prodotto non sia mai stato
+       in offerta da nessuna parte. */
+    const p = document.createElement('p');
+    p.className = 'vuoto';
+    p.textContent = 'I volantini che avevano questo prodotto sono tutti scaduti, '
+      + 'e quelli nuovi non li ho ancora letti. Qui sotto ci sono comunque le pagine.';
+    out.appendChild(p);
   }
 
   const f2 = document.createElement('p');
@@ -722,8 +735,8 @@ DATI.volantini.forEach(v => {
   li.innerHTML = `<span><span class="i"></span> <span class="p"></span></span><span class="n"></span>`;
   li.querySelector('.i').textContent = v.ins;
   li.querySelector('.p').textContent = v.periodo
-    + (v.scaduto ? ' — scaduto' : v.futuro ? ' — non ancora cominciato' : '');
-  if (v.scaduto || v.futuro) li.querySelector('.p').style.color = 'var(--ambra)';
+    + (scaduto(v) ? ' — scaduto' : futuro(v) ? ' — non ancora cominciato' : '');
+  if (scaduto(v) || futuro(v)) li.querySelector('.p').style.color = 'var(--ambra)';
   li.querySelector('.n').textContent = v.pagine + ' pag.';
   ul.appendChild(li);
 });

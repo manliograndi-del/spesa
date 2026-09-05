@@ -477,6 +477,16 @@ volantini l'insegna esce segnata «non ancora cominciato». `prova-quando.js`
 controlla proprio questo: nessuna riga non ancora valida sopra una valida, e
 nessuna col bollo del più conveniente.
 
+**Scaduto e «non ancora» li decide la pagina, non il generatore.** Le due date
+finiscono nel documento e il confronto con oggi lo fa il browser di chi apre.
+Se il giudizio fosse congelato al giorno della generazione, il 7 settembre la
+pagina avrebbe continuato a dare per buone le offerte scadute il 6 finché
+qualcuno non la rigenerava — e chi rigenera, per ora, non è affidabile. Così il
+peggio che può capitare è che manchino offerte nuove, mai che ne compaiano di
+finite. `prova-quando.js` lo prova fingendo la data: `node prova-quando.js
+out/sito.html 2026-09-07`. Quando una categoria resta senza prezzi perché sono
+tutti scaduti, la pagina lo dice invece di mostrare il vuoto.
+
 `VOLANTINI` è diventato una lista di **namedtuple**. Aggiungere un campo a delle
 tuple nude avrebbe fatto saltare in una volta gli otto punti che le
 spacchettavano per posizione; con i nomi, chi non usa il campo nuovo non se ne
