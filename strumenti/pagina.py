@@ -156,10 +156,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   flex-wrap:wrap;margin-bottom:6px}
 .dove{color:var(--rosso);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
-.novita{flex:none;background:var(--inchiostro);color:var(--carta);border-radius:99px;
-  padding:7px 14px;font-size:13px;font-weight:600;text-decoration:none;letter-spacing:.02em;
-  min-height:34px;display:inline-flex;align-items:center}
-.novita::after{content:' \2197';margin-left:4px}
 .sottotitolo{color:var(--tenue);margin:8px 0 0;font-size:14px;max-width:62ch}
 
 /* ---- barra dei prodotti ---- */
@@ -316,8 +312,6 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <p class="dove">Torino · Corso Siracusa
       <button type="button" class="info" aria-expanded="false"
               aria-label="Come funziona questa pagina">i</button></p>
-    <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
-       target="_blank" rel="noopener">Novità</a>
   </div>
   <h1>La lista della spesa</h1>
   <div class="dettaglio" id="dett-testa" hidden>
@@ -658,12 +652,27 @@ const offerteDi = v => v.cat
 
 /* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
    Se non ha nomi alternativi si cerca il nome stesso. */
+/* PAROLE INTERE, NON PEZZI DI PAROLA.
+   Prima si guardava se il termine comparisse dentro il testo della pagina, in
+   qualunque posizione: «oro» (di Oro Saiwa) lo trovava dentro «loro», «cola»
+   dentro «piccola», «anca» dentro «bianca». Manlio se n'è accorto da fuori:
+   «per pizza surgelata appaiono pagine nelle quali la pizza non c'entra
+   niente». Quarantacinque pagine su sessantanove erano rumore, per i biscotti.
+
+   E si tiene conto di QUANTE parole ha preso ogni pagina: una che ne ha tre
+   parla davvero di quel prodotto, una che ne ha una può essere una ricetta che
+   nomina la pizza di sfuggita. Le migliori vanno in cima, e ogni riga dice
+   quali parole ha trovato, così si giudica invece di indovinare. */
 const pagineDi = v => {
   const termini = (v.parole && v.parole.length ? v.parole : [v.nome]).map(norm);
-  return DATI.pagine.filter(p => {
-    const dentro = norm(p.parole);
-    return termini.some(t => dentro.includes(t));
-  });
+  return DATI.pagine
+    .map(p => {
+      const dentro = new Set(norm(p.parole).split(' '));
+      const prese = termini.filter(t => dentro.has(t));
+      return prese.length ? { ...p, prese } : null;
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.prese.length - a.prese.length);
 };
 
 /* tutti i nomi di un prodotto: quello sul bottone piu gli altri con cui cercarlo */
@@ -887,7 +896,9 @@ function rigaPagina(p) {
   if (p.url) { d.href = p.url; d.target = '_blank'; d.rel = 'noopener noreferrer'; }
   d.innerHTML = `<span><span class="ins"></span><span class="per"></span></span><span class="np"></span>`;
   d.querySelector('.ins').textContent = p.ins;
-  d.querySelector('.per').textContent = p.periodo;
+  d.querySelector('.per').textContent = (p.prese && p.prese.length)
+    ? 'ci ho trovato: ' + p.prese.join(', ')
+    : p.periodo;
   d.querySelector('.np').textContent = 'pag. ' + p.pag;
   return d;
 }

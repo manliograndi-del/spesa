@@ -80,7 +80,9 @@ REPARTI = [
  ]),
  ('Surgelati e gelati', [
   ('Verdure surgelate',   'minestrone spinaci surgelate surgelati piselli bieta', 'kg'),
-  ('Pizza surgelata',     'pizza margherita surgelata', 'kg'),
+  # «margherita» da sola non si può usare: sui volantini è una moka Bialetti e
+  # un fiore. Trovata così dalla pagina delle pagine di Manlio.
+  ('Pizza surgelata',     'pizza surgelata', 'kg'),
   ('Gelato',              'gelato coni cornetti vaschetta ghiaccioli stecco', 'kg'),
  ]),
  ('Frutta e verdura', [

@@ -494,6 +494,36 @@ niente. Adesso cerca `h1, h2`; se un bollino finisce in un `h3` va aggiunto lì.
 `prova-intestazione.js` pretende che a pagina appena aperta si vedano solo il
 nome, il bollino e la crocetta, e che «Lascia» non cancelli niente.
 
+### Le pagine da guardare: parole intere, non pezzi di parola
+
+Manlio, 2026-09-05: «per pizza surgelata appaiono sotto un elenco di pagine del
+volantino nel quale la pizza non c'entra per niente. Prova a individuare
+motivo».
+
+Il motivo: `pagineDi()` cercava il termine **dentro** il testo della pagina, in
+qualunque posizione. Così «oro» (che sta lì per Oro Saiwa) lo trovava dentro
+«loro», «cola» dentro «piccola», «anca» dentro «bianca». Per i biscotti erano
+**69 pagine, di cui 45 rumore**.
+
+Adesso il confronto è a **parola intera**, su un insieme invece che su una
+stringa: più preciso e più veloce. Biscotti passa da 69 pagine a 24, Tonno a 19.
+
+Restano le pagine che nominano il prodotto **per davvero ma di sfuggita** — una
+ricetta che cita la pizza, una mozzarella «per pizza». Quelle non si possono
+togliere senza capire il senso della frase, e l'OCR non lo capisce. Perciò:
+
+- le pagine sono **ordinate per quante parole ci ho trovato**, le più forti in
+  cima (una che ha «pizza, surgelata» parla di pizze surgelate; una che ha solo
+  «pizza» può essere una ricetta);
+- **ogni riga dice cosa ci ha trovato**: «ci ho trovato: pizza, surgelata». Così
+  si giudica invece di indovinare.
+
+E una parola è stata tolta dal catalogo: **«margherita»**. Sui volantini è una
+moka Bialetti e un fiore, non una pizza — trovata proprio guardando quell'elenco.
+
+`prova-pagine.js` pretende che nessuna pagina entri per un pezzo di parola, che
+le più forti stiano in cima e che ogni riga dica cosa ha trovato.
+
 ### Il catalogo e il cassetto
 
 Chiesto da Manlio il 2026-09-05, dopo aver visto tre proposte disegnate e
@@ -788,7 +818,21 @@ pagine invece di 22.
 tutti e due, barrato e scontato. Nell'Excel e nella pagina ho messo il prezzo
 soci scrivendolo nelle note, perché è quello che paga lui se ha la tessera.
 
-## La pagina delle novità
+## La pagina delle novità — fatta, poi messa via
+
+Fatta il 2026-09-05 e **tolta lo stesso giorno**, su richiesta di Manlio: «sono
+andato a vedere la pagina novità ed è vuota per adesso, lasciala perdere e
+togli anche il pulsante». Aveva ragione — il diario era partito quella mattina,
+e una pagina che non ha niente da dire è solo un tasto in più.
+
+**`novita.py` e il diario restano.** `storia.py` continua a segnare cosa cambia
+a ogni giro, quindi quando la pagina tornerà avrà una storia vera da
+raccontare invece di ricominciare da zero. Per rimetterla: `python3 -m novita`,
+copiare `out/novita.html` nel progetto, rimettere il tasto `.novita` nella riga
+in alto di `pagina.py` e il file nell'elenco di `sw.js`.
+
+Quello che segue è come è fatta, per quando servirà.
+
 
 Chiesta da Manlio il 2026-09-05: le novità dell'ultimo giorno e, volendo,
 quelle dei sette precedenti, in una pagina che si apre in un'altra finestra col
