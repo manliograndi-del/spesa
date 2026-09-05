@@ -582,6 +582,14 @@ giro a vuoto di fila, e di nuovo in silenzio, che è la cosa che il prompt le
 vietava esplicitamente. Le riparazioni del giorno prima le hanno dato più
 strada da fare, non l'hanno fatta arrivare in fondo.
 
+**`registro.txt` serve a smettere di tirare a indovinare.** Dal 2026-09-05 il
+controllo giornaliero scrive una riga a ogni passo (`python3 -m registro
+"clonato"`) e la spinge sul progetto. Se domani lì dentro c'è «clonato» e non
+c'è «pubblicato», si sa che clone e spinta funzionano e il guaio sta in mezzo;
+se non c'è nemmeno «clonato», il guaio è prima. È il modo più stupido che
+funziona, ed è l'unico: una sessione partita da sola non lascia niente da
+rileggere.
+
 **Quello che si sa e quello che non si sa.** Si sa che ha lavorato sul serio
 (diciassette minuti e quel consumo non sono un giro a vuoto) e che non ha
 pubblicato. Non si sa dove si sia fermata: la sessione che parte da una Routine
