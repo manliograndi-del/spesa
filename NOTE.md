@@ -1033,6 +1033,33 @@ e basta. Non le ho messe da nessuna parte a forza: infilare l'orata dentro
 Serve una voce nuova (**Pesce fresco**, o due: pesce azzurro e pesce bianco) e
 la decisione è di Manlio, che ha il catalogo stampato in mano.
 
+## Perché certe cose non le guardo — misurato, non intuito
+
+Il 2026-09-05 Manlio, dopo il terzo buco trovato da lui: «cosa sta succedendo,
+alcune cose non le guardi perché». Il numero non l'avevo mai calcolato:
+
+**79 pagine lette su 332. Il 23%.**
+
+**Il difetto è nel metodo, non nella fatica.** Fino a oggi aprivo una pagina
+solo se una PAROLA me la faceva trovare: cercavo «pizza» nell'indice OCR e
+leggevo le pagine che rispondevano. Così si trova **solo quello che si è già
+pensato di cercare** — e per definizione non si trova mai quello a cui non si
+è pensato. Pizze, Mercatò e pesce sono lo stesso errore tre volte, e nessuno
+dei tre era difficile: erano tutti dietro una pagina che non avevo aperto.
+
+Peggio: l'OCR legge male le scritte grandi, quindi anche la ricerca per parola
+salta pagine che *parlano* di quel prodotto. Due filtri in fila, e passa poco.
+
+**`python3 -m lette`** adesso dice la percentuale per volantino, e
+`python3 -m lette <chiave>` elenca i numeri delle pagine mai lette. Non è una
+prova che fallisce, è un promemoria: il 100% non è l'obiettivo (ci sono pagine
+di pentole e di quaderni), ma serve a non credere di aver guardato tutto quando
+si è guardato un quarto. Conta «letta» una pagina che ha almeno un prezzo:
+sbaglia per difetto, ed è la parte giusta da cui sbagliare.
+
+**La cura vera è leggere i volantini per intero, pagina per pagina, invece di
+interrogarli.** Mercatò oggi è al 66% perché è l'unico letto così.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
