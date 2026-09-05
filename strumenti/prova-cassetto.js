@@ -30,10 +30,20 @@ setTimeout(() => {
   const prima = inCima();
   if (!cassetto.hidden) guai.push('il cassetto è aperto senza che nessuno l’abbia toccato');
 
+  /* Il cassetto NON deve stare dentro la barra appiccicata in alto. Ci stava,
+     e aprendolo la barra diventava più alta dello schermo: il telefono di
+     Manlio si piantava per qualche secondo. È il genere di guasto che non si
+     vede in un browser finto, perché lì non si impagina niente — quindi qui si
+     controlla la struttura, che è la causa, non la lentezza, che è l'effetto. */
+  if (cassetto.closest('.barra'))
+    guai.push('il cassetto sta dentro la barra appiccicata: aprendolo il telefono si blocca');
+
   apri.click();
   if (cassetto.hidden) guai.push('toccando «+ altri prodotti» il cassetto non si apre');
   if (inCima().join('|') !== prima.join('|')) guai.push('aprire il cassetto ha cambiato i bottoni in cima');
   console.log(`  aperto: ${scaffale().length} prodotti in ${reparti().length} reparti`);
+  if (d.activeElement === d.getElementById('cerca'))
+    guai.push('aprendo il cassetto la casella prende il fuoco: sul telefono salta su la tastiera');
   if (scaffale().length < 60) guai.push('nel cassetto ci sono meno di 60 prodotti');
 
   // i prodotti già in lista risultano accesi

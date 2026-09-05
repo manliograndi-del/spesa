@@ -502,6 +502,25 @@ volantino**: «bovino» trova «Carne di bue». La casella per scrivere un nome
 libero non è sparita, è finita in fondo al cassetto: serve per quello che nel
 catalogo non c'è.
 
+**IL CASSETTO NON VA DENTRO LA BARRA APPICCICATA.** Ci stava, ed è durato
+mezza giornata: la barra è `position:sticky`, quindi aprendo il cassetto
+diventava più alta dello schermo, e il telefono doveva rifarne i conti a ogni
+tocco e a ogni scorrimento. Manlio: «escono solo le prime categorie, poi la
+pagina resta bloccata per un tempo abbastanza lungo». Ci si metteva anche il
+riempimento a rate — i nove reparti infilati uno per uno, con un ricalcolo per
+ognuno mentre la roba cresceva — e la tastiera che saltava su perché la casella
+di ricerca prendeva il fuoco da sola.
+
+Tre rimedi, tutti e tre necessari: il cassetto **fuori** dalla barra, i reparti
+messi dentro **in un colpo solo** con un `DocumentFragment`, e **niente focus**
+all'apertura (chi vuole cercare tocca la casella; la tastiera che copre mezzo
+schermo mentre uno si guarda i reparti è il contrario di quello che serve).
+
+**Questo guasto in un browser finto non si vede**, perché lì non si impagina
+niente. Quindi `prova-cassetto.js` non misura la lentezza, che è l'effetto:
+controlla che il cassetto **non sia dentro `.barra`** e che la casella non
+prenda il fuoco, cioè le due cause.
+
 `prova-cassetto.js` apre, cerca, accende, spegne e richiude, e pretende che un
 prodotto acceso dal cassetto mostri davvero i suoi prezzi.
 

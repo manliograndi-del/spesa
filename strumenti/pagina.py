@@ -163,7 +163,7 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
 
 /* ---- aggiunta ---- */
 .cassetto[hidden]{display:none}
-.cassetto{margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
+.cassetto{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
   border-radius:12px;padding:12px}
 .cerca{width:100%;border:1.5px solid var(--linea-forte);border-radius:10px;
   padding:12px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
@@ -310,19 +310,26 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <div class="barra">
   <div class="tasti" id="tasti" role="group" aria-label="Scegli il prodotto"></div>
-  <div class="cassetto" id="cassetto" hidden>
-    <input class="cerca" id="cerca" type="text" placeholder="Cerca un prodotto…"
-           autocomplete="off" aria-label="Cerca un prodotto nel catalogo">
-    <div id="scaffali"></div>
-    <form class="form-agg" id="form-agg">
-      <input id="nuovo" type="text" placeholder="Un altro nome, o più separati da virgola"
-             autocomplete="off" aria-label="Nomi del prodotto da aggiungere, separati da virgola">
-      <button type="submit">Aggiungi</button>
-    </form>
-    <p class="fuori-catalogo" id="fuori-catalogo"></p>
-    <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
-  </div>
   <p class="stato" id="stato-lista" role="status"></p>
+</div>
+
+<!-- IL CASSETTO STA FUORI DALLA BARRA, E NON È UN DETTAGLIO.
+     Stava dentro, e la barra è appiccicata in alto: aprendolo, quella barra
+     diventava più alta dello schermo e il telefono doveva ricalcolarla a ogni
+     tocco e a ogni scorrimento. Manlio: «escono solo le prime categorie, poi
+     la pagina resta bloccata per un tempo abbastanza lungo». Qui fuori la
+     barra resta piccola e il cassetto è roba normale che scorre. -->
+<div class="cassetto" id="cassetto" hidden>
+  <input class="cerca" id="cerca" type="text" placeholder="Cerca un prodotto…"
+         autocomplete="off" aria-label="Cerca un prodotto nel catalogo">
+  <div id="scaffali"></div>
+  <form class="form-agg" id="form-agg">
+    <input id="nuovo" type="text" placeholder="Un altro nome, o più separati da virgola"
+           autocomplete="off" aria-label="Nomi del prodotto da aggiungere, separati da virgola">
+    <button type="submit">Aggiungi</button>
+  </form>
+  <p class="fuori-catalogo" id="fuori-catalogo"></p>
+  <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
 </div>
 
 <div id="risultato"></div>
@@ -717,8 +724,11 @@ function apriCassetto(si) {
   const c = document.getElementById('cassetto');
   c.hidden = !si;
   disegnaTasti();
-  if (si) { disegnaScaffali(); document.getElementById('cerca').focus(); }
-  else { document.getElementById('cerca').value = ''; }
+  /* Niente focus sulla casella: aprendo il cassetto faceva saltare su la
+     tastiera del telefono, che copre mezzo schermo proprio mentre uno vuole
+     guardarsi i reparti. Chi vuole cercare la tocca. */
+  if (si) disegnaScaffali();
+  else document.getElementById('cerca').value = '';
 }
 
 function inLista(nome) {
@@ -746,6 +756,11 @@ function disegnaScaffali() {
   const cerca = document.getElementById('cerca');
   const filtro = norm(cerca ? cerca.value.trim() : '');
   box.textContent = '';
+  /* Tutto in un mucchietto a parte, e dentro la pagina in un colpo solo: prima
+     si infilavano i nove reparti uno per uno, e il telefono rifaceva i conti
+     nove volte con la roba che cresceva sotto. Si vedeva: comparivano le prime
+     categorie, poi si piantava. */
+  const mucchio = document.createDocumentFragment();
   let quanti = 0;
   DATI.reparti.forEach(rep => {
     const voci = DATI.catalogo.filter(v => v.rep === rep && (!filtro
@@ -754,7 +769,7 @@ function disegnaScaffali() {
     quanti += voci.length;
     const h = document.createElement('p');
     h.className = 'reparto'; h.textContent = rep;
-    box.appendChild(h);
+    mucchio.appendChild(h);
     const fila = document.createElement('div');
     fila.className = 'tasti';
     voci.forEach(v => {
@@ -764,8 +779,9 @@ function disegnaScaffali() {
       b.onclick = () => accendi(v.nome);
       fila.appendChild(b);
     });
-    box.appendChild(fila);
+    mucchio.appendChild(fila);
   });
+  box.appendChild(mucchio);
   const f = document.getElementById('fuori-catalogo');
   f.textContent = quanti
     ? 'Non c\u2019\u00e8 quello che cerchi? Scrivilo qui sopra: cerco la parola nelle pagine dei volantini.'
