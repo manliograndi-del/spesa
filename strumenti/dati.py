@@ -125,6 +125,7 @@ PRODOTTI = [
  ("Latte","Lidl","lidl","Sottocosto","Latte UHT Bontà e Leggerezza 1,2% – Parmalat","1 litro",1,0.79,1,V,"Sottocosto fino al 12 settembre."),
  ("Latte","Ipercoop","ipercoop","Dispensa","Latte UHT parzialmente scremato – Granarolo","4 litri (4 × 1 l)",4,3.99,4,V,"Sottocosto −49%, prima 7,96. Max 6 confezioni."),
  # ------------------------------- PASTA (kg) -------------------------------
+ ("Pasta","Lidl","lidl","Sottocosto","Tortellini al prosciutto crudo – Fini","250 g",0.250,0.99,4,V,"Sottocosto fino al 12 settembre. Pasta fresca."),
  ("Pasta","Carrefour Iper","carriper04","Dispensa","Pasta di semola Al Bronzo – Barilla","500 g",0.500,0.79,23,V,"−38%, prima 1,29. Solo con la tessera SpesAmica Payback."),
  ("Pasta","Ipercoop","ipercoop","Dispensa","Pasta di semola formati classici – Barilla","500 g",0.500,0.48,3,V,"Sottocosto −50%, prima 0,97. Max 20 confezioni."),
  ("Pasta","MD","md","Freschi","Pasta fresca orecchiette o trofie – Ca' Bianca","1 kg",1,1.29,3,V,"Prima 1,99."),
@@ -139,6 +140,7 @@ PRODOTTI = [
  ("Olio d'oliva","Ipercoop","ipercoop","Dispensa","Olio extravergine di oliva Classico – Monini","1 litro",1,4.59,3,V,"Sottocosto −51%, prima 9,49. Max 4 confezioni."),
  ("Olio d'oliva","Bennet","bennet","Dispensa","Olio extravergine di oliva grezzo Il Casolare – Farchioni","1 litro",1,7.99,12,V,"−33%, prima 11,93."),
  # ------------------------------- POLLO (kg) -------------------------------
+ ("Pollo","Bennet","bennet","Surgelati","Ortaiola con spinaci – Amadori","300 g",0.300,2.47,10,V,"Surgelata. −33%, prima 3,69."),
  ("Pollo","MD","md08","Freschi","Würstel di pollo e tacchino – La Fattoria","1 kg",1,2.29,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 2,59. Senza glutine.","2026-09-18","2026-09-21"),
  ("Pollo","Eurospin","eurospin10","Macelleria","Fusi e sovracosce di pollo","Confezione Famiglia, al kg",1,3.29,13,V,""),
  ("Pollo","MD","md08","Macelleria","Sovracosce di pollo","al kg",1,4.49,9,V,""),
@@ -243,6 +245,7 @@ PRODOTTI = [
  ("Biscotti","Ipercoop","ipercoop_extra","Dispensa","Pavesini – Pavesi","200 g",0.200,1.54,6,V,"−40%, prima 2,57."),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Nutella Biscuits","304 g",0.304,2.69,21,V,"−22% con la tessera SpesAmica Payback, prima 3,46."),
  # ------------------------------- YOGURT (kg) -------------------------------
+ ("Yogurt","Lidl","lidl","Sottocosto","Yogurt intero alla frutta – Granarolo","1 kg (8 × 125 g)",1,1.99,4,V,"Sottocosto fino al 12 settembre."),
  ("Yogurt","MD","md08","Freschi","Yogurt intero bianco – Buona Spesa!","1 kg",1,1.99,13,V,"Prima 2,39. Secchiello da un chilo."),
  ("Yogurt","Eurospin","eurospin10","Freschi","Fermenti attivi da bere alla fragola o multifrutti","600 g (6 × 100 g)",0.600,1.49,5,V,"Prima 1,99. Sono da bere, non vasetti."),
  ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt fragola o banana con confetti al cioccolato","110 g",0.110,0.49,5,V,"Prima 0,69. Solo con la tessera Eurospin Family."),
@@ -286,6 +289,7 @@ PRODOTTI = [
  ("Pane","Carrefour Iper","carriper04","Colazione","Piadelle Toast – Mulino Bianco","240 g",0.240,1.49,23,V,"−32%, prima 2,20. Solo con la tessera SpesAmica Payback."),
  ("Pane","Carrefour Iper","carriper04","Colazione","Gallette Bio mais o riso – Carrefour Bio","120 g",0.120,0.79,23,V,"−20%, prima 0,99. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- POMODORO E PASSATA (kg) -------------------------------
+ ("Pomodoro e passata","Lidl","lidl","Sottocosto","Passata di pomodoro – Mutti","700 g",0.700,0.89,4,V,"Sottocosto fino al 12 settembre. 100% pomodoro italiano."),
  ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Polpa di pomodoro a pezzetti","2,4 kg (6 × 400 g)",2.4,2.49,3,V,"Quantità limitata. 100% pomodori italiani."),
  # ------------------------------- OLIO DI SEMI (litri) -------------------------------
  ("Olio di semi","MD","md08","Dispensa","Olio di semi vari – Semì","1 litro",1,1.55,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,79.","2026-09-18","2026-09-21"),
@@ -304,12 +308,24 @@ PRODOTTI = [
  # ------------------------------- MIELE (kg) -------------------------------
  ("Miele","Carrefour Iper","carriper04","Dispensa","Miele millefiori","500 g",0.500,4.39,23,V,"−20%, prima 5,49. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- VERDURE SURGELATE (kg) -------------------------------
+ ("Verdure surgelate","Bennet","bennet","Surgelati","Minestrone Leggerezza – Orogel","750 g",0.750,1.99,10,V,"−33%, prima 2,98."),
+ ("Verdure surgelate","Bennet","bennet","Surgelati","Contorno colorato – Bennet","400 g",0.400,1.99,10,V,"−26%, prima 2,69. Solo con la tessera Bennet Club."),
+ ("Verdure surgelate","Ipercoop","ipercoop_extra","Surgelati","Contorni ricette varie – La Valle degli Orti Frosta","400 g",0.400,1.99,19,V,"PREZZO SOCI Coop."),
+ ("Verdure surgelate","Bennet","bennet","Surgelati","Zucchine grigliate – Bennet","450 g",0.450,2.39,10,V,"−20%, prima 2,99."),
+ ("Verdure surgelate","Bennet","bennet","Surgelati","8 tortini di verdure – Frosta","240 g",0.240,1.79,10,V,"−28%, prima 2,49."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Fagiolini e patate – Bonduelle","450 g",0.450,1.45,18,V,"−25%, prima 1,94. Solo con la tessera SpesAmica Payback."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Piselli finissimi – La Valle degli Orti","850 g",0.850,2.99,18,V,"−28%, prima 4,16. Solo con la tessera SpesAmica Payback."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Carciofi a spicchi – Orogel","300 g",0.300,2.39,18,V,"−36%, prima 3,74. Solo con la tessera SpesAmica Payback."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Tortini spinaci o ortolano – Frosta","240 g",0.240,1.99,18,V,"−25%, prima 2,66. Solo con la tessera SpesAmica Payback."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Funghi porcini a cubetti","300 g",0.300,3.99,18,V,"−20%, prima 4,99. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- PIZZA SURGELATA (kg) -------------------------------
+ ("Pizza surgelata","Ipercoop","ipercoop_extra","Surgelati","Pizza margherita – gli Spesotti","885 g (3 pizze)",0.885,3.55,10,V,"Prezzo di tutti i giorni, non un'offerta a tempo. Il volantino stampa 4,01 al kg."),
+ ("Pizza surgelata","MD","md08","Surgelati","Pizza ai funghi","375 g",0.375,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,69, cioè 7,17 al kg."),
+ ("Pizza surgelata","Eurospin","eurospin10","Surgelati","Pizza alle verdure","415 g",0.415,1.99,15,V,"Prima 2,49. Il volantino stampa 4,80 al kg."),
+ ("Pizza surgelata","MD","md08","Surgelati","Pizza ai 4 formaggi","350 g",0.350,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,89, cioè 8,26 al kg."),
+ ("Pizza surgelata","Lidl","lidl","Sottocosto","Pizza Big Americans Supreme – Cameo","455 g",0.455,2.49,4,V,"Sottocosto fino al 12 settembre. Il volantino stampa 5,47 al kg."),
+ ("Pizza surgelata","Bennet","bennet","Surgelati","Pizza tipi vari – Bennet","370 g",0.370,2.79,10,V,"−20%, prima 3,49. Solo con la tessera Bennet Club."),
+ ("Pizza surgelata","Bennet","bennet","Surgelati","Mini pizzette margherita – Italpizza","360 g (4 × 90 g)",0.360,3.19,10,V,"−20%, prima 3,99."),
  ("Pizza surgelata","Carrefour Iper","carriper04","Surgelati","Pizza Bella Napoli farcite gusti assortiti – Buitoni","375 g",0.375,2.49,18,V,"−28%, prima 3,47. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- FRUTTA (kg) -------------------------------
  ("Frutta","MD","md08","Ortofrutta","Uva bianca in bauletto","2 kg",2,2.78,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Il volantino stampa 1,39 al kg.","2026-09-18","2026-09-21"),
@@ -321,6 +337,7 @@ PRODOTTI = [
  # ------------------------------- INSALATA IN BUSTA (kg) -------------------------------
  ("Insalata in busta","Carrefour Iper","carriper04","Ortofrutta","Insalata Baby Iceberg – Vertical Farms","80 g, almeno 2 buste",0.080,1.29,12,V,"«Prendi Spendi»: 1,29 comprandone due o più, se no 1,59. Prima 1,99."),
  # ------------------------------- PATATE (kg) -------------------------------
+ ("Patate","Ipercoop","ipercoop_extra","Surgelati","Patatine Golden Long – McCain","750 g",0.750,1.79,19,V,"Surgelate. Etichetta «Conviene»."),
  ("Patate","Carrefour Iper","carriper04","Ortofrutta","Patate","2 kg",2,1.78,12,V,"−30%. Il volantino stampa 0,89 al kg. Prodotte in Italia."),
  ("Patate","Carrefour Iper","carriper04","Surgelati","Patate Forno Country – McCain","650 g",0.650,1.99,18,V,"Surgelate. −35%, prima 3,07. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- ACQUA (litri) -------------------------------
@@ -335,6 +352,7 @@ PRODOTTI = [
  ("Vino","Carrefour Iper","carriper04","Bevande","Valpolicella Superiore DOC Radole – Sartori","750 ml",0.750,5.99,26,V,"−24%, prima 7,89. Solo con la tessera SpesAmica Payback. Veneto."),
  ("Vino","Carrefour Iper","carriper04","Bevande","Franciacorta DOCG Millesimato Brut – Terre d'Italia","750 ml",0.750,14.50,26,V,"−22%, prima 18,59. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- BIRRA (litri) -------------------------------
+ ("Birra","Lidl","lidl","Sottocosto","Birra Pils in lattina – Beck's","440 ml",0.440,0.75,4,V,"Sottocosto fino al 12 settembre."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra – Peroni","1,98 litri (6 × 330 ml)",1.98,3.99,26,V,"−31%, prima 5,79. Solo con la tessera SpesAmica Payback."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra Metodo Lento – Ichnusa","500 ml",0.500,1.09,26,V,"−31%, prima 1,59. Solo con la tessera SpesAmica Payback."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra Cristalli di Sale – Messina","990 ml (3 × 330 ml)",0.990,2.99,26,V,"−25%, prima 3,99. Solo con la tessera SpesAmica Payback."),
@@ -349,6 +367,24 @@ PRODOTTI = [
  # ------------------------------- DENTIFRICIO (litri) -------------------------------
  ("Dentifricio","Carrefour Iper","carriper04","Cura persona","Collutorio Denti e Gengive – Listerine","1 litro (2 × 500 ml)",1,4.99,30,V,"−58%, prima 11,89. È collutorio, non dentifricio. Solo con la tessera SpesAmica Payback."),
  ("Dentifricio","Carrefour Iper","carriper04","Cura persona","Dentifricio Microgranuli – Mentadent","225 ml (3 × 75 ml)",0.225,4.49,30,V,"−39%, prima 7,37. Solo con la tessera SpesAmica Payback."),
+ ("Prosciutto crudo","Ipercoop","ipercoop_extra","Salumi","Prosciutto crudo stagionato – gli Spesotti","100 g",0.100,1.70,10,V,"Prezzo di tutti i giorni, non un'offerta a tempo."),
+ # ------------------------------- BURRO (kg) -------------------------------
+ ("Burro","Ipercoop","ipercoop_extra","Freschi","Burro – gli Spesotti","250 g",0.250,1.85,10,V,"Prezzo di tutti i giorni, non un'offerta a tempo. Il volantino stampa 7,40 al kg."),
+ # ------------------------------- CALAMARI E SEPPIE (kg) -------------------------------
+ ("Calamari e seppie","Ipercoop","ipercoop_extra","Surgelati","Anelli di totano – Pescanova","400 g",0.400,5.49,19,V,"Surgelati. PREZZO SOCI Coop."),
+ # ------------------------------- BASTONCINI DI PESCE (kg) -------------------------------
+ ("Bastoncini di pesce","Bennet","bennet","Surgelati","I Gratinati tipi vari – Capitan Findus","380 g",0.380,3.59,10,V,"−40%, prima 5,99. Solo con la tessera Bennet Club."),
+ # ------------------------------- GELATO (kg) -------------------------------
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Gelato Soft vaniglia e cacao o caramello – Algida","440 g",0.440,1.99,19,V,"Vaschetta. PREZZO SOCI Coop."),
+ ("Gelato","Bennet","bennet","Surgelati","Gelato Soft vaniglia e cacao o caramello – Algida","440 g",0.440,1.99,10,V,"Vaschetta. −33%, prima 2,98."),
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Gelato allo yogurt greco – Kri Kri","320 g",0.320,1.99,19,V,"Etichetta «Conviene»."),
+ ("Gelato","Bennet","bennet","Surgelati","Cornetto Classico – Algida","480 g (8 pezzi)",0.480,2.99,10,V,"−58%, prima 7,14. Solo con la tessera Bennet Club."),
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Coppa del Nonno","390 g (6 pezzi)",0.390,3.69,19,V,"Etichetta «Conviene»."),
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Cucciolone – Algida","480 g (6 pezzi)",0.480,4.39,19,V,"PREZZO SOCI Coop."),
+ ("Gelato","Bennet","bennet","Surgelati","Solero tipi vari – Algida","204 g (3 pezzi)",0.204,2.15,10,V,"−46%, prima 3,99."),
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Nuii caramello salato e noci di Macadamia","272 g (4 pezzi)",0.272,3.79,19,V,"Etichetta «Conviene»."),
+ ("Gelato","Ipercoop","ipercoop_extra","Surgelati","Mini Gruvi assortiti – Sammontana","225 g (6 pezzi)",0.225,3.29,19,V,"Sconto 40%, prima 5,49."),
+ ("Gelato","Bennet","bennet","Surgelati","Mini Gruvi tipi vari – Sammontana","225 g (6 pezzi)",0.225,3.39,10,V,"−40%, prima 5,66. Solo con la tessera Bennet Club."),
 ]
 
 # LE OFFERTE CON DATE LORO.

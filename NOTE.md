@@ -494,6 +494,32 @@ niente. Adesso cerca `h1, h2`; se un bollino finisce in un `h3` va aggiunto lì.
 `prova-intestazione.js` pretende che a pagina appena aperta si vedano solo il
 nome, il bollino e la crocetta, e che «Lascia» non cancelli niente.
 
+### Una categoria con una sola offerta è quasi sempre un buco mio
+
+Manlio, 2026-09-05: «delle pizze generalmente tutti i volantini offrono
+un'offerta di pizza e qua ne hai trovate solo una». Aveva ragione: ce n'erano
+**otto**, e ne avevo filata una.
+
+Il motivo non era il programma. **Due di quelle pizze le avevo già lette a
+occhio** — la pagina 12 dell'MD e la 15 dell'Eurospin — ma quel giorno «Pizza
+surgelata» non era ancora una categoria, e sono passate sotto gli occhi senza
+finire da nessuna parte. Le altre cinque stavano su pagine che non avevo aperto.
+
+**Il controllo che ne esce**, e che va rifatto a ogni giro: guardare le
+categorie con zero o una sola offerta e chiedersi se è credibile. Alcune lo
+sono davvero (le uova sono in offerta da uno solo), altre no: se sei
+supermercati su sette non hanno la pizza, non è il mondo, sono io.
+
+`indice.json` serve proprio a questo: cercare la parola dice subito in quali
+pagine guardare, e le pagine sono ordinate per quante parole ci si sono trovate.
+
+Quel giro ha riempito anche **Gelato** (dieci offerte), **Burro**, **Bastoncini
+di pesce** e **Calamari e seppie**, che erano vuote: stavano tutte sulle stesse
+pagine di surgelati che avevo saltato.
+
+**Due pizze non si possono mettere**: il volantino Ipercoop, per la Roncadin e
+la Pinsa, stampa solo «sconto 50%» e nessun prezzo. Senza prezzo non c'è riga.
+
 ### Le pagine da guardare: parole intere, non pezzi di parola
 
 Manlio, 2026-09-05: «per pizza surgelata appaiono sotto un elenco di pagine del
