@@ -357,6 +357,28 @@ Chi apre in sola lettura riceve `not_writer`: le sue modifiche restano nel
 browser e la riga di stato in cima glielo dice. La stessa cosa vale per il file
 `spesa-da-sola.html`, dove `window.claude` non esiste proprio.
 
+### Cambiando prodotto si torna all'inizio dell'elenco
+
+Manlio, 2026-09-05: scorreva i prezzi del tonno, toccava «Suino», e si
+ritrovava **in mezzo** all'elenco del suino. La pagina cambiava sotto ma la
+finestra restava dov'era.
+
+`inCima()` riporta al **primo prezzo**, non in cima alla pagina: la barra dei
+bottoni è appiccicata in alto e resta lì, così si vede insieme quale bottone è
+acceso e da dove parte l'elenco. Non si muove se si è già sopra quel punto, e
+non si muove se si ritocca il bottone già acceso.
+
+Il taglio a zero della meta va fatto **prima** del confronto «sono già sopra?»:
+con una meta negativa quella domanda risponde sempre no, e la pagina chiederebbe
+di scorrere anche stando ferma in cima. Trovato da `prova-scorrimento.js`, non
+rileggendo.
+
+**Quella prova ha dovuto fingere l'impaginazione.** jsdom non impagina: lasciato
+fare, ogni misura viene zero, il conto torna per caso e la prova passa senza
+aver controllato niente. Le misure gliele diamo noi — elenco a 420 dall'alto,
+barra alta 150 — e si pretende esattamente 262. Una prova che non può fallire
+non è una prova.
+
 ### I prodotti nuovi arrivano anche su chi ha già la sua lista
 
 Il 2026-09-05 Manlio ha aperto il sito cercando lo yogurt di cui gli avevo

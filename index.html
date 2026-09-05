@@ -500,9 +500,11 @@ function disegnaTasti() {
     b.type = 'button'; b.className = 'tasto'; b.textContent = v.nome;
     b.setAttribute('aria-pressed', String(i === scelto));
     b.onclick = () => {
+      const cambiato = scelto !== i;
       scelto = i; tutteLePagine = false;
       document.getElementById('form-agg').classList.remove('on');
       disegna();
+      if (cambiato) inCima();
     };
     box.appendChild(b);
   });
@@ -514,6 +516,27 @@ function disegnaTasti() {
     document.getElementById('nuovo').focus();
   };
   box.appendChild(piu);
+}
+
+/* Cambiando prodotto si torna all'inizio del suo elenco.
+   Manlio: scorreva i prezzi del tonno, toccava «Suino», e si ritrovava in
+   mezzo alla lista del suino invece che in cima — perche la pagina cambiava
+   sotto ma la finestra restava dov'era. Non si torna in cima alla pagina: si
+   va al primo prezzo, appena sotto la barra dei bottoni, che resta attaccata
+   in alto. Cosi si vede subito quale bottone e acceso e da dove parte
+   l'elenco. Se si e gia lassu non si muove niente. */
+function inCima() {
+  const r = document.getElementById('risultato');
+  const barra = document.querySelector('.barra');
+  if (!r) return;
+  const alto = barra ? barra.getBoundingClientRect().height : 0;
+  /* Il taglio a zero va fatto PRIMA del confronto, non dopo: con una meta
+     negativa «sono gia sopra?» risponde sempre no, e la pagina chiederebbe di
+     scorrere anche stando gia in cima. */
+  const meta = Math.max(0, r.getBoundingClientRect().top + (window.scrollY || 0) - alto - 8);
+  if ((window.scrollY || 0) <= meta) return;      // gia sopra: fermo dov'e
+  try { window.scrollTo({ top: meta, behavior: 'smooth' }); }
+  catch (e) { window.scrollTo(0, meta); }
 }
 
 /* ---------- righe ---------- */
