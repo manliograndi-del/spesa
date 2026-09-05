@@ -431,6 +431,7 @@ PRODOTTI = [
  ("Tonno","Mercatò","mercato","Dispensa","Tonno al naturale – Asdomar","240 g (168 g sgocciolati)",0.168,1.99,10,V,"Solo con Fidelity Card. Il tonno al naturale è per metà acqua: il conto è sul peso sgocciolato, come lo fa il volantino, se no sembrerebbe il più conveniente di tutti senza esserlo."),
  ("Salmone","Mercatò","mercato","Dispensa","Filetti di salmone – Zarotti","150 g",0.150,2.99,10,V,"Il volantino stampa 19,93 al kg."),
  ("Salmone","Mercatò","mercato","Freschi","Salmone affumicato norvegese Essential – Mowi","100 g",0.100,3.99,26,V,"Il volantino stampa 39,90 al kg."),
+ ("Bastoncini di pesce","Mercatò","mercato","Freschi","Bastoncini di mare – Coraya","180 g",0.180,1.49,26,V,"SONO SURIMI, non bastoncini di pesce impanati: polpa di pesce macinata e ricomposta, si mangiano freddi. Li tengo qui perche a Mercato e l'unica cosa del genere, ma non si confrontano con i bastoncini da friggere. Il volantino stampa 8,28 al kg."),
  ("Merluzzo e baccalà","Mercatò","mercato","Surgelati","Filetto di merluzzo nordico Skin MSC – Delfin","400 g",0.400,5.96,27,V,"Il volantino stampa 14,90 al kg."),
  ("Latte","Mercatò","mercato","Freschi","Latte UHT parzialmente scremato 100% italiano – Granarolo","1 litro",1,0.89,13,V,""),
  ("Latte","Mercatò","mercato","Freschi","Latte UHT senza lattosio Zymil – Parmalat","1 litro",1,1.49,13,V,""),
@@ -617,8 +618,8 @@ PRODOTTI = [
  ("Gamberi","Bennet","bennet","Pescheria","Mazzancolle tropicali precotte 30/50","1 kg",1,11.90,3,V,"Sottocosto Freschi. L'offerta pescheria non vale in tutti i punti vendita."),
  ("Gamberi","Bennet","bennet","Pescheria","Gambero argentino decongelato 10/20 pezzi al kg","al kg",1,14.90,3,V,"Sottocosto Freschi."),
  ("Gamberi","Carrefour Iper","carriper04","Pescheria","Gamberi argentini decongelati","al kg",1,16.90,11,V,"−26%, prima 22,90. Con «Prendi Spendi», da 2 kg in su vanno a 14,90 al kg."),
- ("Gamberi","Eurospin","eurospin10","Surgelati","Gamberi argentini – Ondina","800 g",0.800,9.89,8,V,"Prima 11,99. Il volantino stampa 12,37 al kg.","2026-09-10","2026-09-20"),
- ("Gamberi","Eurospin","eurospin10","Surgelati","Code di mazzancolla tropicale sgusciate precotte","240 g",0.240,3.79,8,V,"Prima 4,79. Il volantino stampa 15,80 al kg.","2026-09-10","2026-09-20"),
+ ("Gamberi","Eurospin","eurospin10","Surgelati","Gamberi argentini – Ondina","800 g",0.800,9.89,8,V,"Prima 11,99. Il volantino stampa 12,37 al kg."),
+ ("Gamberi","Eurospin","eurospin10","Surgelati","Code di mazzancolla tropicale sgusciate precotte","240 g",0.240,3.79,8,V,"Prima 4,79. Il volantino stampa 15,80 al kg."),
  ("Merluzzo e baccalà","Lidl","lidl","Surgelati","Nuggets di merluzzo – Strada del Gusto","240 g",0.240,1.69,34,V,"Sono bocconcini impanati, non filetto: al chilo costano poco anche per questo. Il volantino stampa 7,04 al kg."),
  ("Merluzzo e baccalà","Ipercoop","ipercoop_extra","Surgelati","Gratinati di merluzzo gusti vari – Capitan Findus","380 g",0.380,2.99,49,V,"Sono gratinati impanati, non filetto. Il volantino stampa 7,87 al kg."),
  ("Merluzzo e baccalà","Bennet","bennet","Surgelati","14 bocconcini di merluzzo d'Alaska – Frosta","280 g",0.280,3.75,9,V,"−20%, prima 4,69. Impanati. Il volantino stampa 13,39 al kg."),
@@ -627,7 +628,7 @@ PRODOTTI = [
  ("Merluzzo e baccalà","Ipercoop","ipercoop_extra","Surgelati","Filetti di merluzzo – Capitan Findus","360 g",0.360,5.99,49,V,"Etichetta «Conviene». È filetto. Il volantino stampa 16,64 al kg."),
  ("Merluzzo e baccalà","Bennet","bennet","Pescheria","Cuore filetto di merluzzo nordico decongelato","al kg",1,27.90,3,V,"Sottocosto Freschi, banco pescheria. È il filetto fresco: costa il doppio dei surgelati, ma è un'altra cosa."),
  ("Bastoncini di pesce","Carrefour Iper","carriper04","Surgelati","Bastoncini di merluzzo 30 pezzi – Ocean Catch","900 g",0.900,2.99,16,V,"−33%, prima 4,47. Solo con la tessera SpesAmica Payback. Il volantino stampa 3,33 al kg."),
- ("Bastoncini di pesce","Eurospin","eurospin10","Surgelati","Bastoncini di filetti di merluzzo, 15 pezzi","450 g",0.450,2.89,14,V,"Prima 3,49. Il volantino stampa 6,43 al kg.","2026-09-10","2026-09-20"),
+ ("Bastoncini di pesce","Eurospin","eurospin10","Surgelati","Bastoncini di filetti di merluzzo, 15 pezzi","450 g",0.450,2.89,14,V,"Prima 3,49. Il volantino stampa 6,43 al kg."),
  ("Calamari e seppie","Carrefour Iper","carriper04","Pescheria","Anelli di totano decongelati","al kg",1,8.90,11,V,"−31%, prima 12,90."),
  ("Calamari e seppie","Bennet","bennet","Pescheria","Anelli di totano gigante del Pacifico decongelati","al kg",1,10.90,3,V,"Sottocosto Freschi."),
  ("Calamari e seppie","Bennet","bennet","Pescheria","Seppia pulita","al kg",1,19.90,3,V,"Sottocosto Freschi."),
@@ -636,44 +637,44 @@ PRODOTTI = [
  ("Salmone","Carrefour Iper","carriper04","Pescheria","Saku di salmone – Gimar","140 g",0.140,7.90,11,V,"−20%, prima 9,90. Per sushi e sashimi. Il volantino stampa 56,43 al kg."),
 
  # Trovati sulle stesse pagine mentre cercavo il pesce: non buttarli via.
- ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Minestrone 14 verdure","1,5 kg",1.5,1.79,8,V,"Prima 2,19. Il volantino stampa 1,20 al kg.","2026-09-10","2026-09-20"),
+ ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Minestrone 14 verdure","1,5 kg",1.5,1.79,8,V,"Prima 2,19. Il volantino stampa 1,20 al kg."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Spinaci Millefoglie – Bonduelle","750 g",0.750,1.65,16,V,"−50%, prima 3,31. Solo con la tessera SpesAmica Payback. Il volantino stampa 2,20 al kg."),
- ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Vellutata di verdure","600 g",0.600,1.59,8,V,"Prima 1,99. Il volantino stampa 2,65 al kg.","2026-09-10","2026-09-20"),
+ ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Vellutata di verdure","600 g",0.600,1.59,8,V,"Prima 1,99. Il volantino stampa 2,65 al kg."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Minestrone Leggerezza – Orogel","750 g",0.750,1.99,16,V,"−37%, prima 3,17. Solo con la tessera SpesAmica Payback. Il volantino stampa 2,66 al kg."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Contorno Benessere o Leggerezza – Orogel","450 g",0.450,1.99,16,V,"−33%, prima 2,98. Solo con la tessera SpesAmica Payback. Il volantino stampa 4,43 al kg."),
  ("Verdure surgelate","Bennet","bennet","Surgelati","Pisellini Primavera – Findus","700 g",0.700,3.99,9,V,"−20%, prima 4,99. Il volantino stampa 5,70 al kg."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","Carciofi spicchi – Orogel","300 g",0.300,2.39,18,V,"−36%, prima 3,74. Solo con la tessera SpesAmica Payback. Il volantino stampa 7,97 al kg."),
  ("Verdure surgelate","Carrefour Iper","carriper04","Surgelati","8 tortini ortolano o spinaci – Frosta","240 g",0.240,1.99,18,V,"−25%, prima 2,66. Solo con la tessera SpesAmica Payback. Il volantino stampa 8,30 al kg."),
- ("Patate","Eurospin","eurospin10","Surgelati","Patatine da forno","750 g",0.750,1.39,8,V,"Prima 1,79. Il volantino stampa 1,86 al kg.","2026-09-10","2026-09-20"),
+ ("Patate","Eurospin","eurospin10","Surgelati","Patatine da forno","750 g",0.750,1.39,8,V,"Prima 1,79. Il volantino stampa 1,86 al kg."),
  ("Patate","Bennet","bennet","Surgelati","Patatine We Love croccanti – Pizzoli","750 g",0.750,1.59,9,V,"−36%, prima 2,49. Il volantino stampa 2,12 al kg."),
  ("Patate","Carrefour Iper","carriper04","Surgelati","Patasnella Stick – Pizzoli","1 kg",1,2.29,16,V,"−30%, prima 3,28. Solo con la tessera SpesAmica Payback."),
  ("Gelato","Bennet","bennet","Surgelati","Ghiaccioli assortiti, 10 pezzi – Bennet","700 g",0.700,1.99,9,V,"−23%, prima 2,59. Il volantino stampa 2,84 al kg."),
- ("Gelato","Eurospin","eurospin10","Surgelati","Vaschette gelato gusti assortiti","500 g",0.500,2.19,8,V,"Prima 2,89. Il volantino stampa 4,38 al kg.","2026-09-10","2026-09-20"),
+ ("Gelato","Eurospin","eurospin10","Surgelati","Vaschette gelato gusti assortiti","500 g",0.500,2.19,8,V,"Prima 2,89. Il volantino stampa 4,38 al kg."),
  ("Gelato","Bennet","bennet","Surgelati","Gelato gusti vari – Bennet","500 g",0.500,2.39,9,V,"−20%, prima 2,99. Il volantino stampa 4,78 al kg."),
- ("Gelato","Eurospin","eurospin10","Surgelati","Coni gelato gusti assortiti, 6 pezzi","450 g",0.450,2.19,8,V,"Prima 2,89. Il volantino stampa 4,87 al kg.","2026-09-10","2026-09-20"),
+ ("Gelato","Eurospin","eurospin10","Surgelati","Coni gelato gusti assortiti, 6 pezzi","450 g",0.450,2.19,8,V,"Prima 2,89. Il volantino stampa 4,87 al kg."),
  ("Gelato","Bennet","bennet","Surgelati","Stecchi croccanti, 4 pezzi – Bennet","260 g",0.260,3.19,9,V,"−20%, prima 3,99. Il volantino stampa 12,27 al kg."),
  ("Gelato","Bennet","bennet","Surgelati","Stecco Mini Magnum, 6 pezzi","254 g",0.254,3.49,9,V,"−30%, prima 4,99. Il volantino stampa 13,74 al kg."),
  ("Gelato","Bennet","bennet","Surgelati","Gelato Kinder Bueno o Nutella – Ferrero","230 g",0.230,3.49,9,V,"−30%, prima 4,99. Il volantino stampa 15,17 al kg."),
- ("Pizza surgelata","Eurospin","eurospin10","Surgelati","Pizza margherita, 3 pezzi","960 g",0.960,3.49,8,V,"Prima 4,35. Il volantino stampa 3,64 al kg.","2026-09-10","2026-09-20"),
- ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt magro da bere 0,1% di grassi","500 g",0.500,0.79,14,V,"Prima 0,99. Il volantino stampa 1,58 al kg.","2026-09-10","2026-09-20"),
+ ("Pizza surgelata","Eurospin","eurospin10","Surgelati","Pizza margherita, 3 pezzi","960 g",0.960,3.49,8,V,"Prima 4,35. Il volantino stampa 3,64 al kg."),
+ ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt magro da bere 0,1% di grassi","500 g",0.500,0.79,14,V,"Prima 0,99. Il volantino stampa 1,58 al kg."),
  ("Yogurt","Carrefour Iper","carriper04","Freschi","Yogurt intero fragola – Yomo","250 g (125 g × 2)",0.250,0.79,16,V,"−43%, prima 1,39. Il volantino stampa 3,16 al kg."),
  ("Yogurt","Bennet","bennet","Freschi","Yogurt intero bianco – Sterzing Vipiteno","1 kg (125 g × 8)",1.0,3.59,26,V,""),
  ("Yogurt","Carrefour Iper","carriper04","Freschi","Yogurt 0% grassi – Activia","500 g (125 g × 4)",0.500,1.99,16,V,"−28%, prima 2,77. Solo con la tessera SpesAmica Payback."),
  ("Yogurt","Carrefour Iper","carriper04","Freschi","Müller mix gusti assortiti","140 g",0.140,0.69,16,V,"−44%, prima 1,25. Il volantino stampa 4,93 al kg."),
  ("Yogurt","Bennet","bennet","Freschi","Yogurt Super Mario tipi vari – Danone","220 g",0.220,1.79,26,V,"Il volantino stampa 8,14 al kg."),
- ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Passata rustica di pomodoro","680 g",0.680,0.75,14,V,"Prima 0,99. Pomodoro 100% italiano. Il volantino stampa 1,11 al kg.","2026-09-10","2026-09-20"),
- ("Riso","Eurospin","eurospin10","Dispensa","Riso Basmati","1 kg",1,1.89,14,V,"Prima 2,49.","2026-09-10","2026-09-20"),
- ("Olio d'oliva","Eurospin","eurospin10","Dispensa","Olio extra vergine di oliva bio","750 ml",0.750,6.49,14,V,"Prima 8,49. Il volantino stampa 8,66 al litro.","2026-09-10","2026-09-20"),
- ("Succhi e bibite","Eurospin","eurospin10","Bevande","Cola Zero","1,5 litri",1.5,0.49,14,V,"Prima 0,69. Il volantino stampa 0,33 al litro.","2026-09-10","2026-09-20"),
- ("Biscotti","Eurospin","eurospin10","Colazione","Fourré con farcitura al cacao","500 g",0.500,1.69,14,V,"Prima 1,99. Il volantino stampa 3,38 al kg.","2026-09-10","2026-09-20"),
- ("Biscotti","Eurospin","eurospin10","Colazione","Biscottini alla vaniglia, 12 pezzi","570 g",0.570,2.75,8,V,"Prima 3,69. Il volantino stampa 4,83 al kg.","2026-09-10","2026-09-20"),
+ ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Passata rustica di pomodoro","680 g",0.680,0.75,14,V,"Prima 0,99. Pomodoro 100% italiano. Il volantino stampa 1,11 al kg."),
+ ("Riso","Eurospin","eurospin10","Dispensa","Riso Basmati","1 kg",1,1.89,14,V,"Prima 2,49."),
+ ("Olio d'oliva","Eurospin","eurospin10","Dispensa","Olio extra vergine di oliva bio","750 ml",0.750,6.49,14,V,"Prima 8,49. Il volantino stampa 8,66 al litro."),
+ ("Succhi e bibite","Eurospin","eurospin10","Bevande","Cola Zero","1,5 litri",1.5,0.49,14,V,"Prima 0,69. Il volantino stampa 0,33 al litro."),
+ ("Biscotti","Eurospin","eurospin10","Colazione","Fourré con farcitura al cacao","500 g",0.500,1.69,14,V,"Prima 1,99. Il volantino stampa 3,38 al kg."),
+ ("Biscotti","Eurospin","eurospin10","Colazione","Biscottini alla vaniglia, 12 pezzi","570 g",0.570,2.75,8,V,"Prima 3,69. Il volantino stampa 4,83 al kg."),
  ("Pasta","Bennet","bennet","Surgelati","Lasagne alla bolognese o cannelloni ricotta e spinaci – Bennet","500 g",0.500,2.99,9,V,"Surgelate. −25%, prima 3,99. Il volantino stampa 5,98 al kg."),
  ("Pasta","Carrefour Iper","carriper04","Freschi","Pasta fresca ripiena Antiche Storie – Pastificio Orobico","250 g",0.250,2.79,16,V,"Il volantino stampa 11,16 al kg."),
- ("Pollo","Eurospin","eurospin10","Surgelati","Cotolette di pollo, agli spinaci o cordon bleu","240 g",0.240,1.59,8,V,"Prima 2,19. Carne italiana. Il volantino stampa 6,63 al kg.","2026-09-10","2026-09-20"),
+ ("Pollo","Eurospin","eurospin10","Surgelati","Cotolette di pollo, agli spinaci o cordon bleu","240 g",0.240,1.59,8,V,"Prima 2,19. Carne italiana. Il volantino stampa 6,63 al kg."),
  ("Pollo","Ipercoop","ipercoop_extra","Surgelati","Bastoncini di pollo Carletto – Findus","200 g",0.200,1.99,49,V,"SOLO PER I SOCI. Il volantino stampa 9,95 al kg."),
- ("Tacchino","Eurospin","eurospin10","Salumi","Cotto di tacchino con olive","90 g",0.090,0.89,14,V,"Prima 1,15. Il volantino stampa 9,89 al kg.","2026-09-10","2026-09-20"),
+ ("Tacchino","Eurospin","eurospin10","Salumi","Cotto di tacchino con olive","90 g",0.090,0.89,14,V,"Prima 1,15. Il volantino stampa 9,89 al kg."),
  ("Sughi pronti","Bennet","bennet","Surgelati","Sugo allo scoglio classico – Bennet","450 g",0.450,3.99,9,V,"Surgelato. −20%, prima 4,99. Il volantino stampa 8,87 al kg."),
- ("Formaggi spalmabili","Eurospin","eurospin10","Freschi","Robiola","200 g (100 g × 2)",0.200,1.49,14,V,"Prima 1,79. Latte 100% italiano. Il volantino stampa 7,45 al kg.","2026-09-10","2026-09-20"),
+ ("Formaggi spalmabili","Eurospin","eurospin10","Freschi","Robiola","200 g (100 g × 2)",0.200,1.49,14,V,"Prima 1,79. Latte 100% italiano. Il volantino stampa 7,45 al kg."),
  ("Mozzarella","Bennet","bennet","Freschi","Mozzarella a julienne – Bayernland","200 g",0.200,2.98,26,V,"Senza lattosio, già a filetti. Il volantino stampa 14,90 al kg."),
  ("Mozzarella","Bennet","bennet","Freschi","Bocconcini di mozzarella di bufala campana DOP – Mandara","200 g",0.200,3.49,26,V,"Il volantino stampa 17,45 al kg."),
  ("Grana e parmigiano","Bennet","bennet","Freschi","Cuor di Forma Grana Padano DOP oltre 16 mesi – Ferrari","150 g",0.150,2.99,26,V,"Il volantino stampa 19,93 al kg."),
@@ -743,6 +744,30 @@ PRODOTTI = [
  ("Dentifricio","Mercatò","mercato","Cura persona","Collutorio per denti e gengive – Listerine","600 ml",0.600,2.95,30,V,"Sconto 50%. È collutorio, non dentifricio. Il volantino stampa 5,90 al litro."),
  ("Dentifricio","Mercatò","mercato","Cura persona","Dentifricio vari tipi – Antica Erboristeria","75 ml",0.075,1.19,30,V,"Il volantino stampa 15,87 al litro."),
  ("Dentifricio","Mercatò","mercato","Cura persona","Dentifricio vari tipi – Biorepair","75 ml",0.075,2.49,30,V,"Il volantino stampa 33,20 al litro."),
+ # ------------------------------- PESCE FRESCO (kg) -------------------------------
+ # Voce nuova del 2026-09-05: prima queste offerte le vedevo e le lasciavo fuori
+ # perche non avevano dove stare. Sono al banco o surgelate, e il prezzo al kg
+ # del banco viene dai cartellini all'etto, moltiplicati per dieci.
+ ("Pesce fresco","Carrefour Iper","carriper04","Pescheria","Alaccia pescata in Italia","al kg",1,2.90,11,V,"−40%, prima 4,90. È pesce azzurro, piccolo e da friggere."),
+ ("Pesce fresco","Carrefour Iper","carriper04","Pescheria","Cefalo pescato in Italia","al kg",1,3.90,11,V,"−20%, prima 4,90."),
+ ("Pesce fresco","Eurospin","eurospin10","Surgelati","Preparato per risotto di mare","300 g",0.300,1.79,8,V,"Prima 2,15. È un misto di frutti di mare, non pesce intero. Il volantino stampa 5,97 al kg."),
+ ("Pesce fresco","Bennet","bennet","Pescheria","Vongola o lupino","al kg",1,7.90,3,V,"Sottocosto Freschi. L'offerta pescheria non vale in tutti i punti vendita."),
+ ("Pesce fresco","Carrefour Iper","carriper04","Pescheria","Trota iridea salmonata allevata nelle Marche e in Umbria","al kg",1,7.90,11,V,"−20%, prima 9,90."),
+ ("Pesce fresco","Carrefour Iper","carriper04","Pescheria","Orata","al kg",1,8.90,11,V,"−35%, prima 13,90."),
+ ("Pesce fresco","Mercatò","mercato","Surgelati","Tranci di verdesca – Maremundi","450 g",0.450,3.99,27,V,"Il volantino stampa 8,87 al kg. La verdesca è uno squalo: polpa soda, senza spine."),
+ ("Pesce fresco","Bennet","bennet","Surgelati","Fritto misto di pesce – Specamare","450 g",0.450,4.79,9,V,"−20%, prima 5,99. Il volantino stampa 10,64 al kg."),
+ ("Pesce fresco","Ipercoop","ipercoop_extra","Surgelati","Polpo intero – Pescanova","1 kg",1,11.90,19,V,"SOLO PER I SOCI."),
+ ("Pesce fresco","Eurospin","eurospin10","Surgelati","Scampi interi – Ondina","450 g",0.450,5.99,14,V,"Prima 7,19. Il volantino stampa 13,32 al kg."),
+ ("Pesce fresco","Bennet","bennet","Pescheria","Branzino Filiera Valore Bennet","al kg",1,13.90,3,V,"Sottocosto Freschi."),
+ ("Pesce fresco","Bennet","bennet","Surgelati","Tranci di pesce spada – Noriberica","450 g",0.450,6.99,26,V,"Il volantino stampa 15,53 al kg."),
+ ("Pesce fresco","Carrefour Iper","carriper04","Surgelati","Pesce spada in trance – Pescanova","500 g",0.500,7.99,18,V,"−31%, prima 11,58. Solo con la tessera SpesAmica Payback. Il volantino stampa 15,98 al kg."),
+ ("Pesce fresco","Eurospin","eurospin10","Surgelati","Filetti di branzino spigola – Ondina","380 g",0.380,6.29,8,V,"Prima 7,99. Il volantino stampa 16,56 al kg."),
+ ("Pesce fresco","Mercatò","mercato","Gastronomia","Filetti di sgombro marinati","al kg (al banco)",1,17.90,21,V,"Al banco, 1,79 all'etto."),
+ ("Pesce fresco","Bennet","bennet","Pescheria","Filetto di pesce spada decongelato marinato","al kg",1,19.90,3,V,"Sottocosto Freschi."),
+ ("Pesce fresco","Bennet","bennet","Pescheria","Polpo arricciato","al kg",1,22.90,3,V,"Sottocosto Freschi."),
+ ("Pesce fresco","Mercatò","mercato","Gastronomia","Insalata di mare","al kg (al banco)",1,27.90,21,V,"Al banco, 2,79 all'etto. È già condita, si mangia fredda."),
+ ("Pesce fresco","Carrefour Iper","carriper04","Pescheria","Sgombro grigliato","120 g",0.120,3.99,11,V,"−20%, prima 4,99. È già cotto. Il volantino stampa 33,25 al kg."),
+ ("Pesce fresco","Ipercoop","ipercoop_extra","Surgelati","Fiori Special branzino, orata, salmone o tonno – Capitan Findus","200 g (2 pezzi)",0.200,6.99,49,V,"Etichetta «Conviene». Il volantino stampa 34,95 al kg."),
 ]
 
 # LE OFFERTE CON DATE LORO.
@@ -757,6 +782,22 @@ PRODOTTI = [
 # sola, e nessuna delle 230 righe già scritte è stata toccata.
 Offerta = _nt('Offerta', 'cat ins chiave rep pro fmt qta prezzo pag fonte note inizio fino')
 Offerta.__new__.__defaults__ = (None, None)
+
+# LE DATE DI UN'OFFERTA SI SCRIVONO SOLO SE DIVERSE DA QUELLE DEL VOLANTINO.
+# Il 2026-09-05 ho scritto a mano su 22 righe dell'Eurospin nuovo le stesse date
+# del volantino che le contiene. Sembrava innocuo ed era il contrario: la pagina
+# legge «ha date sue» come «offerta ristretta», e un'offerta ristretta non ancora
+# cominciata NON SI MOSTRA — servirebbe a non mandare Manlio a chiedere un
+# prezzo che vale solo tre giorni. Cosi i gamberi e i bastoncini di merluzzo
+# appena aggiunti erano invisibili, senza che niente segnalasse il guasto.
+# Le date qui servono SOLO al caso vero: la pagina «Weekend piu uno» dell'MD,
+# valida dal 18 al 21 dentro un volantino che va dall'8 al 20.
+_perdata = {v.chiave: (v.inizio, v.fino) for v in VOLANTINI}
+for _p in PRODOTTI:
+    if len(_p) > 11:
+        _ini, _fin = _p[11], _p[12] if len(_p) > 12 else None
+        if (_ini, _fin) == _perdata.get(_p[2]):
+            raise SystemExit('date inutili (sono quelle del volantino): ' + _p[4])
 
 # NIENTE RIGHE DOPPIE. Il 2026-09-05, rileggendo i volantini in cerca del pesce,
 # dieci prodotti del Carrefour sono stati riscritti da capo: li avevo gia letti

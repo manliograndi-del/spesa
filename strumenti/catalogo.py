@@ -42,6 +42,14 @@ REPARTI = [
   ('Gamberi',             'gamberi gamberetti mazzancolle code', 'kg'),
   ('Calamari e seppie',   'calamari seppie totano anelli moscardini', 'kg'),
   ('Bastoncini di pesce', 'bastoncini findus capitan', 'kg'),
+  # Chiesta da Manlio il 2026-09-05: sui volantini c'erano orata a 8,90 al kg,
+  # branzino, polpo, vongole, verdesca, scampi — offerte vere che non avevano
+  # nessuna casa e restavano fuori. Una voce sola per tutto cio che non e tonno,
+  # salmone, merluzzo, gamberi o calamari: scelta sua fra quattro proposte.
+  # NIENTE la parola «pesce» qui dentro: e in mezzo mondo («bastoncini di
+  # pesce», «sugo di pesce», «zuppa di pesce») e tirerebbe dentro pagine che
+  # con questa voce non c'entrano. Meglio i nomi delle bestie.
+  ('Pesce fresco',        'orata branzino spigola sgombro verdesca trota cefalo alaccia polpo vongole cozze scampi spada sogliola dentice ricciola gallinella lupino', 'kg'),
  ]),
  ('Freschi', [
   ('Latte',               'latte uht scremato intero microfiltrato', 'litro'),

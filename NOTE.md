@@ -1095,6 +1095,47 @@ cominciato dall'Ipercoop Extra perché era il più trascurato (8% di 57 pagine),
 e scade il 9 settembre: cinquantadue pagine per quattro giorni di validità.
 Prima i volantini che durano.
 
+## «Volevo dire al Mercatò»
+
+Il 2026-09-05, dopo che avevo cercato il pesce dappertutto: Manlio chiedeva
+poco merluzzo e pochi gamberi **da Mercatò**, non in generale. Con le 36 pagine
+tutte lette la risposta è certa, e stavolta **il buco non è mio**: in quel
+volantino il pesce sono nove offerte su tre pagine — sei tonni in scatola, due
+salmoni, un merluzzo — e gamberi zero. **Mercatò non mette il banco pescheria
+sul volantino**: ha macelleria (p. 22), salumi (21) e formaggi (20), pescheria
+no. I gamberi a 11,90 e l'orata a 8,90 vengono dal Bennet e dal Carrefour, che
+il banco ce l'hanno.
+
+Vale la pena scriverlo perché è il primo caso in cui «poche offerte» era vero.
+Quello che ha reso possibile dirlo con certezza è aver letto il volantino
+intero: prima non avrei potuto distinguere «non c'è» da «non l'ho guardato».
+
+### La voce «Pesce fresco»
+
+Scelta da Manlio fra quattro proposte. Ci stanno orata, branzino, sgombro,
+verdesca, trota, cefalo, polpo, vongole, scampi, spada: venti offerte che
+**vedevo e lasciavo fuori** perché non avevano dove stare. Nelle parole della
+voce **non c'è «pesce»**: è in mezzo mondo (bastoncini di pesce, sugo di pesce,
+zuppa di pesce) e tirerebbe dentro pagine che non c'entrano. Meglio i nomi
+delle bestie.
+
+### Le date di un'offerta si scrivono solo se diverse da quelle del volantino
+
+Guasto introdotto e trovato lo stesso giorno. Sulle righe dell'Eurospin nuovo
+avevo ricopiato a mano le date del volantino che le contiene. Sembra innocuo:
+non lo è. La pagina legge «ha date sue» come **offerta ristretta**, e
+un'offerta ristretta non ancora cominciata **non si mostra affatto** — regola
+giusta, che serve a non mandare Manlio a chiedere un prezzo valido tre giorni.
+
+Risultato: **22 righe invisibili**, fra cui i gamberi e i bastoncini di
+merluzzo appena aggiunti per rispondere a lui. Nessuna prova falliva, perché
+per il programma erano offerte legittime nascoste apposta.
+
+Adesso `dati.py` si ferma se una riga ripete le date del suo volantino.
+Provato piantandone una. Le date sulla riga restano per il caso vero: la pagina
+«Weekend più uno» dell'MD, valida dal 18 al 21 dentro un volantino che va
+dall'8 al 20.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
