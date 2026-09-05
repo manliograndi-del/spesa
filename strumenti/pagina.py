@@ -24,12 +24,22 @@ from lista import PARTENZA
 
 PDF     = {v.chiave: v.pdf for v in VOLANTINI}
 MODELLO = {v.chiave: v.indirizzo for v in VOLANTINI}
+ELENCO  = {v.chiave: v.pagine for v in VOLANTINI if v.pagine}
 
 def indirizzo(chiave, n):
     """L'indirizzo pubblico di una pagina del volantino, per renderla cliccabile.
     Senza numero di pagina non c'e niente da aprire: torna None e la riga resta
-    scritta e basta."""
-    if not n or chiave not in MODELLO:
+    scritta e basta.
+
+    Due forme, non una: quasi tutti i volantini hanno un indirizzo a schema col
+    numero dentro; Mercato ha invece l'elenco delle pagine, una per una, perche
+    la sua fonte le firma e il numero da solo non basta (vedi pagine_mercato)."""
+    if not n:
+        return None
+    if chiave in ELENCO:
+        elenco = ELENCO[chiave]
+        return elenco[n - 1] if 1 <= n <= len(elenco) else None
+    if chiave not in MODELLO or not MODELLO[chiave]:
         return None
     return MODELLO[chiave].format(n=n)
 PERIODO = {v.chiave: v.periodo for v in VOLANTINI}

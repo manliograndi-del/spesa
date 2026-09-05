@@ -22,7 +22,9 @@ Brunelleschi.
 
 **Insegne:** MD · Eurospin · Carrefour Iper · Bennet · Ipercoop · Lidl
 Il 2026-09-02 ha detto di **togliere Carrefour Market e mettere Ipercoop**.
-Mercatò resta nell'elenco ma non si riesce a scaricare (sotto il perché).
+**Mercatò c'è dal 2026-09-05** ed è l'insegna dove Manlio va quasi tutti i
+giorni: è quella che conta di più. Il punto vendita di riferimento è via
+Filadelfia 232, il più vicino a corso Siracusa.
 
 **Prodotti che gli interessano sempre:** carne di bue in confezioni grandi,
 tonno, salmone. Resta da chiarire quale salmone (affumicato, fresco o surgelato):
@@ -810,10 +812,39 @@ Nella pagina c'è una sezione che lo dice, con la data dei volantini letti
 `spesa-da-sola.html` invece resta fermo: è la copia di riserva, non il canale
 di aggiornamento.
 
-**Mercatò non c'è.** Il loro sito carica il volantino con JavaScript e non
-espone né un PDF né le immagini delle pagine. VolantinoFacile ce l'ha ma serve
-le pagine da `data.volantinofacile.it` con un identificativo per pagina non
-prevedibile, e tutto ciò che non sia la copertina risponde 403. Da ritentare.
+**Mercatò c'è, dal 2026-09-05.** Per tre giorni non c'era, e la ragione era
+sbagliata: avevo guardato il sito loro (che carica il volantino con JavaScript
+e non espone né PDF né immagini) e VolantinoFacile (identificativo per pagina
+non prevedibile), e mi ero fermato lì. Manlio è tornato sull'argomento —
+«le offerte del mercato sono per me quasi indispensabili, quasi tutti i giorni
+vado a fare la spesa lì» — e cercando davvero, alla terza fonte, il volantino
+c'era: **kimbino.it**, 36 pagine intere a 1550 px, l'unica fonte che lo pubblica
+per intero.
+
+Lezione, la stessa della pizza: **quando manca qualcosa che il mondo ha di
+sicuro, il buco è mio.** Tutti i supermercati fanno il volantino; se non lo
+trovo, ho guardato nel posto sbagliato o l'ho chiamato col nome sbagliato — su
+anteprimavolantino c'è un `ins-mercato` che sembra lui e invece è INS Mercato,
+un'altra insegna. Non archiviare un'insegna dopo due tentativi.
+
+**Come si prendono le pagine.** Il volantino sta su
+
+    https://www.kimbino.it/mercato/mercato-volantino-da-giovedi-<GG-MM-AAAA>-6<ID>/
+
+e dentro quella pagina ci sono gli indirizzi delle immagini. Sono **firmati**:
+un codice calcolato sull'indirizzo intero, quindi la pagina 12 non si ricava
+dalla 11 e lo schema con `{n}` non esiste. Per questo — e solo per questo
+volantino — c'è `strumenti/pagine_mercato.py`, l'elenco delle 36 pagine in
+ordine, e `Volantino` ha un campo `pagine` che dove c'è vince sull'indirizzo a
+schema. Si rifanno **a ogni volantino nuovo**, insieme alle date: si tengono
+gli indirizzi che contengono `/0x0/` (le pagine intere; quelli con `240x240`
+sono le miniature) e si ordinano per il numero prima di `.jpg`.
+
+**Quale Mercatò.** Ce ne sono quattro insegne (Mercatò, Local, Big, Extra) con
+volantini diversi. Il punto vendita più vicino a corso Siracusa è quello di
+**via Filadelfia 232**, che è un Mercatò semplice: si legge quello. Se un
+giorno Manlio dicesse che va in un altro, va cambiato il volantino, non solo le
+date.
 
 **L'Ipercoop di Torino è Nova Coop**, non la Coop nazionale: il volantino è
 quello piemontese. Si prende da `novacoop.it`, che rimanda a

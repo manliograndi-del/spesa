@@ -23,10 +23,14 @@ for v in VOLANTINI:
     if soltanto and chiave not in soltanto:
         continue
     os.makedirs(f'pg/{chiave}', exist_ok=True)
-    for n in range(1, 61):
+    # Mercato porta l'elenco delle sue pagine invece dello schema col numero:
+    # la sua fonte firma ogni immagine, e la pagina 12 non si ricava dalla 11.
+    indirizzi = (list(v.pagine) if v.pagine
+                 else [modello.format(n=n) for n in range(1, 61)])
+    for n, url in enumerate(indirizzi, 1):
         dove = f'pg/{chiave}/{n:03d}.jpg'
         if not (os.path.isfile(dove) and os.path.getsize(dove)):
-            righe.append(f'{dove} {modello.format(n=n)}')
+            righe.append(f'{dove} {url}')
 
 if not righe:
     print('niente da scaricare')
