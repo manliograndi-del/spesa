@@ -1,11 +1,20 @@
 /* Controlla che le offerte non ancora cominciate non si spaccino per offerte
-   di oggi: devono stare in fondo all'elenco, portare il bollo «vale dal ...»
-   e non prendersi mai il bollo «il meno caro».
+   di oggi: devono portare il bollo «vale dal ...» e non prendersi mai il bollo
+   «il meno caro», che spetta al meno caro FRA QUELLI CHE VALGONO OGGI.
 
    Serve perche i volantini nuovi si leggono in anticipo. Il 2026-09-05 sono
    entrati quelli dell'Eurospin (dal 10) e dell'MD (dall'8): senza questo
-   sarebbero finiti in cima, e Manlio avrebbe letto un prezzo che in cassa non
-   gli avrebbero fatto.
+   Manlio leggerebbe come prezzo migliore uno che in cassa non gli fanno.
+
+   ATTENZIONE, LA REGOLA E CAMBIATA IL 2026-09-05. Prima le offerte future
+   venivano spinte in fondo all'elenco e questa prova lo pretendeva. Manlio ha
+   chiesto il contrario — «dovrebbero proprio essere in ordine di prezzo» — e
+   adesso l'elenco e in ordine di prezzo e basta. Quindi qui si controllano
+   due cose diverse da prima:
+     1. l'elenco e in ordine di prezzo crescente, senza eccezioni;
+     2. il bollo verde «il meno caro» sta sull'offerta meno cara che vale
+        oggi, che con l'ordine nuovo puo non essere la prima riga.
+   Il posto nell'elenco non dice piu niente sulle date: lo dice il bollo.
 
        node prova-quando.js out/sito.html
        node prova-quando.js out/sito.html 2026-09-07   (fingendo un altro giorno)
@@ -40,17 +49,30 @@ setTimeout(() => {
     const nome = b.textContent.trim();
     b.click();
     const righe = [...d.querySelectorAll('.prezzo-riga')].map(r => ({
-      dopo: /vale dal/.test(r.textContent),
+      dopo: /vale dal|vale dall/.test(r.textContent),
       meno: !!r.querySelector('.bollo.meno'),
+      // «12,45 €» -> 12.45. E il numero grande a destra, quello per unita.
+      val: parseFloat(r.querySelector('.val .n').textContent
+                       .replace(/[^0-9,.]/g, '').replace(',', '.')),
     }));
     visti += righe.length;
     futuri += righe.filter(r => r.dopo).length;
-    const primoFuturo = righe.findIndex(r => r.dopo);
-    const ultimoValido = righe.map(r => r.dopo).lastIndexOf(false);
-    if (primoFuturo !== -1 && primoFuturo < ultimoValido)
-      guai.push(`«${nome}»: un'offerta non ancora valida sta sopra una che vale oggi`);
+
+    // 1. in ordine di prezzo, senza eccezioni.
+    for (let i = 1; i < righe.length; i++)
+      if (righe[i].val < righe[i - 1].val - 0.001) {
+        guai.push(`«${nome}»: riga ${i + 1} costa ${righe[i].val} e sta sotto una da ${righe[i - 1].val}`);
+        break;
+      }
+
+    // 2. il bollo verde sta sul meno caro CHE VALE OGGI, e su nessun altro.
+    const attesa = righe.findIndex(r => !r.dopo);
     righe.forEach((r, i) => {
-      if (r.dopo && r.meno) guai.push(`«${nome}»: riga ${i + 1} non vale ancora e ha il bollo «il meno caro»`);
+      if (r.meno && i !== attesa)
+        guai.push(`«${nome}»: il bollo «il meno caro» sta sulla riga ${i + 1}`
+                  + (r.dopo ? ', che non vale ancora' : `, ma il meno caro di oggi e la ${attesa + 1}`));
+      if (!r.meno && i === attesa)
+        guai.push(`«${nome}»: la riga ${i + 1} e il meno caro di oggi e non ha il bollo`);
     });
   }
   console.log('  giorno: ' + (finto || 'oggi'));
@@ -70,6 +92,6 @@ setTimeout(() => {
     console.log('\nNON VA:'); guai.forEach(g => console.log('  ✗ ' + g));
     process.exit(1);
   }
-  console.log('  ogni offerta sta al posto giusto');
+  console.log('  in ordine di prezzo, e «il meno caro» e comprabile oggi');
   process.exit(0);
 }, 2500);

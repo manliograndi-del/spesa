@@ -933,6 +933,35 @@ c'era niente da mostrare: per guardarla davvero le ho costruito un diario finto
 con offerte vere — un volantino che arriva, due prezzi che si muovono, un
 capovolgimento — e poi l'ho cancellato.
 
+## L'elenco è in ordine di prezzo e basta
+
+Dal 2026-09-05. Prima le offerte dei volantini **non ancora cominciati**
+venivano spinte in fondo all'elenco, qualunque prezzo avessero: l'idea era che
+un prezzo che oggi non ti fanno non deve stare in cima. Manlio l'ha guardato e
+ha detto il contrario: «quando si aggiungono nuove cose vanno in fondo anche se
+hanno un prezzo più basso, dovrebbero proprio essere in ordine di prezzo».
+
+Ha ragione, e la ragione è che **un elenco ordinato per prezzo che in fondo non
+lo è più non è un elenco ordinato**: chi lo legge non sa più se sta guardando i
+prezzi o le date, e il prezzo più basso finisce dove nessuno guarda.
+
+**Quello che non si è perso.** La data non stava nell'ordine, stava nel bollo
+rosso «vale dal ...», e quello è rimasto. Si è spostato solo *dove* è scritta
+l'informazione, non se c'è.
+
+**Il bollo verde ha cambiato significato, e andava fatto.** «Il meno caro» era
+la prima riga; adesso è **il meno caro fra quelli che valgono oggi**, che con
+l'ordine nuovo può non essere la prima. Senza questa modifica il verde sarebbe
+finito su un prezzo che in cassa non fanno ancora — l'errore peggiore che
+questa pagina possa fare — oppure su nessuno. `menoCaroOggi()` in `pagina.py`.
+
+`prova-quando.js` prima *pretendeva* la vecchia regola, quindi è stata riscritta
+insieme al codice: adesso controlla che l'elenco sia in ordine crescente senza
+eccezioni e che il bollo verde stia sull'offerta giusta. Si lancia anche
+fingendo un altro giorno (`node prova-quando.js out/sito.html 2026-09-11`), ed è
+così che si vede che la regola tiene anche quando i volantini futuri diventano
+presenti.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)

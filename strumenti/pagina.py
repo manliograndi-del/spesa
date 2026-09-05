@@ -652,14 +652,29 @@ function durata(o) {
    VALE. Nel volantino MD dell'8-20 settembre c'e una pagina valida solo dal 18
    al 21: mostrarla prima vorrebbe dire mandare Manlio in negozio a chiedere un
    prezzo che non gli fanno. Un VOLANTINO INTERO non ancora cominciato invece
-   resta visibile in fondo con «vale dal»: quello e voluto, serve a sapere cosa
-   arriva. La differenza e che li e tutto il volantino, e si vede. */
+   resta visibile con «vale dal»: quello e voluto, serve a sapere cosa arriva.
+   La differenza e che li e tutto il volantino, e si vede. */
 const nascosta = o => scaduto(o) || (o.ristretta && futuro(o));
 
+/* IN ORDINE DI PREZZO E BASTA, dal 2026-09-05.
+   Prima le offerte dei volantini non ancora cominciati venivano spinte in
+   fondo, qualunque prezzo avessero. Manlio se n'e accorto: «quando si
+   aggiungono nuove cose vanno in fondo anche se hanno un prezzo piu basso,
+   dovrebbero proprio essere in ordine di prezzo». Ha ragione: un elenco
+   ordinato per prezzo che poi non lo e in fondo non e un elenco ordinato, e
+   il prezzo piu basso finiva dove nessuno lo guarda.
+   Il «da quando vale» non si perde: resta il bollo rosso sulla riga. Quello
+   che si sposta e solo dove sta scritta. */
 const offerteDi = v => v.cat
   ? DATI.offerte.filter(o => o.cat === v.cat && !nascosta(o))
-      .slice().sort((a, b) => (futuro(a) ? 1 : 0) - (futuro(b) ? 1 : 0))
   : [];
+
+/* «Il meno caro» e il meno caro CHE SI PUO COMPRARE OGGI, non la prima riga.
+   Con l'ordine per prezzo la prima riga puo essere di un volantino che parte
+   fra una settimana: dargli il bollo verde vorrebbe dire mandare Manlio in
+   negozio a chiedere un prezzo che non gli fanno ancora — e lasciare senza
+   bollo l'offerta che invece stasera gli farebbero. */
+const menoCaroOggi = off => off.find(o => !futuro(o));
 
 /* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
    Se non ha nomi alternativi si cerca il nome stesso. */
@@ -843,7 +858,10 @@ function inCima() {
 }
 
 /* ---------- righe ---------- */
-function rigaPrezzo(o, primo) {
+/* «meno» non vuol dire «prima riga»: e il meno caro fra quelli che valgono
+   oggi. Le righe sono in ordine di prezzo, e la prima puo essere di un
+   volantino che deve ancora cominciare. */
+function rigaPrezzo(o, meno) {
   const d = document.createElement('article');
   d.className = 'prezzo-riga';
   d.innerHTML = `<div><p class="nome"></p><p class="sotto"></p></div>
@@ -866,7 +884,7 @@ function rigaPrezzo(o, primo) {
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const coda = d.querySelector('.coda');
-  if (primo && !futuro(o)) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
+  if (meno) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
   if (o.ristretta) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
   else if (futuro(o)) coda.insertAdjacentHTML('beforeend',
@@ -1028,7 +1046,8 @@ function disegna() {
     const f = document.createElement('p');
     f.className = 'fascia'; f.textContent = 'Prezzi letti dal volantino';
     out.appendChild(f);
-    off.forEach((o, i) => out.appendChild(rigaPrezzo(o, i === 0)));
+    const meno = menoCaroOggi(off);
+    off.forEach(o => out.appendChild(rigaPrezzo(o, o === meno)));
   } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
     /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
        vuoto: senza questa riga sembrerebbe che il prodotto non sia mai stato
