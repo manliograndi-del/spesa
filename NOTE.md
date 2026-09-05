@@ -962,6 +962,32 @@ fingendo un altro giorno (`node prova-quando.js out/sito.html 2026-09-11`), ed �
 così che si vede che la regola tiene anche quando i volantini futuri diventano
 presenti.
 
+## Il foglio da correggere a penna
+
+`python3 -m stampa` fa `out/catalogo.pdf`: le 66 voci del catalogo con le
+parole che il computer cerca nei volantini, una casella da spuntare a sinistra
+e, a destra, quante offerte ha oggi quella voce. Chiesto da Manlio il
+2026-09-05: «sai gli umani servono ancora a qualcosa».
+
+**Ha ragione, ed è l'unico controllo che una macchina non può fare.** Se manca
+la parola «bovino», la carne di bue in offerta non si trova — e nessuna prova
+automatica se ne accorge, perché non è un guasto: è una parola che non c'è. Lo
+può giudicare solo chi in quei negozi ci va.
+
+**La colonna dei numeri serve a leggere il foglio.** Uno zero non è un errore:
+o quella voce questa settimana non è in offerta da nessuna parte, o le parole
+sono sbagliate. Chi corregge distingue i due casi, io no.
+
+La prima volta l'avevo fatto con uno script buttato via dopo l'uso, e alla
+richiesta dopo non c'era più. Adesso è uno strumento come gli altri e **va
+rilanciato a ogni modifica del catalogo**, se no il foglio stampato racconta un
+catalogo che non esiste più.
+
+Il PDF sta anche **committato nel progetto** come `catalogo.pdf`, quindi ha un
+indirizzo pubblico: `https://manliograndi-del.github.io/spesa/catalogo.pdf`.
+Serve perché Manlio non usa il terminale: un file in una cartella temporanea,
+per lui, non esiste. Va ricommittato quando cambia.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
