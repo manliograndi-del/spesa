@@ -357,6 +357,39 @@ Chi apre in sola lettura riceve `not_writer`: le sue modifiche restano nel
 browser e la riga di stato in cima glielo dice. La stessa cosa vale per il file
 `spesa-da-sola.html`, dove `window.claude` non esiste proprio.
 
+### I prodotti nuovi arrivano anche su chi ha già la sua lista
+
+Il 2026-09-05 Manlio ha aperto il sito cercando lo yogurt di cui gli avevo
+appena parlato e **non c'era**. Non era un buco nei dati: sul suo telefono la
+lista aveva nove bottoni, con dentro «Dentifricio» che si era aggiunto lui, e
+senza i quattro prodotti chiesti il 4 settembre — biscotti, yogurt, marmellata,
+cioccolato.
+
+È la conseguenza diretta di `CONDIVISA`: sul sito comanda la lista salvata nel
+browser, e appena uno la tocca quella comanda per sempre. I prodotti aggiunti
+dopo non arrivavano più a chi si era già fatto la sua.
+
+Adesso `aggiungiNuovi()` mette in fondo alla lista salvata i prodotti della
+lista pubblicata che **quel telefono non ha mai visto**. La memoria di cosa ha
+visto sta in `spesa.visti.v1`, a parte dalla lista: ci finisce ogni nome
+pubblicato e ogni nome che la lista ha avuto, e **ci resta anche dopo che il
+prodotto è stato tolto**. Senza quella memoria ogni cancellazione sarebbe stata
+annullata al ricaricamento dopo, che è il baco opposto e peggiore.
+
+Due dettagli che sembrano piccoli e non lo sono:
+
+- **La lista unita si salva subito**, dentro `aggiungiNuovi()`, senza aspettare
+  che l'utente tocchi qualcosa. Al caricamento dopo i nuovi risultano già
+  visti, quindi non verrebbero riaggiunti: sparirebbero un'altra volta.
+- **La prima volta la memoria dei visti non c'è.** Allora valgono per visti i
+  prodotti che la lista ha in quel momento — così i mancanti sono davvero
+  prodotti mai arrivati fin lì, non prodotti tolti apposta prima che questa
+  memoria esistesse.
+
+`prova-arrivi.js` rifà esattamente il suo caso: telefono con la lista di nove,
+Dentifricio compreso; devono arrivare i quattro, restare il suo, e una
+Marmellata tolta apposta non deve tornare all'apertura dopo.
+
 ### `lista_attuale.py`: non cancellargli la lista
 
 **Il pericolo grosso di tutta questa architettura.** L'aggiornamento

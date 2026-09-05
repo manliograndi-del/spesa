@@ -19,6 +19,9 @@ for f in out/sito.html out/pagina.html out/spesa-da-sola.html; do
     node "$S/prova-testi.js" "$f"
   fi
 done
+echo "########## un telefono con una lista vecchia"
+node "$S/prova-arrivi.js" out/sito.html
+
 echo "########## la lista salvata di prima"
 node "$S/prova-maiuscole.js"
 echo

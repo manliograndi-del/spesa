@@ -258,6 +258,7 @@ const TEMPLATE = "";
    sparirebbero a ogni ricaricamento. */
 const CONDIVISA = false;
 const CHIAVE = 'spesa.lista.v1';
+const CHIAVE_VISTI = 'spesa.visti.v1';
 
 /* Rimette insieme il documento intero con dentro una lista nuova. L'ordine
    conta: prima la lista, poi il template. Al contrario, il template appena
@@ -302,9 +303,56 @@ function leggiLista() {
   if (CONDIVISA && dentro) return dentro;
   try {
     const g = localStorage.getItem(CHIAVE);
-    if (g) { const v = JSON.parse(g); if (Array.isArray(v) && v.length) return v.map(riaggancia); }
+    if (g) { const v = JSON.parse(g); if (Array.isArray(v) && v.length) return aggiungiNuovi(v.map(riaggancia), dentro); }
   } catch (e) { /* memoria non disponibile: si riparte da quella incorporata */ }
   return dentro || DATI.partenza.map(p => ({ ...p }));
+}
+
+/* I PRODOTTI NUOVI ARRIVANO ANCHE SUL TELEFONO DI CHI HA GIA UNA SUA LISTA.
+   Sul sito la lista vive nel browser di chi apre, e appena uno la tocca quella
+   salvata comanda per sempre. Risultato visto il 2026-09-05: Manlio aveva
+   aggiunto «Dentifricio» giorni prima, e i quattro prodotti chiesti da lui il
+   4 settembre — biscotti, yogurt, marmellata, cioccolato — sul suo telefono
+   non sono mai comparsi. Ha aperto la pagina, ha cercato lo yogurt di cui gli
+   avevo appena parlato, e non c'era.
+
+   Quindi: un prodotto della lista pubblicata che questo telefono non ha MAI
+   visto viene aggiunto. Uno che ha visto e poi tolto NON torna: i nomi visti
+   si segnano a parte e restano segnati anche dopo che il prodotto e stato
+   tolto. Senza quella memoria, ogni cancellazione sarebbe stata annullata al
+   ricaricamento dopo — che e il baco opposto, e peggiore. */
+function visti() {
+  try {
+    const g = localStorage.getItem(CHIAVE_VISTI);
+    const v = g ? JSON.parse(g) : null;
+    return Array.isArray(v) ? v : null;
+  } catch (e) { return null; }
+}
+function segnaVisti(nomi) {
+  try {
+    const dentro = visti() || [];
+    nomi.forEach(n => { if (!dentro.some(x => norm(x) === norm(n))) dentro.push(n); });
+    localStorage.setItem(CHIAVE_VISTI, JSON.stringify(dentro));
+  } catch (e) { /* pazienza: al massimo un prodotto tolto ricompare una volta */ }
+}
+function aggiungiNuovi(mia, pubblicata) {
+  if (!pubblicata) return mia;
+  const gia = visti();
+  /* La prima volta la memoria dei visti non c'e ancora: allora contano per
+     visti i prodotti che questo telefono ha in lista adesso, e i mancanti
+     sono davvero prodotti nuovi mai arrivati fin qui. */
+  const noti = gia || mia.map(v => v.nome);
+  const nuovi = pubblicata.filter(x => !noti.some(n => norm(n) === norm(x.nome))
+                                    && !mia.some(v => norm(v.nome) === norm(x.nome)));
+  segnaVisti(pubblicata.map(x => x.nome).concat(mia.map(v => v.nome)));
+  if (!nuovi.length) return mia;
+  arrivati = nuovi.map(x => maiuscola(x.nome));
+  const unita = mia.concat(nuovi.map(x => ({ ...x })));
+  /* Salvare subito, non aspettare che tocchi qualcosa: al caricamento dopo i
+     nuovi risultano gia visti e non verrebbero riaggiunti, cioe sparirebbero
+     un'altra volta. */
+  try { localStorage.setItem(CHIAVE, JSON.stringify(unita)); } catch (e) {}
+  return unita;
 }
 
 /* Una lista salvata da una versione vecchia della pagina puo avere prodotti
@@ -325,10 +373,12 @@ function riaggancia(v) {
   return { nome: maiuscola(v.nome), parole, cat: seme.cat };
 }
 function salvaLocale() {
+  segnaVisti(lista.map(v => v.nome));   // cosi un prodotto tolto non ricompare
   try { localStorage.setItem(CHIAVE, JSON.stringify(lista)); }
   catch (e) { /* la pagina funziona lo stesso, solo non ricorda */ }
 }
 
+let arrivati = [];       // prodotti nuovi comparsi in questo caricamento
 let ART = null;          // la capacita di ripubblicare, se questa vista ce l'ha
 let soloMio = true;      // finche non sappiamo il contrario, la lista e solo qui
 let attesa = null;       // per non ripubblicare a ogni singolo tocco
@@ -749,7 +799,11 @@ disegna();
     stato('Lista condivisa: quello che cambi lo vede anche chi ha il link.');
     lista = leggiLista();
   } else {
-    stato('Questa copia è solo tua: le modifiche restano su questo telefono.');
+    /* Se sono arrivati prodotti nuovi, dirlo: altrimenti compaiono dei bottoni
+       in piu senza che si capisca da dove. */
+    stato(arrivati.length
+      ? 'Aggiunti alla tua lista: ' + arrivati.join(', ') + '.'
+      : 'Questa copia è solo tua: le modifiche restano su questo telefono.');
   }
   aggiornaRiquadroManda();
   aggiornaTestoLista();
