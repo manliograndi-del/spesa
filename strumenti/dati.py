@@ -18,26 +18,13 @@ sbagliati ne ho già trovati tre.
 V = 'letto dal volantino'
 D = 'DA CONTROLLARE (riassunto online)'
 
-# categoria -> (unità al singolare per l'etichetta, nome della quantità)
-UNITA = {
- 'Carne di bue':   ('al kg',        'kg'),
- 'Tonno':          ('al kg',        'kg'),
- 'Salmone':        ('al kg',        'kg'),
- 'Caffè':          ('al kg',        'kg'),
- 'Pasta':          ('al kg',        'kg'),
- 'Pollo':          ('al kg',        'kg'),
- 'Formaggio':      ('al kg',        'kg'),
- 'Latte':          ('al litro',     'litri'),
- "Olio d'oliva":   ('al litro',     'litri'),
- 'Uova':           ("all'uovo",     'uova'),
- 'Carta igienica': ('al rotolo',    'rotoli'),
- 'Detersivo':      ('a lavaggio',   'lavaggi'),
- 'Suino':          ('al kg',        'kg'),
- 'Biscotti':       ('al kg',        'kg'),
- 'Yogurt':         ('al kg',        'kg'),
- 'Marmellata':     ('al kg',        'kg'),
- 'Cioccolato':     ('al kg',        'kg'),
-}
+# LE CATEGORIE E LE LORO UNITÀ STANNO IN catalogo.py, NON QUI.
+# Erano scritte qui in una lista a parte, e a ogni categoria nuova bisognava
+# ricordarsi di aggiungerla in due posti; la seconda volta che ce ne si
+# dimentica, il programma si ferma con un errore che non dice niente.
+# Adesso l'unico posto è il catalogo, che è anche quello che Manlio e la
+# moglie vedono nel cassetto.
+from catalogo import UNITA, NOMI
 
 # I volantini sono namedtuple e non tuple nude di proposito: il 2026-09-05 e
 # servito aggiungere un campo (l'inizio) e gli otto punti che le spacchettavano
@@ -88,7 +75,7 @@ PRODOTTI = [
  ("Carne di bue","MD","md08","Macelleria","Hamburger di suino e bovino","al kg",1,10.90,9,V,"È misto suino e bovino, non solo bue."),
  ("Carne di bue","Eurospin","eurospin10","Macelleria","Spalla e reale a fette di bovino adulto","al kg",1,13.99,13,V,""),
  ("Carne di bue","MD","md08","Macelleria","Polpa scelta per roastbeef di bovino adulto","al kg",1,15.90,9,V,""),
- ("Carne di bue","Eurospin","eurospin10","Salumi","Bresaola punta d'anca","80 g",0.080,2.19,5,V,"Prima 2,99. È bresaola, salume di bovino: il prezzo al chilo non si confronta con la carne fresca."),
+ ("Bresaola","Eurospin","eurospin10","Salumi","Bresaola punta d'anca","80 g",0.080,2.19,5,V,"Prima 2,99. È bresaola, salume di bovino: il prezzo al chilo non si confronta con la carne fresca."),
  ("Carne di bue","Carrefour Iper","carriper04","Macelleria","Fettine di bovino adulto","al kg, almeno 1 kg",1,12.99,10,V,"«Prendi Spendi»: 12,99 al kg da 1 kg in su. Sotto il chilo 14,99. Prima 19,99."),
  ("Carne di bue","MD","md","Surgelati","10 hamburger di bovino – Le Specialità di Beppe","750 g",0.750,4.99,3,V,"Surgelato. Il volantino stampa 6,65 al kg."),
  ("Carne di bue","Eurospin","eurospin","Macelleria","Macinato per ragù di bovino adulto","Confezione Famiglia, al kg",1,8.99,11,V,"È la confezione grande, il prezzo è già al chilo."),
@@ -153,7 +140,7 @@ PRODOTTI = [
  ("Pollo","MD","md08","Macelleria","Sovracosce di pollo","al kg",1,4.49,9,V,""),
  ("Pollo","MD","md08","Macelleria","Fuselli di pollo","al kg",1,4.49,9,V,""),
  ("Pollo","Eurospin","eurospin10","Gastronomia","Ali di pollo cotte piccanti","500 g",0.500,2.99,13,V,"Già cotte. Il volantino stampa 5,98 al kg."),
- ("Pollo","Eurospin","eurospin10","Macelleria","Hamburger di tacchino","204 g",0.204,1.29,13,V,"È tacchino. Il volantino stampa 6,32 al kg."),
+ ("Tacchino","Eurospin","eurospin10","Macelleria","Hamburger di tacchino","204 g",0.204,1.29,13,V,"È tacchino. Il volantino stampa 6,32 al kg."),
  ("Pollo","MD","md08","Surgelati","Spinacine classiche – AIA","500 g",0.500,4.99,9,V,"Il volantino stampa 9,98 al kg."),
  ("Pollo","MD","md08","Surgelati","Cordon bleu classico – AIA","490 g",0.490,4.99,9,V,"Il volantino stampa 10,18 al kg."),
  ("Pollo","Carrefour Iper","carriper04","Macelleria","Quarto posteriore di pollo – Aia","al kg",1,4.73,10,V,"−25%, prima 6,31."),
@@ -170,65 +157,65 @@ PRODOTTI = [
  ("Pollo","Ipercoop","ipercoop_extra","Macelleria","Sottilissime di petto di pollo – AIA","al kg",1,12.54,14,V,"−30%, prima 17,92."),
  ("Pollo","Ipercoop","ipercoop_extra","Surgelati","La Viennese cotoletta di pollo – AIA","300 g",0.300,3.99,14,V,"Etichetta «Conviene»."),
  # ------------------------------- FORMAGGIO (kg) -------------------------------
- ("Formaggio","MD","md08","Freschi","Formaggio a pasta filata (mozzarella)","1 kg",1,4.99,1,V,"Prima 6,89."),
- ("Formaggio","Eurospin","eurospin10","Freschi","Ciliegine di mozzarella","150 g",0.150,0.99,5,V,"Prima 1,39. Latte 100% italiano."),
- ("Formaggio","MD","md08","Freschi","Ricotta bianca salata stagionata","al kg",1,6.99,4,V,"Prima 7,90. Speciale Sicilia."),
- ("Formaggio","MD","md08","Freschi","Ricotta al forno dura","al kg",1,7.39,4,V,"Prima 8,90. Speciale Sicilia."),
+ ("Mozzarella","MD","md08","Freschi","Formaggio a pasta filata (mozzarella)","1 kg",1,4.99,1,V,"Prima 6,89."),
+ ("Mozzarella","Eurospin","eurospin10","Freschi","Ciliegine di mozzarella","150 g",0.150,0.99,5,V,"Prima 1,39. Latte 100% italiano."),
+ ("Ricotta","MD","md08","Freschi","Ricotta bianca salata stagionata","al kg",1,6.99,4,V,"Prima 7,90. Speciale Sicilia."),
+ ("Ricotta","MD","md08","Freschi","Ricotta al forno dura","al kg",1,7.39,4,V,"Prima 8,90. Speciale Sicilia."),
  ("Formaggio","MD","md08","Freschi","Formaggio canestrato tuma","al kg",1,8.99,4,V,"Prima 9,90. Speciale Sicilia."),
  ("Formaggio","MD","md08","Freschi","Formaggio pecoricco","al kg",1,8.99,4,V,"Prima 9,99. Speciale Sicilia."),
- ("Formaggio","Eurospin","eurospin10","Freschi","Grana Padano DOP","al kg",1,9.99,5,V,"Prima 13,29. Lo sconto del 25% si vede alla cassa."),
+ ("Grana e parmigiano","Eurospin","eurospin10","Freschi","Grana Padano DOP","al kg",1,9.99,5,V,"Prima 13,29. Lo sconto del 25% si vede alla cassa."),
  ("Formaggio","MD","md08","Freschi","Formaggetta mista","al kg",1,9.99,4,V,"Prima 12,90. Speciale Sicilia."),
- ("Formaggio","MD","md","Freschi","Mozzarelle in busta – Reggia","1 kg (8 × 125 g)",1,4.49,1,V,"Prima 5,49."),
+ ("Mozzarella","MD","md","Freschi","Mozzarelle in busta – Reggia","1 kg (8 × 125 g)",1,4.49,1,V,"Prima 5,49."),
  ("Formaggio","Ipercoop","ipercoop","Freschi","Sottilette Classiche","400 g",0.400,1.89,4,V,"Sottocosto −43%, prima 3,34."),
- ("Formaggio","Ipercoop","ipercoop","Freschi","Mozzarella Santa Lucia – Galbani","375 g (3 × 125 g)",0.375,2.09,4,V,"Sottocosto −52%, prima 4,40."),
- ("Formaggio","Lidl","lidl","Sottocosto","Mozzarella 100% latte italiano – Granarolo","375 g (3 × 125 g)",0.375,2.29,1,V,"Sottocosto fino al 12 settembre."),
- ("Formaggio","Ipercoop","ipercoop","Freschi","Philadelphia formaggio fresco","350 g",0.350,2.19,4,V,"Sottocosto −39%, prima 3,64."),
- ("Formaggio","Bennet","bennet","Freschi","Mascarpone – Granarolo","500 g",0.500,3.58,8,V,"−40%, prima 5,97."),
- ("Formaggio","Ipercoop","ipercoop","Freschi","Grana Padano DOP 16 mesi – GranTerre","700 g",0.700,7.99,4,V,"Sottocosto −42%, prima 13,90. Max 3 confezioni."),
- ("Formaggio","Bennet","bennet","Freschi","Parmigiano Reggiano – Bennet","500 g",0.500,12.87,8,V,"−19% con la tessera Bennet Club."),
+ ("Mozzarella","Ipercoop","ipercoop","Freschi","Mozzarella Santa Lucia – Galbani","375 g (3 × 125 g)",0.375,2.09,4,V,"Sottocosto −52%, prima 4,40."),
+ ("Mozzarella","Lidl","lidl","Sottocosto","Mozzarella 100% latte italiano – Granarolo","375 g (3 × 125 g)",0.375,2.29,1,V,"Sottocosto fino al 12 settembre."),
+ ("Formaggi spalmabili","Ipercoop","ipercoop","Freschi","Philadelphia formaggio fresco","350 g",0.350,2.19,4,V,"Sottocosto −39%, prima 3,64."),
+ ("Ricotta","Bennet","bennet","Freschi","Mascarpone – Granarolo","500 g",0.500,3.58,8,V,"−40%, prima 5,97."),
+ ("Grana e parmigiano","Ipercoop","ipercoop","Freschi","Grana Padano DOP 16 mesi – GranTerre","700 g",0.700,7.99,4,V,"Sottocosto −42%, prima 13,90. Max 3 confezioni."),
+ ("Grana e parmigiano","Bennet","bennet","Freschi","Parmigiano Reggiano – Bennet","500 g",0.500,12.87,8,V,"−19% con la tessera Bennet Club."),
  # ------------------------------- UOVA (uova) -------------------------------
  ("Uova","Bennet","bennet","Freschi","10 uova fresche medie da allevamento a terra – Ovonovo","10 uova",10,2.99,8,V,"−25%, prima 3,99. È l'unica offerta sulle uova che ho trovato."),
  # ------------------------------- CARTA IGIENICA (rotoli) -------------------------------
  ("Carta igienica","MD","md","Cura casa","4 rotoloni carta igienica – Regina","4 rotoloni, dichiarati pari a 12 rotoli",12,2.89,18,V,"Prima 3,29. Il conto al rotolo usa i 12 dichiarati sul pacco: sui 4 rotoloni veri fa 0,72 l'uno."),
  ("Carta igienica","Ipercoop","ipercoop","Cura casa","Carta igienica Scottonelle – Scottex","18 rotoli",18,4.99,5,V,"Sottocosto −50%, prima 9,98. Max 3 confezioni."),
  # ------------------------------- DETERSIVO (lavaggi) -------------------------------
- ("Detersivo","Ipercoop","ipercoop","Cura casa","Ammorbidente concentrato – Coccolino","87 lavaggi (1,827 l)",87,3.19,5,V,"Sottocosto −54%, prima 6,99. È ammorbidente, non detersivo: si usa in aggiunta."),
- ("Detersivo","Ipercoop","ipercoop","Cura casa","Detersivo per lavatrice in polvere Power – Dash+","105 misurini (5,25 kg)",105,14.90,5,V,"Sottocosto −50%, prima 29,80. Max 2 confezioni."),
- ("Detersivo","Ipercoop","ipercoop","Cura casa","Detersivo liquido per lavatrice Base – Dash","75 lavaggi (3 × 25)",75,10.90,5,V,"Sottocosto −50%, prima 21,80."),
- ("Detersivo","Ipercoop","ipercoop","Cura casa","Detersivo per lavastoviglie Platinum Plus – Fairy","71 capsule",71,10.90,5,V,"Sottocosto −50%, prima 21,80. È per la lavastoviglie."),
- ("Detersivo","MD","md","Cura casa","24 Fresh Caps 3 in 1 per lavatrice – Actiff","24 capsule",24,4.29,18,V,"Prima 4,89."),
- ("Detersivo","MD","md","Cura casa","24 capsule per lavatrice bouquet floreale – DAT5","24 capsule",24,4.29,18,V,"Prima 4,99."),
+ ("Ammorbidente","Ipercoop","ipercoop","Cura casa","Ammorbidente concentrato – Coccolino","87 lavaggi (1,827 l)",87,3.19,5,V,"Sottocosto −54%, prima 6,99. È ammorbidente, non detersivo: si usa in aggiunta."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop","Cura casa","Detersivo per lavatrice in polvere Power – Dash+","105 misurini (5,25 kg)",105,14.90,5,V,"Sottocosto −50%, prima 29,80. Max 2 confezioni."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop","Cura casa","Detersivo liquido per lavatrice Base – Dash","75 lavaggi (3 × 25)",75,10.90,5,V,"Sottocosto −50%, prima 21,80."),
+ ("Detersivo lavastoviglie","Ipercoop","ipercoop","Cura casa","Detersivo per lavastoviglie Platinum Plus – Fairy","71 capsule",71,10.90,5,V,"Sottocosto −50%, prima 21,80. È per la lavastoviglie."),
+ ("Detersivo lavatrice","MD","md","Cura casa","24 Fresh Caps 3 in 1 per lavatrice – Actiff","24 capsule",24,4.29,18,V,"Prima 4,89."),
+ ("Detersivo lavatrice","MD","md","Cura casa","24 capsule per lavatrice bouquet floreale – DAT5","24 capsule",24,4.29,18,V,"Prima 4,99."),
  # ------------------------------- SUINO (kg) -------------------------------
  ("Suino","MD","md08","Macelleria","Cotolette o nodini di suino","al kg",1,6.90,9,V,""),
  ("Suino","Eurospin","eurospin10","Macelleria","Lonza o arista di suino a tranci","al kg",1,6.99,13,V,""),
- ("Suino","Eurospin","eurospin10","Salumi","Salame ungherese o Milano","150 g",0.150,1.15,5,V,"Prima 1,55. Solo con la tessera Eurospin Family."),
+ ("Salame","Eurospin","eurospin10","Salumi","Salame ungherese o Milano","150 g",0.150,1.15,5,V,"Prima 1,55. Solo con la tessera Eurospin Family."),
  ("Suino","Eurospin","eurospin10","Macelleria","Spiedini di suino","Confezione Famiglia, 1 kg",1,8.49,13,V,""),
- ("Suino","Eurospin","eurospin10","Salumi","Pancetta arrotolata","100 g",0.100,0.99,15,V,"Prima 1,29."),
- ("Suino","MD","md08","Salumi","Bacon a fette leggermente affumicato – La Fattoria","150 g",0.150,1.49,13,V,"Prima 1,69."),
+ ("Pancetta e bacon","Eurospin","eurospin10","Salumi","Pancetta arrotolata","100 g",0.100,0.99,15,V,"Prima 1,29."),
+ ("Pancetta e bacon","MD","md08","Salumi","Bacon a fette leggermente affumicato – La Fattoria","150 g",0.150,1.49,13,V,"Prima 1,69."),
  ("Suino","MD","md08","Macelleria","Involtini di suino","al kg",1,10.90,9,V,""),
- ("Suino","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità 2% di grassi","150 g",0.150,1.69,1,V,"Quantità limitata."),
- ("Suino","Eurospin","eurospin10","Salumi","Mortadella Bologna IGP con pistacchio","120 g",0.120,1.59,5,V,"Prima 1,99."),
- ("Suino","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità Praga","120 g",0.120,1.69,5,V,"Prima 1,99."),
- ("Suino","Eurospin","eurospin10","Salumi","Lonzino stagionato","120 g",0.120,1.99,5,V,"Prima 2,49."),
- ("Suino","MD","md08","Salumi","Prosciutto cotto nazionale selezione – La Fattoria","100 g",0.100,1.69,1,V,"Prima 2,59."),
- ("Suino","MD","md08","Salumi","Salame siciliano con pistacchio","80 g",0.080,1.79,4,V,"Prima 2,19."),
- ("Suino","MD","md08","Salumi","Mortadella di suino nero dei Nebrodi","80 g",0.080,2.39,4,V,"Prima 2,99."),
- ("Suino","Eurospin","eurospin10","Salumi","Prosciutto crudo stagionato 24 mesi","100 g",0.100,3.19,5,V,"Prima 3,99. Carne italiana."),
+ ("Prosciutto cotto","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità 2% di grassi","150 g",0.150,1.69,1,V,"Quantità limitata."),
+ ("Mortadella","Eurospin","eurospin10","Salumi","Mortadella Bologna IGP con pistacchio","120 g",0.120,1.59,5,V,"Prima 1,99."),
+ ("Prosciutto cotto","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità Praga","120 g",0.120,1.69,5,V,"Prima 1,99."),
+ ("Prosciutto crudo","Eurospin","eurospin10","Salumi","Lonzino stagionato","120 g",0.120,1.99,5,V,"Prima 2,49."),
+ ("Prosciutto cotto","MD","md08","Salumi","Prosciutto cotto nazionale selezione – La Fattoria","100 g",0.100,1.69,1,V,"Prima 2,59."),
+ ("Salame","MD","md08","Salumi","Salame siciliano con pistacchio","80 g",0.080,1.79,4,V,"Prima 2,19."),
+ ("Mortadella","MD","md08","Salumi","Mortadella di suino nero dei Nebrodi","80 g",0.080,2.39,4,V,"Prima 2,99."),
+ ("Prosciutto crudo","Eurospin","eurospin10","Salumi","Prosciutto crudo stagionato 24 mesi","100 g",0.100,3.19,5,V,"Prima 3,99. Carne italiana."),
  ("Suino","Carrefour Iper","carriper04","Macelleria","Fettine di coscia di suino","al kg",1,5.99,10,V,"−40%, prima 9,99."),
  ("Suino","Carrefour Iper","carriper04","Macelleria","Spezzato di suino","al kg",1,5.99,10,V,"−33%, prima 8,99."),
- ("Suino","Carrefour Iper","carriper04","Macelleria","Salamella di suino – confezione famiglia","al kg",1,7.99,10,V,"−20%, prima 9,99."),
+ ("Salsiccia","Carrefour Iper","carriper04","Macelleria","Salamella di suino – confezione famiglia","al kg",1,7.99,10,V,"−20%, prima 9,99."),
  # Ci stanno sia i tagli freschi sia i salumi: sono tutti maiale, e il formato
  # di ogni riga dice cos'e. Se un domani vuole separarli, basta una categoria in piu.
- ("Suino","Lidl","lidl","Macelleria","Bocconcini di salsiccia","250 g",0.250,1.69,16,V,"−21%, prima 2,15. Il volantino stampa 6,76 al kg."),
+ ("Salsiccia","Lidl","lidl","Macelleria","Bocconcini di salsiccia","250 g",0.250,1.69,16,V,"−21%, prima 2,15. Il volantino stampa 6,76 al kg."),
  ("Suino","Eurospin","eurospin","Macelleria","Braciole di coppa di suino","al kg",1,6.99,11,V,""),
  ("Suino","Lidl","lidl","Macelleria","Trancio di coppa di suino","al kg",1,6.99,16,V,"Novità."),
  ("Suino","Lidl","lidl","Macelleria","Sottilissime di lonza di suino","250 g",0.250,1.99,16,V,"−21% con la carta Lidl Plus, prima 2,55. Il volantino stampa 7,96 al kg."),
  ("Suino","Ipercoop","ipercoop_extra","Gastronomia","Polpettone Buona Domenica – Amadori","700 g",0.700,7.43,14,V,"PREZZO SOCI (−40%). Senza tessera 9,91, cioè 14,16 al kg."),
- ("Suino","Bennet","bennet","Salumi","Pancetta dolce o affumicata a cubetti – Fratelli Beretta","300 g (4 × 75 g)",0.300,3.98,8,V,"−30%, prima 5,69."),
- ("Suino","Ipercoop","ipercoop","Salumi","Prosciutto cotto Alta Qualità – Beretta","240 g (2 × 120 g)",0.240,3.29,4,V,"Sottocosto −52%, prima 6,98."),
- ("Suino","Ipercoop","ipercoop","Salumi","Salame Negronetto – Negroni","220 g",0.220,3.48,4,V,"Sottocosto −38%, prima 5,69."),
- ("Suino","Bennet","bennet","Salumi","Prosciutto crudo o cotto di alta qualità – Citterio","240 g (3 × 80 g)",0.240,4.99,8,V,"−50% con la tessera Bennet Club, prima 9,99."),
- ("Suino","Ipercoop","ipercoop_extra","Gastronomia","Carne salada del Trentino per carpaccio","100 g",0.100,3.36,14,V,"PREZZO SOCI (−25%). Senza tessera 4,49, cioè 44,90 al kg."),
+ ("Pancetta e bacon","Bennet","bennet","Salumi","Pancetta dolce o affumicata a cubetti – Fratelli Beretta","300 g (4 × 75 g)",0.300,3.98,8,V,"−30%, prima 5,69."),
+ ("Prosciutto cotto","Ipercoop","ipercoop","Salumi","Prosciutto cotto Alta Qualità – Beretta","240 g (2 × 120 g)",0.240,3.29,4,V,"Sottocosto −52%, prima 6,98."),
+ ("Salame","Ipercoop","ipercoop","Salumi","Salame Negronetto – Negroni","220 g",0.220,3.48,4,V,"Sottocosto −38%, prima 5,69."),
+ ("Prosciutto crudo","Bennet","bennet","Salumi","Prosciutto crudo o cotto di alta qualità – Citterio","240 g (3 × 80 g)",0.240,4.99,8,V,"−50% con la tessera Bennet Club, prima 9,99."),
+ ("Carne di bue","Ipercoop","ipercoop_extra","Gastronomia","Carne salada del Trentino per carpaccio","100 g",0.100,3.36,14,V,"PREZZO SOCI (−25%). Senza tessera 4,49, cioè 44,90 al kg."),
  # ------------------------------- BISCOTTI (kg) -------------------------------
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con cacao e nocciole – Dolciando","700 g",0.700,1.69,6,V,"Prima 2,19. Senza olio di palma."),
  ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con granelli di zucchero di canna","700 g",0.700,1.79,15,V,"Prima 2,19. Senza olio di palma."),
@@ -280,4 +267,12 @@ PRODOTTI = [
  ("Cioccolato","Bennet","bennet","Dispensa","Tavoletta cioccolato nero fondente extra – Perugina","85 g",0.085,1.98,12,V,"−25%, prima 2,65. Tavoletta vera, non crema."),
 ]
 
-PRODOTTI.sort(key=lambda p: (list(UNITA).index(p[0]), p[7] / p[6]))
+# Ogni prezzo deve stare in una categoria che esiste nel catalogo: se no la
+# pagina lo carica e non lo mostra a nessuno, in silenzio.
+_orfani = sorted({p[0] for p in PRODOTTI} - set(NOMI))
+if _orfani:
+    raise SystemExit('categorie che non stanno nel catalogo: ' + ', '.join(_orfani))
+
+# Dentro ogni categoria, dal meno caro per unità. Fra categorie, l'ordine del
+# catalogo, cioè quello dei reparti del negozio.
+PRODOTTI.sort(key=lambda p: (NOMI.index(p[0]), p[7] / p[6]))

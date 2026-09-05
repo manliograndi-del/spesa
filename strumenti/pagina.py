@@ -19,6 +19,7 @@ La lista vive in localStorage, non sul server: vedi NOTE.md.
 """
 import json, os
 from dati import PRODOTTI, VOLANTINI, UNITA, D
+from catalogo import CATALOGO, REPARTI
 from lista import PARTENZA
 
 PDF     = {v.chiave: v.pdf for v in VOLANTINI}
@@ -95,8 +96,15 @@ if os.path.exists(lista_viva):
         partenza = salvata
         print(f'lista ripresa dalla pagina viva: {len(partenza)} prodotti')
 
+# Il catalogo va nella pagina perché è quello che si vede nel cassetto: nome,
+# reparto e parole con cui il volantino chiama la stessa cosa. Sono ~66 voci,
+# meno di 6 KB: non è quello che pesa.
+catalogo = [dict(nome=v['nome'], rep=v['reparto'], parole=v['parole']) for v in CATALOGO]
+
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
-                       partenza=partenza, unita={k: v[0] for k, v in UNITA.items()},
+                       partenza=partenza, catalogo=catalogo,
+                       reparti=[r for r, _ in REPARTI],
+                       unita={k: v[0] for k, v in UNITA.items()},
                        letto=OGGI),
                   ensure_ascii=False, separators=(',', ':'))
 LISTA0 = json.dumps(partenza, ensure_ascii=False, separators=(',', ':'))
@@ -149,8 +157,20 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
 .tasto.agg{border-style:dashed;color:var(--tenue);font-weight:500}
 
 /* ---- aggiunta ---- */
-.form-agg{display:none;gap:8px;margin-top:10px}
-.form-agg.on{display:flex}
+.cassetto[hidden]{display:none}
+.cassetto{margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
+  border-radius:12px;padding:12px}
+.cerca{width:100%;border:1.5px solid var(--linea-forte);border-radius:10px;
+  padding:12px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
+  font-family:var(--f-testo)}
+.cerca:focus{outline:none;border-color:var(--rosso)}
+.reparto{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.08em;
+  font-size:11.5px;font-weight:600;color:var(--tenue);margin:16px 0 8px}
+.reparto:first-child{margin-top:14px}
+.chiudi{width:100%;margin-top:16px;background:var(--inchiostro);color:var(--carta);border:0;
+  border-radius:10px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
+.fuori-catalogo{margin:8px 0 0;font-size:13.5px;color:var(--tenue)}
+.form-agg{display:flex;gap:8px;margin-top:16px}
 .form-agg input{flex:1;min-width:0;background:var(--carta);color:var(--inchiostro);
   border:1.5px solid var(--rosso);border-radius:10px;padding:12px 13px;
   font-family:var(--f-testo);font-size:16px}
@@ -262,16 +282,24 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <header>
   <h1><span>Torino · Corso Siracusa</span>La lista della spesa</h1>
   <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
-  conveniente in giù. Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
+  conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
+  Volantini di Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
 </header>
 
 <div class="barra">
   <div class="tasti" id="tasti" role="group" aria-label="Scegli il prodotto"></div>
-  <form class="form-agg" id="form-agg">
-    <input id="nuovo" type="text" placeholder="Nome del prodotto, o più nomi separati da virgola"
-           autocomplete="off" aria-label="Nomi del prodotto da aggiungere, separati da virgola">
-    <button type="submit">Aggiungi</button>
-  </form>
+  <div class="cassetto" id="cassetto" hidden>
+    <input class="cerca" id="cerca" type="text" placeholder="Cerca un prodotto…"
+           autocomplete="off" aria-label="Cerca un prodotto nel catalogo">
+    <div id="scaffali"></div>
+    <form class="form-agg" id="form-agg">
+      <input id="nuovo" type="text" placeholder="Un altro nome, o più separati da virgola"
+             autocomplete="off" aria-label="Nomi del prodotto da aggiungere, separati da virgola">
+      <button type="submit">Aggiungi</button>
+    </form>
+    <p class="fuori-catalogo" id="fuori-catalogo"></p>
+    <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
+  </div>
   <p class="stato" id="stato-lista" role="status"></p>
 </div>
 
@@ -288,21 +316,24 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <section class="spiega">
   <h2>Come leggerla</h2>
-  <p>I <b>dodici prodotti di partenza</b> hanno i prezzi letti a mano, uno per uno, dalle pagine
-  dei volantini. Il confronto è per unità e cambia col prodotto: la carne al chilo, il latte al
-  litro, le uova all'uovo, la carta igienica al rotolo, il detersivo a lavaggio. Al chilo il
-  detersivo darebbe un numero vero e inutile.</p>
-  <p>Se <b>aggiungi un prodotto nuovo</b>, quello i prezzi non ce li ha ancora: ti dice in quali pagine
-  dei volantini compare la parola, e il prezzo lo leggi tu aprendo il PDF a quella pagina. Se
-  però scrivi una parola che questa pagina già conosce — «caffe», «bovino», «uovo» — si
-  riaggancia da sola ai prezzi giusti.</p>
-  <p><b>La stessa cosa si chiama in modi diversi</b>, e il volantino ne usa uno solo: quello che
-  tu chiami detersivo lì è scritto «lavatrice», la carne di bue è «bovino» o «scottona». Perciò
-  puoi mettere <b>più nomi separati da virgola</b> — per esempio
-  <i>yogurt, yogurth, vasetti</i> — e la pagina ti trova tutte le pagine dove compare
-  <b>almeno uno</b> di quei nomi. Il primo è quello che leggi sul bottone, gli altri lavorano
-  sotto e te li fa vedere sotto il titolo. Vale anche su «Cambia nome»: si apre già con tutti i
-  nomi che sta usando, e li correggi.</p>
+  <p>In cima ci sono <b>i prodotti che hai scelto tu</b>. Per cambiarli tocca
+  <b>«+ altri prodotti»</b>: si apre un cassetto con tutto il catalogo, diviso per reparto come
+  il negozio. Tocca un prodotto per accenderlo, toccalo di nuovo per spegnerlo, poi «Fatto».
+  <b>Nessuno deve chiedere niente a nessuno</b>: ognuno accende i suoi, sul suo telefono.</p>
+  <p>Nel cassetto c'è anche <b>una casella per cercare</b>, e cerca anche fra i nomi che usa il
+  volantino: scrivendo «bovino» trovi la carne di bue, scrivendo «lavatrice» trovi il
+  detersivo.</p>
+  <p>I prezzi sono <b>letti a mano</b>, uno per uno, dalle pagine dei volantini. Il confronto è
+  per unità e cambia col prodotto: la carne al chilo, il latte al litro, le uova all'uovo, la
+  carta igienica al rotolo, il detersivo a lavaggio. Al chilo il detersivo darebbe un numero
+  vero e inutile.</p>
+  <p><b>Non tutte le voci del catalogo hanno già i prezzi.</b> Quelle che non ce l'hanno ancora
+  ti dicono in quali pagine dei volantini compare la parola, e il prezzo lo leggi tu aprendo la
+  pagina. Le sto leggendo a mano, un reparto per volta: compariranno senza che tu debba fare
+  niente.</p>
+  <p>Se ti serve <b>qualcosa che nel catalogo non c'è</b>, scrivilo nella casella in fondo al
+  cassetto: puoi mettere anche più nomi separati da virgola — per esempio
+  <i>tovaglioli, salviette</i> — e la pagina cerca le pagine dove compare almeno uno di quelli.</p>
   <p>Le righe segnate <span class="ev">da controllare</span> vengono da riassunti trovati
   online e possono essere sbagliate: di errori così ne ho già trovati tre.</p>
   <p>Certi prezzi valgono <b>solo con la tessera</b> — soci Coop, Lidl Plus, Bennet Club — e
@@ -319,7 +350,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <p>L'unica copia che <b>non</b> si aggiorna è il file salvato sul telefono: quello resta fermo
   al giorno in cui è stato fatto. Se ti interessa avere sempre i prezzi giusti, usa il link.</p>
   <p id="p-lista"></p>
-  <p>Un prodotto aggiunto adesso mostra <b>subito le pagine</b> dove compare, ma i
+  <p>Un prodotto acceso adesso mostra <b>subito le pagine</b> dove compare, ma i
   <b>prezzi arrivano dopo</b>: quelli vanno letti dalle pagine dei volantini a occhio, non c'è
   modo di ricavarli da soli. Quando li ho letti compaiono anche quelli, senza che dobbiate
   rifare niente.</p>
@@ -456,14 +487,20 @@ function aggiungiNuovi(mia, pubblicata) {
 function riaggancia(v) {
   if (!v || !v.nome) return v;
   v = { ...v, nome: maiuscola(v.nome) };
+  /* Una categoria salvata prima puo non esistere piu. Il 2026-09-05 «Detersivo»
+     si e diviso in lavatrice, lavastoviglie e ammorbidente: chi aveva quel
+     bottone si sarebbe ritrovato un prodotto che non trova piu nessun prezzo,
+     senza capire perche. Quindi una categoria che il catalogo non conosce si
+     butta e si riprova ad agganciare dal nome. */
+  if (v.cat && !DATI.catalogo.some(x => x.nome === v.cat)) v = { ...v, cat: null };
   if (v.cat) return v;
   const nomi = [v.nome].concat(v.parole || []).map(norm);
-  const seme = DATI.partenza.find(x =>
+  const seme = DATI.catalogo.find(x =>
     nomi.includes(norm(x.nome)) || (x.parole || []).some(w => nomi.includes(norm(w))));
   if (!seme) return v;
   const parole = (v.parole || []).slice();
   seme.parole.forEach(p => { if (!parole.some(x => norm(x) === norm(p))) parole.push(p); });
-  return { nome: maiuscola(v.nome), parole, cat: seme.cat };
+  return { nome: maiuscola(v.nome), parole, cat: seme.nome };
 }
 function salvaLocale() {
   segnaVisti(lista.map(v => v.nome));   // cosi un prodotto tolto non ricompare
@@ -574,14 +611,14 @@ function costruisci(testo) {
   let seme = null;
   for (const t of termini) {
     const n = norm(t);
-    seme = DATI.partenza.find(x => norm(x.nome) === n || (x.parole || []).some(w => norm(w) === n));
+    seme = DATI.catalogo.find(x => norm(x.nome) === n || (x.parole || []).some(w => norm(w) === n));
     if (seme) break;
   }
   const parole = [];
   for (const p of termini.concat(seme ? seme.parole : [])) {
     if (!parole.some(x => norm(x) === norm(p))) parole.push(p);
   }
-  return { nome: maiuscola(termini[0]), parole, cat: seme ? seme.cat : null };
+  return { nome: maiuscola(termini[0]), parole, cat: seme ? seme.nome : null };
 }
 
 /* ---------- barra dei prodotti ---------- */
@@ -595,20 +632,86 @@ function disegnaTasti() {
     b.onclick = () => {
       const cambiato = scelto !== i;
       scelto = i; tutteLePagine = false;
-      document.getElementById('form-agg').classList.remove('on');
+      if (cassettoAperto) apriCassetto(false);
       disegna();
       if (cambiato) inCima();
     };
     box.appendChild(b);
   });
   const piu = document.createElement('button');
-  piu.type = 'button'; piu.className = 'tasto agg'; piu.textContent = '+ aggiungi';
-  piu.onclick = () => {
-    const f = document.getElementById('form-agg');
-    f.classList.add('on');
-    document.getElementById('nuovo').focus();
-  };
+  piu.type = 'button'; piu.className = 'tasto agg';
+  piu.textContent = cassettoAperto ? 'Chiudi' : '+ altri prodotti';
+  piu.setAttribute('aria-expanded', String(cassettoAperto));
+  piu.setAttribute('aria-controls', 'cassetto');
+  piu.onclick = () => { apriCassetto(!cassettoAperto); };
   box.appendChild(piu);
+}
+
+/* IL CASSETTO. Chiesto da Manlio il 2026-09-05: scrivere il nome di un
+   prodotto per aggiungerlo era scomodo, e chi non ero io non poteva farlo.
+   Adesso c'e un catalogo gia pronto, diviso per reparto come il negozio, e
+   ognuno accende i suoi. La fila dei bottoni in cima resta identica: chi non
+   tocca «+ altri prodotti» non si accorge nemmeno che il catalogo esiste. */
+let cassettoAperto = false;
+
+function apriCassetto(si) {
+  cassettoAperto = si;
+  const c = document.getElementById('cassetto');
+  c.hidden = !si;
+  disegnaTasti();
+  if (si) { disegnaScaffali(); document.getElementById('cerca').focus(); }
+  else { document.getElementById('cerca').value = ''; }
+}
+
+function inLista(nome) {
+  return lista.some(v => norm(v.nome) === norm(nome) || norm(v.cat || '') === norm(nome));
+}
+
+function accendi(nome) {
+  const voce = DATI.catalogo.find(x => x.nome === nome);
+  if (!voce) return;
+  if (inLista(nome)) {
+    /* Spegnendo si toglie sia il prodotto col suo nome sia quello che punta a
+       quella categoria con un nome diverso: se no il bottone resta li. */
+    lista = lista.filter(v => norm(v.nome) !== norm(nome) && norm(v.cat || '') !== norm(nome));
+    if (scelto >= lista.length) scelto = Math.max(0, lista.length - 1);
+  } else {
+    lista.push({ nome: voce.nome, parole: voce.parole.slice(), cat: voce.nome });
+    scelto = lista.length - 1;
+    tutteLePagine = false;
+  }
+  salva(); disegnaScaffali(); disegna();
+}
+
+function disegnaScaffali() {
+  const box = document.getElementById('scaffali');
+  const cerca = document.getElementById('cerca');
+  const filtro = norm(cerca ? cerca.value.trim() : '');
+  box.textContent = '';
+  let quanti = 0;
+  DATI.reparti.forEach(rep => {
+    const voci = DATI.catalogo.filter(v => v.rep === rep && (!filtro
+      || norm(v.nome).includes(filtro) || v.parole.some(w => norm(w).includes(filtro))));
+    if (!voci.length) return;
+    quanti += voci.length;
+    const h = document.createElement('p');
+    h.className = 'reparto'; h.textContent = rep;
+    box.appendChild(h);
+    const fila = document.createElement('div');
+    fila.className = 'tasti';
+    voci.forEach(v => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'tasto'; b.textContent = v.nome;
+      b.setAttribute('aria-pressed', String(inLista(v.nome)));
+      b.onclick = () => accendi(v.nome);
+      fila.appendChild(b);
+    });
+    box.appendChild(fila);
+  });
+  const f = document.getElementById('fuori-catalogo');
+  f.textContent = quanti
+    ? 'Non c\u2019\u00e8 quello che cerchi? Scrivilo qui sopra: cerco la parola nelle pagine dei volantini.'
+    : 'Nel catalogo non c\u2019\u00e8 niente con questo nome. Scrivilo lo stesso qui sopra: cerco la parola nelle pagine dei volantini.';
 }
 
 /* Cambiando prodotto si torna all'inizio del suo elenco.
@@ -816,6 +919,9 @@ DATI.volantini.forEach(v => {
   ul.appendChild(li);
 });
 
+document.getElementById('cerca').oninput = disegnaScaffali;
+document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
+
 document.getElementById('form-agg').onsubmit = ev => {
   ev.preventDefault();
   const c = document.getElementById('nuovo');
@@ -827,7 +933,7 @@ document.getElementById('form-agg').onsubmit = ev => {
   scelto = lista.length - 1;
   tutteLePagine = false;
   c.value = '';
-  document.getElementById('form-agg').classList.remove('on');
+  apriCassetto(false);
   salva(); disegna();
 };
 

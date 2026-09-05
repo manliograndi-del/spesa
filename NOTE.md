@@ -467,6 +467,44 @@ e il caffè in capsule sta col macinato (al chilo costa cinque volte tanto). E l
 carta igienica Regina è «4 rotoloni pari a 12 rotoli»: il conto usa i 12
 dichiarati sul pacco, e la nota dice quanto fa sui 4 veri.
 
+### Il catalogo e il cassetto
+
+Chiesto da Manlio il 2026-09-05, dopo aver visto tre proposte disegnate e
+provate col dito (ha scelto la prima, il cassetto per reparti, con dentro la
+ricerca della seconda).
+
+Il problema che risolve, con le sue parole: «il sistema di copiare la lista e
+poi inviartela è scomodo, inefficiente, e può essere fatto solo da me».
+Aggiungere un prodotto voleva dire scriverne il nome e poi aspettare che io ne
+leggessi i prezzi. Adesso **il catalogo è già pronto e ognuno accende i suoi**,
+sul suo telefono, senza chiedere niente a nessuno.
+
+`catalogo.py` tiene **66 voci in 9 reparti**, ognuna con nome, parole del
+volantino e **unità di confronto**. È l'unico posto dove stanno le categorie:
+prima `UNITA` era una lista a parte dentro `dati.py` e a ogni categoria nuova
+bisognava ricordarsi di aggiungerla in due posti. `dati.py` adesso si ferma con
+un errore chiaro se un prezzo finisce in una categoria che il catalogo non ha —
+prima quel prezzo si caricava e non lo vedeva nessuno, in silenzio.
+
+**Le categorie grosse si sono divise, e questo rompe le liste salvate.**
+«Detersivo» è diventato lavatrice, lavastoviglie e ammorbidente; «Formaggio»
+ha lasciato andare mozzarella, grana, spalmabili e ricotta; «Suino» ha lasciato
+andare tutti i salumi. Serviva: un elenco che mescola parmigiano e mozzarella
+mette in cima l'offerta sbagliata. Ma chi aveva il bottone «Detersivo» si
+sarebbe ritrovato un prodotto senza più nessun prezzo. Perciò `riaggancia()`
+**butta una categoria che il catalogo non conosce** e riprova ad agganciare dal
+nome. Non toglierlo.
+
+Il cassetto sta dentro la barra, chiuso. Chi non tocca «+ altri prodotti» non
+si accorge nemmeno che il catalogo esiste — era la ragione per cui questa
+proposta ha vinto sulle altre due. La ricerca filtra **anche sulle parole del
+volantino**: «bovino» trova «Carne di bue». La casella per scrivere un nome
+libero non è sparita, è finita in fondo al cassetto: serve per quello che nel
+catalogo non c'è.
+
+`prova-cassetto.js` apre, cerca, accende, spegne e richiude, e pretende che un
+prodotto acceso dal cassetto mostri davvero i suoi prezzi.
+
 ### Più nomi per lo stesso prodotto
 
 Chiesto da Manlio il 2026-09-02: «ci sono delle cose che possono essere salvate
