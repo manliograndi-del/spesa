@@ -461,6 +461,27 @@ La `textarea` sotto il bottone **non è un di più**: negli artifact la scrittur
 negli appunti può essere negata in silenzio, e in quel caso il testo deve
 restare lì da selezionare a mano. Il `catch` scrive cosa fare.
 
+### I volantini nuovi si leggono in anticipo, e si vede
+
+Chiesto da Manlio: prendere il volantino nuovo **il giorno prima** che scada il
+vecchio. Il 2026-09-05 quella regola ha mostrato il suo lato scomodo: Eurospin
+e MD scadevano il 6, ma i volantini nuovi partivano l'**8** (MD) e il **10**
+(Eurospin). Metterli dentro e basta avrebbe fatto comparire in cima all'elenco,
+col bollo «il meno caro», prezzi che in cassa non gli avrebbero fatto per altri
+cinque giorni.
+
+Quindi `VOLANTINI` ha un campo in più, **`inizio`**: se c'è ed è nel futuro, la
+pagina mette quelle righe **in fondo** al loro elenco, toglie loro il bollo «il
+meno caro» e ci scrive sopra **«vale dal 10 settembre»**; nell'elenco dei
+volantini l'insegna esce segnata «non ancora cominciato». `prova-quando.js`
+controlla proprio questo: nessuna riga non ancora valida sopra una valida, e
+nessuna col bollo del più conveniente.
+
+`VOLANTINI` è diventato una lista di **namedtuple**. Aggiungere un campo a delle
+tuple nude avrebbe fatto saltare in una volta gli otto punti che le
+spacchettavano per posizione; con i nomi, chi non usa il campo nuovo non se ne
+accorge. Il prossimo campo si aggiunge senza paura.
+
 ### I volantini si rinnovano da soli
 
 Chiesto il 2026-09-03: prendere il volantino nuovo **il giorno prima** che
@@ -511,11 +532,21 @@ a occhio 14 prezzi dalle pagine del suo sostituto, e sul sito in linea si
 contano 126 prezzi e sette volantini, nessuno scaduto. Prima erano 113 e otto,
 con quello vecchio ancora in elenco.
 
-**La prova vera è il 2026-09-05**: Eurospin e MD scadono il 6, quindi tocca alla
-Routine rinnovarli da sola. Se il giorno dopo il sito nomina ancora «dal 24
-agosto al 6 settembre», la Routine non ha funzionato e va guardata prima di
-fidarsene di nuovo. Nel prompt c'è scritto a chiare lettere che un giro con
-qualcosa da fare **non può finire in silenzio**.
+**La prova del 2026-09-05 è andata male.** La Routine è partita alle 04:07, ha
+lavorato **diciassette minuti** (324.000 gettoni, 5,28 dollari) e ha finito
+senza nessun commit, nessuna ripubblicazione e nessun messaggio — il terzo
+giro a vuoto di fila, e di nuovo in silenzio, che è la cosa che il prompt le
+vietava esplicitamente. Le riparazioni del giorno prima le hanno dato più
+strada da fare, non l'hanno fatta arrivare in fondo.
+
+**Quello che si sa e quello che non si sa.** Si sa che ha lavorato sul serio
+(diciassette minuti e quel consumo non sono un giro a vuoto) e che non ha
+pubblicato. Non si sa dove si sia fermata: la sessione che parte da una Routine
+non lascia niente da leggere qui, e finché è così ogni diagnosi è un'ipotesi.
+**Perciò il rinnovo non si lascia più solo a lei.** Finché non la si vede
+arrivare in fondo almeno una volta, i volantini nuovi si mettono a mano — come
+il 4 e il 5 settembre — e la Routine vale come tentativo, non come garanzia.
+Dirlo a Manlio in questi termini, non promettergli che «adesso funziona».
 
 **I PDF non si accumulano da nessuna parte**: vivono nella cartella di lavoro
 della sessione, che è temporanea e sparisce da sola. Le copie che ha Manlio sono
@@ -555,6 +586,16 @@ zaini di scuola e quello dei frigoriferi. Controllare sempre le parole che
 l'OCR tira fuori: se saltano fuori «quaderni» e «zaino», è quello sbagliato.
 Dei cinque volantini Nova Coop, quelli di spesa sono **Sottocosto** ed
 **Extra offerte**.
+
+**La fonte risponde 200 anche quando la pagina non c'è.** Il 2026-09-05
+`volantino-eurospin-2026-09-07-p-01.jpg` ha risposto **200 con un'immagine da
+1,2 KB**: non esisteva. E anche i 403 arrivano con un corpo di quella misura.
+In più, chiedendo tante pagine di fila, il sito ne molla qualcuna con una
+risposta da ~12 KB che sembra un errore e non lo è: rallentando torna buona.
+Perciò `scarica.py` **guarda la dimensione, non il codice** — sotto i 20 KB non
+è una pagina di volantino — e riprova tre volte prima di rinunciare. Contare le
+pagine fermandosi al primo buco dà numeri sbagliati: l'Eurospin risultava di 5
+pagine invece di 22.
 
 **Da Ipercoop molti prezzi sono riservati ai soci Coop** e sul volantino ci sono
 tutti e due, barrato e scontato. Nell'Excel e nella pagina ho messo il prezzo

@@ -13,7 +13,7 @@ from dati import VOLANTINI
 # Le insegne e i periodi NON si riscrivono qui: vengono da dati.py, che è
 # l'unico posto dove stanno. Prima erano copiati anche qui dentro, e la copia
 # restava indietro: il 2026-09-04 nominava ancora un volantino tolto.
-META = {c: (i, p) for c, i, p, _, _, _ in VOLANTINI}
+META = {v.chiave: (v.insegna, v.periodo) for v in VOLANTINI}
 
 VOC = set('aeiouàèéìòù')
 

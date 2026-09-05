@@ -20,7 +20,8 @@ FAI = '--fai' in sys.argv
 oggi = datetime.date.today()
 
 da_rinnovare, da_cancellare = [], []
-for chiave, insegna, periodo, pdf, fino, _ in VOLANTINI:
+for v in VOLANTINI:
+    chiave, insegna, pdf, fino = v.chiave, v.insegna, v.pdf, v.fino
     giorni = (datetime.date.fromisoformat(fino) - oggi).days
     if giorni <= 1:
         da_rinnovare.append((chiave, insegna, fino, giorni))

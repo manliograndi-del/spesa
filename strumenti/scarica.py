@@ -18,7 +18,8 @@ UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120'
 soltanto = set(sys.argv[1:])
 
 righe = []
-for chiave, insegna, _, _, _, modello in VOLANTINI:
+for v in VOLANTINI:
+    chiave, modello = v.chiave, v.indirizzo
     if soltanto and chiave not in soltanto:
         continue
     os.makedirs(f'pg/{chiave}', exist_ok=True)
@@ -31,12 +32,17 @@ if not righe:
     print('niente da scaricare')
 else:
     open('urls.txt', 'w').write('\n'.join(righe) + '\n')
-    # -f fa fallire curl sui 404, così le pagine oltre la fine del volantino
-    # non restano sul disco come file vuoti che poi l'OCR conta come pagine.
-    subprocess.run(['xargs', '-a', 'urls.txt', '-P', '12', '-n', '2', 'sh', '-c',
-                    f'curl -sSf -o "$0" --max-time 35 -A "{UA}" "$1" >/dev/null 2>&1 || rm -f "$0"'])
+    # -f fa fallire curl sui 404. Non basta: il 2026-09-05 la fonte ha risposto
+    # **200 con un'immagine finta da 1,2 KB** per una pagina che non esiste, e
+    # anche i 403 arrivano con un corpo di quella misura. Quindi si guarda la
+    # DIMENSIONE, non il codice: sotto i 20 KB non e una pagina di volantino.
+    # E si riprova tre volte, perche la fonte ogni tanto molla una pagina buona.
+    subprocess.run(['xargs', '-a', 'urls.txt', '-P', '8', '-n', '2', 'sh', '-c',
+                    'for t in 1 2 3; do '
+                    f'curl -sS -o "$0" --max-time 40 -A "{UA}" "$1" >/dev/null 2>&1'
+                    ' && [ "$(stat -c%s "$0")" -gt 20000 ] && exit 0; sleep 2; done; rm -f "$0"'])
 
-for chiave, insegna, *_ in VOLANTINI:
-    d = f'pg/{chiave}'
+for v in VOLANTINI:
+    d = f'pg/{v.chiave}'
     if os.path.isdir(d):
-        print(f'{chiave:16s} {len(os.listdir(d)):3d} pagine')
+        print(f'{v.chiave:16s} {len(os.listdir(d)):3d} pagine')

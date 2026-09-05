@@ -21,8 +21,8 @@ import json, os
 from dati import PRODOTTI, VOLANTINI, UNITA, D
 from lista import PARTENZA
 
-PDF     = {c: f for c, _, _, f, _, _ in VOLANTINI}
-MODELLO = {c: m for c, _, _, _, _, m in VOLANTINI}
+PDF     = {v.chiave: v.pdf for v in VOLANTINI}
+MODELLO = {v.chiave: v.indirizzo for v in VOLANTINI}
 
 def indirizzo(chiave, n):
     """L'indirizzo pubblico di una pagina del volantino, per renderla cliccabile.
@@ -31,12 +31,29 @@ def indirizzo(chiave, n):
     if not n or chiave not in MODELLO:
         return None
     return MODELLO[chiave].format(n=n)
-PERIODO = {c: p for c, _, p, _, _, _ in VOLANTINI}
+PERIODO = {v.chiave: v.periodo for v in VOLANTINI}
+
+import datetime as _dt
+_oggi = _dt.date.today()
+
+def _futuro(vol):
+    """Vero se il volantino non e ancora cominciato.
+
+    Serve perche i volantini nuovi si leggono in anticipo: quello dell'Eurospin
+    del 2026-09-05 partiva il 10. Senza questo, i suoi prezzi sarebbero finiti
+    in cima all'elenco come se valessero oggi — proprio la cosa che Manlio ha
+    chiesto di evitare quando ha detto di prendere il volantino nuovo il giorno
+    prima «perche tutto rimanga sempre aggiornato»."""
+    return bool(vol.inizio) and _dt.date.fromisoformat(vol.inizio) > _oggi
+
+FUTURO = {v.chiave: _futuro(v) for v in VOLANTINI}
+INIZIO = {v.chiave: v.inizio for v in VOLANTINI}
 
 offerte = [dict(cat=cat, ins=ins, rep=rep, pro=pro, fmt=fmt, prezzo=pre,
                 unitario=round(pre / qta, 3), pag=pag, pdf=PDF[chiave],
                 url=indirizzo(chiave, pag),
-                periodo=PERIODO[chiave], dubbio=(fon == D), note=note)
+                periodo=PERIODO[chiave], dubbio=(fon == D), note=note,
+                futuro=FUTURO[chiave], inizio=INIZIO[chiave])
            for cat, ins, chiave, rep, pro, fmt, qta, pre, pag, fon, note in PRODOTTI]
 
 # indice.json sta nel progetto, non nella cartella di lavoro: le immagini dei
@@ -56,17 +73,16 @@ pagine = sorted((dict(ins=r['insegna'], periodo=r['validita'], pdf=PDF.get(r['ch
                  for r in idx),
                 key=lambda r: (r['ins'], r['periodo'], r['pag']))
 
-import datetime as _dt
-_oggi = _dt.date.today()
 MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
         'settembre ottobre novembre dicembre').split()
 # La data in fondo alla pagina si calcola: scritta a mano era rimasta indietro
 # di due giorni e Manlio l'ha fotografata mentre si contraddiceva da sola.
 OGGI = f'{_oggi.day} {MESI[_oggi.month - 1]} {_oggi.year}'
-volantini = [v for v in (dict(ins=i, periodo=p, pdf=f,
-                              pagine=len([x for x in pagine if x['pdf'] == f]),
-                              scaduto=_dt.date.fromisoformat(fino) < _oggi)
-                         for c, i, p, f, fino, _ in VOLANTINI) if v['pagine']]
+volantini = [x for x in (dict(ins=v.insegna, periodo=v.periodo, pdf=v.pdf,
+                              pagine=len([y for y in pagine if y['pdf'] == v.pdf]),
+                              scaduto=_dt.date.fromisoformat(v.fino) < _oggi,
+                              futuro=FUTURO[v.chiave])
+                         for v in VOLANTINI) if x['pagine']]
 
 partenza = [dict(nome=n, parole=p, cat=c) for n, p, c in PARTENZA]
 
@@ -189,6 +205,7 @@ h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;mar
   border-radius:5px;padding:3px 8px}
 .bollo.meno{background:var(--verde-tenue);color:var(--verde)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
+.bollo.dopo{background:#E9EEF6;color:#2B4A7A}
 .prezzo-riga .nota{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--tenue)}
 .prezzo-riga .dove{grid-column:1/-1;margin:6px 0 0;font-size:13px;color:var(--tenue);
   border-left:3px solid var(--linea);padding-left:9px}
@@ -453,7 +470,24 @@ let lista = leggiLista();
 let scelto = 0;
 let tutteLePagine = false;
 
-const offerteDi = v => v.cat ? DATI.offerte.filter(o => o.cat === v.cat) : [];
+/* Le offerte gia in corso prima, quelle che devono ancora cominciare dopo.
+   I volantini nuovi si leggono in anticipo — quello dell'Eurospin letto il
+   5 settembre partiva il 10 — e senza questo si sarebbero piazzate in cima
+   con tanto di bollo «il meno caro» pur non valendo ancora niente in cassa. */
+/* «2026-09-10» -> «10 settembre»: la data grezza in mezzo a un bollo non si
+   legge, e l'anno non serve a chi guarda le offerte di questa settimana. */
+const MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
+  + 'settembre ottobre novembre dicembre').split(' ');
+function giorno(iso) {
+  if (!iso) return '';
+  const p = iso.split('-');
+  return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1];
+}
+
+const offerteDi = v => v.cat
+  ? DATI.offerte.filter(o => o.cat === v.cat)
+      .slice().sort((a, b) => (a.futuro ? 1 : 0) - (b.futuro ? 1 : 0))
+  : [];
 
 /* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
    Se non ha nomi alternativi si cerca il nome stesso. */
@@ -535,7 +569,9 @@ function rigaPrezzo(o, primo) {
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const coda = d.querySelector('.coda');
-  if (primo) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
+  if (primo && !o.futuro) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
+  if (o.futuro) coda.insertAdjacentHTML('beforeend',
+    '<span class="bollo dopo">vale dal ' + giorno(o.inizio) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
   if (o.note) {
@@ -685,8 +721,9 @@ DATI.volantini.forEach(v => {
   const li = document.createElement('li');
   li.innerHTML = `<span><span class="i"></span> <span class="p"></span></span><span class="n"></span>`;
   li.querySelector('.i').textContent = v.ins;
-  li.querySelector('.p').textContent = v.periodo + (v.scaduto ? ' — scaduto' : '');
-  if (v.scaduto) li.querySelector('.p').style.color = 'var(--ambra)';
+  li.querySelector('.p').textContent = v.periodo
+    + (v.scaduto ? ' — scaduto' : v.futuro ? ' — non ancora cominciato' : '');
+  if (v.scaduto || v.futuro) li.querySelector('.p').style.color = 'var(--ambra)';
   li.querySelector('.n').textContent = v.pagine + ' pag.';
   ul.appendChild(li);
 });
