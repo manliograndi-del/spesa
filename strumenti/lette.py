@@ -14,9 +14,11 @@ era difficile, erano tutti dietro una pagina che non avevo aperto.
     python3 -m lette              quante pagine per volantino
     python3 -m lette bennet       quali pagine del Bennet mancano
 
-Una pagina si conta «letta» se almeno un prezzo la nomina. E una misura per
-difetto — una pagina di detersivi guardata e scartata risulta non letta — ma
-sbaglia dalla parte giusta: meglio riaprirla per niente che non aprirla mai.
+Una pagina si conta «vista» se almeno un prezzo la nomina OPPURE se sta in
+scartate.py, cioe l'ho aperta e non c'era niente da prendere: quaderni,
+pubblicita, offerte che danno solo punti premio. Regola di Manlio: una volta
+guardata, lasciala perdere. Quello che non si puo fare e scartarla senza
+averla aperta — e cosi che mi sono perso la pescheria del Bennet.
 
 Non e una prova che fallisce: e un promemoria. Il 100% non e l'obiettivo, un
 volantino ha pagine di pentole e di quaderni. Serve a non credere di aver
@@ -24,6 +26,7 @@ guardato tutto quando si e guardato un quarto.
 """
 import json, os, sys, collections
 from dati import OFFERTE, VOLANTINI
+from scartate import SCARTATE
 
 def coperture():
     dove = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'indice.json')
@@ -36,6 +39,12 @@ def coperture():
     for o in OFFERTE:
         if o.pag:
             lette[o.chiave].add(o.pag)
+    # Una pagina guardata e scartata E' FATTA, non da fare. Senza questo, le
+    # pagine di pentole e di quaderni restavano per sempre nell'elenco e la
+    # volta dopo le riaprivo.
+    for chiave, pagine in SCARTATE.items():
+        if chiave in tutte:
+            lette[chiave] |= set(pagine)
     return tutte, lette
 
 if __name__ == '__main__':

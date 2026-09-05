@@ -1060,6 +1060,41 @@ sbaglia per difetto, ed è la parte giusta da cui sbagliare.
 **La cura vera è leggere i volantini per intero, pagina per pagina, invece di
 interrogarli.** Mercatò oggi è al 66% perché è l'unico letto così.
 
+## Le pagine da lasciar perdere
+
+Regola di Manlio, 2026-09-05, subito dopo aver visto che leggo un quarto delle
+pagine: «una volta che hai visto una pagina piena di quaderni o di pubblicità o
+di offerte che danno solo punti premio, lasciala perdere».
+
+`strumenti/scartate.py` tiene l'elenco delle pagine **guardate e scartate**, col
+motivo scritto per esteso. `lette.py` le conta come fatte, così spariscono
+dalle cose da fare e non le riapro il mese prossimo. Prima una pagina di pentole
+restava per sempre nell'elenco del lavoro da fare, indistinguibile da una mai
+aperta.
+
+**La riga che non si può oltrepassare:** si scarta solo dopo aver **aperto** la
+pagina. Mai dal titolo, mai dall'OCR. È esattamente saltando pagine senza
+guardarle che mi sono perso la pescheria del Bennet, che dall'OCR sembrava una
+pagina qualunque.
+
+E il motivo va scritto: «pentole, pile, calze» serve fra un mese a capire se lo
+scarto era giusto; «niente» non serve a nessuno.
+
+### Mercatò è il primo volantino finito: 36 pagine su 36
+
+Le sei pagine saltate dal primo giro erano birra, vino, merendine, sapone,
+dentifricio — **cinque categorie che per Mercatò risultavano vuote** — più sei
+pagine davvero da buttare (cartoleria, raccolta punti FILA, pentole).
+
+Il totale è passato dal 23% al 27%. Sembra poco, ma è tutto concentrato dove
+serve: il negozio dove Manlio va quasi tutti i giorni adesso è completo, e da
+lì sono usciti 62 prezzi nuovi e cinque nuovi primati.
+
+**L'ordine giusto in cui leggerli è per scadenza, non per grandezza.** Avevo
+cominciato dall'Ipercoop Extra perché era il più trascurato (8% di 57 pagine),
+e scade il 9 settembre: cinquantadue pagine per quattro giorni di validità.
+Prima i volantini che durano.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
