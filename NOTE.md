@@ -1,5 +1,10 @@
 # Spesa — offerte dei supermercati
 
+> **Le regole da sapere prima di toccare qualcosa stanno in `CLAUDE.md`**, che è
+> corto e si legge da solo all'avvio di una sessione. Questo file è la storia
+> lunga: il perché di ogni scelta, cosa è stato provato e com'è andato. Vacci
+> quando CLAUDE.md non basta, e **prima di rifare qualcosa che sembra mancare**.
+
 Progetto separato dalla Palestra, chiesto da Manlio il 2026-09-02.
 Vive in questa cartella per non toccare `index.html`, che è l'app della palestra.
 
