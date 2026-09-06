@@ -122,6 +122,24 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
+## Da fare adesso (aggiornato il 2026-09-06)
+
+- **Leggere per intero i volantini che durano**, nell'ordine: Carrefour Iper
+  (39 pagine mai aperte, scade il 17), MD dall'8 (27 pagine, scade il 20),
+  Eurospin dal 10 (13 pagine, scade il 20). `python3 -m lette <chiave>` dà i
+  numeri delle pagine. Lidl e Ipercoop conviene leggerli quando escono i nuovi:
+  i loro scadono il 12 e il 9.
+- **Due categorie restano senza prezzi**: Vitello e Zucchero. Vedere se è vero
+  o se è un buco, con la regola qui sopra.
+- **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
+  sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
+  applicarle e rifare il PDF con `python3 -m stampa`.
+- **La pagina delle novità è pronta ma non pubblicata**: `novita.py` funziona e
+  il diario gira ogni giorno, ma il tasto e la pagina lui li ha rimandati
+  («faremo il pulsante e le pagine dopo»). In NOTE.md c'è come rimetterla.
+- **Restano a lui**: reinstallare l'icona dal nuovo indirizzo e mandare il link
+  alla moglie.
+
 ## File del progetto
 
 - `index.html` — il sito pubblicato (generato, non si modifica a mano)
