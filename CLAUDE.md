@@ -125,15 +125,13 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-07)
 
-- **CHIEDERE A MANLIO DEL CARREFOUR.** L'ultima pagina del volantino Carrefour
-  Iper elenca gli ipermercati in cui le offerte valgono, e **a Torino non ce
-  n'è nessuno**: Assago, Carugate, Gallarate, Limbiate, Paderno Dugnano, Pavia,
-  Giussano, Domodossola, Novara, Gavirate, Tavernerio, Luino, Udine. Nei negozi
-  Carrefour di Torino valgono, dice il volantino, solo i **non alimentari** col
-  bollino verde. Oggi il Carrefour Iper è il più conveniente in 14 categorie:
-  se lui non ci va, quelle righe lo mandano a vuoto. La fonte pubblica
-  un'edizione sola, quindi non basta cambiare volantino. Nel frattempo la
-  pagina lo scrive, in fondo, accanto alla nota su Mercatò.
+- **Il Carrefour è a posto, non riaprire la questione.** L'ultima pagina del suo
+  volantino elenca gli ipermercati in cui vale e Torino non c'è: il 2026-09-07
+  ho concluso che a Torino valessero solo i non alimentari e ho messo un avviso
+  in pagina. **Manlio ha detto che è sbagliato** — «le offerte ci sono a Torino
+  e valgono davvero» — e l'avviso è stato tolto. Chi rilegge quel volantino
+  ritroverà l'elenco e rifarà lo stesso ragionamento: fermati qui. In NOTE.md
+  c'è per esteso.
 - **Leggere per intero i volantini che durano**, nell'ordine: MD dall'8
   (27 pagine mai aperte, scade il 20), Eurospin dal 10 (13 pagine, scade il 20).
   `python3 -m lette <chiave>` dà i numeri delle pagine. Lidl e Ipercoop conviene

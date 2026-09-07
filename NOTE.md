@@ -1141,46 +1141,37 @@ Provato piantandone una. Le date sulla riga restano per il caso vero: la pagina
 «Weekend più uno» dell'MD, valida dal 18 al 21 dentro un volantino che va
 dall'8 al 20.
 
-## Il Carrefour Iper non è il negozio di Torino
+## Il Carrefour: l'elenco dei negozi spaventa, ma le offerte a Torino ci sono
 
-Trovato il 2026-09-07 leggendo l'ultima pagina del volantino, cioè la pagina che
-non avevo mai aperto in quattro sessioni di lavoro su quell'insegna.
+Il 2026-09-07, leggendo il volantino Carrefour per intero, sull'ultima pagina ho
+trovato l'elenco degli ipermercati in cui le offerte valgono:
 
-    LE OFFERTE DI QUESTO CATALOGO SONO VALIDE NEI SEGUENTI IPERMERCATI:
     ASSAGO, CARUGATE, GALLARATE V.LE MILANO 163, GALLARATE MALPENSA, LIMBIATE,
     PADERNO DUGNANO, PAVIA, GIUSSANO, DOMODOSSOLA, NOVARA GIULIO CESARE,
     GAVIRATE, TAVERNERIO, LUINO, UDINE.
 
-Torino non c'è. E il piè di pagina delle pagine non alimentari lo dice
+Torino non c'è, e il piè di pagina delle pagine non alimentari sembra dirlo
 dall'altro verso: «SOLO I PRODOTTI NON ALIMENTARI CONTRASSEGNATI CON QUESTO
-SIMBOLO SONO DISPONIBILI ANCHE NEI PUNTI VENDITA PIÙ PICCOLI», e lì Torino
-c'è — corso Bramante, corso Grosseto, Moncalieri, Rivalta, Chivasso, Leinì,
-Pinerolo. Quindi a Torino di questo volantino vale **solo il non alimentare**.
+SIMBOLO SONO DISPONIBILI ANCHE NEI PUNTI VENDITA PIÙ PICCOLI», e lì Torino c'è.
+Ho concluso che a Torino valesse solo il non alimentare, ho lasciato i prezzi e
+ho messo un avviso in fondo alla pagina.
 
-**Perché è grave.** Dopo la lettura del 2026-09-07 il Carrefour Iper è il più
-conveniente in **quattordici** categorie: latte, pasta, mozzarella, grana,
-cereali, legumi, gelato, vino, birra, suino, shampoo, sapone, carta cucina,
-detersivo per la lavastoviglie. Sono esattamente le righe col bollino verde,
-quelle su cui uno decide dove andare. È il caso peggiore previsto da
-«una novità falsa è peggio di nessuna novità: manda uno in negozio».
+**Manlio ha detto che è sbagliato**, lo stesso giorno: «le offerte ci sono a
+Torino e valgono davvero». Lui in quei negozi ci va e alla cassa ci paga; io
+avevo solo la lettura di un elenco stampato. **L'avviso è stato tolto.**
 
-**Perché non si risolve cambiando volantino.** anteprimavolantino pubblica
-un'edizione sola per insegna: cercando «carrefour» escono un Iper, un Market e
-un Express per periodo, non uno per regione. Il Carrefour Market del 4 settembre
-porta stampato in costina `CM_NORD_EST_SM`, cioè Nord-Est: neanche quello è
-Torino. E il Market Manlio l'aveva fatto togliere lui il 2026-09-02.
+**Non rimetterlo.** Chi rilegge quel volantino ritroverà lo stesso elenco e
+farà lo stesso ragionamento: è scritto qui apposta perché si fermi prima. Se
+un domani si volesse riaprire la questione, non si riapre leggendo meglio la
+pagina — si chiede a lui, che è l'unico che può sapere cosa gli fanno pagare.
 
-**Cosa si è fatto intanto.** I prezzi restano — sono veri, e sono le stesse
-righe che c'erano già prima che me ne accorgessi — e la pagina lo scrive in
-fondo, nel riquadro dei volantini, accanto alla nota su Mercatò. **La decisione
-è di Manlio**: tenere il Carrefour sapendo com'è, toglierlo, o dire in quale
-negozio va davvero. Finché non risponde, non togliere l'avvertenza.
+La regola generale, che vale oltre questo caso: **su cosa succede davvero in
+negozio, l'ultima parola è di chi ci entra.** Io posso leggere il volantino;
+lui ci fa la spesa. Dove le due cose non combaciano, vince lui, e quello che
+resta da fare è scriverlo qui.
 
-**La lezione, che è la quarta volta.** Pizze, Mercatò, pesce, e adesso questo:
-tutte e quattro erano dietro una pagina che non avevo aperto. Le prime tre erano
-prezzi mancanti, questa è peggio — erano prezzi presenti e forse non validi. La
-copertina e **l'ultima pagina** vanno lette per prime: dicono le date e dicono
-i negozi, cioè le due cose che rendono vero tutto il resto.
+Quello che invece **resta vero e utile** di quella lettura è la data: vedi
+sotto.
 
 ## Il Carrefour scadeva il 13, non il 17
 
