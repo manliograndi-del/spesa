@@ -411,6 +411,12 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <p style="margin-top:12px">Di Mercatò si legge il volantino del punto vendita di
   <b>via Filadelfia 232</b>. Mercatò Local, Big ed Extra sono insegne diverse con volantini
   diversi: quello di via Demargherita, per dire, è un Local e queste offerte non sono le sue.</p>
+  <p><b>Il volantino del Carrefour Iper non è quello di Torino.</b> L'ultima pagina elenca
+  gli ipermercati in cui vale — Assago, Carugate, Gallarate, Limbiate, Paderno Dugnano,
+  Pavia, Giussano, Domodossola, Novara, Gavirate, Tavernerio, Luino, Udine — e a Torino
+  non ce n'è nessuno. Nei negozi Carrefour di Torino, dice il volantino stesso, valgono
+  <b>solo gli articoli non alimentari</b> col bollino verde. Prima di andarci per uno di
+  questi prezzi, chiedi: potrebbero non fartelo.</p>
 </section>
 
 <footer id="pie"></footer>

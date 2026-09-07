@@ -3,7 +3,11 @@
    senza che lui tocchi niente. */
 const fs = require('fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
-const file = '/tmp/claude-0/-home-user-palestra/b21c6dd3-3a99-5234-9c27-3c0412932a88/scratchpad/vol/out/sito.html';
+// Il file si passa da fuori, come fanno tutte le altre prove. Qui c'era
+// incollato il percorso della cartella di lavoro di una sessione vecchia:
+// quella cartella e sparita con la sessione, e da allora questa prova
+// falliva sempre — cioe l'ultimo passo di prove.sh non provava piu niente.
+const file = process.argv[2] || 'out/sito.html';
 
 const sua = JSON.stringify([
   { nome: 'Carne di bue', parole: ['bovino','scottona'], cat: 'Carne di bue' },
@@ -16,12 +20,12 @@ const sua = JSON.stringify([
 
 const errori = [];
 const dom = new JSDOM(fs.readFileSync(file, 'utf8'), {
-  runScripts: 'outside-only', url: 'https://manliograndi-del.github.io/palestra/spesa/',
+  runScripts: 'outside-only', url: 'https://manliograndi-del.github.io/spesa/',
 });
 dom.window.localStorage.setItem('spesa.lista.v1', sua);
 const dom2 = new JSDOM(fs.readFileSync(file, 'utf8'), {
   runScripts: 'dangerously', pretendToBeVisual: true,
-  url: 'https://manliograndi-del.github.io/palestra/spesa/',
+  url: 'https://manliograndi-del.github.io/spesa/',
   virtualConsole: new VirtualConsole().on('jsdomError', e => errori.push(String(e.detail || e.message).split('\n')[0])),
   beforeParse(w) { w.localStorage.setItem('spesa.lista.v1', sua); },
 });

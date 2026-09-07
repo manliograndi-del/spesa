@@ -81,7 +81,8 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 - **Prima i volantini che durano**, non i più trascurati: leggere 52 pagine di
   un volantino che scade fra quattro giorni è tempo buttato.
 - **`python3 -m lette`** dice la copertura, e `lette <chiave>` elenca le pagine
-  mai aperte. Al 2026-09-06: 91 pagine lette su 332. Mercatò è l'unico al 100%.
+  mai aperte. Al 2026-09-07: 130 pagine lette su 332. Mercatò e Carrefour Iper
+  sono al 100%, letti per intero.
 - Una pagina di quaderni, pubblicità o punti premio **si scarta**, e si scrive
   in `strumenti/scartate.py` col motivo, così non torna nell'elenco delle cose
   da fare. Regola sua: «una volta che l'hai vista, lasciala perdere».
@@ -122,15 +123,28 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-06)
+## Da fare adesso (aggiornato il 2026-09-07)
 
-- **Leggere per intero i volantini che durano**, nell'ordine: Carrefour Iper
-  (39 pagine mai aperte, scade il 17), MD dall'8 (27 pagine, scade il 20),
-  Eurospin dal 10 (13 pagine, scade il 20). `python3 -m lette <chiave>` dà i
-  numeri delle pagine. Lidl e Ipercoop conviene leggerli quando escono i nuovi:
-  i loro scadono il 12 e il 9.
-- **Due categorie restano senza prezzi**: Vitello e Zucchero. Vedere se è vero
-  o se è un buco, con la regola qui sopra.
+- **CHIEDERE A MANLIO DEL CARREFOUR.** L'ultima pagina del volantino Carrefour
+  Iper elenca gli ipermercati in cui le offerte valgono, e **a Torino non ce
+  n'è nessuno**: Assago, Carugate, Gallarate, Limbiate, Paderno Dugnano, Pavia,
+  Giussano, Domodossola, Novara, Gavirate, Tavernerio, Luino, Udine. Nei negozi
+  Carrefour di Torino valgono, dice il volantino, solo i **non alimentari** col
+  bollino verde. Oggi il Carrefour Iper è il più conveniente in 14 categorie:
+  se lui non ci va, quelle righe lo mandano a vuoto. La fonte pubblica
+  un'edizione sola, quindi non basta cambiare volantino. Nel frattempo la
+  pagina lo scrive, in fondo, accanto alla nota su Mercatò.
+- **Leggere per intero i volantini che durano**, nell'ordine: MD dall'8
+  (27 pagine mai aperte, scade il 20), Eurospin dal 10 (13 pagine, scade il 20).
+  `python3 -m lette <chiave>` dà i numeri delle pagine. Lidl e Ipercoop conviene
+  leggerli quando escono i nuovi: i loro scadono il 12 e il 9.
+- **Due categorie restano senza prezzi**: Vitello e Zucchero. Le 39 pagine del
+  Carrefour lette il 2026-09-07 non ne avevano nessuna delle due, quindi il
+  buco si assottiglia ma non è ancora chiuso.
+- **Il diario delle novità non produce differenze da un clone nuovo**:
+  `storia/stato.json` è in `.gitignore` di proposito, quindi la sessione che
+  rigenera parte senza fotografia e scrive «prima fotografia» invece del
+  giorno. Finché la pagina delle novità resta spenta non fa danno.
 - **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
   sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
   applicarle e rifare il PDF con `python3 -m stampa`.

@@ -1141,6 +1141,72 @@ Provato piantandone una. Le date sulla riga restano per il caso vero: la pagina
 «Weekend più uno» dell'MD, valida dal 18 al 21 dentro un volantino che va
 dall'8 al 20.
 
+## Il Carrefour Iper non è il negozio di Torino
+
+Trovato il 2026-09-07 leggendo l'ultima pagina del volantino, cioè la pagina che
+non avevo mai aperto in quattro sessioni di lavoro su quell'insegna.
+
+    LE OFFERTE DI QUESTO CATALOGO SONO VALIDE NEI SEGUENTI IPERMERCATI:
+    ASSAGO, CARUGATE, GALLARATE V.LE MILANO 163, GALLARATE MALPENSA, LIMBIATE,
+    PADERNO DUGNANO, PAVIA, GIUSSANO, DOMODOSSOLA, NOVARA GIULIO CESARE,
+    GAVIRATE, TAVERNERIO, LUINO, UDINE.
+
+Torino non c'è. E il piè di pagina delle pagine non alimentari lo dice
+dall'altro verso: «SOLO I PRODOTTI NON ALIMENTARI CONTRASSEGNATI CON QUESTO
+SIMBOLO SONO DISPONIBILI ANCHE NEI PUNTI VENDITA PIÙ PICCOLI», e lì Torino
+c'è — corso Bramante, corso Grosseto, Moncalieri, Rivalta, Chivasso, Leinì,
+Pinerolo. Quindi a Torino di questo volantino vale **solo il non alimentare**.
+
+**Perché è grave.** Dopo la lettura del 2026-09-07 il Carrefour Iper è il più
+conveniente in **quattordici** categorie: latte, pasta, mozzarella, grana,
+cereali, legumi, gelato, vino, birra, suino, shampoo, sapone, carta cucina,
+detersivo per la lavastoviglie. Sono esattamente le righe col bollino verde,
+quelle su cui uno decide dove andare. È il caso peggiore previsto da
+«una novità falsa è peggio di nessuna novità: manda uno in negozio».
+
+**Perché non si risolve cambiando volantino.** anteprimavolantino pubblica
+un'edizione sola per insegna: cercando «carrefour» escono un Iper, un Market e
+un Express per periodo, non uno per regione. Il Carrefour Market del 4 settembre
+porta stampato in costina `CM_NORD_EST_SM`, cioè Nord-Est: neanche quello è
+Torino. E il Market Manlio l'aveva fatto togliere lui il 2026-09-02.
+
+**Cosa si è fatto intanto.** I prezzi restano — sono veri, e sono le stesse
+righe che c'erano già prima che me ne accorgessi — e la pagina lo scrive in
+fondo, nel riquadro dei volantini, accanto alla nota su Mercatò. **La decisione
+è di Manlio**: tenere il Carrefour sapendo com'è, toglierlo, o dire in quale
+negozio va davvero. Finché non risponde, non togliere l'avvertenza.
+
+**La lezione, che è la quarta volta.** Pizze, Mercatò, pesce, e adesso questo:
+tutte e quattro erano dietro una pagina che non avevo aperto. Le prime tre erano
+prezzi mancanti, questa è peggio — erano prezzi presenti e forse non validi. La
+copertina e **l'ultima pagina** vanno lette per prime: dicono le date e dicono
+i negozi, cioè le due cose che rendono vero tutto il resto.
+
+## Il Carrefour scadeva il 13, non il 17
+
+Stessa lettura, stesso giorno. `dati.py` diceva `2026-09-17` con scritto «fine
+stimata» nel periodo: la copertina dice **«DAL 4 AL 13 SETTEMBRE»**. La stima
+teneva in vita le offerte quattro giorni oltre la fine, e il 14 settembre la
+pagina avrebbe dato per buoni prezzi finiti — proprio la cosa che il giudizio
+lasciato al browser serve a evitare. Adesso è la data vera.
+
+Il volantino ha anche una pagina «96 ORE (S)CONTATE» valida solo dal 10 al 13:
+è il secondo caso di offerta ristretta dopo il «Weekend più uno» dell'MD, e si
+scrive allo stesso modo, coi due campi in fondo alla riga.
+
+## La prova che non provava più niente
+
+`prova-maiuscole.js` aveva incollato dentro il percorso assoluto della cartella
+di lavoro della sessione che l'aveva scritta. Quella cartella se n'è andata con
+la sessione, quindi da allora l'**ultimo passo di `prove.sh` moriva sempre** con
+un ENOENT — e `prove.sh` è il comando che decide se si pubblica. Adesso il file
+si passa da fuori come in tutte le altre prove, e `prove.sh` glielo passa.
+L'indirizzo finto dentro la prova puntava ancora a `/palestra/spesa/`, che non
+esiste dal 2026-09-04: corretto anche quello.
+
+Regola che ne esce: **niente percorsi della cartella di lavoro dentro gli
+strumenti.** Vive quanto la sessione, e muore in silenzio.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
