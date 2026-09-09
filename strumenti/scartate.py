@@ -57,4 +57,16 @@ SCARTATE = {
    48: 'pigiami, calze, slip, scarpe',
    49: 'abbigliamento uomo: felpe, t-shirt, jeans, scarpe',
  },
+ # Guardate una per una il 2026-09-09, leggendo il volantino per intero.
+ 'bennet0903': {
+   1:  'copertina: solo il titolo e le date, nessun prezzo',
+   20: 'regolamento del buono sconto del 50%: come si prende e come si spende',
+   30: 'caffettiere, padelle, tortiere, thermos, borracce, tazze',
+   31: 'tovaglie, strofinacci, presine, tappeti da cucina, cuscini',
+   32: 'pubblicita: il volantino Bennet su WhatsApp',
+   33: "pubblicita: l'app Bennet",
+   34: 'pubblicita: bennetdrive, ordina online e ritira in negozio',
+   35: 'pubblicita: catalogo Bennet Club 2026',
+   36: 'quarta di copertina: di nuovo il buono del 50% e i recapiti',
+ },
 }
