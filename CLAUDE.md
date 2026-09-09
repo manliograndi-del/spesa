@@ -81,8 +81,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 - **Prima i volantini che durano**, non i più trascurati: leggere 52 pagine di
   un volantino che scade fra quattro giorni è tempo buttato.
 - **`python3 -m lette`** dice la copertura, e `lette <chiave>` elenca le pagine
-  mai aperte. Al 2026-09-07: 130 pagine lette su 332. Mercatò e Carrefour Iper
-  sono al 100%, letti per intero.
+  mai aperte. Al 2026-09-09: 160 pagine lette su 313. Mercatò, Carrefour Iper e
+  il Bennet «Dolce Buongiorno» sono al 100%, letti per intero.
+- **Cercare i volantini nuovi non è la stessa cosa che guardare le scadenze.**
+  `pulisci.py` dice solo cosa sta scadendo di quello che hai già. Le insegne però
+  pubblicano volantini che si sovrappongono: il Bennet «Dolce Buongiorno» è
+  uscito il 3 settembre mentre il Bennet vecchio era ancora valido, e per sei
+  giorni non l'ha visto nessuno. **A ogni giro guarda anche cosa è USCITO**, non
+  solo cosa muore.
 - Una pagina di quaderni, pubblicità o punti premio **si scarta**, e si scrive
   in `strumenti/scartate.py` col motivo, così non torna nell'elenco delle cose
   da fare. Regola sua: «una volta che l'hai vista, lasciala perdere».
@@ -123,7 +129,7 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-07)
+## Da fare adesso (aggiornato il 2026-09-09)
 
 - **Il Carrefour è a posto, non riaprire la questione.** L'ultima pagina del suo
   volantino elenca gli ipermercati in cui vale e Torino non c'è: il 2026-09-07
@@ -132,13 +138,20 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   e valgono davvero» — e l'avviso è stato tolto. Chi rilegge quel volantino
   ritroverà l'elenco e rifarà lo stesso ragionamento: fermati qui. In NOTE.md
   c'è per esteso.
+- **Prendere i volantini nuovi di Bennet e Ipercoop**: i loro sono scaduti il
+  9 settembre e i sostituti non erano ancora usciti quel giorno. Vanno cercati
+  di nuovo, e quando arrivano vanno tolte le righe dei vecchi (`bennet`,
+  `ipercoop`, `ipercoop_extra`) da `dati.py` e da `scartate.py`.
 - **Leggere per intero i volantini che durano**, nell'ordine: MD dall'8
   (27 pagine mai aperte, scade il 20), Eurospin dal 10 (13 pagine, scade il 20).
-  `python3 -m lette <chiave>` dà i numeri delle pagine. Lidl e Ipercoop conviene
-  leggerli quando escono i nuovi: i loro scadono il 12 e il 9.
-- **Due categorie restano senza prezzi**: Vitello e Zucchero. Le 39 pagine del
-  Carrefour lette il 2026-09-07 non ne avevano nessuna delle due, quindi il
-  buco si assottiglia ma non è ancora chiuso.
+  `python3 -m lette <chiave>` dà i numeri delle pagine.
+- **Resta senza prezzi solo il Vitello.** Lo Zucchero l'ha chiuso il Bennet del
+  9 settembre. Il vitello va cercato nelle pagine di macelleria dei volantini
+  ancora da leggere.
+- **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
+  il codice**: parte, lavora quattro minuti e non lascia traccia. In NOTE.md c'è
+  quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
+  si vede arrivare in fondo almeno una volta, **i volantini si mettono a mano**.
 - **Il diario delle novità non produce differenze da un clone nuovo**:
   `storia/stato.json` è in `.gitignore` di proposito, quindi la sessione che
   rigenera parte senza fotografia e scrive «prima fotografia» invece del

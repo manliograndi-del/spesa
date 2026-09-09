@@ -1198,6 +1198,83 @@ esiste dal 2026-09-04: corretto anche quello.
 Regola che ne esce: **niente percorsi della cartella di lavoro dentro gli
 strumenti.** Vive quanto la sessione, e muore in silenzio.
 
+## Il controllo giornaliero guardava solo le scadenze, non gli arrivi
+
+Il 2026-09-09 Manlio ha chiesto come stessero andando gli aggiornamenti
+automatici. Guardando invece di ricordare:
+
+- la Routine c'e, e attiva, e parte tutte le mattine verso le 04:07 UTC;
+- l'ultima partenza (9 settembre) e durata **quattro minuti**, 117.000 gettoni,
+  0,88 dollari, su Sonnet, e il sistema la segna «riuscita»;
+- in `registro.txt` l'ultima riga e del **5 settembre**, e l'ultimo commit sul
+  progetto e quello fatto a mano il 7. Quel giorno c'era da fare: due volantini
+  scaduti da tre giorni e tre in scadenza.
+
+«Riuscita» vuol dire che la sessione e partita e si e chiusa, **non** che il
+lavoro sia stato fatto. E il prompt le dice che la primissima cosa da scrivere
+nel registro, appena clonato, e «clonato»: quella riga non c'e. Quindi non si e
+fermata alla fine, si e fermata vicino all'inizio. Piu di cosi non si sa: una
+sessione partita dal timer non lascia niente che si possa riaprire da qui.
+
+**Il buco di progettazione, invece, si vede ed e grosso.** `pulisci.py` risponde
+a una domanda sola: «di quello che ho gia, cosa scade?». Non chiede mai «e uscito
+qualcosa di nuovo?». Cosi il volantino Bennet «Dolce Buongiorno» del 3 settembre
+e rimasto fuori per sei giorni: il Bennet vecchio era ancora valido, quindi per
+`pulisci` non c'era niente da fare, e nessuno e andato a guardare. L'ho trovato
+il 9 settembre cercando il *sostituto* del Bennet in scadenza.
+
+**Le insegne pubblicano volantini che si sovrappongono.** Bennet ne aveva due
+insieme: quello generale (27 agosto-9 settembre) e questo a tema colazione
+(3-16 settembre). Non e un caso raro ed e esattamente quello che la domanda
+«cosa scade?» non puo vedere.
+
+### Perche a mano riesce e da sola no
+
+Manlio: «se l'aggiornamento lo sai fare manuale perche non dovresti farlo anche
+automatico». La domanda e giusta e la risposta non e «e difficile»:
+
+1. **La misura del lavoro.** Leggere un volantino intero vuol dire aprire 36
+   immagini una per una e scriverne i prezzi a mano: qui, oggi, sono state ore e
+   centinaia di migliaia di gettoni. Quattro minuti non sono «poco tempo», sono
+   un altro ordine di grandezza.
+2. **Il costo di partenza.** Prima di poter cominciare, la sessione automatica
+   deve leggere CLAUDE.md e NOTE.md (millequattrocento righe fra i due), clonare,
+   installare jsdom e tesseract. E la partenza a freddo di ogni singolo giorno.
+3. **Nessuno la guarda.** Qui, quando mi fermo, Manlio mi rimette in riga. Li non
+   c'e nessuno, e il prompt le concede una via d'uscita legittima («se non c'e
+   niente da fare, fermati e non scrivere a nessuno») che da fuori e
+   indistinguibile dall'essersi arresa.
+
+**La conseguenza pratica, e la cosa da non dimenticare:** finche il giro
+automatico non lo si vede arrivare in fondo almeno una volta, **vale come
+tentativo, non come garanzia**, e i volantini nuovi si mettono a mano. Era gia
+scritto qui il 5 settembre e resta vero.
+
+La strada che ha senso non e chiedergli di fare tutto: e **spezzarlo in due**.
+Accorgersi che e uscito un volantino nuovo costa minuti e lo puo fare da sola;
+leggerlo pagina per pagina costa ore e conviene farlo in una sessione dove
+Manlio c'e. Meglio una sveglia che dice «e uscito il Bennet nuovo, dimmi quando»
+che una che promette tutto e tace.
+
+## La pulizia dei volantini vecchi: dove si accumulano davvero
+
+Manlio, 2026-09-09: «anche se non li vedo piu e importante fare pulizia dei
+volantini vecchi altrimenti in poco tempo avremo una montagna di volantini».
+Ha ragione, e vale la pena scrivere **dove** cresce la montagna, perche non e
+dove sembra.
+
+Non nei PDF e nelle immagini: quelli vivono nella cartella di lavoro della
+sessione e spariscono da soli. Cresce in tre posti dentro il progetto:
+
+- le righe in `VOLANTINI` e i loro prezzi in `PRODOTTI` dentro `dati.py`;
+- le pagine in **`indice.json`**, che e il file grosso: le 55 pagine di Eurospin
+  e MD tolte il 9 settembre erano un sesto dell'archivio;
+- le pagine in `scartate.py`, che valgono solo per quel volantino.
+
+`indice.py` la pulizia la fa gia da solo (`righe = [r for r in righe if
+r['chiave'] in META]`): basta togliere il volantino da `dati.py` e rilanciarlo.
+Gli altri due si tolgono a mano, ed e la parte che si dimentica.
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
