@@ -58,13 +58,15 @@ Pubblicata in due posti, **e vanno aggiornati tutti e due**:
     python3 -m indice              # aggiorna indice.json
     python3 -m pagina              # le tre copie in out/
     python3 -m storia              # il diario delle novità del giorno
+    python3 -m novita              # la pagina delle novità (tasto in alto a destra)
     python3 -m stampa              # il PDF del catalogo da stampare
     python3 -m lette               # quante pagine ho letto davvero
     bash <progetto>/strumenti/prove.sh    # TUTTE le prove
     python3 -m pulizia out/sito.html      # codice rimasto in giro
 
-Poi `cp out/sito.html index.html`, `cp out/catalogo.pdf catalogo.pdf`, alza
-`sw.js`, commit, push, e ripubblica l'artifact.
+Poi `cp out/sito.html index.html`, `cp out/novita.html novita.html`,
+`cp out/catalogo.pdf catalogo.pdf`, alza `sw.js`, commit, push, e ripubblica
+l'artifact.
 
 **`prove.sh` è il comando che conta.** Una pagina che non passa non si pubblica.
 Serve `npm install` dentro il progetto.
@@ -159,9 +161,6 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 - **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
   sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
   applicarle e rifare il PDF con `python3 -m stampa`.
-- **La pagina delle novità è pronta ma non pubblicata**: `novita.py` funziona e
-  il diario gira ogni giorno, ma il tasto e la pagina lui li ha rimandati
-  («faremo il pulsante e le pagine dopo»). In NOTE.md c'è come rimetterla.
 - **Restano a lui**: reinstallare l'icona dal nuovo indirizzo e mandare il link
   alla moglie.
 

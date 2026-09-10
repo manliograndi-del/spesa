@@ -167,6 +167,15 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 .dove{color:var(--rosso);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
 .sottotitolo{color:var(--tenue);margin:8px 0 0;font-size:14px;max-width:62ch}
+/* Il tasto «Novità», in alto a destra. Punta all'INDIRIZZO COMPLETO e non a
+   «./novita.html»: la copia di Claude non ha una cartella accanto a se, e un
+   collegamento relativo di la porterebbe nel vuoto. Si apre in una finestra
+   nuova cosi non si perde il posto nell'elenco dei prezzi. */
+.novita{flex:none;display:inline-flex;align-items:center;gap:6px;
+  background:var(--rosso);color:var(--su-rosso);text-decoration:none;
+  border-radius:99px;padding:9px 15px;font-size:14px;font-weight:700;
+  letter-spacing:.02em;min-height:40px;line-height:1;white-space:nowrap}
+.novita::after{content:'\2197';font-weight:600}
 
 /* ---- barra dei prodotti ---- */
 .barra{position:sticky;top:0;z-index:20;background:var(--carta);
@@ -322,6 +331,8 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <p class="dove">Torino · Corso Siracusa
       <button type="button" class="info" aria-expanded="false"
               aria-label="Come funziona questa pagina">i</button></p>
+    <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
+       target="_blank" rel="noopener noreferrer">Novità</a>
   </div>
   <h1>La lista della spesa</h1>
   <div class="dettaglio" id="dett-testa" hidden>

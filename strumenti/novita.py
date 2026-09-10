@@ -191,7 +191,15 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--linea);
 
 <script>
 const GIORNI = __GIORNI__;
-let sette = false;
+
+/* SI APRE DOVE C'E' QUALCOSA, non per forza su «Oggi».
+   E' la stessa lezione dello Storico della Palestra: quel calendario si apriva
+   sul mese corrente e il 2026-09-01, con il mese nuovo ancora vuoto, Manlio ha
+   creduto di aver perso tutti i dati. Qui capiterebbe piu spesso ancora,
+   perche i volantini non cambiano tutti i giorni: aprire su un «Oggi» vuoto
+   fa sembrare che la pagina non funzioni. Se oggi non c'e niente, si parte
+   dai sette giorni; i tasti restano tutti e due. */
+let sette = !GIORNI[0].roba;
 
 function disegna() {
   const dentro = document.getElementById('dentro');
