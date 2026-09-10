@@ -4,3 +4,4 @@
 2026-09-10 08:17 UTC  pulisci: scadono Bennet e Ipercoop (ipercoop + ipercoop_extra) al 9/9, già scaduti ieri
 2026-09-10 08:34 UTC  uscito: Bennet nuovo (10-23 set, 35 pagine) e Lidl nuovo (10-16 set, sottocosto al 12, 58 pagine); Ipercoop ha solo un volantino a sconto percentuale senza prezzi, non usabile; Mercatò/Eurospin/MD/Carrefour Iper senza novità oltre quanto già in dati.py
 2026-09-10 08:45 UTC  letto Bennet nuovo (10-23 set, 35/35 pagine); tolti dal catalogo Bennet e Ipercoop scaduti (9 set) con le loro 115 righe di prezzo
+2026-09-10 08:58 UTC  letto Lidl nuovo (10-16 set, 58/58 pagine): volantino intero coi prezzi veri, sottocosto e sezione da lunedì 14 comprese
