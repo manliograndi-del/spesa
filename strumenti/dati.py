@@ -69,6 +69,8 @@ VOLANTINI = [
  _v('ipercoop_extra', 'Ipercoop',       'Extra offerte, dal 27 agosto al 9 settembre',  'Ipercoop Extra offerte — 27 agosto-9 settembre.pdf','2026-09-09', _VP + '/2/8/4/5/1/pagine/{n}.jpg'),
  _v('bennet0903',    'Bennet',         'Dolce Buongiorno, dal 3 al 16 settembre',      'Bennet Dolce Buongiorno — 3-16 settembre.pdf',      '2026-09-16', _AV + '/2026/09/volantino-bennet-2026-09-03-p-{n:05d}.jpg'),
  _v('carriper04',     'Carrefour Iper', 'dal 4 al 13 settembre',                        'Carrefour Iper — 4-13 settembre.pdf',               '2026-09-13', _AV + '/2026/09/volantino-carrefour-iper-2026-09-04-p-{n:05d}.jpg'),
+ _v('bennet10',       'Bennet',         'dal 10 al 23 settembre',                       'Bennet — 10-23 settembre.pdf',                      '2026-09-23', _AV + '/2026/09/volantino-bennet-2026-09-10-p-{n:05d}.jpg'),
+ _v('lidl10',         'Lidl',           'dal 10 al 16 settembre (sottocosto fino al 12)', 'Lidl — 10-16 settembre.pdf',                        '2026-09-16', _AV + '/2026/09/volantino-lidl-2026-09-10-p-{n:05d}.jpg'),
 
  # In arrivo: letti in anticipo, con la data d'inizio. Fino a quel giorno la
  # pagina li segna «dal ...» invece di farli passare per offerte di oggi.
