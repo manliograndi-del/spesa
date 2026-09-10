@@ -74,6 +74,15 @@ SCARTATE = {
  # di base: non si puo calcolare un prezzo vero (vedi anche l'Ipercoop dello
  # stesso giorno, stesso formato).
  # Guardate una per una il 2026-09-10, leggendo le pagine mai aperte prima.
+ 'eurospin10': {
+   9:  'pubblicità: accettazione buoni pasto, nessun prezzo di spesa',
+   16: 'mobili e arredo per la casa (appendiabiti, scaffali, stiro, TV, soundbar)',
+   17: 'accessori per la pulizia della casa (panni, mop, aspirapolvere, scope elettriche)',
+   18: 'abbigliamento e calzature uomo/donna, elettrodomestici da stiro',
+   19: 'attrezzi e arredo da giardino',
+   20: 'pubblicità: EuroSpin Viaggi, hotel in Italia',
+   21: 'pubblicità: EuroSpin Viaggi, viaggi all\'estero',
+ },
  'md08': {
    7:  'pubblicità: ricetta GialloZafferano coi peperoni, nessun prezzo',
    15: 'piccoli elettrodomestici da colazione (tazzine, cappuccinatore, spremiagrumi, vassoio da letto)',
