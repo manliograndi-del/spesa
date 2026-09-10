@@ -69,4 +69,31 @@ SCARTATE = {
    35: 'pubblicita: catalogo Bennet Club 2026',
    36: 'quarta di copertina: di nuovo il buono del 50% e i recapiti',
  },
+ # Guardate una per una il 2026-09-10, leggendo il volantino per intero. La
+ # maggior parte e sconto percentuale su intere linee di marca, senza prezzo
+ # di base: non si puo calcolare un prezzo vero (vedi anche l'Ipercoop dello
+ # stesso giorno, stesso formato).
+ 'bennet10': {
+   1:  'copertina: solo il titolo e le date, nessun prezzo',
+   2:  'sconto 50% su intere linee di marca (Müller, Divella, Fini, Rana, Wudy), senza prezzo di base',
+   3:  'sconto 50% su intere linee di marca (Buitoni, Magnum, 4 Salti in Padella, Curtiriso, Pomì/De Rica), senza prezzo di base',
+   4:  'sconto 50% su intere linee di marca (Garofalo, Morato, San Bernardo, San Benedetto, Tenuta Ca\' Vescovo), senza prezzo di base',
+   5:  'sconto 50% su intere linee di marca (Colgate, Neutro Roberts, Dash, Foxy, Duracell, Implux), senza prezzo di base',
+   6:  'sconto 40% su intere linee di marca (Gocciole, Lemon Soda, Settesoli, Sammontana, Amadori, Findus), senza prezzo di base',
+   7:  'sconto 40% su intere linee di marca (Pizzoli, Findus, Viva la Mamma, Galbani, KV Nordic, Yomo, Fruttolo), senza prezzo di base',
+   8:  'sconto 40% su intere linee di marca (Spuma di Sciampagna, Omino Bianco, Mareblu, Clemente, Mio, La Vangadizza), senza prezzo di base',
+   9:  'sconto 40% su intere linee di marca (Lines, pentole Moneta, Tempo, Fresh&Clean, cibo per animali Adoc, Frigoverre, Loctite, Selenia), senza prezzo di base',
+   10: 'sconto 30% su intere linee di marca (Orogel, Magnum, Frosta, Parmalat/Zymil/Chef, Parmareggio, Philadelphia), senza prezzo di base',
+   11: 'sconto 30% su intere linee di marca (Ferrari, Beretta, Bonduelle, Lavazza, Novi), senza prezzo di base',
+   12: 'sconto 30% su intere linee di marca (Coca Cola, Ichnusa, Raffo, Angelo Poretti, Capetta, Monster, Yoga, Loacker), senza prezzo di base',
+   13: 'sconto 30% su intere linee di marca (Garnier, Lines Specialist, Swiffer, Vileda, Diavolina, Ariasana), senza prezzo di base',
+   26: 'piante da vaso, fiori, cibo e lettiere per cani e gatti: nessuna categoria del catalogo',
+   27: 'abbigliamento, accappatoi, calze, ciabatte, scarpe',
+   28: 'scatole, candele, bicchieri, caraffe, contenitori, stendibiancheria, zerbini',
+   29: 'articoli di cartoleria e giochi per bambini',
+   32: 'pubblicita: l\'app Bennet',
+   33: 'pubblicita: bennetdrive, ordina online e ritira in negozio',
+   34: 'pubblicita: catalogo Bennet Club 2026',
+   35: 'quarta di copertina: elenco dei negozi dove vale la promozione, nessun prezzo',
+ },
 }
