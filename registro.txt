@@ -7,3 +7,4 @@
 2026-09-10 08:58 UTC  letto Lidl nuovo (10-16 set, 58/58 pagine): volantino intero coi prezzi veri, sottocosto e sezione da lunedì 14 comprese
 2026-09-10 09:04 UTC  letto MD per intero (35/35 pagine): mancavano 27 pagine, ora tutte lette
 2026-09-10 09:07 UTC  letto Eurospin per intero (22/22 pagine): mancavano 13 pagine, ora tutte lette. Copertura totale 90%
+2026-09-10 09:12 UTC  pubblicato: sito e catalogo aggiornati, sw.js a v29, tutte le prove passate
