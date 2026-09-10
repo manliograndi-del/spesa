@@ -890,20 +890,34 @@ pagine invece di 22.
 tutti e due, barrato e scontato. Nell'Excel e nella pagina ho messo il prezzo
 soci scrivendolo nelle note, perché è quello che paga lui se ha la tessera.
 
-## La pagina delle novità — fatta, poi messa via
+## La pagina delle novità — messa via, e rimessa il 2026-09-10
 
 Fatta il 2026-09-05 e **tolta lo stesso giorno**, su richiesta di Manlio: «sono
 andato a vedere la pagina novità ed è vuota per adesso, lasciala perdere e
 togli anche il pulsante». Aveva ragione — il diario era partito quella mattina,
 e una pagina che non ha niente da dire è solo un tasto in più.
 
-**`novita.py` e il diario restano.** `storia.py` continua a segnare cosa cambia
-a ogni giro, quindi quando la pagina tornerà avrà una storia vera da
-raccontare invece di ricominciare da zero. Per rimetterla: `python3 -m novita`,
-copiare `out/novita.html` nel progetto, rimettere il tasto `.novita` nella riga
-in alto di `pagina.py` e il file nell'elenco di `sw.js`.
+**Rimessa il 2026-09-10**, quando lui ha detto «mi sembra ora di implementarli».
+Nel frattempo il diario aveva accumulato due giornate vere, e la seconda non era
+poca roba: il 9 settembre il più conveniente è cambiato in **dieci** categorie.
 
-Quello che segue è come è fatta, per quando servirà.
+**Una cosa è stata cambiata rimettendola: adesso si apre dove c'è qualcosa.**
+Prima partiva sempre da «Oggi», e oggi era vuoto — cioè si sarebbe riaperta
+esattamente com'era il giorno in cui lui l'aveva bocciata. È la stessa lezione
+dello Storico della Palestra, che si apriva sul mese corrente e il 2026-09-01,
+col mese nuovo ancora vuoto, gli ha fatto credere di aver perso tutti i dati.
+Qui capita più spesso ancora, perché i volantini non cambiano tutti i giorni.
+Adesso, se oggi non c'è niente, parte da «Ultimi 7 giorni»; i due tasti restano
+tutti e due e si passa dall'uno all'altro. **Non rimetterlo su «Oggi» fisso.**
+
+Il tasto sta in alto a destra e punta all'**indirizzo completo** del sito, non a
+`./novita.html`: la copia di Claude non ha una cartella accanto a sé e un
+collegamento relativo di là porterebbe nel vuoto. `novita.html` sta anche
+nell'elenco di `sw.js`, così in negozio si apre senza rete.
+
+**Va rigenerata a ogni giro**, subito dopo `storia`: `python3 -m novita` e poi
+`cp out/novita.html <progetto>/novita.html`. Se te ne dimentichi, il tasto resta
+ma racconta la settimana scorsa.
 
 
 Chiesta da Manlio il 2026-09-05: le novità dell'ultimo giorno e, volendo,
