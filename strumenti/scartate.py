@@ -73,6 +73,24 @@ SCARTATE = {
  # maggior parte e sconto percentuale su intere linee di marca, senza prezzo
  # di base: non si puo calcolare un prezzo vero (vedi anche l'Ipercoop dello
  # stesso giorno, stesso formato).
+ # Guardate una per una il 2026-09-10, leggendo le pagine mai aperte prima.
+ 'md08': {
+   7:  'pubblicità: ricetta GialloZafferano coi peperoni, nessun prezzo',
+   15: 'piccoli elettrodomestici da colazione (tazzine, cappuccinatore, spremiagrumi, vassoio da letto)',
+   20: 'integratori alimentari Equilibra (gummies, bustine, flaconi): nessuna categoria del catalogo',
+   22: 'concorso a premi Calvé, ketchup e maionese: nessuna categoria del catalogo li copre',
+   16: 'elettrodomestici da cucina a marchio MXD (tritatutto, spremiagrumi, sbattitore, macchina da caffè)',
+   17: 'elettrodomestici Tognana e Zephir (sbattitore, montalatte, tostapane, frullatore, bollitore, tostiera)',
+   26: 'detergenti per la casa, cibo e accessori per animali: nessuna categoria del catalogo',
+   27: 'elettrodomestici da cucina (frullatore, sminuzzatore) e casalinghi (tortiere, taglieri, lavatrice, pattumiera)',
+   28: 'casalinghi: ceste, contenitori, pouf, cassettiera, rasoio, pulisci pori',
+   29: 'igiene orale e giochi per bambini',
+   30: 'abbigliamento e scarpe sport e tempo libero',
+   31: 'calze e calzini sportivi e da lavoro',
+   32: 'elettrodomestici grandi (microonde, forno, lavatrice, lavastoviglie, asciugatrice)',
+   33: 'pubblicità: MD Viaggi, pacchetti mare estero',
+   34: 'pubblicità: MD Viaggi, capitali europee e extraeuropee',
+ },
  'bennet10': {
    1:  'copertina: solo il titolo e le date, nessun prezzo',
    2:  'sconto 50% su intere linee di marca (Müller, Divella, Fini, Rana, Wudy), senza prezzo di base',
