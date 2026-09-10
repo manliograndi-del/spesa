@@ -46,8 +46,8 @@ Pubblicata in due posti, **e vanno aggiornati tutti e due**:
 5. **Prima di rigenerare, si legge la lista viva dalla pagina pubblicata.** Se
    non si riesce a leggerla, ci si ferma senza pubblicare: rigenerare a vuoto
    cancella la lista di prodotti loro.
-6. **A ogni rilascio si alza il numero di cache in `sw.js`** (`spesa-v24` →
-   `spesa-v25`), se no resta in giro la copia vecchia.
+6. **A ogni rilascio si alza il numero di cache in `sw.js`** (`spesa-v29` →
+   `spesa-v30`), se no resta in giro la copia vecchia.
 7. Il progetto della palestra (`manliograndi-del/palestra`) **non si tocca**.
 
 ## Come si rifà
@@ -131,7 +131,7 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-09)
+## Da fare adesso (aggiornato il 2026-09-10)
 
 - **Il Carrefour è a posto, non riaprire la questione.** L'ultima pagina del suo
   volantino elenca gli ipermercati in cui vale e Torino non c'è: il 2026-09-07
@@ -140,24 +140,49 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   e valgono davvero» — e l'avviso è stato tolto. Chi rilegge quel volantino
   ritroverà l'elenco e rifarà lo stesso ragionamento: fermati qui. In NOTE.md
   c'è per esteso.
-- **Prendere i volantini nuovi di Bennet e Ipercoop**: i loro sono scaduti il
-  9 settembre e i sostituti non erano ancora usciti quel giorno. Vanno cercati
-  di nuovo, e quando arrivano vanno tolte le righe dei vecchi (`bennet`,
-  `ipercoop`, `ipercoop_extra`) da `dati.py` e da `scartate.py`.
-- **Leggere per intero i volantini che durano**, nell'ordine: MD dall'8
-  (27 pagine mai aperte, scade il 20), Eurospin dal 10 (13 pagine, scade il 20).
-  `python3 -m lette <chiave>` dà i numeri delle pagine.
-- **Resta senza prezzi solo il Vitello.** Lo Zucchero l'ha chiuso il Bennet del
-  9 settembre. Il vitello va cercato nelle pagine di macelleria dei volantini
-  ancora da leggere.
+- **Bennet e MD e Eurospin sono stati letti per intero il 2026-09-10** (bennet10,
+  lidl10, md08, eurospin10: tutti 100%). Copertura totale: 278/308 pagine (90%).
+  Resta indietro solo il **Lidl vecchio** (`lidl`, sottocosto fino al 12
+  settembre): 6/36 pagine, ma scade fra due giorni — non vale la pena
+  finirlo, si butta quando scade (vedi sotto).
+- **L'Ipercoop non ha più un volantino con prezzi.** Il Sottocosto e l'Extra
+  offerte sono scaduti il 9; l'unico volantino Nova Coop in corso il 10
+  settembre («Scegli tu Grandi Marche», 10-23 settembre) è tutto sconti
+  percentuali su intere linee di marca, senza mai un prezzo di base: non si
+  può calcolare un prezzo vero, quindi non è stato usato. **Da controllare di
+  nuovo fra qualche giorno** se esce un Sottocosto o un Extra offerte veri.
+- **Anche il nuovo Bennet generale (bennet10, 10-23 settembre) è per lo più
+  sconti percentuali** senza prezzo di base (pagine 1-13, 21-23 in parte):
+  scartate. I prezzi veri stanno nelle pagine del banco fresco, pescheria,
+  frutta e verdura, panetteria e nella sezione «prodotto acceleratore»
+  (pagine 14-19, 30-31). La pagina Oktoberfest (20-21) scade il 4 ottobre, non
+  il 23 come il resto — occhio quando si ributta il volantino.
+- **Quando scadono `lidl` (12 settembre) e `lidl10` (16 settembre)**: togliere
+  le loro righe da `dati.py`, `VOLANTINI` e `scartate.py` con `pulisci --fai`
+  come sempre. `bennet10` scade il 23, `md08` ed `eurospin10` il 20.
+- **Resta senza prezzi solo il Vitello... anzi no: trovato.** Il Bennet nuovo
+  (bennet10, pagina 15) ha «Coscia a pezzi di vitello» a 17,99 al kg e «Reale
+  con osso di vitello» a 9,49 al kg. Aggiornare la nota in cima a questo file
+  quando si conferma che compare in pagina.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
   il codice**: parte, lavora quattro minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
   si vede arrivare in fondo almeno una volta, **i volantini si mettono a mano**.
-- **Il diario delle novità non produce differenze da un clone nuovo**:
-  `storia/stato.json` è in `.gitignore` di proposito, quindi la sessione che
-  rigenera parte senza fotografia e scrive «prima fotografia» invece del
-  giorno. Finché la pagina delle novità resta spenta non fa danno.
+  **Il 2026-09-10 la sessione da Routine è arrivata in fondo per la prima
+  volta**: ha letto quattro volantini per intero e pubblicato. Non è ancora
+  una garanzia — è un tentativo riuscito — ma è la prima prova che si può fare.
+- **Il diario delle novità è stato riacceso il 2026-09-10** da un'altra sessione
+  (su richiesta diretta di Manlio) **e questo ha smascherato il problema che
+  prima non faceva danno**: `storia/stato.json` è in `.gitignore` di proposito,
+  quindi ogni sessione nuova (clone pulito) parte senza fotografia e scrive
+  «prima fotografia» invece del giorno vero. La sessione di oggi ha rigenerato
+  `storia` due volte (una dell'altra sessione, una di questa) e la seconda ha
+  perso il confronto della prima: il 10 settembre in `storia/` **non risulterà
+  come giorno con novità vere**, anche se ne aveva parecchie (quattro volantini
+  aggiornati). Non ho toccato `.gitignore`: è una scelta loro, scritta apposta
+  («le fotografie no, le differenze sì»). Da decidere con Manlio se e come
+  fare arrivare `stato.json` da una sessione all'altra, ora che il tasto
+  Novità è acceso davvero.
 - **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
   sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
   applicarle e rifare il PDF con `python3 -m stampa`.

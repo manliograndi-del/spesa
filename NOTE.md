@@ -941,6 +941,27 @@ annunciato che il pollo più conveniente erano dei würstel a 2,29 — veri, ma
 validi dal 18 settembre, tredici giorni dopo. **Una novità falsa è peggio di
 nessuna novità: manda uno in negozio.**
 
+**Il 2026-09-10 il problema di `stato.json` è diventato vero, non più solo
+teorico.** Finché il tasto Novità era spento non faceva danno che ogni sessione
+nuova partisse senza fotografia; da quando è acceso, sì. Quel giorno due
+sessioni diverse hanno rigenerato `storia` nello stesso pomeriggio: la prima
+(quella che ha rimesso il tasto) aveva una fotografia vera di qualche ora prima
+e ha scritto un giorno vero; la seconda (questa, una Routine su un clone
+nuovo) è partita senza `stato.json` — è nel `.gitignore` apposta — e ha scritto
+sopra una «prima fotografia», perdendo il confronto. Risultato: il 10 settembre
+non compare in `storia/` come giorno con novità, anche se quel giorno sono
+stati letti per intero quattro volantini (Bennet, Lidl, MD, Eurospin) e il
+prezzo più conveniente sarà cambiato in diverse categorie. Nessun dato è
+sbagliato — la pagina dei prezzi era ed è corretta — solo il diario di quel
+giorno è muto. **Non ho tolto `stato.json` dal `.gitignore`**: è scritto
+apposta («le fotografie no, le differenze sì»), e cambiarlo da solo senza
+chiederlo sarebbe rifare la stessa cosa che ha già sbagliato altre volte questo
+progetto — decidere per lui una cosa che lui aveva scelto di proposito. Se le
+sessioni automatiche continuano a scrivere sul repo più volte al giorno da
+cloni diversi, prima o poi va deciso con Manlio come far arrivare `stato.json`
+da una sessione alla successiva (committarlo comunque? un artifact a parte?
+accettare che ogni tanto un giorno resti muto?).
+
 E `quanto()` conta anche i cambi di padrone, non solo le offerte che si
 muovono: il più conveniente può cambiare **senza che nessuna offerta cambi**,
 semplicemente perché quella di ieri è scaduta stanotte. Senza contarlo, il
