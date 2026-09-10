@@ -1,3 +1,4 @@
 2026-09-05 07:39 UTC  registro acceso: da qui in poi ogni giro lascia una traccia
 2026-09-10 08:15 UTC  sveglia: clonato
 2026-09-10 08:15 UTC  letto CLAUDE.md e NOTE.md
+2026-09-10 08:17 UTC  pulisci: scadono Bennet e Ipercoop (ipercoop + ipercoop_extra) al 9/9, già scaduti ieri
