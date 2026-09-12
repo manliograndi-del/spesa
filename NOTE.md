@@ -1310,6 +1310,42 @@ sessione e spariscono da soli. Cresce in tre posti dentro il progetto:
 r['chiave'] in META]`): basta togliere il volantino da `dati.py` e rilanciarlo.
 Gli altri due si tolgono a mano, ed e la parte che si dimentica.
 
+## Il giro automatico ce l'ha fatta — e le due cose che glielo impedivano
+
+**Il 2026-09-10 il controllo giornaliero e arrivato in fondo da solo, per la
+prima volta.** In un'ora: letti per intero quattro volantini (Bennet nuovo 35
+pagine, Lidl nuovo 58, MD 35, Eurospin 22 — centocinquanta pagine), buttati
+Bennet e Ipercoop scaduti con le loro 115 righe di prezzo, sito e catalogo
+pubblicati, prove passate, CLAUDE.md e NOTE.md aggiornati. Ha perfino unito da
+sola un commit che un'altra sessione aveva spinto nel frattempo. I prezzi sono
+passati da 937 a 1171.
+
+**Cosa gli mancava davvero: il progetto.** Fino al 9 settembre la sessione della
+sveglia nasceva vuota e doveva chiedere lei la repository con `add_repo`; quel
+9 settembre e fallita proprio li e l'ha scritto a Manlio. Il 10 Manlio ha
+**attaccato `manliograndi-del/spesa` alla Routine** (nella configurazione
+dell'ambiente, non nel prompt), e da quel momento la sessione parte col clone
+gia in mano. Era quello il muro, non il modello ne il tempo.
+
+**La seconda trappola: l'ora della sveglia.** Il 12 settembre e partita alle
+04:06 UTC ed e morta in **otto secondi** con «You've hit your weekly limit ·
+resets 5am (UTC)». Il limite settimanale si azzera alle 05:00 UTC: la sveglia
+suonava **54 minuti prima**, cioe nel minuto peggiore possibile della settimana.
+Anche l'11 settembre era andata cosi (ha scritto «clonato» e si e fermata).
+Spostata a **06:06 UTC**, dopo l'azzeramento. Se un domani la si rimette
+all'alba, si ricasca: il tetto e settimanale e finisce sempre di notte.
+
+**La morale, che vale oltre questo progetto:** per tre giorni ho cercato la
+causa nel posto sbagliato — il modello, il tempo, la dimensione del lavoro —
+mentre erano due cose di configurazione, entrambe fuori dal codice e
+invisibili da dentro. Il registro non ha risolto niente da solo, ma e servito
+esattamente a questo: senza quelle righe con l'ora non avrei potuto distinguere
+«si e arresa» da «non e mai partita».
+
+**Cosa resta vero:** un giro che legge 150 pagine costa un'ora di lavoro e una
+fetta seria del budget settimanale. Non si puo fare tutti i giorni. Il caso
+normale deve restare «niente da fare, mi fermo».
+
 ## La rete
 
 **Serve l'accesso di rete aperto.** Con l'impostazione predefinita (*Trusted*)
