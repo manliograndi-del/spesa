@@ -13,3 +13,7 @@
 2026-09-12 08:31 UTC  PROVA A MANO del giro notturno (non e la sveglia): partito
 2026-09-12 08:33 UTC  prova a mano: scadono lidl (oggi) e carriper04 (domani), ma i sostituti NON sono ancora usciti — Carrefour Iper fermo al volantino del 4 set, Nova Coop senza volantini a prezzo. Niente da mettere dentro: si riprova domani. Il lidl vecchio si butta il 14.
 2026-09-13 06:09 UTC  sveglia: clonato
+2026-09-13 06:16 UTC  controllo scadenze e novità: scadono lidl (ieri, gia coperto da lidl10 fino al 16, pulisci non lo cancella ancora per il margine di due giorni) e carriper04 (oggi)
+2026-09-13 06:16 UTC  Carrefour Iper nuovo: NON uscito. Controllato /carrefour/ (pag.1 e 2 di anteprimavolantino.it, ultimo e' ancora 'dal 4 settembre') e provati a mano gli indirizzi immagine per il 13-20/9: tutti finti (1242 byte). Seconda mattina di fila che non lo trovo (prima il 12/9): si riprova domani, non e' ancora la terza.
+2026-09-13 06:16 UTC  Lidl: in anteprima il volantino dal 17 settembre (solo copertina per ora), non urgente perche' lidl10 vale fino al 16. Bennet, Eurospin, MD, Mercato: nessuna novita' oltre a quanto gia' in dati.py. Ipercoop/Nova Coop: ancora solo 'Scegli tu Grandi Marche' a sconto percentuale, nessun Sottocosto o Extra offerte con prezzi veri.
+2026-09-13 06:16 UTC  niente da pubblicare oggi: nessun volantino nuovo con prezzi da leggere, nessuna cancellazione dovuta (pulisci: niente da cancellare). Si riprova domani.
