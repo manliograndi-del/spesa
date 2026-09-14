@@ -131,8 +131,17 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-10)
+## Da fare adesso (aggiornato il 2026-09-14)
 
+- **Il Carrefour Iper è cambiato il 14 settembre**: quello vecchio (dal 4 al 13
+  settembre) è scaduto, il nuovo (dal 15 al 28 settembre, 50 pagine) è stato
+  letto per intero e pubblicato. È in gran parte «Grandi Marche», sconti
+  percentuali su intere linee senza prezzo di base (pagine 1-11): scartate. I
+  prezzi veri stanno nelle pagine di carne, pesce, salumi, formaggi e
+  ortofrutta, più qualcosa in alimentari confezionati e bevande — 46 righe
+  nuove in `dati.py`. **Anche stavolta l'ultima pagina del volantino elenca gli
+  ipermercati dove valgono le offerte e Torino non c'è**: come deciso il
+  2026-09-07 e confermato da Manlio, non è un problema — non ci si torna sopra.
 - **Il Carrefour è a posto, non riaprire la questione.** L'ultima pagina del suo
   volantino elenca gli ipermercati in cui vale e Torino non c'è: il 2026-09-07
   ho concluso che a Torino valessero solo i non alimentari e ho messo un avviso
@@ -140,11 +149,19 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   e valgono davvero» — e l'avviso è stato tolto. Chi rilegge quel volantino
   ritroverà l'elenco e rifarà lo stesso ragionamento: fermati qui. In NOTE.md
   c'è per esteso.
-- **Bennet e MD e Eurospin sono stati letti per intero il 2026-09-10** (bennet10,
-  lidl10, md08, eurospin10: tutti 100%). Copertura totale: 278/308 pagine (90%).
+- **Il Lidl vecchio (`lidl`) va tolto**: è scaduto il 12 settembre, coperto da
+  `lidl10` fino al 16. Non ancora cancellato per il margine di due giorni che
+  vuole Manlio — la prossima sessione che lo trova scaduto da più di due giorni
+  lo tolga con `pulisci --fai` da `dati.py`, `VOLANTINI` e `scartate.py`.
+- **Il prossimo Lidl (dal 17 settembre) è ancora solo in anteprima** (sola
+  copertina) al 14 settembre: non urgente, perché `lidl10` vale fino al 16.
+  Controllare nei prossimi giorni se escono le pagine vere.
+- **Bennet e MD e Eurospin sono stati letti per intero il 2026-09-10**, e il
+  Carrefour Iper nuovo per intero il 2026-09-14 (bennet10, lidl10, md08,
+  eurospin10, carriper15: tutti 100%). Copertura totale: 328/358 pagine (91%).
   Resta indietro solo il **Lidl vecchio** (`lidl`, sottocosto fino al 12
-  settembre): 6/36 pagine, ma scade fra due giorni — non vale la pena
-  finirlo, si butta quando scade (vedi sotto).
+  settembre, ormai scaduto e da buttare): 6/36 pagine, non vale la pena
+  finirlo.
 - **L'Ipercoop non ha più un volantino con prezzi.** Il Sottocosto e l'Extra
   offerte sono scaduti il 9; l'unico volantino Nova Coop in corso il 10
   settembre («Scegli tu Grandi Marche», 10-23 settembre) è tutto sconti

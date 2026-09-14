@@ -1421,6 +1421,30 @@ confrontandoli con la pagina vera:
 Le righe che nell'Excel restano di seconda mano sono segnate in giallo e dicono
 "DA CONTROLLARE". Tutte le altre le ho lette una per una dalle pagine.
 
+## Il Carrefour Iper del 15 settembre: «Grandi Marche», come Bennet il 10/9
+
+Il 2026-09-14 la Routine ha trovato il nuovo Carrefour Iper (dal 15 al 28
+settembre, 50 pagine) alla terza mattina di ricerca — il 12 e il 13 non era
+ancora uscito. Letto per intero: come il Bennet generale del 10 settembre, il
+tema di copertina («Grandi Marche», sconti fino al 50% su intere linee di
+marca) copre le prime 11 pagine senza mai stampare un prezzo di base, quindi
+sono scartate. I prezzi veri stanno nelle pagine di reparto — Carne (12),
+Pesce (13), Ortofrutta (14), Salumi e formaggi (15-16), Freschi del banco
+frigo (17-19) — più qualcosa sparso in Colazione (21), Alimentari confezionati
+(22-24) e Bevande (25-26, 29). 46 righe nuove in `dati.py`.
+
+**L'ultima pagina elenca di nuovo gli ipermercati dove valgono le offerte, e
+Torino non c'è** (Assago, Carugate, Gallarate, Limbiate, Paderno Dugnano,
+Pavia, Giussano, Domodossola, Novara, Gavirate, Tavernerio, Udine). È lo stesso
+elenco già visto il 2026-09-07 sul volantino precedente: Manlio ha detto allora
+che è sbagliato dedurne che le offerte non valgano a Torino, quindi questa
+volta non è stato rimesso nessun avviso e non gliel'ho richiesto. Se un domani
+la lista dovesse davvero cambiare qualcosa, lo dirà lui.
+
+Il resto del volantino (pagine 27-28, 30-49) è aperitivi, cura persona, cura
+casa, casalinghi, elettronica, abbigliamento ed elettrodomestici: guardato pagina
+per pagina e scartato, coi motivi in `scartate.py`.
+
 ## Se un domani diventa un'app
 
 Manlio non legge codice e verifica tutto aprendo una pagina sul telefono, quindi

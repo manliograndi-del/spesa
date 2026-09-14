@@ -73,6 +73,7 @@ VOLANTINI = [
  # pagina li segna «dal ...» invece di farli passare per offerte di oggi.
  _v('eurospin10',     'Eurospin',       'dal 10 al 20 settembre',                       'Eurospin — 10-20 settembre.pdf',                    '2026-09-20', _AV + '/2026/09/volantino-eurospin-2026-09-10-p-{n:02d}.jpg', '2026-09-10'),
  _v('md08',           'MD',             "dall'8 al 20 settembre",                       'MD — 8-20 settembre.pdf',                          '2026-09-20', _AV + '/2026/09/volantino-md-2026-09-08-p-{n:02d}.jpg',       '2026-09-08'),
+ _v('carriper15',     'Carrefour Iper', 'dal 15 al 28 settembre',                       'Carrefour Iper — 15-28 settembre.pdf',              '2026-09-28', _AV + '/2026/09/volantino-carrefour-iper-2026-09-15-p-{n:05d}.jpg', '2026-09-15'),
 ]
 
 PRODOTTI = [
@@ -1345,6 +1346,58 @@ PRODOTTI = [
  ("Carta igienica","Eurospin","eurospin10","Casa","Carta igienica «La Setosa», 12 rotoli, 2 veli","12 rotoli",12,2.29,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
  ("Patate","Eurospin","eurospin10","Surgelati","Patate fritte surgelate","3 kg",3,2.89,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
  ("Formaggio","Eurospin","eurospin10","Freschi","Formaggio dolce a pasta filata","300 g",0.300,1.39,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
+
+ # ---- Carrefour Iper, 15-28 settembre: letto per intero, 50/50 pagine ----
+ # È in gran parte «Grandi Marche», sconti percentuali su intere linee senza
+ # prezzo di base (pagine 1-11): scartate, vedi scartate.py. I prezzi veri
+ # stanno nelle pagine di carne, pesce, salumi, formaggi, ortofrutta e in
+ # alcune pagine di alimentari confezionati e bevande.
+ ("Carne di bue","Carrefour Iper","carriper15","Macelleria","Carpaccio di bovino adulto","al kg",1,19.99,12,V,"−29%, prima 28,49."),
+ ("Carne di bue","Carrefour Iper","carriper15","Macelleria","Hamburger di bovino adulto","al kg",1,12.99,12,V,"−20%, prima 16,29."),
+ ("Vitello","Carrefour Iper","carriper15","Macelleria","Macinata di vitello","al kg",1,13.99,12,V,""),
+ ("Vitello","Carrefour Iper","carriper15","Macelleria","Spezzatino di vitello, confezione risparmio","al kg",1,15.99,12,V,"−20%, prima 19,99."),
+ ("Suino","Carrefour Iper","carriper15","Macelleria","Lonza di suino a fette, confezione risparmio","al kg",1,6.49,12,V,"−48%, prima 12,49. Comprando il taglio intero costa 5,49 al kg."),
+ ("Suino","Carrefour Iper","carriper15","Macelleria","Hamburger misti di suino, conf. 6 pezzi","600 g",0.600,5.99,12,V,"−25%, prima 7,99."),
+ ("Pollo","Carrefour Iper","carriper15","Macelleria","Petto di pollo a fette – Aia","al kg",1,9.89,12,V,"−32%, prima 14,76."),
+ ("Pollo","Carrefour Iper","carriper15","Macelleria","Fusi e sovracosce di pollo, conf. 6 pezzi","al kg",1,4.99,12,V,"−28%, prima 6,99. Comprando 2 kg o più costa 3,99 al kg."),
+ ("Salmone","Carrefour Iper","carriper15","Pescheria","Trancio di salmone allevato in Norvegia","al kg",1,16.90,13,V,"−22%, prima 21,90. Senza uso di antibiotici."),
+ ("Pesce fresco","Carrefour Iper","carriper15","Pescheria","Branzino","al kg",1,8.49,13,V,"−43%, prima 14,90. Comprando 3 kg o più costa 7,99 al kg."),
+ ("Gamberi","Carrefour Iper","carriper15","Pescheria","Mazzancolle tropicali cotte","al kg",1,10.90,13,V,"−26%, prima 14,90. Già cotte. Comprando 2 kg o più costa 8,90 al kg."),
+ ("Calamari e seppie","Carrefour Iper","carriper15","Pescheria","Tentacolo di totano gigante, decongelato","al kg",1,8.90,13,V,"−25%, prima 11,90."),
+ ("Merluzzo e baccalà","Carrefour Iper","carriper15","Surgelati","5 filetti di merluzzo d'Alaska – Frosta","340 g",0.340,3.99,19,V,"−43%, prima 7,00. Surgelato."),
+ ("Pancetta e bacon","Carrefour Iper","carriper15","Salumi","Pancetta Piacentina DOP","al kg",1,17.90,15,V,"−20%, prima 2,25 all'etto."),
+ ("Mortadella","Carrefour Iper","carriper15","Salumi","Mortadella Bologna IGP – Bonomia","al kg",1,11.90,15,V,"−25%, prima 15,90 al kg. Comprando 3 etti o più costa 10,90 al kg."),
+ ("Prosciutto cotto","Carrefour Iper","carriper15","Salumi","Prosciutto Cotto Alta Qualità 1956 – Ferrarini","al kg",1,19.90,15,V,"−20%, prima 2,49 all'etto."),
+ ("Prosciutto crudo","Carrefour Iper","carriper15","Salumi","Prosciutto Crudo – Fattorie del Gennargentu","al kg",1,21.99,16,V,"−30%, prima 3,19 all'etto."),
+ ("Salame","Carrefour Iper","carriper15","Salumi","Salame Nostrano Bortolotti","al kg",1,17.50,15,V,"−20%, prima 2,19 all'etto."),
+ ("Salsiccia","Carrefour Iper","carriper15","Salumi","Salsiccia di Fonni – Fattorie del Gennargentu","al kg",1,13.93,16,V,"−30%, prima 1,99 all'etto. Solo con la tessera SpesAmica Payback."),
+ ("Bresaola","Carrefour Iper","carriper15","Salumi","Bresaola della Valtellina IGP – Beretta","70 g",0.070,2.99,17,V,"−33%, prima 4,47. Solo con la tessera SpesAmica Payback."),
+ ("Grana e parmigiano","Carrefour Iper","carriper15","Freschi","Grana Padano DOP grattugiato – Latteria Soresina","100 g",0.100,1.29,17,V,"−43%, prima 2,27. Solo con la tessera SpesAmica Payback."),
+ ("Grana e parmigiano","Carrefour Iper","carriper15","Salumi","Parmigiano Reggiano DOP stagionato 22 mesi, confezione famiglia","al kg",1,18.90,15,V,"Comprando 2 kg o più costa 17,90 al kg."),
+ ("Formaggio","Carrefour Iper","carriper15","Salumi","Gorgonzola DOP – Terre d'Italia","al kg",1,12.70,15,V,"−20%, prima 1,59 all'etto."),
+ ("Formaggio","Carrefour Iper","carriper15","Salumi","Leerdammer","al kg",1,13.50,15,V,"−20%, prima 1,69 all'etto."),
+ ("Mozzarella","Carrefour Iper","carriper15","Freschi","Mozzarella Valfiorita – Bayernland, conf. 3 pezzi","300 g (3 × 100 g)",0.300,1.79,17,V,"−28%, prima 2,49."),
+ ("Uova","Carrefour Iper","carriper15","Freschi","Uova da allevamento a terra – Le Naturelle, conf. 10 pezzi","10 uova",10,2.49,18,V,"−37%, prima 3,99."),
+ ("Olio d'oliva","Carrefour Iper","carriper15","Dispensa","Olio extravergine di oliva – Ulisse Clemente","1 litro",1,4.59,23,V,"−45%, prima 8,35. Solo con la tessera SpesAmica Payback."),
+ ("Tonno","Carrefour Iper","carriper15","Dispensa","Tonno all'olio di oliva – As do Mar, conf. 8 pezzi","560 g (8 × 70 g)",0.560,6.99,23,V,"−43%, prima 12,27."),
+ ("Tonno","Carrefour Iper","carriper15","Dispensa","Tonno naturale zero olio – Nostromo, conf. 6 pezzi","336 g (6 × 65 g)",0.336,3.99,23,V,"−50%, prima 7,99. È al naturale, non all'olio. Solo con la tessera SpesAmica Payback."),
+ ("Biscotti","Carrefour Iper","carriper15","Colazione","Biscotti Oro Saiwa","1 kg",1,2.29,22,V,"Comprando 3 pezzi o più costa 1,99 al pezzo."),
+ ("Marmellata","Carrefour Iper","carriper15","Dispensa","Confetture Bio – Rigoni di Asiago","330 g",0.330,3.39,22,V,"−26%, prima 4,59. Solo con la tessera SpesAmica Payback."),
+ ("Miele","Carrefour Iper","carriper15","Dispensa","Miele dosatore – Millefiori","400 g",0.400,2.69,22,V,"−21%, prima 3,41."),
+ ("Cioccolato","Carrefour Iper","carriper15","Colazione","Tavoletta fondente −30% di zuccheri – Novi","100 g",0.100,2.29,21,V,"−22%, prima 2,94."),
+ ("Cioccolato","Carrefour Iper","carriper15","Colazione","Tavolette nocciolato – Milka","95 g",0.095,1.29,50,V,"«96 ore scontate», valido solo dal 24 al 27 settembre, non per tutto il volantino. −40%, prima 2,15.","2026-09-24","2026-09-27"),
+ ("Yogurt","Carrefour Iper","carriper15","Freschi","Yogurt bianco magro – Müller, conf. 8 pezzi","1 kg (8 × 125 g)",1,2.29,18,V,"−28%, prima 3,19."),
+ ("Latte","Carrefour Iper","carriper15","Freschi","Latte UHT parzialmente scremato – Polenghi","1 litro",1,0.69,18,V,"−45%, prima 1,26."),
+ ("Caffè","Carrefour Iper","carriper15","Colazione","Macinato Granaroma – Vergnano, conf. 4 pezzi","1 kg (4 × 250 g)",1,13.59,21,V,"−32%, prima 19,99. Solo con la tessera SpesAmica Payback."),
+ ("Gelato","Carrefour Iper","carriper15","Surgelati","Carte D'Or Classic – Algida","500 g",0.500,2.99,20,V,"−40%, prima 4,99. Solo con la tessera SpesAmica Payback."),
+ ("Frutta","Carrefour Iper","carriper15","Ortofrutta","Mele Golden sfuse","al kg",1,0.89,14,V,"−50%, prima 1,79. Comprando 3 kg o più costa 0,79 al kg."),
+ ("Verdura","Carrefour Iper","carriper15","Ortofrutta","Pomodoro Datterino","500 g",0.500,1.99,14,V,"−25%, prima 2,66."),
+ ("Patate","Carrefour Iper","carriper15","Ortofrutta","Patate al selenio, rete 1,5 kg","al kg",1,1.79,14,V,"−20%, prima 2,24 al kg."),
+ ("Pomodoro e passata","Carrefour Iper","carriper15","Dispensa","Passata Vellutata – Delverde","690 g",0.690,0.89,24,V,"−40%, prima 1,49."),
+ ("Riso","Carrefour Iper","carriper15","Dispensa","Riso Carnaroli – El Ris de Milan","2 kg",2,4.90,24,V,""),
+ ("Acqua","Carrefour Iper","carriper15","Bevande","Acqua minerale naturale o frizzante – Boario, conf. 6 pezzi","9 litri (6 × 1,5 l)",9,1.79,25,V,"−35%, prima 2,76. Solo con la tessera SpesAmica Payback."),
+ ("Birra","Carrefour Iper","carriper15","Bevande","Birra in lattina – Tuborg","500 ml",0.500,0.99,29,V,""),
+ ("Vino","Carrefour Iper","carriper15","Bevande","Rosso o Bianco Terre Siciliane IGT – Corvo","750 ml",0.750,3.99,26,V,"−30%, prima 5,70. Solo con la tessera SpesAmica Payback."),
 ]
 
 # LE OFFERTE CON DATE LORO.
