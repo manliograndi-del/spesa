@@ -1505,3 +1505,32 @@ del resto della pagina: il giudizio lo dà sempre il browser di chi guarda.
 
 Provato in jsdom su tutte e tre le copie: «mozzarella» 17 righe, «tonno rio» 2,
 «barilla» 7, «nutella» 3, «zzz» e «a» nessuna con la frase che lo spiega.
+
+### Il tasto, poche ore dopo
+
+«Il pulsante ricerca è poco visibile, secondo me dovrebbe essere rosso o
+comunque più visibile.» Aveva ragione: l'avevo fatto uguale a «+ altri
+prodotti», tratteggiato e grigio, e in mezzo a tredici pastiglie di prodotti
+non lo vedeva nessuno.
+
+Rosso sì, ma **non in fila con le pastiglie**: lì dentro il rosso pieno
+significa già «prodotto acceso», e un quattordicesimo bottone rosso in mezzo
+agli altri si sarebbe letto come una voce della lista accesa per sbaglio. Sta
+su **una riga tutta sua**, largo quanto lo schermo (`flex:0 0 100%`), rosso
+pieno, 48 px di altezza. Lì il rosso torna a voler dire «premi qui».
+
+Il bottone **conserva la classe `agg`** anche se non è più tratteggiato:
+otto prove (`prova.js`, `prova-quando.js`, `prova-scorrimento.js`,
+`prova-intestazione.js`, `prova-pagine.js`, `prova-collegamenti.js`,
+`prova-arrivi.js`, `prova-maiuscole.js`) filtrano con
+`!classList.contains('agg')` per tenere fuori i bottoni che non sono prodotti.
+Togliendogliela, per un momento ce l'ho avuta tolta, il tasto «Cerca» è finito
+in mezzo ai prodotti in tutte quante: passavano lo stesso, ma
+`prova-quando.js` ci cliccava sopra come se fosse una categoria e
+`prova-maiuscole.js` lo contava fra i nomi. Nessuna si è lamentata — è il tipo
+di rottura silenziosa che questo progetto paga caro. Il rosso arriva da
+`.tasto.trova`, scritta **dopo** `.tasto.agg` nel foglio di stile: stessa
+specificità, vince l'ultima.
+
+`prova-cerca.js` adesso pretende anche che il tasto sia rosso e su una riga
+sua, leggendo il CSS della pagina: se qualcuno gli rimette il grigio, si ferma.

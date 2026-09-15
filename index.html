@@ -69,6 +69,16 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   min-height:44px;white-space:nowrap}
 .tasto[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
 .tasto.agg{border-style:dashed;color:var(--tenue);font-weight:500}
+/* «Cerca fra i prezzi». Era un bottone tratteggiato come «+ altri prodotti» e
+   Manlio non lo vedeva: «poco visibile, dovrebbe essere rosso». Rosso pieno
+   come chiede lui, ma su UNA RIGA TUTTA SUA (flex-basis 100%) e non in mezzo
+   alle pastiglie dei prodotti: li dentro il rosso pieno vuol dire «prodotto
+   acceso», e un rosso pieno in fila con quelli si leggerebbe come una voce
+   della lista accesa per sbaglio. Da solo, largo quanto lo schermo, il rosso
+   torna a voler dire quello che deve: «premi qui». */
+.tasto.trova{flex:0 0 100%;background:var(--rosso);
+  border-color:var(--rosso);color:var(--su-rosso);border-style:solid;
+  font-weight:700;font-size:16px;min-height:48px;margin-top:2px}
 
 /* ---- aggiunta ---- */
 .cassetto[hidden]{display:none}
@@ -683,7 +693,11 @@ function disegnaTasti() {
      accendersi un bottone per sempre. Chiesto da Manlio il 2026-09-15,
      quando i prezzi erano diventati milleduecento. */
   const cer = document.createElement('button');
-  cer.type = 'button'; cer.className = 'tasto agg';
+  /* Tiene anche «agg»: e la classe con cui tutte le prove riconoscono i
+     bottoni che NON sono prodotti della lista. Toglierla lo farebbe contare
+     come un prodotto in mezzo agli altri. Il rosso arriva da «.tasto.trova»,
+     scritto dopo «.tasto.agg» nel foglio di stile, e vince lui. */
+  cer.type = 'button'; cer.className = 'tasto agg trova';
   cer.textContent = ricercaAperta ? 'Chiudi' : 'Cerca fra i prezzi';
   cer.setAttribute('aria-expanded', String(ricercaAperta));
   cer.setAttribute('aria-controls', 'ricerca');

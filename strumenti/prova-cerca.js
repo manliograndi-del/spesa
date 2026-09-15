@@ -30,6 +30,17 @@ setTimeout(() => {
   const tasto = [...d.querySelectorAll('#tasti .tasto')]
     .find(b => b.textContent.includes('Cerca'));
   if (!tasto) { console.error('MANCA il tasto «Cerca fra i prezzi»'); process.exit(1); }
+
+  /* Manlio non lo vedeva: era tratteggiato e grigio come «+ altri prodotti».
+     Deve restare rosso pieno e su una riga tutta sua. Se qualcuno gli rimette
+     la classe «agg», questa prova se ne accorge. */
+  if (!tasto.classList.contains('trova'))
+    male.push('il tasto Cerca non e piu quello rosso (classe .trova)');
+  const css = [...d.querySelectorAll('style')].map(s => s.textContent).join('\n');
+  if (!/\.tasto\.trova\{[^}]*var\(--rosso\)/.test(css))
+    male.push('il tasto Cerca non e piu rosso nel CSS');
+  if (!/\.tasto\.trova\{[^}]*flex:0 0 100%/.test(css))
+    male.push('il tasto Cerca non e piu su una riga tutta sua');
   tasto.dispatchEvent(new w.Event('click'));
 
   const pannello = d.getElementById('ricerca');

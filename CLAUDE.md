@@ -132,6 +132,12 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     cassetto: la barra è appiccicata in alto e se le cresce dentro qualcosa
     il telefono si blocca a ogni scorrimento.
   Cassetto e ricerca **non stanno aperti insieme**: aprirne uno chiude l'altro.
+  - **il tasto è rosso pieno e su una riga tutta sua** (`.tasto.trova`), dal
+    2026-09-15: tratteggiato e grigio come «+ altri prodotti» Manlio non lo
+    vedeva. Rosso pieno **in mezzo alle pastiglie** non si poteva: lì il rosso
+    pieno vuol dire «prodotto acceso». Da solo, largo quanto lo schermo, no.
+    Il bottone **tiene anche la classe `agg`**: è con quella che tutte le
+    prove riconoscono i bottoni che non sono prodotti della lista.
 - **Una novità falsa è peggio di nessuna novità: manda uno in negozio.** Vale
   per il diario e per i prezzi: se un conto è ambiguo (peso sgocciolato, prezzo
   valido solo comprandone tre), si sceglie il numero che NON fa sembrare
