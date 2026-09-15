@@ -1468,3 +1468,40 @@ scaricarsi i volantini da solo**: i siti dei supermercati non concedono CORS e
 servirebbe una libreria per i PDF che in negozio, senza rete, non si carica.
 I dati vanno scritti qui dentro da Claude quando i volantini cambiano, e la
 pagina si limita a mostrarli.
+
+## «Cerca fra i prezzi» — 2026-09-15
+
+Manlio: «C'è la possibilità di fare una casella cerca per trovare esattamente un
+singolo prodotto fra tutte le offerte che c'hai». C'erano 1253 prezzi dentro la
+pagina e l'unico modo di arrivare a uno era accendere la sua categoria e
+scorrere.
+
+**Non è la casella che c'era già.** Dentro il cassetto ce n'era una, ma cerca
+nel **catalogo** — serve ad accendere le voci della lista, e trova «Carne di
+bue», non «Hamburger di bovino – Aia da 400 g». Quella nuova cerca fra le
+**offerte**: nome del prodotto, insegna, categoria, formato e note, tutte
+parole insieme e in qualsiasi ordine («tonno rio» → 2 righe). Le parole di una
+lettera sola non contano, se no la prima lettera battuta tirava su tutto.
+
+Tre cose decise mentre la facevo, e il perché:
+
+- **Nei risultati non c'è il bollino verde «il meno caro».** In un elenco
+  qualsiasi il verde direbbe «il meno caro fra quelli che hai scritto», ma uno
+  lo legge come «il meno caro della categoria» — e quello, in negozio, è
+  mandare qualcuno a comprare la cosa sbagliata. Vale la regola di sempre: se
+  il numero è ambiguo, non si mette. La prova `prova-cerca.js` conta i bollini
+  verdi nei risultati e **pretende che siano zero**.
+- **Il pannello sta fuori dalla `.barra`**, come il cassetto e per lo stesso
+  motivo già pagato: la barra è `position:sticky` e farci crescere dentro un
+  pannello lungo bloccava la pagina a ogni tocco. La prova lo verifica
+  risalendo i genitori del pannello.
+- **Cassetto e ricerca non stanno aperti insieme.** Sono due pannelli lunghi
+  sotto la stessa barra: aperti insieme non si capiva più dove si era.
+
+I risultati escono in ordine di prezzo unitario, raggruppati per categoria, 40
+alla volta con «Mostra le altre N» — lo stesso passo dell'elenco normale.
+Le offerte scadute o non ancora cominciate sono fuori, con lo stesso `nascosta()`
+del resto della pagina: il giudizio lo dà sempre il browser di chi guarda.
+
+Provato in jsdom su tutte e tre le copie: «mozzarella» 17 righe, «tonno rio» 2,
+«barilla» 7, «nutella» 3, «zzz» e «a» nessuna con la frase che lo spiega.

@@ -119,6 +119,19 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 - **Ogni riga dice fino a quando vale.** I volantini durano periodi diversi.
 - Le offerte scadute spariscono da sole: il giudizio lo dà il browser di chi
   guarda, con la sua data, non il programma che genera.
+- **«Cerca fra i prezzi» cerca fra TUTTE le offerte, non nel catalogo.** È il
+  tasto tratteggiato accanto a «+ altri prodotti», ed è un'altra cosa dalla
+  casella dentro il cassetto: quella accende i prodotti della lista, questa
+  trova una singola offerta fra tutte quelle lette (marca, formato, insegna,
+  note). Chiesto il 2026-09-15: «trovare esattamente un singolo prodotto fra
+  tutte le offerte». Due regole sue, da non cambiare:
+  - **nei risultati NON c'è il bollino verde «il meno caro»**. Lì dentro il
+    verde vorrebbe dire «il meno caro di quello che hai scritto», e uno
+    leggerebbe «il meno caro della categoria»: una novità falsa.
+  - **il pannello sta FUORI dalla `.barra`**, per la stessa ragione del
+    cassetto: la barra è appiccicata in alto e se le cresce dentro qualcosa
+    il telefono si blocca a ogni scorrimento.
+  Cassetto e ricerca **non stanno aperti insieme**: aprirne uno chiude l'altro.
 - **Una novità falsa è peggio di nessuna novità: manda uno in negozio.** Vale
   per il diario e per i prezzi: se un conto è ambiguo (peso sgocciolato, prezzo
   valido solo comprandone tre), si sceglie il numero che NON fa sembrare

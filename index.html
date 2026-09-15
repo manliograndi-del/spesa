@@ -92,6 +92,22 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 .form-agg button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:10px;
   padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
+/* ---- la casella che cerca fra TUTTI i prezzi ---- */
+/* Sta fuori dalla barra appiccicata, come il cassetto e per la stessa ragione:
+   dentro, la barra diventerebbe piu alta dello schermo e il telefono dovrebbe
+   rifarne i conti a ogni tocco. */
+.ricerca[hidden]{display:none}
+.ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
+  border-radius:12px;padding:12px}
+.ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:10px;
+  padding:13px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
+  font-family:var(--f-testo)}
+.ricerca .q:focus{outline:none}
+.quanti-trovati{margin:10px 0 0;font-size:13.5px;color:var(--tenue)}
+.quanti-trovati b{color:var(--inchiostro)}
+#trovati{margin-top:4px}
+#trovati .fascia:first-child{margin-top:14px}
+
 /* ---- intestazione del risultato ---- */
 .capo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
 .capo .info{flex:none}
@@ -249,6 +265,15 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   </form>
   <p class="fuori-catalogo" id="fuori-catalogo"></p>
   <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
+</div>
+
+<!-- LA RICERCA STA FUORI DALLA BARRA, come il cassetto. -->
+<div class="ricerca" id="ricerca" hidden>
+  <input class="q" id="q" type="search" placeholder="Scrivi un prodotto, una marca, un negozio…"
+         autocomplete="off" aria-label="Cerca fra tutti i prezzi dei volantini">
+  <p class="quanti-trovati" id="quanti-trovati" role="status"></p>
+  <div id="trovati"></div>
+  <button type="button" class="chiudi" id="chiudi-ricerca">Fatto</button>
 </div>
 
 <div id="risultato"></div>
@@ -649,6 +674,21 @@ function disegnaTasti() {
   piu.setAttribute('aria-controls', 'cassetto');
   piu.onclick = () => { apriCassetto(!cassettoAperto); };
   box.appendChild(piu);
+
+  /* «Cerca fra i prezzi» e un'altra cosa dal cassetto, e vanno tenute
+     separate. Il cassetto sceglie QUALI PRODOTTI stanno nella lista, e cerca
+     fra le 67 voci del catalogo. Questa cerca fra le OFFERTE vere, tutte,
+     anche di prodotti che in lista non ci sono e magari non ci vanno: uno
+     vuole sapere quanto costa quella marca li, una volta sola, senza
+     accendersi un bottone per sempre. Chiesto da Manlio il 2026-09-15,
+     quando i prezzi erano diventati milleduecento. */
+  const cer = document.createElement('button');
+  cer.type = 'button'; cer.className = 'tasto agg';
+  cer.textContent = ricercaAperta ? 'Chiudi' : 'Cerca fra i prezzi';
+  cer.setAttribute('aria-expanded', String(ricercaAperta));
+  cer.setAttribute('aria-controls', 'ricerca');
+  cer.onclick = () => { apriRicerca(!ricercaAperta); };
+  box.appendChild(cer);
 }
 
 /* IL CASSETTO. Chiesto da Manlio il 2026-09-05: scrivere il nome di un
@@ -660,6 +700,7 @@ let cassettoAperto = false;
 
 function apriCassetto(si) {
   cassettoAperto = si;
+  if (si && ricercaAperta) apriRicerca(false);   // uno alla volta
   const c = document.getElementById('cassetto');
   c.hidden = !si;
   /* Col cassetto aperto l'elenco dei prezzi di prima non c'entra più niente e
@@ -672,6 +713,104 @@ function apriCassetto(si) {
      guardarsi i reparti. Chi vuole cercare la tocca. */
   if (si) disegnaScaffali();
   else document.getElementById('cerca').value = '';
+}
+
+/* ---------- cercare fra tutti i prezzi ---------- */
+let ricercaAperta = false;
+let quantiMostrati = 40;
+
+function apriRicerca(si) {
+  ricercaAperta = si;
+  if (si && cassettoAperto) apriCassetto(false);
+  document.getElementById('ricerca').hidden = !si;
+  /* Col pannello aperto l'elenco di prima non c'entra piu niente e sta li a
+     confondere, come per il cassetto. */
+  document.getElementById('risultato').hidden = si;
+  disegnaTasti();
+  if (si) {
+    quantiMostrati = 40;
+    disegnaTrovati();
+    /* QUI il fuoco sulla casella CI VA, al contrario del cassetto. La regola
+       del 2026-09-05 («niente focus, la tastiera copre mezzo schermo») valeva
+       per chi apre il cassetto per GUARDARSI i reparti. Qui uno ha appena
+       toccato «Cerca»: vuole scrivere, e fargli fare un secondo tocco sulla
+       casella e solo una seccatura. */
+    try { document.getElementById('q').focus(); } catch (e) {}
+  } else {
+    document.getElementById('q').value = '';
+  }
+}
+
+/* Tutte le parole scritte devono comparire da qualche parte nella riga: cosi
+   «tonno rio» trova i Rio Mare e «mozzarella bennet» solo quelle del Bennet.
+   Qui si cerca dentro le parole, non a parola intera come nell'indice delle
+   pagine: li il testo veniva dall'OCR ed era pieno di rumore, qui sono nomi di
+   prodotto scritti a mano, e chi scrive «mozzar» si aspetta di trovarli. */
+function cercaOfferte(testo) {
+  const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
+  if (!parole.length) return [];
+  return DATI.offerte
+    .filter(o => !nascosta(o))
+    .filter(o => {
+      const pagliaio = norm([o.pro, o.ins, o.cat, o.fmt, o.note].join(' '));
+      return parole.every(w => pagliaio.indexOf(w) >= 0);
+    })
+    .sort((a, b) => a.unitario - b.unitario);
+}
+
+function disegnaTrovati() {
+  const testo = document.getElementById('q').value;
+  const box = document.getElementById('trovati');
+  const capo = document.getElementById('quanti-trovati');
+  box.textContent = '';
+  const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
+  if (!parole.length) {
+    capo.innerHTML = 'Scrivi almeno due lettere. Cerca fra <b>tutte</b> le offerte '
+      + 'dei volantini: il nome del prodotto, la marca, il negozio, il formato.';
+    return;
+  }
+  const trovate = cercaOfferte(testo);
+  if (!trovate.length) {
+    capo.innerHTML = '<b>Niente.</b> Prova con una parola sola, o piu corta: '
+      + 'i nomi sono quelli stampati sul volantino, non sempre quelli che diresti tu.';
+    return;
+  }
+  /* Niente bollino verde qui dentro. «Il meno caro» vuol dire il meno caro
+     della sua categoria, e in un elenco di risultati direbbe una cosa falsa:
+     cercando «tonno rio mare» il primo sarebbe il Rio Mare meno caro, non il
+     tonno meno caro. Una novita falsa manda uno in negozio. Per il confronto
+     vero c'e il bottone del prodotto. */
+  capo.innerHTML = '';
+  capo.appendChild(document.createTextNode(''));
+  capo.textContent = trovate.length === 1
+    ? 'Una sola offerta. Dal meno caro in giu, ma solo fra quelle che hai cercato: '
+      + 'per sapere qual e il meno caro in assoluto tocca il bottone del prodotto.'
+    : trovate.length + ' offerte, dalla meno cara in giu — ma solo fra quelle che hai '
+      + 'cercato: per il meno caro in assoluto tocca il bottone del prodotto.';
+
+  /* Raggruppate per categoria, e le categorie in ordine di prezzo migliore:
+     cercando «barilla» esce prima la pasta e poi i sughi, non alla rinfusa. */
+  const gruppi = [];
+  trovate.slice(0, quantiMostrati).forEach(o => {
+    const c = o.cat || '—';
+    let g = gruppi.find(x => x.cat === c);
+    if (!g) { g = { cat: c, righe: [] }; gruppi.push(g); }
+    g.righe.push(o);
+  });
+  gruppi.forEach(g => {
+    const f = document.createElement('p');
+    f.className = 'fascia';
+    f.textContent = g.cat;
+    box.appendChild(f);
+    g.righe.forEach(o => box.appendChild(rigaPrezzo(o, false)));
+  });
+  if (trovate.length > quantiMostrati) {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'altre';
+    b.textContent = 'Mostra le altre ' + (trovate.length - quantiMostrati) + ' offerte';
+    b.onclick = () => { quantiMostrati = trovate.length; disegnaTrovati(); };
+    box.appendChild(b);
+  }
 }
 
 function inLista(nome) {
@@ -1013,6 +1152,11 @@ document.querySelectorAll('.info').forEach(b => {
 
 document.getElementById('cerca').oninput = disegnaScaffali;
 document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
+document.getElementById('chiudi-ricerca').onclick = () => apriRicerca(false);
+document.getElementById('q').addEventListener('input', () => {
+  quantiMostrati = 40;
+  disegnaTrovati();
+});
 
 document.getElementById('form-agg').onsubmit = ev => {
   ev.preventDefault();
