@@ -1534,3 +1534,52 @@ specificità, vince l'ultima.
 
 `prova-cerca.js` adesso pretende anche che il tasto sia rosso e su una riga
 sua, leggendo il CSS della pagina: se qualcuno gli rimette il grigio, si ferma.
+
+## Il diario era fermo al 9 settembre — 2026-09-15
+
+Manlio ha aperto Novità e mi ha mandato la fotografia: «Ultimi 7 giorni»
+mostrava **mercoledì 9 settembre**, e «Oggi» era vuoto. Sei giorni di niente,
+mentre in quei sei giorni erano entrati un Bennet, due Lidl, un Carrefour Iper
+e trecento prezzi.
+
+**Il perché era già scritto qui e non era stato risolto.** `storia/stato.json`
+— la fotografia di com'era ieri — è in `.gitignore` di proposito: «le
+fotografie no, le differenze sì». Ma ogni sessione parte da un **clone
+pulito**, quindi la fotografia non c'è mai, e `storia.py` rispondeva «prima
+fotografia: da domani ci sarà qualcosa da confrontare». Domani non arrivava
+mai: la sessione moriva, la fotografia con lei, e la notte dopo era di nuovo
+«prima fotografia». Un ciclo che si autoconsumava, in silenzio, tutte le
+notti.
+
+**La soluzione non è salvare la fotografia: è non averne bisogno.** La
+fotografia non è un dato, è una **lettura di `strumenti/dati.py`** — e
+`dati.py` nel repository c'è, con tutta la sua storia. Se `stato.json` manca,
+adesso `storia.py` chiede a git l'ultimo commit che ha toccato i prezzi, ne
+tira fuori l'intera cartella `strumenti/` con `git archive`, e la legge in un
+processo a parte. Serve tutta la cartella e non solo `dati.py`: `dati` importa
+`catalogo` e `pagine_mercato`, e devono essere quelli di allora. A leggerli è
+il `fotografia()` di **adesso**, caricato per percorso con `importlib` mentre
+la cartella vecchia sta prima nel `sys.path`: le due fotografie vanno
+confrontate fra loro, quindi devono avere la stessa forma, non quella che
+aveva `storia.py` quel giorno.
+
+**E i giorni in mezzo si riempiono uno per uno.** Prima il confronto era
+sempre e solo «ieri contro oggi». Adesso, se fra la fotografia e oggi ci sono
+dei giorni scoperti, per ognuno si riprende il `dati.py` in vigore *quel*
+giorno e si scrive il suo file. Non è pignoleria: **un giorno può avere
+novità vere senza che nessuno tocchi i prezzi.** A mezzanotte un volantino
+scade e il più conveniente di una categoria diventa un altro — l'11 settembre
+è esattamente questo, un giorno con una sola riga: i frollini dell'Eurospin
+diventati i biscotti più convenienti perché quelli di prima erano scaduti.
+Ammucchiando tutto sull'ultimo giorno, quella novità avrebbe avuto la data
+sbagliata.
+
+Recuperati così i giorni **10, 11, 13, 14 e 15 settembre** (il 12 non era
+successo niente, e infatti non c'è il file). Nessun numero è inventato: sono
+gli stessi conti di sempre, fatti sui `dati.py` veri di quei giorni presi da
+git.
+
+**Una conseguenza da ricordare:** `python3 -m storia` adesso va lanciato
+**prima** di committare. Se si committa per primi, l'ultimo commit è già lo
+stato nuovo e il confronto viene vuoto. Nell'ordine scritto in CLAUDE.md
+(`pagina`, `storia`, `novita`, poi commit) è già così.

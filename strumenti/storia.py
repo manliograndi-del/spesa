@@ -22,7 +22,7 @@ sparite e altrettante nuove — erano le stesse, spostate di scaffale. Un
 cambio di reparto si racconta a parte, e il prezzo invece deve poter cambiare:
 quella è proprio la cosa che vogliamo vedere.
 """
-import datetime, json, os, sys
+import datetime, json, os, subprocess, sys, tempfile
 from dati import OFFERTE, VOLANTINI, UNITA
 
 QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -44,6 +44,80 @@ def fotografia():
                                   inizio=v.inizio, fino=v.fino)
                    for v in VOLANTINI},
         offerte=offerte)
+
+def git(*argomenti):
+    """Una domanda a git, dalla cartella del progetto. None se git non c'è o
+    non risponde: qui dentro nessuna risposta deve far cadere il programma."""
+    try:
+        return subprocess.run(('git', '-C', QUI) + argomenti, check=True,
+                              capture_output=True, text=True).stdout.strip()
+    except Exception:
+        return None
+
+
+def commit_di_dati():
+    """I commit che hanno toccato i prezzi, dal più recente: [(sigla, data)].
+
+    Serve a rifare la fotografia di un giorno qualsiasi: i prezzi di quel
+    giorno sono quelli dell'ultimo commit fino a quel giorno."""
+    fuori = git('log', '--format=%H %cs', '--', 'strumenti/dati.py')
+    if not fuori:
+        return []
+    return [(r.split()[0], r.split()[1]) for r in fuori.splitlines() if ' ' in r]
+
+
+def fotografia_da_commit(commit, giorno):
+    """La fotografia com'era a un certo commit, datata al giorno che si vuole.
+
+    È la RISPOSTA AL BUCO: `storia/stato.json` non sta nel repository — «le
+    fotografie no, le differenze sì» — e ogni sessione nuova parte da un clone
+    pulito, quindi senza. Il diario diceva «prima fotografia» tutte le notti e
+    non scriveva mai un giorno: dal 9 al 15 settembre 2026 la pagina Novità è
+    rimasta ferma, e Manlio se n'è accorto da fuori. Ma la fotografia non serve
+    tenerla: `strumenti/dati.py` è nel repository, e la fotografia è solo una
+    lettura di quel file. Basta chiederla a git.
+
+    Si tira fuori l'intera cartella `strumenti/` di quel commit e la si mette
+    davanti a tutto in un processo a parte: `dati` e `catalogo` di allora
+    devono stare insieme. A leggerli è QUESTO storia.py, non quello di allora:
+    le due fotografie vanno confrontate, e devono avere la stessa forma."""
+    if not commit:
+        return None
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            tar = subprocess.run(('git', '-C', QUI, 'archive', commit, 'strumenti'),
+                                 check=True, capture_output=True)
+            subprocess.run(('tar', '-x', '-C', tmp), input=tar.stdout, check=True)
+            programma = (
+                'import sys, json, importlib.util\n'
+                'sys.path.insert(0, sys.argv[1])\n'
+                's = importlib.util.spec_from_file_location("storia_di_allora", sys.argv[2])\n'
+                'm = importlib.util.module_from_spec(s); s.loader.exec_module(m)\n'
+                'f = m.fotografia(); f["giorno"] = sys.argv[3]\n'
+                'json.dump(f, sys.stdout, ensure_ascii=False)\n')
+            fuori = subprocess.run(
+                (sys.executable, '-c', programma, os.path.join(tmp, 'strumenti'),
+                 os.path.abspath(__file__), giorno),
+                check=True, capture_output=True, text=True).stdout
+            return json.loads(fuori)
+        except Exception as e:
+            print(f'  non riesco a rifare la fotografia di {commit[:7]}: {e}')
+            return None
+
+
+def giorni_fra(da, a):
+    """I giorni STRETTAMENTE in mezzo fra due date, in ordine.
+
+    Servono perché una novità può nascere senza che nessuno tocchi i prezzi:
+    a mezzanotte un volantino scade e il più conveniente di quella categoria
+    diventa un altro. Saltando i giorni in mezzo, quelle novità finirebbero
+    tutte ammucchiate sull'ultimo giorno, con la data sbagliata."""
+    d = datetime.date.fromisoformat(da) + datetime.timedelta(days=1)
+    fine = datetime.date.fromisoformat(a)
+    while d < fine:
+        yield d.isoformat()
+        d += datetime.timedelta(days=1)
+
 
 def meno_caro(offerte, giorno):
     """Per ogni categoria l'offerta che costa meno per unità, FRA QUELLE CHE
@@ -107,22 +181,8 @@ def quanto(d):
             + len(d['offerte_nuove']) + len(d['offerte_sparite'])
             + len(d['prezzi_cambiati']) + len(d['meno_caro_cambiato']))
 
-if __name__ == '__main__':
-    solo_guardare = '--guarda' in sys.argv
-    os.makedirs(DOVE, exist_ok=True)
-    adesso = fotografia()
-    prima = json.load(open(FOTO, encoding='utf-8')) if os.path.exists(FOTO) else {}
-
-    if not prima:
-        print('prima fotografia: da domani ci sarà qualcosa da confrontare.')
-        if not solo_guardare:
-            json.dump(adesso, open(FOTO, 'w', encoding='utf-8'), ensure_ascii=False)
-            print(f"segnate {len(adesso['offerte'])} offerte e "
-                  f"{len(adesso['volantini'])} volantini in storia/stato.json")
-        raise SystemExit
-
-    d = differenza(prima, adesso)
-    print(f"da {prima.get('giorno', '?')} a {d['giorno']}:")
+def racconta(d, prima_giorno):
+    print(f"da {prima_giorno} a {d['giorno']}:")
     print(f"  volantini arrivati  {len(d['volantini_arrivati'])}")
     print(f"  volantini finiti    {len(d['volantini_finiti'])}")
     print(f"  offerte nuove       {len(d['offerte_nuove'])}")
@@ -131,15 +191,62 @@ if __name__ == '__main__':
     if d['cambiati_reparto']:
         print(f"  cambiati di reparto {len(d['cambiati_reparto'])}")
     for c in d['meno_caro_cambiato']:
-        print(f"  → il {c['cat'].lower()} più conveniente adesso è "
+        print(f"  \u2192 il {c['cat'].lower()} pi\u00f9 conveniente adesso \u00e8 "
               f"{c['pro']} ({c['ins']}), {c['unitario']:.2f} {c['unita']}")
-    if solo_guardare:
+
+
+if __name__ == '__main__':
+    solo_guardare = '--guarda' in sys.argv
+    os.makedirs(DOVE, exist_ok=True)
+    adesso = fotografia()
+    prima = json.load(open(FOTO, encoding='utf-8')) if os.path.exists(FOTO) else {}
+
+    if not prima:
+        # Nessuna fotografia: siamo in un clone pulito, com'\u00e8 ogni sessione
+        # nuova. Non \u00e8 un motivo per buttare via il giorno: la fotografia si
+        # rif\u00e0 dall'ultimo commit che ha toccato i prezzi.
+        commit = commit_di_dati()
+        if commit:
+            sigla, data = commit[0]
+            print(f'nessuna fotografia: la rifaccio da git, commit {sigla[:7]} del {data}')
+            prima = fotografia_da_commit(sigla, data) or {}
+
+    if not prima:
+        print('prima fotografia: da domani ci sar\u00e0 qualcosa da confrontare.')
+        if not solo_guardare:
+            json.dump(adesso, open(FOTO, 'w', encoding='utf-8'), ensure_ascii=False)
+            print(f"segnate {len(adesso['offerte'])} offerte e "
+                  f"{len(adesso['volantini'])} volantini in storia/stato.json")
         raise SystemExit
 
-    if quanto(d):
-        fuori = os.path.join(DOVE, f"{d['giorno']}.json")
-        json.dump(d, open(fuori, 'w', encoding='utf-8'), ensure_ascii=False)
-        print(f"scritto storia/{d['giorno']}.json")
-    else:
-        print('niente di nuovo: nessun file scritto.')
-    json.dump(adesso, open(FOTO, 'w', encoding='utf-8'), ensure_ascii=False)
+    # I giorni rimasti indietro, uno per uno e con la loro data. Se in mezzo
+    # c'\u00e8 stato un commit sui prezzi si riprende quello: \u00e8 cos\u00ec che si
+    # recuperano i giorni persi quando la fotografia non \u00e8 arrivata.
+    storici = commit_di_dati()
+    fatte = {}
+    tappe = []
+    for g in giorni_fra(prima['giorno'], adesso['giorno']):
+        sigla = next((s for s, data in storici if data <= g), None)
+        if sigla and sigla not in fatte:
+            fatte[sigla] = fotografia_da_commit(sigla, g)
+        f = fatte.get(sigla)
+        tappe.append(dict(f, giorno=g) if f else dict(prima, giorno=g))
+    tappe.append(adesso)
+
+    scritti = 0
+    for tappa in tappe:
+        d = differenza(prima, tappa)
+        racconta(d, prima['giorno'])
+        if not solo_guardare and quanto(d):
+            json.dump(d, open(os.path.join(DOVE, f"{d['giorno']}.json"), 'w',
+                              encoding='utf-8'), ensure_ascii=False)
+            print(f"  scritto storia/{d['giorno']}.json")
+            scritti += 1
+        elif not quanto(d):
+            print('  niente di nuovo: nessun file scritto.')
+        prima = tappa
+
+    if not solo_guardare:
+        json.dump(adesso, open(FOTO, 'w', encoding='utf-8'), ensure_ascii=False)
+        if scritti > 1:
+            print(f'{scritti} giorni scritti in una volta: erano rimasti indietro.')

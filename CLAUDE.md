@@ -203,16 +203,19 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   mano**. **Il 2026-09-10 e il 2026-09-15 la sessione da Routine è arrivata in
   fondo**: ha letto un volantino per intero (o più) e pubblicato entrambe le
   volte. Sono due tentativi riusciti, non ancora una garanzia.
-- **Il diario delle novità è stato riacceso il 2026-09-10**, ma il problema
-  descritto allora **non è ancora risolto**: `storia/stato.json` è in
-  `.gitignore` di proposito, quindi ogni sessione nuova (clone pulito) parte
-  senza fotografia e scrive «prima fotografia» invece del giorno vero. È
-  successo di nuovo il 2026-09-15: il diario di oggi **non risulterà come
-  giorno con novità vere**, anche se il Lidl nuovo aveva 56 righe. Non ho
-  toccato `.gitignore`: è una scelta loro, scritta apposta («le fotografie no,
-  le differenze sì»). Da decidere con Manlio se e come fare arrivare
-  `stato.json` da una sessione all'altra, ora che il tasto Novità è acceso
-  davvero.
+- **Il buco del diario è chiuso (2026-09-15), e `.gitignore` non si tocca.**
+  `storia/stato.json` resta fuori dal repository — «le fotografie no, le
+  differenze sì» — ma **non serve più che sopravviva**: se manca, `storia.py`
+  **rifà la fotografia da git**, tirando fuori `strumenti/` dall'ultimo commit
+  che ha toccato `dati.py` e leggendolo con il `fotografia()` di adesso. La
+  fotografia è solo una lettura di `dati.py`, e `dati.py` nel repository c'è.
+  In più `storia.py` **riempie i giorni rimasti indietro uno per uno**, con la
+  loro data e col `dati.py` in vigore quel giorno: un giorno può avere novità
+  vere **senza che nessuno tocchi i prezzi**, perché a mezzanotte un volantino
+  scade e il più conveniente di quella categoria diventa un altro. Così sono
+  stati recuperati i giorni dal 10 al 15 settembre, che erano vuoti.
+  **Da qui in poi `python3 -m storia` va lanciato PRIMA di committare**: il
+  confronto è fra l'ultimo commit e quello che c'è adesso nella cartella.
 - **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
   sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
   applicarle e rifare il PDF con `python3 -m stampa`.
