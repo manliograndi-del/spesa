@@ -20,3 +20,4 @@
 2026-09-14 06:08 UTC  sveglia: clonato
 2026-09-14 06:12 UTC  Carrefour Iper nuovo TROVATO: dal 15 al 28 settembre, 50 pagine (volantino-carrefour-iper-2026-09-15-p-00001..00050.jpg). Terza mattina di ricerca, oggi trovato. Altre insegne: Lidl17 solo copertina in anteprima (non urgente, lidl10 vale fino al 16); Mercato/Bennet/Eurospin/MD nessuna novita' oltre a quanto gia' in dati.py; Ipercoop/Nova Coop ancora solo 'Scegli tu Grandi Marche' a sconto percentuale (controllato di nuovo, invariato dal 10/9). Comincio a scaricare e leggere il Carrefour nuovo.
 2026-09-14 06:25 UTC  pubblicato: Carrefour Iper nuovo (15-28 settembre, 50 pagine lette per intero), 46 righe nuove; sw.js a v30; tutte le prove passate; aggiornati CLAUDE.md e NOTE.md
+2026-09-15 06:08 UTC  sveglia: clonato
