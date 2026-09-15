@@ -131,75 +131,69 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-14)
+## Da fare adesso (aggiornato il 2026-09-15)
 
-- **Il Carrefour Iper è cambiato il 14 settembre**: quello vecchio (dal 4 al 13
-  settembre) è scaduto, il nuovo (dal 15 al 28 settembre, 50 pagine) è stato
-  letto per intero e pubblicato. È in gran parte «Grandi Marche», sconti
-  percentuali su intere linee senza prezzo di base (pagine 1-11): scartate. I
-  prezzi veri stanno nelle pagine di carne, pesce, salumi, formaggi e
-  ortofrutta, più qualcosa in alimentari confezionati e bevande — 46 righe
-  nuove in `dati.py`. **Anche stavolta l'ultima pagina del volantino elenca gli
-  ipermercati dove valgono le offerte e Torino non c'è**: come deciso il
-  2026-09-07 e confermato da Manlio, non è un problema — non ci si torna sopra.
-- **Il Carrefour è a posto, non riaprire la questione.** L'ultima pagina del suo
-  volantino elenca gli ipermercati in cui vale e Torino non c'è: il 2026-09-07
-  ho concluso che a Torino valessero solo i non alimentari e ho messo un avviso
-  in pagina. **Manlio ha detto che è sbagliato** — «le offerte ci sono a Torino
-  e valgono davvero» — e l'avviso è stato tolto. Chi rilegge quel volantino
-  ritroverà l'elenco e rifarà lo stesso ragionamento: fermati qui. In NOTE.md
-  c'è per esteso.
-- **Il Lidl vecchio (`lidl`) va tolto**: è scaduto il 12 settembre, coperto da
-  `lidl10` fino al 16. Non ancora cancellato per il margine di due giorni che
-  vuole Manlio — la prossima sessione che lo trova scaduto da più di due giorni
-  lo tolga con `pulisci --fai` da `dati.py`, `VOLANTINI` e `scartate.py`.
-- **Il prossimo Lidl (dal 17 settembre) è ancora solo in anteprima** (sola
-  copertina) al 14 settembre: non urgente, perché `lidl10` vale fino al 16.
-  Controllare nei prossimi giorni se escono le pagine vere.
-- **Bennet e MD e Eurospin sono stati letti per intero il 2026-09-10**, e il
-  Carrefour Iper nuovo per intero il 2026-09-14 (bennet10, lidl10, md08,
-  eurospin10, carriper15: tutti 100%). Copertura totale: 328/358 pagine (91%).
-  Resta indietro solo il **Lidl vecchio** (`lidl`, sottocosto fino al 12
-  settembre, ormai scaduto e da buttare): 6/36 pagine, non vale la pena
-  finirlo.
-- **L'Ipercoop non ha più un volantino con prezzi.** Il Sottocosto e l'Extra
-  offerte sono scaduti il 9; l'unico volantino Nova Coop in corso il 10
-  settembre («Scegli tu Grandi Marche», 10-23 settembre) è tutto sconti
-  percentuali su intere linee di marca, senza mai un prezzo di base: non si
-  può calcolare un prezzo vero, quindi non è stato usato. **Da controllare di
-  nuovo fra qualche giorno** se esce un Sottocosto o un Extra offerte veri.
-- **Anche il nuovo Bennet generale (bennet10, 10-23 settembre) è per lo più
-  sconti percentuali** senza prezzo di base (pagine 1-13, 21-23 in parte):
-  scartate. I prezzi veri stanno nelle pagine del banco fresco, pescheria,
-  frutta e verdura, panetteria e nella sezione «prodotto acceleratore»
-  (pagine 14-19, 30-31). La pagina Oktoberfest (20-21) scade il 4 ottobre, non
-  il 23 come il resto — occhio quando si ributta il volantino.
-- **Quando scadono `lidl` (12 settembre) e `lidl10` (16 settembre)**: togliere
-  le loro righe da `dati.py`, `VOLANTINI` e `scartate.py` con `pulisci --fai`
-  come sempre. `bennet10` scade il 23, `md08` ed `eurospin10` il 20.
-- **Resta senza prezzi solo il Vitello... anzi no: trovato.** Il Bennet nuovo
-  (bennet10, pagina 15) ha «Coscia a pezzi di vitello» a 17,99 al kg e «Reale
-  con osso di vitello» a 9,49 al kg. Aggiornare la nota in cima a questo file
-  quando si conferma che compare in pagina.
+- **È uscito il nuovo Lidl (dal 17 al 23 settembre, 36 pagine)** e oggi è stato
+  letto per intero e pubblicato, in anticipo — al 15 settembre non era ancora
+  cominciato, ma le pagine vere c'erano già sulla fonte. 56 righe nuove in
+  `dati.py`: molte pagine erano nella sezione «formato XXL» e «Super Offerte»,
+  con prodotti veri (carne, pesce, salumi, formaggi, vino) a fianco di roba
+  senza prezzo utile (barrette proteiche, cosmetici, abbigliamento, utensili da
+  giardino, specialità orientali, fiori) — tutta scartata e segnata in
+  `scartate.py`. La chiave è `lidl17`.
+- **Il Lidl vecchio (`lidl`, quello del 3-9 settembre) è stato tolto**: era
+  scaduto da tre giorni. Righe di `VOLANTINI` e `PRODOTTI` cancellate da
+  `dati.py`.
+- **`lidl10` (10-16 settembre) scade domani, 16 settembre**: è coperto dal
+  nuovo `lidl17` che comincia il 17, senza buchi. Quando `lidl10` risulta
+  scaduto da più di due giorni, va tolto con `pulisci --fai` come sempre da
+  `dati.py`, `VOLANTINI` e `scartate.py`.
+- **Mercatò (`mercato`) e il Bennet Dolce Buongiorno (`bennet0903`) scadono
+  anche loro domani, 16 settembre**, e oggi non è stato trovato nessun
+  successore su kimbino.it (Mercatò) né su anteprimavolantino.it (Bennet):
+  normale, è il caso «scade ma la fonte non ha ancora pubblicato il
+  sostituto» — non è un problema, si ricontrolla domani. `bennet0903` è
+  comunque già coperto dal Bennet generale (`bennet10`, fino al 23), quindi
+  chi cerca offerte Bennet le trova lo stesso; per Mercatò invece non c'è
+  ancora un sostituto pronto — **controllare la fonte kimbino.it nei prossimi
+  giorni**.
+- **Il Carrefour Iper (`carriper15`, 15-28 settembre) è a posto, non
+  riaprire la questione.** L'ultima pagina del suo volantino elenca gli
+  ipermercati in cui vale e Torino non c'è: il 2026-09-07 Manlio ha detto che
+  è sbagliato fermarsi lì — «le offerte ci sono a Torino e valgono davvero».
+  In NOTE.md c'è per esteso.
+- **Copertura letta: 358 pagine su 358, il 100%.** Tutti i volantini in
+  `dati.py` sono stati letti per intero (mercato, bennet0903, bennet10,
+  lidl10, lidl17, eurospin10, md08, carriper15). Non resta niente indietro.
+- **L'Ipercoop non ha più un volantino con prezzi.** L'unico Nova Coop in
+  corso («Scegli tu Grandi Marche», 10-23 settembre) è tutto sconti
+  percentuali su intere linee di marca, senza mai un prezzo di base: non
+  utilizzabile. **Da controllare di nuovo fra qualche giorno** se esce un
+  Sottocosto o un Extra offerte veri.
+- **Scadenze da tenere d'occhio nei prossimi giorni**: `md08` ed `eurospin10`
+  scadono il 20 settembre, `bennet10` il 23, `lidl17` il 23 (occhio: la
+  «Panetteria» del Lidl 17-23 vale solo dal 17 al 20, e alcune offerte
+  «Il meglio del lunedì» valgono solo dal 21 al 23 — già segnato nelle note
+  delle singole righe). La pagina Oktoberfest del Bennet (pagine 20-21 di
+  `bennet10`) scade il 4 ottobre, non il 23 come il resto — occhio quando si
+  ributta il volantino.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
-  il codice**: parte, lavora quattro minuti e non lascia traccia. In NOTE.md c'è
+  il codice**: parte, lavora pochi minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
-  si vede arrivare in fondo almeno una volta, **i volantini si mettono a mano**.
-  **Il 2026-09-10 la sessione da Routine è arrivata in fondo per la prima
-  volta**: ha letto quattro volantini per intero e pubblicato. Non è ancora
-  una garanzia — è un tentativo riuscito — ma è la prima prova che si può fare.
-- **Il diario delle novità è stato riacceso il 2026-09-10** da un'altra sessione
-  (su richiesta diretta di Manlio) **e questo ha smascherato il problema che
-  prima non faceva danno**: `storia/stato.json` è in `.gitignore` di proposito,
-  quindi ogni sessione nuova (clone pulito) parte senza fotografia e scrive
-  «prima fotografia» invece del giorno vero. La sessione di oggi ha rigenerato
-  `storia` due volte (una dell'altra sessione, una di questa) e la seconda ha
-  perso il confronto della prima: il 10 settembre in `storia/` **non risulterà
-  come giorno con novità vere**, anche se ne aveva parecchie (quattro volantini
-  aggiornati). Non ho toccato `.gitignore`: è una scelta loro, scritta apposta
-  («le fotografie no, le differenze sì»). Da decidere con Manlio se e come
-  fare arrivare `stato.json` da una sessione all'altra, ora che il tasto
-  Novità è acceso davvero.
+  si vede arrivare in fondo più volte di fila, **i volantini si mettono a
+  mano**. **Il 2026-09-10 e il 2026-09-15 la sessione da Routine è arrivata in
+  fondo**: ha letto un volantino per intero (o più) e pubblicato entrambe le
+  volte. Sono due tentativi riusciti, non ancora una garanzia.
+- **Il diario delle novità è stato riacceso il 2026-09-10**, ma il problema
+  descritto allora **non è ancora risolto**: `storia/stato.json` è in
+  `.gitignore` di proposito, quindi ogni sessione nuova (clone pulito) parte
+  senza fotografia e scrive «prima fotografia» invece del giorno vero. È
+  successo di nuovo il 2026-09-15: il diario di oggi **non risulterà come
+  giorno con novità vere**, anche se il Lidl nuovo aveva 56 righe. Non ho
+  toccato `.gitignore`: è una scelta loro, scritta apposta («le fotografie no,
+  le differenze sì»). Da decidere con Manlio se e come fare arrivare
+  `stato.json` da una sessione all'altra, ora che il tasto Novità è acceso
+  davvero.
 - **Manlio deve correggere a penna il catalogo** (`catalogo.pdf`, 67 voci): le
   sue correzioni vanno riportate in `strumenti/catalogo.py`. Se le manda,
   applicarle e rifare il PDF con `python3 -m stampa`.

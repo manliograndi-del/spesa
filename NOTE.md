@@ -1445,6 +1445,21 @@ Il resto del volantino (pagine 27-28, 30-49) è aperitivi, cura persona, cura
 casa, casalinghi, elettronica, abbigliamento ed elettrodomestici: guardato pagina
 per pagina e scartato, coi motivi in `scartate.py`.
 
+## Il Lidl «XXL» ha prodotti veri, non solo confezioni grandi (2026-09-15)
+
+Il volantino Lidl del 17-23 settembre aveva molte pagine intere marcate «XXL»
+e «Super Offerte»: a un'occhiata sembrano solo confezioni maggiorate (Manlio
+non le vuole, non è quello il punto), ma dentro c'erano prezzi veri di prodotti
+normali — salmone, coppa di suino, tonno, vino, formaggio — venduti in formato
+grande a un prezzo per chilo comunque competitivo. Non sono state scartate a
+priori: si leggono come tutte le altre, prezzo e formato, e si giudica riga per
+riga se il prezzo per unità è buono, non dal bollino «XXL» sulla confezione.
+
+Lo stesso volantino aveva anche un blocco enorme di pagine non alimentari
+(sport, bellezza, casa, giardino, moda, specialità orientali, fiori): quelle
+sì scartate, coi motivi in `scartate.py` — sono il grosso delle 19 pagine
+scartate su 36.
+
 ## Se un domani diventa un'app
 
 Manlio non legge codice e verifica tutto aprendo una pagina sul telefono, quindi
