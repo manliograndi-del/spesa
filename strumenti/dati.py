@@ -63,7 +63,6 @@ def _v(*campi):
 
 VOLANTINI = [
  _v('mercato',        'Mercatò',        'dal 3 al 16 settembre',                        'Mercatò — 3-16 settembre.pdf',                     '2026-09-16', None, None, PAGINE_MERCATO),
- _v('lidl',           'Lidl',           'dal 3 al 9 settembre (sottocosto fino al 12)', 'Lidl — 3-9 settembre.pdf',                          '2026-09-12', _AV + '/2026/08/volantino-lidl-2026-09-03-p-{n:02d}.jpg'),
  _v('bennet0903',    'Bennet',         'Dolce Buongiorno, dal 3 al 16 settembre',      'Bennet Dolce Buongiorno — 3-16 settembre.pdf',      '2026-09-16', _AV + '/2026/09/volantino-bennet-2026-09-03-p-{n:05d}.jpg'),
  _v('carriper04',     'Carrefour Iper', 'dal 4 al 13 settembre',                        'Carrefour Iper — 4-13 settembre.pdf',               '2026-09-13', _AV + '/2026/09/volantino-carrefour-iper-2026-09-04-p-{n:05d}.jpg'),
  _v('bennet10',       'Bennet',         'dal 10 al 23 settembre',                       'Bennet — 10-23 settembre.pdf',                      '2026-09-23', _AV + '/2026/09/volantino-bennet-2026-09-10-p-{n:05d}.jpg'),
@@ -74,6 +73,7 @@ VOLANTINI = [
  _v('eurospin10',     'Eurospin',       'dal 10 al 20 settembre',                       'Eurospin — 10-20 settembre.pdf',                    '2026-09-20', _AV + '/2026/09/volantino-eurospin-2026-09-10-p-{n:02d}.jpg', '2026-09-10'),
  _v('md08',           'MD',             "dall'8 al 20 settembre",                       'MD — 8-20 settembre.pdf',                          '2026-09-20', _AV + '/2026/09/volantino-md-2026-09-08-p-{n:02d}.jpg',       '2026-09-08'),
  _v('carriper15',     'Carrefour Iper', 'dal 15 al 28 settembre',                       'Carrefour Iper — 15-28 settembre.pdf',              '2026-09-28', _AV + '/2026/09/volantino-carrefour-iper-2026-09-15-p-{n:05d}.jpg', '2026-09-15'),
+ _v('lidl17',         'Lidl',           'dal 17 al 23 settembre',                       'Lidl — 17-23 settembre.pdf',                        '2026-09-23', _AV + '/2026/09/volantino-lidl-2026-09-17-p-{n:05d}.jpg',       '2026-09-17'),
 ]
 
 PRODOTTI = [
@@ -85,8 +85,6 @@ PRODOTTI = [
  ("Carne di bue","MD","md08","Macelleria","Polpa scelta per roastbeef di bovino adulto","al kg",1,15.90,9,V,""),
  ("Bresaola","Eurospin","eurospin10","Salumi","Bresaola punta d'anca","80 g",0.080,2.19,5,V,"Prima 2,99. È bresaola, salume di bovino: il prezzo al chilo non si confronta con la carne fresca."),
  ("Carne di bue","Carrefour Iper","carriper04","Macelleria","Fettine di bovino adulto","al kg, almeno 1 kg",1,12.99,10,V,"«Prendi Spendi»: 12,99 al kg da 1 kg in su. Sotto il chilo 14,99. Prima 19,99."),
- ("Carne di bue","Lidl","lidl","Macelleria","Macinato di bovino adulto Scottona","400 g",0.400,4.49,16,V,"Prima 5,99. Il volantino stampa 11,23 al kg."),
- ("Carne di bue","Lidl","lidl","Macelleria","Rollata di bovino allo speck","600 g",0.600,7.99,16,V,"Attenzione: 7,99 è il prezzo della confezione, non al chilo."),
  # ------------------------------- TONNO (kg) -------------------------------
  ("Tonno","MD","md08","Dispensa","Tonno al naturale – Poseidon","240 g (3 × 80 g)",0.240,1.69,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 1,99, cioè 8,29 al kg. È al naturale, non all'olio."),
  ("Tonno","Eurospin","eurospin10","Dispensa","Tonno all'olio di oliva pinna gialla – Ondina","960 g (12 × 80 g)",0.960,7.49,1,V,"Prima 10,99. Quantità limitata. Confezione grande."),
@@ -96,16 +94,12 @@ PRODOTTI = [
  ("Tonno","Carrefour Iper","carriper04","Dispensa","Filetti di tonno all'olio di oliva – Nostromo","180 g",0.180,2.99,25,V,"−38%, prima 4,83. Solo con la tessera SpesAmica Payback."),
  ("Tonno","Carrefour Iper","carriper04","Pescheria","Trancio di tonno pinne gialle","al kg",1,17.90,11,V,"−30%, prima 25,90. È tonno fresco decongelato al banco, non in scatola."),
  ("Tonno","Carrefour Iper","carriper04","Dispensa","Tonno all'olio di oliva – Rio Mare","960 g (12 × 80 g)",0.960,10.45,4,V,"Sottocosto −47%, prima 19,73. Confezione grande."),
- ("Tonno","Lidl","lidl","Sottocosto","Tonno in olio di oliva – Rio Mare","780 g (12 × 65 g)",0.780,9.99,1,V,"Sgocciolato fa 16,01 al kg. Sottocosto fino al 12 settembre."),
  # ------------------------------- SALMONE (kg) -------------------------------
  ("Salmone","Eurospin","eurospin10","Dispensa","Filetti di salmone al naturale – Ondina","150 g, sgocciolati 100 g",0.100,2.39,6,V,"Prima 3,19. È in scatola. Il volantino conta i 100 g sgocciolati: 23,90 al kg."),
  ("Salmone","Carrefour Iper","carriper04","Pescheria","Salmone affumicato Essential – Mowi","50 g",0.050,1.99,11,V,"Sottocosto −50%, prima 3,98. Il volantino stampa 39,80 al kg."),
- ("Salmone","Lidl","lidl","Pesce","Filetto di salmone con pelle – Gastronomia di Mare","500 g",0.500,8.99,17,V,"Solo con carta Lidl Plus. Senza carta 10,49, cioè 20,98 al kg."),
  # ------------------------------- CAFFÈ (kg) -------------------------------
  # ------------------------------- LATTE (litri) -------------------------------
- ("Latte","Lidl","lidl","Sottocosto","Latte UHT Bontà e Leggerezza 1,2% – Parmalat","1 litro",1,0.79,1,V,"Sottocosto fino al 12 settembre."),
  # ------------------------------- PASTA (kg) -------------------------------
- ("Pasta","Lidl","lidl","Sottocosto","Tortellini al prosciutto crudo – Fini","250 g",0.250,0.99,4,V,"Sottocosto fino al 12 settembre. Pasta fresca."),
  ("Pasta","Carrefour Iper","carriper04","Dispensa","Pasta di semola Al Bronzo – Barilla","500 g",0.500,0.79,23,V,"−38%, prima 1,29. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- OLIO D'OLIVA (litri) -------------------------------
  ("Olio d'oliva","Eurospin","eurospin10","Dispensa","Olio extra vergine di oliva Fruttato o Fruttato Leggero – Frantoio La Rocca","1 litro",1,4.49,6,V,"Prima 5,99."),
@@ -123,8 +117,6 @@ PRODOTTI = [
  ("Pollo","Carrefour Iper","carriper04","Macelleria","Filettini di pollo","al kg, almeno 3 kg",1,7.99,10,V,"«Prendi Spendi»: 7,99 al kg da 3 kg in su. Sotto i 3 kg 9,99. Prima 16,49."),
  ("Pollo","Carrefour Iper","carriper04","Macelleria","Linea Bon Roll – Aia","680 g",0.680,6.89,10,V,"−40%, prima 11,59. Il volantino stampa 10,14 al kg."),
  ("Pollo","Carrefour Iper","carriper04","Macelleria","Kebab di pollo – Aia","300 g",0.300,4.99,10,V,"−21%, prima 6,39. Il volantino stampa 16,64 al kg."),
- ("Pollo","Lidl","lidl","Macelleria","Pollo allevato all'aperto Campese – Amadori","al kg",1,5.99,16,V,"Senza uso di antibiotici."),
- ("Pollo","Lidl","lidl","Macelleria","Petto di pollo intero","al kg",1,6.79,16,V,"−18%, prima 8,29."),
  # ------------------------------- FORMAGGIO (kg) -------------------------------
  ("Mozzarella","MD","md08","Freschi","Formaggio a pasta filata (mozzarella)","1 kg",1,4.99,1,V,"Prima 6,89."),
  ("Mozzarella","Eurospin","eurospin10","Freschi","Ciliegine di mozzarella","150 g",0.150,0.99,5,V,"Prima 1,39. Latte 100% italiano."),
@@ -134,7 +126,6 @@ PRODOTTI = [
  ("Formaggio","MD","md08","Freschi","Formaggio pecoricco","al kg",1,8.99,4,V,"Prima 9,99. Speciale Sicilia."),
  ("Grana e parmigiano","Eurospin","eurospin10","Freschi","Grana Padano DOP","al kg",1,9.99,5,V,"Prima 13,29. Lo sconto del 25% si vede alla cassa."),
  ("Formaggio","MD","md08","Freschi","Formaggetta mista","al kg",1,9.99,4,V,"Prima 12,90. Speciale Sicilia."),
- ("Mozzarella","Lidl","lidl","Sottocosto","Mozzarella 100% latte italiano – Granarolo","375 g (3 × 125 g)",0.375,2.29,1,V,"Sottocosto fino al 12 settembre."),
  # ------------------------------- UOVA (uova) -------------------------------
  # ------------------------------- CARTA IGIENICA (rotoli) -------------------------------
  ("Carta igienica","Carrefour Iper","carriper04","Cura casa","Carta igienica Sensation Extra – Regina","4 rotoli",4,1.99,30,V,"−42%, prima 3,49."),
@@ -160,9 +151,6 @@ PRODOTTI = [
  ("Salsiccia","Carrefour Iper","carriper04","Macelleria","Salamella di suino – confezione famiglia","al kg",1,7.99,10,V,"−20%, prima 9,99."),
  # Ci stanno sia i tagli freschi sia i salumi: sono tutti maiale, e il formato
  # di ogni riga dice cos'e. Se un domani vuole separarli, basta una categoria in piu.
- ("Salsiccia","Lidl","lidl","Macelleria","Bocconcini di salsiccia","250 g",0.250,1.69,16,V,"−21%, prima 2,15. Il volantino stampa 6,76 al kg."),
- ("Suino","Lidl","lidl","Macelleria","Trancio di coppa di suino","al kg",1,6.99,16,V,"Novità."),
- ("Suino","Lidl","lidl","Macelleria","Sottilissime di lonza di suino","250 g",0.250,1.99,16,V,"−21% con la carta Lidl Plus, prima 2,55. Il volantino stampa 7,96 al kg."),
  # ------------------------------- BISCOTTI (kg) -------------------------------
  ("Biscotti","MD","md08","Colazione","Biscotti Oswego – Le Bon","500 g",0.500,1.39,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,69.","2026-09-18","2026-09-21"),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Grisbì gusti assortiti","135 g",0.135,0.99,23,V,"Sottocosto −55%, prima 2,20. Solo con la tessera SpesAmica Payback."),
@@ -174,10 +162,8 @@ PRODOTTI = [
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Biscotti Atene – Doria","500 g",0.500,0.99,21,V,"−40% con la tessera SpesAmica Payback, prima 1,65."),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Plumcake Classico – Mulino Bianco","330 g",0.330,1.39,21,V,"−30%, prima 1,99."),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Frollini gusti assortiti – Colussi","273 g",0.273,1.19,21,V,"−40% con la tessera SpesAmica Payback, prima 1,99."),
- ("Biscotti","Lidl","lidl","Colazione","Pangoccioli – Mulino Bianco","336 g (8 pezzi)",0.336,2.15,24,V,"−25%, prima 2,89. Stesso prodotto che l'Ipercoop fa a 1,59."),
  ("Biscotti","Carrefour Iper","carriper04","Colazione","Nutella Biscuits","304 g",0.304,2.69,21,V,"−22% con la tessera SpesAmica Payback, prima 3,46."),
  # ------------------------------- YOGURT (kg) -------------------------------
- ("Yogurt","Lidl","lidl","Sottocosto","Yogurt intero alla frutta – Granarolo","1 kg (8 × 125 g)",1,1.99,4,V,"Sottocosto fino al 12 settembre."),
  ("Yogurt","MD","md08","Freschi","Yogurt intero bianco – Buona Spesa!","1 kg",1,1.99,13,V,"Prima 2,39. Secchiello da un chilo."),
  ("Yogurt","Eurospin","eurospin10","Freschi","Fermenti attivi da bere alla fragola o multifrutti","600 g (6 × 100 g)",0.600,1.49,5,V,"Prima 1,99. Sono da bere, non vasetti."),
  ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt fragola o banana con confetti al cioccolato","110 g",0.110,0.49,5,V,"Prima 0,69. Solo con la tessera Eurospin Family."),
@@ -200,8 +186,6 @@ PRODOTTI = [
  ("Cioccolato","Carrefour Iper","carriper04","Dispensa","Tavolette gusti assortiti – Milka","250 g",0.250,3.95,23,V,""),
  ("Cioccolato","Carrefour Iper","carriper04","Dispensa","Tavolette Excellence 85% cacao – Lindt","100 g",0.100,2.89,23,V,"−20%, prima 3,62. Solo con la tessera SpesAmica Payback."),
  ("Cioccolato","Carrefour Iper","carriper04","Colazione","Nutella – Ferrero","950 g",0.950,6.89,21,V,"Crema da spalmare. Il barattolo grande."),
- ("Cioccolato","Lidl","lidl","Colazione","Gallette di riso al cioccolato – Sondey","100 g",0.100,1.29,24,V,"−23% con la carta Lidl Plus, prima 1,69."),
- ("Cioccolato","Lidl","lidl","Colazione","Bastoncini ricoperti di cioccolato – Sondey","90 g",0.090,1.29,24,V,"−23% con la carta Lidl Plus, prima 1,69. Fondente o al latte."),
  # ------------------------------- MERLUZZO E BACCALÀ (kg) -------------------------------
  ("Merluzzo e baccalà","Carrefour Iper","carriper04","Surgelati","Polpette di pesce merluzzo dalla Norvegia – Frosta","240 g",0.240,3.99,18,V,"Surgelate. −20%, prima 4,99. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- RISO (kg) -------------------------------
@@ -212,7 +196,6 @@ PRODOTTI = [
  ("Pane","Carrefour Iper","carriper04","Colazione","Piadelle Toast – Mulino Bianco","240 g",0.240,1.49,23,V,"−32%, prima 2,20. Solo con la tessera SpesAmica Payback."),
  ("Pane","Carrefour Iper","carriper04","Colazione","Gallette Bio mais o riso – Carrefour Bio","120 g",0.120,0.79,23,V,"−20%, prima 0,99. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- POMODORO E PASSATA (kg) -------------------------------
- ("Pomodoro e passata","Lidl","lidl","Sottocosto","Passata di pomodoro – Mutti","700 g",0.700,0.89,4,V,"Sottocosto fino al 12 settembre. 100% pomodoro italiano."),
  ("Pomodoro e passata","Eurospin","eurospin10","Dispensa","Polpa di pomodoro a pezzetti","2,4 kg (6 × 400 g)",2.4,2.49,3,V,"Quantità limitata. 100% pomodori italiani."),
  # ------------------------------- OLIO DI SEMI (litri) -------------------------------
  ("Olio di semi","MD","md08","Dispensa","Olio di semi vari – Semì","1 litro",1,1.55,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,79.","2026-09-18","2026-09-21"),
@@ -240,7 +223,6 @@ PRODOTTI = [
  ("Pizza surgelata","MD","md08","Surgelati","Pizza ai funghi","375 g",0.375,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,69, cioè 7,17 al kg."),
  ("Pizza surgelata","Eurospin","eurospin10","Surgelati","Pizza alle verdure","415 g",0.415,1.99,15,V,"Prima 2,49. Il volantino stampa 4,80 al kg."),
  ("Pizza surgelata","MD","md08","Surgelati","Pizza ai 4 formaggi","350 g",0.350,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,89, cioè 8,26 al kg."),
- ("Pizza surgelata","Lidl","lidl","Sottocosto","Pizza Big Americans Supreme – Cameo","455 g",0.455,2.49,4,V,"Sottocosto fino al 12 settembre. Il volantino stampa 5,47 al kg."),
  ("Pizza surgelata","Carrefour Iper","carriper04","Surgelati","Pizza Bella Napoli farcite gusti assortiti – Buitoni","375 g",0.375,2.49,18,V,"−28%, prima 3,47. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- FRUTTA (kg) -------------------------------
  ("Frutta","MD","md08","Ortofrutta","Uva bianca in bauletto","2 kg",2,2.78,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Il volantino stampa 1,39 al kg.","2026-09-18","2026-09-21"),
@@ -266,7 +248,6 @@ PRODOTTI = [
  ("Vino","Carrefour Iper","carriper04","Bevande","Valpolicella Superiore DOC Radole – Sartori","750 ml",0.750,5.99,26,V,"−24%, prima 7,89. Solo con la tessera SpesAmica Payback. Veneto."),
  ("Vino","Carrefour Iper","carriper04","Bevande","Franciacorta DOCG Millesimato Brut – Terre d'Italia","750 ml",0.750,14.50,26,V,"−22%, prima 18,59. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- BIRRA (litri) -------------------------------
- ("Birra","Lidl","lidl","Sottocosto","Birra Pils in lattina – Beck's","440 ml",0.440,0.75,4,V,"Sottocosto fino al 12 settembre."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra – Peroni","1,98 litri (6 × 330 ml)",1.98,3.99,26,V,"−31%, prima 5,79. Solo con la tessera SpesAmica Payback."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra Metodo Lento – Ichnusa","500 ml",0.500,1.09,26,V,"−31%, prima 1,59. Solo con la tessera SpesAmica Payback."),
  ("Birra","Carrefour Iper","carriper04","Bevande","Birra Cristalli di Sale – Messina","990 ml (3 × 330 ml)",0.990,2.99,26,V,"−25%, prima 3,99. Solo con la tessera SpesAmica Payback."),
@@ -512,7 +493,6 @@ PRODOTTI = [
  ("Gamberi","Carrefour Iper","carriper04","Pescheria","Gamberi argentini decongelati","al kg",1,16.90,11,V,"−26%, prima 22,90. Con «Prendi Spendi», da 2 kg in su vanno a 14,90 al kg."),
  ("Gamberi","Eurospin","eurospin10","Surgelati","Gamberi argentini – Ondina","800 g",0.800,9.89,8,V,"Prima 11,99. Il volantino stampa 12,37 al kg."),
  ("Gamberi","Eurospin","eurospin10","Surgelati","Code di mazzancolla tropicale sgusciate precotte","240 g",0.240,3.79,8,V,"Prima 4,79. Il volantino stampa 15,80 al kg."),
- ("Merluzzo e baccalà","Lidl","lidl","Surgelati","Nuggets di merluzzo – Strada del Gusto","240 g",0.240,1.69,34,V,"Sono bocconcini impanati, non filetto: al chilo costano poco anche per questo. Il volantino stampa 7,04 al kg."),
  ("Merluzzo e baccalà","Carrefour Iper","carriper04","Surgelati","Cuori di filetti di nasello del Pacifico – Frosta","300 g",0.300,4.49,16,V,"−34%, prima 6,81. Solo con la tessera SpesAmica Payback. Il volantino stampa 14,97 al kg."),
  ("Bastoncini di pesce","Carrefour Iper","carriper04","Surgelati","Bastoncini di merluzzo 30 pezzi – Ocean Catch","900 g",0.900,2.99,16,V,"−33%, prima 4,47. Solo con la tessera SpesAmica Payback. Il volantino stampa 3,33 al kg."),
  ("Bastoncini di pesce","Eurospin","eurospin10","Surgelati","Bastoncini di filetti di merluzzo, 15 pezzi","450 g",0.450,2.89,14,V,"Prima 3,49. Il volantino stampa 6,43 al kg."),
@@ -1398,6 +1378,63 @@ PRODOTTI = [
  ("Acqua","Carrefour Iper","carriper15","Bevande","Acqua minerale naturale o frizzante – Boario, conf. 6 pezzi","9 litri (6 × 1,5 l)",9,1.79,25,V,"−35%, prima 2,76. Solo con la tessera SpesAmica Payback."),
  ("Birra","Carrefour Iper","carriper15","Bevande","Birra in lattina – Tuborg","500 ml",0.500,0.99,29,V,""),
  ("Vino","Carrefour Iper","carriper15","Bevande","Rosso o Bianco Terre Siciliane IGT – Corvo","750 ml",0.750,3.99,26,V,"−30%, prima 5,70. Solo con la tessera SpesAmica Payback."),
+ # ------------------------------- LIDL 17-23 SETTEMBRE -------------------------------
+ ("Carne di bue","Lidl","lidl17","Macelleria","Hamburger di bovino","400 g",0.400,4.29,1,V,"Prima 5,79. Allevato in Italia. Il volantino stampa 10,73 al kg."),
+ ("Latte","Lidl","lidl17","Latteria","Latte parzialmente scremato UHT XXL","6 x 1 litro",6,4.69,1,V,"Formato convenienza XXL: il formato base costa 1,19 al litro, questo 0,78."),
+ ("Uova","Lidl","lidl17","Latteria","Uova fresche medie – Maia","24 uova",24,4.99,1,V,"Da allevamento a terra. 1 uovo = 0,21€."),
+ ("Pollo","Lidl","lidl17","Macelleria","Filetto di petto di pollo a fette","400 g",0.400,3.19,2,V,"Con Lidl Plus, prima 4,59. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
+ ("Prosciutto crudo","Lidl","lidl17","Salumi","Prosciutto crudo stagionato – Dal Salumiere","150 g",0.150,1.99,2,V,"Minimo 11 mesi di stagionatura. Prima 2,99. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
+ ("Mozzarella","Lidl","lidl17","Latteria","Burrata – Italiamo","2x200 g",0.400,2.39,2,V,"1+1: un pezzo da solo costa 2,39, prima 4,78 la confezione doppia. Valido solo dal 17 al 20 settembre. È burrata, non mozzarella tonda.","2026-09-17","2026-09-20"),
+ ("Succhi e bibite","Lidl","lidl17","Bevande","Coca-Cola","4x1,75 l",7,5.89,3,V,"Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
+ ("Frutta","Lidl","lidl17","Ortofrutta","Uva bianca da tavola di Mazzarrone IGP","1 kg confezione",1,1.99,4,V,"Prima 2,79."),
+ ("Verdura","Lidl","lidl17","Ortofrutta","Carote del Fucino IGP","800 g confezione",0.800,1.19,4,V,"Prima 1,59."),
+ ("Frutta","Lidl","lidl17","Ortofrutta","Pesche","al kg",1,1.89,5,V,"Con Lidl Plus, prima 2,49. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
+ ("Salsiccia","Lidl","lidl17","Macelleria","Salsiccia di tacchino con suino e pollo","450 g",0.450,2.29,6,V,"Prima 2,99."),
+ ("Tacchino","Lidl","lidl17","Macelleria","Macinato di tacchino","400 g",0.400,2.99,6,V,"Prima 3,99."),
+ ("Tacchino","Lidl","lidl17","Macelleria","Bocconcini di fesa di tacchino","400 g",0.400,3.59,6,V,"Prima 4,59."),
+ ("Pollo","Lidl","lidl17","Macelleria","Kebab di pollo","350 g",0.350,2.99,6,V,"Con Lidl Plus, prima 3,99."),
+ ("Pollo","Lidl","lidl17","Macelleria","Cotoletta di pollo con scamorza affumicata","200 g",0.200,2.19,7,V,""),
+ ("Pollo","Lidl","lidl17","Macelleria","Panzerotti di pollo con provola e speck","220 g",0.220,2.29,7,V,""),
+ ("Suino","Lidl","lidl17","Macelleria","Lonza di maiale, trancio intero","al kg",1,4.99,7,V,""),
+ ("Pesce fresco","Lidl","lidl17","Gastronomia","Tentacoli di polpo scottati – Gastronomia di Mare","250 g",0.250,7.99,7,V,"Già scottati, pronti. Prima 9,99."),
+ ("Gamberi","Lidl","lidl17","Pesce","Mazzancolle XXL – Ocean Sea","300 g",0.300,4.79,8,V,"Sgusciate e scottate, surgelate. Formato XXL, 60 g in più rispetto al formato base."),
+ ("Suino","Lidl","lidl17","Macelleria","Fettine di coppa di suino senza osso XXL","1 kg confezione",1,7.49,8,V,"Formato convenienza XXL."),
+ ("Salmone","Lidl","lidl17","Pesce","Filetti di salmone con pelle XXL","8x125 g",1,17.49,8,V,"Formato convenienza XXL, nel banco pesce."),
+ ("Pancetta e bacon","Lidl","lidl17","Salumi","Pancetta a cubetti XXL – Salumeo","2x120 g",0.240,2.19,8,V,"Formato XXL, 40 g in più rispetto al formato base."),
+ ("Merluzzo e baccalà","Lidl","lidl17","Surgelati","Merluzzo d'Alaska panato XXL","500 g",0.500,4.49,8,V,"Panato, surgelato. Formato convenienza XXL."),
+ ("Pane","Lidl","lidl17","Panetteria","Piadina Romagnola IGP alla Riminese XXL – Italiamo","720 g",0.720,1.69,9,V,"Formato XXL, 120 g in più rispetto al formato base."),
+ ("Pasta","Lidl","lidl17","Dispensa","Pasta fresca all'uovo ripiena XXL – Nonna Mia","300 g",0.300,1.19,9,V,"Cappelletti al prosciutto crudo o tortelloni ricotta e spinaci. Formato XXL, 50 g in più."),
+ ("Pasta","Lidl","lidl17","Dispensa","Gnocchi di patate XXL – Nonna Mia","600 g",0.600,1.39,9,V,"Formato XXL, 100 g in più."),
+ ("Verdure in scatola","Lidl","lidl17","Dispensa","Cetriolini XXL – Freshona","360 g (sgocc.)",0.360,1.69,10,V,"All'aceto di vino. Formato XXL, sgocciolato."),
+ ("Sughi pronti","Lidl","lidl17","Dispensa","Pesto alla Genovese XXL – Baresa","290 g",0.290,1.49,10,V,"Formato convenienza XXL."),
+ ("Olio di semi","Lidl","lidl17","Dispensa","Olio di semi vari XXL – Vita d'Or","5 litri",5,7.99,10,V,"Formato convenienza XXL."),
+ ("Tonno","Lidl","lidl17","Dispensa","Tonno all'olio di semi di girasole XXL – Nixe","6x52 g (sgocc.)",0.312,3.69,10,V,"Formato convenienza XXL, sgocciolato."),
+ ("Merendine","Lidl","lidl17","Colazione","Mini croissant XXL – Realforno","250 g",0.250,1.29,11,V,"Formato XXL, 50 g in più."),
+ ("Creme spalmabili","Lidl","lidl17","Colazione","Crema spalmabile alla nocciola XXL – Choco Nussa","1 kg",1,3.99,11,V,"Formato convenienza XXL."),
+ ("Cioccolato","Lidl","lidl17","Colazione","Kinder Bueno","258 g",0.258,3.99,11,V,"Formato convenienza, con pezzi extra in omaggio."),
+ ("Vino","Lidl","lidl17","Bevande","Pinot Grigio delle Venezie DOC – Giulio Pasotti","0,75 litri",0.750,2.39,12,V,"Vino bianco secco. Prima 2,99."),
+ ("Vino","Lidl","lidl17","Bevande","Mures Nero di Troia Rosé Puglia IGP – Cantina di Ruvo di Puglia","0,75 litri",0.750,2.29,12,V,"Vino rosato. Prima 2,99."),
+ ("Vino","Lidl","lidl17","Bevande","Prosecco DOC – Allini","0,75 litri",0.750,3.19,12,V,"Con Lidl Plus. Vino spumante extra dry. Prima 3,99."),
+ ("Formaggio","Lidl","lidl17","Latteria","Emmental francese – Milbona","250 g",0.250,1.79,12,V,"Con Lidl Plus. Formaggio a pasta dura. Prima 2,35."),
+ ("Prosciutto cotto","Lidl","lidl17","Salumi","Prosciutto cotto alta qualità – Dal Salumiere","125 g",0.125,1.19,12,V,"Con Lidl Plus. Prima 1,55."),
+ ("Bresaola","Lidl","lidl17","Salumi","Bresaola della Valtellina IGP, Punta d'Anca – Dal Salumiere","100 g",0.100,2.79,13,V,"Con Lidl Plus. Prima 3,49."),
+ ("Pollo","Lidl","lidl17","Salumi","Petto di pollo cotto al forno – Dal Salumiere","120 g",0.120,1.89,13,V,"Solo carne italiana. È petto di pollo cotto (un salume), non carne fresca. Prima 2,49."),
+ ("Pancetta e bacon","Lidl","lidl17","Salumi","Pancetta coppata – Dal Salumiere","90 g",0.090,1.69,13,V,"Con Lidl Plus. Prima 2,15."),
+ ("Salame","Lidl","lidl17","Salumi","Ventricina piccante a fette – Dal Salumiere","100 g",0.100,1.11,13,V,"Prima 1,49."),
+ ("Merluzzo e baccalà","Lidl","lidl17","Surgelati","Burger di merluzzo d'Alaska – Ocean Sea","210 g",0.210,1.79,13,V,"Con Lidl Plus. Prima 2,29."),
+ ("Verdure surgelate","Lidl","lidl17","Surgelati","Pisellini Primavera – Findus","660 g",0.660,3.19,13,V,"Con Lidl Plus. Prima 4,19."),
+ ("Mozzarella","Lidl","lidl17","Latteria","Mozzarella High Protein – Latteria","3x100 g",0.300,2.49,17,V,"Multipack."),
+ ("Yogurt","Lidl","lidl17","Latteria","Kefir Shot – Milbona","600 g",0.600,1.99,17,V,"Bevanda a base di kefir con succo di frutta ai frutti misti o alla fragola."),
+ ("Birra","Lidl","lidl17","Bevande","Birra analcolica – Finkbräu","4x0,5 l",2,1.47,14,V,"Con Lidl Plus. 3+1: un pezzo da solo costa 0,49. Prima 1,96 la confezione. Senza alcol."),
+ ("Sughi pronti","Lidl","lidl17","Dispensa","Gran Pesto alla Genovese – Star Tigullio","190 g",0.190,1.69,15,V,"Classico o senza aglio. Prima 2,19."),
+ ("Birra","Lidl","lidl17","Bevande","Strong lager, birra doppio malto – Tennent's Super","0,355 litri",0.355,1.39,15,V,"9% Vol. Prima 1,79."),
+ ("Gelato","Lidl","lidl17","Surgelati","Gelato variegato al triplo cioccolato – Bon Gelati","522 g",0.522,2.19,15,V,"Prima 2,89."),
+ ("Gelato","Lidl","lidl17","Surgelati","Gelato variegato al tiramisù – Bon Gelati","515 g",0.515,2.19,15,V,"Prima 2,89."),
+ ("Marmellata","Lidl","lidl17","Colazione","Confettura extra pesca – Maribel","425 g",0.425,1.19,15,V,"Con Lidl Plus. 50% di frutta. Prima 1,55."),
+ ("Dentifricio","Lidl","lidl17","Igiene","Dentifricio Tripla protezione menta fresca – Aquafresh","125 ml",0.125,1.49,15,V,"Prima 1,99."),
+ ("Frutta","Lidl","lidl17","Ortofrutta","Pere Williams","1 kg confezione",1,1.79,36,V,"Prima 2,49. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
+ ("Patate","Lidl","lidl17","Ortofrutta","Patate Selenella","1,5 kg rete",1.5,2.29,36,V,"Prima 2,99. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
+ ("Verdura","Lidl","lidl17","Ortofrutta","Zucca Butternut","al kg",1,1.19,36,V,"Con Lidl Plus, prima 1,69. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
 ]
 
 # LE OFFERTE CON DATE LORO.

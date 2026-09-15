@@ -22,3 +22,4 @@
 2026-09-14 06:25 UTC  pubblicato: Carrefour Iper nuovo (15-28 settembre, 50 pagine lette per intero), 46 righe nuove; sw.js a v30; tutte le prove passate; aggiornati CLAUDE.md e NOTE.md
 2026-09-15 06:08 UTC  sveglia: clonato
 2026-09-15 06:11 UTC  controllo 15/9: lidl vecchio scaduto da 3gg (da togliere); mercato/bennet0903/lidl10 scadono domani; nessun successore trovato per Mercatò e Bennet; TROVATO nuovo Lidl dal 17 settembre con pagine vere disponibili su anteprimavolantino
+2026-09-15 06:19 UTC  letto per intero il nuovo Lidl (17-23 settembre): 56 prezzi nuovi in dati.py, 19 pagine scartate segnate; tolto il Lidl vecchio scaduto
