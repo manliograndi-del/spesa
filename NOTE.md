@@ -1583,3 +1583,39 @@ git.
 **prima** di committare. Se si committa per primi, l'ultimo commit è già lo
 stato nuovo e il confronto viene vuoto. Nell'ordine scritto in CLAUDE.md
 (`pagina`, `storia`, `novita`, poi commit) è già così.
+
+## Leggere un volantino intero vuol dire per TUTTO il catalogo, non solo per i bottoni accesi (2026-09-16)
+
+Leggendo il Mercatò nuovo (17-30 settembre) mi sono fermato, a metà, alle
+sole categorie che oggi sono accese sui bottoni di Manlio (dodici). Sbagliato:
+il catalogo ne ha **67**, e la pagina stessa lo dice — «non tutte le voci del
+catalogo hanno già i prezzi... le sto leggendo a mano, un reparto per volta:
+compariranno senza che tu debba fare niente». Se mi fermo alle categorie
+accese oggi, quando Manlio (o sua moglie) ne accende una nuova dal cassetto
+la trova vuota anche se il volantino letto quel giorno aveva il prezzo giusto
+sotto gli occhi. Rileggendo le stesse venti pagine col catalogo intero in
+mano sono uscite altre trenta righe buone: salumi al banco (prosciutto,
+salame, mortadella, pancetta — categorie loro, non «Formaggio»), pesce fresco,
+vino, frutta e verdura di stagione, pasta, riso, farina, pane, caffè, e
+qualche voce di cura casa e persona. **La domanda giusta, pagina per pagina,
+non è «c'entra con un bottone acceso» ma «c'entra con una delle 67 voci».**
+
+Dentro questo stesso errore, tre categorie sono state sbagliate al primo
+giro perché assomigliano a «Formaggio» ma hanno una voce propria nel
+catalogo: la ricotta va in **Ricotta**, il Grana Padano in **Grana e
+parmigiano**, la mozzarella (bufala, fior di latte, ciliegine) in
+**Mozzarella**, la robiola e il Philadelphia in **Formaggi spalmabili**. La
+regola: prima di scrivere la categoria, si guarda `catalogo.py` per le parole
+chiave — «formaggio» da solo prende solo quello che non ha una casa più
+precisa.
+
+**Lo stesso prodotto può comparire identico in due volantini consecutivi
+dello stesso negozio**, quando il fornitore ripete la stessa referenza da un
+periodo all'altro: qui è successo con una pancetta Cavalier Umberto Boschi,
+scritta uguale (stessa insegna, stesso prodotto, stesso formato) nel Mercatò
+3-16 e nel Mercatò 17-30, solo col prezzo cambiato. Il controllo delle righe
+doppie di `dati.py` **non guarda la chiave del volantino**, quindi si è
+fermato subito con «riga doppia», anche se i due volantini non si
+sovrappongono nel tempo. Giusto così: tenuta solo la riga nuova (il prezzo di
+adesso), tolta quella vecchia — due righe uguali per lo stesso prodotto
+reale, anche a distanza di volantini, confonderebbero comunque chi guarda.
