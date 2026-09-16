@@ -202,9 +202,9 @@ if __name__ == '__main__':
     prima = json.load(open(FOTO, encoding='utf-8')) if os.path.exists(FOTO) else {}
 
     if not prima:
-        # Nessuna fotografia: siamo in un clone pulito, com'\u00e8 ogni sessione
-        # nuova. Non \u00e8 un motivo per buttare via il giorno: la fotografia si
-        # rif\u00e0 dall'ultimo commit che ha toccato i prezzi.
+        # Nessuna fotografia: siamo in un clone pulito, com'è ogni sessione
+        # nuova. Non è un motivo per buttare via il giorno: la fotografia si
+        # rifà dall'ultimo commit che ha toccato i prezzi.
         commit = commit_di_dati()
         if commit:
             sigla, data = commit[0]
@@ -219,9 +219,25 @@ if __name__ == '__main__':
                   f"{len(adesso['volantini'])} volantini in storia/stato.json")
         raise SystemExit
 
+    if prima.get('giorno') == adesso['giorno']:
+        # La fotografia è già di oggi: è il SECONDO giro della stessa giornata.
+        # Confrontarsi con se stessi svuota il giorno. Il 2026-09-16 è successo
+        # davvero: il giro delle 8 aveva lanciato `storia` una volta, poi aveva
+        # aggiunto altre righe a `dati.py` e l'aveva rilanciato, e il file di
+        # quel giorno era rimasto con le ultime cinque righe invece che con
+        # tutta la giornata. Il paragone giusto è sempre l'ultimo giorno
+        # PUBBLICATO, e quello sta in git: così rilanciarlo dieci volte di fila
+        # riscrive dieci volte lo stesso giorno, intero.
+        indietro = next(((s, g) for s, g in commit_di_dati()
+                         if g < adesso['giorno']), None)
+        if indietro:
+            print(f'la fotografia è già di oggi: riprendo il paragone da '
+                  f'{indietro[0][:7]} del {indietro[1]}')
+            prima = fotografia_da_commit(*indietro) or prima
+
     # I giorni rimasti indietro, uno per uno e con la loro data. Se in mezzo
-    # c'\u00e8 stato un commit sui prezzi si riprende quello: \u00e8 cos\u00ec che si
-    # recuperano i giorni persi quando la fotografia non \u00e8 arrivata.
+    # c'è stato un commit sui prezzi si riprende quello: è così che si
+    # recuperano i giorni persi quando la fotografia non è arrivata.
     storici = commit_di_dati()
     fatte = {}
     tappe = []

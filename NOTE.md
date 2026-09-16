@@ -1619,3 +1619,23 @@ fermato subito con «riga doppia», anche se i due volantini non si
 sovrappongono nel tempo. Giusto così: tenuta solo la riga nuova (il prezzo di
 adesso), tolta quella vecchia — due righe uguali per lo stesso prodotto
 reale, anche a distanza di volantini, confonderebbero comunque chi guarda.
+
+### Rilanciare `storia` due volte nello stesso giorno — 2026-09-16
+
+Il giro automatico di stamattina ha trovato un difetto nel recupero scritto
+ieri, e l'ha trovato usandolo. Aveva lanciato `python3 -m storia`, poi aveva
+aggiunto altre righe a `dati.py` e l'aveva rilanciato: **il secondo giro si era
+confrontato con la fotografia che aveva scritto il primo**, cioè con se stesso,
+e il file del giorno era rimasto con le ultime cinque righe invece che con
+tutta la giornata. Se n'è accorto e ha riscritto il file a mano — ma il difetto
+era nel codice, non nel file, e sarebbe tornato la volta dopo.
+
+Adesso, se la fotografia porta già la data di oggi, il paragone non è più con
+lei: si riprende dall'**ultimo commit di un giorno precedente**. Il metro giusto
+è sempre «l'ultimo giorno pubblicato», e quello sta in git. Provato lanciandolo
+tre volte di fila: riscrive tre volte lo stesso giorno, intero e identico.
+
+Nota di contorno: nello stesso passaggio sono state rimesse a posto quattro
+righe di commento dove erano rimaste in chiaro delle sequenze `è` invece
+delle lettere accentate. Nelle stringhe funzionavano, nei commenti erano solo
+sporcizia da leggere.
