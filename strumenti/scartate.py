@@ -23,6 +23,10 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-16, leggendo il volantino per intero (20 pagine).
+ 'mercato17': {
+   20: 'speciale casa calda (biancheria, tappeti, calze, felpe) ed elenco dei punti vendita: nessun prezzo di spesa',
+ },
  'mercato': {
    1:  'copertina: cartoleria e zaini per la scuola, nessun prezzo di spesa',
    2:  'raccolta punti FILA: bollini e codici sport, niente da comprare',
@@ -31,31 +35,6 @@ SCARTATE = {
        'non si sa a quale dei tre si riferisca, meglio niente che un numero inventato',
    33: 'detersivi per pavimenti e spugne: nessuna categoria del catalogo li copre',
    36: 'pentole, pile, lampadine, calze e risma di carta',
- },
- # Guardate una per una il 2026-09-07, leggendo il volantino per intero.
- # Il Carrefour Iper riempie meta volantino di roba che non e spesa.
- 'carriper04': {
-   6:  'televisori e smartphone',
-   7:  'lavatrice, asciugatrice, frigorifero, friggitrice ad aria',
-   8:  'piatti, padelle, microonde, scopa elettrica, mocio',
-   9:  'AdBlue, olio per motore, lenzuola, zaino, scarpe da ginnastica',
-   28: 'raccolta bollini bicchieri RCR: si prendono coi bollini, non si comprano',
-   29: 'seconda pagina della stessa raccolta bollini',
-   35: 'zaini, trolley e astucci per la scuola',
-   36: 'zaini e astucci per la scuola, seconda pagina',
-   37: 'zaini e trolley per la scuola, terza pagina',
-   38: 'quaderni, raccoglitori, risme di carta',
-   39: 'quaderni, pennarelli, matite, pastelli',
-   40: 'penne, colla, correttori',
-   41: 'evidenziatori, post-it, nastro adesivo, pennarelli',
-   42: 'carte Pokemon, scrivanie, stampanti, notebook, cuffie',
-   43: 'elettrodomestici: lavatrice, frigo, robot, phon, rasoio',
-   44: 'bicchieri, piatti, pentole, contenitori, tagliere, pattumiera',
-   45: 'lenzuola, asciugamani, guanciali, materassi',
-   46: 'abbigliamento bambini: tute, felpe, leggings',
-   47: 'abbigliamento neonati e bambini, pantofole, grembiuli',
-   48: 'pigiami, calze, slip, scarpe',
-   49: 'abbigliamento uomo: felpe, t-shirt, jeans, scarpe',
  },
  # Guardate una per una il 2026-09-09, leggendo il volantino per intero.
  'bennet0903': {

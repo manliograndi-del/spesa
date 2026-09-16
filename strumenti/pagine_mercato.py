@@ -57,3 +57,27 @@ PAGINE_MERCATO = [
  'https://eu.kimbicdn.com/thumbor/04_rOGVYwU3frb1wV8M4XJdwF40=/0x0/filters:format(webp):quality(65)/it/data/152/166556/34.jpg?t=1788301035',
  'https://eu.kimbicdn.com/thumbor/S-WnpNaHdQ9DnmkKHS1YFtAYwWc=/0x0/filters:format(webp):quality(65)/it/data/152/166556/35.jpg?t=1788301035',
 ]
+
+# Il volantino dal 17 al 30 settembre 2026, successore del precedente.
+PAGINE_MERCATO_17 = [
+ 'https://eu.kimbicdn.com/thumbor/q4HSzkjKVy6dM9X1JIH54_LxUMM=/0x0/filters:format(webp):quality(65)/it/data/152/168011/0.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/co0671-4ewFHsA8eHYjvPmgNC84=/0x0/filters:format(webp):quality(65)/it/data/152/168011/1.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/fT0e1yTRQWtn-b6KQ9tE1eUaBPM=/0x0/filters:format(webp):quality(65)/it/data/152/168011/2.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/tFnQTl3Tm55i1XoL9ohjgO7TOxs=/0x0/filters:format(webp):quality(65)/it/data/152/168011/3.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/u1xxmFC6eTqnpNH1bMOVlCrHNto=/0x0/filters:format(webp):quality(65)/it/data/152/168011/4.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/FhVkAumBWyAWF5Fw-QcSKKv-Qlw=/0x0/filters:format(webp):quality(65)/it/data/152/168011/5.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/c8N16FirWITYHoHBSSOVRKDQebE=/0x0/filters:format(webp):quality(65)/it/data/152/168011/6.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/mXtJELdzQYAn3QpeNmuSuGyIY2k=/0x0/filters:format(webp):quality(65)/it/data/152/168011/7.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/HQccGrZYePhrk618v7IrowRgbBA=/0x0/filters:format(webp):quality(65)/it/data/152/168011/8.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/T5a6utVVXg78ZzMR49rCqRkDonk=/0x0/filters:format(webp):quality(65)/it/data/152/168011/9.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/vi8jicgFIUqy7pne3WLeuP8jOj0=/0x0/filters:format(webp):quality(65)/it/data/152/168011/10.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/w53Eu_BWNwxvip__ZQ-__3ASMRg=/0x0/filters:format(webp):quality(65)/it/data/152/168011/11.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/mNPJhijLUrYl3JxvdO3pS148tYo=/0x0/filters:format(webp):quality(65)/it/data/152/168011/12.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/U6H9T7fCtfKnu6fBLyfzgtKJ-VQ=/0x0/filters:format(webp):quality(65)/it/data/152/168011/13.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/UIMuM3JFIw_9lfPOcuzht9rQ3ME=/0x0/filters:format(webp):quality(65)/it/data/152/168011/14.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/BLUDyT23FOz0ajsCZI-2F1qsH5o=/0x0/filters:format(webp):quality(65)/it/data/152/168011/15.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/ygC7PFFfUvKjA5Bh5LGSA4Mp2hQ=/0x0/filters:format(webp):quality(65)/it/data/152/168011/16.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/l9b1lfhFNQrdWlK6HlmUtiypiAA=/0x0/filters:format(webp):quality(65)/it/data/152/168011/17.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/IjwTZsyl8UnOtAVzJdla_8_UAMw=/0x0/filters:format(webp):quality(65)/it/data/152/168011/18.jpg?t=1789503429',
+ 'https://eu.kimbicdn.com/thumbor/wIHktRjETBq0ER0ybNCotkyAEqQ=/0x0/filters:format(webp):quality(65)/it/data/152/168011/19.jpg?t=1789503429',
+]
