@@ -25,3 +25,4 @@
 2026-09-15 06:19 UTC  letto per intero il nuovo Lidl (17-23 settembre): 56 prezzi nuovi in dati.py, 19 pagine scartate segnate; tolto il Lidl vecchio scaduto
 2026-09-15 06:25 UTC  pubblicato: sito e pagina Claude aggiornati con il Lidl 17-23 settembre; verificato online; CLAUDE.md e NOTE.md aggiornati
 2026-09-16 06:08 UTC  sveglia: clonato
+2026-09-16 06:41 UTC  Mercatò 17-30 settembre letto e pubblicato (95 prezzi nuovi), Carrefour Iper 4-13 tolto (scaduto), aggiornati CLAUDE.md e NOTE.md
