@@ -23,6 +23,10 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-17, leggendo il volantino per intero (7 pagine).
+ 'lidlfv17': {
+   6: 'pagina pubblicitaria sul premio "Sicurezza Alimentare Frutta e Verdura": nessun prezzo',
+ },
  # Guardate una per una il 2026-09-16, leggendo il volantino per intero (20 pagine).
  'mercato17': {
    20: 'speciale casa calda (biancheria, tappeti, calze, felpe) ed elenco dei punti vendita: nessun prezzo di spesa',

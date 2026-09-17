@@ -73,7 +73,9 @@ VOLANTINI = [
  _v('md08',           'MD',             "dall'8 al 20 settembre",                       'MD — 8-20 settembre.pdf',                          '2026-09-20', _AV + '/2026/09/volantino-md-2026-09-08-p-{n:02d}.jpg',       '2026-09-08'),
  _v('carriper15',     'Carrefour Iper', 'dal 15 al 28 settembre',                       'Carrefour Iper — 15-28 settembre.pdf',              '2026-09-28', _AV + '/2026/09/volantino-carrefour-iper-2026-09-15-p-{n:05d}.jpg', '2026-09-15'),
  _v('lidl17',         'Lidl',           'dal 17 al 23 settembre',                       'Lidl — 17-23 settembre.pdf',                        '2026-09-23', _AV + '/2026/09/volantino-lidl-2026-09-17-p-{n:05d}.jpg',       '2026-09-17'),
+ _v('lidlfv17',       'Lidl',           'speciale Frutta e Verdura, dal 17 al 23 settembre', 'Lidl Frutta e Verdura — 17-23 settembre.pdf',      '2026-09-23', _AV + '/2026/09/volantino-lidl-frutta-e-verdura-2026-09-17-p-{n:05d}.jpg', '2026-09-17'),
  _v('mercato17',      'Mercatò',        'dal 17 al 30 settembre',                       'Mercatò — 17-30 settembre.pdf',                    '2026-09-30', None, '2026-09-17', PAGINE_MERCATO_17),
+ _v('md22',           'MD',             "dal 22 settembre al 4 ottobre",                'MD — 22 settembre-4 ottobre.pdf',                  '2026-10-04', _AV + '/2026/09/volantino-md-2026-09-22-p-{n:02d}.jpg',       '2026-09-22'),
 ]
 
 PRODOTTI = [
@@ -1200,6 +1202,26 @@ PRODOTTI = [
  ("Frutta","Lidl","lidl17","Ortofrutta","Pere Williams","1 kg confezione",1,1.79,36,V,"Prima 2,49. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
  ("Patate","Lidl","lidl17","Ortofrutta","Patate Selenella","1,5 kg rete",1.5,2.29,36,V,"Prima 2,99. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
  ("Verdura","Lidl","lidl17","Ortofrutta","Zucca Butternut","al kg",1,1.19,36,V,"Con Lidl Plus, prima 1,69. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
+
+ # Lidl, speciale Frutta e Verdura dal 17 al 23 settembre (7 pagine, letto per
+ # intero). Tre prodotti della sua pagina «Il meglio del lunedì» (Pere Williams,
+ # Patate Selenella, Zucca Butternut) e altri tre (Uva bianca di Mazzarrone,
+ # Carote del Fucino, Pesche) ripetono identici, stesso prezzo, quelli già
+ # letti nel volantino Lidl generale 17-23: non riscritti qui, sennò dati.py
+ # si ferma per riga doppia. Cetrioli lunghi, Mango e Fichi freschi sono al
+ # pezzo, senza un peso: nessun prezzo per unità onesto da scrivere.
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Golden Alto Adige IGP, formato XXL","2,5 kg confezione",2.5,2.99,1,V,"500 g in più, formato base 2 kg a 2,99. Il volantino stampa 1,20 al kg, prima 1,50."),
+ ("Verdura","Lidl","lidlfv17","Ortofrutta","Cavolo rosso","al kg",1,0.98,1,V,""),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Susine, formato XXL","1,25 kg confezione",1.25,1.79,1,V,"250 g in più, formato base 1 kg a 1,79. Il volantino stampa 1,43 al kg."),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Pere Carmen","1 kg confezione",1,1.99,2,V,"Con Lidl Plus, prima 2,49. Valido dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
+ ("Verdura","Lidl","lidlfv17","Ortofrutta","Aglio","200 g confezione",0.200,0.98,3,V,"Il volantino stampa 4,90 al kg."),
+ ("Verdura","Lidl","lidlfv17","Ortofrutta","Cavolo cappuccio","al kg",1,0.98,3,V,""),
+ ("Verdura","Lidl","lidlfv17","Ortofrutta","Rape rosse precotte","500 g confezione",0.500,0.98,3,V,"Precotte, non crude. Il volantino stampa 1,96 al kg."),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Golden","al kg",1,0.98,3,V,""),
+ ("Verdura","Lidl","lidlfv17","Ortofrutta","Cetrioli snack","250 g confezione",0.250,1.15,5,V,"Con Lidl Plus, prima 1,49. Il volantino stampa 4,60 al kg."),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Uva scura senza semi","500 g confezione",0.500,1.39,5,V,"Con Lidl Plus, prima 1,79. Il volantino stampa 2,78 al kg."),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Sweet Tango","900 g confezione",0.900,1.49,5,V,"Con Lidl Plus, prima 1,99. Il volantino stampa 1,66 al kg."),
+ ("Frutta","Lidl","lidlfv17","Ortofrutta","Limoni","1 kg rete",1,1.89,5,V,"Con Lidl Plus, prima 2,49."),
 
  # Mercatò, dal 17 al 30 settembre. Letto per intero, 20 pagine.
  ("Salmone","Mercatò","mercato17","Gastronomia","Salmone affumicato scozzese – Hendricks","100 g",0.100,3.89,1,V,"Il volantino stampa 38,90 al kg."),
