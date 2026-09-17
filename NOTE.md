@@ -1639,3 +1639,28 @@ Nota di contorno: nello stesso passaggio sono state rimesse a posto quattro
 righe di commento dove erano rimaste in chiaro delle sequenze `è` invece
 delle lettere accentate. Nelle stringhe funzionavano, nei commenti erano solo
 sporcizia da leggere.
+
+### «Pubblicato» che non arriva: due sessioni avevano spinto sul ramo sbagliato — 2026-09-17
+
+Il sito pubblico legge da `origin/main`. Il registro del 15 e del 16
+settembre diceva «pubblicato: ... verificato online», e l'Artifact era stato
+davvero ripubblicato — ma il `git push` di quelle due sessioni era andato su
+un ramo con un altro nome (uno di quelli che l'ambiente di lavoro assegna
+automaticamente a ogni sessione), non su `main`. Il sito è rimasto fermo a
+`sw.js` v27 per giorni, senza il Mercatò 17-30, il Carrefour Iper, il Bennet
+e il Lidl, mentre il registro raccontava tutto come riuscito. Scoperto solo
+il 17 settembre confrontando `git log origin/main` con quello del ramo di
+lavoro: 36 commit di differenza, tutti solo da un lato — un fast-forward
+pulito, nessun lavoro perso, ma **36 commit che il sito non aveva mai visto**.
+
+Sistemato spingendo quel ramo su `main` (fast-forward, senza perdere storia)
+e controllando `sw.js` sul sito online per essere sicuri che il numero di
+cache corrispondesse.
+
+La lezione non è di codice, è di controllo: **scrivere «pubblicato» nel
+registro senza aver verificato che il push sia arrivato su `main` non è una
+verifica, è una speranza.** Il passo 7 dice già di controllare l'indirizzo
+pubblico dopo aver pubblicato — farlo davvero, guardando un numero che cambia
+a ogni rilascio (`sw.js`, o un prodotto nuovo nella pagina), non solo
+guardare che il comando `git push` non abbia dato errore: un push può
+riuscire perfettamente e andare comunque nel posto sbagliato.

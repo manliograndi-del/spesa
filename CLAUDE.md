@@ -150,68 +150,74 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-16)
+## Da fare adesso (aggiornato il 2026-09-17)
 
-- **È uscito il nuovo Mercatò (dal 17 al 30 settembre, 20 pagine)** e oggi è
-  stato letto per intero e pubblicato, in anticipo — il vecchio (3-16
-  settembre) scadeva proprio oggi, e su kimbino.it il successore c'era già.
-  La chiave è `mercato17`, l'indirizzo è
-  `mercato-volantino-da-giovedi-17-09-2026-6168011` (attenzione: kimbino
-  pubblica anche `mercato-volantino-big-...`, `-extra-...`, `-local-...` e
-  `-loreal-...` per lo stesso periodo — quello giusto per via Filadelfia 232
-  è quello **senza** parole aggiunte nel nome, come sempre). 95 righe nuove in
-  `dati.py`, in molte categorie diverse (non solo quelle che Manlio ha acceso
-  oggi): formaggi e salumi al banco, carne, pesce, vino, frutta e verdura (col
-  «primo periodo» 17-23 e «secondo periodo» 24-30 segnati con le date sulla
-  riga, altrimenti sarebbero invisibili), dispensa, cura casa e persona. La
-  sola pagina scartata è l'ultima (biancheria e elenco negozi), in
-  `scartate.py`.
-- **Il Mercatò vecchio (`mercato`, 3-16 settembre) e il Carrefour Iper del
-  4-13 settembre (`carriper04`) sono stati tolti da `dati.py`**: il primo
-  aveva finito la sua validità (sostituito senza buchi da `mercato17`), il
-  secondo era scaduto da tre giorni ed è comunque coperto da `carriper15`.
-  Una riga di pancetta compariva identica (stesso negozio, stesso prodotto,
-  stesso formato) sia nel Mercatò vecchio sia nel nuovo, solo con il prezzo
-  cambiato: tenuta solo quella nuova, altrimenti `dati.py` si ferma con
-  «riga doppia».
-- **Bennet Dolce Buongiorno (`bennet0903`) e Lidl (`lidl10`) scadono oggi,
-  16 settembre**, ed erano già coperti (rispettivamente da `bennet10` e da
-  `lidl17`, entrambi senza buchi): quando risultano scaduti da più di due
-  giorni, si tolgono con `pulisci --fai` come sempre, da `dati.py`,
+- **Il 2026-09-17 il ramo `main` era rimasto indietro di 36 commit**: le
+  sessioni del 15 e 16 settembre avevano lavorato e pubblicato l'Artifact, ma
+  avevano spinto (`git push`) su un ramo secondario invece che su `main`, e il
+  sito pubblico (che legge da `main`) era rimasto fermo a `sw.js` v27 per
+  giorni, senza il Mercatò 17-30, il Carrefour Iper, il Bennet e il Lidl.
+  **Sistemato oggi** portando `main` avanti fino a quel lavoro (fast-forward,
+  nessun commit perso) e verificato che il sito online lo mostri davvero. **Da
+  qui in poi: dopo ogni `git push`, controllare che sia andato su `main` (non
+  su un ramo con un altro nome) prima di dire che è pubblicato.**
+- **Uscito e preso un volantino Lidl in più, non un successore**: uno
+  speciale «Frutta e Verdura» di 7 pagine, `lidlfv17`, valido come il Lidl
+  generale (17-23 settembre) ma con offerte sue, aggiuntive. Letto per intero:
+  12 prezzi nuovi (mele, susine, cavoli, aglio, rape rosse, uva, cetrioli
+  snack, limoni). Tre suoi prodotti (Pere Williams, Patate Selenella, Zucca
+  Butternut, Uva di Mazzarrone, Carote del Fucino, Pesche) ripetevano
+  identici, stesso prezzo, quelli già letti nel Lidl generale 17-23: non
+  riscritti, sennò `dati.py` si ferma per riga doppia. Tre prodotti (Cetrioli
+  lunghi, Mango, Fichi freschi) erano «al pezzo» senza un peso indicato:
+  nessun prezzo per unità onesto da scrivere, lasciati fuori. Una pagina
+  scartata (pubblicità del premio «Sicurezza Alimentare»), in `scartate.py`.
+- **Trovato ma non ancora preso: MD nuovo dal 22 settembre al 4 ottobre**
+  (`volantino-md-dal-22-settembre-2026-in-anteprima` su anteprimavolantino,
+  indirizzo pagine `volantino-md-2026-09-22-p-{n:02d}.jpg`). Aggiunto a
+  `VOLANTINI` come `md22` (in anticipo, senza ancora un prezzo dentro):
+  **va letto per intero nei prossimi giorni**, prima che `md08` scada il 20.
+- **Trovato, da tenere d'occhio: Eurospin dal 24 settembre al 4 ottobre**
+  (`volantino-eurospin-dal-24-settembre-2026` su anteprimavolantino), non
+  ancora aggiunto a `dati.py`. **C'è un buco di 4 giorni** fra la fine di
+  `eurospin10` (20 settembre) e questo (24 settembre): controllare nei
+  prossimi giorni se esce qualcosa che lo riempie, prima di prenderlo.
+- **Bennet, Carrefour Iper, Ipercoop: nessuna novità oggi.** Bennet fermo a
+  `bennet10` (fino al 23, Oktoberfest fino al 4 ottobre); Carrefour Iper fermo
+  a `carriper15` (fino al 28); Ipercoop/Nova Coop ancora solo «Scegli tu
+  Grandi Marche», tutto sconti percentuali senza un prezzo di base: non
+  utilizzabile. **Da controllare di nuovo fra qualche giorno.**
+- **Mercatò vecchio (`mercato`), Bennet Dolce Buongiorno (`bennet0903`) e
+  Lidl (`lidl10`) sono scaduti ieri, 16 settembre**, e sono già coperti
+  (rispettivamente da `mercato17`, `bennet10` e `lidl17`, senza buchi): per
+  il margine di due giorni voluto da Manlio, `pulisci` non li toglie ancora.
+  **Da togliere fra un paio di giorni** con `pulisci --fai`, da `dati.py`,
   `VOLANTINI` e `scartate.py`.
 - **Il Carrefour Iper (`carriper15`, 15-28 settembre) è a posto, non
   riaprire la questione.** L'ultima pagina del suo volantino elenca gli
   ipermercati in cui vale e Torino non c'è: il 2026-09-07 Manlio ha detto che
   è sbagliato fermarsi lì — «le offerte ci sono a Torino e valgono davvero».
   In NOTE.md c'è per esteso.
-- **Copertura letta: tutti i volantini in `dati.py` al 100%** (mercato17,
-  bennet0903, bennet10, lidl10, lidl17, eurospin10, md08, carriper15). Non
-  resta niente indietro.
-- **L'Ipercoop non ha più un volantino con prezzi.** L'unico Nova Coop in
-  corso («Scegli tu Grandi Marche», 10-23 settembre) è tutto sconti
-  percentuali su intere linee di marca, senza mai un prezzo di base: non
-  utilizzabile. **Da controllare di nuovo fra qualche giorno** se esce un
-  Sottocosto o un Extra offerte veri.
-- **Trovato in anticipo (non ancora preso): un MD nuovo dal 22 settembre**
-  («volantino-md-dal-22-settembre-2026-in-anteprima» su anteprimavolantino),
-  successore di `md08` che scade il 20. Nessun buco (finisce il 20, comincia
-  il 22, un solo giorno di distanza, come già capitato altre volte), quindi
-  non è urgente: leggerlo per intero nei prossimi giorni, prima che `md08`
-  scada.
+- **Copertura letta: tutti i volantini con prezzi in `dati.py` al 100%**
+  (mercato, bennet0903, bennet10, lidl10, lidl17, lidlfv17, eurospin10, md08,
+  carriper15, mercato17). `md22` è in anticipo, senza pagine lette ancora.
 - **Scadenze da tenere d'occhio nei prossimi giorni**: `md08` ed `eurospin10`
-  scadono il 20 settembre, `bennet10` il 23, `lidl17` il 23 (occhio: la
-  «Panetteria» del Lidl 17-23 vale solo dal 17 al 20, e alcune offerte
-  «Il meglio del lunedì» valgono solo dal 21 al 23 — già segnato nelle note
-  delle singole righe). `mercato17` scade il 30. La pagina Oktoberfest del
-  Bennet (pagine 20-21 di `bennet10`) scade il 4 ottobre, non il 23 come il
-  resto — occhio quando si ributta il volantino.
+  scadono il 20 settembre, `bennet10` il 23, `lidl17` e `lidlfv17` il 23
+  (occhio: nel Lidl 17-23 la «Panetteria» vale solo dal 17 al 20, e alcune
+  offerte «Il meglio del lunedì» valgono solo dal 21 al 23 — già segnato
+  nelle note delle singole righe). `mercato17` scade il 30. La pagina
+  Oktoberfest del Bennet (pagine 20-21 di `bennet10`) scade il 4 ottobre, non
+  il 23 come il resto — occhio quando si ributta il volantino.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
   il codice**: parte, lavora pochi minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
   si vede arrivare in fondo più volte di fila, **i volantini si mettono a
-  mano**. **Il 2026-09-10, il 2026-09-15 e il 2026-09-16 la sessione da
-  Routine è arrivata in fondo**: ha letto un volantino per intero (o più) e
-  pubblicato tutte e tre le volte.
+  mano**. **Il 2026-09-10, il 2026-09-15, il 2026-09-16 e il 2026-09-17 la
+  sessione da Routine è arrivata in fondo**: ha letto un volantino per intero
+  (o più) e pubblicato tutte e quattro le volte — ma il 17 settembre si è
+  scoperto che le pubblicazioni del 15 e del 16 non erano davvero arrivate al
+  sito (vedi sopra): un «pubblicato» nel registro non basta, va controllato
+  che sia finito su `main`.
 - **Il buco del diario è chiuso (2026-09-15), e `.gitignore` non si tocca.**
   `storia/stato.json` resta fuori dal repository — «le fotografie no, le
   differenze sì» — ma **non serve più che sopravviva**: se manca, `storia.py`
