@@ -26,6 +26,7 @@ D = 'DA CONTROLLARE (riassunto online)'
 # moglie vedono nel cassetto.
 from catalogo import UNITA, NOMI
 from pagine_mercato import PAGINE_MERCATO, PAGINE_MERCATO_17
+from pagine_ekom import PAGINE_EKOM_08
 
 # I volantini sono namedtuple e non tuple nude di proposito: il 2026-09-05 e
 # servito aggiungere un campo (l'inizio) e gli otto punti che le spacchettavano
@@ -75,6 +76,7 @@ VOLANTINI = [
  _v('lidl17',         'Lidl',           'dal 17 al 23 settembre',                       'Lidl — 17-23 settembre.pdf',                        '2026-09-23', _AV + '/2026/09/volantino-lidl-2026-09-17-p-{n:05d}.jpg',       '2026-09-17'),
  _v('lidlfv17',       'Lidl',           'speciale Frutta e Verdura, dal 17 al 23 settembre', 'Lidl Frutta e Verdura — 17-23 settembre.pdf',      '2026-09-23', _AV + '/2026/09/volantino-lidl-frutta-e-verdura-2026-09-17-p-{n:05d}.jpg', '2026-09-17'),
  _v('mercato17',      'Mercatò',        'dal 17 al 30 settembre',                       'Mercatò — 17-30 settembre.pdf',                    '2026-09-30', None, '2026-09-17', PAGINE_MERCATO_17),
+ _v('ekom08',         'Ekom',           '1+1, dall\'8 al 21 settembre',                 'Ekom 1+1 — 8-21 settembre.pdf',                     '2026-09-21', None, None, PAGINE_EKOM_08),
  _v('md22',           'MD',             "dal 22 settembre al 4 ottobre",                'MD — 22 settembre-4 ottobre.pdf',                  '2026-10-04', _AV + '/2026/09/volantino-md-2026-09-22-p-{n:02d}.jpg',       '2026-09-22'),
  # Trovato il 2026-09-18: un Bennet nuovo, "Un mondo di bellezza", uscito
  # mentre bennet10 (10-23) era ancora valido — la stessa sovrapposizione che
@@ -1463,6 +1465,188 @@ PRODOTTI = [
  ("Sughi pronti","MD","md22","Dispensa","Pesto verde biologico senza aglio","85 g",0.085,1.39,37,V,"Prima 1,59. Weekend più Uno: vale solo dal 2 al 5 ottobre, non per tutto il volantino.","2026-10-02","2026-10-05"),
  ("Olio di semi","MD","md22","Dispensa","Olio di semi di mais – Semì","1 litro",1,1.69,37,V,"Prima 1,89. Weekend più Uno: vale solo dal 2 al 5 ottobre, non per tutto il volantino.","2026-10-02","2026-10-05"),
  ("Biscotti","MD","md22","Colazione","Biscotti ai cereali – Le Bon","500 g (250 g × 2)",0.500,1.29,37,V,"Prima 1,59. Weekend più Uno: vale solo dal 2 al 5 ottobre, non per tutto il volantino.","2026-10-02","2026-10-05"),
+
+ # EKOM, «1+1», dall'8 al 21 settembre. Insegna nuova, chiesta da Manlio il
+ # 2026-09-18: a Torino ci sono piu Ekom e il volantino e lo stesso per tutti
+ # (l'unico diverso e quello della Toscana), quindi qui non c'e la trappola del
+ # Mercato, dove ogni insegna ha il suo. I piu vicini a corso Siracusa sono
+ # via Castelgomberto 127 e via Tripoli 79.
+ #
+ # LE PAGINE 2 E 3 SONO «1+1»: prendendone due, il secondo e gratis. Il prezzo
+ # scritto e lo stesso per un pezzo e per due, e il volantino stesso conta il
+ # prezzo al chilo su DUE confezioni. Qui le righe dicono nel formato che sono
+ # due («2 x 300 g (1+1)»), cosi il prezzo per unita e vero per quello che si
+ # compra davvero, e la nota dice sempre quanto costa una confezione sola. Chi
+ # ne vuole una paga il doppio al chilo, e sta scritto.
+ # Letto per intero il 2026-09-18, 16 pagine. Scartata solo la 12 (concorso
+ # a premi della carta fedelta, nessun prezzo).
+
+ # --- pagina 2: 1+1 ---
+ ("Merluzzo e baccalà","Ekom","ekom08","Surgelati","Cuori di filetto di nasello – NÓS","2 × 300 g (1+1)",0.600,3.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 3,99, cioè 13,30 al kg. È nasello, non merluzzo. Surgelato."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Carote a fette – Orogel","2 × 450 g (1+1)",0.900,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 4,42 al kg."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Cavolfiori a rosette","2 × 450 g (1+1)",0.900,1.49,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,49, cioè 3,31 al kg."),
+ ("Formaggio","Ekom","ekom08","Freschi","Fettine di Emmentaler svizzero – Tigre","2 × 140 g (1+1)",0.280,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 14,21 al kg."),
+ ("Grana e parmigiano","Ekom","ekom08","Freschi","Grana Padano Riserva DOP grattugiato fresco – Ferrari","2 × 60 g (1+1)",0.120,1.79,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,79, cioè 29,83 al kg."),
+ ("Yogurt","Ekom","ekom08","Freschi","Yogurt da bere alla frutta, zero grassi o intero – Alplí","2 × 500 g (1+1)",1.000,1.19,2,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 1,19, cioè 2,38 al kg."),
+ ("Biscotti","Ekom","ekom08","Colazione","Zuppalatte o Oswego – Colussi","2 × 250 g (1+1)",0.500,1.49,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,49, cioè 5,96 al kg."),
+ ("Pasta","Ekom","ekom08","Dispensa","Pasta di semola, diversi formati – Barilla","2 × 500 g (1+1)",1.000,0.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 0,99, cioè 1,98 al kg."),
+ ("Riso","Ekom","ekom08","Dispensa","Riso Apri Scalda basmati, integrale o chicco lungo – Scotti","2 × 200 g (1+1)",0.400,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 9,95 al kg. È riso già cotto da scaldare, non riso crudo."),
+
+ # --- pagina 3: 1+1 ---
+ ("Olio d'oliva","Ekom","ekom08","Dispensa","Olio extra vergine di oliva classico – Coppini","2 × 1 litro (1+1)",2.000,9.99,3,V,"Offerta 1+1: due latte al prezzo di una. Una latta sola costa 9,99, cioè 9,99 al litro."),
+ ("Acqua","Ekom","ekom08","Bevande","Acqua naturale – Sant'Anna","2 × 1,5 litri (1+1)",3.000,0.54,3,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 0,54, cioè 0,36 al litro."),
+ ("Vino","Ekom","ekom08","Bevande","Arneis Langhe DOC","2 × 750 ml (1+1)",1.500,6.79,3,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 6,79, cioè 9,05 al litro."),
+ ("Dentifricio","Ekom","ekom08","Cura persona","Dentifricio Maximum Cavity Protection – Colgate","2 × 100 ml (1+1)",0.200,2.99,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una sola costa 2,99, cioè 29,90 al litro."),
+ ("Sapone e bagnoschiuma","Ekom","ekom08","Cura persona","Bagnodoccia crema nutriente o idratante – Spuma di Sciampagna","2 × 650 ml (1+1)",1.300,2.99,3,V,"Offerta 1+1: due flaconi al prezzo di uno. Un flacone solo costa 2,99, cioè 4,60 al litro."),
+ ("Carta igienica","Ekom","ekom08","Cura casa","Carta igienica Ultra Comfort 3 veli, 4 rotoli – Tenderly","2 × 4 rotoli (1+1)",8,2.79,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 2,79, cioè 0,70 al rotolo."),
+ ("Detersivo lavatrice","Ekom","ekom08","Cura casa","Detersivo universale 5 in 1 Active, 60 lavaggi – General","2 × 2,4 litri (1+1)",120,8.99,3,V,"Offerta 1+1: due flaconi al prezzo di uno. Un flacone solo costa 8,99, cioè 0,15 a lavaggio."),
+ ("Detersivo lavatrice","Ekom","ekom08","Cura casa","Power Caps Total 4+1 classico o igiene, 27 lavaggi – Bio Presto","2 × 1,62 kg (1+1)",54,8.99,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 8,99, cioè 0,33 a lavaggio."),
+
+ # --- pagina 4: dispensa ---
+ ("Biscotti","Ekom","ekom08","Colazione","Waferini al cacao o alla nocciola","400 g",0.400,1.39,4,V,"−20%, prima 1,85. Sono wafer."),
+ ("Biscotti","Ekom","ekom08","Colazione","Baiocchi – Mulino Bianco","260 g",0.260,2.19,4,V,"−25%, prima 2,99."),
+ ("Cioccolato","Ekom","ekom08","Colazione","Cioccolato al latte o fondente – Novi","100 g",0.100,1.49,4,V,"−20%, prima 1,89."),
+ ("Creme spalmabili","Ekom","ekom08","Colazione","Nutella – Ferrero","950 g",0.950,6.49,4,V,""),
+ ("Pane","Ekom","ekom08","Panetteria","Pan Bauletto bianco – Mulino Bianco","400 g",0.400,0.89,4,V,"−20%, prima 1,12."),
+ ("Pane","Ekom","ekom08","Panetteria","Pane carasau","250 g",0.250,1.99,4,V,""),
+ ("Pane","Ekom","ekom08","Panetteria","Pane pita","450 g",0.450,1.59,4,V,""),
+ ("Sughi pronti","Ekom","ekom08","Dispensa","Ragù alla bolognese – Barilla","300 g",0.300,1.59,4,V,"−40%, prima 2,75."),
+ ("Tonno","Ekom","ekom08","Dispensa","Tonno all'olio di oliva – Mareblu","420 g (70 g × 6)",0.420,4.99,4,V,"−25%, prima 6,99. Formato speciale da 6 lattine."),
+
+ # --- pagina 5: bevande ---
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Coca Cola, Fanta o Sprite","500 ml",0.500,0.89,5,V,""),
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Estathé, diversi tipi","1,5 litri",1.500,1.59,5,V,"−20%, prima 1,99."),
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Energy drink – Red Bull","355 ml",0.355,1.59,5,V,"−25%, prima 2,19. È un energy drink, non un succo."),
+ ("Birra","Ekom","ekom08","Bevande","Birra DAB","660 ml",0.660,1.39,5,V,""),
+ ("Birra","Ekom","ekom08","Bevande","Birra Tennent's Super","355 ml",0.355,1.59,5,V,""),
+ ("Birra","Ekom","ekom08","Bevande","Birra Raffo originale","660 ml",0.660,1.29,5,V,"−20%, prima 1,69. La «lavorazione grezza» da 450 ml costa lo stesso prezzo, cioè 2,87 al litro."),
+ ("Birra","Ekom","ekom08","Bevande","Birra 8.6 Original – Bavaria","500 ml",0.500,1.39,5,V,""),
+ ("Birra","Ekom","ekom08","Bevande","Birra Faxe 10%","500 ml",0.500,1.29,5,V,"È una birra al 10%: forte, non da tavola."),
+ ("Birra","Ekom","ekom08","Bevande","Birra Weizen – Edelmeister","500 ml",0.500,0.79,5,V,"−20%, prima 0,99."),
+ ("Birra","Ekom","ekom08","Bevande","Birra Red – Faxe","500 ml",0.500,1.19,5,V,""),
+ ("Birra","Ekom","ekom08","Bevande","Birra Bud","500 ml",0.500,0.99,5,V,"−25%, prima 1,39."),
+ ("Vino","Ekom","ekom08","Bevande","Bardolino DOC – Laronchi Vini","750 ml",0.750,2.99,5,V,""),
+ ("Vino","Ekom","ekom08","Bevande","Cortese Piemonte DOC","750 ml",0.750,2.89,5,V,"−25%, prima 3,89."),
+ ("Vino","Ekom","ekom08","Bevande","Müller Thurgau","750 ml",0.750,1.99,5,V,"−33%, prima 2,99."),
+
+ # --- pagina 6: speciale colazione ---
+ ("Merendine","Ekom","ekom08","Colazione","Ciambella zuccherata","180 g (60 g × 3)",0.180,1.19,6,V,"−20%, prima 1,49."),
+ ("Latte","Ekom","ekom08","Freschi","Latte UHT Piacere Leggero – Granarolo","1 litro",1,1.29,6,V,"−20%, prima 1,69."),
+ ("Burro","Ekom","ekom08","Freschi","Burro in monoporzioni – Parmareggio","124,8 g (10,4 g × 12)",0.1248,1.29,6,V,"−25%, prima 1,79. Sono monoporzioni da colazione."),
+ ("Pancetta e bacon","Ekom","ekom08","Salumi","Bacon pancetta tesa – ibis","100 g",0.100,1.99,6,V,"−20%, prima 2,49."),
+ ("Uova","Ekom","ekom08","Freschi","6 uova fresche da galline allevate all'aperto","6 uova",6,1.99,6,V,""),
+ ("Yogurt","Ekom","ekom08","Freschi","Yogurt cremoso intero bianco, banana o frutti di bosco – Latteria Brunico","500 g",0.500,0.99,6,V,""),
+ ("Caffè","Ekom","ekom08","Colazione","Caffè macinato Crema e Gusto classico – Lavazza","500 g (250 g × 2)",0.500,7.99,6,V,"−20%, prima 9,99."),
+ ("Caffè","Ekom","ekom08","Colazione","Caffè macinato Decaf – Lavazza","250 g",0.250,3.99,6,V,"−33%, prima 5,99. È decaffeinato."),
+ ("Caffè","Ekom","ekom08","Colazione","50 capsule classico o intenso compatibili Nespresso – Segafredo","255 g",0.255,9.90,6,V,"−20%, prima 12,99. Sono capsule: al chilo costano sempre molto più del macinato."),
+ ("Caffè","Ekom","ekom08","Colazione","36 capsule A Modo Mio passionale, qualità rossa o crema e gusto – Lavazza","270 g",0.270,9.89,6,V,"−35%, prima 15,39. Sono capsule: al chilo costano sempre molto più del macinato."),
+ ("Tè e tisane","Ekom","ekom08","Colazione","Tè English Breakfast, Pure Green o Earl Grey, 40 filtri – Twinings","80 g",0.080,2.99,6,V,"−25%, prima 3,99."),
+ ("Cereali","Ekom","ekom08","Colazione","Bran-Sticks","375 g",0.375,1.39,6,V,"−30%, prima 1,99."),
+ ("Cereali","Ekom","ekom08","Colazione","Cornflakes","375 g",0.375,0.99,6,V,"−35%, prima 1,59."),
+
+ # --- pagina 7: speciale colazione ---
+ ("Biscotti","Ekom","ekom08","Colazione","Gocciolotti e altri tipi – Balocco","350 g",0.350,1.49,7,V,"−20%, prima 1,95."),
+ ("Farina","Ekom","ekom08","Dispensa","Farina di avena – Vital Love","500 g",0.500,0.89,7,V,"−30%, prima 1,29. È farina di avena, non di grano."),
+ ("Creme spalmabili","Ekom","ekom08","Colazione","Crema al pistacchio o burro di arachidi, monoporzioni","80 g (20 g × 4)",0.080,1.19,7,V,"−20%, prima 1,49. Sono monoporzioni."),
+ ("Marmellata","Ekom","ekom08","Colazione","Confettura di frutta, gusti assortiti – Santa Rosa","600 g",0.600,1.99,7,V,"−20%, prima 2,49."),
+ ("Biscotti","Ekom","ekom08","Colazione","Kinderini – Kinder","250 g",0.250,2.99,7,V,""),
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Bevanda Refresh+Vita multivitamin o mango maracuja – Pfanner","2 litri",2.000,1.99,7,V,"−20%, prima 2,49."),
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Bevanda di frutta zero zuccheri aggiunti, frutti rossi o ACE – Pfanner","1 litro",1,0.99,7,V,"−20%, prima 1,29."),
+
+ # --- pagina 8: frutta e verdura ---
+ ("Verdura","Ekom","ekom08","Ortofrutta","Melanzane nere","al kg",1,1.59,8,V,""),
+ ("Verdura","Ekom","ekom08","Ortofrutta","Pomodori Piccadilly","500 g",0.500,1.59,8,V,""),
+ ("Verdura","Ekom","ekom08","Ortofrutta","Spinaci Pronto Cuoci – Kome Te","400 g",0.400,1.89,8,V,""),
+ ("Frutta","Ekom","ekom08","Ortofrutta","Prugne Santa Clara","al kg",1,1.89,8,V,""),
+ ("Frutta","Ekom","ekom08","Ortofrutta","Banane","al kg",1,1.19,8,V,""),
+ ("Frutta","Ekom","ekom08","Ortofrutta","Uva bianca senza semi","500 g",0.500,1.85,8,V,""),
+ ("Frutta","Ekom","ekom08","Ortofrutta","Uva Red Globe","750 g",0.750,1.99,8,V,""),
+ ("Frutta","Ekom","ekom08","Ortofrutta","Mele Gala","al kg",1,1.49,8,V,""),
+
+ # --- pagina 9: banco salumi, formaggi e macelleria ---
+ # Il volantino avverte: valide SOLO nei punti vendita col banco servito.
+ ("Prosciutto crudo","Ekom","ekom08","Gastronomia","Prosciutto di Parma DOP, al banco","al kg",1,26.90,9,V,"Il volantino stampa 2,69 all'etto. Vale solo nei negozi col banco servito."),
+ ("Bresaola","Ekom","ekom08","Gastronomia","Carpaccio di bresaola punta d'anca, al banco","al kg",1,26.90,9,V,"Il volantino stampa 2,69 all'etto. Vale solo nei negozi col banco servito."),
+ ("Salame","Ekom","ekom08","Gastronomia","Salame Piacentino DOP, al banco","al kg",1,21.90,9,V,"Il volantino stampa 2,19 all'etto. Vale solo nei negozi col banco servito."),
+ ("Prosciutto cotto","Ekom","ekom08","Gastronomia","Prosciutto cotto alta qualità nazionale – Lenti, al banco","al kg",1,19.90,9,V,"Il volantino stampa 1,99 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom08","Gastronomia","Primo sale siciliano pepato, al banco","al kg",1,12.90,9,V,"Il volantino stampa 1,29 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom08","Gastronomia","Gorgonzola DOP dolce Gim – Invernizzi, al banco","al kg",1,13.90,9,V,"Il volantino stampa 1,39 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom08","Gastronomia","Caciotta, al banco","al kg",1,11.90,9,V,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom08","Gastronomia","Maasdammer, al banco","al kg",1,8.90,9,V,"Il volantino stampa 0,89 all'etto. Vale solo nei negozi col banco servito."),
+ ("Carne di bue","Ekom","ekom08","Macelleria","Spezzatino di bovino adulto","al kg",1,15.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Carne di bue","Ekom","ekom08","Macelleria","Sottofiletto di bovino adulto","al kg",1,22.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Suino","Ekom","ekom08","Macelleria","Coppa di suino con osso","al kg",1,6.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Tacchino","Ekom","ekom08","Macelleria","Fesa di tacchino a fette","al kg",1,13.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Pollo","Ekom","ekom08","Macelleria","Cosce di pollo, confezione risparmio","al kg",1,4.90,9,V,"Confezione risparmio da 600/800 g. Vale solo nei negozi col banco servito."),
+
+ # --- pagina 10: freschi confezionati ---
+ ("Burro","Ekom","ekom08","Freschi","Burro – Latteria Soresina","125 g",0.125,1.19,10,V,"−25%, prima 1,69."),
+ ("Mozzarella","Ekom","ekom08","Freschi","Mozzarella fior di latte – Vallelata","300 g (100 g × 3)",0.300,2.49,10,V,""),
+ ("Mozzarella","Ekom","ekom08","Freschi","Bocconcini ripieni con crema di latte – Vallelata","180 g",0.180,2.49,10,V,"Sono ripieni di crema di latte, non mozzarella semplice."),
+ ("Mozzarella","Ekom","ekom08","Freschi","Mozzarella di bufala campana DOP","300 g (100 g × 3)",0.300,2.99,10,V,""),
+ ("Formaggio","Ekom","ekom08","Freschi","Stracchino","320 g",0.320,1.99,10,V,""),
+ ("Ricotta","Ekom","ekom08","Freschi","Ricotta fresca","450 g",0.450,1.19,10,V,""),
+ ("Ricotta","Ekom","ekom08","Freschi","Ricottina light Santa Lucia – Galbani","180 g (90 g × 2)",0.180,1.19,10,V,"−20%, prima 1,49."),
+ ("Formaggio","Ekom","ekom08","Freschi","Scamorza affumicata o bianca – Kome Te","90 g",0.090,1.69,10,V,"−30%, prima 2,49."),
+ ("Formaggio","Ekom","ekom08","Freschi","Tomini classici – Pezzana","160 g (80 g × 2)",0.160,1.99,10,V,"−20%, prima 2,49."),
+ ("Formaggio","Ekom","ekom08","Freschi","Brie","500 g",0.500,3.99,10,V,""),
+ ("Formaggio","Ekom","ekom08","Freschi","Gorgonzola DOP","200 g",0.200,1.99,10,V,"−20%, prima 2,49."),
+ ("Grana e parmigiano","Ekom","ekom08","Freschi","Parmigiano Reggiano DOP 16 mesi – Ferrari","150 g",0.150,3.99,10,V,"−20%, prima 4,99."),
+
+ # --- pagina 11: freschi confezionati ---
+ ("Formaggio","Ekom","ekom08","Freschi","Raspadura – Bella Lodi","100 g",0.100,1.99,11,V,"−20%, prima 2,49."),
+ ("Grana e parmigiano","Ekom","ekom08","Freschi","Granbiraghi spicchio – Biraghi","500 g",0.500,6.99,11,V,"È Granbiraghi, non Grana Padano DOP."),
+ ("Prosciutto crudo","Ekom","ekom08","Salumi","Prosciutto di Parma DOP in vaschetta","80 g",0.080,2.69,11,V,"−20%, prima 3,49."),
+ ("Prosciutto cotto","Ekom","ekom08","Salumi","Prosciutto cotto di alta qualità – Rovagnati","180 g",0.180,2.39,11,V,"−20%, prima 2,99."),
+ ("Suino","Ekom","ekom08","Salumi","Würstel di puro suino","250 g",0.250,0.99,11,V,"Sono würstel, non carne fresca."),
+ ("Salame","Ekom","ekom08","Salumi","Salame Felino IGP – Kome Te","80 g",0.080,2.79,11,V,"−20%, prima 3,49."),
+ ("Salmone","Ekom","ekom08","Freschi","Salmone scozzese affumicato","80 g",0.080,3.99,11,V,"−20%, prima 4,99. È affumicato, non fresco."),
+ ("Pane","Ekom","ekom08","Panetteria","Piadina romagnola IGP, 5 pezzi","600 g",0.600,1.49,11,V,""),
+ ("Sughi pronti","Ekom","ekom08","Freschi","Pesto di Prà – I Gran Pesti","130 g",0.130,2.49,11,V,"È pesto fresco da banco frigo."),
+ ("Pasta","Ekom","ekom08","Freschi","Gnocchi tricolore","400 g",0.400,1.59,11,V,"−20%, prima 1,99. Sono gnocchi freschi, non pasta secca."),
+
+ # --- pagina 13: solo con la carta EKOM UP ---
+ ("Pollo","Ekom","ekom08","Surgelati","Cotolette di pollo – AIA","280 g",0.280,1.99,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99. Sono cotolette panate surgelate."),
+ ("Patate","Ekom","ekom08","Surgelati","Patate grigliate al rosmarino","450 g",0.450,1.49,13,V,"Solo con la carta EKOM UP. Senza tessera 1,99. Sono surgelate e già grigliate, non patate crude."),
+ ("Pane","Ekom","ekom08","Panetteria","Focaccia croccante genovese","250 g",0.250,1.99,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99."),
+ ("Tonno","Ekom","ekom08","Dispensa","Filetti di tonno all'olio extra vergine di oliva – Maruzzella","130 g, sgocciolati 91 g",0.091,2.39,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99. Il conto è sui 91 g sgocciolati, come stampa il volantino."),
+ ("Succhi e bibite","Ekom","ekom08","Bevande","Fanta Original o Sprite classica","1,5 litri",1.500,1.32,13,V,"Solo con la carta EKOM UP. Senza tessera 1,89."),
+ ("Birra","Ekom","ekom08","Bevande","Birra Ichnusa non filtrata","500 ml",0.500,1.29,13,V,"Solo con la carta EKOM UP. Senza tessera 1,65."),
+ ("Detersivo lavastoviglie","Ekom","ekom08","Cura casa","Gel Tutto in 1 limone e lime, 52 lavaggi – Pril","936 ml",52,5.49,13,V,"Solo con la carta EKOM UP. Senza tessera 7,99."),
+ ("Carta cucina e tovaglioli","Ekom","ekom08","Cura casa","Asciugatutto 2 veli, 2 maxi rotoli – Bravo","2 maxi rotoli",2,4.99,13,V,"Solo con la carta EKOM UP. Senza tessera 6,99. Sono maxi rotoli: al rotolo costano più dei normali, ma durano di più."),
+
+ # --- pagina 14: profumeria e detergenza ---
+ ("Sapone e bagnoschiuma","Ekom","ekom08","Cura persona","Sapone mani e viso marsiglia o mandorle e karité – Spuma di Sciampagna","430 ml",0.430,1.79,14,V,"−25%, prima 2,49."),
+ ("Shampoo","Ekom","ekom08","Cura persona","Shampoo Fructis – Garnier","700 ml",0.700,4.99,14,V,"−25%, prima 6,99."),
+ ("Detersivo lavatrice","Ekom","ekom08","Cura casa","Detersivo in polvere classico, 48 misurini – Dixan","2,64 kg",48,8.99,14,V,"−30%, prima 12,90."),
+ ("Ammorbidente","Ekom","ekom08","Cura casa","Ammorbidente concentrato fresca rugiada o petali di marsiglia, 65 lavaggi – Spuma di Sciampagna","1,3 litri",65,2.19,14,V,"−40%, prima 3,69."),
+ ("Carta cucina e tovaglioli","Ekom","ekom08","Cura casa","Asciugatutto Tuttofare, 4 rotoli – Scottex","4 rotoli",4,4.59,14,V,"−30%, prima 6,79."),
+
+ # --- pagina 15: surgelati ---
+ ("Bastoncini di pesce","Ekom","ekom08","Surgelati","10 bastoncini di pesce – Ocean Blu","300 g",0.300,1.59,15,V,"−20%, prima 1,99."),
+ ("Calamari e seppie","Ekom","ekom08","Surgelati","Tubi di totano","700 g",0.700,3.99,15,V,"−40%, prima 6,99. È totano, non calamaro."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Funghi porcini di bosco cubettati – Asiago Food","300 g",0.300,3.49,15,V,"−20%, prima 4,49."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Cicoria foglia a foglia – Agrifood","750 g",0.750,1.59,15,V,"−20%, prima 1,99."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Minestrone Tradizione – Findus","700 g",0.700,2.39,15,V,"−20%, prima 2,99."),
+ ("Verdure surgelate","Ekom","ekom08","Surgelati","Spinaci con mozzarella e formaggio","450 g",0.450,1.99,15,V,"−20%, prima 2,49. Non sono spinaci puri: dentro ci sono mozzarella e formaggio."),
+ ("Gelato","Ekom","ekom08","Surgelati","Vaschetta gelato, gusti assortiti","1 kg",1,2.99,15,V,""),
+ ("Gelato","Ekom","ekom08","Surgelati","Maxibon Classic – Nestlé","384 g",0.384,2.99,15,V,"−40%, prima 4,99."),
+ ("Gelato","Ekom","ekom08","Surgelati","Gelato ricoperto","400 g",0.400,1.99,15,V,"−20%, prima 2,49."),
+ ("Pizza surgelata","Ekom","ekom08","Surgelati","Pizza margherita La Numero Uno – Italpizza","410 g",0.410,2.39,15,V,"−20%, prima 2,99."),
+
+ # --- pagina 16: piccoli formati ---
+ ("Gelato","Ekom","ekom08","Surgelati","Vaschetta gelato, gusti assortiti – Kome Te","200 g",0.200,0.99,16,V,"−33%, prima 1,49."),
+ ("Grana e parmigiano","Ekom","ekom08","Freschi","Gran Biraghi grattugiato – Biraghi","60 g",0.060,0.99,16,V,"−25%, prima 1,39. È Gran Biraghi, non Grana Padano DOP."),
+ ("Formaggio","Ekom","ekom08","Freschi","Snack Biraghini – Biraghi","66,68 g (16,67 g × 4)",0.06668,1.39,16,V,"−20%, prima 1,79. Sono snack monoporzione."),
+ ("Bresaola","Ekom","ekom08","Salumi","Sfilacci di bresaola","60 g",0.060,1.39,16,V,"−30%, prima 1,99."),
+ ("Yogurt","Ekom","ekom08","Freschi","Yogurt alla fragola Super Mario – Danone","110 g",0.110,0.59,16,V,"−33%, prima 0,89."),
+ ("Biscotti","Ekom","ekom08","Colazione","Canestrelli","125 g",0.125,0.79,16,V,"−20%, prima 0,99."),
+ ("Biscotti","Ekom","ekom08","Colazione","Frollini Le Spighe, diversi tipi","300 g",0.300,0.89,16,V,""),
+ ("Miele","Ekom","ekom08","Colazione","Miele millefiori monodose","80 g (20 g × 4)",0.080,0.99,16,V,"Sono monodose."),
+ ("Riso","Ekom","ekom08","Dispensa","Riso Ribe – Scotti","500 g",0.500,0.99,16,V,"−35%, prima 1,59."),
+ ("Olio d'oliva","Ekom","ekom08","Dispensa","Olio extra vergine di oliva monodose – Biffi","50 ml (10 ml × 5)",0.050,1.19,16,V,"−20%, prima 1,49. Sono monodose da 10 ml: al litro costano moltissimo, servono per il pranzo fuori casa."),
+ ("Sughi pronti","Ekom","ekom08","Dispensa","Pesto tartufo, calabrese o pomodori secchi e pistacchio – Saclà","90 g (45 g × 2)",0.090,1.49,16,V,"−25%, prima 1,99."),
+ ("Pomodoro e passata","Ekom","ekom08","Dispensa","Passata di pomodoro – Mutti","235 g",0.235,0.79,16,V,"−20%, prima 0,99."),
 ]
 
 # LE OFFERTE CON DATE LORO.

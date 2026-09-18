@@ -1723,3 +1723,64 @@ che i volantini li pubblicano davvero, che «Le offerte» apra **solo** quelle d
 quel volantino (contate una per una), che siano in ordine dentro ogni reparto,
 che non ci sia nessun bollino verde, che il pannello non finisca dentro la barra
 e che lo stesso indirizzo con la coda, aperto da zero, faccia la stessa cosa.
+
+## Ekom, insegna nuova — 2026-09-18
+
+Manlio: «visto che ci sei aggiungi anche ekom». Otto insegne invece di sette.
+
+**Niente trappola Mercatò, per fortuna.** A Torino gli Ekom sono una dozzina
+(i più vicini a corso Siracusa: via Castelgomberto 127 e via Tripoli 79) ma il
+volantino è **lo stesso per tutti**: l'unica versione diversa è quella della
+Toscana, che si riconosce dal nome. Non c'è da scegliere il negozio come col
+Mercatò di via Filadelfia.
+
+**La fonte è kimbino**, la stessa del Mercatò, e ha lo stesso difetto: firma
+ogni immagine con un codice calcolato sull'indirizzo, quindi lo schema con
+`{n}` non esiste e le pagine vanno elencate una per una — `pagine_ekom.py`,
+gemello di `pagine_mercato.py`. Anteprimavolantino l'Ekom non ce l'ha.
+
+### Il «1+1», e perché le righe dicono «2 × 300 g»
+
+Il volantino dell'8-21 settembre è un **1+1**: due pagine intere (2 e 3) dove
+ogni prodotto porta scritto «1 PEZZO 3,99 €» e sotto «2 PEZZI 3,99 €». Il
+secondo pezzo è gratis, e **il volantino stesso conta il prezzo al chilo su
+due confezioni** (300 g a 3,99 diventano «AL KG 6,63 €», che è 600 g a 3,99).
+
+La regola di casa dice: se un conto è ambiguo, si sceglie il numero che NON fa
+sembrare l'offerta più conveniente di quello che è. Qui però non è ambiguo, è
+**condizionato**: chi ne prende due quel prezzo lo paga davvero. Scrivere solo
+il prezzo di una confezione avrebbe fatto sembrare l'Ekom più caro di quello
+che è, che è l'errore uguale e contrario.
+
+Quindi: **la riga dice nel formato che sono due** — «2 × 300 g (1+1)» — così il
+prezzo per unità è vero per quello che si compra davvero, e **la nota dice
+sempre quanto costa una confezione sola**, con il suo prezzo al chilo. Chi ne
+vuole una paga il doppio al chilo e lo legge lì, prima di andare in negozio.
+Niente bollino verde rubato con un numero che vale solo a metà.
+
+### Cos'altro c'era dentro, e cosa è rimasto fuori
+
+Letto per intero, 16 pagine, 138 prezzi. Scartate due pagine sole: la
+copertina e il concorso a premi della carta EKOM UP (in `scartate.py`).
+
+- **Pagina 13: offerte solo con la carta EKOM UP.** Trattate come le MD Buona
+  Spesa Card: prezzo della tessera, e nella nota il prezzo pieno.
+- **Pagina 9: banco salumi, formaggi e macelleria.** Il volantino avverte che
+  valgono **solo nei punti vendita col banco servito** — sta scritto in ogni
+  nota, perché un Ekom senza banco quel prosciutto non te lo taglia. I prezzi
+  sono stampati all'etto: qui diventano al chilo (×10), come li confronta la
+  pagina.
+- **Lasciati fuori di proposito**: le fette biscottate (sotto «Biscotti»
+  sarebbero il meno caro per forza, e non sono biscotti), i «salumi light» e
+  «le insalate» senza grammatura (nessun prezzo per unità onesto), i piatti
+  pronti, il Condisano Dante (non si capisce dall'immagine se è olio di semi o
+  misto), la maionese, gli snack e il cibo per cani e gatti: nessuna categoria
+  del catalogo li copre.
+- **Nasello** messo sotto «Merluzzo e baccalà» con la nota «è nasello, non
+  merluzzo», come si è sempre fatto con i quasi-uguali (l'hamburger misto
+  suino/bovino sotto la carne di bue).
+
+Il volantino **scade il 21 settembre**, tre giorni dopo averlo letto: si è
+fatto lo stesso perché senza non ci sarebbe stata nessuna offerta Ekom, e il
+successore (dal 22) esce fra pochi giorni. Su kimbino il successore non c'era
+ancora il 18.

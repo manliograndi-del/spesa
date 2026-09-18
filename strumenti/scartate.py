@@ -212,4 +212,9 @@ SCARTATE = {
    34: 'sushi box, edamame, involtini, snack di alga nori, tè e gin: nessuna categoria del catalogo li copre',
    35: 'fiori e piante da appartamento e da esterno',
  },
+ # Guardate una per una il 2026-09-18, leggendo il volantino per intero.
+ 'ekom08': {
+   1:  'copertina: solo il titolo «1+1», le date e la spiegazione dell\'offerta, nessun prezzo',
+   12: 'concorso a premi «Punta in alto: Up&Vinci» della carta fedeltà EKOM UP: come partecipare, nessun prezzo di spesa',
+ },
 }

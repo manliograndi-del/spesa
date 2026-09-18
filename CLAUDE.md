@@ -162,6 +162,18 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-18)
 
+- **Aggiunta l'insegna Ekom il 2026-09-18**, chiesta da Manlio. Volantino
+  «1+1» dell'8-21 settembre (`ekom08`), letto per intero: 16 pagine, 138
+  prezzi. **Scade il 21 settembre**: il successore (dal 22) su kimbino non
+  c'era ancora il 18, **da cercare nei prossimi giorni**. La fonte è kimbino
+  come per il Mercatò, quindi gli indirizzi delle pagine stanno uno per uno in
+  `strumenti/pagine_ekom.py` e **vanno rifatti a ogni volantino nuovo**. A
+  Torino ci sono più Ekom ma **il volantino è lo stesso per tutti** (l'unico
+  diverso è quello della Toscana): niente da scegliere come col Mercatò.
+  **Le pagine 1+1**: la riga dice nel formato che sono due confezioni
+  («2 × 300 g (1+1)») e la nota dice quanto costa una confezione sola — in
+  NOTE.md c'è il perché, non cambiarlo senza chiederglielo.
+
 - **Fatti il 2026-09-18 i due tasti su ogni volantino in fondo alla pagina**,
   chiesti da Manlio: «Le offerte» e «Il volantino», tutti e due in una pagina
   nuova. Pubblicati sul sito e sull'artifact, `sw.js` a v38. In NOTE.md c'è il

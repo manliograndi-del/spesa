@@ -385,7 +385,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <div class="dettaglio" id="dett-testa" hidden>
     <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
     conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
-    Volantini di Mercatò, Lidl, Eurospin, MD, Bennet, Ipercoop e Carrefour Iper.</p>
+    Volantini di Mercatò, Lidl, Eurospin, MD, Bennet, Ekom, Ipercoop e Carrefour Iper.</p>
     <p class="sottotitolo" id="dove-vive"></p>
   </div>
 </header>
