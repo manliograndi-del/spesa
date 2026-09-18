@@ -1784,3 +1784,59 @@ Il volantino **scade il 21 settembre**, tre giorni dopo averlo letto: si è
 fatto lo stesso perché senza non ci sarebbe stata nessuna offerta Ekom, e il
 successore (dal 22) esce fra pochi giorni. Su kimbino il successore non c'era
 ancora il 18.
+
+## La finestra «Cosa c'è di nuovo» — 2026-09-18
+
+Manlio: «la prima volta che uno apre la pagina sarebbe carino che ci fosse una
+finestra novità che elenca le novità che ci sono state, a partire dalla casella
+di ricerca; naturalmente sono novità inerenti l'interfaccia e le possibilità,
+non i prodotti».
+
+**Sono due cose diverse, e la pagina adesso le tiene separate:**
+
+- il tasto **«Novità»** in alto a destra porta al **diario dei prezzi**: cosa è
+  cambiato nelle offerte, giorno per giorno. Invecchia da solo e si rifà a ogni
+  giro;
+- la **finestra** che si apre alla prima apertura racconta **cosa si può fare
+  adesso che prima non si poteva**: la casella di ricerca, i due tasti sui
+  volantini, un'insegna in più. Non ci vanno prezzi. La prova
+  `prova-novita-pagina.js` **cerca il simbolo dell'euro dentro la finestra e
+  pretende che non ci sia**: se un giorno qualcuno ci infila un'offerta, la
+  finestra diventa un doppione del diario e comincia a mentire da sola quando
+  quell'offerta scade.
+
+L'elenco parte dalla casella di ricerca, come ha chiesto lui, ed è in ordine di
+tempo: si legge come una storia di cosa è arrivato.
+
+### Perché non si rivede più (e come farla tornare per una cosa sola)
+
+Ogni novità ha un **id che comincia con la sua data** (`2026-09-15-cerca`).
+Chiudendo, il browser di chi guarda si segna l'id dell'**ultima della lista**;
+alla prossima apertura compaiono **solo quelle con l'id più grande**, cioè
+quelle arrivate dopo. Così:
+
+- chi apre per la prima volta le vede tutte;
+- chi le ha già viste non vede più niente;
+- chi torna dopo che ne è stata aggiunta una vede **solo quella nuova**.
+
+Il confronto fra due date scritte in quel modo è un confronto fra due scritte:
+niente elenchi da tenere, niente conti. **Le novità nuove si mettono in fondo**
+a `NOVITA_PAGINA`, in `pagina.py`, con la data del giorno davanti all'id.
+
+Se il browser non lascia leggere né scrivere (navigazione privata, memoria
+piena) la finestra si comporta come per uno nuovo: si apre. Meglio una volta di
+troppo che una pagina che si rompe, ed è la stessa regola della lista.
+
+### Due dettagli che sembrano niente e non lo sono
+
+- **Il fuoco sul tasto non deve muovere la pagina.** Mettendolo normalmente, la
+  finestra si apriva già scorsa in fondo: si vedeva l'ultima novità e il titolo
+  no. Adesso il fuoco arriva con `preventScroll` e la finestra parte dall'alto.
+- **«Ho capito» resta sempre attaccato in fondo** (`position:sticky`). Con tre
+  novità il tasto finiva sotto il bordo e per chiudere bisognava indovinare che
+  si poteva scorrere dentro la finestra. Una finestra che non si capisce come
+  si chiude è una trappola, e chi la trova è uno che voleva solo vedere i
+  prezzi.
+
+Si chiude in tre modi: il tasto, il buio intorno, il tasto Esc. Toccare dentro
+la finestra no.

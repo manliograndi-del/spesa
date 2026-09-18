@@ -88,7 +88,16 @@ def controlla(percorso):
     cercati = set(re.findall(r"getElementById\('([\w-]+)'\)", script))
     for i in sorted(cercati - presenti):
         trovati.append(('il programma cerca un id che non c\'è', '#' + i, ''))
-    for i in sorted(presenti - cercati):
+    # Un id puo servire anche senza che il programma lo cerchi: «aria-labelledby»
+    # e «aria-controls» lo usano per dire a chi legge lo schermo che quel titolo
+    # e il nome di quella finestra. Il 2026-09-18 il titolo della finestra delle
+    # novita e finito qui dentro come «mai cercato», e toglierlo avrebbe tolto
+    # il nome alla finestra: non e roba morta, e roba usata dall'HTML.
+    riferiti = set()
+    for attr in ('aria-labelledby', 'aria-controls', 'aria-describedby', 'for'):
+        for val in re.findall(attr + r'="([^"]+)"', corpo):
+            riferiti.update(val.split())
+    for i in sorted(presenti - cercati - riferiti):
         if not re.search(r'[\'"#]' + re.escape(i) + r'\b', script + prove):
             trovati.append(('id scritto e mai cercato', '#' + i, ''))
 

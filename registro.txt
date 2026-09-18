@@ -32,3 +32,4 @@
 2026-09-18 06:28 UTC  MD 22set-4ott letto per intero (37 pagine, 131 prezzi), pubblicato su main e sull'Artifact. Trovato anche Bennet nuovo sovrapposto (17-30, 'Un mondo di bellezza'), aggiunto a VOLANTINI ma non ancora letto.
 2026-09-18 13:25 UTC  due tasti su ogni volantino in fondo alla pagina (Le offerte / Il volantino), chiesti da Manlio: aprono una pagina nuova. Prova nuova prova-volantini.js, tutte le prove passate; sw.js a v38
 2026-09-18 13:44 UTC  aggiunta l'insegna Ekom, chiesta da Manlio: volantino 1+1 dell'8-21 settembre letto per intero (16 pagine, 138 prezzi), pagine_ekom.py come per il Mercato. Tutte le prove passate; sw.js a v39
+2026-09-18 13:55 UTC  finestra «Cosa c'è di nuovo» alla prima apertura, chiesta da Manlio: elenca le novità dell'interfaccia (casella di ricerca, Ekom, due tasti sui volantini), non i prezzi. Chi l'ha vista non la rivede. Prova nuova prova-novita-pagina.js; sw.js a v40

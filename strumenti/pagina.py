@@ -126,10 +126,46 @@ if os.path.exists(lista_viva):
 # meno di 6 KB: non è quello che pesa.
 catalogo = [dict(nome=v['nome'], rep=v['reparto'], parole=v['parole']) for v in CATALOGO]
 
+# LE NOVITÀ DELLA PAGINA — non dei prezzi.
+# Chiesto da Manlio il 2026-09-18: «la prima volta che uno apre la pagina
+# sarebbe carino che ci fosse una finestra novità, a partire dalla casella di
+# ricerca; le novità sono nell'interfaccia e nelle possibilità, non nei
+# prodotti». Le novità dei PREZZI hanno gia il loro posto: il tasto «Novità»
+# in alto a destra, che porta al diario. Qui dentro non ci vanno prezzi, ne
+# offerte, ne nomi di prodotto: solo cosa si puo fare adesso che prima non si
+# poteva.
+#
+# In ordine di tempo, dalla piu vecchia: si legge come una storia di cosa e
+# arrivato. Aggiungendone una nuova si mette IN FONDO, con la sua data: chi ha
+# gia visto le altre si vede comparire solo quella (il confronto e sull'id
+# dell'ultima vista, tenuto nel browser di chi guarda).
+NOVITA_PAGINA = [
+    dict(id='2026-09-15-cerca', quando='15 settembre',
+         titolo='«Cerca fra i prezzi»',
+         testo='Il tasto rosso sotto i prodotti apre una casella che cerca fra '
+               'TUTTE le offerte lette, non nel catalogo: scrivi una marca, un '
+               'formato o il nome di un negozio e trovi quella singola offerta. '
+               'È un\'altra cosa dalla casella dentro «+ altri prodotti», che '
+               'invece accende i prodotti della lista.'),
+    dict(id='2026-09-18-ekom', quando='18 settembre',
+         titolo='Un supermercato in più: l\'Ekom',
+         testo='I volantini letti adesso sono otto insegne invece di sette. '
+               'Non devi fare niente: le offerte dell\'Ekom entrano da sole nel '
+               'confronto di ogni prodotto che hai acceso.'),
+    dict(id='2026-09-18-tasti', quando='18 settembre',
+         titolo='Due tasti su ogni volantino',
+         testo='In fondo alla pagina, nell\'elenco dei volantini, ogni riga ha '
+               'due tasti: «Le offerte» ti mostra i prezzi letti da quel '
+               'volantino, reparto per reparto, e «Il volantino» apre le sue '
+               'pagine sul sito di chi lo pubblica. Tutti e due si aprono in '
+               'una pagina nuova, così non perdi quello che stavi guardando.'),
+]
+
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        catalogo=catalogo,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
+                       novita=NOVITA_PAGINA,
                        letto=OGGI),
                   ensure_ascii=False, separators=(',', ':'))
 LISTA0 = json.dumps(partenza, ensure_ascii=False, separators=(',', ':'))
@@ -349,6 +385,30 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .spiega > h2:not(:first-child){margin-top:18px}
 .spiega p{font-size:14px;margin:0 0 12px}
 .spiega .ev{color:var(--ambra);font-weight:700}
+/* ---- la finestra delle novità della pagina ---- */
+/* Sta SOPRA tutto (la barra appiccicata ha z-index 20) e si chiude in tre
+   modi: il tasto, il buio intorno, il tasto Esc. Si apre una volta sola:
+   quello che uno ha gia visto se lo ricorda il suo browser. */
+.buio[hidden]{display:none}
+.buio{position:fixed;inset:0;z-index:60;background:rgba(20,19,18,.5);
+  display:flex;align-items:center;justify-content:center;padding:16px}
+.finestra{background:var(--carta);border-radius:14px;max-width:460px;width:100%;
+  max-height:84vh;overflow:auto;padding:18px 18px 0;
+  box-shadow:0 18px 50px rgba(0,0,0,.28)}
+/* Il tasto per chiudere resta SEMPRE in fondo allo schermo, attaccato: con le
+   novità lunghe finiva sotto il bordo e per chiuderla bisognava indovinare
+   che si poteva scorrere dentro la finestra. Una finestra che non si capisce
+   come si chiude e una trappola. */
+.pie-finestra{position:sticky;bottom:0;background:var(--carta);padding:4px 0 14px}
+.finestra h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:17px;
+  letter-spacing:.03em;margin:0 0 4px}
+.finestra .sotto-titolo{margin:0 0 14px;color:var(--tenue);font-size:13.5px}
+.finestra .voce{border-top:1px solid var(--linea);padding:13px 0}
+.finestra .voce:first-of-type{border-top:1.5px solid var(--inchiostro)}
+.finestra .quando{display:block;color:var(--tenue);font-size:11.5px;
+  letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
+.finestra .voce h3{margin:0 0 4px;font-size:16px}
+.finestra .voce p{margin:0;font-size:14px;color:var(--inchiostro)}
 .vol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:1px;background:var(--linea);
   border:1px solid var(--linea);border-radius:10px;overflow:hidden}
 .vol li{background:var(--carta);padding:11px 13px;font-size:14px}
@@ -485,6 +545,22 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 </section>
 
 <footer id="pie"></footer>
+</div>
+
+<!-- LA FINESTRA DELLE NOVITÀ. Chiesta da Manlio il 2026-09-18: si apre da sola
+     la prima volta che uno apre la pagina, e dice cosa si puo fare adesso che
+     prima non si poteva. Sta FUORI dal guscio e fuori dalla barra: e una
+     finestra sopra la pagina, non un pezzo che le cresce dentro. -->
+<div class="buio" id="buio" hidden>
+  <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-novita">
+    <h2 id="titolo-novita">Cosa c'è di nuovo</h2>
+    <p class="sotto-titolo">Non i prezzi — quelli stanno nel tasto «Novità» in alto.
+    Qui c'è cosa si può fare adesso che prima non si poteva.</p>
+    <div id="voci-novita"></div>
+    <div class="pie-finestra">
+      <button type="button" class="chiudi" id="chiudi-novita">Ho capito</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -1480,6 +1556,72 @@ disegna();
     window.scrollTo(0, Math.max(0, pan.getBoundingClientRect().top + (window.scrollY || 0) - alto - 8));
   } catch (e) {}
 })();
+
+/* ---------- la finestra delle novità DELLA PAGINA ---------- */
+/* Chiesta da Manlio il 2026-09-18. Si apre da sola la prima volta, e dice cosa
+   si puo fare adesso che prima non si poteva: l'interfaccia, non i prezzi. I
+   prezzi nuovi hanno gia il tasto «Novità» in alto a destra.
+
+   Chi ha gia visto tutto non la rivede piu: nel browser di chi guarda resta
+   l'id dell'ultima novita vista, e la volta dopo compaiono SOLO quelle
+   arrivate dopo. Gli id cominciano con la data apposta: e cosi che «dopo»
+   diventa un confronto fra due scritte, senza tenere elenchi.
+
+   Se il browser non lascia leggere ne scrivere (navigazione privata, memoria
+   piena), la finestra si comporta come per uno nuovo: si apre. Meglio una
+   volta di troppo che una pagina che non funziona. */
+const NOVITA_VISTE = 'spesa.novita.v1';
+
+function novitaDaMostrare() {
+  const tutte = DATI.novita || [];
+  if (!tutte.length) return [];
+  let vista = '';
+  try { vista = localStorage.getItem(NOVITA_VISTE) || ''; } catch (e) { vista = ''; }
+  if (!vista) return tutte;
+  return tutte.filter(n => n.id > vista);
+}
+
+function mostraNovita() {
+  const buio = document.getElementById('buio');
+  if (!buio) return;
+  const da = novitaDaMostrare();
+  if (!da.length) { buio.hidden = true; return; }
+  const box = document.getElementById('voci-novita');
+  box.textContent = '';
+  da.forEach(n => {
+    const d = document.createElement('div');
+    d.className = 'voce';
+    d.innerHTML = '<span class="quando"></span><h3></h3><p></p>';
+    d.querySelector('.quando').textContent = n.quando;
+    d.querySelector('h3').textContent = n.titolo;
+    d.querySelector('p').textContent = n.testo;
+    box.appendChild(d);
+  });
+  buio.hidden = false;
+  /* Il fuoco sul tasto SENZA muovere la pagina: con lo scorrimento in automatico
+     la finestra si apriva gia scorsa in fondo e il titolo non si vedeva. */
+  try { document.getElementById('chiudi-novita').focus({ preventScroll: true }); } catch (e) {}
+  try { document.querySelector('.finestra').scrollTop = 0; } catch (e) {}
+}
+
+/* Chiudendo si segna l'ULTIMA della lista, non l'ultima mostrata: se uno apre
+   per la prima volta le vede tutte, e da li in poi conta solo quello che
+   arriva dopo. */
+function chiudiNovita() {
+  const buio = document.getElementById('buio');
+  if (!buio || buio.hidden) return;
+  buio.hidden = true;
+  const tutte = DATI.novita || [];
+  if (tutte.length) {
+    try { localStorage.setItem(NOVITA_VISTE, tutte[tutte.length - 1].id); } catch (e) {}
+  }
+}
+
+document.getElementById('chiudi-novita').onclick = chiudiNovita;
+/* Il buio intorno chiude, la finestra no: toccando dentro non deve sparire. */
+document.getElementById('buio').onclick = ev => { if (ev.target.id === 'buio') chiudiNovita(); };
+addEventListener('keydown', ev => { if (ev.key === 'Escape') chiudiNovita(); });
+mostraNovita();
 
 /* Va in fondo, DOPO che «lista» e stata creata e la pagina disegnata una prima
    volta. Messo prima, chiamava disegna() quando «lista» non esisteva ancora e

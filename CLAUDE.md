@@ -148,6 +148,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   caro di questo negozio» e si leggerebbe «di tutti»; il pannello è quello
   della ricerca, che sta **fuori dalla `.barra`**. La pagina nuova è la pagina
   stessa con `#volantino=...` in coda: non ci sono pagine generate in più.
+- **La finestra «Cosa c'è di nuovo» si apre alla prima apertura** (chiesta il
+  2026-09-18) e racconta **l'interfaccia, non i prezzi**: cosa si può fare
+  adesso che prima non si poteva, a partire dalla casella di ricerca. I prezzi
+  nuovi restano nel tasto «Novità» in alto a destra. **Dentro non ci vanno
+  offerte né prezzi**, e la prova `prova-novita-pagina.js` se ne accorge. Le
+  novità nuove si aggiungono in fondo a `NOVITA_PAGINA` in `pagina.py`, con la
+  data davanti all'id: chi le ha già viste vedrà comparire **solo quella
+  nuova**.
 - **Una novità falsa è peggio di nessuna novità: manda uno in negozio.** Vale
   per il diario e per i prezzi: se un conto è ambiguo (peso sgocciolato, prezzo
   valido solo comprandone tre), si sceglie il numero che NON fa sembrare
@@ -161,6 +169,11 @@ con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-18)
+
+- **Fatta il 2026-09-18 la finestra «Cosa c'è di nuovo»**, chiesta da Manlio:
+  si apre da sola la prima volta e elenca le novità della pagina (casella di
+  ricerca, Ekom, due tasti sui volantini). Chi l'ha già vista non la rivede;
+  chi torna dopo una novità nuova vede solo quella.
 
 - **Aggiunta l'insegna Ekom il 2026-09-18**, chiesta da Manlio. Volantino
   «1+1» dell'8-21 settembre (`ekom08`), letto per intero: 16 pagine, 138
