@@ -1664,3 +1664,62 @@ pubblico dopo aver pubblicato — farlo davvero, guardando un numero che cambia
 a ogni rilascio (`sw.js`, o un prodotto nuovo nella pagina), non solo
 guardare che il comando `git push` non abbia dato errore: un push può
 riuscire perfettamente e andare comunque nel posto sbagliato.
+
+## I due tasti su ogni volantino — 2026-09-18
+
+Manlio: «visto che alla fine c'è l'elenco dei supermercati, ci fosse anche un
+tasto, anzi due tasti: uno per vedere le offerte, l'altro per vedere il
+volantino. Immagino che sarebbe migliore per la navigazione che si aprissero in
+pagine nuove».
+
+L'elenco in fondo c'era dal principio, ma era **roba da leggere e basta**:
+insegna, periodo, quante pagine. Le offerte di quel volantino erano dentro la
+pagina — sparse fra i bottoni dei prodotti — e per vederle tutte insieme non
+c'era modo. Il volantino vero si apriva solo partendo da una riga di prezzo
+(«Apri la pagina 12 del volantino»): chi non aveva un prezzo davanti non aveva
+nessuna porta.
+
+Adesso ogni riga ha due tasti, larghi uguali:
+
+- **«Le offerte (N)»** — le offerte lette da quel volantino, divise per
+  reparto, dalla meno cara in giù dentro ognuno.
+- **«Il volantino ↗»** — la prima pagina del volantino sul sito di chi lo
+  pubblica. **L'indirizzo si prende da `indice.json`**, cioè da pagine che
+  esistono davvero, non dal modello con dentro il numero: così il tasto non
+  può portare su un indirizzo inventato.
+
+Le scelte fatte mentre lo facevo, e il perché:
+
+- **Riusa il pannello della ricerca, non ne apre uno nuovo.** Quel pannello sta
+  già **fuori dalla `.barra`** (dentro, la barra `sticky` cresce e il telefono
+  si pianta a ogni scorrimento: lezione del cassetto, pagata due volte) e le
+  sue righe **non portano il bollino verde**. Qui il verde sarebbe una bugia
+  ancora più diretta che nella ricerca: vorrebbe dire «il meno caro di questo
+  negozio» e si leggerebbe «il meno caro di tutti». Il titolo del pannello dice
+  sempre **quale** volantino si sta guardando — di Lidl ce ne sono due validi
+  insieme, e di Bennet pure.
+- **Il numero sul tasto è quello che vale OGGI**, contato dal browser di chi
+  guarda con la sua data, come tutto il resto della pagina. Un volantino
+  scaduto non ha un tasto: al suo posto c'è la scritta spenta «offerte
+  scadute». Un tasto che promette 116 offerte e ne apre zero è peggio di
+  nessun tasto.
+- **La pagina nuova si apre con `#volantino=...` in coda all'indirizzo**, ed è
+  la pagina stessa che, trovandosela, apre il pannello da sola e scorre fin lì.
+  Niente pagine generate in più: una sola pagina che sa aprirsi in due modi.
+  Chiudendo il pannello la coda sparisce dall'indirizzo, se no chi ricarica
+  quella scheda se lo ritrova aperto.
+- **Se la scheda nuova non si apre, il pannello si apre lì.** Dentro la copia
+  di Claude la pagina vive in una cornice che a volte la scheda nuova non la
+  lascia aprire: meglio un tasto che funziona in un modo un po' diverso di un
+  tasto che non fa niente. Il tasto è un `<a>` con l'indirizzo vero, quindi
+  «apri in una scheda nuova» col dito tenuto premuto funziona comunque.
+- **Scrivendo nella casella si cerca DENTRO quel volantino**, non fuori: è la
+  stessa casella, con un altro invito scritto sopra. Chiudendo, torna a cercare
+  fra tutte le offerte.
+
+La prova nuova è `prova-volantini.js`, e gira su tutte e tre le copie: controlla
+che ogni riga abbia i suoi tasti, che «Il volantino» porti a uno dei tre siti
+che i volantini li pubblicano davvero, che «Le offerte» apra **solo** quelle di
+quel volantino (contate una per una), che siano in ordine dentro ogni reparto,
+che non ci sia nessun bollino verde, che il pannello non finisca dentro la barra
+e che lo stesso indirizzo con la coda, aperto da zero, faccia la stessa cosa.

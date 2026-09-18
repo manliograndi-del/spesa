@@ -138,6 +138,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     pieno vuol dire «prodotto acceso». Da solo, largo quanto lo schermo, no.
     Il bottone **tiene anche la classe `agg`**: è con quella che tutte le
     prove riconoscono i bottoni che non sono prodotti della lista.
+- **In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
+  **«Le offerte (N)»** apre le offerte lette da quel volantino, divise per
+  reparto, e **«Il volantino ↗»** apre la sua prima pagina sul sito di chi lo
+  pubblica. Tutti e due in una **pagina nuova**, come ha chiesto lui. Regole da
+  non cambiare: il numero sul tasto è quello che vale **oggi** (un volantino
+  scaduto non ha il tasto, ha la scritta spenta «offerte scadute»); dentro
+  quelle offerte **non c'è il bollino verde**, che lì vorrebbe dire «il meno
+  caro di questo negozio» e si leggerebbe «di tutti»; il pannello è quello
+  della ricerca, che sta **fuori dalla `.barra`**. La pagina nuova è la pagina
+  stessa con `#volantino=...` in coda: non ci sono pagine generate in più.
 - **Una novità falsa è peggio di nessuna novità: manda uno in negozio.** Vale
   per il diario e per i prezzi: se un conto è ambiguo (peso sgocciolato, prezzo
   valido solo comprandone tre), si sceglie il numero che NON fa sembrare
@@ -151,6 +161,12 @@ con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-18)
+
+- **Fatti il 2026-09-18 i due tasti su ogni volantino in fondo alla pagina**,
+  chiesti da Manlio: «Le offerte» e «Il volantino», tutti e due in una pagina
+  nuova. Pubblicati sul sito e sull'artifact, `sw.js` a v38. In NOTE.md c'è il
+  perché di ogni scelta; la prova nuova è `prova-volantini.js`, dentro
+  `prove.sh`.
 
 - **Il 2026-09-17 il ramo `main` era rimasto indietro di 36 commit**: le
   sessioni del 15 e 16 settembre avevano lavorato e pubblicato l'Artifact, ma

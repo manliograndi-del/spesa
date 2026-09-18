@@ -30,3 +30,4 @@
 2026-09-17 06:26 UTC  pubblicato: sito rimesso in pari (era rimasto indietro di giorni su un ramo sbagliato) + nuovo speciale Lidl Frutta e Verdura (12 prezzi nuovi); sw.js a v36; tutte le prove passate; trovati MD dal 22/9 (da leggere) ed Eurospin dal 24/9 (da tenere d'occhio); CLAUDE.md e NOTE.md aggiornati
 2026-09-18 06:08 UTC  sveglia: clonato, 2026-09-18
 2026-09-18 06:28 UTC  MD 22set-4ott letto per intero (37 pagine, 131 prezzi), pubblicato su main e sull'Artifact. Trovato anche Bennet nuovo sovrapposto (17-30, 'Un mondo di bellezza'), aggiunto a VOLANTINI ma non ancora letto.
+2026-09-18 13:25 UTC  due tasti su ogni volantino in fondo alla pagina (Le offerte / Il volantino), chiesti da Manlio: aprono una pagina nuova. Prova nuova prova-volantini.js, tutte le prove passate; sw.js a v38

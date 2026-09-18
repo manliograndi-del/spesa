@@ -91,8 +91,18 @@ MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
 # La data in fondo alla pagina si calcola: scritta a mano era rimasta indietro
 # di due giorni e Manlio l'ha fotografata mentre si contraddiceva da sola.
 OGGI = f'{_oggi.day} {MESI[_oggi.month - 1]} {_oggi.year}'
+# Il primo indirizzo utile di ogni volantino: e quello che apre il tasto «Il
+# volantino» in fondo alla pagina. Si prende dall'indice, cioe da pagine che
+# esistono davvero, e non dal modello con dentro il numero: cosi il tasto non
+# porta mai su un indirizzo inventato.
+PRIMA = {}
+for _r in pagine:
+    if _r['url'] and _r['pdf'] not in PRIMA:
+        PRIMA[_r['pdf']] = _r['url']
+
 volantini = [x for x in (dict(ins=v.insegna, periodo=v.periodo, pdf=v.pdf,
                               pagine=len([y for y in pagine if y['pdf'] == v.pdf]),
+                              apri=PRIMA.get(v.pdf),
                               inizio=v.inizio, fino=v.fino)
                          for v in VOLANTINI) if x['pagine']]
 
@@ -341,8 +351,19 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .spiega .ev{color:var(--ambra);font-weight:700}
 .vol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:1px;background:var(--linea);
   border:1px solid var(--linea);border-radius:10px;overflow:hidden}
-.vol li{background:var(--carta);padding:11px 13px;display:flex;justify-content:space-between;
-  align-items:baseline;gap:12px;font-size:14px}
+.vol li{background:var(--carta);padding:11px 13px;font-size:14px}
+.vol .capo-vol{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+/* I DUE TASTI DI OGNI VOLANTINO, chiesti da Manlio il 2026-09-18: uno apre i
+   prezzi letti da quel volantino, l'altro il volantino stesso sul sito di chi
+   lo pubblica. Larghi uguali, uno accanto all'altro, alti abbastanza da
+   prendersi col dito sul telefono. */
+.vol-tasti{display:flex;gap:8px;margin-top:9px}
+.vol-t{flex:1 1 0;min-height:40px;display:flex;align-items:center;justify-content:center;
+  gap:3px;text-align:center;padding:8px 10px;border:1.5px solid var(--linea-forte);
+  border-radius:9px;background:var(--pannello);color:var(--rosso);font-weight:600;
+  font-size:13.5px;font-family:inherit;text-decoration:none;cursor:pointer}
+.vol-t.fuori::after{content:'\2197'}
+.vol-t.spento{color:var(--tenue);border-style:dashed;cursor:default;font-weight:400}
 .vol .i{font-weight:600}
 .vol .p{color:var(--tenue);font-size:13px}
 .vol .n{color:var(--tenue);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
@@ -454,6 +475,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
   <h2>I volantini</h2>
   <ul class="vol" id="vol"></ul>
+  <p style="margin-top:12px">Su ogni riga ci sono due tasti, e tutti e due aprono
+  <b>una pagina nuova</b>, così non perdi quello che stavi guardando:
+  <b>«Le offerte»</b> ti mostra i prezzi letti da quel volantino, reparto per reparto;
+  <b>«Il volantino»</b> apre le sue pagine sul sito di chi lo pubblica.</p>
   <p style="margin-top:12px">Di Mercatò si legge il volantino del punto vendita di
   <b>via Filadelfia 232</b>. Mercatò Local, Big ed Extra sono insegne diverse con volantini
   diversi: quello di via Demargherita, per dire, è un Local e queste offerte non sono le sue.</p>
@@ -849,7 +874,16 @@ function apriCassetto(si) {
 let ricercaAperta = false;
 let quantiMostrati = 40;
 
-function apriRicerca(si) {
+/* Con un volantino scelto dai tasti in fondo, lo stesso pannello mostra le
+   offerte di QUEL volantino invece dei risultati di una parola. E lo stesso
+   pannello apposta: e gia fuori dalla barra (se cresce dentro la barra il
+   telefono si pianta a ogni scorrimento) e le sue righe non portano il
+   bollino verde, che qui vorrebbe dire «il meno caro di questo negozio» e si
+   leggerebbe «il meno caro di tutti». */
+let filtroVol = null;
+const SCRITTA_Q = document.getElementById('q').placeholder;
+
+function apriRicerca(si, senzaFuoco) {
   ricercaAperta = si;
   if (si && cassettoAperto) apriCassetto(false);
   document.getElementById('ricerca').hidden = !si;
@@ -864,11 +898,31 @@ function apriRicerca(si) {
        del 2026-09-05 («niente focus, la tastiera copre mezzo schermo») valeva
        per chi apre il cassetto per GUARDARSI i reparti. Qui uno ha appena
        toccato «Cerca»: vuole scrivere, e fargli fare un secondo tocco sulla
-       casella e solo una seccatura. */
-    try { document.getElementById('q').focus(); } catch (e) {}
+       casella e solo una seccatura.
+       ECCEZIONE: quando il pannello si apre da solo per mostrare un volantino
+       intero non c'e niente da scrivere, e la tastiera coprirebbe le offerte
+       appena arrivate. */
+    if (!senzaFuoco) { try { document.getElementById('q').focus(); } catch (e) {} }
   } else {
     document.getElementById('q').value = '';
+    document.getElementById('q').placeholder = SCRITTA_Q;
+    filtroVol = null;
+    /* Via la coda «#volantino=...» dall'indirizzo: se no chi ricarica questa
+       scheda dopo aver chiuso il pannello se lo ritrova aperto. */
+    if (location.hash) {
+      try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    }
   }
+}
+
+/* Apre il pannello sulle offerte di un volantino solo. Lo chiamano i tasti in
+   fondo (di solito in una scheda nuova) e l'indirizzo con «#volantino=». */
+function apriVolantino(pdf) {
+  filtroVol = pdf;
+  const q = document.getElementById('q');
+  q.value = '';
+  q.placeholder = 'Cerca dentro questo volantino…';
+  apriRicerca(true, true);
 }
 
 /* Tutte le parole scritte devono comparire da qualche parte nella riga: cosi
@@ -878,9 +932,10 @@ function apriRicerca(si) {
    prodotto scritti a mano, e chi scrive «mozzar» si aspetta di trovarli. */
 function cercaOfferte(testo) {
   const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
-  if (!parole.length) return [];
+  if (!parole.length && !filtroVol) return [];
   return DATI.offerte
     .filter(o => !nascosta(o))
+    .filter(o => !filtroVol || o.pdf === filtroVol)
     .filter(o => {
       const pagliaio = norm([o.pro, o.ins, o.cat, o.fmt, o.note].join(' '));
       return parole.every(w => pagliaio.indexOf(w) >= 0);
@@ -894,15 +949,23 @@ function disegnaTrovati() {
   const capo = document.getElementById('quanti-trovati');
   box.textContent = '';
   const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
-  if (!parole.length) {
+  if (!parole.length && !filtroVol) {
     capo.innerHTML = 'Scrivi almeno due lettere. Cerca fra <b>tutte</b> le offerte '
       + 'dei volantini: il nome del prodotto, la marca, il negozio, il formato.';
     return;
   }
   const trovate = cercaOfferte(testo);
   if (!trovate.length) {
-    capo.innerHTML = '<b>Niente.</b> Prova con una parola sola, o piu corta: '
-      + 'i nomi sono quelli stampati sul volantino, non sempre quelli che diresti tu.';
+    /* Senza parola scritta e senza offerte il volantino e finito: dirlo com'e,
+       invece di far credere che sia colpa di come uno ha cercato. */
+    capo.innerHTML = filtroVol
+      ? (parole.length
+         ? '<b>Niente.</b> In questo volantino non c\u2019e nessuna offerta con questa '
+           + 'parola. Cancellala e tornano tutte.'
+         : '<b>Questo volantino e finito.</b> Le sue offerte non valgono piu: '
+           + 'guarda quelle dei volantini in corso.')
+      : '<b>Niente.</b> Prova con una parola sola, o piu corta: '
+        + 'i nomi sono quelli stampati sul volantino, non sempre quelli che diresti tu.';
     return;
   }
   /* Niente bollino verde qui dentro. «Il meno caro» vuol dire il meno caro
@@ -911,12 +974,26 @@ function disegnaTrovati() {
      tonno meno caro. Una novita falsa manda uno in negozio. Per il confronto
      vero c'e il bottone del prodotto. */
   capo.innerHTML = '';
-  capo.appendChild(document.createTextNode(''));
-  capo.textContent = trovate.length === 1
-    ? 'Una sola offerta. Dal meno caro in giu, ma solo fra quelle che hai cercato: '
-      + 'per sapere qual e il meno caro in assoluto tocca il bottone del prodotto.'
-    : trovate.length + ' offerte, dalla meno cara in giu — ma solo fra quelle che hai '
-      + 'cercato: per il meno caro in assoluto tocca il bottone del prodotto.';
+  if (filtroVol) {
+    /* Col volantino scelto il titolo deve dire QUALE, se no uno non sa cosa
+       sta guardando: di Lidl ce ne sono due validi insieme, e di Bennet pure. */
+    const v = DATI.volantini.find(x => x.pdf === filtroVol);
+    const b = document.createElement('b');
+    b.textContent = v ? v.ins + ' — ' + v.periodo : 'questo volantino';
+    capo.appendChild(b);
+    capo.appendChild(document.createTextNode(': ' + trovate.length
+      + (trovate.length === 1 ? ' offerta' : ' offerte')
+      + (parole.length ? ' con questa parola' : '')
+      + ', divise per reparto e dalla meno cara in giù dentro ognuno. Sono solo quelle '
+      + 'di questo volantino: per sapere qual è il meno caro fra tutti i negozi tocca '
+      + 'il bottone del prodotto.'));
+  } else {
+    capo.textContent = trovate.length === 1
+      ? 'Una sola offerta. Dal meno caro in giu, ma solo fra quelle che hai cercato: '
+        + 'per sapere qual e il meno caro in assoluto tocca il bottone del prodotto.'
+      : trovate.length + ' offerte, dalla meno cara in giu — ma solo fra quelle che hai '
+        + 'cercato: per il meno caro in assoluto tocca il bottone del prodotto.';
+  }
 
   /* Raggruppate per categoria, e le categorie in ordine di prezzo migliore:
      cercando «barilla» esce prima la pasta e poi i sughi, non alla rinfusa. */
@@ -1250,12 +1327,63 @@ function disegna() {
 const ul = document.getElementById('vol');
 DATI.volantini.forEach(v => {
   const li = document.createElement('li');
-  li.innerHTML = `<span><span class="i"></span> <span class="p"></span></span><span class="n"></span>`;
+  li.innerHTML = `<div class="capo-vol"><span><span class="i"></span> <span class="p"></span></span><span class="n"></span></div>`;
   li.querySelector('.i').textContent = v.ins;
   li.querySelector('.p').textContent = v.periodo
     + (scaduto(v) ? ' — scaduto' : futuro(v) ? ' — non ancora cominciato' : '');
   if (scaduto(v) || futuro(v)) li.querySelector('.p').style.color = 'var(--ambra)';
   li.querySelector('.n').textContent = v.pagine + ' pag.';
+
+  /* I DUE TASTI, chiesti da Manlio il 2026-09-18: «visto che alla fine c'e
+     l'elenco dei supermercati, un tasto per vedere le offerte e uno per vedere
+     il volantino». Tutti e due aprono una scheda nuova, come ha chiesto: chi
+     guarda non perde la lista ne il punto in cui era. */
+  const tasti = document.createElement('div');
+  tasti.className = 'vol-tasti';
+
+  /* Quante ne valgono OGGI, non quante ne ho lette: di un volantino scaduto
+     non c'e niente da aprire, e il tasto lo direbbe per finta. Il conto lo fa
+     il browser di chi guarda, con la sua data, come tutto il resto. */
+  const quante = DATI.offerte.filter(o => o.pdf === v.pdf && !nascosta(o)).length;
+  if (quante) {
+    const a = document.createElement('a');
+    a.className = 'vol-t';
+    a.href = location.href.split('#')[0] + '#volantino=' + encodeURIComponent(v.pdf);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = 'Le offerte (' + quante + ')';
+    /* La scheda nuova si apre a mano, e non per capriccio: dentro la copia di
+       Claude la pagina sta in una cornice che a volte la scheda nuova non la
+       lascia aprire. Se non si apre, invece di non fare niente si apre il
+       pannello qui, sulla stessa pagina: meglio un tasto che funziona in un
+       modo un po' diverso di un tasto che non fa niente. */
+    a.onclick = ev => {
+      ev.preventDefault();
+      let nuova = null;
+      try { nuova = window.open(a.href, '_blank'); } catch (e) { nuova = null; }
+      if (nuova) { try { nuova.opener = null; } catch (e) {} return; }
+      apriVolantino(v.pdf);
+      inCima();
+    };
+    tasti.appendChild(a);
+  } else {
+    const spento = document.createElement('span');
+    spento.className = 'vol-t spento';
+    spento.textContent = scaduto(v) ? 'offerte scadute'
+      : futuro(v) ? 'prezzi in arrivo' : 'prezzi non ancora letti';
+    tasti.appendChild(spento);
+  }
+
+  if (v.apri) {
+    const b = document.createElement('a');
+    b.className = 'vol-t fuori';
+    b.href = v.apri;
+    b.target = '_blank';
+    b.rel = 'noopener noreferrer';
+    b.textContent = 'Il volantino';
+    tasti.appendChild(b);
+  }
+  li.appendChild(tasti);
   ul.appendChild(li);
 });
 
@@ -1329,6 +1457,29 @@ function aggiornaTestoLista() {
 
 
 disegna();
+
+/* «#volantino=...» in coda all'indirizzo: e quello che i tasti in fondo mettono
+   nella scheda nuova. Qui si legge e si apre subito il pannello con le offerte
+   di quel volantino. Se non corrisponde a niente non succede niente: meglio la
+   pagina normale che un pannello vuoto. */
+(function daIndirizzo() {
+  const m = /^#volantino=(.+)$/.exec(location.hash || '');
+  if (!m) return;
+  let pdf = '';
+  try { pdf = decodeURIComponent(m[1]); } catch (e) { return; }
+  if (!DATI.volantini.some(v => v.pdf === pdf)) return;
+  apriVolantino(pdf);
+  /* Nella scheda nuova si arriva in cima, con lo schermo pieno di bottoni, e
+     le offerte appena aperte restano mezze sotto. Un piccolo scorrimento le
+     porta subito sotto la barra: chi ha toccato «Le offerte» vuole vedere
+     quelle, non la fila dei prodotti. */
+  try {
+    const pan = document.getElementById('ricerca');
+    const barra = document.querySelector('.barra');
+    const alto = barra ? barra.getBoundingClientRect().height : 0;
+    window.scrollTo(0, Math.max(0, pan.getBoundingClientRect().top + (window.scrollY || 0) - alto - 8));
+  } catch (e) {}
+})();
 
 /* Va in fondo, DOPO che «lista» e stata creata e la pagina disegnata una prima
    volta. Messo prima, chiamava disegna() quando «lista» non esisteva ancora e
