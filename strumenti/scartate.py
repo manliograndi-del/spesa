@@ -23,6 +23,22 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-18, leggendo il volantino per intero (37 pagine).
+ 'md22': {
+   5: 'pagina "tutto a 1€" di bevande e dolci senza categoria del catalogo (avena drink, frutta da bere, cannucce, maionese, taralli, merende, barrette)',
+   11: 'pagina ricetta pubblicitaria con GialloZafferano (cous cous alle melanzane): nessun prezzo',
+   23: 'speciale Cura Persona: salviette, detergenti, shampoo, creme, nessuna categoria del catalogo',
+   27: 'speciale Accessori Cucina: pentole e utensili, nessun prezzo di spesa alimentare',
+   28: 'speciale Accessori Cucina: pentole professionali e piastre, nessun prezzo di spesa alimentare',
+   29: 'speciale Accessori Cucina: batterie di pentole e bistecchiere, nessun prezzo di spesa alimentare',
+   30: 'speciale Casalingo: elettrodomestici (forno, asciugatrice, ferro da stiro), nessun prezzo di spesa alimentare',
+   31: 'speciale Casalingo: stendini, tappeti, ferro da stiro, nessun prezzo di spesa alimentare',
+   32: 'speciale Casalingo: arredo e decorazioni, nessun prezzo di spesa alimentare',
+   33: 'speciale Tessile: biancheria e abbigliamento, nessun prezzo di spesa alimentare',
+   34: 'speciale Urban E-Mobility: bici e monopattini elettrici, nessun prezzo di spesa alimentare',
+   35: 'MD Viaggi: pacchetti vacanza, nessun prezzo di spesa alimentare',
+   36: 'MD Viaggi: pacchetti vacanza (pagina 2), nessun prezzo di spesa alimentare',
+ },
  # Guardate una per una il 2026-09-17, leggendo il volantino per intero (7 pagine).
  'lidlfv17': {
    6: 'pagina pubblicitaria sul premio "Sicurezza Alimentare Frutta e Verdura": nessun prezzo',
