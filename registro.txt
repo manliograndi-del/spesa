@@ -28,3 +28,4 @@
 2026-09-16 06:41 UTC  Mercatò 17-30 settembre letto e pubblicato (95 prezzi nuovi), Carrefour Iper 4-13 tolto (scaduto), aggiornati CLAUDE.md e NOTE.md
 2026-09-17 06:09 UTC  sveglia: controllo del 17/9
 2026-09-17 06:26 UTC  pubblicato: sito rimesso in pari (era rimasto indietro di giorni su un ramo sbagliato) + nuovo speciale Lidl Frutta e Verdura (12 prezzi nuovi); sw.js a v36; tutte le prove passate; trovati MD dal 22/9 (da leggere) ed Eurospin dal 24/9 (da tenere d'occhio); CLAUDE.md e NOTE.md aggiornati
+2026-09-18 06:08 UTC  sveglia: clonato, 2026-09-18
