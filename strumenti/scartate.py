@@ -47,27 +47,6 @@ SCARTATE = {
  'mercato17': {
    20: 'speciale casa calda (biancheria, tappeti, calze, felpe) ed elenco dei punti vendita: nessun prezzo di spesa',
  },
- 'mercato': {
-   1:  'copertina: cartoleria e zaini per la scuola, nessun prezzo di spesa',
-   2:  'raccolta punti FILA: bollini e codici sport, niente da comprare',
-   3:  'elenco delle associazioni sportive dei codici, nessun prezzo',
-   32: 'detersivi per lavastoviglie con un prezzo solo per tre formati diversi: '
-       'non si sa a quale dei tre si riferisca, meglio niente che un numero inventato',
-   33: 'detersivi per pavimenti e spugne: nessuna categoria del catalogo li copre',
-   36: 'pentole, pile, lampadine, calze e risma di carta',
- },
- # Guardate una per una il 2026-09-09, leggendo il volantino per intero.
- 'bennet0903': {
-   1:  'copertina: solo il titolo e le date, nessun prezzo',
-   20: 'regolamento del buono sconto del 50%: come si prende e come si spende',
-   30: 'caffettiere, padelle, tortiere, thermos, borracce, tazze',
-   31: 'tovaglie, strofinacci, presine, tappeti da cucina, cuscini',
-   32: 'pubblicita: il volantino Bennet su WhatsApp',
-   33: "pubblicita: l'app Bennet",
-   34: 'pubblicita: bennetdrive, ordina online e ritira in negozio',
-   35: 'pubblicita: catalogo Bennet Club 2026',
-   36: 'quarta di copertina: di nuovo il buono del 50% e i recapiti',
- },
  # Guardate una per una il 2026-09-10, leggendo il volantino per intero. La
  # maggior parte e sconto percentuale su intere linee di marca, senza prezzo
  # di base: non si puo calcolare un prezzo vero (vedi anche l'Ipercoop dello
@@ -121,38 +100,6 @@ SCARTATE = {
    33: 'pubblicita: bennetdrive, ordina online e ritira in negozio',
    34: 'pubblicita: catalogo Bennet Club 2026',
    35: 'quarta di copertina: elenco dei negozi dove vale la promozione, nessun prezzo',
- },
- # Guardate una per una il 2026-09-10, leggendo il volantino per intero (58 pagine).
- 'lidl10': {
-   20: 'Sottocosto (Beck\'s, pizza Cameo, tortellini Fini, yogurt Granarolo, passata Mutti): stessa offerta già scritta sotto la chiave "lidl", non si ripete',
-   13: 'pubblicità: voto "Insegna dell\'anno", concorso a premi, nessun prezzo di spesa',
-   16: 'pubblicità: voto "Insegna dell\'anno", seconda pagina',
-   26: 'specialità Alpenfest (leberkäse, canederli, crauti, cavolo rosso): nessuna categoria del catalogo le copre',
-   27: 'pubblicità Alpenfest e prodotti da forno del festival (stinco, grissini decorativi): niente che rientri nel catalogo',
-   28: 'specialità Alpenfest (wurstel con formaggio, aglio orsino, spezie): nessuna categoria del catalogo',
-   29: 'utensili Parkside da giardino, piccoli prezzi',
-   30: 'utensili Parkside: occhiali, spatole, chiavi, set meccanica',
-   31: 'utensili Parkside: guanti, colla, punte per trapano',
-   32: 'abbigliamento Esmara uomo',
-   33: 'abbigliamento Esmara donna',
-   34: 'abbigliamento Esmara donna, seconda pagina',
-   35: 'pubblicità: accettazione buoni pasto, nessun prezzo di spesa',
-   36: 'pubblicità: Gardaland partner Lidl Plus',
-   37: 'utensili Parkside «da lunedì 14/09»',
-   38: 'utensili Parkside, batterie e aspirapolvere',
-   39: 'utensili Parkside: sega, elettroutensile multiuso, trapano',
-   40: 'utensili Parkside: luce LED, torcia, ombrello',
-   41: 'utensili Parkside: smerigliatrice, abbigliamento da lavoro',
-   42: 'arredo Livarno: biancheria da letto, pouf, cuscini',
-   43: 'arredo Livarno: coperte, pouf, cuscino laterale, tappeto',
-   44: 'arredo Livarno: mobile TV, mobiletto, tavolino, lampade',
-   45: 'arredo Livarno: illuminazione, tappeti decorativi',
-   46: 'fiori e piante: mix di fiori, succulente, crisantemo, bulbi — non in catalogo',
-   47: 'fiori e piante: piante verdi, orchidee, rose — non in catalogo',
-   49: 'cosmetica Nivea',
-   50: 'cosmetica L\'Oréal',
-   56: 'pubblicità: Lidl Viaggi, Parma',
-   57: 'pubblicità: Lidl Viaggi, montagna e Spagna',
  },
  # Guardate una per una il 2026-09-14, leggendo il volantino per intero (50/50 pagine).
  'carriper15': {
@@ -216,5 +163,22 @@ SCARTATE = {
  'ekom08': {
    1:  'copertina: solo il titolo «1+1», le date e la spiegazione dell\'offerta, nessun prezzo',
    12: 'concorso a premi «Punta in alto: Up&Vinci» della carta fedeltà EKOM UP: come partecipare, nessun prezzo di spesa',
+ },
+ # Guardate una per una il 2026-09-19, leggendo il volantino per intero.
+ 'bennet1709': {
+   1:  'copertina: solo il titolo «Un mondo di bellezza» e le date, nessun prezzo',
+   3:  'styling e colorazione capelli (gel, lacca, tinte, olio-shampoo antiforfora): nessuna categoria del catalogo li copre',
+   6:  'creme viso, sieri e trattamenti antirughe: nessuna categoria del catalogo li copre',
+   7:  'maschere viso, acqua micellare, salviette struccanti, labello, patch brufoli',
+   8:  'creme corpo idratanti e scrub: nessuna categoria del catalogo li copre',
+   9:  'depilazione donna: creme, strisce, rasoi',
+   10: 'deodoranti e profumi: nessuna categoria del catalogo li copre',
+   11: 'beauty uomo: rasoi, schiuma e dopobarba, lamette',
+   15: 'cura donna: assorbenti, salvaslip, incontinenza, coppetta mestruale',
+   17: 'salutistica: integratori detox, drenanti, barrette proteiche: non sono generi alimentari normali',
+   24: 'pubblicità: l\'app Bennet, nessun prezzo di spesa',
+   25: 'pubblicità: il servizio Bennet Drive (ordina online, ritira in negozio), nessun prezzo di spesa',
+   26: 'pubblicità: catalogo Bennet Club 2026, nessun prezzo di spesa',
+   27: 'retro: iniziativa «Noi amiamo la scuola» e informazioni sui punti vendita, nessun prezzo di spesa',
  },
 }
