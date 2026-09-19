@@ -34,3 +34,4 @@
 2026-09-18 13:44 UTC  aggiunta l'insegna Ekom, chiesta da Manlio: volantino 1+1 dell'8-21 settembre letto per intero (16 pagine, 138 prezzi), pagine_ekom.py come per il Mercato. Tutte le prove passate; sw.js a v39
 2026-09-18 13:55 UTC  finestra «Cosa c'è di nuovo» alla prima apertura, chiesta da Manlio: elenca le novità dell'interfaccia (casella di ricerca, Ekom, due tasti sui volantini), non i prezzi. Chi l'ha vista non la rivede. Prova nuova prova-novita-pagina.js; sw.js a v40
 2026-09-19 06:07 UTC  sveglia: clonato
+2026-09-19 06:11 UTC  scaricato Bennet 17-30 settembre (bennet1709), 27 pagine; inizio la lettura pagina per pagina
