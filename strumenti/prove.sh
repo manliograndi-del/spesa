@@ -29,6 +29,9 @@ done
 echo "########## il diario delle novità"
 python3 "$S/prova-storia.py"
 
+echo "########## la pagina delle novità"
+node "$S/prova-novita.js" out/novita.html
+
 echo "########## un telefono con una lista vecchia"
 node "$S/prova-arrivi.js" out/sito.html
 

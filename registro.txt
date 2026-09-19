@@ -37,3 +37,4 @@
 2026-09-19 06:11 UTC  scaricato Bennet 17-30 settembre (bennet1709), 27 pagine; inizio la lettura pagina per pagina
 2026-09-19 06:20 UTC  Bennet 17-30 letto per intero: 27 pagine, 14 scartate, ~87 prezzi nuovi in dati.py; tolti mercato/bennet0903/lidl10 scaduti (596 righe di prezzo)
 2026-09-19 06:26 UTC  pubblicato: Bennet 17-30 (bellezza+alimentari) letto per intero, tre volantini scaduti tolti; sito e Artifact verificati; CLAUDE.md e NOTE.md aggiornati
+2026-09-19 09:54 UTC  pagina Novità rifatta come ha chiesto Manlio: in cima i volantini aggiornati (nuovi/letti/finiti) con i tasti oggi-3-7 giorni, poi la tabella di tutti i volantini con le date di validità (compresi quelli attesi non ancora letti), poi le novità dei prezzi. Prova nuova prova-novita.js; sw.js a v42

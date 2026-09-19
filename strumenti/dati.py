@@ -83,6 +83,30 @@ VOLANTINI = [
  _v('bennet1709',     'Bennet',         '"Un mondo di bellezza", dal 17 al 30 settembre', 'Bennet — 17-30 settembre.pdf',                    '2026-09-30', _AV + '/2026/09/volantino-bennet-2026-09-17-p-{n:05d}.jpg',   '2026-09-17'),
 ]
 
+# VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
+# Non hanno prezzi e non entrano in nessun confronto: servono solo alla
+# tabella in fondo alla pagina delle Novità, chiesta da Manlio il 2026-09-19
+# («una tabellina con tutti i supermercati e l'intervallo di validità dei loro
+# volantini presenti e di quelli che sai anche futuri»). Senza questi, un buco
+# di quattro giorni fra un volantino e il successivo sembrerebbe un buco vero
+# anche quando so gia che verra coperto.
+#
+# Si tolgono di qui appena il volantino viene letto ed entra in VOLANTINI:
+# `dati.py` si ferma se un attesa ha la stessa insegna e le stesse date di un
+# volantino vero, cosi non puo restare il doppione.
+Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
+
+VOLANTINI_ATTESI = [
+ Atteso('Eurospin', 'dal 24 settembre al 4 ottobre', '2026-09-24', '2026-10-04',
+        'trovato su anteprimavolantino, non ancora letto'),
+]
+
+for _a in VOLANTINI_ATTESI:
+    for _v2 in VOLANTINI:
+        if _a.insegna == _v2.insegna and (_a.inizio, _a.fino) == (_v2.inizio, _v2.fino):
+            raise SystemExit('volantino atteso gia letto, toglilo da VOLANTINI_ATTESI: '
+                             + _a.insegna + ' ' + _a.periodo)
+
 PRODOTTI = [
  # ------------------------------- CARNE DI BUE (kg) -------------------------------
  ("Carne di bue","MD","md08","Macelleria","Hamburger di Angus – Mister Meat","180 g",0.180,3.79,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Carne 100% irlandese. Il volantino stampa 21,06 al kg.","2026-09-18","2026-09-21"),

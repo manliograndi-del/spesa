@@ -148,6 +148,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   caro di questo negozio» e si leggerebbe «di tutti»; il pannello è quello
   della ricerca, che sta **fuori dalla `.barra`**. La pagina nuova è la pagina
   stessa con `#volantino=...` in coda: non ci sono pagine generate in più.
+- **La pagina Novità comincia dai volantini, non dai prezzi** (chiesto il
+  2026-09-19): in cima il riquadro **«Volantini aggiornati»** (nuovi, riletti,
+  finiti) sulla finestra scelta — i tasti sono **Oggi / 3 giorni / 7 giorni** —
+  poi la **tabella di tutti i volantini** (in corso, in arrivo, appena finiti)
+  e solo dopo il diario dei prezzi. I volantini che so in arrivo ma non ho
+  ancora letto stanno in **`VOLANTINI_ATTESI`** in `dati.py` e in tabella sono
+  segnati «prezzi non ancora letti»: si tolgono di lì appena il volantino
+  entra in `VOLANTINI`. La prova è `prova-novita.js`.
 - **La finestra «Cosa c'è di nuovo» si apre alla prima apertura** (chiesta il
   2026-09-18) e racconta **l'interfaccia, non i prezzi**: cosa si può fare
   adesso che prima non si poteva, a partire dalla casella di ricerca. I prezzi
@@ -169,6 +177,13 @@ con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-19)
+
+- **Rifatta il 2026-09-19 la pagina Novità**, come ha chiesto Manlio: prima i
+  volantini aggiornati (con il tasto «3 giorni» nuovo), poi la tabella di
+  tutti i volantini con le date di validità, poi le novità dei prezzi. Solo
+  `novita.html` è cambiata: la pagina dei prezzi è rimasta identica, e
+  l'artifact non è stato ripubblicato perché il suo tasto «Novità» punta già
+  al sito.
 
 - **Letto per intero il 2026-09-19: Bennet «Un mondo di bellezza», dal 17 al
   30 settembre** (`bennet1709`, 27 pagine). Non è solo bellezza: da pagina 18

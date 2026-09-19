@@ -1869,3 +1869,76 @@ invece del modulo vero (una cartella nel path precede il `PYTHONPATH`), e
 stati tolti. Rimossa la copia, `pulisci` è tornato a dire il vero. La lezione:
 non lasciare mai copie di `dati.py` fuori da `strumenti/`, nemmeno per un
 comando solo.
+
+## La pagina Novità: prima i volantini, poi i prezzi — 2026-09-19
+
+Manlio: «nella pagina novità sarebbe bene che apparissero prima di tutto i
+volantini aggiornati, così uno sa l'ultimo giorno e l'ultima settimana cosa è
+stato aggiornato; penso che sarebbe bene mettere anche tre giorni. Sarebbe poi
+eccezionale se mettessi una tabellina nella quale appaiono tutti i supermercati
+e l'intervallo di validità dei loro volantini presenti e di quelli che sai
+anche futuri».
+
+La pagina adesso è in tre pezzi, in quest'ordine:
+
+1. **Volantini aggiornati** — cosa è cambiato NEI VOLANTINI nella finestra
+   scelta (oggi / 3 giorni / 7 giorni);
+2. **Tutti i volantini** — la tabella, sempre uguale: non dipende dalla
+   finestra, dice com'è messo il mondo adesso;
+3. **Novità dei prezzi** — il diario di prima, giorno per giorno.
+
+I tasti sono diventati tre: **Oggi, 3 giorni, 7 giorni**.
+
+### «Aggiornato» non vuol dire «volantino nuovo»
+
+La trappola da evitare: il diario segna `volantini_arrivati` quando una
+**chiave** nuova entra in `dati.py`. Il Bennet «Un mondo di bellezza» è entrato
+nell'elenco il 18 settembre e i suoi 102 prezzi sono stati letti il 19: per il
+diario il 19 settembre non era «arrivato» niente, ma per chi guarda quello è
+esattamente il giorno in cui quel volantino è stato aggiornato.
+
+Quindi il riquadro conta **tre cose**, con tre bollini diversi:
+
+- **nuovo** — il volantino è entrato adesso nell'elenco;
+- **letto** — ci sono entrati prezzi suoi (`offerte_nuove` raggruppate per
+  volantino: il numero è quanti);
+- **finito** — è scaduto e non c'è più.
+
+I volantini nuovi e finiti **non si scrivono più dentro il blocco del giorno**:
+sarebbero la stessa cosa detta due volte nella stessa schermata.
+
+### La tabella
+
+Tre gruppi, perché è così che si guarda: **In corso adesso** (ordinati per
+quando finiscono, così il primo è quello che sta per scadere), **In arrivo**
+(per quando cominciano) e **Appena finiti**. Ogni riga: negozio, il nome del
+volantino solo se serve a distinguerlo da un altro della stessa insegna
+(«Frutta e Verdura», «Un mondo di bellezza»), le date e **quanto manca**
+— «finisce domani» in rosso, «ancora 4 giorni» in verde, «fra 3 giorni» in
+ambra.
+
+Dettagli pagati guardandola sul telefono:
+
+- **Il mese si scrive una volta sola** quando è lo stesso («17 → 30 set»):
+  scriverlo due volte rubava la riga alla colonna di destra e «ancora 4 giorni»
+  andava a capo.
+- **Le date vere restano attaccate alla riga** (`data-inizio`, `data-fino`):
+  quello che si legge è accorciato, e la prova deve poter controllare sul vero
+  che un volantino non sia finito nel gruppo sbagliato.
+- **Gli «appena finiti» la tabella se li ricorda dal diario**, non da
+  `dati.py`: da lì spariscono quando si fa pulizia, e senza questo uno non
+  capisce più dove sia andato a finire un negozio che c'era la settimana prima.
+
+### I volantini che so ma non ho ancora letto
+
+`VOLANTINI_ATTESI`, in `dati.py`: insegna, periodo, date, e dove l'ho trovato.
+Non hanno prezzi e non entrano in nessun confronto — servono solo alla tabella,
+segnati **«prezzi non ancora letti»**. Senza, un buco di quattro giorni fra un
+volantino e il successivo sembrerebbe un buco vero anche quando so già che
+verrà coperto. `dati.py` si ferma se un atteso ha la stessa insegna e le stesse
+date di un volantino già letto, così il doppione non può restare lì.
+
+La prova è `prova-novita.js`, dentro `prove.sh`: controlla che il riquadro dei
+volantini stia davvero in cima, che i tre tasti cambino qualcosa, che nessun
+volantino compaia in due gruppi e che nessuno scaduto finisca fra quelli in
+corso.
