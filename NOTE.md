@@ -1942,3 +1942,38 @@ La prova è `prova-novita.js`, dentro `prove.sh`: controlla che il riquadro dei
 volantini stia davvero in cima, che i tre tasti cambino qualcosa, che nessun
 volantino compaia in due gruppi e che nessuno scaduto finisca fra quelli in
 corso.
+
+## L'Ekom stampa prima di pubblicare online — 2026-09-19
+
+Manlio, con in mano il volantino di carta preso in negozio: «non so che
+versione del volantino tu abbia, non c'è questo», e la foto di una pagina
+Surgelati con filetti di merluzzo Alaska 400 g a 1,99, tentacoli di totano
+gigante, minestrone a 0,79, patate stick, pizza formato pala, churros.
+
+**Nessuno di quei prodotti era nel volantino che avevo letto** (`ekom08`,
+8-21 settembre), la cui pagina Surgelati ha bastoncini Ocean Blu, tubi di
+totano da 700 g, zuppa di pesce, Maxibon. Due cose da escludere, e le ho
+escluse prima di rispondere:
+
+1. **Non è una differenza di regione.** L'Ekom pubblica anche un'edizione
+   Toscana: ho scaricato anche quella e la sua pagina Surgelati è **identica**
+   a quella generale. Quindi non era il caso Mercatò (insegne diverse con
+   volantini diversi).
+2. **Non era un volantino che mi era sfuggito.** Kimbino, volantinofacile,
+   offertolino, promoqui, doveconviene e il sito Ekom: quel giorno avevano
+   tutti e solo l'8-21 settembre.
+
+Poi la copertina, fotografata da lui: **«I PIÙ EKONOMICI», dal 22 settembre
+al 5 ottobre**. Era il volantino successivo, **già in mano ai clienti tre
+giorni prima di comparire online**.
+
+**La lezione, che vale per tutte le insegne:** «non l'ho trovato online» non
+vuol dire «non esiste». La carta può precedere il web di giorni, e chi entra
+in negozio ha in mano offerte che nessun sito ha ancora pubblicato. Quando
+qualcosa non torna, **la fonte da credere è quella che ha in mano Manlio**, e
+la domanda da fargli è una sola: *che date ci sono sulla copertina?*
+
+Intanto il volantino sta in `VOLANTINI_ATTESI` con le sue date vere: nella
+tabella delle Novità si vede «in arrivo», segnato «prezzi non ancora letti».
+Così chi guarda sa che dal 22 l'Ekom è coperto, e sa anche che i suoi prezzi
+non ci sono ancora — che è esattamente la verità.

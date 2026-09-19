@@ -99,6 +99,13 @@ Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 VOLANTINI_ATTESI = [
  Atteso('Eurospin', 'dal 24 settembre al 4 ottobre', '2026-09-24', '2026-10-04',
         'trovato su anteprimavolantino, non ancora letto'),
+ # Questo non l'ho trovato online: l'ha fotografato Manlio il 2026-09-19, la
+ # copertina del volantino di carta preso in negozio. Online (kimbino e tutti
+ # gli altri) quel giorno c'era ancora solo l'8-21 settembre: la carta esce
+ # prima. Appena compare si legge per intero; se non compare, si legge dalle
+ # sue foto.
+ Atteso('Ekom', '«I più ekonomici», dal 22 settembre al 5 ottobre', '2026-09-22', '2026-10-05',
+        'visto da Manlio sul volantino di carta, non ancora online'),
 ]
 
 for _a in VOLANTINI_ATTESI:

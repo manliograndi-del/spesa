@@ -178,23 +178,24 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-19)
 
-- **APERTA: il volantino Ekom di carta che ha in mano Manlio NON è quello che
-  ho letto io.** Il 2026-09-19 ha fotografato una pagina «Surgelati» con
-  filetti di merluzzo Alaska 400 g a 1,99 (4,98 al kg), tentacoli di totano
-  gigante 500 g a 2,99, minestrone 450 g a 0,79, patate stick 1 kg a 1,49,
-  pizza formato pala, churros: **nessuna di queste è nel volantino 8-21
-  settembre** (`ekom08`), la cui pagina Surgelati ha tutt'altro (bastoncini
-  Ocean Blu, tubi di totano 700 g, zuppa di pesce, Maxibon…). Controllato
-  anche che **non sia l'edizione Toscana**: la sua pagina Surgelati è identica
-  a quella generale, quindi non è una differenza di regione. Online (kimbino,
-  volantinofacile, offertolino, promoqui, doveconviene, sito Ekom) il
-  2026-09-19 **non c'era nessun altro volantino Ekom**. Ipotesi più probabile:
-  è **il volantino successivo (dal 22 settembre), già distribuito su carta nei
-  negozi ma non ancora pubblicato online**. **Chiesto a Manlio di guardare le
-  date sulla copertina.** Da riprendere: appena esce online si legge per
-  intero; se invece sulla copertina ci sono date già in corso, allora il
-  volantino di carta di Torino è un'altra cosa da quello pubblicato online e
-  **cambia il modo di prendere l'Ekom** (si legge dalle sue foto).
+- **CHIUSA: il volantino Ekom di carta era il successivo.** Il 2026-09-19
+  Manlio ha fotografato una pagina «Surgelati» (filetti di merluzzo Alaska
+  400 g a 1,99, tentacoli di totano gigante, minestrone 450 g a 0,79, patate
+  stick, pizza formato pala, churros) che **non era nel volantino 8-21
+  settembre** che avevo letto. Verificato che non fosse una differenza di
+  regione (la pagina Surgelati dell'edizione Toscana è identica a quella
+  generale) e che online non ci fosse altro: kimbino, volantinofacile,
+  offertolino, promoqui, doveconviene e il sito Ekom avevano solo l'8-21.
+  Poi lui ha fotografato la copertina: **«I PIÙ EKONOMICI», dal 22 settembre
+  al 5 ottobre**. Quindi **l'Ekom stampa il volantino prima di pubblicarlo
+  online**, e questo è il primo caso visto nel progetto: la fonte era giusta,
+  era solo in ritardo. Messo in `VOLANTINI_ATTESI` con le sue date vere, così
+  in tabella si vede «in arrivo, prezzi non ancora letti».
+  **Da fare: appena esce online (kimbino, come per l'8-21) si legge per
+  intero e si toglie da `VOLANTINI_ATTESI`.** Se il 22 non è ancora online,
+  Manlio manda le foto delle pagine e si legge da quelle: i prezzi si leggono
+  a occhio comunque, cambia solo che quelle righe non avranno il collegamento
+  alla pagina del volantino.
 
 - **Rifatta il 2026-09-19 la pagina Novità**, come ha chiesto Manlio: prima i
   volantini aggiornati (con il tasto «3 giorni» nuovo), poi la tabella di
