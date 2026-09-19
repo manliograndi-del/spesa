@@ -1840,3 +1840,32 @@ troppo che una pagina che si rompe, ed è la stessa regola della lista.
 
 Si chiude in tre modi: il tasto, il buio intorno, il tasto Esc. Toccare dentro
 la finestra no.
+
+## Il Bennet «Un mondo di bellezza» aveva spesa vera — 2026-09-19
+
+Il volantino sembrava, dal titolo e dalle prime 17 pagine, tutto shampoo,
+creme e cura persona: si poteva pensare di scartarlo in fretta. Non si è
+fatto, per la regola di leggere ogni volantino intero senza saltare pagine
+sul sospetto — e da pagina 18 in poi c'era una sezione «Il prezzo più basso»
+e una «Prodotti indispensabili» piene di pasta, formaggi, salumi, vino,
+acqua, surgelati: quasi 90 prezzi veri, metà dei quali di generi alimentari.
+Se si fosse scartato il volantino dal titolo, sarebbe stato lo stesso errore
+già pagato tre volte (pizze, Mercatò, pesce) con un nome diverso.
+
+**Molte offerte «cura persona» hanno un solo prezzo per due formati diversi**
+(«shampoo 250 ml O balsamo 200 ml», stesso prezzo): non è un'offerta 1+1 come
+l'Ekom, è il volantino che non distingue. Si è scelto sempre il formato più
+piccolo per il conto al litro — il numero che non fa sembrare l'offerta più
+conveniente di quanto sia — e scritto nella nota quale altro formato costa
+uguale.
+
+**Trappola evitata mentre si scaricavano le pagine**: `scarica.py` era stato
+lanciato una volta da dentro `/tmp/lavoro` con una copia di `dati.py`
+incollata lì per comodità (`cp strumenti/dati.py .`). Quella copia è rimasta
+sul disco, e lanciando `pulisci` da quella cartella con `PYTHONPATH` puntato
+a `strumenti/`, Python ha importato **la copia vecchia in `/tmp/lavoro`**
+invece del modulo vero (una cartella nel path precede il `PYTHONPATH`), e
+`pulisci` continuava a vedere i tre volantini scaduti che invece erano già
+stati tolti. Rimossa la copia, `pulisci` è tornato a dire il vero. La lezione:
+non lasciare mai copie di `dati.py` fuori da `strumenti/`, nemmeno per un
+comando solo.
