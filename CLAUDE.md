@@ -178,6 +178,24 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-19)
 
+- **APERTA: il volantino Ekom di carta che ha in mano Manlio NON è quello che
+  ho letto io.** Il 2026-09-19 ha fotografato una pagina «Surgelati» con
+  filetti di merluzzo Alaska 400 g a 1,99 (4,98 al kg), tentacoli di totano
+  gigante 500 g a 2,99, minestrone 450 g a 0,79, patate stick 1 kg a 1,49,
+  pizza formato pala, churros: **nessuna di queste è nel volantino 8-21
+  settembre** (`ekom08`), la cui pagina Surgelati ha tutt'altro (bastoncini
+  Ocean Blu, tubi di totano 700 g, zuppa di pesce, Maxibon…). Controllato
+  anche che **non sia l'edizione Toscana**: la sua pagina Surgelati è identica
+  a quella generale, quindi non è una differenza di regione. Online (kimbino,
+  volantinofacile, offertolino, promoqui, doveconviene, sito Ekom) il
+  2026-09-19 **non c'era nessun altro volantino Ekom**. Ipotesi più probabile:
+  è **il volantino successivo (dal 22 settembre), già distribuito su carta nei
+  negozi ma non ancora pubblicato online**. **Chiesto a Manlio di guardare le
+  date sulla copertina.** Da riprendere: appena esce online si legge per
+  intero; se invece sulla copertina ci sono date già in corso, allora il
+  volantino di carta di Torino è un'altra cosa da quello pubblicato online e
+  **cambia il modo di prendere l'Ekom** (si legge dalle sue foto).
+
 - **Rifatta il 2026-09-19 la pagina Novità**, come ha chiesto Manlio: prima i
   volantini aggiornati (con il tasto «3 giorni» nuovo), poi la tabella di
   tutti i volantini con le date di validità, poi le novità dei prezzi. Solo
