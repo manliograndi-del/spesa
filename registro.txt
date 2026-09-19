@@ -35,3 +35,4 @@
 2026-09-18 13:55 UTC  finestra «Cosa c'è di nuovo» alla prima apertura, chiesta da Manlio: elenca le novità dell'interfaccia (casella di ricerca, Ekom, due tasti sui volantini), non i prezzi. Chi l'ha vista non la rivede. Prova nuova prova-novita-pagina.js; sw.js a v40
 2026-09-19 06:07 UTC  sveglia: clonato
 2026-09-19 06:11 UTC  scaricato Bennet 17-30 settembre (bennet1709), 27 pagine; inizio la lettura pagina per pagina
+2026-09-19 06:20 UTC  Bennet 17-30 letto per intero: 27 pagine, 14 scartate, ~87 prezzi nuovi in dati.py; tolti mercato/bennet0903/lidl10 scaduti (596 righe di prezzo)
