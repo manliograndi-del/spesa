@@ -1977,3 +1977,46 @@ Intanto il volantino sta in `VOLANTINI_ATTESI` con le sue date vere: nella
 tabella delle Novità si vede «in arrivo», segnato «prezzi non ancora letti».
 Così chi guarda sa che dal 22 l'Ekom è coperto, e sa anche che i suoi prezzi
 non ci sono ancora — che è esattamente la verità.
+
+## L'Eurospin che colma da solo il suo buco — 2026-09-20
+
+Il 17 settembre avevo segnato in `VOLANTINI_ATTESI` un Eurospin dal 24
+settembre al 4 ottobre, trovato su anteprimavolantino ma senza pagine vere
+ancora online: buco di 4 giorni dopo la fine di `eurospin10` (20 settembre).
+Il 20 settembre, il giorno stesso in cui `eurospin10` scadeva, l'ho ricontrollato
+e le pagine c'erano: **22 pagine vere**, lette per intero lo stesso giorno.
+Nessun buco da tenere d'occhio, per una volta.
+
+Un dettaglio tecnico da ricordare per il prossimo Eurospin: gli indirizzi
+delle pagine di `eurospin10` usano due cifre (`p-01.jpg` ... `p-22.jpg`),
+quelli di `eurospin24` cinque (`p-00001.jpg` ... `p-00022.jpg`). **La fonte
+non numera sempre allo stesso modo anche per la stessa insegna**: quando gli
+indirizzi a due cifre rispondono 403, prima di concludere che il volantino
+non è online si prova anche lo schema a cinque cifre.
+
+Il volantino era per metà un concorso a premi a tema Bluey (giocattoli,
+abbigliamento, elettronica, mobili, viaggi): pagine scartate perché non
+alimentari, ma **non tutta la parte Bluey era da buttare** — in mezzo c'erano
+anche un latte, un succo d'arancia, una pasta e un rotolo di carta a tema,
+prezzi veri con l'unico difetto di avere un cane blu sulla confezione. Tenuti,
+con nota che è una confezione a tema e in un caso (le banane) segnalando che
+costava più delle banane normali segnate due pagine prima nello stesso
+volantino — per non far sembrare conveniente quello che non lo è.
+
+La pagina «Frutta e verdura / Pescheria» aveva in fondo un lungo elenco di
+punti vendita aderenti: non tutti gli Eurospin hanno banco pescheria. Torino
+compare più volte nell'elenco (con e senza il simbolo che segna «niente
+pescheria»), quindi le offerte di frutta e verdura sono state prese come
+sempre, e quelle di pescheria con una nota che dice di controllare che il
+punto vendita abbia il banco — stessa logica già usata per il Carrefour Iper
+il 2026-09-07 (Torino non compariva nell'elenco degli ipermercati ma
+l'offerta valeva lo stesso: qui è il contrario, l'elenco esiste apposta per
+dire dove NON vale tutto).
+
+Infine, una pagina «Doppio weekend di follia» con offerte valide solo dal
+venerdì alla domenica, due weekend diversi dentro lo stesso volantino
+(25-27 settembre e 2-4 ottobre): stessa gestione del «Weekend più uno»
+dell'MD, date scritte riga per riga e mai uguali a quelle del volantino
+intero (altrimenti `dati.py` le tratterebbe come normali e non come
+ristrette, o peggio ancora — se scritte uguali al volantino — il programma
+si ferma da solo con l'errore già visto il 2026-09-05).

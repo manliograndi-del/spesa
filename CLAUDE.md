@@ -176,7 +176,7 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-19)
+## Da fare adesso (aggiornato il 2026-09-20)
 
 - **CHIUSA: il volantino Ekom di carta era il successivo.** Il 2026-09-19
   Manlio ha fotografato una pagina «Surgelati» (filetti di merluzzo Alaska
@@ -195,7 +195,8 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   intero e si toglie da `VOLANTINI_ATTESI`.** Se il 22 non è ancora online,
   Manlio manda le foto delle pagine e si legge da quelle: i prezzi si leggono
   a occhio comunque, cambia solo che quelle righe non avranno il collegamento
-  alla pagina del volantino.
+  alla pagina del volantino. **Ricontrollato il 2026-09-20: ancora non
+  online** (kimbino invariato all'8-21, sito ekom.it 503).
 
 - **Rifatta il 2026-09-19 la pagina Novità**, come ha chiesto Manlio: prima i
   volantini aggiornati (con il tasto «3 giorni» nuovo), poi la tabella di
@@ -270,44 +271,53 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   MD Buona Spesa Card: scritto nella nota di ogni riga, col prezzo pieno
   accanto. 13 pagine scartate (accessori cucina, casalingo, cura persona,
   tessile, e-mobility, viaggi, una pagina ricetta): in `scartate.py`.
-- **Trovato, da tenere d'occhio: Eurospin dal 24 settembre al 4 ottobre**
-  (`volantino-eurospin-dal-24-settembre-2026` su anteprimavolantino), non
-  ancora aggiunto a `dati.py`. **C'è un buco di 4 giorni** fra la fine di
-  `eurospin10` (20 settembre) e questo (24 settembre): controllare nei
-  prossimi giorni se esce qualcosa che lo riempie, prima di prenderlo.
+- **CHIUSA: trovato e letto per intero l'Eurospin dal 24 settembre al 4
+  ottobre** (`eurospin24`, 22 pagine), il giorno stesso in cui scadeva
+  `eurospin10`: colma da solo il buco di 4 giorni che era segnato qui.
+  ~140 prezzi nuovi in `dati.py`. Gran parte delle pagine erano un concorso a
+  tema Bluey (giocattoli, abbigliamento, viaggi): scartate le pagine non
+  alimentari (16-21), tenuti i pochi alimentari Bluey (latte, succo, pasta,
+  asciugatutto) che restavano offerte vere. Pagina 12 (Frutta e verdura più
+  Pescheria) ha un elenco di punti vendita aderenti: Torino ne ha diversi,
+  alcuni senza reparto pescheria — segnato nella nota delle righe di
+  pescheria. Pagina 22, «Doppio weekend di follia», ha offerte ristrette a
+  due fine settimana (25-27 settembre e 2-4 ottobre): date scritte riga per
+  riga, come per il «Weekend più uno» dell'MD.
 - **Carrefour Iper: nessuna novità.** Fermo a `carriper15` (fino al 28).
-  **Ipercoop: il sito `promoipercoop.it` rispondeva 503 il 2026-09-19** —
-  irraggiungibile quel giorno, non è detto sia cambiato niente: da riprovare.
+  **Ipercoop: il sito `promoipercoop.it` risponde ancora 503** (visto il
+  2026-09-19 e di nuovo il 2026-09-20, due giorni di fila) — da riprovare.
   L'ultima cosa vista era ancora solo «Scegli tu Grandi Marche», sconti
   percentuali senza un prezzo di base, non utilizzabile.
-- **`eurospin10` ed `md08` scadono il 20 settembre e non hanno ancora un
-  successore in `dati.py`.** Per l'MD il successore (`md22`, dal 22) è già
-  dentro: **c'è solo un giorno di buco** (il 21), niente da fare finché non
-  si avvicina. Per l'Eurospin il successore è quello dal 24 (vedi sopra):
-  **il buco è di 4 giorni**, da tenere d'occhio nei prossimi giorni.
+- **`md08` è scaduto il 20 settembre e non ha ancora un successore in
+  `dati.py` diverso da quello già dentro.** Il successore (`md22`, dal 22) è
+  già dentro: **c'è solo un giorno di buco** (il 21), niente da fare finché
+  non si avvicina.
 - **Il Carrefour Iper (`carriper15`, 15-28 settembre) è a posto, non
   riaprire la questione.** L'ultima pagina del suo volantino elenca gli
   ipermercati in cui vale e Torino non c'è: il 2026-09-07 Manlio ha detto che
   è sbagliato fermarsi lì — «le offerte ci sono a Torino e valgono davvero».
   In NOTE.md c'è per esteso.
 - **Copertura letta: tutti i volantini con prezzi in `dati.py` sono al 100%**
-  (bennet10, lidl17, lidlfv17, eurospin10, md08, carriper15, mercato17, md22,
-  ekom08, bennet1709).
+  (bennet10, lidl17, lidlfv17, eurospin10, eurospin24, md08, carriper15,
+  mercato17, md22, ekom08, bennet1709).
 - **Scadenze da tenere d'occhio nei prossimi giorni**: `md08` ed `eurospin10`
-  scadono il 20 settembre, `ekom08` il 21, `bennet10` il 23, `lidl17` e
+  sono scaduti il 20 settembre (da togliere con `pulisci --fai` appena il
+  programma lo permette), `ekom08` scade il 21, `bennet10` il 23, `lidl17` e
   `lidlfv17` il 23 (occhio: nel Lidl 17-23 la «Panetteria» vale solo dal 17 al
   20, e alcune offerte «Il meglio del lunedì» valgono solo dal 21 al 23 — già
   segnato nelle note delle singole righe). `mercato17` e `bennet1709` scadono
-  il 30. `md22` scade il 4 ottobre. La pagina Oktoberfest del Bennet (pagine
-  20-21 di `bennet10`) scade il 4 ottobre, non il 23 come il resto — occhio
-  quando si ributta il volantino.
+  il 30. `md22` scade il 4 ottobre, `eurospin24` anche. La pagina Oktoberfest
+  del Bennet (pagine 20-21 di `bennet10`) scade il 4 ottobre, non il 23 come
+  il resto — occhio quando si ributta il volantino. Il weekend Eurospin
+  25-27 settembre e quello del 2-4 ottobre (vedi sopra) valgono solo quei
+  giorni, non tutto il periodo di `eurospin24`.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
   il codice**: parte, lavora pochi minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
   si vede arrivare in fondo più volte di fila, **i volantini si mettono a
   mano**. **Il 2026-09-10, il 2026-09-15, il 2026-09-16, il 2026-09-17, il
-  2026-09-18 e il 2026-09-19 la sessione da Routine è arrivata in fondo**: ha
-  letto un volantino per intero (o più) e pubblicato — ma il 17 settembre si
+  2026-09-18, il 2026-09-19 e il 2026-09-20 la sessione da Routine è arrivata
+  in fondo**: ha letto un volantino per intero (o più) e pubblicato — ma il 17 settembre si
   è scoperto che le pubblicazioni del 15 e del 16 non erano davvero arrivate
   al sito (vedi sopra): un «pubblicato» nel registro non basta, va controllato
   che sia finito su `main`. Dal 2026-09-18 in poi, dopo ogni push, verificato
