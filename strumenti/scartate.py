@@ -181,4 +181,13 @@ SCARTATE = {
    26: 'pubblicità: catalogo Bennet Club 2026, nessun prezzo di spesa',
    27: 'retro: iniziativa «Noi amiamo la scuola» e informazioni sui punti vendita, nessun prezzo di spesa',
  },
+ # Guardate una per una il 2026-09-20, leggendo il volantino per intero.
+ 'eurospin24': {
+   16: 'abbigliamento e calzature uomo/donna, pigiami Disney, ciabatte: nessuna categoria del catalogo li copre',
+   17: 'elettrodomestici ed elettronica (borracce, spazzole, cuscini, misuratore di pressione, scopa a vapore, smart TV, lavasciuga)',
+   18: 'mobili e accessori bagno (mobiletti, accappatoio, asciugamani, bilancia, asciugacapelli, pattumiera)',
+   19: 'articoli di riponimento e casalinghi in plastica, ferro da stiro, deumidificatori: nessuna categoria del catalogo li copre',
+   20: 'pubblicità viaggi Eurospin Viaggi, speciale montagna inverno: nessun prezzo di spesa',
+   21: 'pubblicità viaggi Eurospin Viaggi, mare ed estero: nessun prezzo di spesa',
+ },
 }
