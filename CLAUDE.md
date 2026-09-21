@@ -156,6 +156,13 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   ancora letto stanno in **`VOLANTINI_ATTESI`** in `dati.py` e in tabella sono
   segnati «prezzi non ancora letti»: si tolgono di lì appena il volantino
   entra in `VOLANTINI`. La prova è `prova-novita.js`.
+- **Il tasto «Aiuto» sta in cima, accanto a «Novità»** (chiesto il 2026-09-21)
+  e apre una finestra che spiega come si usa la pagina. **Non si apre mai da
+  sola e si riapre sempre**: è il contrario della finestra «Cosa c'è di
+  nuovo». Il tasto è **vuoto, non rosso pieno**: il rosso pieno qui vuol dire
+  «premi qui adesso», e l'aiuto non lo è. **Il testo l'ha letto e approvato
+  Manlio prima che lo mettessi**: se va cambiato, si rifà così. La prova è
+  `prova-aiuto.js`.
 - **La finestra «Cosa c'è di nuovo» si apre alla prima apertura** (chiesta il
   2026-09-18) e racconta **l'interfaccia, non i prezzi**: cosa si può fare
   adesso che prima non si poteva, a partire dalla casella di ricerca. I prezzi
@@ -177,6 +184,9 @@ con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-21)
+
+- **Fatto il 2026-09-21 il tasto «Aiuto»** in cima accanto a «Novità», col
+  testo approvato da Manlio prima di metterlo. Pubblicato su sito e artifact.
 
 - **L'ora del controllo automatico è stata spostata alle 7 del mattino**
   (chiesto da Manlio il 2026-09-21). La Routine si chiama «Spesa — controllo

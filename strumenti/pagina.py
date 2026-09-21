@@ -222,6 +222,14 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   border-radius:99px;padding:9px 15px;font-size:14px;font-weight:700;
   letter-spacing:.02em;min-height:40px;line-height:1;white-space:nowrap}
 .novita::after{content:'\2197';font-weight:600}
+/* «Aiuto», chiesto da Manlio il 2026-09-21: un pulsantino accanto a «Novità».
+   Vuoto invece che rosso pieno: il rosso pieno, in questa pagina, vuol dire
+   «premi qui adesso» (il tasto Novità e «Cerca fra i prezzi»), e l'aiuto non
+   e una cosa da premere adesso — e li per quando serve. */
+.tasti-alti{flex:none;display:inline-flex;align-items:center;gap:8px}
+.aiuto{background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
+  border-radius:99px;padding:9px 15px;font-size:14px;font-weight:700;letter-spacing:.02em;
+  min-height:40px;line-height:1;cursor:pointer;white-space:nowrap}
 
 /* ---- barra dei prodotti ---- */
 .barra{position:sticky;top:0;z-index:20;background:var(--carta);
@@ -438,8 +446,11 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <p class="dove">Torino · Corso Siracusa
       <button type="button" class="info" aria-expanded="false"
               aria-label="Come funziona questa pagina">i</button></p>
-    <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
-       target="_blank" rel="noopener noreferrer">Novità</a>
+    <span class="tasti-alti">
+      <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
+      <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
+         target="_blank" rel="noopener noreferrer">Novità</a>
+    </span>
   </div>
   <h1>La lista della spesa</h1>
   <div class="dettaglio" id="dett-testa" hidden>
@@ -545,6 +556,73 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 </section>
 
 <footer id="pie"></footer>
+</div>
+
+<!-- LA FINESTRA DELL'AIUTO. Chiesta da Manlio il 2026-09-21: «un pulsantino
+     con scritto sopra aiuto, di fianco a quello di novità». Il testo l'ha letto
+     e approvato prima che la facessi — l'unico pezzo che ha tolto era un
+     «due cose da sapere» sui prezzi letti a mano.
+
+     Sta fuori dal guscio e fuori dalla barra, come quella delle novità, e usa
+     lo stesso vestito: una finestra sopra la pagina, non un pezzo che le
+     cresce dentro. Questa pero NON si apre da sola e si puo riaprire quante
+     volte si vuole: e li per quando serve. -->
+<div class="buio" id="buio-aiuto" hidden>
+  <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-aiuto">
+    <h2 id="titolo-aiuto">Come si usa</h2>
+    <div class="voce">
+      <h3>A cosa serve</h3>
+      <p>Cerca i prodotti della tua lista nei volantini dei supermercati vicino a casa
+      e ti dice dove costano meno. Il confronto è <b>per unità</b> — al chilo, al litro,
+      all'uovo, al rotolo — non a confezione: è l'unico modo per capire chi costa
+      davvero meno.</p>
+    </div>
+    <div class="voce">
+      <h3>I bottoni in cima sono i tuoi prodotti</h3>
+      <p>Toccane uno: sotto escono tutte le offerte, <b>dalla meno cara in giù</b>.
+      Il bollino verde <b>«il meno caro»</b> sta sull'offerta che puoi comprare
+      <b>oggi</b>: se la prima riga è di un volantino che deve ancora cominciare, il
+      verde va a quella dopo.</p>
+    </div>
+    <div class="voce">
+      <h3>Per cambiare i prodotti: «+ altri prodotti»</h3>
+      <p>Si apre un cassetto col catalogo diviso per reparto, come il negozio. Tocca
+      per accendere, tocca di nuovo per spegnere, poi «Fatto». In fondo al cassetto
+      puoi anche scrivere un nome che nel catalogo non c'è.</p>
+    </div>
+    <div class="voce">
+      <h3>Il tasto rosso «Cerca fra i prezzi»</h3>
+      <p>Serve a trovare <b>una singola offerta</b> fra tutte quelle lette: scrivi una
+      marca, un formato o il nome di un negozio. È un'altra cosa dalla casella dentro
+      il cassetto, che invece accende i prodotti della lista.</p>
+    </div>
+    <div class="voce">
+      <h3>Cosa dice ogni riga</h3>
+      <p>Il numero grande a sinistra è il prezzo <b>per unità</b>. Accanto: prodotto,
+      negozio, formato, quanto costa la confezione e <b>fino a quando vale
+      l'offerta</b>. Sotto, quando serve, una nota con le condizioni: tessera del
+      negozio, surgelato, «prendi 2 paghi 1», peso sgocciolato. <b>Le offerte scadute
+      spariscono da sole</b>, secondo la data del telefono.</p>
+    </div>
+    <div class="voce">
+      <h3>«Apri la pagina … del volantino»</h3>
+      <p>Apre il volantino vero del negozio, alla pagina dove sta quell'offerta.</p>
+    </div>
+    <div class="voce">
+      <h3>In fondo: l'elenco dei volantini</h3>
+      <p>Ogni riga ha due tasti: <b>«Le offerte»</b> mostra i prezzi letti da quel
+      volantino, <b>«Il volantino»</b> apre le sue pagine. Si aprono in una pagina
+      nuova, così non perdi il posto.</p>
+    </div>
+    <div class="voce">
+      <h3>Il tasto «Novità»</h3>
+      <p>Dice cosa è cambiato: quali volantini sono stati aggiornati, quali stanno per
+      arrivare e quali prezzi si sono mossi.</p>
+    </div>
+    <div class="pie-finestra">
+      <button type="button" class="chiudi" id="chiudi-aiuto">Ho capito</button>
+    </div>
+  </div>
 </div>
 
 <!-- LA FINESTRA DELLE NOVITÀ. Chiesta da Manlio il 2026-09-18: si apre da sola
@@ -1617,10 +1695,35 @@ function chiudiNovita() {
   }
 }
 
+/* ---------- la finestra dell'aiuto ---------- */
+/* Al contrario di quella delle novita non si apre mai da sola e non si ricorda
+   niente: si apre quando uno tocca «Aiuto» e si chiude in tre modi, il tasto,
+   il buio intorno, il tasto Esc. */
+function apriAiuto(si) {
+  const buio = document.getElementById('buio-aiuto');
+  if (!buio) return;
+  if (si) chiudiNovita();            // una finestra alla volta
+  buio.hidden = !si;
+  if (si) {
+    try { document.getElementById('chiudi-aiuto').focus({ preventScroll: true }); } catch (e) {}
+    try { buio.querySelector('.finestra').scrollTop = 0; } catch (e) {}
+  }
+}
+
+document.getElementById('apri-aiuto').onclick = () => apriAiuto(true);
+document.getElementById('chiudi-aiuto').onclick = () => apriAiuto(false);
+document.getElementById('buio-aiuto').onclick = ev => {
+  if (ev.target.id === 'buio-aiuto') apriAiuto(false);
+};
+
 document.getElementById('chiudi-novita').onclick = chiudiNovita;
 /* Il buio intorno chiude, la finestra no: toccando dentro non deve sparire. */
 document.getElementById('buio').onclick = ev => { if (ev.target.id === 'buio') chiudiNovita(); };
-addEventListener('keydown', ev => { if (ev.key === 'Escape') chiudiNovita(); });
+addEventListener('keydown', ev => {
+  if (ev.key !== 'Escape') return;
+  chiudiNovita();
+  apriAiuto(false);
+});
 mostraNovita();
 
 /* Va in fondo, DOPO che «lista» e stata creata e la pagina disegnata una prima

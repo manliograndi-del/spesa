@@ -2020,3 +2020,37 @@ dell'MD, date scritte riga per riga e mai uguali a quelle del volantino
 intero (altrimenti `dati.py` le tratterebbe come normali e non come
 ristrette, o peggio ancora — se scritte uguali al volantino — il programma
 si ferma da solo con l'errore già visto il 2026-09-05).
+
+## Il tasto «Aiuto» — 2026-09-21
+
+Manlio: «fammi anche una piccola finestra di help, la metti con un pulsantino
+con scritto sopra aiuto di fianco a quello di novità. **Prima di aggiungerla
+fammi vedere il testo**».
+
+E questa è la parte che conta: **il testo l'ha letto e approvato prima che lo
+scrivessi nella pagina**. Ha tolto un blocco, «Due cose da sapere» (i prezzi
+letti a mano, le righe «da controllare»), e il resto è passato così com'era.
+Da rifare allo stesso modo la prossima volta: una finestra che spiega la pagina
+la deve approvare chi la pagina la usa, non chi la scrive.
+
+**Tre finestre, tre lavori diversi**, e non vanno mescolate:
+
+- **«Aiuto»** (nuova): come si usa la pagina. Non si apre mai da sola, si
+  riapre quante volte si vuole, non si ricorda niente. È lì per quando serve.
+- **«Cosa c'è di nuovo»**: si apre da sola la prima volta e racconta cosa è
+  cambiato nell'interfaccia. Vista una volta, non torna più.
+- **«Novità»** (il tasto rosso): porta al diario dei prezzi e dei volantini.
+
+**Il tasto è vuoto, non rosso pieno.** In questa pagina il rosso pieno vuol
+dire «premi qui adesso» — «Novità» e «Cerca fra i prezzi» — e un aiuto non è
+una cosa da premere adesso: è una cosa da trovare quando si è in difficoltà.
+Bordo rosso e scritta rossa bastano a farlo vedere senza chiamare.
+
+Riusa lo stesso vestito della finestra delle novità (`.buio` + `.finestra`),
+quindi anche le due cose imparate lì: il fuoco sul tasto arriva con
+`preventScroll` e «Ho capito» resta attaccato in fondo, sempre visibile.
+
+La prova è `prova-aiuto.js`, dentro `prove.sh`: controlla che il tasto stia in
+cima e non dentro la barra, che la finestra **non** si apra da sola, che si
+riapra sempre, che dentro ci siano davvero le otto spiegazioni e che le due
+finestre non stiano aperte insieme.
