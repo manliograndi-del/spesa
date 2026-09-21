@@ -176,7 +176,29 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-20)
+## Da fare adesso (aggiornato il 2026-09-21)
+
+- **Ekom «I più ekonomici» (22 settembre-5 ottobre): ancora non online, 3° giorno
+  di fila che si controlla senza trovarlo** (19, 20, 21 settembre — kimbino
+  invariato all'8-21, ekom.it ancora 503). `ekom08` scade oggi 21 settembre:
+  da domani, finché non esce il successore, **non ci saranno offerte Ekom** in
+  lista. Detto a Manlio. **Da fare: appena esce online si legge per intero;
+  se lui manda le foto delle pagine di carta, si legge da quelle.**
+- **Trovato il 2026-09-21 un Lidl nuovo, dal 24 al 30 settembre**, annunciato
+  su anteprimavolantino ma non ancora leggibile (le immagini delle pagine
+  rispondono ancora 404): messo in `VOLANTINI_ATTESI` così compare nella
+  tabella di Novità. `lidl17` scade il 23, questo comincia il 24: nessun buco.
+  **Da fare: appena le pagine sono pubblicate (52 pagine annunciate), leggerlo
+  per intero e toglierlo da `VOLANTINI_ATTESI`.**
+- **Eurospin e MD: niente da fare.** `eurospin10` e `md08` sono scaduti il 20
+  settembre ma i loro successori (`eurospin24`, `md22`) erano già dentro
+  `dati.py` da prima: nessun buco, nessuna offerta persa. Restano in `dati.py`
+  finché non si fa un giro di pulizia (le offerte scadute spariscono da sole
+  dalla pagina, per data del browser di chi guarda: non è urgente toglierle).
+- **Ipercoop: `promoipercoop.it` ancora 503**, controllato di nuovo il
+  2026-09-21 (3° giorno di fila). Da riprovare.
+- **Mercatò, Bennet, Carrefour Iper: nessuna novità** il 2026-09-21, controllati
+  tutti sulla fonte.
 
 - **CHIUSA: il volantino Ekom di carta era il successivo.** Il 2026-09-19
   Manlio ha fotografato una pagina «Surgelati» (filetti di merluzzo Alaska

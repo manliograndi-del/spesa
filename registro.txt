@@ -49,3 +49,5 @@
 2026-09-21 06:14 UTC  sveglia: clonato
 2026-09-21 06:19 UTC  passo1: pulisci - eurospin10 e md08 scaduti (successori gia in dati.py: eurospin24, md22). ekom08 scade oggi, successore ancora non online (controllato kimbino ed ekom.it, 3o giorno di fila).
 2026-09-21 06:19 UTC  passo1: giro insegne - Mercato, Bennet, Eurospin, MD, Carrefour Iper: nessun volantino nuovo oltre quelli gia noti. Lidl: trovato nuovo 24-30 settembre su anteprimavolantino, non ancora leggibile (pagine non pubblicate). Ipercoop: promoipercoop.it 503 (3o giorno di fila).
+2026-09-21 06:25 UTC  passo7: pubblicato novita.html (Lidl 24-30 in arrivo, tracciato in VOLANTINI_ATTESI). Verificato online, combacia byte per byte. Nessun cambio di prezzo, index.html/sw.js/artifact non toccati.
+2026-09-21 06:25 UTC  passo8: CLAUDE.md aggiornato con lo stato di oggi. Scrivo a Manlio per l'Ekom (3o giorno senza il successore online, scade oggi).
