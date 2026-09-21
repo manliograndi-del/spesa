@@ -108,6 +108,12 @@ VOLANTINI_ATTESI = [
  # sue foto.
  Atteso('Ekom', '«I più ekonomici», dal 22 settembre al 5 ottobre', '2026-09-22', '2026-10-05',
         'visto da Manlio sul volantino di carta, non ancora online'),
+ # Annunciato il 2026-09-21 su anteprimavolantino ("Sotto Prezzi, Parkside,
+ # Mega Offerte"), ma le pagine non sono ancora pubblicate (indirizzo delle
+ # immagini risponde 404). lidl17 scade il 23, questo comincia il 24: nessun
+ # buco, da leggere per intero appena escono le pagine.
+ Atteso('Lidl', 'dal 24 al 30 settembre', '2026-09-24', '2026-09-30',
+        'annunciato su anteprimavolantino, pagine non ancora pubblicate'),
 ]
 
 for _a in VOLANTINI_ATTESI:
