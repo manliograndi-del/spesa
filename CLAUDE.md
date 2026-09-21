@@ -178,6 +178,16 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-21)
 
+- **L'ora del controllo automatico è stata spostata alle 7 del mattino**
+  (chiesto da Manlio il 2026-09-21). La Routine si chiama «Spesa — controllo
+  giornaliero dei volantini» e adesso ha `0 5 * * *`: **il cron è in UTC**, e
+  con l'ora legale (UTC+2) parte alle 7 italiane — nei fatti fra le 7:05 e le
+  7:15, perché il servizio ha qualche minuto di ritardo. **Attenzione al
+  25 ottobre 2026**: quel giorno torna l'ora solare (UTC+1) e `0 5 * * *`
+  diventerebbe **le 6 del mattino**. Quel giorno, o subito dopo, va rimesso a
+  `0 6 * * *` con `update_trigger`, se no il giro parte un'ora prima di quanto
+  vuole lui. Stessa cosa al contrario l'ultima domenica di marzo.
+
 - **Ekom «I più ekonomici» (22 settembre-5 ottobre): ancora non online, 3° giorno
   di fila che si controlla senza trovarlo** (19, 20, 21 settembre — kimbino
   invariato all'8-21, ekom.it ancora 503). `ekom08` scade oggi 21 settembre:
