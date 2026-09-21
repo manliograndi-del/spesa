@@ -46,3 +46,4 @@
 2026-09-20 06:31 UTC  Eurospin nuovo (24set-4ott) letto per intero: 22 pagine, ~140 prezzi nuovi in dati.py, 6 pagine scartate (abbigliamento/elettronica/casalinghi/viaggi). Indice aggiornato (307 pagine, 22 nuove). pulisci: eurospin10 e md08 scadono oggi ma non ancora cancellabili, niente da togliere.
 2026-09-20 06:37 UTC  Pubblicato: Eurospin 24set-4ott (22 pagine, ~140 prezzi), sw.js v44. Verificato byte per byte sul sito online. Aggiornati CLAUDE.md e NOTE.md.
 2026-09-20 06:39 UTC  Scritto a Manlio: Eurospin rinnovato in tempo, nessun prezzo più conveniente per i suoi 12 prodotti, niente da fare. Giro chiuso.
+2026-09-21 06:14 UTC  sveglia: clonato
