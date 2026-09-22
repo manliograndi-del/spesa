@@ -85,6 +85,9 @@ VOLANTINI = [
  # Buongiorno" di settembre. Non è solo bellezza: da pagina 18 in poi ha
  # alimentari, surgelati e casa: 27 pagine lette, 14 scartate (in scartate.py).
  _v('bennet1709',     'Bennet',         '"Un mondo di bellezza", dal 17 al 30 settembre', 'Bennet — 17-30 settembre.pdf',                    '2026-09-30', _AV + '/2026/09/volantino-bennet-2026-09-17-p-{n:05d}.jpg',   '2026-09-17'),
+ # Annunciato il 21/9 (VOLANTINI_ATTESI), pagine pubblicate il 22/9: letto in
+ # anticipo, comincia il 24 (lidl17 scade il 23, nessun buco).
+ _v('lidl24',         'Lidl',           'dal 24 al 30 settembre',                       'Lidl — 24-30 settembre.pdf',                        '2026-09-30', _AV + '/2026/09/volantino-lidl-2026-09-24-p-{n:05d}.jpg',       '2026-09-24'),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -108,12 +111,6 @@ VOLANTINI_ATTESI = [
  # sue foto.
  Atteso('Ekom', '«I più ekonomici», dal 22 settembre al 5 ottobre', '2026-09-22', '2026-10-05',
         'visto da Manlio sul volantino di carta, non ancora online'),
- # Annunciato il 2026-09-21 su anteprimavolantino ("Sotto Prezzi, Parkside,
- # Mega Offerte"), ma le pagine non sono ancora pubblicate (indirizzo delle
- # immagini risponde 404). lidl17 scade il 23, questo comincia il 24: nessun
- # buco, da leggere per intero appena escono le pagine.
- Atteso('Lidl', 'dal 24 al 30 settembre', '2026-09-24', '2026-09-30',
-        'annunciato su anteprimavolantino, pagine non ancora pubblicate'),
 ]
 
 for _a in VOLANTINI_ATTESI:
@@ -1345,6 +1342,106 @@ PRODOTTI = [
  ("Olio di semi","Eurospin","eurospin24","Dispensa","Olio di semi di arachide","1 l",1,1.99,22,V,"Prima 2,89. «Doppio weekend di follia», valido solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
  ("Gamberi","Eurospin","eurospin24","Surgelati","Gamberi Indopacifici sgusciati","350 g",0.350,2.49,22,V,"Prima 3,99. Surgelati. «Doppio weekend di follia», valido solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
  ("Latte","Eurospin","eurospin24","Freschi","Latte parzialmente scremato UHT, 6x500 ml","3 l",3,2.60,22,V,"Prezzo valido solo comprando 6 confezioni insieme (vendita abbinata): il volantino non dà il prezzo di una confezione sola. «Doppio weekend di follia», valido solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
+
+# LIDL, dal 24 al 30 settembre. Letto per intero il 2026-09-22 (52 pagine).
+# Molte pagine sono "Approfittane ora" senza data propria: valgono tutto il
+# periodo del volantino, quindi niente inizio/fino sulla riga. Le pagine con
+# una data stampata più corta ("Da giovedì 24/09 al 27/09" o "Da lunedì
+# 28/09") hanno inizio/fino scritti riga per riga, perché sono davvero un
+# sottoperiodo diverso da quello del volantino intero.
+ ("Carne di bue","Lidl","lidl24","Macelleria","Macinato di bovino adulto","500 g",0.500,4.99,1,V,"Con Lidl Plus. Senza tessera 5,99, cioè 11,98 al kg. Allevato in Italia."),
+ ("Carne di bue","Lidl","lidl24","Macelleria","Hamburger di bovino di razza Piemontese","200 g",0.200,2.99,8,V,"Prima 3,49."),
+ ("Carne di bue","Lidl","lidl24","Macelleria","Tartare di bovino adulto scottona","200 g",0.200,3.59,8,V,"Prima 4,59."),
+ ("Suino","Lidl","lidl24","Macelleria","Braciole di suino","700 g",0.700,3.69,8,V,"Prima 4,69."),
+ ("Suino","Lidl","lidl24","Macelleria","Spiedini piccanti di pollo e suino","500 g",0.500,4.79,8,V,"È misto pollo e suino, non solo suino."),
+ ("Salsiccia","Lidl","lidl24","Macelleria","Tris di salsicce di suino","650 g",0.650,4.99,8,V,""),
+ ("Pollo","Lidl","lidl24","Macelleria","Sovracosce di pollo","1000 g",1,3.39,8,V,"Con Lidl Plus. Senza tessera 4,49."),
+ ("Pollo","Lidl","lidl24","Macelleria","Fusi di pollo","800 g",0.800,2.99,9,V,"Con Lidl Plus. Senza tessera 3,89."),
+ ("Pollo","Lidl","lidl24","Macelleria","Gran burger di pollo XXL con panatura croccante","560 g",0.560,4.49,9,V,"Panato, non petto puro."),
+ ("Pollo","Lidl","lidl24","Macelleria","Cotoletta croccante di pollo","220 g",0.220,1.99,9,V,"Panata, non petto puro."),
+ ("Tacchino","Lidl","lidl24","Macelleria","Polpettine di tacchino con suino","360 g",0.360,2.79,9,V,"Contengono anche suino, non solo tacchino."),
+ ("Tacchino","Lidl","lidl24","Salumi","Affettato di petto di tacchino o di pollo – Idee Gustose","140 g",0.140,1.79,15,V,"Senza glutine. Stesso prezzo anche nella versione pollo."),
+ ("Pesce fresco","Lidl","lidl24","Pesce","Trancio di pesce spada – Mare Gioioso","170 g",0.170,3.49,9,V,"Con Lidl Plus. Senza tessera 4,49."),
+ ("Pesce fresco","Lidl","lidl24","Pesce","Filetto di branzino – Gastronomia di Mare","230 g",0.230,4.19,9,V,"Prima 5,39."),
+ ("Calamari e seppie","Lidl","lidl24","Pesce","Anelli di totano gigante del Pacifico, al naturale","250 g",0.250,3.49,9,V,""),
+ ("Calamari e seppie","Lidl","lidl24","Surgelati","Anelli di totano in pastella con aglio e prezzemolo – Sol&Mar","500 g",0.500,2.79,46,V,"In pastella, surgelati."),
+ ("Prosciutto crudo","Lidl","lidl24","Salumi","Prosciutto crudo nazionale – Deluxe","90 g",0.090,2.39,14,V,"Con Lidl Plus. Senza tessera 3,09. Stagionatura minima 24 mesi."),
+ ("Prosciutto crudo","Lidl","lidl24","Salumi","Jamón Serrano STG – Sol&Mar","240 g",0.240,4.49,52,V,"Stagionato minimo 11 mesi.","2026-09-28","2026-09-30"),
+ ("Salame","Lidl","lidl24","Salumi","Salametto Cacciatore DOP – Italiamo","160 g",0.160,2.69,18,V,""),
+ ("Salame","Lidl","lidl24","Salumi","Snack di salame spagnolo essiccato Fuet o Chorizo – Sol&Mar","80 g",0.080,1.39,44,V,"È salame secco spagnolo, fuet o chorizo."),
+ ("Salsiccia","Lidl","lidl24","Salumi","Chorizo affettato – Sol&Mar","100 g",0.100,1.49,44,V,"È chorizo, salsiccia spagnola piccante di carne suina."),
+ ("Grana e parmigiano","Lidl","lidl24","Latteria","Grana Padano DOP Riserva grattugiato – Deluxe","90 g",0.090,1.29,14,V,"Con Lidl Plus. Senza tessera 1,65. Stagionato oltre 20 mesi."),
+ ("Formaggio","Lidl","lidl24","Latteria","Provolone Valpadana DOP dolce – Italiamo","300 g",0.300,2.19,3,V,"Prima 3,19.","2026-09-24","2026-09-27"),
+ ("Formaggio","Lidl","lidl24","Latteria","Mascarpone e Gorgonzola – Italiamo","200 g",0.200,1.89,14,V,"Con Lidl Plus. Senza tessera 2,49. È un mix di mascarpone e gorgonzola, non un formaggio unico."),
+ ("Formaggio","Lidl","lidl24","Latteria","Scamorza dolce senza lattosio – Latteria","100 g",0.100,1.19,15,V,""),
+ ("Formaggio","Lidl","lidl24","Latteria","Formaggino Mio – Nestlé","125 g",0.125,1.39,48,V,"","2026-09-28","2026-09-30"),
+ ("Formaggi spalmabili","Lidl","lidl24","Latteria","Philadelphia","2x62 g",0.124,1.19,15,V,"Prima 1,49."),
+ ("Yogurt","Lidl","lidl24","Latteria","Yogurt fior di latte o alla vaniglia senza lattosio – Latteria","150 g",0.150,0.79,21,V,""),
+ ("Yogurt","Lidl","lidl24","Latteria","Ayo Kefir senza lattosio – Arborea","140 g",0.140,0.79,48,V,"","2026-09-28","2026-09-30"),
+ ("Latte","Lidl","lidl24","Latteria","Latte parzialmente scremato senza lattosio – Latteria Free From","6x1 litro",6,5.59,21,V,"Formato convenienza: il formato base costa 1,09 al litro, questo 0,93."),
+ ("Burro","Lidl","lidl24","Latteria","Burro XXL – Milbona","1000 g",1,5.49,21,V,"Formato convenienza: il formato base (500 g) costa 7,38 al kg, questo 5,49."),
+ ("Tonno","Lidl","lidl24","Dispensa","Tonno all'olio di oliva – Nostromo","4x104 g, sgocciolati 416 g",0.416,5.99,10,V,""),
+ ("Tonno","Lidl","lidl24","Dispensa","Tonno all'olio di oliva 3+1 – Puerto Dorado","4x160 g, sgocciolati 425 g",0.4254,4.05,15,V,"Con Lidl Plus. Senza tessera 5,40. Offerta 3+1: un pezzo da solo costa 6,33. Il volantino conta il prezzo sul peso sgocciolato."),
+ ("Verdure surgelate","Lidl","lidl24","Surgelati","Piselli finissimi – Freshona","450 g",0.450,0.75,3,V,"Prima 0,99.","2026-09-24","2026-09-27"),
+ ("Verdure surgelate","Lidl","lidl24","Surgelati","Minestrone leggero – Freshona","700 g",0.700,1.05,15,V,"Prima 1,29."),
+ ("Pizza surgelata","Lidl","lidl24","Surgelati","Pizza Margherita – Italiamo","390 g",0.390,1.99,14,V,"Con Lidl Plus. Senza tessera 2,49."),
+ ("Pasta","Lidl","lidl24","Dispensa","Tortellini al prosciutto crudo – Fini","450 g",0.450,1.99,10,V,""),
+ ("Pasta","Lidl","lidl24","Dispensa","Pasta trafilata al bronzo IGP, linguine/spaghetti/rigatoni/fusilli/penne – Italiamo","500 g",0.500,0.99,18,V,""),
+ ("Pane","Lidl","lidl24","Panetteria","Pan bauletto integrale XXL – Certossa","600 g",0.600,1.19,21,V,"Formato convenienza: il formato base (400 g) costa 0,89, cioè 2,23 al kg; questo 1,98 al kg."),
+ ("Pane","Lidl","lidl24","Panetteria","Grissini con semi di girasole – Sol&Mar","166 g",0.166,1.19,47,V,"","2026-09-28","2026-09-30"),
+ ("Pane","Lidl","lidl24","Panetteria","Mini grissini al gusto di olive e rosmarino – Sol&Mar","110 g",0.110,1.29,47,V,"","2026-09-28","2026-09-30"),
+ ("Biscotti","Lidl","lidl24","Colazione","Occhi di bue di pasta frolla XXL – Sondey","400 g",0.400,2.39,21,V,"Formato XXL, 100 g in più: il formato base (300 g) costa 7,97 al kg, questo 5,98."),
+ ("Biscotti","Lidl","lidl24","Colazione","Gran Merenda, biscotto frollino senza latte e senza uova – Crich","500 g",0.500,1.99,20,V,""),
+ ("Biscotti","Lidl","lidl24","Colazione","Biscotti I Puffi al latte, miele e cereali – Delser","350 g",0.350,2.19,20,V,""),
+ ("Biscotti","Lidl","lidl24","Colazione","Nascondini – Mulino Bianco","600 g",0.600,2.99,21,V,"","2026-09-28","2026-09-30"),
+ ("Biscotti","Lidl","lidl24","Colazione","Baiocchi al pistacchio – Mulino Bianco","168 g",0.168,1.99,21,V,"","2026-09-28","2026-09-30"),
+ ("Cereali","Lidl","lidl24","Colazione","Farro soffiato bio al cioccolato – Crownfield","150 g",0.150,1.39,21,V,"Prima 1,79. Farro 100% italiano."),
+ ("Cereali","Lidl","lidl24","Colazione","Farro soffiato bio al miele – Crownfield","150 g",0.150,1.49,21,V,"Prima 1,89. Farro 100% italiano."),
+ ("Creme spalmabili","Lidl","lidl24","Colazione","Crema spalmabile al pistacchio XXL – Deluxe","350 g",0.350,4.49,20,V,"Formato convenienza: il formato base (190 g) costa 2,99, cioè 15,74 al kg; questo 12,83 al kg."),
+ ("Creme spalmabili","Lidl","lidl24","Colazione","Crema spalmabile Choco&Jam, diversi gusti – Mister Choc","200 g",0.200,1.99,20,V,""),
+ ("Marmellata","Lidl","lidl24","Colazione","Confetture Extra, gelsi neri e fichi bianchi – Agrisicilia","340 g",0.340,2.49,20,V,"C'è anche il gusto fragola, 360 g, stesso prezzo, cioè 6,92 al kg."),
+ ("Cioccolato","Lidl","lidl24","Colazione","Cioccolato al latte con nocciole tritate – Fin Carré","100 g",0.100,0.79,16,V,"Prima 0,99."),
+ ("Merendine","Lidl","lidl24","Colazione","Magdalenas – Sol&Mar","615 g",0.615,2.89,47,V,"","2026-09-28","2026-09-30"),
+ ("Caffè","Lidl","lidl24","Colazione","Caffè macinato Crema e Gusto – Lavazza","4x250 g",1,10.99,1,V,""),
+ ("Caffè","Lidl","lidl24","Colazione","Capsule A Modo Mio Crema&Gusto o Qualità Rossa – Lavazza","540 g, 72 capsule",0.540,18.99,49,V,"","2026-09-28","2026-09-30"),
+ ("Acqua","Lidl","lidl24","Bevande","Acqua minerale naturale – Sant'Anna","24x0,5 litri",12,3.99,10,V,""),
+ ("Acqua","Lidl","lidl24","Bevande","Acqua minerale naturale – Levissima","6x1,5 litri",9,1.99,2,V,"Vendita alla confezione: un pezzo da solo non in promo costa 0,49.","2026-09-24","2026-09-27"),
+ ("Vino","Lidl","lidl24","Bevande","Salice Salentino DOC","0,75 litri",0.750,1.99,17,V,"Prima 2,49."),
+ ("Vino","Lidl","lidl24","Bevande","Custoza DOC","0,75 litri",0.750,1.69,17,V,"Con Lidl Plus. Senza tessera 1,99."),
+ ("Vino","Lidl","lidl24","Bevande","Corte Aurelio Nero d'Avola Sicilia DOC","0,75 litri",0.750,1.79,17,V,"Prima 2,29."),
+ ("Vino","Lidl","lidl24","Bevande","Chiaravita Cerasuolo d'Abruzzo DOC","0,75 litri",0.750,1.59,17,V,"Con Lidl Plus. Senza tessera 1,99."),
+ ("Vino","Lidl","lidl24","Bevande","Libertario Tempranillo tinto La Mancha DO","0,75 litri",0.750,1.99,47,V,"","2026-09-28","2026-09-30"),
+ ("Birra","Lidl","lidl24","Bevande","Peroni Birra 4,7% Vol.","0,5 litri",0.500,0.79,1,V,""),
+ ("Succhi e bibite","Lidl","lidl24","Bevande","Bevanda alla frutta tropicale o multivitaminico – Pfanner","1,5 litri",1.5,1.39,11,V,""),
+ ("Succhi e bibite","Lidl","lidl24","Bevande","SanThè alla pesca o al limone – Sant'Anna","4x200 ml",0.800,1.19,11,V,""),
+ ("Succhi e bibite","Lidl","lidl24","Bevande","Coca-Cola Zero, senza zuccheri caffeina e calorie","0,5 litri",0.500,0.75,11,V,""),
+ ("Succhi e bibite","Lidl","lidl24","Bevande","Coca-Cola Regular","4x0,5 litri",2,2.99,49,V,"","2026-09-28","2026-09-30"),
+ ("Detersivo lavatrice","Lidl","lidl24","Casa","Detersivo lavatrice in polvere – Omino Bianco","3,85 kg, 70 lavaggi",70,7.99,13,V,""),
+ ("Detersivo lavatrice","Lidl","lidl24","Casa","Power Caps, 70 lavaggi – Dixan","70 lavaggi",70,11.49,13,V,""),
+ ("Detersivo lavatrice","Lidl","lidl24","Casa","Detersivo liquido nero, 54+4 lavaggi – Perlana","2,9 litri, 58 lavaggi",58,6.99,12,V,""),
+ ("Detersivo lavatrice","Lidl","lidl24","Casa","Detersivo liquido igienizzante, 44 lavaggi – Omino Bianco","3x1,76 litri, 44 lavaggi",44,9.79,12,V,""),
+ ("Detersivo lavastoviglie","Lidl","lidl24","Casa","Gel Ultimate, 2x50 lavaggi – Finish","2x900 ml, 100 lavaggi",100,9.89,13,V,""),
+ ("Ammorbidente","Lidl","lidl24","Casa","Ammorbidente diluito classico, 50 lavaggi – Felce Azzurra","2 litri",2,2.69,13,V,""),
+ ("Ammorbidente","Lidl","lidl24","Casa","Ammorbidente concentrato Fresco mattino o Vaniglia, 86 lavaggi – Fabuloso","1,9 litri",1.9,2.99,13,V,""),
+ ("Dentifricio","Lidl","lidl24","Igiene","Dentifricio Sensation White, Max White o Max Fresh – Colgate","75 ml",0.075,2.19,17,V,"Prima 2,99."),
+ ("Dentifricio","Lidl","lidl24","Igiene","Dentifricio White Now o Protect Plus – Mentadent","2x75 ml",0.150,3.85,49,V,"","2026-09-28","2026-09-30"),
+ ("Shampoo","Lidl","lidl24","Igiene","Shampoo o Balsamo Ultra Dolce – Garnier","400 ml, formato balsamo",0.400,3.59,13,V,"Lo shampoo, formato 600 ml, costa lo stesso 3,59 (5,98 al litro); qui è il formato balsamo, 400 ml, più caro al litro (8,98)."),
+ ("Verdure in scatola","Lidl","lidl24","Dispensa","Olive verdi Manzanilla farcite con peperoni rossi o acciughe – Sol&Mar","170 g, sgocciolati",0.170,1.49,45,V,"","2026-09-28","2026-09-30"),
+ ("Verdure in scatola","Lidl","lidl24","Dispensa","Olive verdi spagnole denocciolate e marinate – Sol&Mar","150 g",0.150,2.29,45,V,"","2026-09-28","2026-09-30"),
+ ("Verdure in scatola","Lidl","lidl24","Dispensa","Peperoncini verdi sottaceto – Sol&Mar","130 g, sgocciolati",0.130,2.49,46,V,""),
+ ("Legumi in scatola","Lidl","lidl24","Dispensa","Ceci cotti – Sol&Mar","400 g, sgocciolati",0.400,0.99,52,V,"","2026-09-28","2026-09-30"),
+ ("Insalata in busta","Lidl","lidl24","Ortofrutta","Insalate Regionali alla lombarda o alla trentina – Bonduelle","130 g",0.130,2.29,48,V,"Con noci e mele o con miele e noci, non solo insalata in foglia.","2026-09-28","2026-09-30"),
+ ("Frutta","Lidl","lidl24","Ortofrutta","Mele Gala IGP Trentino/Alto Adige","2 kg",2,2.19,1,V,"Prima 2,99."),
+ ("Frutta","Lidl","lidl24","Ortofrutta","Prugne","1 kg",1,1.49,5,V,"Con Lidl Plus. Senza tessera 1,99.","2026-09-24","2026-09-27"),
+ ("Frutta","Lidl","lidl24","Ortofrutta","Uva bianca, cassetta 2 kg","2 kg",2,2.99,5,V,""),
+ ("Frutta","Lidl","lidl24","Ortofrutta","Uva Red Globe","al kg",1,1.99,52,V,"Prima 2,99.","2026-09-28","2026-09-30"),
+ ("Frutta","Lidl","lidl24","Ortofrutta","Pere Var. Carmen","1 kg",1,1.79,52,V,"Con Lidl Plus. Senza tessera 2,49.","2026-09-28","2026-09-30"),
+ ("Verdura","Lidl","lidl24","Ortofrutta","Zucchine sfuse","al kg",1,1.79,5,V,"Con Lidl Plus. Senza tessera 2,49."),
+ ("Verdura","Lidl","lidl24","Ortofrutta","Pomodori Grappolo sfusi","al kg",1,2.49,5,V,"Con Lidl Plus. Senza tessera 3,49."),
+ ("Verdura","Lidl","lidl24","Ortofrutta","Pomodori ciliegino Pachino IGP","300 g",0.300,1.49,4,V,""),
+ ("Verdura","Lidl","lidl24","Ortofrutta","Zucca Hokkaido","al kg",1,1.49,5,V,"Con Lidl Plus. Senza tessera 1,99.","2026-09-24","2026-09-27"),
+ ("Verdura","Lidl","lidl24","Ortofrutta","Carote","al kg",1,1.09,52,V,"Con Lidl Plus. Senza tessera 1,49.","2026-09-28","2026-09-30"),
+ ("Patate","Lidl","lidl24","Ortofrutta","Patate Iodi – Pizzoli","1,5 kg rete",1.5,2.19,52,V,"Prima 3,19.","2026-09-28","2026-09-30"),
 ]
 
 # LE OFFERTE CON DATE LORO.
