@@ -92,3 +92,4 @@
 2026-09-22 21:15 UTC  pubblicato: sito (verificato, sw.js v61) e artifact (versione 53) con 40 grandi marche.
 2026-09-22 21:30 UTC  GRANDI MARCHE: rimessa Ferrero e aggiunte De Cecco, Balocco, Loacker, Mutti, San Benedetto; le pillole senza offerte valide si spengono da sole (sbiadite, non toccabili), decise dal telefono con la sua data. 46 pillole, 6 spente oggi. sw.js v62.
 2026-09-22 21:40 UTC  pubblicato: sito (verificato, sw.js v62) e artifact (versione 54) con le pillole delle marche spente.
+2026-09-22 21:55 UTC  con GRANDI MARCHE aperto le categorie spariscono, tornano alla chiusura. sw.js v63.

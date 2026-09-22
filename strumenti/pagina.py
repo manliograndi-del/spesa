@@ -433,7 +433,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   background:var(--carta);border-radius:99px;font-weight:700;font-size:13px;
   letter-spacing:.04em;min-height:42px;padding:6px 12px}
 .tasto.marchi[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
-.marche[hidden]{display:none}
+.marche[hidden],.barra[hidden]{display:none}
 .marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
   border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
@@ -1411,6 +1411,7 @@ const SCRITTA_Q = document.getElementById('q').placeholder;
 
 function apriRicerca(si, senzaFuoco) {
   ricercaAperta = si;
+  if (!si) { vistaMarche = false; marcaScelta = null; }
   if (si && cassettoAperto) apriCassetto(false);
   document.getElementById('ricerca').hidden = !si;
   /* Col pannello aperto l'elenco di prima non c'entra piu niente e sta li a
@@ -1465,6 +1466,12 @@ let marcaScelta = null;   // la pillola accesa: si cerca a parola intera
 function disegnaMarche() {
   const box = document.getElementById('marche');
   box.hidden = !vistaMarche;
+  /* CON LE GRANDI MARCHE APERTE LE CATEGORIE NON SI VEDONO (Manlio,
+     2026-09-22: «quando c'è grandi marche ci sono anche le categorie, non ha
+     senso, non devono apparire»). Si cerca per marca, non per prodotto: le
+     pastiglie dei prodotti li in mezzo erano solo rumore. Tornano appena si
+     chiude il pannello. */
+  document.querySelector('.barra').hidden = vistaMarche && ricercaAperta;
   box.textContent = '';
   if (!vistaMarche) return;
   (DATI.marche || []).forEach(m => {

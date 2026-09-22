@@ -273,6 +273,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     stata sostituita da Saiwa. **Quando si rileggono i volantini, guardare
     che nessuna pillola resti vuota**;
   - come nella ricerca, **niente bollino verde** nei risultati.
+  - **Con le grandi marche aperte le categorie (la `.barra` coi prodotti)
+    non si vedono** (chiesto il 2026-09-22: «non ha senso, non devono
+    apparire»). Tornano appena si chiude il pannello. Con la ricerca normale
+    (tasto rosso) restano come prima.
   - **Le marche senza offerte non si tolgono: si SPENGONO** (chiesto il
     2026-09-22: «metti anche Ferrero e quelle che non appaiono, facendo i
     pulsanti disattivati e di un colore molto più tenue»). Sono 46 pillole;
