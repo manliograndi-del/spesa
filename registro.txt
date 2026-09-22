@@ -69,3 +69,4 @@
 2026-09-22 12:08 UTC  pubblicato: sito verificato byte per byte online, Artifact versione 40. sw.js v49
 2026-09-22 12:26 UTC  altre tre rifiniture chieste da Manlio: «apri la pagina del volantino» ridotto a un'icona col numero di pagina, «vale dal» diventato un tondino col giorno e il mese (stesso posto del cerchietto dei giorni), prezzo grigio sulle offerte non ancora cominciate (opacity da .72 a .82). Aiuto aggiornato di conseguenza. sw.js a v50
 2026-09-22 12:28 UTC  pubblicato: sito verificato byte per byte, Artifact versione 41. sw.js v50
+2026-09-22 12:40 UTC  icona del volantino nuda (niente bottone, niente numero, niente freccia) spostata accanto al tondino dei giorni. sw.js a v51

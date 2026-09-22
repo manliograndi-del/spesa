@@ -491,14 +491,16 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    Resta alta 34 px perché il dito ci arrivi, e la frase intera («Apri la
    pagina 14 del volantino») resta nel titolo e nell'etichetta: chi usa un
    lettore di schermo, o tiene premuto, la sente tutta. */
-a.dove.apri{display:inline-flex;align-items:center;gap:5px;margin:0;padding:4px 10px 4px 8px;
-  border:1.5px solid var(--linea-forte);border-left:1.5px solid var(--linea-forte);
-  border-radius:99px;background:var(--carta);color:var(--rosso);
-  font-size:13px;font-weight:700;letter-spacing:0;text-transform:none;
-  text-decoration:none;min-height:34px;line-height:1}
-a.dove.apri svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;
-  stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-a.dove.apri::after{content:'\2197';font-size:12px;font-weight:600}
+a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin:0;
+  padding:5px;border:0;border-left:0;background:none;color:var(--rosso);
+  text-decoration:none;min-height:34px;min-width:34px;line-height:1}
+a.dove.apri svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;
+  stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+a.dove.apri::after{content:none}
+/* L'angolo in basso a destra della riga: l'icona del volantino e il tondino
+   dei giorni, uno accanto all'altro. */
+.angolo{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:6px}
+.angolo .giorni,.angolo .parte{margin-top:0}
 
 /* ---- elenco pagine ---- */
 .pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -1500,10 +1502,15 @@ function rigaPrezzo(o, meno) {
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
   const cer = cerchioGiorni(o) || cerchioInizio(o);
-  if (cer) d.querySelector('.val').appendChild(cer);
-  const coda = d.querySelector('.coda');
   const link = dove(o);
-  if (link.tagName === 'A') coda.appendChild(link);
+  if (cer || link.tagName === 'A') {
+    const ang = document.createElement('div');
+    ang.className = 'angolo';
+    if (link.tagName === 'A') ang.appendChild(link);
+    if (cer) ang.appendChild(cer);
+    d.querySelector('.val').appendChild(ang);
+  }
+  const coda = d.querySelector('.coda');
   if (meno) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
   if (o.ristretta) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
@@ -1540,8 +1547,7 @@ function dove(o) {
   a.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
     + '<path d="M3.2 1.8h5.6l3.4 3.4v9H3.2z"></path>'
     + '<path d="M8.8 1.8v3.4h3.4"></path>'
-    + '<path d="M5.6 8.2h4.8M5.6 10.8h3.2"></path></svg><span></span>';
-  a.querySelector('span').textContent = o.pag || '';
+    + '<path d="M5.6 8.2h4.8M5.6 10.8h3.2"></path></svg>';
   const frase = `Apri la pagina ${o.pag} del volantino`;
   a.title = frase;
   a.setAttribute('aria-label', frase);
