@@ -500,7 +500,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   font-weight:600;font-variant-numeric:tabular-nums}
 .prezzo-riga .val .u,.prezzo-riga .val .et{display:inline-block;font-size:10.5px;
   letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--tenue);
-  margin-left:5px}
+  margin-left:7px}
+/* Sul telefono i due prezzi finiscono sulla stessa riga: senza questo,
+   «al pezzo» resta appiccicato all'euro di prima. */
+.prezzo-riga .val .p2{margin-left:2px}
 .prezzo-riga .coda{grid-column:1/-1;grid-row:1;margin:0;display:flex;flex-wrap:wrap;
   gap:6px;align-items:center}
 /* IL MARCHIO DEL NEGOZIO, chiesto da Manlio il 2026-09-22: «al posto del nome
