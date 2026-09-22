@@ -54,3 +54,4 @@
 2026-09-21 06:25 UTC  chiusura del giro del 21 settembre: caso 2 (rinnovi in attesa, niente da pubblicare sui prezzi) con eccezione Ekom (3o giorno) -> scritto a Manlio. Pubblicata la tabella Novita con il Lidl in arrivo.
 2026-09-21 09:09 UTC  spostata l'ora del controllo automatico: da 0 6 * * * a 0 5 * * * (UTC), cioe dalle 8:12 alle 7:06 italiane. Chiesto da Manlio. Da rimettere a 0 6 * * * il 25 ottobre, quando torna l'ora solare
 2026-09-21 11:37 UTC  tasto «Aiuto» in cima accanto a Novita, con la finestra che spiega come si usa la pagina: testo approvato da Manlio prima di metterlo (ha tolto il blocco «due cose da sapere»). Prova nuova prova-aiuto.js; sw.js a v45
+2026-09-22 05:07 UTC  sveglia: clonato
