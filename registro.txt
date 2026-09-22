@@ -75,3 +75,4 @@
 2026-09-22 13:51 UTC  messi i marchi veri di 5 insegne (Lidl/MD/Eurospin da Wikimedia, Bennet ed Ekom mandati da Manlio). Ekom vettorizzato con vettore.py nuovo. Mancano Carrefour, Ipercoop (Wikimedia dava 429) e Mercato (non c'e). sw.js a v53
 2026-09-22 13:56 UTC  pubblicati i marchi: sito verificato byte per byte, Artifact versione 45
 2026-09-22 14:00 UTC  tolta da ogni scheda la scritta «Vedi tutte le offerte del volantino» (inutile: c'e gia il tasto in fondo alla pagina). sw.js a v54
+2026-09-22 14:06 UTC  pubblicato: sito verificato, Artifact versione 46. Tolta anche una riga sui marchi che nel piede era finita scritta due volte
