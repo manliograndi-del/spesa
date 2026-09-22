@@ -2686,3 +2686,76 @@ fila per prezzo. Ma la ricerca li divide per categoria (una fascia per ognuna),
 e da oggi «tonno» trova anche la pizza tonno e cipolla del Pam, che è una
 Pizza e sta in fondo nella sua fascia. La pagina era giusta, la prova no:
 adesso controlla l'ordine dentro ogni fascia.
+
+## La cima con due pallini, e il Conad — 2026-09-22 (notte)
+
+### I due pallini
+
+Manlio: «per 4 bottoni che ci sono in alto non devono più esserci. Rimangono
+solo la possibilità di un tasto novità, e di un tasto rotondo con tanti colori
+per fare cambiare i colori, e un altro rotondo con dentro scritto news su due
+righe; questi tasti tondi devono essere messi accanto al titolo superiore sulla
+destra». E subito dopo: «devono essere piccolini. Al limite scrivi solo N al
+centro».
+
+Quindi: due tondi da 32 px accanto al titolo. La ruota è un `conic-gradient`
+di colori fissi (non le variabili del look: con un look addosso deve dire
+ancora «colori»). La N è rossa piena come il vecchio tasto «Novità», e apre la
+stessa pagina. «Aiuto» e «Novità app» non hanno più un tasto: le finestre
+restano nel codice, perché le prove le usano e perché potrebbero tornare.
+
+Il sottotitolo è diventato «Offerte grande distribuzione», come ha chiesto.
+
+### Lo scorrimento alle grandi marche
+
+«Quando si fa clic su un grande marchio la pagina scrolli per far vedere in
+alto i risultati.» Con 46 pillole il pannello occupa uno schermo intero, e le
+offerte della marca toccata comparivano sotto, dove non le guardava nessuno.
+Adesso, dopo il tocco, `scrollIntoView` porta in cima la riga «N offerte…».
+
+### La versione di prova
+
+«Prova a farne anche una versione con i due tasti, cerca un prodotto o una
+marca e grandi marche, messe sotto le categorie.» Non l'ho fatta come
+artifact separato: un artifact nuovo ha un indirizzo suo e **una lista di
+prodotti sua**, quindi lui l'avrebbe vista vuota o diversa e il confronto non
+sarebbe stato alla pari. È invece `prova-tasti-sotto.html` sullo stesso sito:
+stesso indirizzo di casa, stessa lista. La fa `variante.py` spostando una
+riga di `out/sito.html`. Si butta appena lui sceglie.
+
+### Il Conad
+
+«Ops mi spiace dirlo ma a Torino c'è anche Conad.»
+
+**Quale.** Il cercanegozi di conad.it, con «Corso Siracusa 100, Torino»,
+mette in fila: Conad via Cesana 78 (2,7 km), Conad City via Bardonecchia 5/c
+(3,3 km), Conad corso Telesio (3,6 km), Conad City corso Francia 31/b... In
+Piemonte ci sono volantini diversi per Conad, Conad City e Superstore, quindi
+il negozio conta: si è preso il Conad «normale» più vicino, via Cesana.
+L'ultima pagina del volantino elenca i negozi dove vale, e via Cesana 78 c'è.
+
+**La fonte è Conad stesso.** La scheda del negozio
+(`conad.it/ricerca-negozi/conad-via-cesana-78-10139-torino--009843`) si scarica
+con un `curl` normale e dentro ci sono gli indirizzi dei PDF:
+
+    https://www.conad.it/assets/common/volantini/cno/v20262/20262620PCONADPIEMONTE.pdf
+    https://www.conad.it/assets/common/volantini/cno/vperch/PERCHECONVIENEPPN20PI.pdf
+
+Il primo è il volantino (24 pagine, 24 settembre-7 ottobre), il secondo un
+foglio «Perché conviene» che ripete tre sue offerte. È la prima insegna presa
+direttamente da chi il volantino lo fa, in PDF: `scarica.py` ha imparato a
+scaricare il PDF una volta sola e a farne le immagini delle pagine (serve
+`pymupdf`, che c'è). Il collegamento di ogni riga porta al PDF sul sito Conad,
+alla sua pagina (`#page=n`).
+
+**Com'è fatto.** «Solo titolari» è la Carta Insieme Conad (segnata riga per
+riga col prezzo senza tessera). «Bassi e fissi» sono prezzi fissi di Conad, non
+promozioni. Tante offerte «vari tipi, un esempio: …»: il prezzo è scritto
+sull'esempio, e la nota lo dice. La pescheria vale solo nei negozi col banco.
+
+### La Routine
+
+Il prompt della Routine notturna nominava sette insegne e le fonti di prima
+(kimbino per Ekom, niente per Pam e Conad). Riscritto con le dieci insegne e,
+per ognuna, dove si trova il volantino nuovo. Più una regola: se prompt e
+CLAUDE.md dicono cose diverse, vale CLAUDE.md, che è più recente.

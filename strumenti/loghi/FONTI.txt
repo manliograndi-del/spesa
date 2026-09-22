@@ -59,3 +59,8 @@ AGGIUNTO IL 2026-09-22 (sera): la nona insegna, Pam
                 Tagliato ai bordi e rimpicciolito a 64 px di altezza. È
                 un'immagine con le sfumature, non un colore pieno: `vettore`
                 non serve, e a schermo grande sgrana un po', come Bennet.
+
+AGGIUNTO IL 2026-09-22 (notte): la decima insegna, Conad
+  conad.svg     cdn.worldvectorlogo.com/logos/conad.svg, disegno vero (SVG).
+                Tolto il quadrato bianco di fondo e stretto il viewBox al
+                disegno (margherita e scritta), guardato prima di metterlo.

@@ -212,6 +212,17 @@ NOVITA_PAGINA = [
                'che oggi non valgono. E in cima ho tolto «Torino · corso '
                'Siracusa» e il bollino accanto: erano le uniche cose lassù '
                'che non servivano a fare niente.'),
+    # L'id e «2026-09-23-...» e non «-22-»: le novita si segnano per id PIU
+    # GRANDE, e «2026-09-23-impaginazione» c'e gia. Con «-22-» questa non
+    # comparirebbe mai a chi ha gia visto quella.
+    dict(id='2026-09-23-pallini', quando='22 settembre',
+         titolo='Due pallini in alto, le grandi marche, il Pam',
+         testo='In alto a destra, accanto al titolo, ci sono due pallini: '
+               'quello coi colori dell\'arcobaleno cambia i colori della '
+               'pagina, quello con la N apre le novità dei volantini. Accanto '
+               'al tasto rosso c\'è «GRANDI MARCHE»: tocchi un marchio e la '
+               'pagina scende da sola alle sue offerte. E fra i negozi adesso '
+               'ci sono anche il Pam e il Conad.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -469,6 +480,19 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    nascosti cosi, le prove (che guardano l'attributo) dicevano di si, e sul
    telefono si vedevano ancora. Scoperto guardando una schermata vera. */
 .tasti-alti[hidden],.capo-prodotti[hidden]{display:none}
+/* I DUE PALLINI accanto al titolo, a destra (2026-09-22). Piccoli, 32 px: il
+   primo è una ruota di colori e apre la scelta dei colori; il secondo ha una
+   N e apre le novità. La ruota è fatta di colori FISSI, non delle variabili
+   del look: deve dire «colori» anche con un look addosso. */
+.riga-alta{align-items:center;flex-wrap:nowrap}
+.pallini{flex:none;display:flex;align-items:center;gap:8px}
+.pallino{flex:none;width:32px;height:32px;min-height:0;border-radius:50%;padding:0;
+  display:grid;place-items:center;cursor:pointer;text-decoration:none;line-height:1}
+.pallino.colori{border:2px solid var(--carta);box-shadow:0 0 0 1.5px var(--linea-forte);
+  background:conic-gradient(#E53935,#FB8C00,#FDD835,#43A047,#1E88E5,#5E35B1,#D81B60,#E53935)}
+.pallino.novita{background:var(--rosso);color:var(--su-rosso);border:0;
+  font-family:var(--f-prezzo);font-size:16px;font-weight:700;letter-spacing:0;gap:0}
+.pallino.novita::after{content:none}
 .marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
   border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
@@ -493,7 +517,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   padding:13px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
   font-family:var(--f-testo)}
 .ricerca .q:focus{outline:none}
-.quanti-trovati{margin:10px 0 0;font-size:13.5px;color:var(--tenue)}
+.quanti-trovati{margin:10px 0 0;font-size:13.5px;color:var(--tenue);scroll-margin-top:14px}
 .quanti-trovati b{color:var(--inchiostro)}
 #trovati{margin-top:4px}
 #trovati .fascia:first-child{margin-top:14px}
@@ -787,19 +811,25 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <span class="segno" aria-hidden="true">S</span>
       <span class="nomi">
         <h1>Spesa</h1>
-        <span class="sotto-marca">Offerte dai volantini dei supermercati vicini</span>
+        <span class="sotto-marca">Offerte grande distribuzione</span>
       </span>
     </span>
-    <!-- I QUATTRO TASTI IN CIMA SONO NASCOSTI, NON TOLTI (Manlio, 2026-09-22:
-         «togli i quattro bottoni superiori, lascia le funzioni, poi troveremo
-         un altro posto dove metterle»). Le finestre Colori, Novità app e Aiuto
-         e il collegamento a Novità funzionano ancora: basta togliere hidden. -->
+    <!-- I DUE PALLINI IN CIMA A DESTRA (Manlio, 2026-09-22: «i quattro
+         bottoni in alto non devono più esserci; rimangono solo un tasto
+         novità, rotondo, e uno rotondo con tanti colori per cambiare i colori
+         ... devono essere piccolini, al limite scrivi solo N al centro»).
+         Quello coi colori apre «Scegli il look»; la N apre il diario delle
+         novità dei prezzi. Aiuto e Novità app NON ci sono più in vista: le
+         loro finestre restano nel codice (e le prove le aprono), nascoste. -->
+    <span class="pallini">
+      <button type="button" class="pallino colori" id="apri-look"
+              aria-label="Colori" title="Colori"></button>
+      <a class="pallino novita" href="https://manliograndi-del.github.io/spesa/novita.html"
+         target="_blank" rel="noopener noreferrer" aria-label="Novità" title="Novità">N</a>
+    </span>
     <span class="tasti-alti" hidden>
-      <button type="button" class="aiuto" id="apri-look">Colori</button>
       <button type="button" class="aiuto" id="apri-novita-app">Novità app</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
-      <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
-         target="_blank" rel="noopener noreferrer">Novità</a>
     </span>
   </div>
 </header>
@@ -909,6 +939,8 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <p style="margin-top:12px">Di Pam si legge il volantino dei <b>supermercati Pam</b>, quello
   del Pam di <b>corso Orbassano 212</b>, il più vicino. I Pam Panorama hanno un volantino loro,
   con prezzi diversi.</p>
+  <p style="margin-top:12px">Di Conad si legge il volantino del <b>Conad di via Cesana 78</b>,
+  preso direttamente dal sito di Conad. I Conad City e i Superstore hanno volantini loro.</p>
 </section>
 
 <footer id="pie"></footer>
@@ -1548,6 +1580,13 @@ function disegnaMarche() {
       quantiMostrati = 40;
       disegnaMarche();
       disegnaTrovati();
+      /* LA PAGINA SCORRE AI RISULTATI (Manlio, 2026-09-22: «quando si fa clic
+         su un grande marchio, la pagina scrolli per far vedere in alto i
+         risultati»). Le 46 pillole occupano uno schermo intero: senza questo,
+         toccata una marca, le offerte restavano sotto, fuori vista. */
+      const capo = document.getElementById('quanti-trovati');
+      if (marcaScelta && capo.scrollIntoView)
+        capo.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
     box.appendChild(b);
   });
@@ -1804,6 +1843,7 @@ const MARCHI = {
   'Ipercoop':       ['#A3123A', '#FFFFFF'],
   'Carrefour Iper': ['#004E9F', '#FFFFFF'],
   'Pam':            ['#00843D', '#FFFFFF'],
+  'Conad':          ['#E30613', '#FFFFFF'],
 };
 function marchio(ins) {
   const e = document.createElement('b');

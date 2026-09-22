@@ -118,6 +118,20 @@ VOLANTINI = [
  # 28808-28810 e 28848 sono Panorama.
  _v('pam24',          'Pam',            '«Tante offerte a 1, 2, 3 euro», dal 24 settembre al 7 ottobre', 'Pam — 24 settembre-7 ottobre.pdf', '2026-10-07', _VP + '/2/8/8/0/7/pagine/{n}.jpg', '2026-09-24'),
  _v('pamextra24',     'Pam',            '«Occasioni Extra», dal 24 settembre al 7 ottobre', 'Pam «Occasioni Extra» — 24 settembre-7 ottobre.pdf', '2026-10-07', _VP + '/2/8/8/4/9/pagine/{n}.jpg', '2026-09-24'),
+ # CONAD, la decima insegna, chiesta da Manlio il 2026-09-22 («a Torino c'è
+ # anche Conad»). Il più vicino a corso Siracusa è il CONAD di VIA CESANA 78
+ # (2,7 km; codice negozio «anacanId» 009843), un Conad «normale»: i Conad
+ # City (via Bardonecchia, 3,3 km) e i Superstore hanno volantini loro.
+ # FONTE UFFICIALE: la scheda del negozio su conad.it elenca i volantini, che
+ # stanno sul sito Conad stesso in PDF:
+ #   https://www.conad.it/ricerca-negozi/conad-via-cesana-78-10139-torino--009843
+ # Il collegamento di ogni riga porta al PDF sul sito Conad alla sua pagina
+ # (#page=n). scarica.py sa leggere questi PDF: lo scarica una volta e ne fa
+ # le immagini delle pagine.
+ _v('conad24',        'Conad',          '«Freschi di convenienza», dal 24 settembre al 7 ottobre', 'Conad — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.conad.it/assets/common/volantini/cno/v20262/20262620PCONADPIEMONTE.pdf#page={n}', '2026-09-24'),
+ # Il foglio «Perché conviene» (conad.it/.../vperch/PERCHECONVIENEPPN20PI.pdf)
+ # ripete tre offerte di conad24 agli stessi prezzi (detersivo ACE, crudo
+ # Assisi, olio Conad): non è un volantino a parte, guardato e lasciato fuori.
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -2020,6 +2034,162 @@ PRODOTTI = [
  ("Shampoo","Pam","pamextra24","Igiene","Shampoo Vidal","250 ml",0.250,1.00,24,V,"Solo con l'app Pam Perte Plus."),
  ("Carta igienica","Pam","pamextra24","Cura casa","Carta igienica Flutech Infiore, 3 veli","6 rotoli",6,2.99,25,V,"Solo con l'app Pam Perte Plus."),
  ("Bagnoschiuma","Pam","pamextra24","Igiene","Bagnoschiuma Nivea, varie profumazioni","650 ml",0.650,3.29,26,V,"Solo con l'app Pam Perte Plus."),
+ # CONAD «Freschi di convenienza», dal 24 settembre al 7 ottobre (conad24),
+ # edizione Piemonte, quella del Conad di via Cesana 78. Letto per intero il
+ # 2026-09-22 dal PDF sul sito Conad.
+ ("Frutta","Conad","conad24","Ortofrutta","Uva senza semi mix bicolore Conad Percorso Qualità","500 g",0.500,1.77,1,V,"Prodotto italiano. Il volantino stampa 3,54 al kg."),
+ ("Manzo","Conad","conad24","Macelleria","Macinato di bovino adulto Conad Percorso Qualità","al kg",1,9.90,1,V,""),
+ ("Formaggio","Conad","conad24","Gastronomia","Gorgonzola dolce DOP Sapori&Dintorni Conad","all'etto",0.1,0.99,1,V,"Al banco."),
+ ("Formaggio","Conad","conad24","Gastronomia","Caprino pura capra Caseificio dell'Alta Langa, take away","all'etto",0.1,1.65,4,V,"Formaggio del territorio."),
+ ("Prosciutto","Conad","conad24","Gastronomia","Prosciutto cotto Gran Biscotto Rovagnati Delì","all'etto",0.1,2.19,4,V,"Al banco."),
+ ("Prosciutto","Conad","conad24","Gastronomia","Prosciutto crudo Assisi Salumi","all'etto",0.1,1.69,4,V,"Al banco."),
+ ("Grana","Conad","conad24","Gastronomia","Formaggio Trentingrana DOP Sapori&Dintorni Conad, stagionatura minima 20 mesi","all'etto",0.1,1.69,4,V,"Al banco. È un grana del Trentino."),
+ ("Bresaola","Conad","conad24","Gastronomia","Bresaola della Valtellina IGP Sapori&Dintorni Conad","all'etto",0.1,3.69,4,V,"Al banco."),
+ ("Salame","Conad","conad24","Gastronomia","Salame Rosa Brizio","all'etto",0.1,1.99,4,V,"Al banco."),
+ ("Mortadella","Conad","conad24","Salumi","Affettati take away Sapori&Dintorni Conad, vari tipi (per esempio mortadella)","120 g",0.120,2.69,4,V,"Il volantino dà il prezzo sull'esempio della mortadella da 120 g (22,42 al kg): gli altri affettati hanno pesi loro."),
+ ("Prosciutto","Conad","conad24","Gastronomia","Speck Alto Adige IGP Sapori&Dintorni Conad","all'etto",0.1,1.69,4,V,"Al banco."),
+ ("Tacchino","Conad","conad24","Gastronomia","Petto di tacchino al forno Kometa","all'etto",0.1,1.99,4,V,"Al banco."),
+ ("Formaggio","Conad","conad24","Gastronomia","Bra tenero DOP Caseificio Rabbia","all'etto",0.1,1.29,5,V,"Al banco. Formaggio del territorio."),
+ ("Manzo","Conad","conad24","Gastronomia","Roast beef di fesa all'inglese Conad","all'etto",0.1,3.49,5,V,"Al banco, già cotto."),
+ ("Formaggio","Conad","conad24","Gastronomia","Formaggio Maasdam Conad","all'etto",0.1,0.99,5,V,"Al banco. «Bassi e fissi»."),
+ ("Pollo","Conad","conad24","Gastronomia","Cotolette con filetti di pollo Gustosamente Conad","all'etto",0.1,1.49,5,V,"Al banco, già pronte."),
+ ("Pane","Conad","conad24","Panetteria","Focaccia Conad con olio extra vergine di oliva, farina 100% italiana","135 g",0.135,1.90,5,V,"Il volantino dà il prezzo sull'esempio della focaccia all'olio da 135 g (14,08 al kg): ci sono altri tipi e pesi."),
+ ("Formaggio","Conad","conad24","Gastronomia","Formaggio Toma piemontese DOP Caseificio Rosso","all'etto",0.1,1.29,5,V,"Al banco."),
+ ("Pane","Conad","conad24","Panetteria","Base pinsa Selezione Forno","500 g",0.500,3.98,5,V,"È una base da farcire. Il volantino stampa 7,96 al kg."),
+   # pagina 5: la crostata De Mori e le «verdure Gustosamente» cotte non hanno una categoria nel catalogo
+ ("Pollo","Conad","conad24","Macelleria","Petto di pollo a fette Conad Percorso Qualità","al kg",1,10.19,6,V,"Sconto del 40%: prima 16,99. Carne italiana."),
+ ("Suino","Conad","conad24","Macelleria","Lonza disossata di suino a tranci Conad Percorso Qualità, confezione convenienza","al kg",1,5.99,6,V,"Sconto del 40%: prima 9,99. Carne italiana."),
+ ("Manzo","Conad","conad24","Macelleria","Hamburger di Chianina Sapori&Dintorni Conad","200 g (2 × 100 g)",0.200,4.79,6,V,"Il volantino stampa 23,95 al kg."),
+ ("Manzo","Conad","conad24","Macelleria","Fettine di anteriore di bovino adulto Conad Percorso Qualità","al kg",1,17.59,6,V,""),
+ ("Manzo","Conad","conad24","Macelleria","Spezzatino di bovino adulto Conad Percorso Qualità","al kg",1,15.99,6,V,""),
+ ("Suino","Conad","conad24","Macelleria","Bombette di suino con bacon e formaggio Conad","200 g",0.200,2.19,6,V,"Sconto del 30%: prima 3,14. Il volantino stampa 10,95 al kg."),
+ ("Salsiccia","Conad","conad24","Macelleria","Salsicce di pollo, tacchino e suino Amadori","650 g",0.650,4.74,6,V,"Sconto del 50%: prima 9,49. Il volantino stampa 7,30 al kg."),
+ ("Manzo","Conad","conad24","Macelleria","Polpa di anteriore di bovino adulto Conad Percorso Qualità","al kg",1,16.69,6,V,""),
+ ("Pollo","Conad","conad24","Macelleria","Fusi o sovracosce di pollo Conad Percorso Qualità","al kg",1,5.39,6,V,"Carne italiana."),
+ ("Tacchino","Conad","conad24","Macelleria","Bon Roll AIA, classico o con speck","680 g",0.680,6.95,6,V,"Sconto del 40%: prima 11,59. È un arrosto di tacchino. Il volantino stampa 10,23 al kg."),
+ ("Pesce","Conad","conad24","Pescheria","Trota iridea salmonata Conad Percorso Qualità, allevata in Italia","al kg",1,6.90,7,V,"Solo nei punti vendita con reparto pescheria. Sconto del 30%: prima 9,86."),
+ ("Salmone","Conad","conad24","Pescheria","Salmone a tranci","al kg",1,13.90,7,V,"Solo nei punti vendita con reparto pescheria."),
+ ("Calamari","Conad","conad24","Pescheria","Totani","al kg",1,8.90,7,V,"Solo nei punti vendita con reparto pescheria."),
+ ("Gamberi","Conad","conad24","Pescheria","Code di mazzancolle tropicali sgusciate cotte","al kg",1,23.90,7,V,"Solo nei punti vendita con reparto pescheria."),
+ ("Pesce","Conad","conad24","Pescheria","Vongole lupini del mar Adriatico","al kg",1,5.98,7,V,"Solo nei punti vendita con reparto pescheria."),
+ ("Pesce","Conad","conad24","Pescheria","Rondelle di polpo Sapori&Idee Conad","200 g",0.200,7.90,7,V,"Solo nei punti vendita con reparto pescheria. Il volantino stampa 39,50 al kg."),
+ ("Pesce","Conad","conad24","Pescheria","Ombrina Conad Percorso Qualità, allevata in Italia","al kg",1,12.90,7,V,"Solo nei punti vendita con reparto pescheria."),
+ ("Frutta","Conad","conad24","Ortofrutta","Uva Palieri Conad Percorso Qualità","al kg",1,2.47,8,V,"Origine Italia, categoria I."),
+ ("Frutta","Conad","conad24","Ortofrutta","Uva Red Globe Conad Percorso Qualità","al kg",1,2.47,8,V,"Origine Italia, categoria I."),
+ ("Frutta","Conad","conad24","Ortofrutta","Uva Pizzutella Conad Percorso Qualità","al kg",1,2.97,8,V,"Origine Italia, categoria I."),
+ ("Frutta","Conad","conad24","Ortofrutta","Uva bianca senza semi Almaverde Bio","500 g",0.500,2.18,8,V,"Biologica, origine Italia. Il volantino stampa 4,36 al kg."),
+ ("Frutta","Conad","conad24","Ortofrutta","Banane Conad Percorso Qualità","al kg",1,1.27,9,V,"Categoria I."),
+ ("Frutta","Conad","conad24","Ortofrutta","Susine Metis Sapori&Idee Conad","500 g",0.500,1.47,9,V,"Prodotto italiano. Il volantino stampa 2,94 al kg."),
+ ("Frutta","Conad","conad24","Ortofrutta","Ficodindia dell'Etna DOP Sapori&Dintorni Conad","800 g",0.800,2.17,9,V,"Il volantino stampa 2,72 al kg."),
+ ("Frutta","Conad","conad24","Ortofrutta","Mele Sweetango Melinda, calibro 73/78","al kg",1,1.25,9,V,"Sconto del 30%: prima 1,79. Origine Italia."),
+ ("Verdura","Conad","conad24","Ortofrutta","Fagiolini burrini Conad Percorso Qualità","750 g",0.750,2.27,9,V,"Prodotto italiano. Il volantino stampa 3,03 al kg."),
+ ("Patate","Conad","conad24","Ortofrutta","Patate gialle Naturella Ruggiero, saporite al forno e vapore","1,5 kg",1.5,2.17,9,V,"Origine Italia. Il volantino stampa 1,45 al kg."),
+ ("Verdura","Conad","conad24","Ortofrutta","Cicoria Conad Percorso Qualità","400 g",0.400,1.47,9,V,"Da cuocere. Il volantino stampa 3,68 al kg."),
+ # pagina 9: mousse Melinda, noci Jumbo e zuppe fresche Conad non hanno una categoria nel catalogo
+ ("Pasta","Conad","conad24","Freschi","Lasagne fresche all'uovo Sfogliavelo Giovanni Rana","250 g",0.250,1.69,10,V,"Solo con la Carta Insieme Conad. Senza tessera 2,09, cioè 8,36 al kg."),
+ ("Mozzarella","Conad","conad24","Freschi","Mozzarella di bufala campana DOP Garofalo","300 g (3 × 100 g)",0.300,3.00,10,V,"Il volantino stampa 10,00 al kg."),
+ ("Ricotta","Conad","conad24","Freschi","Ricotta Santa Lucia Galbani","250 g",0.250,0.99,10,V,"Il volantino stampa 3,96 al kg."),
+ ("Pasta","Conad","conad24","Freschi","Pasta fresca Conad di semola di grano duro italiano, trofie o orecchiette","500 g",0.500,1.39,10,V,"«Bassi e fissi». Il volantino stampa 2,78 al kg."),
+ ("Pasta","Conad","conad24","Freschi","Pasta fresca ripiena Sfoglia sottile Conad, vari tipi","250 g",0.250,1.58,10,V,"Il volantino stampa 6,32 al kg."),
+ ("Mozzarella","Conad","conad24","Freschi","Mozzarella Santa Lucia Galbani, Tris","375 g (3 × 125 g)",0.375,2.69,10,V,"Il volantino stampa 7,18 al kg."),
+ ("Spalmabili","Conad","conad24","Freschi","Philadelphia vegetale","145 g",0.145,2.29,10,V,"È vegetale, non di latte. Il volantino stampa 15,80 al kg."),
+ ("Formaggio","Conad","conad24","Freschi","Formaggio a fette Freschi & Convenienti Conad, vari tipi (per esempio maasdam, 8 fette)","200 g",0.200,2.39,10,V,"«Bassi e fissi». Il volantino dà il prezzo sull'esempio del maasdam da 200 g (11,95 al kg): gli altri tipi hanno pesi loro."),
+ ("Spalmabili","Conad","conad24","Freschi","Crescenza light Conad Piacersi","200 g",0.200,1.59,10,V,"Latte italiano. Il volantino stampa 7,95 al kg."),
+ ("Ricotta","Conad","conad24","Freschi","Ricottine senza lattosio Conad Piacersi","200 g (2 × 100 g)",0.200,0.99,10,V,"Latte italiano. Il volantino stampa 4,95 al kg."),
+ ("Spalmabili","Conad","conad24","Freschi","Robiola senza lattosio Conad Piacersi","100 g",0.100,1.09,10,V,"Latte italiano. Il volantino stampa 10,90 al kg."),
+ ("Pancetta","Conad","conad24","Salumi","Guanciale in stick Negroni","100 g",0.100,1.45,11,V,"Solo con la Carta Insieme Conad. Senza tessera 2,07, cioè 20,70 al kg."),
+ ("Salmone","Conad","conad24","Freschi","Salmone norvegese affumicato Fjordisalmone Riunione","100 g",0.100,2.98,11,V,"Sconto del 40%: prima 4,98."),
+ ("Formaggio","Conad","conad24","Freschi","Fiocchi di latte senza lattosio Conad Piacersi","200 g",0.200,1.09,11,V,"Il volantino stampa 5,45 al kg."),
+ ("Formaggio","Conad","conad24","Freschi","Finette classiche senza lattosio Conad Alimentum, 6 fette","150 g",0.150,1.10,11,V,"Formaggio fuso a fette. Il volantino stampa 7,34 al kg."),
+ ("Yogurt","Conad","conad24","Freschi","I love Kefir Nestlé, vari tipi","500 g",0.500,1.25,11,V,"È kefir da bere. Il volantino stampa 2,50 al kg."),
+ ("Yogurt","Conad","conad24","Freschi","Yogurt alla greca zero grassi senza lattosio Zymil Parmalat, vari tipi","150 g",0.150,0.95,11,V,"Il volantino stampa 6,34 al kg."),
+ ("Latte","Conad","conad24","Latteria","Latte UHT senza lattosio Conad Piacersi, vari tipi","1 litro",1,1.19,11,V,"Latte italiano."),
+ ("Yogurt","Conad","conad24","Freschi","Yogurt senza lattosio Conad Piacersi, vari tipi","250 g (2 × 125 g)",0.250,0.68,11,V,"Latte italiano. Il volantino stampa 2,72 al kg."),
+ ("Pollo","Conad","conad24","Salumi","Affettati Conad Piacersi, vari tipi (per esempio petto di pollo al forno)","100 g",0.100,1.39,11,V,"È un affettato di petto di pollo al forno, carne italiana; gli altri tipi della linea allo stesso prezzo."),
+ ("Latte","Conad","conad24","Latteria","Latte UHT parzialmente scremato Bontà e Linea Parmalat","1 litro",1,0.95,11,V,""),
+ # pagina 11: la bevanda vegetale Orasì non ha una categoria nel catalogo
+ ("Verdure surgelate","Conad","conad24","Surgelati","Minestrone classico La Valle degli Orti","400 g",0.400,1.49,12,V,"Solo con la Carta Insieme Conad. Senza tessera 2,29, cioè 5,73 al kg."),
+ ("Bastoncini","Conad","conad24","Surgelati","Bastoncini di filetti di merluzzo Frosta, 15 pezzi","450 g",0.450,4.39,12,V,"Solo con la Carta Insieme Conad. Senza tessera 6,24, cioè 13,87 al kg."),
+ ("Uova","Conad","conad24","Freschi","Le uova del Piemonte Le Naturelle, da allevamento a terra","6 uova",6,1.59,12,V,"Solo con la Carta Insieme Conad. Senza tessera 1,88."),
+ ("Verdure surgelate","Conad","conad24","Surgelati","Verdure biologiche Conad Verso Natura, vari tipi (per esempio spinaci in foglie)","450 g",0.450,1.59,12,V,"Solo con la Carta Insieme Conad. Senza tessera 1,89, cioè 4,20 al kg."),
+ ("Grana","Conad","conad24","Freschi","Grana Padano DOP grattugiato Conad","100 g",0.100,1.79,12,V,"«Bassi e fissi»."),
+ ("Prosciutto","Conad","conad24","Salumi","Prosciutto cotto Gardani","100 g",0.100,1.99,12,V,"Solo con la Carta Insieme Conad. Senza tessera 3,99."),
+ ("Manzo","Conad","conad24","Freschi","Teneroni Granterre, vari tipi (per esempio classici)","150 g",0.150,2.09,12,V,"Solo con la Carta Insieme Conad. Senza tessera 2,35, cioè 15,67 al kg. Sono hamburger di carne mista: il volantino non dice di quale."),
+ ("Gelato","Conad","conad24","Surgelati","Gelato Nutella","230 g",0.230,3.39,12,V,"Solo con la Carta Insieme Conad. Senza tessera 4,99, cioè 21,70 al kg."),
+ # pagina 12: i piatti pronti Garden Gourmet (vegetali), il Danacol e la pasta sfoglia senza glutine non hanno una categoria nel catalogo
+ ("Pesce","Conad","conad24","Surgelati","Filetti di branzino o di orata Conad","250 g",0.250,4.98,13,V,"Solo con la Carta Insieme Conad. Senza tessera 7,45, cioè 29,80 al kg. Surgelati."),
+ ("Pasta","Conad","conad24","Dispensa","Pasta all'uovo Sapori&Idee Conad, vari tipi (fettuccine, tagliatelle)","500 g",0.500,2.19,13,V,"Solo con la Carta Insieme Conad. Senza tessera 2,82, cioè 5,64 al kg. Ingredienti 100% italiani."),
+ ("Gelato","Conad","conad24","Surgelati","Gelato pralinato Conad alla vaniglia con amarena, 6 pezzi","360 g",0.360,2.99,13,V,"«Bassi e fissi». Il volantino stampa 8,31 al kg."),
+ ("Pizza","Conad","conad24","Surgelati","Pizza La Rettangolare Conad, vari tipi (per esempio 4 formaggi)","365 g",0.365,3.49,13,V,"«Bassi e fissi». Il volantino dà il prezzo sull'esempio della 4 formaggi da 365 g (9,57 al kg)."),
+ ("Pane","Conad","conad24","Panetteria","Pane per sandwich Conad","550 g",0.550,1.39,13,V,"«Bassi e fissi». Il volantino stampa 2,53 al kg."),
+ ("Pasta","Conad","conad24","Dispensa","Pasta di semola La Molisana, vari tipi","500 g",0.500,0.75,13,V,"Solo con la Carta Insieme Conad. Senza tessera 1,45, cioè 2,90 al kg."),
+ ("Pasta","Conad","conad24","Dispensa","Pasta di legumi biologica Conad Piacersi, vari tipi","250 g",0.250,1.45,13,V,"Solo con la Carta Insieme Conad. Senza tessera 2,05, cioè 8,20 al kg. È pasta di lenticchie o piselli, non di grano."),
+ ("Sughi","Conad","conad24","Dispensa","Il mio Gran Ragù Star, vari tipi","360 g (2 × 180 g)",0.360,2.59,13,V,"Solo con la Carta Insieme Conad. Senza tessera 3,15, cioè 8,75 al kg."),
+ ("Pane","Conad","conad24","Panetteria","Gran Bauletto Mulino Bianco, integrale, rustico o campagnolo (per esempio integrale)","465 g",0.465,1.95,13,V,"Solo con la Carta Insieme Conad. Senza tessera 2,89, cioè 6,22 al kg. Il volantino dà il prezzo sull'esempio dell'integrale da 465 g."),
+ # pagina 13: il piatto bilanciato Piacersi e le salse Heinz non hanno una categoria nel catalogo
+ ("Olio d'oliva","Conad","conad24","Dispensa","Olio extra vergine di oliva classico Conad","1 litro",1,4.39,14,V,"Solo con la Carta Insieme Conad. Senza tessera 6,49."),
+ ("Conserve","Conad","conad24","Dispensa","Filetti di alici in olio di oliva Delicius","150 g",0.150,5.99,14,V,"Solo con la Carta Insieme Conad. Senza tessera 6,69, cioè 44,60 al kg. Il conto è sul peso del vasetto, come fa il volantino."),
+ ("Pane","Conad","conad24","Panetteria","Pinsata Savini","230 g",0.230,1.98,14,V,"Solo con la Carta Insieme Conad. Senza tessera 2,75, cioè 11,96 al kg."),
+ ("Pane","Conad","conad24","Dispensa","Linea Wasa, vari tipi (per esempio Crunchy Twist semi di lino e papavero)","245 g",0.245,1.98,14,V,"Solo con la Carta Insieme Conad. Senza tessera 3,15, cioè 12,86 al kg. Il volantino dà il prezzo sull'esempio del Crunchy Twist da 245 g."),
+ ("Tonno","Conad","conad24","Dispensa","Filetti di tonno Rio Mare lavorati a mano, all'olio di oliva, vaso di vetro","180 g",0.180,4.39,14,V,"Solo con la Carta Insieme Conad. Senza tessera 5,99, cioè 33,28 al kg. Il conto è sul peso del vaso, come fa il volantino (24,39 al kg)."),
+ ("Tonno","Conad","conad24","Dispensa","Tonno Mareblu all'olio d'oliva o al naturale, formato speciale","480 g (8 × 60 g)",0.480,6.64,14,V,"Solo con la Carta Insieme Conad. Senza tessera 8,15, cioè 16,98 al kg. Il conto è sul peso delle scatolette, come fa il volantino (13,84 al kg)."),
+ ("Salmone","Conad","conad24","Dispensa","Filetto di salmone Conad all'olio di oliva o al naturale, in scatola","150 g",0.150,3.35,14,V,"«Bassi e fissi». In scatola. Il volantino stampa 22,34 al kg."),
+ ("Olio di semi","Conad","conad24","Dispensa","Prodotto per friggere Friol","1 litro",1,2.39,14,V,"Solo con la Carta Insieme Conad. Senza tessera 2,99."),
+ ("Olio d'oliva","Conad","conad24","Dispensa","Olio extra vergine di oliva Granfruttato Monini, 100% italiano","750 ml",0.750,5.99,14,V,"Solo con la Carta Insieme Conad. Senza tessera 9,99, cioè 13,32 al litro. Il volantino stampa 7,99 al litro."),
+ ("Pomodoro","Conad","conad24","Dispensa","Passata di pomodoro Mutti, 100% italiano","700 g",0.700,0.99,14,V,"Solo con la Carta Insieme Conad. Senza tessera 1,75, cioè 2,50 al kg. Il volantino stampa 1,42 al kg."),
+ # pagina 14: la maionese Calvé non ha una categoria nel catalogo
+ ("Cioccolato","Conad","conad24","Dispensa","Cioccolato Novi -30% di zuccheri, vari tipi (per esempio al latte)","100 g",0.100,2.19,15,V,"Solo con la Carta Insieme Conad. Senza tessera 2,59."),
+ ("Cioccolato","Conad","conad24","Dispensa","Cioccolato Nero Nero Novi, vari tipi (per esempio 88% cacao extra fondente)","75 g",0.075,2.09,15,V,"Solo con la Carta Insieme Conad. Senza tessera 2,39, cioè 31,87 al kg. Il volantino stampa 2,79 all'etto."),
+ ("Cioccolato","Conad","conad24","Dispensa","Mini fondente Nero Nero Novi (per esempio 88% cacao)","140 g",0.140,3.90,15,V,"Solo con la Carta Insieme Conad. Senza tessera 4,49, cioè 32,08 al kg. Il volantino stampa 27,86 al kg."),
+ ("Creme","Conad","conad24","Colazione","CremaNovi fondente, 45% nocciole, senza latte","200 g",0.200,4.90,15,V,"Solo con la Carta Insieme Conad. Senza tessera 5,49, cioè 27,45 al kg. Il volantino stampa 24,50 al kg."),
+ ("Pomodoro","Conad","conad24","Dispensa","Pomodori pelati biologici Conad Verso Natura","400 g",0.400,0.75,15,V,"Solo con la Carta Insieme Conad. Senza tessera 0,99, cioè 2,48 al kg."),
+ ("Sughi","Conad","conad24","Dispensa","Pesto Cipressa Sapori Alberti con basilico genovese DOP, classico o senza aglio","170 g",0.170,3.25,15,V,"Solo con la Carta Insieme Conad. Senza tessera 4,61, cioè 27,12 al kg."),
+ ("Caffè","Conad","conad24","Colazione","Capsule caffè espresso compatibili Nespresso Conad, 10 capsule","50 g",0.050,2.39,15,V,"«Bassi e fissi». 0,24 a capsula. Il volantino stampa 4,78 all'etto."),
+ ("Tè","Conad","conad24","Colazione","Infuso Conad, vari tipi, 20 filtri","50 g",0.050,1.69,15,V,"«Bassi e fissi». Il volantino stampa 3,38 all'etto."),
+ ("Pomodoro","Conad","conad24","Dispensa","Polpa finissima Il Polposissimo Petti","800 g (2 × 400 g)",0.800,1.98,15,V,"Solo con la Carta Insieme Conad. Senza tessera 2,72, cioè 3,40 al kg."),
+ ("Caffè","Conad","conad24","Colazione","Caffè macinato fresco Kimbo","500 g (2 × 250 g)",0.500,6.99,15,V,"Solo con la Carta Insieme Conad. Senza tessera 10,68, cioè 21,36 al kg."),
+ ("Tè","Conad","conad24","Colazione","Tè Twinings, vari tipi, 20 filtri","40 g",0.040,2.19,15,V,"Solo con la Carta Insieme Conad. Senza tessera 2,79, cioè 69,75 al kg."),
+ # pagina 15: i brodi Knorr non hanno una categoria nel catalogo
+ ("Biscotti","Conad","conad24","Colazione","Biscotti Mulino Bianco, vari tipi (per esempio Abbracci)","330 g",0.330,1.89,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,49. Formati da 330 o 350 g allo stesso prezzo: il conto è sul più piccolo (5,73 al kg)."),
+ ("Biscotti","Conad","conad24","Colazione","Baiocchi Mulino Bianco, nocciola e cacao o pistacchio","260 g",0.260,2.49,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,79, cioè 10,74 al kg."),
+ ("Merendine","Conad","conad24","Colazione","Il Cornetto classico Mulino Bianco, 6 pezzi","240 g",0.240,2.19,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,49, cioè 10,38 al kg."),
+ ("Biscotti","Conad","conad24","Colazione","Biscotti Cuor di Mela Mulino Bianco","300 g",0.300,1.99,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,49, cioè 8,30 al kg."),
+ ("Pane","Conad","conad24","Colazione","Fette biscottate Mulino Bianco, dorate o integrali, 72 fette","630 g",0.630,1.99,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,45, cioè 3,89 al kg."),
+ ("Cereali","Conad","conad24","Colazione","Cereali Krave Kellogg's, vari tipi (per esempio nocciole)","410 g",0.410,2.82,16,V,"Solo con la Carta Insieme Conad. Senza tessera 3,15, cioè 7,69 al kg."),
+ ("Biscotti","Conad","conad24","Colazione","Biscotti Il Granturchese Colussi, classici","800 g",0.800,2.99,16,V,"Solo con la Carta Insieme Conad. Senza tessera 3,45, cioè 4,32 al kg."),
+ ("Marmellata","Conad","conad24","Colazione","Confettura light Hero senza zuccheri aggiunti, vari tipi","280 g",0.280,1.95,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,19, cioè 7,83 al kg."),
+ ("Cereali","Conad","conad24","Colazione","Muesli alla frutta biologico Conad Verso Natura","375 g",0.375,2.85,16,V,"Solo con la Carta Insieme Conad. Senza tessera 3,19, cioè 8,51 al kg."),
+ ("Biscotti","Conad","conad24","Colazione","Biscotti Ringo Pavesi, vari tipi, 6 porzioni","330 g",0.330,2.49,16,V,"Solo con la Carta Insieme Conad. Senza tessera 2,89, cioè 8,76 al kg."),
+ ("Merendine","Conad","conad24","Colazione","Pandorì Bauli, vari tipi (per esempio classici)","150 g",0.150,1.77,16,V,"Solo con la Carta Insieme Conad. Sconto del 20%: senza tessera 2,22, cioè 14,80 al kg."),
+ # pagina 16: la linea Mellin (omogeneizzati) non ha una categoria nel catalogo
+ ("Acqua","Conad","conad24","Bevande","Acqua minerale Sant'Anna, naturale o frizzante","1,5 litri",1.5,0.35,17,V,"Solo con la Carta Insieme Conad. Senza tessera 0,54, cioè 0,36 al litro."),
+ ("Birra","Conad","conad24","Bevande","Birra 11 Paralleli Conad, bionda","990 ml (3 × 330 ml)",0.990,2.10,17,V,"Solo con la Carta Insieme Conad. Senza tessera 2,40, cioè 2,43 al litro."),
+ ("Vino","Conad","conad24","Bevande","Vermentino di Gallura DOCG Aghera Sarda","750 ml",0.750,6.90,17,V,"Solo con la Carta Insieme Conad. Senza tessera 8,70, cioè 11,60 al litro."),
+ ("Acqua","Conad","conad24","Bevande","Acqua minerale naturale Uliveto","1,5 litri",1.5,0.45,17,V,"Solo con la Carta Insieme Conad. Senza tessera 0,59, cioè 0,40 al litro."),
+ ("Bibite","Conad","conad24","Bevande","Bevanda alla frutta Vit Conad, vari tipi","1,5 litri",1.5,1.54,17,V,"«Bassi e fissi». Il volantino stampa 1,03 al litro."),
+ ("Vino","Conad","conad24","Bevande","Aglianico del Vulture DOP Balì","750 ml",0.750,4.30,17,V,"«Bassi e fissi». Il volantino stampa 5,74 al litro."),
+ ("Bibite","Conad","conad24","Bevande","Bevanda 100% a base di frutta Yoga, vari tipi","1 litro",1,1.55,17,V,"Solo con la Carta Insieme Conad. Senza tessera 1,75."),
+ ("Birra","Conad","conad24","Bevande","Birra Bavaria","660 ml",0.660,1.09,17,V,"Solo con la Carta Insieme Conad. Senza tessera 1,29, cioè 1,96 al litro."),
+ ("Vino","Conad","conad24","Bevande","Barbera del Monferrato DOC, Monferrato DOC Dolcetto Capetta","1,5 litri",1.5,4.90,17,V,"Solo con la Carta Insieme Conad. Senza tessera 6,20, cioè 4,14 al litro."),
+ # pagina 17: patatine San Carlo e snack Conad non hanno una categoria nel catalogo
+ ("Bagnoschiuma","Conad","conad24","Igiene","Bagnodoccia Palmolive, vari tipi","500 ml",0.500,2.24,18,V,"Solo con la Carta Insieme Conad. Sconto del 30%: senza tessera 3,20, cioè 6,40 al litro."),
+ ("Carta igienica","Conad","conad24","Cura casa","Carta igienica La Maxi Scottex","4 rotoli maxi",4,2.99,18,V,"Solo con la Carta Insieme Conad. Senza tessera 3,99. Sulla confezione c'è scritto che 4 maxi valgono 12 rotoli normali: il conto è sui 4 rotoli veri."),
+ # pagina 18: dentifricio Oral-B solo a sconto del 40% senza prezzo stampato;
+ # deodoranti, detergenti intimi, assorbenti, pannolini, shampoo Restivoil a solo sconto,
+ # salvaslip, traverse e fazzoletti non hanno una categoria nel catalogo
+ ("Asciugatutto","Conad","conad24","Cura casa","Carta da cucina Quanto Basta Scottex","2 maxi rotoli",2,2.19,19,V,"Solo con la Carta Insieme Conad. Sconto del 40%: senza tessera 3,66."),
+ ("Carta igienica","Conad","conad24","Cura casa","Carta igienica Conad salvaspazio","10 rotoli",10,2.79,19,V,"«Bassi e fissi»."),
+ # pagina 19: cibo per animali, sementi, terriccio, macchina del caffè e aspirapolveri non hanno una categoria nel catalogo
+ ("Lavatrice","Conad","conad24","Cura casa","Detersivo liquido per lavatrice ACE, vari tipi","1,9 litri, 38 lavaggi",38,3.24,20,V,"Solo con la Carta Insieme Conad. Sconto del 50%: senza tessera 6,49, cioè 0,17 a lavaggio. Il volantino stampa 0,09 a lavaggio."),
+ ("Lavastoviglie","Conad","conad24","Cura casa","Detersivo per lavastoviglie Tutto in 1 Pril, gel (3 × 1,89 litri) o caps","76 lavaggi",76,8.99,20,V,"Solo con la Carta Insieme Conad. Senza tessera 16,99. Stesso prezzo per il gel da 105 lavaggi (3 flaconi da 35) o le 76 caps: il conto è sulle caps, che sono di meno."),
+ # pagina 20: detergenti per la casa (Winni's, Napisan, Calgon, candeggina, Pronto, Smac, Quasar...) non hanno una categoria nel catalogo
+ ("Asciugatutto","Conad","conad24","Cura casa","Asciugatutto superfici lucide Conad, extra large, 100 strappi","1 rotolo",1,1.99,21,V,"«Bassi e fissi». È per vetri e superfici lucide."),
+ # pagina 21: detergenti, panni, guanti, scope e deodoranti per ambienti non hanno una categoria nel catalogo
+ ("Verdure surgelate","Conad","conad24","Surgelati","Minestrone Tradizione Findus","1 kg",1,2.99,24,V,"Solo con la Carta Insieme Conad. Senza tessera 3,99."),
+ ("Verdure surgelate","Conad","conad24","Surgelati","Piselli novelli Findus","1 kg",1,3.89,24,V,"Solo con la Carta Insieme Conad. Senza tessera 4,79."),
+ ("Pesce","Conad","conad24","Surgelati","Burger Findus, vari tipi (per esempio di salmone con limone e aneto), 2 pezzi","170 g",0.170,3.49,24,V,"Solo con la Carta Insieme Conad. Sconto del 30%: senza tessera 4,99, cioè 29,36 al kg. Il volantino stampa 20,53 al kg."),
+ # pagina 24: le vellutate Cremosa Findus non hanno una categoria nel catalogo. In fondo l'elenco dei
+ # negozi in cui vale: per Torino c'è anche via Cesana 78, il nostro.
 ]
 
 # LE OFFERTE CON DATE LORO.

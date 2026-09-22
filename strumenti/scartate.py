@@ -23,6 +23,14 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-22, leggendo i volantini Conad per intero
+ # (edizione Piemonte, Conad di via Cesana 78).
+ 'conad24': {
+   2: 'buono spesa da 10 euro ogni 60 di spesa dall\'1 al 7 ottobre: nessun prezzo',
+   3: 'buono macelleria del 20% (dal 24 al 30 settembre, da spendere dall\'1 al 7 ottobre): nessun prezzo',
+   22: 'completo letto, piante, fiori e concimi: nessun prezzo di spesa alimentare',
+   23: 'viaggi HeyConad e concorso dell\'app: nessun prezzo di spesa',
+ },
  # Guardate una per una il 2026-09-22, leggendo i due volantini Pam per intero
  # (edizione «PAM Supermercati», quella di corso Orbassano 212).
  'pam24': {

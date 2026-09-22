@@ -17,10 +17,37 @@ from dati import VOLANTINI
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120'
 soltanto = set(sys.argv[1:])
 
+def da_pdf(v):
+    """Conad (dal 2026-09-22) mette il volantino sul suo sito come PDF, e
+    l'indirizzo delle righe è il PDF con «#page={n}». Qui il PDF si scarica
+    UNA volta e se ne fanno le immagini delle pagine, grandi come le altre.
+    Senza questo, lo schema con {n} farebbe scaricare il PDF intero sessanta
+    volte e lo salverebbe col nome di un'immagine."""
+    import pymupdf, tempfile
+    pdf = v.indirizzo.split('#', 1)[0]
+    with tempfile.TemporaryDirectory() as tmp:
+        dove = os.path.join(tmp, 'v.pdf')
+        subprocess.run(['curl', '-sS', '-f', '--max-time', '120', '-A', UA, '-o', dove, pdf],
+                       check=True)
+        d = pymupdf.open(dove)
+        for n, pagina in enumerate(d, 1):
+            file = f'pg/{v.chiave}/{n:03d}.jpg'
+            if os.path.isfile(file) and os.path.getsize(file):
+                continue
+            # 1600 px circa di larghezza, come le pagine delle altre fonti
+            z = 1600 / pagina.rect.width
+            pagina.get_pixmap(matrix=pymupdf.Matrix(z, z)).save(file, jpg_quality=88)
+
+
 righe = []
 for v in VOLANTINI:
     chiave, modello = v.chiave, v.indirizzo
     if soltanto and chiave not in soltanto:
+        continue
+    if modello and '.pdf#page=' in modello:
+        os.makedirs(f'pg/{chiave}', exist_ok=True)
+        if not os.listdir(f'pg/{chiave}'):
+            da_pdf(v)
         continue
     os.makedirs(f'pg/{chiave}', exist_ok=True)
     # Mercato porta l'elenco delle sue pagine invece dello schema col numero:

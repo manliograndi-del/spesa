@@ -65,13 +65,14 @@ Pubblicata in due posti, **e vanno aggiornati tutti e due**:
     python3 -m pagina              # le tre copie in out/
     python3 -m storia              # il diario delle novità del giorno
     python3 -m novita              # la pagina delle novità (tasto in alto a destra)
+    python3 -m variante            # la versione di prova (prova-tasti-sotto.html), finché c'è
     python3 -m stampa              # il PDF del catalogo da stampare
     python3 -m lette               # quante pagine ho letto davvero
     bash <progetto>/strumenti/prove.sh    # TUTTE le prove
     python3 -m pulizia out/sito.html      # codice rimasto in giro
 
 Poi `cp out/sito.html index.html`, `cp out/novita.html novita.html`,
-`cp out/catalogo.pdf catalogo.pdf`, alza `sw.js`, commit, push, e ripubblica
+`cp out/catalogo.pdf catalogo.pdf`, `cp out/prova-tasti-sotto.html .` (finché c'è la prova), alza `sw.js`, commit, push, e ripubblica
 l'artifact.
 
 **`prove.sh` è il comando che conta.** Una pagina che non passa non si pubblica.
@@ -297,6 +298,26 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     le riaccende al primo aggiornamento. Non serve fare niente a mano. Fini e
     Moretti restano FUORI: non erano vuote, trovavano la cosa sbagliata
     («piselli fini», un tonno Moretti).
+- **In cima, a destra del titolo, ci sono solo DUE PALLINI** (chiesto il
+  2026-09-22: «i quattro bottoni in alto non devono più esserci; rimangono solo
+  un tasto novità, rotondo, e uno rotondo con tanti colori per cambiare i
+  colori… devono essere piccolini, al limite scrivi solo N al centro»). Sono
+  tondi da 32 px: la **ruota dei colori** (`.pallino.colori`, id `apri-look`,
+  colori fissi e non del look, così dice «colori» anche con un look addosso)
+  apre «Scegli il look»; la **N** rossa (`.pallino.novita`) apre il diario
+  delle novità. **Aiuto e Novità app non si vedono più**: le finestre restano
+  nel codice, nascoste, e le prove le aprono. **Il sottotitolo è «Offerte
+  grande distribuzione».**
+- **Toccando una grande marca la pagina scorre da sola ai risultati**
+  (chiesto il 2026-09-22): le 46 pillole occupano uno schermo, e senza lo
+  scorrimento le offerte restavano sotto, fuori vista.
+- **C'è una VERSIONE DI PROVA con i due tasti (rosso e GRANDI MARCHE) SOTTO le
+  categorie** invece che sopra (chiesta il 2026-09-22: «prova a farne anche
+  una versione»). È `prova-tasti-sotto.html` sul sito, fatta da
+  `strumenti/variante.py` a partire da `out/sito.html`: stessa pagina, una riga
+  spostata. Sta sullo stesso sito, quindi legge la stessa lista del telefono.
+  **Quando Manlio sceglie**: se vuole questa, si sposta la riga in `pagina.py`;
+  in tutti e due i casi poi si cancellano `variante.py` e la prova sul sito.
 - **Il meno caro è una pastiglia dentro l'elenco, e le offerte non ancora
   cominciate sono sbiadite** (chiesto il 2026-09-22: «che il prodotto meno
   caro venisse messo in una pillola, con un bordo e con un colore che la
@@ -365,7 +386,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     riconoscono di che negozio è un'offerta.
   - **I marchi restano di chi li ha**: stanno lì per far riconoscere il
     negozio, e il piede della pagina lo dice.
-  - **Ci sono tutte e nove** dal 2026-09-22 (la nona è Pam, `pam.webp`). Wikimedia continuava a dare 429,
+  - **Ci sono tutte e dieci** dal 2026-09-22 (la nona è Pam, `pam.webp`, la decima Conad, `conad.svg`). Wikimedia continuava a dare 429,
     quindi gli ultimi tre sono arrivati da altrove: Carrefour dal suo sito
     (SVG vero), Ipercoop e Mercatò disegnati da un'immagine con `vettore`.
     **Il Mercatò ha due tinte** (scritta blu, fascia arancione): è per lui che
@@ -426,8 +447,33 @@ non quello dei **Pam Panorama**, che ha id suoi e prezzi suoi. Non gliel'ho
 chiesto: è il più vicino, e a Torino i Pam normali hanno tutti lo stesso
 volantino. Se lui va in un Panorama, va cambiato.
 
+**Conad di via Cesana 78** (aggiunto il 2026-09-22, «a Torino c'è anche
+Conad»): è il Conad «normale» più vicino, a 2,7 km (codice negozio 009843). I
+Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
+Non gliel'ho chiesto: se va in un City, va cambiato.
+
 ## Da fare adesso (aggiornato il 2026-09-22)
 
+- **CHIUSA: il CONAD è dentro, la decima insegna** (chiesto da Manlio il
+  2026-09-22 notte). Letto per intero **«Freschi di convenienza» dal 24
+  settembre al 7 ottobre** (`conad24`, 24 pagine, 136 prezzi), edizione
+  Piemonte del Conad di via Cesana 78. Sei pagine scartate in `scartate.py`.
+  - **La fonte è quella UFFICIALE**: la scheda del negozio su conad.it
+    (`conad.it/ricerca-negozi/conad-via-cesana-78-10139-torino--009843`)
+    elenca i volantini, che sono **PDF sul sito Conad stesso**. `scarica.py`
+    adesso sa leggerli: lo scarica una volta e ne fa le immagini delle pagine.
+    Il collegamento di ogni riga è il PDF sul sito Conad con `#page=n`.
+  - **«Solo titolari»** = solo con la Carta Insieme Conad: segnato riga per
+    riga col prezzo senza tessera nella nota.
+  - Il foglio «Perché conviene» ripete tre offerte di `conad24` agli stessi
+    prezzi: guardato e lasciato fuori.
+  - **Il volantino successivo** si trova sulla stessa scheda del negozio:
+    i nomi dei PDF vanno avanti di uno (`20262619PCONADPIEMONTE` era il 10-23
+    settembre, `20262620...` il 24 settembre-7 ottobre).
+- **La Routine notturna è stata aggiornata il 2026-09-22** con le dieci
+  insegne e la fonte di ognuna (Ekom dal sito ufficiale, Ipercoop e Pam da
+  volantinopiu cercando gli id, Conad dal sito Conad). Prima conosceva solo
+  sette insegne e le fonti vecchie.
 - **CHIUSA: il PAM è dentro, la nona insegna** (chiesto da Manlio il
   2026-09-22 sera, «fai tutte le cose necessarie per metterlo»). Letti per
   intero i due volantini **dal 24 settembre al 7 ottobre**: `pam24` «Tante
