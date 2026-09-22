@@ -321,12 +321,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   background:var(--ambra-tenue);color:var(--ambra);border-radius:12px;
   padding:7px 11px;line-height:1.35;font-weight:600}
 .prezzo-riga .dove{margin:8px 0 0;font-size:12.5px;color:var(--tenue)}
-/* In fondo alla scheda: il collegamento a tutte le offerte di quel volantino. */
-.piede-scheda{grid-column:1/-1;margin:10px 0 0;padding-top:9px;
-  border-top:1px solid var(--linea);display:flex;justify-content:flex-end}
-.prezzo-riga.vince .piede-scheda{border-top-color:var(--verde)}
-.tutte{background:none;border:0;padding:4px 0;font-family:inherit;font-size:13.5px;
-  font-weight:600;color:var(--rosso);cursor:pointer;min-height:32px}
 a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin:0;
   padding:5px;border:0;background:none;color:var(--rosso);
   text-decoration:none;min-height:34px;min-width:34px;line-height:1}
@@ -646,8 +640,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <h3>Il foglietto del volantino</h3>
       <p>Su ogni offerta, accanto al tondino dei giorni, c'è un foglietto:
       toccalo e si apre il volantino vero del negozio, alla pagina dove sta
-      quell'offerta, in una scheda nuova. Sotto, «Vedi tutte le offerte del
-      volantino» ti fa vedere tutti i prezzi letti da quel volantino.</p>
+      quell'offerta, in una scheda nuova.</p>
     </div>
     <div class="voce">
       <h3>In fondo: l'elenco dei volantini</h3>
@@ -1456,15 +1449,9 @@ function rigaPrezzo(o, meno) {
      un'icona che non apre niente sarebbe una presa in giro. */
   if (link.tagName !== 'A') dati.appendChild(link);
 
-  /* In fondo alla scheda: tutte le offerte lette da quel volantino. */
-  const piede = document.createElement('div');
-  piede.className = 'piede-scheda';
-  const tutte = document.createElement('button');
-  tutte.type = 'button'; tutte.className = 'tutte';
-  tutte.textContent = 'Vedi tutte le offerte del volantino';
-  tutte.onclick = () => { apriVolantino(o.pdf); };
-  piede.appendChild(tutte);
-  d.appendChild(piede);
+  /* NIENTE «Vedi tutte le offerte del volantino» in fondo a ogni scheda:
+     tolto il 2026-09-22 su richiesta di Manlio, «e inutile». Le offerte di un
+     volantino si aprono lo stesso, dal suo tasto in fondo alla pagina. */
   return d;
 }
 

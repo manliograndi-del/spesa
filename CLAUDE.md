@@ -172,8 +172,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   pastiglie. Regole da non cambiare:
   - **Ogni offerta è una scheda** (`.prezzo-riga`), con in cima il marchio del
     negozio e i bollini, poi nome, formato e prezzo della confezione, la nota
-    in un riquadro ambra, a destra i due prezzi (al pezzo e per unità) e in
-    fondo «Vedi tutte le offerte del volantino».
+    in un riquadro ambra e a destra i due prezzi (al pezzo e per unità).
+    **In fondo alla scheda non c'è niente**: la scritta «Vedi tutte le offerte
+    del volantino» c'era e Manlio l'ha fatta togliere lo stesso giorno,
+    «è inutile» — quelle offerte si aprono dal tasto del volantino in fondo
+    alla pagina.
   - **Il negozio è un MARCHIO, non una scritta** (`.marchio`, chiesto il
     2026-09-22: «mettici il marchio dei supermercati»). Dove il marchio c'è
     davvero (cinque su otto) è quello vero, da `strumenti/loghi/`; dove non
