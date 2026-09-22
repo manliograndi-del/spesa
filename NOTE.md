@@ -2345,3 +2345,47 @@ figura: non l'ho rimessa, e gliel'ho detto.
 2. **Il negozio non sta più in `.sotto b`.** Tre prove lo cercavano lì per
    sapere di che insegna fosse un'offerta; adesso lo cercano in `.marchio`.
    Chi tocca la scheda si ricordi che quelle prove leggono il DOM vero.
+
+## I marchi veri dei supermercati — 2026-09-22 (notte)
+
+Manlio: «al posto delle pillole con scritto il nome dei vari supermercati,
+mettici i veri loghi». Giusto: un marchio si riconosce con la coda dell'occhio,
+un nome scritto va letto.
+
+**Dove li abbiamo presi.** Wikimedia Commons ne ha tre a licenza libera
+(Lidl, MD, Eurospin: tutti «pubblico dominio», perché sono scritte e forme
+semplici, sotto la soglia del diritto d'autore). Carrefour e Ipercoop ci sono
+ma quel giorno Wikimedia rispondeva **429** a ogni richiesta da questo
+indirizzo: non è che manchino, vanno ripresi con calma un altro giorno.
+Di Mercatò e Ekom su Commons non c'è niente. Il **Bennet** e l'**Ekom** li ha
+mandati Manlio.
+
+**Il caso Ekom, che ha insegnato una cosa nuova.** Quello che ha mandato era
+un'immagine, non un disegno: a schermo grande sgranerebbe. Da lì è nato
+`strumenti/vettore.py`, che da una figura a un colore pieno tira fuori un
+disegno vero. Tre cose che non si potevano indovinare:
+
+1. **`potrace.Bitmap` si rovescia da solo** nel suo costruttore. Per far
+   disegnare il pieno gli si passa il vuoto. Passandogli il pieno esce un
+   rettangolo, che è il fondo della figura.
+2. **Gli si passa un array di veri/falsi, non di 0 e 1.** Con i numeri il suo
+   confronto interno (`data > 127`) li considera tutti vuoti, e di nuovo esce
+   un rettangolo. Due volte lo stesso risultato sbagliato per due motivi
+   diversi: la prima volta ho pensato che il logo fosse troppo complicato.
+3. **Si traccia in grande e si rimpicciolisce.** Sui bordi curvi di una
+   scritta a pennello, tracciare alla dimensione della figura lascia gradini;
+   al doppio vengono lisci. Il risultato pesa 13 KB e non sgrana mai.
+
+**Due scelte di sostanza.**
+
+- **La pastiglia del marchio ha il fondo bianco fisso**, anche con un look
+  scuro addosso. I loghi hanno i loro colori: su fondo nero il Lidl sparisce e
+  l'MD diventa un'altra cosa. Il bianco è l'unico fondo su cui un marchio è
+  ancora sé stesso, e questa è l'unica cosa della pagina che i cento look non
+  toccano.
+- **Dentro la pastiglia il nome c'è sempre**, nascosto alla vista. Un logo,
+  per chi non lo vede, è un buco; ed è anche il modo con cui le prove sanno di
+  che negozio è un'offerta.
+
+I marchi restano di chi li ha. Stanno lì per far riconoscere il negozio di
+un'offerta letta dal suo volantino, e il piede della pagina lo dice.

@@ -22,6 +22,7 @@ from dati import OFFERTE, VOLANTINI, UNITA, D
 from catalogo import CATALOGO, REPARTI
 from lista import PARTENZA
 from look import LOOK, verifica as verifica_look
+from loghi import LOGHI, chiave as chiave_logo
 
 # I look non si pubblicano senza essere stati misurati: `verifica` si ferma con
 # un errore se in uno di essi il testo non stacca abbastanza dallo sfondo.
@@ -218,6 +219,10 @@ DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        novita=NOVITA_PAGINA,
+                       # I marchi delle insegne, quelli veri, uno per chiave.
+                       # Chi non ce l'ha resta con la pillola scritta.
+                       loghi={i: LOGHI[chiave_logo(i)] for i in sorted({o['ins'] for o in offerte})
+                              if chiave_logo(i) in LOGHI},
                        look=[dict(id=l['id'], nome=l['nome'], fam=l['fam'],
                                   base=l['base'], notte=l['notte'], v=l['v'])
                              for l in LOOK],
@@ -482,11 +487,11 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:2px 16px;
   background:var(--carta);border:1.5px solid var(--linea);border-radius:18px;
   padding:14px 16px 11px;margin-top:11px}
-.prezzo-riga .dati{min-width:0}
+.prezzo-riga .dati{grid-column:1;grid-row:2;min-width:0}
 .prezzo-riga .nome{margin:7px 0 0;font-size:17px;font-weight:700;line-height:1.25}
 .prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
-.prezzo-riga .val{grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
+.prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
 .prezzo-riga .val .et{display:block;font-size:10px;letter-spacing:.09em;
   text-transform:uppercase;font-weight:700;color:var(--tenue);margin-bottom:3px}
 .prezzo-riga .val .pz{display:block;font-family:var(--f-prezzo);font-size:19px;
@@ -506,6 +511,17 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .marchio{display:inline-flex;align-items:center;border-radius:99px;
   padding:5px 13px;font-size:13px;font-weight:700;letter-spacing:.02em;
   line-height:1.1;white-space:nowrap}
+/* Il marchio vero: dentro una pastiglia bianca, alto 26 px. Il bianco non
+   cambia con il look — i loghi hanno i loro colori e su un fondo scuro
+   sparirebbero. */
+.marchio.col-logo{background:#FFFFFF;border:1px solid var(--linea-forte);
+  padding:4px 9px;min-height:34px}
+.marchio.col-logo svg,.marchio.col-logo img{height:26px;width:auto;max-width:104px;
+  display:block;object-fit:contain}
+/* Il nome scritto c'e sempre, ma si vede solo con un lettore di schermo: un
+   logo, per chi non lo vede, e un buco. */
+.solo-voce{position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 /* LA SCHEDA DEL MENO CARO. Bordo verde e fondo verde chiaro, con la sua
    pillola in cima: il verde, in questa pagina, vuol dire «il meno caro» e
    resta verde in tutti i cento look. */
@@ -551,7 +567,8 @@ a.dove.apri::after{content:none}
    riga loro, sotto il nome. */
 @media (max-width:560px){
   .prezzo-riga{grid-template-columns:1fr}
-  .prezzo-riga .val{grid-row:auto;text-align:left;display:flex;flex-wrap:wrap;
+  .prezzo-riga .dati{grid-column:1;grid-row:2}
+  .prezzo-riga .val{grid-column:1;grid-row:3;text-align:left;display:flex;flex-wrap:wrap;
     align-items:baseline;gap:2px 9px;margin-top:11px;white-space:normal}
   .prezzo-riga .val .et{margin:0;align-self:center}
   .prezzo-riga .val .pz{margin:0}
@@ -766,6 +783,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <b>una pagina nuova</b>, così non perdi quello che stavi guardando:
   <b>«Le offerte»</b> ti mostra i prezzi letti da quel volantino, reparto per reparto;
   <b>«Il volantino»</b> apre le sue pagine sul sito di chi lo pubblica.</p>
+  <p style="margin-top:12px">I <b>marchi dei supermercati</b> restano di chi li ha:
+  stanno qui solo per far riconoscere a colpo d'occhio di quale negozio è un'offerta.
+  Quelli disegnati sono presi da Wikimedia Commons; dove non ce n'è uno libero, al
+  suo posto c'è il nome scritto.</p>
+  <p style="margin-top:12px">I <b>marchi dei supermercati</b> restano di chi li ha:
+  stanno qui solo per far riconoscere a colpo d'occhio di quale negozio è un'offerta.
+  Dove un marchio non c'è, al suo posto trovi il nome scritto.</p>
   <p style="margin-top:12px">Di Mercatò si legge il volantino del punto vendita di
   <b>via Filadelfia 232</b>. Mercatò Local, Big ed Extra sono insegne diverse con volantini
   diversi: quello di via Demargherita, per dire, è un Local e queste offerte non sono le sue.</p>
@@ -1576,8 +1600,20 @@ const MARCHI = {
   'Carrefour Iper': ['#004E9F', '#FFFFFF'],
 };
 function marchio(ins) {
-  const c = MARCHI[ins] || ['#3F3F3F', '#FFFFFF'];
   const e = document.createElement('b');
+  const logo = (DATI.loghi || {})[ins];
+  if (logo) {
+    /* IL MARCHIO VERO. Il fondo resta bianco anche nei look scuri: i loghi
+       hanno i loro colori, e messi su un fondo nero sparirebbero o
+       diventerebbero un'altra cosa. La scritta col nome resta dentro, solo
+       per chi usa un lettore di schermo: senza, un logo e un'immagine muta. */
+    e.className = 'marchio col-logo';
+    e.innerHTML = logo + '<span class="solo-voce"></span>';
+    e.querySelector('.solo-voce').textContent = ins;
+    e.title = ins;
+    return e;
+  }
+  const c = MARCHI[ins] || ['#3F3F3F', '#FFFFFF'];
   e.className = 'marchio';
   e.style.background = c[0];
   e.style.color = c[1];

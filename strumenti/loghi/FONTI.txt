@@ -1,0 +1,41 @@
+I MARCHI DEI SUPERMERCATI — da dove vengono e a che titolo stanno qui
+
+Chiesti da Manlio il 2026-09-22: «al posto delle pillole con scritto il nome
+dei vari supermercati, mettici i veri loghi». Servono a riconoscere di quale
+negozio è un'offerta: è l'uso per cui un marchio esiste.
+
+Ogni file qui dentro si chiama come l'insegna in dati.py, tutto minuscolo e
+senza accenti (lidl.svg, md.svg, eurospin.svg...). Per aggiungerne uno basta
+metterlo qui: loghi.py lo trova da solo, gli rinomina gli id interni e la
+pagina lo usa al posto della pillola scritta. Per toglierlo, basta cancellarlo:
+torna la pillola col nome.
+
+  lidl.svg      Wikimedia Commons, File:Lidl-Logo.svg
+                pubblico dominio (solo testo e forme semplici) — Lidl Stiftung & Co. KG
+  md.svg        Wikimedia Commons, File:MD_Italia_Logo.svg
+                pubblico dominio (solo testo e forme semplici) — MD S.p.A.
+  eurospin.svg  Wikimedia Commons, File:Eurospin_New_Logo.svg
+                pubblico dominio (solo testo e forme semplici) — Eurospin Italia S.p.A.
+
+ANCORA DA PRENDERE (il 2026-09-22 Wikimedia rispondeva 429 a questo indirizzo,
+non è che manchino: sono lì e vanno riprovati con calma, uno alla volta):
+  Carrefour   File:Carrefour-Mobile-logo.svg   pubblico dominio
+  Bennet      File:Logo_Bennet_new.svg         CC BY-SA 4.0 — va CITATO nel piede
+                                               della pagina se lo si mette
+  Ipercoop    File:Ipercoop_Logo.svg
+  Ekom        su Wikimedia non c'è. Mercatò nemmeno. Per adesso restano con la
+              pillola colorata col nome scritto.
+
+I marchi restano di chi li ha. Questa pagina non li modifica e non li usa per
+dire che qualcuno la approva: li mostra accanto alle offerte lette dal suo
+volantino.
+
+AGGIUNTO IL 2026-09-22
+  bennet.webp   mandato da Manlio (il marchio come lo pubblica Bennet). E
+                un'immagine, non un disegno: a schermo grande sgrana un po'.
+                Se un giorno si riesce a scaricare File:Logo_Bennet_new.svg da
+                Wikimedia, basta metterlo qui come bennet.svg e cancellare il
+                .webp — il disegno vince perche non sgrana mai.
+  ekom.svg      disegnato dall'immagine che ha mandato Manlio, con
+                `python3 -m vettore <immagine> ekom`. Su Wikimedia un EKOM
+                libero non c'e. E un disegno vero, non una figura: non sgrana.

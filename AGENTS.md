@@ -178,11 +178,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     in un riquadro ambra, a destra i due prezzi (al pezzo e per unità) e in
     fondo «Vedi tutte le offerte del volantino».
   - **Il negozio è un MARCHIO, non una scritta** (`.marchio`, chiesto il
-    2026-09-22: «mettici il marchio dei supermercati»). I marchi veri non si
-    pubblicano: sono disegnati in `MARCHI` dentro `pagina.py`, il nome
-    dell'insegna scritto nei suoi colori. **Fondo e scritta sono fissati tutti
-    e due** dentro la pillola, così si legge uguale con qualunque look. Le
-    prove riconoscono il negozio da `.marchio`, non più da `.sotto b`.
+    2026-09-22: «mettici il marchio dei supermercati»). Dove il marchio c'è
+    davvero (cinque su otto) è quello vero, da `strumenti/loghi/`; dove non
+    c'è, è il nome dell'insegna scritto nei suoi colori, con fondo e scritta
+    fissati tutti e due così da leggersi uguale con qualunque look. Le prove
+    riconoscono il negozio da `.marchio`, non più da `.sotto b`.
   - **La scelta dei negozi non si fa e non si mette**: chiesta e rifiutata da
     lui lo stesso giorno, due volte. Niente tasto «Negozi», niente «7 su 7».
   - **Sotto i 560 px la scheda va in colonna**: i prezzi scendono su una riga
@@ -240,6 +240,32 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   `prova-collegamenti.js`. Quando l'offerta non ha l'indirizzo della pagina
   resta la riga scritta in fondo: un'icona che non apre niente è una presa
   in giro.
+- **I marchi dei supermercati stanno in `strumenti/loghi/`** (chiesti il
+  2026-09-22: «al posto delle pillole col nome, mettici i veri loghi»). Un
+  file per insegna, chiamato come l'insegna in minuscolo e senza accenti
+  (`lidl.svg`, `md.svg`, `ekom.svg`...). **Per aggiungerne uno basta metterlo
+  lì**, per toglierlo basta cancellarlo: `loghi.py` lo trova da solo e la
+  pagina torna alla pillola col nome scritto. In `loghi/FONTI.txt` c'è scritto
+  da dove viene ognuno. Regole:
+  - **Va bene anche un `.png` o un `.webp`** quando di quel marchio non c'è un
+    disegno libero: diventa un'immagine scritta dentro l'indirizzo, così la
+    pagina resta un file solo. Se l'immagine è a **un colore pieno**,
+    `python3 -m vettore <immagine> <insegna>` la trasforma in un disegno che
+    non sgrana (è così che è nato `ekom.svg`).
+  - **Gli id dentro ogni SVG vengono rinominati** (`l-<insegna>-<id>`): otto
+    loghi nello stesso documento con lo stesso `id="A"` si rubano sfumature e
+    maschere a vicenda.
+  - **La pastiglia del marchio ha il fondo BIANCO fisso**, anche nei look
+    scuri: i loghi hanno i loro colori e su fondo nero sparirebbero.
+  - **Dentro c'è sempre il nome scritto**, nascosto alla vista (`.solo-voce`):
+    un logo, per chi non lo vede, è un buco. È anche il modo con cui le prove
+    riconoscono di che negozio è un'offerta.
+  - **I marchi restano di chi li ha**: stanno lì per far riconoscere il
+    negozio, e il piede della pagina lo dice.
+  - **Mancano ancora Carrefour, Ipercoop e Mercatò.** Carrefour e Ipercoop
+    sono su Wikimedia Commons ma il 2026-09-22 rispondeva 429 a ogni
+    richiesta: non è che non ci siano, vanno ripresi con calma. Di Mercatò su
+    Commons non c'è niente.
 - **Il tasto «Look» sta in cima, prima di «Aiuto»** (chiesto il 2026-09-22) e
   apre l'elenco dei cento look: tocchi una riga e la pagina si ricolora subito.
   I cento look **non si scrivono a mano**: li calcola `strumenti/look.py` dalle
@@ -291,6 +317,10 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-22)
 
+- **Messi il 2026-09-22 i marchi veri di cinque insegne** (Lidl, MD,
+  Eurospin, Bennet, Ekom) al posto delle pillole col nome. Mancano Carrefour,
+  Ipercoop e Mercatò: sopra c'è scritto dove prenderli e perché non ci sono
+  ancora.
 - **Rifatta l'impaginazione il 2026-09-22 (`sw.js` v52)**: schede al posto
   delle righe, marchi dei negozi, titolo «Spesa», data di riferimento, tasto
   rosso della ricerca in cima. Sopra c'è la regola per esteso.
