@@ -1416,12 +1416,23 @@ function rigaPrezzo(o, meno) {
 
   d.querySelector('.nome').textContent = o.pro;
 
+  /* QUANDO I DUE PREZZI SONO LO STESSO NUMERO, SI SCRIVE UNA VOLTA SOLA.
+     Chiesto da Manlio il 2026-09-23: «ci sono dei prodotti col prezzo al kg
+     che corrisponde al prezzo al pezzo, soprattutto nei salumi ma anche negli
+     altri prodotti da banco, che chiaramente non sono confezionati; puoi
+     toglierli nel caso in cui coincidano». Sono le offerte vendute sfuse —
+     al kg, al banco: lì «la confezione» non esiste, e lo stesso numero
+     scritto due volte fa solo rumore. Si confrontano i numeri COME VENGONO
+     SCRITTI (eur), non i decimali interi: 12,67 e 12,670001 sulla pagina
+     sono la stessa cosa. */
+  const doppio = eur(o.prezzo) === eur(o.unitario);
+
   /* La riga sotto il nome: formato, quanto costa la confezione, fino a quando
      vale. Il negozio NON si ripete qui: sta nel marchio in cima. */
   const s = d.querySelector('.sotto');
-  s.innerHTML = 'Formato: <b></b> · <span></span>';
+  s.innerHTML = doppio ? 'Formato: <b></b>' : 'Formato: <b></b> · <span></span>';
   s.querySelector('b').textContent = o.fmt;
-  s.querySelector('span').textContent = eur(o.prezzo) + ' € la confezione';
+  if (!doppio) s.querySelector('span').textContent = eur(o.prezzo) + ' € la confezione';
   const q = durata(o);
   if (q) {
     const d2 = document.createElement('span');
@@ -1431,7 +1442,8 @@ function rigaPrezzo(o, meno) {
     s.appendChild(d2);
   }
 
-  d.querySelector('.val .pz').textContent = eur(o.prezzo) + ' €';
+  if (doppio) d.querySelector('.val .p2').remove();
+  else d.querySelector('.val .pz').textContent = eur(o.prezzo) + ' €';
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
 

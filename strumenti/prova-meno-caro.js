@@ -74,8 +74,19 @@ setTimeout(() => {
       male.push(t.textContent + ': senza prezzo per unità');
     if (!r.querySelector('.marchio').textContent.trim())
       male.push(t.textContent + ': non dice in che negozio');
-    if (!/la confezione/.test(dentro))
-      male.push(t.textContent + ': non dice quanto costa la confezione');
+    /* Quanto costa la confezione si scrive solo se e un numero DIVERSO dal
+       prezzo per unita: sulle offerte sfuse (al kg, al banco) e lo stesso
+       numero, e Manlio ha fatto togliere il doppione il 2026-09-23. Qui si
+       controlla proprio questo: o c'e la confezione, o i due numeri
+       coincidevano e allora il secondo prezzo NON deve esserci. */
+    const due = r.querySelector('.val .p2');
+    if (/la confezione/.test(dentro)) {
+      if (!due) male.push(t.textContent + ': dice il prezzo della confezione ma non lo mostra');
+    } else {
+      if (due) male.push(t.textContent + ': prezzo della confezione ripetuto senza dirlo');
+      const n = r.querySelector('.val .n').textContent.trim();
+      if (!n) male.push(t.textContent + ': senza nessun prezzo');
+    }
     if (!r.querySelector('.quando'))
       male.push(t.textContent + ': non dice fino a quando vale');
     const link = r.querySelector('a.dove');

@@ -144,6 +144,22 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     pieno vuol dire «prodotto acceso». Da solo, largo quanto lo schermo, no.
     Il bottone **tiene anche la classe `agg`**: è con quella che tutte le
     prove riconoscono i bottoni che non sono prodotti della lista.
+- **Se il prezzo per unità e quello della confezione sono lo stesso numero,
+  si scrive una volta sola** (chiesto il 2026-09-23: «ci sono dei prodotti col
+  prezzo al kg che corrisponde al prezzo al pezzo, soprattutto nei salumi ma
+  anche negli altri prodotti da banco, che chiaramente non sono confezionati;
+  puoi toglierli nel caso in cui coincidano»). Riguarda tutto quello che si
+  vende sfuso — al kg, al banco: lì la confezione non esiste, e ripetere
+  «12,99 € al kg» e «12,99 € al pezzo» era lo stesso numero due volte.
+  Sparisce sia il secondo prezzo (`.val .p2`) sia il «… € la confezione»
+  nella riga del formato; resta «Formato: al kg · fino al 28 settembre».
+  Il confronto si fa sui numeri **come vengono scritti** (`eur`), non sui
+  decimali interi. Sono 296 offerte su 1387. La prova è `prova-meno-caro.js`,
+  che adesso controlla le due strade: o c'è scritto quanto costa la
+  confezione e allora il secondo prezzo c'è, o non c'è né l'uno né l'altro.
+  **Resta da decidere con lui** il caso dei banchi all'etto (il prosciutto a
+  2,59 all'etto e 25,90 al kg): lì i numeri sono diversi, ma la scritta
+  «al pezzo» non è giusta — un etto non è un pezzo.
 - **In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
   **«Le offerte (N)»** apre le offerte lette da quel volantino, divise per
   reparto, e **«Il volantino ↗»** apre la sua prima pagina sul sito di chi lo

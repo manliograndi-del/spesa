@@ -2485,3 +2485,47 @@ al 4 ottobre**, e quelle date stanno sulla riga.
 
 Da oggi le insegne con prezzi veri sono otto su otto, e l'Ipercoop ha anche il
 suo marchio vero nelle schede.
+
+## Lo stesso numero scritto due volte — 2026-09-23
+
+Manlio, guardando le schede: «ci sono dei prodotti col prezzo al kg che
+corrisponde al prezzo al pezzo, soprattutto nei salumi ma anche negli altri
+prodotti da banco, che chiaramente non sono confezionati. Puoi toglierli nel
+caso in cui coincidano».
+
+Aveva ragione ed era un difetto vecchio, nato quando la scheda ha preso i due
+prezzi: quello **per unità** (il numero grande rosso, «12,99 € al kg») e quello
+**della confezione** («12,99 € al pezzo», più il «12,99 € la confezione» nella
+riga del formato). Per una confezione da 500 g i due numeri dicono due cose
+diverse e servono tutti e due. Ma per una carne venduta **al kg**, o per un
+salume al banco, la confezione non esiste: la quantità è 1 kg, quindi il conto
+prezzo/quantità ridà lo stesso numero di partenza, e la scheda lo ripeteva
+tre volte in tre posti.
+
+Erano **296 offerte su 1387**: macelleria 61, ortofrutta 60, gastronomia 51,
+freschi 24, dispensa 24, salumi 21, pescheria 16. Un quinto di tutto.
+
+La regola adesso: se il prezzo scritto della confezione e quello per unità
+sono **la stessa scritta**, si scrive una volta sola. Sparisce il secondo
+prezzo e sparisce il «… € la confezione»; resta «Formato: al kg · fino al 28
+settembre» e il numero grande.
+
+Due dettagli che valgono più di quanto sembri:
+
+- **Si confrontano le scritte, non i numeri.** `eur(o.prezzo) ===
+  eur(o.unitario)`, non `o.prezzo === o.unitario`: 12,67 e 12,670001 sono due
+  numeri diversi per il computer e la stessa cosa per chi guarda la pagina.
+  Confrontando i numeri interi sarebbero rimaste in giro schede col doppione
+  proprio dove il conto non torna esatto.
+- **La prova è stata cambiata, non tolta.** `prova-meno-caro.js` pretendeva che
+  ogni scheda dicesse quanto costa la confezione: con la regola nuova sarebbe
+  fallita su un quinto delle offerte. Adesso controlla le due strade — o c'è
+  la scritta e allora c'è anche il secondo prezzo, o non c'è né l'una né
+  l'altro — che è più forte di prima: prende anche il caso opposto, un secondo
+  prezzo mostrato senza dire cos'è.
+
+**Rimasto aperto**, e glielo ho chiesto: i banchi venduti **all'etto**. Lì i
+numeri sono diversi (2,59 all'etto, 25,90 al kg), quindi la regola non scatta,
+ma la scritta «al pezzo» è sbagliata lo stesso — un etto non è un pezzo. Lui
+ha detto «poi vediamo se è difficile farli togliere anche in altri casi»:
+questo è il primo degli altri casi.
