@@ -51,3 +51,11 @@ COMPLETATI IL 2026-09-22 (notte): otto insegne su otto
                       `python3 -m vettore <immagine> mercato 2`
 Wikimedia continuava a rispondere 429 anche stanotte: Carrefour e Ipercoop
 sono arrivati da altre parti, e vanno bene uguale.
+
+AGGIUNTO IL 2026-09-22 (sera): la nona insegna, Pam
+  pam.webp      il marchio di canale di Pam su volantinopiu, lo stesso che sta
+                in cima ai suoi volantini (la foglia verde col tricolore):
+                resources.volantinopiu.it/img/canale/b318d5c88a633e45450af22dfaf57676/209/logoh.webp
+                Tagliato ai bordi e rimpicciolito a 64 px di altezza. È
+                un'immagine con le sfumature, non un colore pieno: `vettore`
+                non serve, e a schermo grande sgrana un po', come Bennet.

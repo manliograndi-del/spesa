@@ -2608,3 +2608,81 @@ nell'Aiuto** e nella casella che si apre («Scrivi un prodotto, una marca, un
 negozio…»). `prova-aiuto.js` controlla che l'Aiuto chiami il tasto col nome
 che il tasto ha davvero: se un domani si cambia di nuovo la scritta, la prova
 si accorge che l'Aiuto è rimasto indietro.
+
+## Il Pam — 2026-09-22 (notte)
+
+Manlio: «Mettiamoci anche il Pam che a Torino ce ne sono. Tantissimi fai tutte
+le cose necessarie per metterlo.»
+
+### Quale Pam
+
+Il sito `pampanorama.it` è un'app che chiede tutto a `coeus.ppapi.it`. Ci sono
+due chiamate che servono:
+
+    POST https://coeus.ppapi.it/api/v2_2/post/query?noCache=0&typeUuid=store
+         limit=100&typeUuid=store&fields[0]=slug&fields[1]=name&fields[2]=description
+         &metadatas[0]=address&metadatas[1]=latitude&metadatas[2]=longitude
+         &metadataQueries[latitude][$between][0]=44.98 … [1]=45.12
+         &metadataQueries[longitude][$between][0]=7.55 … [1]=7.75
+       → i negozi in un riquadro della mappa
+
+    POST https://coeus.ppapi.it/api/v2_2/post/query?noCache=1&typeUuid=flyer
+         typeUuid=flyer&fields[0]=slug&fields[1]=image&fields[2]=name&limit=30
+         &orders[publishedAt]=desc&relationshipQueries[flyer_store][$in][0]=<id negozio>
+       → i volantini di QUEL negozio, con link volantinopiu, pdf e date
+
+Basta un `curl` normale con `Origin` e `Referer` di pampanorama.it.
+
+A Torino ci sono 35 Pam fra Pam, Pam Local, Pam Superstore e Panorama. Il più
+vicino a corso Siracusa è il **Pam di corso Orbassano 212**, a 400 metri
+(store 71, codice punto vendita 2311). Dopo vengono il Pam Local di piazza
+Santa Rita (1 km) e il Pam di corso Cosenza (1,2 km).
+
+### Pam e Panorama non hanno lo stesso volantino
+
+Per il 10-23 settembre volantinopiu aveva sette id: 28603-28605 «PAM Panorama
+- Sotto Prezzo», **28606 «PAM Supermercati - Sotto Prezzo»**, 28607-28608
+«PAM Panorama - Occasioni Extra», **28609 «PAM Supermercati - Occasioni
+Extra»**. Per corso Orbassano l'API dava 28606 e 28609: i «Supermercati».
+I Panorama sono altri negozi con altri prezzi, e non vanno mescolati.
+
+### Quelli dal 24 c'erano già, come per l'Ipercoop
+
+Il 22 l'elenco del negozio dava ancora solo quelli che scadevano il 23.
+Chiedendo gli id uno per uno (stesso trucco dell'Ipercoop, con `pv2311`):
+
+    pam.volantinopiu.com/volantino<id>00pv2311.html   → <title> e «valido Dal … al …»
+
+sono usciti 28804-28810 e 28848-28849, tutti dal 24 settembre al 7 ottobre.
+I due «PAM Supermercati» sono **28807** («Tante offerte a 1, 2, 3 euro», 20
+pagine) e **28849** («Occasioni Extra», 27 pagine). Le immagini stanno dove
+stanno quelle dell'Ipercoop: `resources.volantinopiu.it/flyer/2/8/8/0/7/pagine/<n>.jpg`.
+
+### Com'è fatto
+
+- **«con APP»** su un prezzo vuol dire che vale solo con l'app Pam Perte Plus.
+  Il volantino non stampa quanto costa senza app: nella nota c'è scritto
+  «Solo con l'app Pam Perte Plus», come per la MD Buona Spesa Card, ma senza
+  il prezzo pieno perché non c'è.
+- Tante offerte sono «gusti e grammature assortiti» allo stesso prezzo: il
+  conto è sempre sul formato più piccolo, così non sembra più conveniente di
+  quello che è.
+- La pescheria (pagina 11 di `pam24`) è divisa in due settimane: quattro
+  offerte valgono dal 24 al 30 settembre, quattro dall'1 al 7 ottobre. Le date
+  sono sulle righe (sono diverse da quelle del volantino, quindi `dati.py` non
+  si ferma).
+- Il Mini Babybel stampa «al kg € 2,19», che è il prezzo della confezione da
+  100 g: al chilo sono 21,90. Scritto nella nota.
+- Tre offerte stavano identiche in tutti e due i volantini (confettura Zuegg,
+  2 Croccole Findus, minestrone Findus): scritte una volta sola, in `pam24`.
+- I banchi all'etto (salumi, formaggi, pesce, carne) sono righe «all'etto»
+  come quelle dell'MD: resta aperta con Manlio la questione della scritta
+  «al pezzo» su quelle righe.
+
+### Una prova da sistemare
+
+Cercando «tonno», `prova-cerca.js` pretendeva che tutti i risultati fossero in
+fila per prezzo. Ma la ricerca li divide per categoria (una fascia per ognuna),
+e da oggi «tonno» trova anche la pizza tonno e cipolla del Pam, che è una
+Pizza e sta in fondo nella sua fascia. La pagina era giusta, la prova no:
+adesso controlla l'ordine dentro ogni fascia.

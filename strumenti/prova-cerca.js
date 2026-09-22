@@ -68,10 +68,18 @@ setTimeout(() => {
   if (!(due.length && due.length < una.length))
     male.push('due parole non restringono: ' + una.length + ' -> ' + due.length);
 
-  const prezzi = una.map(r => parseFloat(
-    r.querySelector('.val .n').textContent.replace(',', '.')));
-  for (let i = 1; i < prezzi.length; i++)
-    if (prezzi[i] < prezzi[i - 1]) { male.push('non sono in ordine di prezzo'); break; }
+  cerca('tonno');
+  // Divise per categoria (una fascia per ognuna) e in ordine di prezzo DENTRO
+  // ogni fascia: cercando «tonno» dal 2026-09-22 esce anche la pizza al tonno
+  // del Pam, che è un'altra categoria e fa fascia a sé.
+  let prima = null;
+  for (const el of d.querySelectorAll('#trovati > *')) {
+    if (el.classList.contains('fascia')) { prima = null; continue; }
+    if (!el.classList.contains('prezzo-riga')) continue;
+    const p = parseFloat(el.querySelector('.val .n').textContent.replace(',', '.'));
+    if (prima !== null && p < prima) { male.push('non sono in ordine di prezzo'); break; }
+    prima = p;
+  }
 
   if (d.querySelectorAll('#trovati .bollo.meno').length)
     male.push('C\'E UN BOLLINO VERDE fra i risultati: direbbe una cosa falsa');

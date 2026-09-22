@@ -96,3 +96,4 @@
 2026-09-22 22:00 UTC  pubblicato: sito (verificato, sw.js v63) e artifact (versione 55): con GRANDI MARCHE aperto le categorie spariscono.
 2026-09-22 22:40 UTC  GRANDI MARCHE coi marchi veri (32 su 46, in strumenti/marchi/). Scoperto e sistemato: i quattro tasti in cima e «I tuoi prodotti» si vedevano ancora sul telefono (hidden battuto dal display:flex). Tasto rosso che va a capo invece di tagliarsi. sw.js v64.
 2026-09-22 20:40 UTC  pubblicato: sito (verificato byte per byte, sw.js v64) e artifact (versione 56) coi marchi delle grandi marche e la cima senza i quattro tasti.
+2026-09-22 21:06 UTC  PAM, la nona insegna: pam24 (20 pagine, 124 prezzi) e pamextra24 «Occasioni Extra» (27 pagine, 123 prezzi), 24 settembre-7 ottobre, letti per intero; edizione «PAM Supermercati» del Pam di corso Orbassano 212. Marchio in loghi/pam.webp. prova-cerca controlla l'ordine dentro ogni fascia. sw.js v65.

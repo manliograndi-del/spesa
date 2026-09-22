@@ -23,6 +23,18 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-22, leggendo i due volantini Pam per intero
+ # (edizione «PAM Supermercati», quella di corso Orbassano 212).
+ 'pam24': {
+   14: '«Speciale sconto 20%» sui Tesori dell\'Arca (speck, cotto, mortadella, bresaola, mozzarella di bufala, parmigiano...): solo lo sconto, nessun prezzo stampato',
+ },
+ 'pamextra24': {
+   11: 'cucina orientale Suzi Wan (vermicelli di riso, cialde di gamberi, salse, latte di cocco), involtini primavera e snack salati (patatine, tortillas): nessuna categoria del catalogo',
+   19: 'superalcolici (brandy, amaro, vodka, rum): solo sconti del 10% senza prezzo, nessuna categoria del catalogo',
+   21: 'pulizia della casa: detergente pavimenti, panni, mocio, scope, spugne, cattura polvere, deodoranti e candele: nessuna categoria del catalogo',
+   23: 'salviettine e carta igienica umidificata Fria (a pezzi, non a rotoli), dentifricio Sensodyne solo a sconto del 10% senza prezzo',
+   27: 'cancelleria e casa: temperamatite, correttori, colla, assorbiumidità: nessun prezzo di spesa alimentare',
+ },
  # Guardate una per una il 2026-09-22, leggendo il volantino per intero
  # (47 pagine, edizione Torino-Collegno).
  'ipercoop24': {

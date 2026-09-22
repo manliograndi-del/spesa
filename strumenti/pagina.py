@@ -906,6 +906,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <p style="margin-top:12px">Di Mercatò si legge il volantino del punto vendita di
   <b>via Filadelfia 232</b>. Mercatò Local, Big ed Extra sono insegne diverse con volantini
   diversi: quello di via Demargherita, per dire, è un Local e queste offerte non sono le sue.</p>
+  <p style="margin-top:12px">Di Pam si legge il volantino dei <b>supermercati Pam</b>, quello
+  del Pam di <b>corso Orbassano 212</b>, il più vicino. I Pam Panorama hanno un volantino loro,
+  con prezzi diversi.</p>
 </section>
 
 <footer id="pie"></footer>
@@ -1800,6 +1803,7 @@ const MARCHI = {
   'Ekom':           ['#B3001B', '#FFFFFF'],
   'Ipercoop':       ['#A3123A', '#FFFFFF'],
   'Carrefour Iper': ['#004E9F', '#FFFFFF'],
+  'Pam':            ['#00843D', '#FFFFFF'],
 };
 function marchio(ins) {
   const e = document.createElement('b');

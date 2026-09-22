@@ -368,7 +368,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     riconoscono di che negozio è un'offerta.
   - **I marchi restano di chi li ha**: stanno lì per far riconoscere il
     negozio, e il piede della pagina lo dice.
-  - **Ci sono tutte e otto** dal 2026-09-22. Wikimedia continuava a dare 429,
+  - **Ci sono tutte e nove** dal 2026-09-22 (la nona è Pam, `pam.webp`). Wikimedia continuava a dare 429,
     quindi gli ultimi tre sono arrivati da altrove: Carrefour dal suo sito
     (SVG vero), Ipercoop e Mercatò disegnati da un'immagine con `vettore`.
     **Il Mercatò ha due tinte** (scritta blu, fascia arancione): è per lui che
@@ -422,8 +422,34 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
+**Pam di corso Orbassano 212** (aggiunto il 2026-09-22, chiesto da lui: «a
+Torino ce ne sono tantissimi»): è il Pam più vicino a corso Siracusa, a 400
+metri, ed è un Pam «normale». Si legge il volantino dei **«PAM Supermercati»**,
+non quello dei **Pam Panorama**, che ha id suoi e prezzi suoi. Non gliel'ho
+chiesto: è il più vicino, e a Torino i Pam normali hanno tutti lo stesso
+volantino. Se lui va in un Panorama, va cambiato.
+
 ## Da fare adesso (aggiornato il 2026-09-22)
 
+- **CHIUSA: il PAM è dentro, la nona insegna** (chiesto da Manlio il
+  2026-09-22 sera, «fai tutte le cose necessarie per metterlo»). Letti per
+  intero i due volantini **dal 24 settembre al 7 ottobre**: `pam24` «Tante
+  offerte a 1, 2, 3 euro» (20 pagine, 124 prezzi) e `pamextra24` «Occasioni
+  Extra» (27 pagine, 123 prezzi). Copertura 47/47, 6 pagine scartate in
+  `scartate.py`. Marchio vero in `strumenti/loghi/pam.webp`.
+  - **Come si trovano**: Pam mette i volantini su volantinopiu come Nova Coop.
+    L'elenco per negozio lo dà l'API del suo sito, `coeus.ppapi.it` (POST
+    `post/query?typeUuid=flyer` con `relationshipQueries[flyer_store][$in][0]=71`,
+    71 = corso Orbassano, codice pv 2311). Quelli nuovi, prima che l'elenco li
+    mostri, si trovano chiedendo gli id uno per uno su
+    `pam.volantinopiu.com/volantino<id>00pv2311.html` e leggendo `<title>`
+    e date: i nostri sono i **«PAM Supermercati»**, non i «PAM Panorama».
+  - **«con APP»** vuol dire che il prezzo vale solo con l'app Pam Perte Plus:
+    segnato riga per riga nella nota, come la MD Buona Spesa Card. Il
+    volantino **non stampa** il prezzo senza app.
+  - La pescheria di `pam24` (pagina 11) ha metà offerte **solo dal 24 al 30
+    settembre** e metà **solo dall'1 al 7 ottobre**: date scritte riga per riga.
+  - `pam24` e `pamextra24` scadono il **7 ottobre**.
 - **CHIUSA: l'IPERCOOP è dentro.** Il 2026-09-22 è stato letto per intero il
   volantino **«Extra offerte» dal 24 settembre al 7 ottobre** (`ipercoop24`,
   47 pagine, 152 prezzi nuovi): è il primo Ipercoop con prezzi veri da quando
