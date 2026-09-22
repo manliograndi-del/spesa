@@ -148,7 +148,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     Il bottone **tiene anche la classe `agg`**: è con quella che tutte le
     prove riconoscono i bottoni che non sono prodotti della lista.
 - **Se il prezzo per unità e quello della confezione sono lo stesso numero,
-  si scrive una volta sola** (chiesto il 2026-09-23: «ci sono dei prodotti col
+  si scrive una volta sola** (chiesto il 2026-09-22: «ci sono dei prodotti col
   prezzo al kg che corrisponde al prezzo al pezzo, soprattutto nei salumi ma
   anche negli altri prodotti da banco, che chiaramente non sono confezionati;
   puoi toglierli nel caso in cui coincidano»). Riguarda tutto quello che si
@@ -163,6 +163,41 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **Resta da decidere con lui** il caso dei banchi all'etto (il prosciutto a
   2,59 all'etto e 25,90 al kg): lì i numeri sono diversi, ma la scritta
   «al pezzo» non è giusta — un etto non è un pezzo.
+- **I nomi delle categorie sono di UNA PAROLA SOLA** (chiesto il 2026-09-22:
+  «i bottoni delle categorie tengono troppo posto, bisogna assolutamente
+  rimpicciolirli… tutte le categorie che hanno più di una parola, se è
+  possibile, devono essere ridotte a una sola parola, e prosciutto crudo e
+  cotto riuniti; le cose surgelate, è inutile dire che sono surgelate»).
+  Su 66 voci ne restano quattro con due parole, e ognuna ha il suo motivo:
+  **Olio d'oliva** e **Olio di semi** (accorciarli li confonderebbe fra loro),
+  **Carta igienica** (da sola «Igienica» non si legge) e **Verdure surgelate**
+  (da sola «Verdure» si confonderebbe con la **Verdura** fresca, che è un'altra
+  categoria). **Prosciutto crudo e cotto sono una voce sola, «Prosciutto».**
+  - **La tabella `RINOMINATE` in `catalogo.py` non si cancella mai.** I nomi
+    vecchi sono scritti nella lista salvata nel telefono di Manlio e in quello
+    di sua moglie: la tabella fa sì che il loro bottone prenda il nome nuovo
+    senza perdere niente. Senza, «Pesce fresco» non si riaggancerebbe affatto
+    (il riaggancio va per nome e per parole del volantino, e fra le parole del
+    pesce la parola «pesce» non c'è apposta). Chi si è rinominato un prodotto
+    a modo suo non viene toccato.
+  - Serve anche a **`storia.py`**, che la usa per tradurre la fotografia
+    vecchia prima di confrontarla: senza, il diario avrebbe annunciato che
+    393 offerte «hanno cambiato reparto». Una novità falsa.
+  - **Le parole con cui si cerca nei volantini non si toccano**: il nome corto
+    è solo quello che si legge sul bottone. La ricerca nelle pagine usa le
+    `parole`, non il nome (per questo «Pesce» può chiamarsi così senza tirare
+    dentro i bastoncini e i sughi di pesce).
+- **Le pastiglie dei prodotti sono basse 34 px, non 44** (stessa richiesta):
+  scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
+  delle offerte sono più compatte (meno aria, non meno roba): stesso
+  contenuto, angoli 16 px, prezzo grande 26 px.
+- **Il tasto rosso si chiama «Cerca un prodotto o una marca»** ed è una
+  pastiglia alta 42 px (scelto da lui il 2026-09-22 fra tre proposte; prima
+  diceva «Cerca fra i prezzi di tutte le offerte», che era lungo il doppio).
+  Quello che la scritta non dice più — che cerca fra **tutte** le offerte
+  lette, non fra i prodotti della lista — **resta scritto nell'Aiuto** e nella
+  casella che si apre. Se si cambia ancora il nome del tasto, va cambiato
+  anche l'Aiuto: `prova-aiuto.js` controlla che i due combacino.
 - **In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
   **«Le offerte (N)»** apre le offerte lette da quel volantino, divise per
   reparto, e **«Il volantino ↗»** apre la sua prima pagina sul sito di chi lo

@@ -22,26 +22,25 @@ significa mettere in cima all'elenco l'offerta sbagliata.
 # reparto, [(nome, parole, unità)]
 REPARTI = [
  ('Macelleria e salumi', [
-  ('Carne di bue',        'bovino manzo scottona roastbeef hamburger macinato fettine bistecca costata reale', 'kg'),
+  ('Manzo',               'bovino manzo scottona roastbeef hamburger macinato fettine bistecca costata reale', 'kg'),
   ('Vitello',             'vitello vitellone fesa tagliata', 'kg'),
   ('Suino',               'suino maiale lonza coppa braciole arista spezzato costine nodini involtini', 'kg'),
   ('Pollo',               'pollo petto alette fusi sovracosce cosce filettini nuggets', 'kg'),
   ('Tacchino',            'tacchino fesa spinacine', 'kg'),
   ('Salsiccia',           'salsiccia salamella luganega bocconcini', 'kg'),
-  ('Prosciutto crudo',    'crudo prosciutto stagionato daniele parma speck', 'kg'),
-  ('Prosciutto cotto',    'cotto prosciutto praga', 'kg'),
+  ('Prosciutto',          'prosciutto crudo cotto stagionato daniele parma speck praga', 'kg'),
   ('Salame',              'salame salamino negronetto cacciatore ungherese milano', 'kg'),
   ('Mortadella',          'mortadella bologna', 'kg'),
   ('Bresaola',            'bresaola punta anca', 'kg'),
-  ('Pancetta e bacon',    'pancetta bacon guanciale cubetti', 'kg'),
+  ('Pancetta',            'pancetta bacon guanciale cubetti', 'kg'),
  ]),
  ('Pesce', [
   ('Tonno',               'tonno tonnetto pinne gialle yellowfin', 'kg'),
   ('Salmone',             'salmone filetto affumicato sashimi saku', 'kg'),
-  ('Merluzzo e baccalà',  'merluzzo baccala nasello platessa filetti bianchi', 'kg'),
+  ('Merluzzo',            'merluzzo baccala nasello platessa filetti bianchi', 'kg'),
   ('Gamberi',             'gamberi gamberetti mazzancolle code', 'kg'),
-  ('Calamari e seppie',   'calamari seppie totano anelli moscardini', 'kg'),
-  ('Bastoncini di pesce', 'bastoncini findus capitan', 'kg'),
+  ('Calamari',            'calamari seppie totano anelli moscardini', 'kg'),
+  ('Bastoncini',          'bastoncini findus capitan', 'kg'),
   # Chiesta da Manlio il 2026-09-05: sui volantini c'erano orata a 8,90 al kg,
   # branzino, polpo, vongole, verdesca, scampi — offerte vere che non avevano
   # nessuna casa e restavano fuori. Una voce sola per tutto cio che non e tonno,
@@ -49,7 +48,7 @@ REPARTI = [
   # NIENTE la parola «pesce» qui dentro: e in mezzo mondo («bastoncini di
   # pesce», «sugo di pesce», «zuppa di pesce») e tirerebbe dentro pagine che
   # con questa voce non c'entrano. Meglio i nomi delle bestie.
-  ('Pesce fresco',        'orata branzino spigola sgombro verdesca trota cefalo alaccia polpo vongole cozze scampi spada sogliola dentice ricciola gallinella lupino', 'kg'),
+  ('Pesce',               'orata branzino spigola sgombro verdesca trota cefalo alaccia polpo vongole cozze scampi spada sogliola dentice ricciola gallinella lupino', 'kg'),
  ]),
  ('Freschi', [
   ('Latte',               'latte uht scremato intero microfiltrato', 'litro'),
@@ -58,8 +57,8 @@ REPARTI = [
   ('Uova',                'uova uovo albume medie', 'uovo'),
   ('Mozzarella',          'mozzarella ciliegine bocconcini fiordilatte bufala', 'kg'),
   ('Formaggio',           'formaggio formaggi caciotta provola sottilette stracchino asiago emmental pecorino', 'kg'),
-  ('Grana e parmigiano',  'grana parmigiano reggiano padano', 'kg'),
-  ('Formaggi spalmabili', 'philadelphia spalmabile robiola certosa formaggino', 'kg'),
+  ('Grana',               'grana parmigiano reggiano padano', 'kg'),
+  ('Spalmabili',          'philadelphia spalmabile robiola certosa formaggino', 'kg'),
   ('Ricotta',             'ricotta mascarpone', 'kg'),
  ]),
  ('Dispensa', [
@@ -67,51 +66,51 @@ REPARTI = [
   ('Riso',                'riso arborio carnaroli basmati parboiled', 'kg'),
   ('Farina',              'farina semola manitoba', 'kg'),
   ('Pane',                'pane pancarre bauletto piadina focaccia grissini crackers', 'kg'),
-  ('Pomodoro e passata',  'passata pelati polpa pomodoro concentrato datterini', 'kg'),
+  ('Pomodoro',            'passata pelati polpa pomodoro concentrato datterini', 'kg'),
   ("Olio d'oliva",        'oliva extravergine evo frantoio', 'litro'),
   ('Olio di semi',        'semi girasole arachide mais', 'litro'),
   ('Zucchero',            'zucchero canna dolcificante', 'kg'),
-  ('Legumi in scatola',   'fagioli ceci lenticchie piselli legumi borlotti cannellini', 'kg'),
-  ('Sughi pronti',        'sugo ragu pesto salsa arrabbiata', 'kg'),
-  ('Verdure in scatola',  'mais carciofini olive funghi sottaceti capperi cetriolini', 'kg'),
+  ('Legumi',              'fagioli ceci lenticchie piselli legumi borlotti cannellini', 'kg'),
+  ('Sughi',               'sugo ragu pesto salsa arrabbiata', 'kg'),
+  ('Conserve',            'mais carciofini olive funghi sottaceti capperi cetriolini', 'kg'),
  ]),
  ('Colazione e dolci', [
   ('Caffè',               'caffe macinato capsule cialde moka solubile espresso', 'kg'),
-  ('Tè e tisane',         'the tisane camomilla infuso deteina', 'kg'),
+  ('Tè',                  'the tisane camomilla infuso deteina', 'kg'),
   ('Biscotti',            'biscotti frollini gocciole pavesini digestive wafer cookies oro', 'kg'),
   ('Merendine',           'merendine brioche croissant plumcake girelle pancake', 'kg'),
   ('Cereali',             'cereali fiocchi muesli flakes avena', 'kg'),
   ('Marmellata',          'marmellata confettura composta', 'kg'),
   ('Miele',               'miele acacia millefiori', 'kg'),
   ('Cioccolato',          'cioccolato cioccolata tavoletta praline ovetti cacao', 'kg'),
-  ('Creme spalmabili',    'nutella nocciolata crema spalmabile', 'kg'),
+  ('Creme',               'nutella nocciolata crema spalmabile', 'kg'),
  ]),
  ('Surgelati e gelati', [
   ('Verdure surgelate',   'minestrone spinaci surgelate surgelati piselli bieta', 'kg'),
   # «margherita» da sola non si può usare: sui volantini è una moka Bialetti e
   # un fiore. Trovata così dalla pagina delle pagine di Manlio.
-  ('Pizza surgelata',     'pizza surgelata', 'kg'),
+  ('Pizza',               'pizza surgelata', 'kg'),
   ('Gelato',              'gelato coni cornetti vaschetta ghiaccioli stecco', 'kg'),
  ]),
  ('Frutta e verdura', [
   ('Frutta',              'mele pere uva banane arance pesche kiwi frutta mirtilli fragole', 'kg'),
   ('Verdura',             'zucchine melanzane pomodori peperoni carote cipolle verdura finocchi', 'kg'),
-  ('Insalata in busta',   'insalata iceberg rucola songino misticanza cuori', 'kg'),
+  ('Insalata',            'insalata iceberg rucola songino misticanza cuori', 'kg'),
   ('Patate',              'patate patata', 'kg'),
  ]),
  ('Bevande', [
   ('Acqua',               'acqua naturale frizzante minerale effervescente', 'litro'),
   ('Vino',                'vino doc docg chardonnay barbera prosecco lambrusco', 'litro'),
   ('Birra',               'birra lager weiss doppio malto', 'litro'),
-  ('Succhi e bibite',     'succo nettare aranciata cola bibita gassosa limonata', 'litro'),
+  ('Bibite',              'succo nettare aranciata cola bibita gassosa limonata', 'litro'),
  ]),
  ('Casa e igiene', [
-  ('Detersivo lavatrice', 'lavatrice detersivo caps capsule dash dixan omino bucato', 'lavaggio'),
-  ('Detersivo lavastoviglie', 'lavastoviglie pastiglie finish fairy brillantante', 'lavaggio'),
+  ('Lavatrice',           'lavatrice detersivo caps capsule dash dixan omino bucato', 'lavaggio'),
+  ('Lavastoviglie',       'lavastoviglie pastiglie finish fairy brillantante', 'lavaggio'),
   ('Ammorbidente',        'ammorbidente coccolino lenor vernel', 'lavaggio'),
   ('Carta igienica',      'igienica rotoloni scottonelle rotoli', 'rotolo'),
-  ('Carta cucina e tovaglioli', 'asciugatutto tovaglioli fazzoletti cucina strappi', 'rotolo'),
-  ('Sapone e bagnoschiuma', 'bagnoschiuma sapone docciaschiuma intimo mani', 'litro'),
+  ('Asciugatutto',        'asciugatutto tovaglioli fazzoletti cucina strappi', 'rotolo'),
+  ('Bagnoschiuma',        'bagnoschiuma sapone docciaschiuma intimo mani', 'litro'),
   ('Shampoo',             'shampoo balsamo capelli', 'litro'),
   ('Dentifricio',         'dentifricio collutorio spazzolino mentadent colgate', 'litro'),
  ]),
@@ -133,3 +132,52 @@ NOMI = [v['nome'] for v in CATALOGO]
 UNITA = {v['nome']: METRI[v['unita']] for v in CATALOGO}
 
 assert len(NOMI) == len(set(NOMI)), 'due voci del catalogo si chiamano uguale'
+
+# I NOMI VECCHI, E PERCHE' QUESTO ELENCO NON SI CANCELLA.
+# Il 2026-09-22 Manlio ha fatto accorciare i nomi: «i bottoni delle categorie
+# tengono troppo posto, tutte le categorie che hanno piu di una parola, se e
+# possibile, devono essere ridotte a una sola parola, e prosciutto crudo e
+# cotto riuniti; le cose surgelate, e inutile dire che sono surgelate».
+# Ma i nomi vecchi non sono solo nostri: sono scritti nella LISTA SALVATA nel
+# telefono di Manlio e in quello di sua moglie. Senza questa tabella, il loro
+# bottone «Prosciutto crudo» resterebbe li con quel nome lungo, e «Pesce
+# fresco» non si riaggancerebbe affatto — il riaggancio va per nome e per
+# parole del volantino, e fra le parole del pesce la parola «pesce» non c'e
+# apposta (tirerebbe dentro i bastoncini e i sughi).
+# Quindi: chi ha un bottone che si chiama ancora come il catalogo di prima se
+# lo ritrova col nome nuovo, senza perdere niente. Chi si e' rinominato un
+# prodotto a modo suo non viene toccato.
+# Vale anche per storia.py: senza, il diario del giorno del cambio avrebbe
+# annunciato che 1387 offerte «hanno cambiato reparto». Una novita' falsa.
+RINOMINATE = {
+ 'Carne di bue':              'Manzo',
+ 'Prosciutto crudo':          'Prosciutto',
+ 'Prosciutto cotto':          'Prosciutto',
+ 'Pancetta e bacon':          'Pancetta',
+ 'Merluzzo e baccalà':        'Merluzzo',
+ 'Calamari e seppie':         'Calamari',
+ 'Bastoncini di pesce':       'Bastoncini',
+ 'Pesce fresco':              'Pesce',
+ 'Grana e parmigiano':        'Grana',
+ 'Formaggi spalmabili':       'Spalmabili',
+ 'Pomodoro e passata':        'Pomodoro',
+ 'Legumi in scatola':         'Legumi',
+ 'Sughi pronti':              'Sughi',
+ 'Verdure in scatola':        'Conserve',
+ 'Tè e tisane':               'Tè',
+ 'Creme spalmabili':          'Creme',
+ 'Pizza surgelata':           'Pizza',
+ 'Insalata in busta':         'Insalata',
+ 'Succhi e bibite':           'Bibite',
+ 'Detersivo lavatrice':       'Lavatrice',
+ 'Detersivo lavastoviglie':   'Lavastoviglie',
+ 'Carta cucina e tovaglioli': 'Asciugatutto',
+ 'Sapone e bagnoschiuma':     'Bagnoschiuma',
+}
+
+_fuori = sorted(set(RINOMINATE.values()) - set(NOMI))
+if _fuori:
+    raise SystemExit('nomi nuovi che nel catalogo non esistono: ' + ', '.join(_fuori))
+_restati = sorted(set(RINOMINATE) & set(NOMI))
+if _restati:
+    raise SystemExit('nomi vecchi ancora nel catalogo: ' + ', '.join(_restati))

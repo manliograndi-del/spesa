@@ -5,7 +5,7 @@ const fs = require('fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const html = fs.readFileSync(process.argv[2], 'utf8');
 const SUA = [
-  'Carne di bue','Tonno','Salmone','Suino','Pollo','Formaggio','Uova',"Olio d'oliva",'Dentifricio'
+  'Manzo','Tonno','Salmone','Suino','Pollo','Formaggio','Uova',"Olio d'oliva",'Dentifricio'
 ].map(n => ({ nome: n, parole: [n.toLowerCase()], cat: n === 'Dentifricio' ? null : n }));
 const memoria = { 'spesa.lista.v1': JSON.stringify(SUA) };
 

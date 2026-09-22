@@ -10,7 +10,7 @@ const { JSDOM, VirtualConsole } = require('jsdom');
 const file = process.argv[2] || 'out/sito.html';
 
 const sua = JSON.stringify([
-  { nome: 'Carne di bue', parole: ['bovino','scottona'], cat: 'Carne di bue' },
+  { nome: 'Manzo', parole: ['bovino','scottona'], cat: 'Manzo' },
   { nome: "olio d'oliva", parole: ['olio','oliva'], cat: "Olio d'oliva" },
   { nome: 'biscotti', parole: ['biscotti'], cat: null },
   { nome: 'yogurt', parole: ['yogurt'], cat: null },

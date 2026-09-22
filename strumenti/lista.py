@@ -19,7 +19,7 @@ modifiche, non provando la pagina: da fuori non si vedeva.
 from catalogo import CATALOGO
 
 NOMI_DI_PARTENZA = [
- 'Carne di bue', 'Tonno', 'Salmone', 'Suino', 'Pollo', 'Formaggio', 'Uova',
+ 'Manzo', 'Tonno', 'Salmone', 'Suino', 'Pollo', 'Formaggio', 'Uova',
  "Olio d'oliva",
  # aggiunti da Manlio il 2026-09-04, con l'iniziale maiuscola come ha chiesto
  'Biscotti', 'Yogurt', 'Marmellata', 'Cioccolato',

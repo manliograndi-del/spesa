@@ -24,6 +24,7 @@ quella è proprio la cosa che vogliamo vedere.
 """
 import datetime, json, os, subprocess, sys, tempfile
 from dati import OFFERTE, VOLANTINI, UNITA
+from catalogo import RINOMINATE
 
 QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOVE = os.path.join(QUI, 'storia')
@@ -143,6 +144,14 @@ def meno_caro(offerte, giorno):
 def differenza(prima, adesso):
     vp, va = prima.get('volantini', {}), adesso['volantini']
     op, oa = prima.get('offerte', {}), adesso['offerte']
+    # UNA CATEGORIA CHE HA CAMBIATO NOME NON E UN'OFFERTA CHE HA CAMBIATO
+    # REPARTO. Il 2026-09-22 i nomi delle categorie sono stati accorciati
+    # (catalogo.py): senza questa riga il diario di quel giorno avrebbe
+    # annunciato che 393 offerte erano traslocate — «Prosciutto crudo diventa
+    # Prosciutto» ripetuto 26 volte — e una novita falsa manda uno in negozio.
+    # Si traduce la fotografia VECCHIA coi nomi di adesso e si confronta.
+    op = {k: (dict(o, cat=RINOMINATE[o['cat']]) if o.get('cat') in RINOMINATE else o)
+          for k, o in op.items()}
     mp = meno_caro(op, prima.get('giorno', adesso['giorno']))
     ma = meno_caro(oa, adesso['giorno'])
 

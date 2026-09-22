@@ -5,7 +5,7 @@
      - la fila dei bottoni in cima non cambia finché non si accende qualcosa;
      - il cassetto mostra tutto il catalogo, diviso per reparto;
      - la ricerca filtra anche sulle parole del volantino, non solo sul nome
-       («bovino» deve trovare «Carne di bue»);
+       («bovino» deve trovare «Manzo»);
      - accendere aggiunge il bottone, spegnere lo toglie;
      - un prodotto acceso mostra i prezzi che ha, e il bottone lo sa già.  */
 const fs = require('fs');
@@ -60,8 +60,8 @@ setTimeout(() => {
   cerca.value = 'bovino'; cerca.dispatchEvent(new dom.window.Event('input'));
   const trovati = scaffale();
   console.log('  cercando «bovino»: ' + (trovati.join(', ') || 'niente'));
-  if (!trovati.includes('Carne di bue'))
-    guai.push('«bovino» non trova «Carne di bue»: la ricerca non guarda le parole del volantino');
+  if (!trovati.includes('Manzo'))
+    guai.push('«bovino» non trova «Manzo»: la ricerca non guarda le parole del volantino');
   cerca.value = ''; cerca.dispatchEvent(new dom.window.Event('input'));
 
   // accendere

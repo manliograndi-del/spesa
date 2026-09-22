@@ -2486,7 +2486,7 @@ al 4 ottobre**, e quelle date stanno sulla riga.
 Da oggi le insegne con prezzi veri sono otto su otto, e l'Ipercoop ha anche il
 suo marchio vero nelle schede.
 
-## Lo stesso numero scritto due volte — 2026-09-23
+## Lo stesso numero scritto due volte — 2026-09-22 (sera)
 
 Manlio, guardando le schede: «ci sono dei prodotti col prezzo al kg che
 corrisponde al prezzo al pezzo, soprattutto nei salumi ma anche negli altri
@@ -2529,3 +2529,82 @@ numeri sono diversi (2,59 all'etto, 25,90 al kg), quindi la regola non scatta,
 ma la scritta «al pezzo» è sbagliata lo stesso — un etto non è un pezzo. Lui
 ha detto «poi vediamo se è difficile farli togliere anche in altri casi»:
 questo è il primo degli altri casi.
+
+## I bottoni che si mangiavano lo schermo — 2026-09-22 (notte)
+
+Manlio: «mi hanno fatto notare che i bottoni delle categorie tengono troppo
+posto, bisogna assolutamente rimpicciolirli… tutte le categorie che hanno più
+di una parola, se è possibile, devono essere ridotte a una sola parola, e
+prosciutto crudo e cotto riuniti; le cose surgelate, è inutile dire che sono
+surgelate. Credo che in tal modo quasi si possa raddoppiare il numero di
+alimenti visualizzabili».
+
+Tre cose insieme, e la terza è quella che costava di più in spazio.
+
+### I nomi
+
+Su 67 voci, 23 avevano più di una parola. Adesso ne restano quattro, e ognuna
+ha il suo motivo scritto:
+
+- **Olio d'oliva** e **Olio di semi**: accorciarli li confonderebbe fra loro.
+- **Carta igienica**: «Igienica» da sola non si legge come niente.
+- **Verdure surgelate**: «Verdure» si confonderebbe con **Verdura**, la
+  categoria della verdura fresca. Qui il «surgelate» non è inutile: è l'unica
+  cosa che distingue le due voci. Questa è l'eccezione a quello che ha chiesto,
+  e gliel'ho detta.
+
+Prosciutto crudo e cotto sono diventati **Prosciutto**, una voce sola con le
+parole di tutti e due. «Carne di bue» è diventato **Manzo**, «Succhi e bibite»
+**Bibite**, «Detersivo lavatrice» e «Detersivo lavastoviglie» **Lavatrice** e
+**Lavastoviglie**, «Carta cucina e tovaglioli» **Asciugatutto**, «Sapone e
+bagnoschiuma» **Bagnoschiuma**, «Pesce fresco» **Pesce**. In tutto 393 righe di
+prezzo hanno cambiato l'etichetta della categoria.
+
+### Perché esiste `RINOMINATE`, e perché non si cancella
+
+I nomi vecchi non sono solo nostri: **sono scritti nella lista salvata nel loro
+telefono**. Senza una tabella dei nomi vecchi succedevano due cose, tutte e due
+brutte:
+
+1. Il bottone di Manlio avrebbe continuato a chiamarsi «Prosciutto crudo»,
+   cioè il nome lungo che volevamo togliere, per sempre.
+2. **«Pesce fresco» non si sarebbe riagganciato affatto.** Il riaggancio di una
+   categoria sparita va per nome e per parole del volantino, e fra le parole
+   del pesce la parola «pesce» **non c'è apposta** — tirerebbe dentro i
+   bastoncini di pesce e i sughi di pesce. Quindi «Pesce fresco» non avrebbe
+   trovato «Pesce» e sarebbe rimasto un bottone morto.
+
+La tabella tocca **solo** chi ha ancora esattamente il nome che aveva il
+catalogo: chi si è rinominato un prodotto a modo suo se lo tiene.
+
+E serve anche a `storia.py`: il diario confronta la fotografia di ieri con
+quella di oggi, e un'offerta il cui `cat` cambia viene raccontata come «ha
+cambiato reparto». Senza tradurre la fotografia vecchia, il diario del giorno
+del cambio avrebbe annunciato **393 traslochi** — «Prosciutto crudo diventa
+Prosciutto» ventisei volte. Una novità falsa, e di quelle grosse.
+
+### Lo spazio
+
+Le pastiglie erano alte 44 px con la scritta da 15: due file di bottoni si
+mangiavano mezzo schermo del telefono prima ancora di far vedere un prezzo.
+Adesso sono alte 34 con la scritta da 14 e 6 px di distanza. Con i nomi di una
+parola, in una riga ce ne stanno circa il doppio — che è esattamente quello
+che aveva previsto lui.
+
+Le schede delle offerte hanno perso un po' d'aria (padding, margini, il prezzo
+grande da 28 a 26 px): **stessa roba, meno spazio**, nessuna informazione
+tolta.
+
+### Il tasto rosso
+
+Sempre quella sera: «la scritta "cerca fra i prezzi di tutte le offerte" può
+anche essere su una pillola con dimensioni diminuite in verticale». Gli ho
+proposto tre scritte e ha scelto **«Cerca un prodotto o una marca»**. La
+pastiglia è passata da 54 a 42 px ed è tonda come le altre.
+
+Si perde il «fra TUTTE le offerte», che era lì apposta per distinguerlo dalla
+casella dentro «+ altri prodotti». Per questo quella spiegazione **è rimasta
+nell'Aiuto** e nella casella che si apre («Scrivi un prodotto, una marca, un
+negozio…»). `prova-aiuto.js` controlla che l'Aiuto chiami il tasto col nome
+che il tasto ha davvero: se un domani si cambia di nuovo la scritta, la prova
+si accorge che l'Aiuto è rimasto indietro.

@@ -19,7 +19,7 @@ La lista vive in localStorage, non sul server: vedi NOTE.md.
 """
 import json, os
 from dati import OFFERTE, VOLANTINI, UNITA, D
-from catalogo import CATALOGO, REPARTI
+from catalogo import CATALOGO, REPARTI, RINOMINATE
 from lista import PARTENZA
 from look import LOOK, verifica as verifica_look
 from loghi import LOGHI, chiave as chiave_logo
@@ -216,6 +216,9 @@ NOVITA_PAGINA = [
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        catalogo=catalogo,
+                       # I nomi vecchi delle categorie, per chi ha una lista
+                       # salvata da prima che li accorciassimo: vedi catalogo.py.
+                       rinominate=RINOMINATE,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        novita=NOVITA_PAGINA,
@@ -327,16 +330,22 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 /* ---- barra dei prodotti ---- */
 .riga-cerca{margin:8px 0 0}
 .capo-prodotti{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
-  flex-wrap:wrap;margin:0 0 9px;font-family:var(--f-prezzo);text-transform:uppercase;
+  flex-wrap:wrap;margin:0 0 7px;font-family:var(--f-prezzo);text-transform:uppercase;
   letter-spacing:.07em;font-size:12px;font-weight:600;color:var(--tenue)}
 .capo-prodotti .suggerimento{font-family:var(--f-testo);text-transform:none;
   letter-spacing:0;font-size:13px;font-weight:400}
 .barra{position:sticky;top:0;z-index:20;background:var(--carta);
-  padding:14px 0 12px;border-bottom:1.5px solid var(--linea);margin-top:16px}
-.tasti{display:flex;flex-wrap:wrap;gap:8px}
+  padding:11px 0 9px;border-bottom:1.5px solid var(--linea);margin-top:13px}
+/* LE PASTIGLIE DEI PRODOTTI SONO BASSE E STRETTE. Manlio, 2026-09-22: «i
+   bottoni delle categorie tengono troppo posto, bisogna assolutamente
+   rimpicciolirli». Erano alte 44 px con 15 px di scritta: due file di bottoni
+   si mangiavano mezzo schermo del telefono prima ancora dei prezzi. Adesso
+   34 px, che con un dito si prende lo stesso, e i nomi sono di una parola
+   sola (vedi catalogo.py), quindi in una riga ce ne stanno il doppio. */
+.tasti{display:flex;flex-wrap:wrap;gap:6px}
 .tasto{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:99px;
-  padding:10px 15px;font-size:15px;font-weight:600;cursor:pointer;line-height:1.1;
-  min-height:44px;white-space:nowrap}
+  padding:6px 12px;font-size:14px;font-weight:600;cursor:pointer;line-height:1.1;
+  min-height:34px;white-space:nowrap}
 .tasto[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
 .tasto.agg{border-style:dashed;color:var(--tenue);font-weight:500}
 /* «Cerca fra i prezzi». Era un bottone tratteggiato come «+ altri prodotti» e
@@ -346,10 +355,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    acceso», e un rosso pieno in fila con quelli si leggerebbe come una voce
    della lista accesa per sbaglio. Da solo, largo quanto lo schermo, il rosso
    torna a voler dire quello che deve: «premi qui». */
-.tasto.trova{display:flex;align-items:center;justify-content:center;gap:9px;
+.tasto.trova{display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso);
-  border-style:solid;border-radius:16px;font-weight:700;font-size:16.5px;min-height:54px}
-.tasto.trova::before{content:'';flex:none;width:19px;height:19px;
+  border-style:solid;border-radius:99px;font-weight:700;font-size:15px;min-height:42px}
+.tasto.trova::before{content:'';flex:none;width:17px;height:17px;
   background:currentColor;-webkit-mask:var(--lente) center/contain no-repeat;
   mask:var(--lente) center/contain no-repeat}
 
@@ -484,17 +493,19 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    prezzi (quello della confezione e quello per unità). Chiesto da Manlio il
    2026-09-22 con una schermata alla mano. */
 .fascia{font-size:13.5px;color:var(--tenue);margin:14px 0 0}
-.prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:2px 16px;
-  background:var(--carta);border:1.5px solid var(--linea);border-radius:18px;
-  padding:14px 16px 11px;margin-top:11px}
+/* Piu compatte dal 2026-09-22, sempre su sua richiesta: stessa roba, meno
+   aria intorno, cosi in uno schermo ci stanno piu offerte. */
+.prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:2px 14px;
+  background:var(--carta);border:1.5px solid var(--linea);border-radius:16px;
+  padding:10px 13px 9px;margin-top:8px}
 .prezzo-riga .dati{grid-column:1;grid-row:2;min-width:0}
-.prezzo-riga .nome{margin:7px 0 0;font-size:17px;font-weight:700;line-height:1.25}
+.prezzo-riga .nome{margin:5px 0 0;font-size:16px;font-weight:700;line-height:1.25}
 .prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
 .prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
 .prezzo-riga .val .p1,.prezzo-riga .val .p2{display:block}
-.prezzo-riga .val .p2{margin-top:7px}
-.prezzo-riga .val .n{display:inline-block;font-family:var(--f-prezzo);font-size:28px;
+.prezzo-riga .val .p2{margin-top:5px}
+.prezzo-riga .val .n{display:inline-block;font-family:var(--f-prezzo);font-size:26px;
   font-weight:700;color:var(--rosso);font-variant-numeric:tabular-nums}
 .prezzo-riga .val .pz{display:inline-block;font-family:var(--f-prezzo);font-size:19px;
   font-weight:600;font-variant-numeric:tabular-nums}
@@ -530,7 +541,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    pillola in cima: il verde, in questa pagina, vuol dire «il meno caro» e
    resta verde in tutti i cento look. */
 .prezzo-riga.vince{background:var(--verde-tenue);border:2px solid var(--verde);
-  padding:13px 15px 10px}
+  padding:9px 12px 8px}
 /* LE OFFERTE CHE DEVONO ANCORA COMINCIARE SONO SBIADITE, col prezzo grigio:
    sbiadite, non nascoste — un prezzo che parte lunedì serve saperlo. */
 .prezzo-riga.dopo{opacity:.82}
@@ -544,9 +555,9 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
 /* La nota con le condizioni: tessera, sgocciolato, «max 6 pezzi». In una
    pillola ambra, che qui vuol dire «attenzione a questo». */
-.prezzo-riga .nota{margin:9px 0 0;font-size:13px;
-  background:var(--ambra-tenue);color:var(--ambra);border-radius:12px;
-  padding:7px 11px;line-height:1.35;font-weight:600}
+.prezzo-riga .nota{margin:7px 0 0;font-size:12.5px;
+  background:var(--ambra-tenue);color:var(--ambra);border-radius:11px;
+  padding:6px 10px;line-height:1.3;font-weight:600}
 .prezzo-riga .dove{margin:8px 0 0;font-size:12.5px;color:var(--tenue)}
 a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin:0;
   padding:5px;border:0;background:none;color:var(--rosso);
@@ -578,7 +589,7 @@ a.dove.apri::after{content:none}
   .prezzo-riga .val .pz{margin:0}
   .prezzo-riga .val .n{font-size:26px}
   .riferimento{border-radius:16px}
-  .tasto.trova{font-size:15.5px}
+  .tasto.trova{font-size:14.5px}
 }
 
 /* ---- elenco pagine ---- */
@@ -849,9 +860,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       puoi anche scrivere un nome che nel catalogo non c'è.</p>
     </div>
     <div class="voce">
-      <h3>Il tasto rosso «Cerca fra i prezzi»</h3>
-      <p>Serve a trovare <b>una singola offerta</b> fra tutte quelle lette: scrivi una
-      marca, un formato o il nome di un negozio. È un'altra cosa dalla casella dentro
+      <h3>Il tasto rosso «Cerca un prodotto o una marca»</h3>
+      <p>Serve a trovare <b>una singola offerta</b> fra <b>tutte</b> quelle lette: scrivi
+      una marca, un formato o il nome di un negozio. È un'altra cosa dalla casella dentro
       il cassetto, che invece accende i prodotti della lista.</p>
     </div>
     <div class="voce">
@@ -1039,6 +1050,18 @@ function riaggancia(v) {
      bottone si sarebbe ritrovato un prodotto che non trova piu nessun prezzo,
      senza capire perche. Quindi una categoria che il catalogo non conosce si
      butta e si riprova ad agganciare dal nome. */
+  /* I NOMI ACCORCIATI DEL 2026-09-22. Chi ha una lista salvata ce l'ha ancora
+     coi nomi lunghi: «Prosciutto crudo», «Succhi e bibite», «Carne di bue».
+     Qui il bottone prende il nome nuovo e si riattacca alla categoria nuova,
+     senza perdere niente. Si tocca SOLO chi ha ancora esattamente il nome che
+     aveva il catalogo: se uno si e rinominato il prodotto a modo suo, quel
+     nome resta suo. Senza questo pezzo «Pesce fresco» non si riaggancerebbe
+     affatto: il ripescaggio qui sotto va per nome e per parole del volantino,
+     e fra le parole del pesce la parola «pesce» non c'e apposta. */
+  const nuovoNome = (DATI.rinominate || {})[v.nome];
+  if (nuovoNome) v = { ...v, nome: nuovoNome, cat: nuovoNome };
+  else if (v.cat && (DATI.rinominate || {})[v.cat]) v = { ...v, cat: DATI.rinominate[v.cat] };
+
   if (v.cat && !DATI.catalogo.some(x => x.nome === v.cat)) v = { ...v, cat: null };
   if (v.cat) return v;
   const nomi = [v.nome].concat(v.parole || []).map(norm);
@@ -1258,7 +1281,14 @@ function disegnaTasti() {
      come un prodotto in mezzo agli altri. Il rosso arriva da «.tasto.trova»,
      scritto dopo «.tasto.agg» nel foglio di stile, e vince lui. */
   cer.type = 'button'; cer.className = 'tasto agg trova';
-  cer.textContent = ricercaAperta ? 'Chiudi la ricerca' : 'Cerca fra i prezzi di tutte le offerte';
+  /* LA SCRITTA DEL TASTO ROSSO, scelta da Manlio il 2026-09-22 fra tre:
+     «Cerca un prodotto o una marca». Prima diceva «Cerca fra i prezzi di
+     tutte le offerte», che spiegava meglio la differenza col cassetto ma era
+     lunga il doppio e costringeva la pastiglia a due righe sul telefono.
+     Quello che si perde — che cerca fra TUTTE le offerte lette, non fra i
+     prodotti della lista — resta scritto nell'Aiuto e nella casella che si
+     apre («Scrivi un prodotto, una marca, un negozio…»). */
+  cer.textContent = ricercaAperta ? 'Chiudi la ricerca' : 'Cerca un prodotto o una marca';
   cer.setAttribute('aria-expanded', String(ricercaAperta));
   cer.setAttribute('aria-controls', 'ricerca');
   cer.onclick = () => { apriRicerca(!ricercaAperta); };
@@ -1639,7 +1669,7 @@ function rigaPrezzo(o, meno) {
   d.querySelector('.nome').textContent = o.pro;
 
   /* QUANDO I DUE PREZZI SONO LO STESSO NUMERO, SI SCRIVE UNA VOLTA SOLA.
-     Chiesto da Manlio il 2026-09-23: «ci sono dei prodotti col prezzo al kg
+     Chiesto da Manlio il 2026-09-22: «ci sono dei prodotti col prezzo al kg
      che corrisponde al prezzo al pezzo, soprattutto nei salumi ma anche negli
      altri prodotti da banco, che chiaramente non sono confezionati; puoi
      toglierli nel caso in cui coincidano». Sono le offerte vendute sfuse —
