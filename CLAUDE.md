@@ -196,14 +196,17 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   **dal 28 al 30**, non tutto il periodo: le date sono scritte riga per riga.
   `lidl17` e `lidlfv17` (17-23 settembre) restano validi altri due giorni,
   **nessun buco**. Copertura: 52/52 pagine lette.
-- **Ekom «I più ekonomici» (22 settembre-5 ottobre): ancora non online, 4°
-  giorno di fila che si controlla senza trovarlo** (19, 20, 21, 22 settembre
-  — kimbino.it/ekom/ mostra solo «in anteprima» senza un volantino
-  sfogliabile, il sito ufficiale ekomdiscount.it mostra ancora l'8-21).
-  `ekom08` è scaduto il 21: **da ieri non ci sono offerte Ekom** in lista, e
-  Manlio ne è già stato avvisato il 21. **Da fare: appena esce online si legge
-  per intero; se lui manda le foto delle pagine di carta (come per l'8-21), si
-  legge da quelle.**
+- **CHIUSA: letto per intero il 2026-09-22 l'Ekom «I più ekonomici» (22
+  settembre-5 ottobre)** (`ekom22`, 16 pagine). Non l'avevo trovato da solo —
+  kimbino.it/ekom/ non lo sapeva ancora — **è stato Manlio a segnalare il
+  link giusto**, `ekomdiscount.it/volantini`, il sito ufficiale. Da lì in poi
+  la fonte per l'Ekom è quella, non più kimbino: in NOTE.md c'è scritto come
+  leggerla (serve un browser vero, non un fetch semplice, ma le pagine si
+  prendono con un `curl` normale una volta trovato l'indirizzo dell'API).
+  102 prezzi nuovi in `dati.py`. 3 pagine scartate (copertina, concorso a
+  premi, pubblicità app): in `scartate.py`. Alcune offerte valgono solo con
+  la carta EKOM UP, segnato riga per riga come per la MD Buona Spesa Card.
+  Copertura: 16/16 pagine lette.
 - **Ipercoop: `promoipercoop.it` ancora 503**, controllato di nuovo il
   2026-09-22 (5° giorno di fila). Da riprovare.
 - **Mercatò, Bennet, Eurospin, MD, Carrefour Iper: nessuna novità** il
@@ -359,21 +362,21 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   In NOTE.md c'è per esteso.
 - **Copertura letta: tutti i volantini con prezzi in `dati.py` sono al 100%**
   (bennet10, lidl17, lidlfv17, eurospin10, eurospin24, md08, carriper15,
-  mercato17, md22, ekom08, bennet1709, lidl24).
-- **Scadenze da tenere d'occhio nei prossimi giorni**: `md08` ed `eurospin10`
-  sono scaduti il 20 settembre (da togliere con `pulisci --fai` appena il
-  programma lo permette), `ekom08` è scaduto il 21 (successore ancora non
-  online, vedi sopra), `bennet10`, `lidl17` e `lidlfv17` scadono il 23 (occhio:
-  nel Lidl 17-23 la «Panetteria» vale solo dal 17 al 20, e alcune offerte «Il
-  meglio del lunedì» valgono solo dal 21 al 23 — già segnato nelle note delle
-  singole righe). `mercato17` e `bennet1709` scadono il 30, `lidl24` anche
-  (occhio: alcune sue offerte valgono solo dal 24 al 27 o solo dal 28 al 30,
-  non tutto il periodo — già segnato riga per riga). `md22` scade il 4
-  ottobre, `eurospin24` anche. La pagina Oktoberfest del Bennet (pagine 20-21
-  di `bennet10`) scade il 4 ottobre, non il 23 come il resto — occhio quando
-  si ributta il volantino. Il weekend Eurospin 25-27 settembre e quello del
-  2-4 ottobre (vedi sopra) valgono solo quei giorni, non tutto il periodo di
-  `eurospin24`.
+  mercato17, md22, ekom08, bennet1709, lidl24, ekom22).
+- **Scadenze da tenere d'occhio nei prossimi giorni**: `md08`, `eurospin10` ed
+  `ekom08` sono scaduti (20 e 21 settembre) ma i loro successori sono già
+  dentro `dati.py`: da togliere con `pulisci --fai` appena il programma lo
+  permette, non è urgente. `bennet10`, `lidl17` e `lidlfv17` scadono il 23
+  (occhio: nel Lidl 17-23 la «Panetteria» vale solo dal 17 al 20, e alcune
+  offerte «Il meglio del lunedì» valgono solo dal 21 al 23 — già segnato
+  nelle note delle singole righe). `mercato17` e `bennet1709` scadono il 30,
+  `lidl24` anche (occhio: alcune sue offerte valgono solo dal 24 al 27 o solo
+  dal 28 al 30, non tutto il periodo — già segnato riga per riga). `md22`
+  scade il 4 ottobre, `eurospin24` anche. `ekom22` scade il 5 ottobre. La
+  pagina Oktoberfest del Bennet (pagine 20-21 di `bennet10`) scade il 4
+  ottobre, non il 23 come il resto — occhio quando si ributta il volantino.
+  Il weekend Eurospin 25-27 settembre e quello del 2-4 ottobre (vedi sopra)
+  valgono solo quei giorni, non tutto il periodo di `eurospin24`.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
   il codice**: parte, lavora pochi minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
