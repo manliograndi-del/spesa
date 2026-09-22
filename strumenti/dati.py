@@ -108,6 +108,21 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
+    # IPERCOOP. Per cinque giorni l'ho cercato sul sito sbagliato:
+    # `promoipercoop.it` e di Coop Alleanza (Emilia-Romagna), e rispondeva 503.
+    # A Torino gli Ipercoop sono di NOVA COOP, e i suoi volantini stanno su
+    # volantinopiu, linkati da novacoop.it:
+    #   negozi.volantinopiu.com/ccno-8001120004796.html
+    #   le pagine sono resources.volantinopiu.it/flyer/<cifre dell'id>/pagine/N.jpg
+    # Il 2026-09-22 Nova Coop aveva tre volantini e NESSUNO con prezzi:
+    #   «Scegli tu Grandi Marche» (10-23 settembre) — solo sconti percentuali,
+    #   senza il prezzo di partenza: non si puo ricavare nessun prezzo al kg;
+    #   «Scuola un rientro alla grande» — quaderni e zaini;
+    #   «Expert Orange week» — elettrodomestici.
+    # Quello dei prezzi scade il 23: il successore parte il 24. La fine non la
+    # so ancora e non me la invento.
+    Atteso('Ipercoop', 'il prossimo, dal 24 settembre', '2026-09-24', None,
+           'novacoop.it, che porta a volantinopiu'),
 ]
 
 for _a in VOLANTINI_ATTESI:

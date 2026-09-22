@@ -265,10 +265,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     riconoscono di che negozio è un'offerta.
   - **I marchi restano di chi li ha**: stanno lì per far riconoscere il
     negozio, e il piede della pagina lo dice.
-  - **Mancano ancora Carrefour, Ipercoop e Mercatò.** Carrefour e Ipercoop
-    sono su Wikimedia Commons ma il 2026-09-22 rispondeva 429 a ogni
-    richiesta: non è che non ci siano, vanno ripresi con calma. Di Mercatò su
-    Commons non c'è niente.
+  - **Ci sono tutte e otto** dal 2026-09-22. Wikimedia continuava a dare 429,
+    quindi gli ultimi tre sono arrivati da altrove: Carrefour dal suo sito
+    (SVG vero), Ipercoop e Mercatò disegnati da un'immagine con `vettore`.
+    **Il Mercatò ha due tinte** (scritta blu, fascia arancione): è per lui che
+    `vettore` accetta il numero di tinte come terzo argomento.
 - **Il tasto «Look» sta in cima, prima di «Aiuto»** (chiesto il 2026-09-22) e
   apre l'elenco dei cento look: tocchi una riga e la pagina si ricolora subito.
   I cento look **non si scrivono a mano**: li calcola `strumenti/look.py` dalle
@@ -320,10 +321,21 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-22)
 
-- **Messi il 2026-09-22 i marchi veri di cinque insegne** (Lidl, MD,
-  Eurospin, Bennet, Ekom) al posto delle pillole col nome. Mancano Carrefour,
-  Ipercoop e Mercatò: sopra c'è scritto dove prenderli e perché non ci sono
-  ancora.
+- **Messi il 2026-09-22 i marchi veri di TUTTE E OTTO le insegne.** Le
+  pillole col nome scritto non si vedono più da nessuna parte.
+- **IPERCOOP: per cinque giorni l'ho cercato sul sito sbagliato.**
+  `promoipercoop.it` è di **Coop Alleanza** (Emilia-Romagna) e rispondeva 503.
+  A Torino gli Ipercoop sono di **NOVA COOP**, e i volantini stanno su
+  volantinopiu, linkati da `novacoop.it`:
+  `negozi.volantinopiu.com/ccno-8001120004796.html`, pagine su
+  `resources.volantinopiu.it/flyer/<cifre dell'id>/pagine/N.jpg`.
+  Il 2026-09-22 Nova Coop aveva tre volantini e **nessuno con prezzi**:
+  «Scegli tu Grandi Marche» (10-23 settembre, solo sconti percentuali senza
+  prezzo di partenza — guardate le pagine, confermato), «Scuola un rientro
+  alla grande» (quaderni) e «Expert Orange week» (elettrodomestici). Quello
+  dei prezzi **scade il 23 e il successore parte il 24**: messo in
+  `VOLANTINI_ATTESI` con la fine ancora da sapere. **Da fare: il 24 settembre
+  si guarda volantinopiu e si legge per intero.**
 - **Rifatta l'impaginazione il 2026-09-22 (`sw.js` v52)**: schede al posto
   delle righe, marchi dei negozi, titolo «Spesa», data di riferimento, tasto
   rosso della ricerca in cima. Sopra c'è la regola per esteso.

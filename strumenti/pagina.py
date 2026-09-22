@@ -492,14 +492,15 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
 .prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
-.prezzo-riga .val .et{display:block;font-size:10px;letter-spacing:.09em;
-  text-transform:uppercase;font-weight:700;color:var(--tenue);margin-bottom:3px}
-.prezzo-riga .val .pz{display:block;font-family:var(--f-prezzo);font-size:19px;
-  font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:9px}
+.prezzo-riga .val .p1,.prezzo-riga .val .p2{display:block}
+.prezzo-riga .val .p2{margin-top:7px}
 .prezzo-riga .val .n{display:inline-block;font-family:var(--f-prezzo);font-size:28px;
   font-weight:700;color:var(--rosso);font-variant-numeric:tabular-nums}
-.prezzo-riga .val .u{display:inline-block;font-size:11px;letter-spacing:.06em;
-  text-transform:uppercase;color:var(--tenue);margin-left:4px}
+.prezzo-riga .val .pz{display:inline-block;font-family:var(--f-prezzo);font-size:19px;
+  font-weight:600;font-variant-numeric:tabular-nums}
+.prezzo-riga .val .u,.prezzo-riga .val .et{display:inline-block;font-size:10.5px;
+  letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--tenue);
+  margin-left:5px}
 .prezzo-riga .coda{grid-column:1/-1;grid-row:1;margin:0;display:flex;flex-wrap:wrap;
   gap:6px;align-items:center}
 /* IL MARCHIO DEL NEGOZIO, chiesto da Manlio il 2026-09-22: «al posto del nome
@@ -550,10 +551,16 @@ a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin
 a.dove.apri svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;
   stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 a.dove.apri::after{content:none}
-/* L'angolo in basso a destra della scheda: l'icona del volantino e il tondino
-   dei giorni, uno accanto all'altro. */
-.angolo{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:10px}
-.angolo .giorni,.angolo .parte{margin-top:0}
+/* Il tondino dei giorni e il foglietto del volantino, in cima accanto al
+   marchio e alti come lui. */
+.angolo{display:flex;align-items:center;gap:4px;margin:0}
+.angolo .giorni,.angolo .parte{margin:0;gap:0}
+.angolo .giorni .gg{display:none}
+.angolo .anello,.angolo svg{width:30px;height:30px}
+.angolo .num{font-size:12.5px}
+.angolo .parte .mese{font-size:8.5px;margin-top:-1px}
+.angolo a.dove.apri{min-height:30px;min-width:30px;padding:2px}
+.angolo a.dove.apri svg{width:23px;height:23px}
 
 /* SUL TELEFONO LA SCHEDA VA IN COLONNA. A 390 px le due colonne si
    strozzano: il nome del prodotto andava a capo ogni due parole e i prezzi
@@ -567,7 +574,6 @@ a.dove.apri::after{content:none}
   .prezzo-riga .val .et{margin:0;align-self:center}
   .prezzo-riga .val .pz{margin:0}
   .prezzo-riga .val .n{font-size:26px}
-  .prezzo-riga .angolo{flex-basis:100%;justify-content:flex-start;margin-top:2px}
   .riferimento{border-radius:16px}
   .tasto.trova{font-size:15.5px}
 }
@@ -1615,8 +1621,8 @@ function rigaPrezzo(o, meno) {
   d.className = 'prezzo-riga' + (meno ? ' vince' : '') + (futuro(o) ? ' dopo' : '');
   d.innerHTML = `<div class="coda"></div>
     <div class="dati"><p class="nome"></p><p class="sotto"></p></div>
-    <p class="val"><span class="et">al pezzo</span><span class="pz"></span>
-      <span class="et">prezzo unitario</span><span class="n"></span><span class="u"></span></p>`;
+    <p class="val"><span class="p1"><span class="n"></span><span class="u"></span></span>
+      <span class="p2"><span class="pz"></span><span class="et">al pezzo</span></span></p>`;
 
   /* In cima alla scheda: il marchio del negozio e i bollini che contano. */
   const coda = d.querySelector('.coda');
@@ -1648,14 +1654,18 @@ function rigaPrezzo(o, meno) {
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
 
+  /* IL TONDINO E IL FOGLIETTO STANNO IN CIMA, accanto al marchio, chiesto da
+     Manlio il 2026-09-22: prima il tondino dei giorni, poi il foglietto del
+     volantino. Il tondino è piccolo come il marchio e non ha più la scritta
+     «giorni» sotto: in quella riga ci sono già le parole che servono. */
   const cer = cerchioGiorni(o) || cerchioInizio(o);
   const link = dove(o);
   if (cer || link.tagName === 'A') {
     const ang = document.createElement('div');
     ang.className = 'angolo';
-    if (link.tagName === 'A') ang.appendChild(link);
     if (cer) ang.appendChild(cer);
-    d.querySelector('.val').appendChild(ang);
+    if (link.tagName === 'A') ang.appendChild(link);
+    coda.insertBefore(ang, coda.children[1] || null);
   }
 
   const dati = d.querySelector('.dati');

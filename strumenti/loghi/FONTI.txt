@@ -39,3 +39,15 @@ AGGIUNTO IL 2026-09-22
   ekom.svg      disegnato dall'immagine che ha mandato Manlio, con
                 `python3 -m vettore <immagine> ekom`. Su Wikimedia un EKOM
                 libero non c'e. E un disegno vero, non una figura: non sgrana.
+
+COMPLETATI IL 2026-09-22 (notte): otto insegne su otto
+  carrefour-iper.svg  dal sito di Carrefour Italia, disegno vero (SVG):
+                      www.carrefour.it/.../images/carrefour-logotype.svg
+  ipercoop.svg        disegnato con `vettore` dal marchio di canale di
+                      volantinopiu (resources.volantinopiu.it/img/canale/41/logoh.png)
+  mercato.svg         disegnato con `vettore` a DUE tinte dal marchio di
+                      kimbino (eu.kimbicdn.com/.../it/data/152/logo.png):
+                      la scritta blu e la fascia arancione.
+                      `python3 -m vettore <immagine> mercato 2`
+Wikimedia continuava a rispondere 429 anche stanotte: Carrefour e Ipercoop
+sono arrivati da altre parti, e vanno bene uguale.
