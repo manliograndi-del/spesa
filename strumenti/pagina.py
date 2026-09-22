@@ -21,6 +21,11 @@ import json, os
 from dati import OFFERTE, VOLANTINI, UNITA, D
 from catalogo import CATALOGO, REPARTI
 from lista import PARTENZA
+from look import LOOK, verifica as verifica_look
+
+# I look non si pubblicano senza essere stati misurati: `verifica` si ferma con
+# un errore se in uno di essi il testo non stacca abbastanza dallo sfondo.
+verifica_look()
 
 PDF     = {v.chiave: v.pdf for v in VOLANTINI}
 MODELLO = {v.chiave: v.indirizzo for v in VOLANTINI}
@@ -159,6 +164,21 @@ NOVITA_PAGINA = [
                'volantino, reparto per reparto, e «Il volantino» apre le sue '
                'pagine sul sito di chi lo pubblica. Tutti e due si aprono in '
                'una pagina nuova, così non perdi quello che stavi guardando.'),
+    dict(id='2026-09-21-aiuto', quando='21 settembre',
+         titolo='Il tasto «Aiuto»',
+         testo='In cima, accanto a «Novità», c\'è un tasto «Aiuto»: apre una '
+               'finestra che spiega in poche righe come funziona la pagina. '
+               'Non si apre mai da sola, e la puoi riaprire tutte le volte che '
+               'vuoi.'),
+    dict(id='2026-09-22-look', quando='22 settembre',
+         titolo='Il tasto «Look»: cento vestiti per la pagina',
+         testo='In cima c\'è un tasto «Look»: apre un elenco di cento '
+               'combinazioni di colori, divise per famiglia (neutri, '
+               'tranquilli, vivaci, stagionali...). Ne tocchi una e la pagina '
+               'si ricolora subito, comprese quelle scure per la sera. La '
+               'scelta se la ricorda il telefono, e con «Originale» torni '
+               'com\'era. Cambiano solo i colori: le offerte e la tua lista '
+               'restano quelle.'),
 ]
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
@@ -166,6 +186,9 @@ DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        novita=NOVITA_PAGINA,
+                       look=[dict(id=l['id'], nome=l['nome'], fam=l['fam'],
+                                  base=l['base'], notte=l['notte'], v=l['v'])
+                             for l in LOOK],
                        letto=OGGI),
                   ensure_ascii=False, separators=(',', ':'))
 LISTA0 = json.dumps(partenza, ensure_ascii=False, separators=(',', ':'))
@@ -188,6 +211,11 @@ HTML = r'''<title>Spesa</title>
   --verde-tenue:#E6F3EC;
   --ambra:#8A5A08;
   --ambra-tenue:#FCF2DE;
+  /* Servono al tasto «Look»: erano scritti a mano dentro le regole e un look
+     nuovo non poteva cambiarli. Qui i valori sono quelli di sempre. */
+  --rosso-tenue:#FBEEF0;
+  --blu:#2B4A7A;
+  --blu-tenue:#E9EEF6;
   --f-testo:'Asap',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
   --f-prezzo:'Oswald','Arial Narrow',ui-sans-serif,sans-serif;
   color-scheme:light;
@@ -226,6 +254,23 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    Vuoto invece che rosso pieno: il rosso pieno, in questa pagina, vuol dire
    «premi qui adesso» (il tasto Novità e «Cerca fra i prezzi»), e l'aiuto non
    e una cosa da premere adesso — e li per quando serve. */
+/* LA SCELTA DEL LOOK, chiesta da Manlio il 2026-09-22: cento combinazioni di
+   colori, una riga per ognuna, con le sue tinte in vista. Si sceglie a occhio,
+   non per nome: la striscia dei colori conta più della scritta. */
+.look-riga{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
+  background:var(--carta);border:1.5px solid var(--linea);border-radius:10px;
+  padding:9px 11px;margin-top:7px;cursor:pointer;font-family:inherit;
+  color:var(--inchiostro);min-height:52px}
+.look-riga[aria-pressed="true"]{border-color:var(--rosso);border-width:2px}
+.look-riga .strisce{flex:none;display:flex;border-radius:6px;overflow:hidden;
+  border:1px solid var(--linea-forte)}
+.look-riga .strisce i{display:block;width:17px;height:30px}
+.look-riga .come{flex:1;min-width:0}
+.look-riga .come b{display:block;font-size:14.5px;font-weight:600;line-height:1.2}
+.look-riga .come span{display:block;color:var(--tenue);font-size:12px;margin-top:2px}
+.look-riga .scelto{flex:none;color:var(--rosso);font-weight:700;font-size:13px}
+.gruppo-look{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
+  font-size:12px;font-weight:600;color:var(--tenue);margin:18px 0 2px}
 .tasti-alti{flex:none;display:inline-flex;align-items:center;gap:8px}
 .aiuto{background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
   border-radius:99px;padding:9px 15px;font-size:14px;font-weight:700;letter-spacing:.02em;
@@ -298,7 +343,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   min-height:38px;line-height:1.1;white-space:nowrap}
 .conferma[hidden]{display:none}
 .conferma{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;
-  background:#FBEEF0;border:1.5px solid var(--rosso);border-radius:10px;padding:10px 12px}
+  background:var(--rosso-tenue);border:1.5px solid var(--rosso);border-radius:10px;padding:10px 12px}
 .conferma span{font-size:14.5px;font-weight:600;flex:1;min-width:9em}
 .conferma button{border-radius:9px;padding:9px 15px;font-size:14.5px;font-weight:600;
   cursor:pointer;min-height:42px;border:1.5px solid var(--rosso);background:var(--carta);
@@ -344,7 +389,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   border-radius:5px;padding:3px 8px}
 .bollo.meno{background:var(--verde-tenue);color:var(--verde)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
-.bollo.dopo{background:#E9EEF6;color:#2B4A7A}
+.bollo.dopo{background:var(--blu-tenue);color:var(--blu)}
 .bollo.stretta{background:var(--rosso);color:var(--su-rosso)}
 .prezzo-riga .sotto .quando{white-space:nowrap}
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
@@ -447,6 +492,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <button type="button" class="info" aria-expanded="false"
               aria-label="Come funziona questa pagina">i</button></p>
     <span class="tasti-alti">
+      <button type="button" class="aiuto" id="apri-look">Look</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
       <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
          target="_blank" rel="noopener noreferrer">Novità</a>
@@ -556,6 +602,24 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 </section>
 
 <footer id="pie"></footer>
+</div>
+
+<!-- LA FINESTRA DEI LOOK. Chiesta da Manlio il 2026-09-22: «crea una palette
+     di colori per il sito da ciascuna di queste e aggiungi un tasto look che
+     permette di scegliere fra queste palette». Le righe si costruiscono quando
+     si apre, non prima: sono cento, e farle all'avvio rallenterebbe la pagina
+     per una finestra che quasi sempre non si apre. -->
+<div class="buio" id="buio-look" hidden>
+  <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-look">
+    <h2 id="titolo-look">Scegli il look</h2>
+    <p class="sotto-titolo">Cambia i colori della pagina. Il verde del «meno caro»
+    e l'ambra degli avvisi restano riconoscibili in tutti i look: quelli vogliono
+    dire qualcosa. La scelta resta anche domani.</p>
+    <div id="voci-look"></div>
+    <div class="pie-finestra">
+      <button type="button" class="chiudi" id="chiudi-look">Fatto</button>
+    </div>
+  </div>
 </div>
 
 <!-- LA FINESTRA DELL'AIUTO. Chiesta da Manlio il 2026-09-21: «un pulsantino
@@ -1695,6 +1759,119 @@ function chiudiNovita() {
   }
 }
 
+/* ---------- i look: i colori della pagina ---------- */
+/* Chiesti da Manlio il 2026-09-22, uno per ognuna delle cento combinazioni del
+   libretto di Figma. Un look e solo un pugno di colori messi nelle variabili
+   del foglio di stile: tutta la pagina li usa gia, quindi cambiarli cambia
+   tutto insieme, senza ricaricare niente.
+
+   LA PAGINA PARTE SEMPRE COM'E SEMPRE STATA. Il look si sceglie a mano e resta
+   scelto nel browser di chi guarda. Non e la modalita scura automatica, che e
+   vietata da anni in questo progetto: li decideva il telefono, qui decide lui. */
+const LOOK_SCELTO = 'spesa.look.v1';
+const TINTE = ['carta', 'pannello', 'inchiostro', 'tenue', 'linea', 'linea-forte',
+               'rosso', 'su-rosso', 'rosso-tenue', 'verde', 'verde-tenue',
+               'ambra', 'ambra-tenue', 'blu', 'blu-tenue'];
+let lookAdesso = '';
+
+function applicaLook(id, ricorda) {
+  const radice = document.documentElement;
+  const l = (DATI.look || []).find(x => x.id === id);
+  TINTE.forEach(n => radice.style.removeProperty('--' + n));
+  if (l) TINTE.forEach(n => { if (l.v[n]) radice.style.setProperty('--' + n, l.v[n]); });
+  lookAdesso = l ? l.id : '';
+  if (ricorda !== false) {
+    try { localStorage.setItem(LOOK_SCELTO, lookAdesso); } catch (e) {}
+  }
+  /* La barra del telefono in cima prende il colore della pagina: senza, su un
+     look scuro resta una striscia bianca che sembra un pezzo rotto. */
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    try {
+      meta.content = getComputedStyle(radice).getPropertyValue('--carta').trim() || '#FFFFFF';
+    } catch (e) {}
+  }
+  if (!document.getElementById('buio-look').hidden) segnaLookScelto();
+}
+
+function segnaLookScelto() {
+  document.querySelectorAll('#voci-look .look-riga').forEach(b => {
+    const suo = b.getAttribute('data-look') === lookAdesso;
+    b.setAttribute('aria-pressed', String(suo));
+    b.querySelector('.scelto').textContent = suo ? 'scelto' : '';
+  });
+}
+
+function rigaLook(id, nome, sotto, tinte) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'look-riga';
+  b.setAttribute('data-look', id);
+  b.innerHTML = '<span class="strisce"></span>'
+    + '<span class="come"><b></b><span></span></span><span class="scelto"></span>';
+  const str = b.querySelector('.strisce');
+  tinte.forEach(c => {
+    const i = document.createElement('i');
+    i.style.background = c;
+    str.appendChild(i);
+  });
+  b.querySelector('.come b').textContent = nome;
+  b.querySelector('.come span').textContent = sotto;
+  b.onclick = () => applicaLook(id, true);
+  return b;
+}
+
+function disegnaLook() {
+  const box = document.getElementById('voci-look');
+  if (box.dataset.fatto) { segnaLookScelto(); return; }
+  box.textContent = '';
+  /* Primo di tutti: come torni indietro. Una pagina che cambia colore e non sa
+     tornare com'era e una trappola. */
+  box.appendChild(rigaLook('', 'Originale', 'com’era prima',
+    ['#FFFFFF', '#D40D2B', '#1E7A4B', '#8A5A08']));
+  const fam = [];
+  (DATI.look || []).forEach(l => {
+    if (!fam.length || fam[fam.length - 1].nome !== l.fam) fam.push({ nome: l.fam, righe: [] });
+    fam[fam.length - 1].righe.push(l);
+  });
+  fam.forEach(g => {
+    const t = document.createElement('p');
+    t.className = 'gruppo-look';
+    t.textContent = g.nome;
+    box.appendChild(t);
+    g.righe.forEach(l => box.appendChild(
+      rigaLook(l.id, l.nome, l.notte ? 'scuro' : '', l.base)));
+  });
+  box.dataset.fatto = '1';
+  segnaLookScelto();
+}
+
+function apriLook(si) {
+  const buio = document.getElementById('buio-look');
+  if (!buio) return;
+  if (si) { chiudiNovita(); apriAiuto(false); }
+  buio.hidden = !si;
+  if (si) {
+    disegnaLook();
+    try { buio.querySelector('.finestra').scrollTop = 0; } catch (e) {}
+    try { document.getElementById('chiudi-look').focus({ preventScroll: true }); } catch (e) {}
+  }
+}
+
+document.getElementById('apri-look').onclick = () => apriLook(true);
+document.getElementById('chiudi-look').onclick = () => apriLook(false);
+document.getElementById('buio-look').onclick = ev => {
+  if (ev.target.id === 'buio-look') apriLook(false);
+};
+
+/* Il look scelto l'altra volta si rimette subito, prima di disegnare i prezzi:
+   se no la pagina compare com'era e cambia colore sotto gli occhi. */
+(function lookDiPrima() {
+  let id = '';
+  try { id = localStorage.getItem(LOOK_SCELTO) || ''; } catch (e) { id = ''; }
+  if (id) applicaLook(id, false);
+})();
+
 /* ---------- la finestra dell'aiuto ---------- */
 /* Al contrario di quella delle novita non si apre mai da sola e non si ricorda
    niente: si apre quando uno tocca «Aiuto» e si chiude in tre modi, il tasto,
@@ -1702,7 +1879,7 @@ function chiudiNovita() {
 function apriAiuto(si) {
   const buio = document.getElementById('buio-aiuto');
   if (!buio) return;
-  if (si) chiudiNovita();            // una finestra alla volta
+  if (si) { chiudiNovita(); apriLook(false); }   // una finestra alla volta
   buio.hidden = !si;
   if (si) {
     try { document.getElementById('chiudi-aiuto').focus({ preventScroll: true }); } catch (e) {}
@@ -1723,6 +1900,7 @@ addEventListener('keydown', ev => {
   if (ev.key !== 'Escape') return;
   chiudiNovita();
   apriAiuto(false);
+  apriLook(false);
 });
 mostraNovita();
 

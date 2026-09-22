@@ -2054,3 +2054,91 @@ La prova è `prova-aiuto.js`, dentro `prove.sh`: controlla che il tasto stia in
 cima e non dentro la barra, che la finestra **non** si apra da sola, che si
 riapra sempre, che dentro ci siano davvero le otto spiegazioni e che le due
 finestre non stiano aperte insieme.
+
+## Il tasto «Look»: cento vestiti per la pagina (2026-09-22)
+
+Manlio ha mandato un PDF di Figma con **cento combinazioni di colori** e ha
+chiesto: analizzale, ricavane cento palette per il sito, e metti un tasto
+«Look» per sceglierle.
+
+### Tirare fuori i cento colori dal PDF
+
+Il PDF non aveva i codici dei colori come testo: le quattro caselle di ogni
+combinazione erano immagini. Tre strade provate, in ordine:
+
+1. `pypdf` per leggere il testo: si piantava (`_cffi_backend` mancante,
+   risolto con `pip install cffi`), ma il testo dei codici non c'era comunque.
+2. Rendere la pagina con PyMuPDF e **pescare il colore a pixel** dal centro di
+   ogni casella. Funziona, ma caselle vicine di colore simile si fondevano:
+   la soglia di distinzione è scesa da 12 a 3 e si campiona su più righe.
+   Le caselle bianche venivano buttate via da un filtro «troppo chiaro»:
+   tolto, il bianco è un colore come un altro.
+3. L'OCR dei codici esadecimali scritti sotto le caselle, con la lista di
+   caratteri ristretta a `0-9A-F`, per **incrociare** i due risultati.
+
+Il controllo finale: il codice letto dall'OCR e il colore pescato a pixel non
+devono discostarsi di più di 25 su 255 per canale. Dove non tornava, ha vinto
+il pixel. Il risultato sta in `strumenti/palette.json`: cento combinazioni con
+nome, famiglia e quattro colori — 11 monocromatici, 16 neutri, 17 tranquilli,
+16 romantici, 13 giocose, 15 vivaci, 12 stagionali.
+
+### Da quattro colori a una pagina intera
+
+Una palette di quattro colori non è una pagina: la pagina ha carta, pannelli,
+inchiostro, righe, l'accento dei prodotti accesi, il verde del «meno caro»,
+l'ambra degli avvisi. `strumenti/look.py` fa la traduzione, e le scelte sono
+queste:
+
+- **Chiaro o scuro lo decide la palette**, non il telefono. Se il colore più
+  chiaro dei quattro è comunque scuro (luminosità sotto 0.45), il look nasce
+  scuro: sono 12 su 100. Attenzione: questo **non** rimette in ballo
+  `prefers-color-scheme`, che nel CSS continua a non esistere (vincolo 4) —
+  la pagina non diventa mai scura da sola, diventa scura solo se lui sceglie
+  un look scuro.
+- **La carta non è mai un colore pieno**: è il colore più chiaro mescolato
+  all'86% di bianco (o il più scuro con il 35% di nero, nei look di notte).
+  Un fondo saturo su tutto lo schermo stanca in tre secondi.
+- **L'accento è il più saturo dei quattro**, spinto finché non arriva a 4,5
+  volte il contrasto minimo sul fondo. È il colore del «prodotto acceso» e del
+  tasto «Cerca fra i prezzi»: se non si vede, la pagina non si usa.
+- **Il verde e l'ambra non seguono la palette.** In questa pagina il verde
+  vuol dire «il meno caro» e l'ambra «attenzione alla data»: sono
+  informazioni, non decorazione. Cambia solo la loro tinta, quel tanto che
+  serve a starci sopra il fondo scelto. Un look che facesse diventare blu il
+  bollino del meno caro sarebbe un look che mente.
+- **Il pannello si stacca dalla carta finché il testo non ci sta sopra
+  comodo**: al primo giro dieci look non passavano il controllo, e il
+  pannello si avvicina alla carta un passo per volta finché il testo non
+  arriva a 6 volte il minimo.
+
+### Il controllo, che è la parte seria
+
+`look.py` misura sette accoppiate per ognuno dei cento look (testo su carta,
+testo su pannello, accento su carta, scritta sull'accento, verde sul suo
+fondo, ambra sul suo fondo, testo tenue su carta) con la regola del contrasto
+WCAG, e **`verifica()` si ferma con un errore** se anche uno solo resta sotto
+il minimo. Gira a ogni generazione della pagina, quindi un look illeggibile
+non può arrivare pubblicato. Il più tirato dei cento, al momento, è «Cool
+revival» sull'accoppiata accento/sfondo: sta esattamente sul minimo.
+
+La prova `prova-look.js` rifà gli stessi conti **in JavaScript sulla pagina
+vera**, e controlla anche: che le righe siano 101 (i cento più «Originale»),
+che ognuna mostri le sue quattro strisce di colore, che scegliere cambi
+davvero `--rosso`, che la scelta sopravviva alla ricarica, che esista almeno
+un look scuro, che «Originale» rimetta tutto com'era, e — la più importante —
+**che la pagina appena aperta non abbia nessun look addosso**: chi non ha mai
+scelto niente deve vedere la pagina di sempre.
+
+### Come sta in pagina
+
+Tasto vuoto in cima, prima di «Aiuto», stesso vestito delle altre finestre
+(`.buio` + `.finestra` + «Fatto» attaccato in fondo), **fuori dalla `.barra`**
+per la solita ragione del cassetto. Le tre finestre non stanno aperte insieme:
+aprirne una chiude le altre. L'elenco si costruisce solo quando si apre — cento
+righe con quattro strisce l'una sono 400 elementi, e costruirli all'apertura
+della pagina si sentirebbe sul telefono.
+
+La scelta sta in `localStorage` (`spesa.look.v1`) e si applica cambiando le
+variabili CSS su `documentElement`, più il `theme-color` della barra del
+browser. Niente foglio di stile in più, niente pagine generate in più: i cento
+look sono un pezzo di dati dentro `DATI`, circa 30 KB.

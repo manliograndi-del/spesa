@@ -21,6 +21,7 @@ for f in out/sito.html out/pagina.html out/spesa-da-sola.html; do
   node "$S/prova-volantini.js" "$f"
   node "$S/prova-novita-pagina.js" "$f"
   node "$S/prova-aiuto.js" "$f"
+  node "$S/prova-look.js" "$f"
   if [ "$f" = out/pagina.html ]; then
     node "$S/prova-testi.js" "$f" --condivisa
   else

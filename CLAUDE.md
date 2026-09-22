@@ -156,6 +156,28 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   ancora letto stanno in **`VOLANTINI_ATTESI`** in `dati.py` e in tabella sono
   segnati «prezzi non ancora letti»: si tolgono di lì appena il volantino
   entra in `VOLANTINI`. La prova è `prova-novita.js`.
+- **Il tasto «Look» sta in cima, prima di «Aiuto»** (chiesto il 2026-09-22) e
+  apre l'elenco dei cento look: tocchi una riga e la pagina si ricolora subito.
+  I cento look **non si scrivono a mano**: li calcola `strumenti/look.py` dalle
+  cento combinazioni del file Figma che ha mandato lui, salvate in
+  `strumenti/palette.json` (quattro colori per combinazione, con nome e
+  famiglia). Regole da non cambiare:
+  - **Il verde «il meno caro» resta verde e l'ambra degli avvisi resta ambra**
+    in tutti i look: cambia solo la tinta, non il significato. Il colore
+    dell'accento (il rosso «prodotto acceso») è l'unico che segue la palette.
+  - **Nessun look può risultare illeggibile.** `look.py` misura il contrasto
+    (la regola WCAG) di sette accoppiate e `verifica()` si ferma con un errore
+    se anche uno solo non arriva al minimo; gira a ogni generazione della
+    pagina. I look scuri (12 su 100) sono quelli delle palette già scure: non
+    c'entrano con `prefers-color-scheme`, che nel CSS **continua a non
+    esistere** (vincolo 4).
+  - **La pagina NON parte con un look addosso.** Chi non ha mai scelto vede
+    l'originale; la scelta sta in `localStorage` (`spesa.look.v1`) e con
+    «Originale» si torna indietro.
+  - Il pannello è una finestra come le altre, **fuori dalla `.barra`**, e le
+    tre finestre (novità, aiuto, look) **non stanno aperte insieme**.
+  La prova è `prova-look.js`, che rifà i conti del contrasto in JavaScript su
+  tutti e cento.
 - **Il tasto «Aiuto» sta in cima, accanto a «Novità»** (chiesto il 2026-09-21)
   e apre una finestra che spiega come si usa la pagina. **Non si apre mai da
   sola e si riapre sempre**: è il contrario della finestra «Cosa c'è di
@@ -183,7 +205,12 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-21)
+## Da fare adesso (aggiornato il 2026-09-22)
+
+- **Fatto il 2026-09-22 il tasto «Look»**: cento look ricavati dalle cento
+  combinazioni di colori che ha mandato Manlio (il PDF di Figma). Pubblicato
+  su sito e artifact, `sw.js` a v46. Se un giorno arrivassero altre palette,
+  si aggiungono a `strumenti/palette.json` e basta: il resto si rifà da solo.
 
 - **Fatto il 2026-09-21 il tasto «Aiuto»** in cima accanto a «Novità», col
   testo approvato da Manlio prima di metterlo. Pubblicato su sito e artifact.
@@ -390,5 +417,6 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 - `catalogo.pdf` — il foglio da stampare e correggere
 - `indice.json` — le parole di ogni pagina di ogni volantino, committato
 - `storia/` — il diario, un file per giorno
-- `strumenti/` — catalogo, dati, pagina, storia, lette, scartate, stampa, prove
+- `strumenti/` — catalogo, dati, pagina, storia, lette, scartate, stampa, prove,
+  look (i cento look) e `palette.json` (le cento combinazioni di partenza)
 - `NOTE.md` — la storia lunga e il perché di ogni scelta

@@ -44,7 +44,8 @@ setTimeout(() => {
     if (v.querySelector('p').textContent.trim().length < 20) male.push('una novità senza spiegazione');
   });
 
-  const dentro = d.querySelector('.finestra').textContent;
+  /* dentro LA SUA finestra: nella pagina ce ne sono altre (aiuto, look). */
+  const dentro = d.querySelector('#buio .finestra').textContent;
   if (!/[Cc]erca fra i prezzi/.test(dentro))
     male.push('la finestra non parte dalla casella di ricerca, che è quello che ha chiesto');
   /* NIENTE PREZZI QUI DENTRO: le novità dei prezzi hanno il loro tasto. */

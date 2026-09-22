@@ -1,0 +1,1102 @@
+[
+{
+"n": 1,
+"nome": "Stormy morning",
+"famiglia": "monocromatici",
+"colori": [
+"#6A89A7",
+"#BDDDFC",
+"#88BDF2",
+"#384959"
+]
+},
+{
+"n": 2,
+"nome": "Mossy hollow",
+"famiglia": "monocromatici",
+"colori": [
+"#636B2F",
+"#BAC095",
+"#D4DE95",
+"#3D4127"
+]
+},
+{
+"n": 3,
+"nome": "Blue eclipse",
+"famiglia": "monocromatici",
+"colori": [
+"#282656",
+"#8685AD",
+"#525080",
+"#0F0E46"
+]
+},
+{
+"n": 4,
+"nome": "Lush forest",
+"famiglia": "monocromatici",
+"colori": [
+"#2E6F40",
+"#CFFFDC",
+"#68BA7F",
+"#253D2C"
+]
+},
+{
+"n": 5,
+"nome": "Green juice",
+"famiglia": "monocromatici",
+"colori": [
+"#4CBB17",
+"#48872B",
+"#39542C",
+"#293325"
+]
+},
+{
+"n": 6,
+"nome": "Chili spice",
+"famiglia": "monocromatici",
+"colori": [
+"#CD1B17",
+"#FEA996",
+"#9B1212",
+"#380009"
+]
+},
+{
+"n": 7,
+"nome": "Chocolate truffle",
+"famiglia": "monocromatici",
+"colori": [
+"#7E4A1A",
+"#C05800",
+"#FDFBD4",
+"#38240D"
+]
+},
+{
+"n": 8,
+"nome": "Ink wash",
+"famiglia": "monocromatici",
+"colori": [
+"#4A4A4A",
+"#CBCBCB",
+"#FFFFE3",
+"#6D8196"
+]
+},
+{
+"n": 9,
+"nome": "Golden taupe",
+"famiglia": "monocromatici",
+"colori": [
+"#D8B84B",
+"#BDB76B",
+"#FDFBD4",
+"#CE8947"
+]
+},
+{
+"n": 10,
+"nome": "Wisteria bloom",
+"famiglia": "monocromatici",
+"colori": [
+"#D3D3FF",
+"#9400D3",
+"#D8BFD8",
+"#ED80E9"
+]
+},
+{
+"n": 11,
+"nome": "Burnt sienna",
+"famiglia": "monocromatici",
+"colori": [
+"#E35336",
+"#F5F5DC",
+"#F4A460",
+"#A0522D"
+]
+},
+{
+"n": 12,
+"nome": "Blooming romance",
+"famiglia": "romantici",
+"colori": [
+"#660032",
+"#E574AC",
+"#46920E",
+"#005208"
+]
+},
+{
+"n": 13,
+"nome": "Desert dusk",
+"famiglia": "romantici",
+"colori": [
+"#A2574F",
+"#E68057",
+"#BF7587",
+"#993A8B"
+]
+},
+{
+"n": 14,
+"nome": "Lavender fields",
+"famiglia": "romantici",
+"colori": [
+"#FDFBD4",
+"#BDB96A",
+"#C1BFFF",
+"#D06DFC"
+]
+},
+{
+"n": 15,
+"nome": "Hydrangea",
+"famiglia": "romantici",
+"colori": [
+"#FF8CA1",
+"#FFC3BA",
+"#FE9CE9",
+"#AC56C3"
+]
+},
+{
+"n": 16,
+"nome": "Cactus flower",
+"famiglia": "romantici",
+"colori": [
+"#E491A6",
+"#845763",
+"#92E4BA",
+"#90C67F"
+]
+},
+{
+"n": 17,
+"nome": "Wildflowers",
+"famiglia": "romantici",
+"colori": [
+"#A8DCAB",
+"#519755",
+"#DBAAA7",
+"#BE91BE"
+]
+},
+{
+"n": 18,
+"nome": "Country garden",
+"famiglia": "romantici",
+"colori": [
+"#FFFFE3",
+"#DBD4FE",
+"#808135",
+"#723380"
+]
+},
+{
+"n": 19,
+"nome": "Lotus garden",
+"famiglia": "romantici",
+"colori": [
+"#ADEBB3",
+"#FF857A",
+"#EBAEE6",
+"#6B403C"
+]
+},
+{
+"n": 20,
+"nome": "Iris garden",
+"famiglia": "romantici",
+"colori": [
+"#A47DAC",
+"#692475",
+"#81AB7D",
+"#6A6B4E"
+]
+},
+{
+"n": 21,
+"nome": "Fresh peach",
+"famiglia": "romantici",
+"colori": [
+"#FFD3AC",
+"#FFB6AD",
+"#E39A7B",
+"#DCB16C"
+]
+},
+{
+"n": 22,
+"nome": "Golden hour",
+"famiglia": "romantici",
+"colori": [
+"#FFBF00",
+"#CFB53B",
+"#E0AFFE",
+"#EDEDC9"
+]
+},
+{
+"n": 23,
+"nome": "Spiced chai",
+"famiglia": "romantici",
+"colori": [
+"#FDFBD4",
+"#D47E30",
+"#8D5A2B",
+"#825E34"
+]
+},
+{
+"n": 24,
+"nome": "Cherry blossom",
+"famiglia": "romantici",
+"colori": [
+"#F4CCCC",
+"#FFFFFF",
+"#D5F3D9",
+"#FFB7C5"
+]
+},
+{
+"n": 25,
+"nome": "Evening rose",
+"famiglia": "romantici",
+"colori": [
+"#DCA1A1",
+"#996666",
+"#8E4585",
+"#4A4A4A"
+]
+},
+{
+"n": 26,
+"nome": "Pastel garden",
+"famiglia": "romantici",
+"colori": [
+"#C75F71",
+"#F0B8B9",
+"#A2AE9D",
+"#54463A"
+]
+},
+{
+"n": 27,
+"nome": "Tuscan sunset",
+"famiglia": "romantici",
+"colori": [
+"#E6644A",
+"#FFD3AC",
+"#9888A2",
+"#8A2B0D"
+]
+},
+{
+"n": 28,
+"nome": "Zesty lemon",
+"famiglia": "giocose",
+"colori": [
+"#FFFF68",
+"#FDE664",
+"#D7D58A",
+"#B3B248"
+]
+},
+{
+"n": 29,
+"nome": "California beaches",
+"famiglia": "giocose",
+"colori": [
+"#FFC067",
+"#66F4FF",
+"#66C4FF",
+"#7D99AA"
+]
+},
+{
+"n": 30,
+"nome": "Freshly squeezed",
+"famiglia": "giocose",
+"colori": [
+"#FFBF00",
+"#F2CF7E",
+"#FFE642",
+"#FF7900"
+]
+},
+{
+"n": 31,
+"nome": "Pistachio dream",
+"famiglia": "giocose",
+"colori": [
+"#7FEF81",
+"#E3F0A2",
+"#B9DBA1",
+"#42D775"
+]
+},
+{
+"n": 32,
+"nome": "Mango popsicle",
+"famiglia": "giocose",
+"colori": [
+"#F2B949",
+"#EDD377",
+"#F2E829",
+"#F27430"
+]
+},
+{
+"n": 33,
+"nome": "Guava",
+"famiglia": "giocose",
+"colori": [
+"#FF8559",
+"#FFB578",
+"#E65447",
+"#CF5376"
+]
+},
+{
+"n": 34,
+"nome": "Glowing horizon",
+"famiglia": "giocose",
+"colori": [
+"#FFB345",
+"#42EAFF",
+"#4271FD",
+"#FF7E44"
+]
+},
+{
+"n": 35,
+"nome": "Sunny day",
+"famiglia": "giocose",
+"colori": [
+"#FFBF00",
+"#807040",
+"#007EFF",
+"#2400FF"
+]
+},
+{
+"n": 36,
+"nome": "Retro sunset",
+"famiglia": "giocose",
+"colori": [
+"#BE5103",
+"#FFCE1B",
+"#069494",
+"#B7410E"
+]
+},
+{
+"n": 37,
+"nome": "Bubblegum pop",
+"famiglia": "giocose",
+"colori": [
+"#FF78BB",
+"#069594",
+"#FFFFFF",
+"#97F7FD"
+]
+},
+{
+"n": 38,
+"nome": "Cotton candy skies",
+"famiglia": "giocose",
+"colori": [
+"#B298E7",
+"#B8E3E9",
+"#F5B8D5",
+"#F9BDDE"
+]
+},
+{
+"n": 39,
+"nome": "Electric kiwi",
+"famiglia": "giocose",
+"colori": [
+"#D1FF1A",
+"#FFFF00",
+"#DFFF00",
+"#000000"
+]
+},
+{
+"n": 40,
+"nome": "Watermelon splash",
+"famiglia": "giocose",
+"colori": [
+"#FC7991",
+"#89F436",
+"#4A4A4A",
+"#ADEBB2"
+]
+},
+{
+"n": 41,
+"nome": "Alchemical reaction",
+"famiglia": "vivaci",
+"colori": [
+"#9E00FE",
+"#DE801C",
+"#6BFF00",
+"#5C7F3F"
+]
+},
+{
+"n": 42,
+"nome": "Electropop",
+"famiglia": "vivaci",
+"colori": [
+"#CCFF00",
+"#FF6B00",
+"#FA00FE",
+"#5200FF"
+]
+},
+{
+"n": 43,
+"nome": "Cool revival",
+"famiglia": "vivaci",
+"colori": [
+"#00FFFF",
+"#00AEFF",
+"#00DE94",
+"#00FF52"
+]
+},
+{
+"n": 44,
+"nome": "Neon jungle",
+"famiglia": "vivaci",
+"colori": [
+"#89F338",
+"#39A710",
+"#F23599",
+"#A936F2"
+]
+},
+{
+"n": 45,
+"nome": "Sharp edge",
+"famiglia": "vivaci",
+"colori": [
+"#898989",
+"#D9D9D9",
+"#FF4D4D",
+"#4DFFBC"
+]
+},
+{
+"n": 46,
+"nome": "Electric fusion",
+"famiglia": "vivaci",
+"colori": [
+"#00F0FF",
+"#00FF81",
+"#FFA900",
+"#FF6800"
+]
+},
+{
+"n": 47,
+"nome": "Fireworks",
+"famiglia": "vivaci",
+"colori": [
+"#EF2101",
+"#E88A38",
+"#970116",
+"#C000AC"
+]
+},
+{
+"n": 48,
+"nome": "Space berries",
+"famiglia": "vivaci",
+"colori": [
+"#FD3DB5",
+"#FFB8DC",
+"#FB6A2C",
+"#801946"
+]
+},
+{
+"n": 49,
+"nome": "Pop art",
+"famiglia": "vivaci",
+"colori": [
+"#00F0FF",
+"#FF46A2",
+"#FFFF00",
+"#EE4B2B"
+]
+},
+{
+"n": 50,
+"nome": "Urban graffiti",
+"famiglia": "vivaci",
+"colori": [
+"#FF3A19",
+"#2BFF06",
+"#00F0FF",
+"#5A5A5A"
+]
+},
+{
+"n": 51,
+"nome": "Neon noir",
+"famiglia": "vivaci",
+"colori": [
+"#000000",
+"#2CFF05",
+"#BF00FF",
+"#2D2D2D"
+]
+},
+{
+"n": 52,
+"nome": "Tropical punch",
+"famiglia": "vivaci",
+"colori": [
+"#FF8243",
+"#FFC0CB",
+"#FCE883",
+"#069494"
+]
+},
+{
+"n": 53,
+"nome": "Cobalt sky",
+"famiglia": "vivaci",
+"colori": [
+"#1959B3",
+"#010080",
+"#82C8E4",
+"#6C8196"
+]
+},
+{
+"n": 54,
+"nome": "Technicolor dream",
+"famiglia": "vivaci",
+"colori": [
+"#FF00FF",
+"#00FFFF",
+"#CCFF00",
+"#191970"
+]
+},
+{
+"n": 55,
+"nome": "Jewel box",
+"famiglia": "vivaci",
+"colori": [
+"#62CF86",
+"#0F52BA",
+"#9966CC",
+"#CFB53B"
+]
+},
+{
+"n": 56,
+"nome": "Salt and pepper",
+"famiglia": "neutri",
+"colori": [
+"#FFFFFF",
+"#D4D4D4",
+"#B3B3B3",
+"#2B2B2B"
+]
+},
+{
+"n": 57,
+"nome": "Quite clear",
+"famiglia": "neutri",
+"colori": [
+"#CBCBCB",
+"#F2F2F2",
+"#174D38",
+"#4D1717"
+]
+},
+{
+"n": 58,
+"nome": "Gothic noir",
+"famiglia": "neutri",
+"colori": [
+"#000000",
+"#D1D0D0",
+"#988686",
+"#5C4E4E"
+]
+},
+{
+"n": 59,
+"nome": "Yacht club",
+"famiglia": "neutri",
+"colori": [
+"#F2F1EF",
+"#BBBDBC",
+"#225F72",
+"#713E21"
+]
+},
+{
+"n": 60,
+"nome": "Quiet luxury",
+"famiglia": "neutri",
+"colori": [
+"#F7E6CA",
+"#E8D59E",
+"#D9BBB0",
+"#AD9C8E"
+]
+},
+{
+"n": 61,
+"nome": "Night sands",
+"famiglia": "neutri",
+"colori": [
+"#CBBD93",
+"#FAE8B4",
+"#80775C",
+"#574A24"
+]
+},
+{
+"n": 62,
+"nome": "Harbor haze",
+"famiglia": "neutri",
+"colori": [
+"#919EAE",
+"#5A8DC4",
+"#AC9E91",
+"#726F60"
+]
+},
+{
+"n": 63,
+"nome": "Old photograph",
+"famiglia": "neutri",
+"colori": [
+"#FDFBD4",
+"#D9D7B6",
+"#878471",
+"#545333"
+]
+},
+{
+"n": 64,
+"nome": "Cappuccino",
+"famiglia": "neutri",
+"colori": [
+"#D6B588",
+"#C6C0B9",
+"#705E46",
+"#422701"
+]
+},
+{
+"n": 65,
+"nome": "Breakfast tea",
+"famiglia": "neutri",
+"colori": [
+"#FFD3AC",
+"#CCBEB1",
+"#664C35",
+"#351C08"
+]
+},
+{
+"n": 66,
+"nome": "Cozy campfire",
+"famiglia": "neutri",
+"colori": [
+"#89512A",
+"#AD7A32",
+"#8A6E29",
+"#660F09"
+]
+},
+{
+"n": 67,
+"nome": "Stone path",
+"famiglia": "neutri",
+"colori": [
+"#A49A87",
+"#A5A58D",
+"#969084",
+"#E8E5DF"
+]
+},
+{
+"n": 68,
+"nome": "Desert mirage",
+"famiglia": "neutri",
+"colori": [
+"#C7B98C",
+"#E35336",
+"#98A869",
+"#262756"
+]
+},
+{
+"n": 69,
+"nome": "Honeycomb",
+"famiglia": "neutri",
+"colori": [
+"#FFC721",
+"#F9E076",
+"#FFFDD0",
+"#895129"
+]
+},
+{
+"n": 70,
+"nome": "Loft urbano",
+"famiglia": "neutri",
+"colori": [
+"#A7A5A6",
+"#A35E47",
+"#000000",
+"#464646"
+]
+},
+{
+"n": 71,
+"nome": "Spiced mocha",
+"famiglia": "neutri",
+"colori": [
+"#7E5F4C",
+"#D47E30",
+"#F5F5DD",
+"#6D3B08"
+]
+},
+{
+"n": 72,
+"nome": "Charming seaside",
+"famiglia": "tranquilli",
+"colori": [
+"#B4EBF0",
+"#85D2DC",
+"#B6F1D1",
+"#C9FDF1"
+]
+},
+{
+"n": 73,
+"nome": "Calm blue",
+"famiglia": "tranquilli",
+"colori": [
+"#90D5FF",
+"#57B9FF",
+"#77B1D4",
+"#517891"
+]
+},
+{
+"n": 74,
+"nome": "Beachfront views",
+"famiglia": "tranquilli",
+"colori": [
+"#EDE8D0",
+"#6E632E",
+"#DBD1ED",
+"#ABBEED"
+]
+},
+{
+"n": 75,
+"nome": "Under the moonlight",
+"famiglia": "tranquilli",
+"colori": [
+"#CACCFD",
+"#A4A3CD",
+"#5D5C98",
+"#282866"
+]
+},
+{
+"n": 76,
+"nome": "Lavender lullaby",
+"famiglia": "tranquilli",
+"colori": [
+"#B5C7EB",
+"#9EF0FE",
+"#A4A5F5",
+"#8E70CF"
+]
+},
+{
+"n": 77,
+"nome": "Minty fresh",
+"famiglia": "tranquilli",
+"colori": [
+"#98FBCB",
+"#BFFFED",
+"#7FCFA8",
+"#558B71"
+]
+},
+{
+"n": 78,
+"nome": "Retro calm",
+"famiglia": "tranquilli",
+"colori": [
+"#81D8CF",
+"#D99D82",
+"#D6D882",
+"#AE84DA"
+]
+},
+{
+"n": 79,
+"nome": "Siltstone",
+"famiglia": "tranquilli",
+"colori": [
+"#CBBD93",
+"#FFF5B8",
+"#FFB16E",
+"#CCA25A"
+]
+},
+{
+"n": 80,
+"nome": "Emerald odyssey",
+"famiglia": "tranquilli",
+"colori": [
+"#00674F",
+"#73E6CB",
+"#3EBB9E",
+"#0A3C30"
+]
+},
+{
+"n": 81,
+"nome": "Ocean tide",
+"famiglia": "tranquilli",
+"colori": [
+"#01D2D1",
+"#4152D6",
+"#00ADAE",
+"#005C5C"
+]
+},
+{
+"n": 82,
+"nome": "Peach skyline",
+"famiglia": "tranquilli",
+"colori": [
+"#FFDBBB",
+"#BADDFF",
+"#BAFFF5",
+"#496580"
+]
+},
+{
+"n": 83,
+"nome": "Mountain mist",
+"famiglia": "tranquilli",
+"colori": [
+"#6D8196",
+"#B0C4DE",
+"#01796F",
+"#5A5A5A"
+]
+},
+{
+"n": 84,
+"nome": "Morning dew",
+"famiglia": "tranquilli",
+"colori": [
+"#AADEDE",
+"#ADEBB2",
+"#C4C4C4",
+"#D3D3D3"
+]
+},
+{
+"n": 85,
+"nome": "Frozen lake",
+"famiglia": "tranquilli",
+"colori": [
+"#6D8196",
+"#ADD8E6",
+"#FFFAFA",
+"#000080"
+]
+},
+{
+"n": 86,
+"nome": "Olive grove",
+"famiglia": "tranquilli",
+"colori": [
+"#8C8C1A",
+"#228B22",
+"#636B2F",
+"#F2F0EF"
+]
+},
+{
+"n": 87,
+"nome": "Coastal morning",
+"famiglia": "tranquilli",
+"colori": [
+"#9DCC80",
+"#89D0EF",
+"#F5F5DD",
+"#82C8E4"
+]
+},
+{
+"n": 88,
+"nome": "Eucalyptus grove",
+"famiglia": "tranquilli",
+"colori": [
+"#B2AC88",
+"#898989",
+"#F2F0EF",
+"#4B6E48"
+]
+},
+{
+"n": 89,
+"nome": "Soft spring",
+"famiglia": "stagionali",
+"colori": [
+"#6395EE",
+"#90B8D6",
+"#88CFA8",
+"#85DECB"
+]
+},
+{
+"n": 90,
+"nome": "Autumn leaves",
+"famiglia": "stagionali",
+"colori": [
+"#FFB345",
+"#DB9B3B",
+"#B37E2E",
+"#61441A"
+]
+},
+{
+"n": 91,
+"nome": "Winter chill",
+"famiglia": "stagionali",
+"colori": [
+"#B8E3E9",
+"#93B1B5",
+"#507D82",
+"#0B2E33"
+]
+},
+{
+"n": 92,
+"nome": "Spring energy",
+"famiglia": "stagionali",
+"colori": [
+"#89F336",
+"#FFFC30",
+"#4FE0CB",
+"#00BF33"
+]
+},
+{
+"n": 93,
+"nome": "Pumpkin spice season",
+"famiglia": "stagionali",
+"colori": [
+"#BD5203",
+"#8A4C1D",
+"#544822",
+"#322215"
+]
+},
+{
+"n": 94,
+"nome": "Island oasis",
+"famiglia": "stagionali",
+"colori": [
+"#CCFF00",
+"#FFF37E",
+"#9DE05A",
+"#FFAE25"
+]
+},
+{
+"n": 95,
+"nome": "Autumn orchard",
+"famiglia": "stagionali",
+"colori": [
+"#8E4585",
+"#DAA520",
+"#2E6F40",
+"#660033"
+]
+},
+{
+"n": 96,
+"nome": "Tropical rainforest",
+"famiglia": "stagionali",
+"colori": [
+"#61CE85",
+"#7E8B53",
+"#4E7943",
+"#71AA35"
+]
+},
+{
+"n": 97,
+"nome": "Wildflower meadow",
+"famiglia": "stagionali",
+"colori": [
+"#FBF9E7",
+"#FDB813",
+"#82C8E5",
+"#7CFC00"
+]
+},
+{
+"n": 98,
+"nome": "Harvest moon",
+"famiglia": "stagionali",
+"colori": [
+"#800020",
+"#FFCE1B",
+"#A52A2A",
+"#BE5103"
+]
+},
+{
+"n": 99,
+"nome": "Winter berry",
+"famiglia": "stagionali",
+"colori": [
+"#9A2235",
+"#2D6F3F",
+"#ADD9E6",
+"#FFFFFF"
+]
+},
+{
+"n": 100,
+"nome": "Summer breeze",
+"famiglia": "stagionali",
+"colori": [
+"#FFEB3B",
+"#F88379",
+"#82C8E5",
+"#E6D8C4"
+]
+}
+]
