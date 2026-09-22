@@ -27,7 +27,10 @@ setTimeout(() => {
   const male = [];
   if (errori.length) male.push('errori nella pagina: ' + errori.join(' / '));
 
-  const tasto = [...d.querySelectorAll('#tasti .tasto')]
+  /* Dal 2026-09-22 sta in una riga sua, SOPRA la barra dei prodotti e fuori
+     da essa: nella schermata che ha mandato Manlio è la prima cosa che si
+     vede. Prima era in fondo alle pastiglie, dentro #tasti. */
+  const tasto = [...d.querySelectorAll('.tasto')]
     .find(b => b.textContent.includes('Cerca'));
   if (!tasto) { console.error('MANCA il tasto «Cerca fra i prezzi»'); process.exit(1); }
 
@@ -36,11 +39,13 @@ setTimeout(() => {
      la classe «agg», questa prova se ne accorge. */
   if (!tasto.classList.contains('trova'))
     male.push('il tasto Cerca non e piu quello rosso (classe .trova)');
+  if (d.querySelector('.barra').contains(tasto))
+    male.push('il tasto Cerca e tornato dentro la barra appiccicata');
   const css = [...d.querySelectorAll('style')].map(s => s.textContent).join('\n');
   if (!/\.tasto\.trova\{[^}]*var\(--rosso\)/.test(css))
     male.push('il tasto Cerca non e piu rosso nel CSS');
-  if (!/\.tasto\.trova\{[^}]*flex:0 0 100%/.test(css))
-    male.push('il tasto Cerca non e piu su una riga tutta sua');
+  if (!/\.tasto\.trova\{[^}]*width:100%/.test(css))
+    male.push('il tasto Cerca non e piu largo quanto lo schermo');
   tasto.dispatchEvent(new w.Event('click'));
 
   const pannello = d.getElementById('ricerca');
@@ -79,7 +84,7 @@ setTimeout(() => {
   // ogni riga deve dire negozio, prezzo per unita e dove sta
   const r0 = cerca('mozzarella')[0];
   if (r0) {
-    if (!r0.querySelector('.sotto b').textContent.trim()) male.push('manca il negozio');
+    if (!r0.querySelector('.marchio').textContent.trim()) male.push('manca il marchio del negozio');
     if (!r0.querySelector('.val .n').textContent.trim()) male.push('manca il prezzo');
     if (!r0.querySelector('.dove')) male.push('manca la riga che dice dov\'e');
   }

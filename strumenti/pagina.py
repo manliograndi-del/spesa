@@ -186,6 +186,16 @@ NOVITA_PAGINA = [
                'verde, staccata dalle altre. E le offerte che devono ancora '
                'cominciare sono sbiadite: si leggono, ma si vede subito che '
                'oggi non valgono.'),
+    dict(id='2026-09-23-impaginazione', quando='22 settembre',
+         titolo='La pagina è rifatta: tutto in schede e pillole',
+         testo='In cima il titolo «Spesa» con la data di riferimento e il '
+               'tasto rosso per cercare fra tutte le offerte. Ogni offerta '
+               'adesso è una scheda tutta sua, con in alto il marchio del '
+               'negozio, il prodotto, il formato, le condizioni in un '
+               'riquadro giallo e a destra i due prezzi: quello della '
+               'confezione e quello per unità. Quella meno cara che puoi '
+               'comprare oggi ha il bordo verde. In fondo a ogni scheda, '
+               '«Vedi tutte le offerte del volantino».'),
     dict(id='2026-09-22-giorni', quando='22 settembre',
          titolo='Quanti giorni restano, su ogni offerta',
          testo='Accanto a ogni offerta c\'è un cerchietto con dentro un '
@@ -240,6 +250,9 @@ HTML = r'''<title>Spesa</title>
   --blu-tenue:#E9EEF6;
   --f-testo:'Asap',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
   --f-prezzo:'Oswald','Arial Narrow',ui-sans-serif,sans-serif;
+  /* La lente del tasto rosso, disegnata qui dentro: nessun carattere
+     speciale, che sui telefoni diventa un quadratino. */
+  --lente:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.5 16.5 21 21'/%3E%3C/svg%3E");
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -251,17 +264,24 @@ button{font-family:var(--f-testo);color:inherit}
 .guscio{max-width:800px;margin:0 auto;padding:0 15px 60px}
 
 /* ---- testa ---- */
-header{padding:20px 0 2px}
-h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01em;
-  line-height:1.05;margin:0;text-transform:uppercase}
-/* La riga in alto: il luogo con accanto il bollino, e a destra le novità.
-   Il bollino stava attaccato al titolo grande e andava a capo da solo, su una
-   riga tutta sua: Manlio l'ha visto e ha chiesto di alzarlo. Qui la riga è
-   corta e ci sta. */
-.riga-alta{display:flex;align-items:center;justify-content:flex-end;gap:10px;
-  flex-wrap:wrap;margin-bottom:6px}
-.dove{color:var(--rosso);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
-  font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
+/* L'IMPAGINAZIONE NUOVA, chiesta da Manlio il 2026-09-22 con una schermata
+   alla mano: «l'impaginazione è più bella così, con tutto messo in pillole e
+   ordinato». In cima il marchio della pagina, il titolo, il sottotitolo e i
+   tasti; sotto la data di riferimento. */
+header{padding:18px 0 2px}
+.riga-alta{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  flex-wrap:wrap;margin-bottom:12px}
+.marca{display:flex;align-items:center;gap:11px;min-width:0}
+.segno{flex:none;width:44px;height:44px;border-radius:13px;background:var(--rosso);
+  color:var(--su-rosso);display:grid;place-items:center;font-family:var(--f-prezzo);
+  font-size:25px;font-weight:700;line-height:1}
+.nomi{min-width:0}
+h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01em;
+  line-height:1.05;margin:0}
+.sotto-marca{display:block;color:var(--tenue);font-size:13px;margin-top:2px}
+.riferimento{margin:0 0 6px;padding:11px 15px;border:1.5px solid var(--linea);
+  border-radius:99px;background:var(--pannello);font-size:13.5px;color:var(--tenue)}
+.riferimento b{color:var(--inchiostro)}
 /* Il tasto «Novità», in alto a destra. Punta all'INDIRIZZO COMPLETO e non a
    «./novita.html»: la copia di Claude non ha una cartella accanto a se, e un
    collegamento relativo di la porterebbe nel vuoto. Si apre in una finestra
@@ -279,11 +299,11 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    colori, una riga per ognuna, con le sue tinte in vista. Si sceglie a occhio,
    non per nome: la striscia dei colori conta più della scritta. */
 .look-riga{display:flex;align-items:center;gap:11px;width:100%;text-align:left;
-  background:var(--carta);border:1.5px solid var(--linea);border-radius:10px;
+  background:var(--carta);border:1.5px solid var(--linea);border-radius:14px;
   padding:9px 11px;margin-top:7px;cursor:pointer;font-family:inherit;
   color:var(--inchiostro);min-height:52px}
 .look-riga[aria-pressed="true"]{border-color:var(--rosso);border-width:2px}
-.look-riga .strisce{flex:none;display:flex;border-radius:6px;overflow:hidden;
+.look-riga .strisce{flex:none;display:flex;border-radius:8px;overflow:hidden;
   border:1px solid var(--linea-forte)}
 .look-riga .strisce i{display:block;width:17px;height:30px}
 .look-riga .come{flex:1;min-width:0}
@@ -292,14 +312,22 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 .look-riga .scelto{flex:none;color:var(--rosso);font-weight:700;font-size:13px}
 .gruppo-look{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
   font-size:12px;font-weight:600;color:var(--tenue);margin:18px 0 2px}
-.tasti-alti{flex:none;display:inline-flex;align-items:center;gap:8px}
-.aiuto{background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
-  border-radius:99px;padding:9px 15px;font-size:14px;font-weight:700;letter-spacing:.02em;
+.tasti-alti{flex:1 1 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  justify-content:flex-end;min-width:0}
+.aiuto{background:var(--carta);border:1.5px solid var(--linea-forte);color:var(--inchiostro);
+  border-radius:99px;padding:9px 15px;font-size:14px;font-weight:600;letter-spacing:.02em;
   min-height:40px;line-height:1;cursor:pointer;white-space:nowrap}
+.aiuto:hover{border-color:var(--rosso);color:var(--rosso)}
 
 /* ---- barra dei prodotti ---- */
+.riga-cerca{margin:8px 0 0}
+.capo-prodotti{display:flex;align-items:baseline;justify-content:space-between;gap:10px;
+  flex-wrap:wrap;margin:0 0 9px;font-family:var(--f-prezzo);text-transform:uppercase;
+  letter-spacing:.07em;font-size:12px;font-weight:600;color:var(--tenue)}
+.capo-prodotti .suggerimento{font-family:var(--f-testo);text-transform:none;
+  letter-spacing:0;font-size:13px;font-weight:400}
 .barra{position:sticky;top:0;z-index:20;background:var(--carta);
-  padding:12px 0 12px;border-bottom:2px solid var(--inchiostro);margin-top:14px}
+  padding:14px 0 12px;border-bottom:1.5px solid var(--linea);margin-top:16px}
 .tasti{display:flex;flex-wrap:wrap;gap:8px}
 .tasto{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:99px;
   padding:10px 15px;font-size:15px;font-weight:600;cursor:pointer;line-height:1.1;
@@ -313,9 +341,12 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    acceso», e un rosso pieno in fila con quelli si leggerebbe come una voce
    della lista accesa per sbaglio. Da solo, largo quanto lo schermo, il rosso
    torna a voler dire quello che deve: «premi qui». */
-.tasto.trova{flex:0 0 100%;background:var(--rosso);
-  border-color:var(--rosso);color:var(--su-rosso);border-style:solid;
-  font-weight:700;font-size:16px;min-height:48px;margin-top:2px}
+.tasto.trova{display:flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso);
+  border-style:solid;border-radius:16px;font-weight:700;font-size:16.5px;min-height:54px}
+.tasto.trova::before{content:'';flex:none;width:19px;height:19px;
+  background:currentColor;-webkit-mask:var(--lente) center/contain no-repeat;
+  mask:var(--lente) center/contain no-repeat}
 
 /* ---- aggiunta ---- */
 .cassetto[hidden]{display:none}
@@ -371,7 +402,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   color:var(--rosso)}
 .conferma .si{background:var(--rosso);color:var(--su-rosso)}
 .capo h2{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.02em;
-  font-size:22px;font-weight:600;margin:0}
+  font-size:23px;font-weight:600;margin:0}
+.capo .unita{flex:none;background:var(--pannello);border:1px solid var(--linea);
+  border-radius:99px;padding:4px 11px;font-size:12.5px;color:var(--tenue);
+  font-weight:600;white-space:nowrap}
 #risultato .quanti{color:var(--tenue);font-size:13px;font-variant-numeric:tabular-nums;
   margin:0 0 8px}
 .sinonimi{margin:6px 0 0;font-size:13.5px;color:var(--tenue);display:flex;
@@ -439,68 +473,93 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    vedeva di più della riga, e continuava a gridare «sono qui» anche quando
    in cassa non lo facevano. */
 .prezzo-riga.dopo .val .n{color:var(--tenue)}
-/* ---- elenco prezzi ---- */
-.fascia{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
-  font-size:12.5px;font-weight:600;color:var(--tenue);margin:22px 0 0}
-.prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:3px 14px;
-  padding:13px 0;border-top:1px solid var(--linea)}
-.prezzo-riga:first-of-type{border-top:1.5px solid var(--inchiostro)}
-.prezzo-riga .nome{margin:0;font-size:16.5px;font-weight:600;line-height:1.25}
-.prezzo-riga .sotto{margin:3px 0 0;color:var(--tenue);font-size:13.5px}
+/* ---- le schede delle offerte ---- */
+/* Ogni offerta è una scheda con gli angoli tondi, e dentro tutto in pillole:
+   il marchio del negozio, il nome, il formato, la nota, e a destra i due
+   prezzi (quello della confezione e quello per unità). Chiesto da Manlio il
+   2026-09-22 con una schermata alla mano. */
+.fascia{font-size:13.5px;color:var(--tenue);margin:14px 0 0}
+.prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:2px 16px;
+  background:var(--carta);border:1.5px solid var(--linea);border-radius:18px;
+  padding:14px 16px 11px;margin-top:11px}
+.prezzo-riga .dati{min-width:0}
+.prezzo-riga .nome{margin:7px 0 0;font-size:17px;font-weight:700;line-height:1.25}
+.prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
-.prezzo-riga .val{grid-row:1/3;text-align:right;font-family:var(--f-prezzo);
-  font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap}
-.prezzo-riga .val .n{display:block;font-size:27px;font-weight:700;color:var(--rosso)}
-.prezzo-riga .val .u{display:block;font-family:var(--f-testo);font-size:10.5px;
-  letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:4px}
-.prezzo-riga .coda{grid-column:1/-1;margin:7px 0 0;display:flex;flex-wrap:wrap;gap:6px;
-  align-items:center}
-/* LA RIGA DEL MENO CARO È UNA PASTIGLIA. Chiesto da Manlio il 2026-09-22:
-   «mi piacerebbe che il prodotto meno caro venisse messo in una pillola, con
-   un bordo e con un colore che la evidenzi, magari lo stesso colore del fondo
-   ma un po' più forte». Il fondo è `--pannello`, che è esattamente quello: lo
-   sfondo della pagina un gradino più forte. Il bordo è verde, perché il verde
-   qui vuol dire «il meno caro» e resta verde in tutti i cento look. */
-.prezzo-riga.vince{background:var(--pannello);border:2px solid var(--verde);
-  border-radius:26px;padding:15px 17px;margin:12px 0}
-.prezzo-riga.vince:first-of-type{border-top:2px solid var(--verde)}
-.prezzo-riga.vince + .prezzo-riga{border-top:0}
-
-/* LE OFFERTE CHE DEVONO ANCORA COMINCIARE SONO SBIADITE, chiesto lo stesso
-   giorno: «che le offerte che non sono ancora cominciate apparissero
-   sbiadite». Sbiadite, non nascoste: un prezzo che parte lunedì serve
-   saperlo. Non si va più giù di così, se no il prezzo non si legge. */
+.prezzo-riga .val{grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
+.prezzo-riga .val .et{display:block;font-size:10px;letter-spacing:.09em;
+  text-transform:uppercase;font-weight:700;color:var(--tenue);margin-bottom:3px}
+.prezzo-riga .val .pz{display:block;font-family:var(--f-prezzo);font-size:19px;
+  font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:9px}
+.prezzo-riga .val .n{display:inline-block;font-family:var(--f-prezzo);font-size:28px;
+  font-weight:700;color:var(--rosso);font-variant-numeric:tabular-nums}
+.prezzo-riga .val .u{display:inline-block;font-size:11px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--tenue);margin-left:4px}
+.prezzo-riga .coda{grid-column:1/-1;grid-row:1;margin:0;display:flex;flex-wrap:wrap;
+  gap:6px;align-items:center}
+/* IL MARCHIO DEL NEGOZIO, chiesto da Manlio il 2026-09-22: «al posto del nome
+   del negozio e dell'intero indirizzo, che non mi interessa niente, mettici
+   il marchio dei supermercati». I marchi veri non si possono prendere e
+   pubblicare, quindi sono disegnati qui: il nome dell'insegna scritto nei
+   suoi colori. I colori stanno tutti e due dentro la pillola, quindi si
+   leggono uguale con qualunque look. */
+.marchio{display:inline-flex;align-items:center;border-radius:99px;
+  padding:5px 13px;font-size:13px;font-weight:700;letter-spacing:.02em;
+  line-height:1.1;white-space:nowrap}
+/* LA SCHEDA DEL MENO CARO. Bordo verde e fondo verde chiaro, con la sua
+   pillola in cima: il verde, in questa pagina, vuol dire «il meno caro» e
+   resta verde in tutti i cento look. */
+.prezzo-riga.vince{background:var(--verde-tenue);border:2px solid var(--verde);
+  padding:13px 15px 10px}
+/* LE OFFERTE CHE DEVONO ANCORA COMINCIARE SONO SBIADITE, col prezzo grigio:
+   sbiadite, non nascoste — un prezzo che parte lunedì serve saperlo. */
 .prezzo-riga.dopo{opacity:.82}
+.prezzo-riga.dopo .val .n{color:var(--tenue)}
 .bollo{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;
   border-radius:99px;padding:4px 11px}
-.bollo.meno{background:var(--verde-tenue);color:var(--verde)}
+.bollo.meno{background:var(--verde);color:var(--carta)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
 .bollo.stretta{background:var(--rosso);color:var(--su-rosso)}
 .prezzo-riga .sotto .quando{white-space:nowrap}
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
-.prezzo-riga .nota{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--tenue)}
-.prezzo-riga .dove{grid-column:1/-1;margin:6px 0 0;font-size:13px;color:var(--tenue);
-  border-left:3px solid var(--linea);padding-left:9px}
-/* «APRI LA PAGINA … DEL VOLANTINO» È DIVENTATO UN'ICONA. Chiesto da Manlio il
-   2026-09-22: «potrebbe essere sostituito da un'icona, più o meno delle
-   dimensioni perché ci vada bene di fianco». Scritta per esteso si prendeva
-   una riga intera su ogni offerta, e le offerte sono tante: adesso è una
-   pastiglietta con dentro il foglietto del volantino e il numero della
-   pagina, in fila con gli altri bollini.
-
-   Resta alta 34 px perché il dito ci arrivi, e la frase intera («Apri la
-   pagina 14 del volantino») resta nel titolo e nell'etichetta: chi usa un
-   lettore di schermo, o tiene premuto, la sente tutta. */
+/* La nota con le condizioni: tessera, sgocciolato, «max 6 pezzi». In una
+   pillola ambra, che qui vuol dire «attenzione a questo». */
+.prezzo-riga .nota{margin:9px 0 0;font-size:13px;
+  background:var(--ambra-tenue);color:var(--ambra);border-radius:12px;
+  padding:7px 11px;line-height:1.35;font-weight:600}
+.prezzo-riga .dove{margin:8px 0 0;font-size:12.5px;color:var(--tenue)}
+/* In fondo alla scheda: il collegamento a tutte le offerte di quel volantino. */
+.piede-scheda{grid-column:1/-1;margin:10px 0 0;padding-top:9px;
+  border-top:1px solid var(--linea);display:flex;justify-content:flex-end}
+.prezzo-riga.vince .piede-scheda{border-top-color:var(--verde)}
+.tutte{background:none;border:0;padding:4px 0;font-family:inherit;font-size:13.5px;
+  font-weight:600;color:var(--rosso);cursor:pointer;min-height:32px}
 a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin:0;
-  padding:5px;border:0;border-left:0;background:none;color:var(--rosso);
+  padding:5px;border:0;background:none;color:var(--rosso);
   text-decoration:none;min-height:34px;min-width:34px;line-height:1}
 a.dove.apri svg{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;
   stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
 a.dove.apri::after{content:none}
-/* L'angolo in basso a destra della riga: l'icona del volantino e il tondino
+/* L'angolo in basso a destra della scheda: l'icona del volantino e il tondino
    dei giorni, uno accanto all'altro. */
-.angolo{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:6px}
+.angolo{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:10px}
 .angolo .giorni,.angolo .parte{margin-top:0}
+
+/* SUL TELEFONO LA SCHEDA VA IN COLONNA. A 390 px le due colonne si
+   strozzano: il nome del prodotto andava a capo ogni due parole e i prezzi
+   finivano schiacciati a sinistra. Sotto i 560 px i prezzi scendono su una
+   riga loro, sotto il nome. */
+@media (max-width:560px){
+  .prezzo-riga{grid-template-columns:1fr}
+  .prezzo-riga .val{grid-row:auto;text-align:left;display:flex;flex-wrap:wrap;
+    align-items:baseline;gap:2px 9px;margin-top:11px;white-space:normal}
+  .prezzo-riga .val .et{margin:0;align-self:center}
+  .prezzo-riga .val .pz{margin:0}
+  .prezzo-riga .val .n{font-size:26px}
+  .prezzo-riga .angolo{flex-basis:100%;justify-content:flex-start;margin-top:2px}
+  .riferimento{border-radius:16px}
+  .tasto.trova{font-size:15.5px}
+}
 
 /* ---- elenco pagine ---- */
 .pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -596,17 +655,29 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
        (com'e fatta questa copia) e finito in fondo alla finestra «Aiuto»,
        che e il posto delle spiegazioni. -->
   <div class="riga-alta">
+    <span class="marca">
+      <span class="segno" aria-hidden="true">S</span>
+      <span class="nomi">
+        <h1>Spesa</h1>
+        <span class="sotto-marca">Offerte dai volantini dei supermercati vicini</span>
+      </span>
+    </span>
     <span class="tasti-alti">
       <button type="button" class="aiuto" id="apri-look">Look</button>
+      <button type="button" class="aiuto" id="apri-novita-app">Novità app</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
       <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
          target="_blank" rel="noopener noreferrer">Novità</a>
     </span>
   </div>
-  <h1>La lista della spesa</h1>
+  <p class="riferimento">Data di riferimento: <b id="oggi-scritto"></b></p>
 </header>
 
+<div class="riga-cerca" id="riga-cerca"></div>
+
 <div class="barra">
+  <p class="capo-prodotti"><span id="quanti-prodotti"></span>
+    <span class="suggerimento">Tocca per confrontare i prezzi</span></p>
   <div class="tasti" id="tasti" role="group" aria-label="Scegli il prodotto"></div>
   <p class="stato" id="stato-lista" role="status"></p>
 </div>
@@ -743,9 +814,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <div class="voce">
       <h3>I bottoni in cima sono i tuoi prodotti</h3>
       <p>Toccane uno: sotto escono tutte le offerte, <b>dalla meno cara in giù</b>.
-      Il bollino verde <b>«il meno caro»</b> sta sull'offerta che puoi comprare
-      <b>oggi</b>: se la prima riga è di un volantino che deve ancora cominciare, il
-      verde va a quella dopo.</p>
+      La scheda col bordo verde e la scritta <b>«il meno caro valido oggi»</b> è
+      quella che puoi comprare <b>oggi</b>: se la prima costa meno ma comincia
+      fra qualche giorno, il verde va a quella dopo. Le offerte non ancora
+      cominciate sono sbiadite, col prezzo in grigio.</p>
     </div>
     <div class="voce">
       <h3>Per cambiare i prodotti: «+ altri prodotti»</h3>
@@ -761,17 +833,19 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     </div>
     <div class="voce">
       <h3>Cosa dice ogni riga</h3>
-      <p>Il numero grande a sinistra è il prezzo <b>per unità</b>. Accanto: prodotto,
-      negozio, formato, quanto costa la confezione e <b>fino a quando vale
-      l'offerta</b>. Sotto, quando serve, una nota con le condizioni: tessera del
+      <p>Ogni offerta è una scheda. In cima il <b>marchio del negozio</b>, poi il
+      prodotto, il formato, quanto costa la confezione e <b>fino a quando vale
+      l'offerta</b>. Il numero grande rosso è il prezzo <b>per unità</b>, quello
+      con cui si confrontano i negozi. Sotto, quando serve, una nota con le condizioni: tessera del
       negozio, surgelato, «prendi 2 paghi 1», peso sgocciolato. <b>Le offerte scadute
       spariscono da sole</b>, secondo la data del telefono.</p>
     </div>
     <div class="voce">
-      <h3>Il foglietto col numero</h3>
-      <p>Su ogni offerta c'è un bottoncino con dentro un foglietto e un numero:
-      è la pagina del volantino dove sta quell'offerta. Toccalo e si apre il
-      volantino vero del negozio, a quella pagina, in una scheda nuova.</p>
+      <h3>Il foglietto del volantino</h3>
+      <p>Su ogni offerta, accanto al tondino dei giorni, c'è un foglietto:
+      toccalo e si apre il volantino vero del negozio, alla pagina dove sta
+      quell'offerta, in una scheda nuova. Sotto, «Vedi tutte le offerte del
+      volantino» ti fa vedere tutti i prezzi letti da quel volantino.</p>
     </div>
     <div class="voce">
       <h3>In fondo: l'elenco dei volantini</h3>
@@ -1162,11 +1236,19 @@ function disegnaTasti() {
      come un prodotto in mezzo agli altri. Il rosso arriva da «.tasto.trova»,
      scritto dopo «.tasto.agg» nel foglio di stile, e vince lui. */
   cer.type = 'button'; cer.className = 'tasto agg trova';
-  cer.textContent = ricercaAperta ? 'Chiudi' : 'Cerca fra i prezzi';
+  cer.textContent = ricercaAperta ? 'Chiudi la ricerca' : 'Cerca fra i prezzi di tutte le offerte';
   cer.setAttribute('aria-expanded', String(ricercaAperta));
   cer.setAttribute('aria-controls', 'ricerca');
   cer.onclick = () => { apriRicerca(!ricercaAperta); };
-  box.appendChild(cer);
+  /* Sta SOPRA i prodotti e FUORI dalla barra appiccicata, come nella
+     schermata che ha mandato Manlio il 2026-09-22: è la prima cosa che si
+     vede, e la barra resta bassa. */
+  const suo = document.getElementById('riga-cerca');
+  suo.textContent = '';
+  suo.appendChild(cer);
+
+  const cont = document.getElementById('quanti-prodotti');
+  if (cont) cont.textContent = 'I tuoi prodotti (' + lista.length + ')';
 }
 
 /* IL CASSETTO. Chiesto da Manlio il 2026-09-05: scrivere il nome di un
@@ -1479,18 +1561,55 @@ function cerchioInizio(o) {
 /* «meno» non vuol dire «prima riga»: e il meno caro fra quelli che valgono
    oggi. Le righe sono in ordine di prezzo, e la prima puo essere di un
    volantino che deve ancora cominciare. */
+/* I MARCHI DELLE INSEGNE, disegnati qui: il nome scritto nei colori suoi.
+   I marchi veri sono di chi li ha, e questa pagina non li pubblica (come non
+   pubblica le pagine dei volantini). Fondo e scritta sono fissati tutti e due,
+   quindi la pillola si legge uguale con qualunque look addosso. */
+const MARCHI = {
+  'Lidl':           ['#0050AA', '#FFFFFF'],
+  'Eurospin':       ['#1B4F9C', '#FFFFFF'],
+  'MD':             ['#D4001F', '#FFFFFF'],
+  'Bennet':         ['#C8102E', '#FFFFFF'],
+  'Mercatò':        ['#8A1538', '#FFFFFF'],
+  'Ekom':           ['#B3001B', '#FFFFFF'],
+  'Ipercoop':       ['#A3123A', '#FFFFFF'],
+  'Carrefour Iper': ['#004E9F', '#FFFFFF'],
+};
+function marchio(ins) {
+  const c = MARCHI[ins] || ['#3F3F3F', '#FFFFFF'];
+  const e = document.createElement('b');
+  e.className = 'marchio';
+  e.style.background = c[0];
+  e.style.color = c[1];
+  e.textContent = ins;
+  return e;
+}
+
 function rigaPrezzo(o, meno) {
   const d = document.createElement('article');
   d.className = 'prezzo-riga' + (meno ? ' vince' : '') + (futuro(o) ? ' dopo' : '');
-  d.innerHTML = `<div><p class="nome"></p><p class="sotto"></p></div>
-    <p class="val"><span class="n"></span><span class="u"></span></p>
-    <div class="coda"></div>`;
+  d.innerHTML = `<div class="coda"></div>
+    <div class="dati"><p class="nome"></p><p class="sotto"></p></div>
+    <p class="val"><span class="et">al pezzo</span><span class="pz"></span>
+      <span class="et">prezzo unitario</span><span class="n"></span><span class="u"></span></p>`;
+
+  /* In cima alla scheda: il marchio del negozio e i bollini che contano. */
+  const coda = d.querySelector('.coda');
+  coda.appendChild(marchio(o.ins));
+  if (meno) coda.insertAdjacentHTML('beforeend',
+    '<span class="bollo meno">il meno caro valido oggi</span>');
+  if (o.ristretta) coda.insertAdjacentHTML('beforeend',
+    '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
+  if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
+
   d.querySelector('.nome').textContent = o.pro;
+
+  /* La riga sotto il nome: formato, quanto costa la confezione, fino a quando
+     vale. Il negozio NON si ripete qui: sta nel marchio in cima. */
   const s = d.querySelector('.sotto');
-  s.innerHTML = '<b></b> · <span></span> · <span></span>';
-  s.querySelector('b').textContent = o.ins;
-  s.querySelectorAll('span')[0].textContent = o.fmt;
-  s.querySelectorAll('span')[1].textContent = eur(o.prezzo) + ' € la confezione';
+  s.innerHTML = 'Formato: <b></b> · <span></span>';
+  s.querySelector('b').textContent = o.fmt;
+  s.querySelector('span').textContent = eur(o.prezzo) + ' € la confezione';
   const q = durata(o);
   if (q) {
     const d2 = document.createElement('span');
@@ -1499,8 +1618,11 @@ function rigaPrezzo(o, meno) {
     s.appendChild(document.createTextNode(' · '));
     s.appendChild(d2);
   }
+
+  d.querySelector('.val .pz').textContent = eur(o.prezzo) + ' €';
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
+
   const cer = cerchioGiorni(o) || cerchioInizio(o);
   const link = dove(o);
   if (cer || link.tagName === 'A') {
@@ -1510,19 +1632,25 @@ function rigaPrezzo(o, meno) {
     if (cer) ang.appendChild(cer);
     d.querySelector('.val').appendChild(ang);
   }
-  const coda = d.querySelector('.coda');
-  if (meno) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
-  if (o.ristretta) coda.insertAdjacentHTML('beforeend',
-    '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
-  if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
-  if (!coda.children.length) coda.remove();
+
+  const dati = d.querySelector('.dati');
   if (o.note) {
     const n = document.createElement('p'); n.className = 'nota'; n.textContent = o.note;
-    d.appendChild(n);
+    dati.appendChild(n);
   }
-  /* Senza indirizzo resta la riga scritta, in fondo: non c'e niente da
-     toccare, e un'icona che non apre niente sarebbe una presa in giro. */
-  if (link.tagName !== 'A') d.appendChild(link);
+  /* Senza indirizzo resta la riga scritta: non c'e niente da toccare, e
+     un'icona che non apre niente sarebbe una presa in giro. */
+  if (link.tagName !== 'A') dati.appendChild(link);
+
+  /* In fondo alla scheda: tutte le offerte lette da quel volantino. */
+  const piede = document.createElement('div');
+  piede.className = 'piede-scheda';
+  const tutte = document.createElement('button');
+  tutte.type = 'button'; tutte.className = 'tutte';
+  tutte.textContent = 'Vedi tutte le offerte del volantino';
+  tutte.onclick = () => { apriVolantino(o.pdf); };
+  piede.appendChild(tutte);
+  d.appendChild(piede);
   return d;
 }
 
@@ -1592,11 +1720,12 @@ function disegna() {
   /* Il bottone dice cosa fa. Prima c'era una crocetta, e Manlio: «la x per
      togliere il prodotto mi sembra poco comprensibile, metterei invece un
      bottone elimina prodotto». La «i» viene subito dopo, come ha chiesto. */
-  capo.innerHTML = '<h2></h2>'
+  capo.innerHTML = '<h2></h2><span class="unita"></span>'
     + '<button type="button" class="elimina">Elimina prodotto</button>'
     + '<button type="button" class="info" aria-expanded="false"'
     + ' aria-label="Mostra i dettagli del prodotto">i</button>';
   capo.querySelector('h2').textContent = v.nome;
+  capo.querySelector('.unita').textContent = 'prezzo ' + (DATI.unita[v.cat] || 'al kg');
   capo.querySelector('.elimina').setAttribute('aria-label', 'Elimina «' + v.nome + '» dalla lista');
   out.appendChild(capo);
 
@@ -1680,7 +1809,8 @@ function disegna() {
   if (off.length) {
     const meno = menoCaroOggi(off);
     const f = document.createElement('p');
-    f.className = 'fascia'; f.textContent = 'Prezzi letti dal volantino';
+    f.className = 'fascia';
+    f.textContent = 'Offerte ordinate dal prezzo per unità più conveniente';
     out.appendChild(f);
     off.forEach(o => out.appendChild(rigaPrezzo(o, o === meno)));
   } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
@@ -2071,6 +2201,27 @@ function apriAiuto(si) {
 }
 
 document.getElementById('apri-aiuto').onclick = () => apriAiuto(true);
+/* «Novità app» riapre la finestra «Cosa c'è di nuovo» anche a chi l'ha già
+   vista: prima si poteva solo aspettare che si aprisse da sola. */
+document.getElementById('apri-novita-app').onclick = () => {
+  apriAiuto(false); apriLook(false);
+  const buio = document.getElementById('buio');
+  const box = document.getElementById('voci-novita');
+  const tutte = DATI.novita || [];
+  box.textContent = '';
+  tutte.forEach(n => {
+    const e = document.createElement('div');
+    e.className = 'voce';
+    e.innerHTML = '<span class="quando"></span><h3></h3><p></p>';
+    e.querySelector('.quando').textContent = n.quando;
+    e.querySelector('h3').textContent = n.titolo;
+    e.querySelector('p').textContent = n.testo;
+    box.appendChild(e);
+  });
+  buio.hidden = false;
+  try { document.getElementById('chiudi-novita').focus({ preventScroll: true }); } catch (e) {}
+  try { document.querySelector('#buio .finestra').scrollTop = 0; } catch (e) {}
+};
 document.getElementById('chiudi-aiuto').onclick = () => apriAiuto(false);
 document.getElementById('buio-aiuto').onclick = ev => {
   if (ev.target.id === 'buio-aiuto') apriAiuto(false);
@@ -2106,6 +2257,14 @@ mostraNovita();
        Manlio l'ha evidenziata fra le cose da togliere. È finita dietro il
        bollino in cima, dove si va a leggere quando si vuole. */
     stato(arrivati.length ? 'Aggiunti alla tua lista: ' + arrivati.join(', ') + '.' : '');
+  }
+  /* La data di riferimento, scritta per esteso: è quella del telefono di chi
+     guarda, la stessa con cui la pagina decide cosa è scaduto. */
+  const gio = document.getElementById('oggi-scritto');
+  if (gio) {
+    const gg = ('domenica lunedì martedì mercoledì giovedì venerdì sabato').split(' ');
+    const dt = new Date(OGGI_ISO + 'T12:00:00');
+    gio.textContent = gg[dt.getDay()] + ' ' + soloGiorno(OGGI_ISO) + ' ' + OGGI_ISO.slice(0, 4);
   }
   const dv = document.getElementById('dove-vive');
   if (dv) dv.textContent = soloMio

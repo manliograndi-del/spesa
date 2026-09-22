@@ -2299,3 +2299,49 @@ il numero rosso grande è la cosa che si vede di più della riga, e continuava a
 gridare «sono qui» anche quando in cassa quel prezzo non lo facevano. Adesso è
 `--tenue`, e la riga è salita da 0,72 a 0,82 di opacità — sbiadire *tutto* di
 più avrebbe reso illeggibile anche quello che serve leggere.
+
+## L'impaginazione a schede — 2026-09-22 (sera)
+
+Manlio ha mandato la schermata di un'altra versione della pagina — fatta da
+un altro programma, su un indirizzo suo — e ha detto: «manteniamo pure tutte
+le iconcine che abbiamo fatto fino adesso, ma la pagina deve avere questo
+look. L'impaginazione è più bella così, con tutto messo in pillole e
+ordinato». Prima di toccare niente gli ho fatto quattro domande, perché nella
+schermata c'erano tre cose che nella nostra applicazione non esistono.
+
+**Cosa ha deciso lui:**
+
+- **La scelta dei negozi non si fa.** Nella schermata c'erano un tasto
+  «Negozi» e la riga «Supermercati selezionati: 7 su 7 — Modifica». Gliel'ho
+  offerta funzionante e ha detto di no, due volte: «non mi interessa, non
+  metterla». Quindi non c'è, e non va rimessa perché «c'era nella foto».
+- **Il negozio è un marchio, non un nome.** «Al posto del nome del negozio e
+  dell'intero indirizzo, che non mi interessa niente, mettici il marchio dei
+  supermercati.» I marchi veri sono di chi li ha e questa pagina non li
+  pubblica (stessa regola per cui non pubblica le pagine dei volantini):
+  quello che c'è è il nome dell'insegna scritto nei suoi colori, dentro una
+  pillola con fondo e scritta fissati tutti e due — così si legge uguale con
+  qualunque dei cento look addosso.
+- **La marca del prodotto resta dov'è.** Nella schermata era una pillola a
+  parte («Tre Mulini», «Divella»). Da noi sta attaccata al nome del prodotto
+  in `dati.py`, su 1235 righe, e lui ha detto di lasciarla lì.
+- **Solo i tondini, non le date scritte.** La schermata aveva pillole «Inizia
+  il 24/09» e «Fino al 05/10»; noi avevamo appena fatto i tondini. Ha scelto i
+  tondini. La data per esteso resta comunque scritta nella riga sotto il nome.
+- **Il tasto «Look» resta**, e i cento look continuano a colorare anche questa
+  impaginazione: i colori sono una cosa, la disposizione un'altra.
+
+**Una cosa che ha chiesto prima e che qui non c'è:** la riga «Torino (corso
+Siracusa)» in cima. Nella schermata c'era, ma poche ore prima me l'aveva fatta
+togliere («è inutile»). Un'istruzione detta vale più di un dettaglio in una
+figura: non l'ho rimessa, e gliel'ho detto.
+
+**Due cose imparate rifacendola:**
+
+1. **A due colonne, sul telefono, la scheda si strozza.** A 390 px il nome del
+   prodotto andava a capo ogni due parole e i prezzi finivano schiacciati.
+   Sotto i 560 px la scheda va in colonna e i prezzi scendono su una riga
+   loro.
+2. **Il negozio non sta più in `.sotto b`.** Tre prove lo cercavano lì per
+   sapere di che insegna fosse un'offerta; adesso lo cercano in `.marchio`.
+   Chi tocca la scheda si ricordi che quelle prove leggono il DOM vero.

@@ -72,7 +72,7 @@ setTimeout(() => {
     if (!/meno caro/i.test(dentro)) male.push(t.textContent + ': la pastiglia non dice cos\'è');
     if (!r.querySelector('.val .n').textContent.trim())
       male.push(t.textContent + ': senza prezzo per unità');
-    if (!r.querySelector('.sotto b').textContent.trim())
+    if (!r.querySelector('.marchio').textContent.trim())
       male.push(t.textContent + ': non dice in che negozio');
     if (!/la confezione/.test(dentro))
       male.push(t.textContent + ': non dice quanto costa la confezione');

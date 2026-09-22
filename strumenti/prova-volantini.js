@@ -97,7 +97,7 @@ apri(SITO, (w, d, errori) => {
     male.push('mostra ' + mostrate.length + ' righe invece di ' + Math.min(attese, 40));
 
   const insegna = w.eval('DATI.volantini.find(v => v.pdf === ' + JSON.stringify(pdf) + ').ins');
-  const estranee = mostrate.filter(r => r.querySelector('.sotto b').textContent.trim() !== insegna);
+  const estranee = mostrate.filter(r => r.querySelector('.marchio').textContent.trim() !== insegna);
   if (estranee.length)
     male.push('fra le offerte di ' + insegna + ' ce ne sono ' + estranee.length + ' di altri negozi');
 
@@ -127,19 +127,19 @@ apri(SITO, (w, d, errori) => {
   const strette = [...d.querySelectorAll('#trovati .prezzo-riga')];
   if (strette.length > mostrate.length)
     male.push('scrivendo una parola le offerte aumentano invece di restringersi');
-  if (strette.some(r => r.querySelector('.sotto b').textContent.trim() !== insegna))
+  if (strette.some(r => r.querySelector('.marchio').textContent.trim() !== insegna))
     male.push('cercando dentro il volantino escono offerte di altri negozi');
 
   /* «Fatto» chiude e rimette la pagina com'era: la ricerca normale torna a
      cercare fra TUTTE le offerte, non dentro l'ultimo volantino guardato. */
   d.getElementById('chiudi-ricerca').dispatchEvent(new w.Event('click'));
   if (d.getElementById('risultato').hidden) male.push('chiudendo, l\'elenco dei prodotti non torna');
-  const cer = [...d.querySelectorAll('#tasti .tasto')].find(b => b.textContent.includes('Cerca'));
+  const cer = [...d.querySelectorAll('.tasto')].find(b => b.textContent.includes('Cerca'));
   cer.dispatchEvent(new w.Event('click'));
   q.value = 'mozzarella';
   q.dispatchEvent(new w.Event('input'));
   const negozi = new Set([...d.querySelectorAll('#trovati .prezzo-riga')]
-    .map(r => r.querySelector('.sotto b').textContent.trim()));
+    .map(r => r.querySelector('.marchio').textContent.trim()));
   if (negozi.size < 2)
     male.push('dopo aver guardato un volantino la ricerca resta chiusa dentro quello');
 

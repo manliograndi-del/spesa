@@ -162,6 +162,30 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   ancora letto stanno in **`VOLANTINI_ATTESI`** in `dati.py` e in tabella sono
   segnati «prezzi non ancora letti»: si tolgono di lì appena il volantino
   entra in `VOLANTINI`. La prova è `prova-novita.js`.
+- **L'impaginazione è a schede, decisa il 2026-09-22 su una schermata che ha
+  mandato lui**: «l'impaginazione è più bella così, con tutto messo in pillole
+  e ordinato». In cima il marchio della pagina (quadratino rosso «S»), il
+  titolo **«Spesa»**, il sottotitolo, i quattro tasti (Look, Novità app,
+  Aiuto, Novità) e la riga **«Data di riferimento: …»**. Poi il tasto rosso
+  **«Cerca fra i prezzi di tutte le offerte»**, largo quanto lo schermo e
+  **fuori dalla barra appiccicata**. Poi «I tuoi prodotti (N)» con le
+  pastiglie. Regole da non cambiare:
+  - **Ogni offerta è una scheda** (`.prezzo-riga`), con in cima il marchio del
+    negozio e i bollini, poi nome, formato e prezzo della confezione, la nota
+    in un riquadro ambra, a destra i due prezzi (al pezzo e per unità) e in
+    fondo «Vedi tutte le offerte del volantino».
+  - **Il negozio è un MARCHIO, non una scritta** (`.marchio`, chiesto il
+    2026-09-22: «mettici il marchio dei supermercati»). I marchi veri non si
+    pubblicano: sono disegnati in `MARCHI` dentro `pagina.py`, il nome
+    dell'insegna scritto nei suoi colori. **Fondo e scritta sono fissati tutti
+    e due** dentro la pillola, così si legge uguale con qualunque look. Le
+    prove riconoscono il negozio da `.marchio`, non più da `.sotto b`.
+  - **La scelta dei negozi non si fa e non si mette**: chiesta e rifiutata da
+    lui lo stesso giorno, due volte. Niente tasto «Negozi», niente «7 su 7».
+  - **Sotto i 560 px la scheda va in colonna**: i prezzi scendono su una riga
+    loro. A due colonne, sul telefono, il nome andava a capo ogni due parole.
+  - Nessuna riga dice più **«letto a occhio dal volantino»**: tolta su sua
+    richiesta.
 - **In cima NON c'è più «Torino · corso Siracusa» né il bollino «i»**
   (tolti il 2026-09-22 su richiesta sua: «è inutile»). Quello che stava
   dietro quel bollino — com'è fatta questa copia, se è solo sua o condivisa —
@@ -264,6 +288,9 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-22)
 
+- **Rifatta l'impaginazione il 2026-09-22 (`sw.js` v52)**: schede al posto
+  delle righe, marchi dei negozi, titolo «Spesa», data di riferimento, tasto
+  rosso della ricerca in cima. Sopra c'è la regola per esteso.
 - **Fatto il 2026-09-22 (`sw.js` v50)**: la pastiglia del «meno caro»
   nell'elenco, le offerte non ancora cominciate sbiadite col prezzo grigio e
   col tondino del giorno in cui partono, il cerchietto dei giorni che mancano
