@@ -2389,3 +2389,99 @@ disegno vero. Tre cose che non si potevano indovinare:
 
 I marchi restano di chi li ha. Stanno lì per far riconoscere il negozio di
 un'offerta letta dal suo volantino, e il piede della pagina lo dice.
+
+## L'Ipercoop, finalmente coi prezzi — 2026-09-22 (notte fonda)
+
+Manlio, dopo che gli avevo spiegato che l'Ipercoop c'era solo in tabella come
+«in arrivo dal 24»: «Allora fai che mettere subito quello del 24». Il 24 era
+fra due giorni. Nell'elenco pubblico del negozio non c'era. È saltato fuori
+lo stesso, ed è questa la cosa da ricordare.
+
+### Il volantino c'era già, solo non si vedeva
+
+Il canale Nova Coop (`negozi.volantinopiu.com/ccno-8001120004796.html`, quello
+linkato da `novacoop.it`) mostrava ancora i soliti tre volantini vecchi.
+Kimbino scriveva in grande «Ipercoop volantino dal 24/09/2026», ma è un titolo
+esca: dentro c'erano solo i volantini del 10. Anteprimavolantino, promoqui,
+doveconviene: niente.
+
+Però ogni volantino del canale si apre con un indirizzo fatto così:
+
+    negozi.volantinopiu.com/redirect<id>.html?id_pv=24
+       → ipercoop.volantinopiu.com/volantino<id>00pv24.html
+
+Quel secondo indirizzo **risponde per qualunque id**, anche per i volantini che
+il canale non elenca ancora. Quindi basta chiedere gli id uno per uno partendo
+dal più alto che si conosce e guardare il `<title>` e le date:
+
+    for i in range(28786, 28960):
+        curl -s "https://ipercoop.volantinopiu.com/volantino{i}00pv24.html"
+        # <title>IperCoop Novacoop - Extra offerte</title>
+        # Dal 24/09/2026 al 07/10/2026
+
+Sono venuti fuori subito: «Tendenze d'Autunno» (24/9-21/10, non alimentare) e
+**«Extra offerte», dal 24 settembre al 7 ottobre**, che è il volantino della
+spesa vera, quello che aspettavamo da due settimane. Era stato caricato il 22
+alle 18, poche ore prima. **Da rifare così ogni volta che serve un Nova Coop
+prima che compaia nell'elenco.**
+
+### Quattordici edizioni, e i prezzi non sono gli stessi
+
+Di «Extra offerte» ci sono quattordici id consecutivi, 28831-28844, tutti
+«IperCoop Novacoop». Non sono copie: confrontando le pagine, il latte Arborea
+costa 1,39 in una e 1,45 in un'altra, le uova 1,95 o 1,74.
+
+**La zona è stampata sul frontespizio**, in mezzo alla pagina, sotto le foto:
+«TORINO - COLLEGNO», «NOVARA - GALLIATE», «Via Polesine, 2 - CHIERI»... Si
+legge ritagliando quella striscia dalla copertina di ognuna. L'elenco:
+
+    28831 TORINO - COLLEGNO     28838 Cuorgnè
+    28832 NOVARA - GALLIATE     28839 Cuneo
+    28833 Borgomanero           28840 Crevoladossola
+    28834 Casale Monferrato     28841 Pinerolo
+    28835 Borgosesia            28842 Biella
+    28836 Chieri                28843 Gravellona Toce
+    28837 Ciriè                 28844 Beinasco
+
+Abbiamo preso **28831, Torino - Collegno**, perché Manlio vive a Torino.
+**Ma c'è una cosa da chiedergli**: l'Ipercoop di **Beinasco** (Strada Torino
+34/36) è più vicino a corso Siracusa di quello di Torino via Livorno 51, e ha
+la sua edizione, la 28844, con qualche prezzo diverso. Se dice che va lì, basta
+cambiare l'id nell'indirizzo dentro `VOLANTINI` e rileggere le poche pagine
+che cambiano.
+
+Nota di metodo: il primo id del gruppo è anche quello del negozio del canale.
+Vale per «Scegli tu Grandi Marche» (28380, primo dei quattordici Novacoop) e
+vale per questo. Ma **non ci si fida della posizione**: si guarda il
+frontespizio, che è scritto nero su bianco.
+
+### Cosa c'era dentro
+
+47 pagine, lette tutte. 152 prezzi in `dati.py`, in quasi ogni reparto:
+macelleria, banco taglio, pescheria, formaggi, salumi, surgelati, dispensa,
+bevande, ortofrutta, panetteria, casa e igiene. 21 pagine scartate: fiori,
+giardinaggio, fai da te, auto, casalinghi, libri, elettrodomestici Expert,
+tre pagine di raccolta bollini Alessi dove i prodotti hanno solo il numero di
+bollini e nessun prezzo, e le due «Grandi Marche Selection», che sono quelle
+che per due settimane mi avevano fatto dire «l'Ipercoop non ha prezzi»: solo
+«-30% su tutta la linea», senza il prezzo di partenza.
+
+Tre cose decise leggendo, tutte e tre nella direzione di non gonfiare l'offerta:
+
+- **Le pagine «1,2,3 più compri meno paghi»** danno tre prezzi: uno, due o tre
+  pezzi. In riga va **il prezzo di UN pezzo**, e la nota dice cosa si paga
+  prendendone due o tre. Il prezzo da tre pezzi è vero solo se ne compri tre.
+- **Le pagine «1+1»** seguono la regola dell'Ekom: nel formato c'è quanta roba
+  si porta via («2 × 680 g (1+1)»), nella nota quanto costa una confezione
+  sola.
+- **Il tonno in vaso e in scatola** l'ho contato sul peso lordo, come fa il
+  volantino, ma scrivendo nella nota che sgocciolato è meno: il peso
+  sgocciolato non è stampato e inventarlo sarebbe peggio.
+
+I prezzi **«solo per i soci»** e gli sconti soci sono segnati riga per riga col
+prezzo senza tessera nella nota, esattamente come la MD Buona Spesa Card e la
+carta EKOM UP. Il latte microfiltrato Coop a 1,19 **vale solo dal 28 settembre
+al 4 ottobre**, e quelle date stanno sulla riga.
+
+Da oggi le insegne con prezzi veri sono otto su otto, e l'Ipercoop ha anche il
+suo marchio vero nelle schede.

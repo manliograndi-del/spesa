@@ -321,21 +321,37 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-22)
 
+- **CHIUSA: l'IPERCOOP è dentro.** Il 2026-09-22 è stato letto per intero il
+  volantino **«Extra offerte» dal 24 settembre al 7 ottobre** (`ipercoop24`,
+  47 pagine, 152 prezzi nuovi): è il primo Ipercoop con prezzi veri da quando
+  esiste il progetto. Sul canale pubblico del negozio **non c'era ancora**:
+  volantinopiu lo aveva già caricato ma non lo mostrava, e si è trovato
+  interrogando gli id uno per uno su
+  `ipercoop.volantinopiu.com/volantino<id>00pv24.html`. **Da rifare così ogni
+  volta che serve un volantino Nova Coop prima che esca nell'elenco.**
+  - **Nova Coop stampa QUATTORDICI edizioni dello stesso volantino**, una per
+    zona, e qualche prezzo cambia fra l'una e l'altra (il latte Arborea va da
+    1,39 a 1,45). **La zona è scritta sul frontespizio**, in mezzo alla pagina.
+    La nostra è la PRIMA del gruppo, **id 28831, «TORINO - COLLEGNO»**.
+    L'elenco completo sta nel commento di `VOLANTINI` in `dati.py`.
+  - **Da chiedere a Manlio**: l'Ipercoop di **Beinasco** (Strada Torino 34/36,
+    Le Fornaci) è più vicino a corso Siracusa di quello di Torino via Livorno,
+    e ha la sua edizione (id 28844) con qualche prezzo diverso. Finché non lo
+    dice lui si usa Torino.
+  - 21 pagine scartate (fiori, giardinaggio, fai da te, auto, casalinghi,
+    libri, elettrodomestici, tre pagine di raccolta bollini senza prezzi, e le
+    due «Grandi Marche Selection» che hanno solo sconti percentuali): in
+    `scartate.py`. Copertura 47/47.
+  - Gli sconti e i prezzi **«solo per i soci»** sono segnati riga per riga col
+    prezzo senza tessera nella nota, come si fa con la MD Buona Spesa Card e
+    con la carta EKOM UP. Le pagine **«1+1»** e **«1,2,3 più compri meno
+    paghi»** seguono le regole già scritte: nel formato c'è quanta roba si
+    porta via, e il prezzo è quello che NON fa sembrare l'offerta più
+    conveniente di quello che è (una confezione sola).
+  - Il latte microfiltrato Coop a 1,19 **vale solo dal 28 settembre al 4
+    ottobre**: le date sono scritte sulla riga.
 - **Messi il 2026-09-22 i marchi veri di TUTTE E OTTO le insegne.** Le
   pillole col nome scritto non si vedono più da nessuna parte.
-- **IPERCOOP: per cinque giorni l'ho cercato sul sito sbagliato.**
-  `promoipercoop.it` è di **Coop Alleanza** (Emilia-Romagna) e rispondeva 503.
-  A Torino gli Ipercoop sono di **NOVA COOP**, e i volantini stanno su
-  volantinopiu, linkati da `novacoop.it`:
-  `negozi.volantinopiu.com/ccno-8001120004796.html`, pagine su
-  `resources.volantinopiu.it/flyer/<cifre dell'id>/pagine/N.jpg`.
-  Il 2026-09-22 Nova Coop aveva tre volantini e **nessuno con prezzi**:
-  «Scegli tu Grandi Marche» (10-23 settembre, solo sconti percentuali senza
-  prezzo di partenza — guardate le pagine, confermato), «Scuola un rientro
-  alla grande» (quaderni) e «Expert Orange week» (elettrodomestici). Quello
-  dei prezzi **scade il 23 e il successore parte il 24**: messo in
-  `VOLANTINI_ATTESI` con la fine ancora da sapere. **Da fare: il 24 settembre
-  si guarda volantinopiu e si legge per intero.**
 - **Rifatta l'impaginazione il 2026-09-22 (`sw.js` v52)**: schede al posto
   delle righe, marchi dei negozi, titolo «Spesa», data di riferimento, tasto
   rosso della ricerca in cima. Sopra c'è la regola per esteso.
@@ -374,8 +390,8 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   premi, pubblicità app): in `scartate.py`. Alcune offerte valgono solo con
   la carta EKOM UP, segnato riga per riga come per la MD Buona Spesa Card.
   Copertura: 16/16 pagine lette.
-- **Ipercoop: `promoipercoop.it` ancora 503**, controllato di nuovo il
-  2026-09-22 (5° giorno di fila). Da riprovare.
+- **Ipercoop: sistemato, vedi in cima.** `promoipercoop.it` non c'entrava
+  niente: era il sito sbagliato.
 - **Mercatò, Bennet, Eurospin, MD, Carrefour Iper: nessuna novità** il
   2026-09-22, controllati tutti sulla fonte (anteprimavolantino, kimbino).
 
@@ -403,8 +419,7 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   `dati.py` da prima: nessun buco, nessuna offerta persa. Restano in `dati.py`
   finché non si fa un giro di pulizia (le offerte scadute spariscono da sole
   dalla pagina, per data del browser di chi guarda: non è urgente toglierle).
-- **Ipercoop: `promoipercoop.it` ancora 503**, controllato di nuovo il
-  2026-09-21 (3° giorno di fila). Da riprovare.
+- **Ipercoop: sistemato il 2026-09-22, vedi in cima** (era il sito sbagliato).
 - **Mercatò, Bennet, Carrefour Iper: nessuna novità** il 2026-09-21, controllati
   tutti sulla fonte.
 
@@ -529,7 +544,7 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   In NOTE.md c'è per esteso.
 - **Copertura letta: tutti i volantini con prezzi in `dati.py` sono al 100%**
   (bennet10, lidl17, lidlfv17, eurospin10, eurospin24, md08, carriper15,
-  mercato17, md22, ekom08, bennet1709, lidl24, ekom22).
+  mercato17, md22, ekom08, bennet1709, lidl24, ekom22, ipercoop24).
 - **Scadenze da tenere d'occhio nei prossimi giorni**: `md08`, `eurospin10` ed
   `ekom08` sono scaduti (20 e 21 settembre) ma i loro successori sono già
   dentro `dati.py`: da togliere con `pulisci --fai` appena il programma lo
@@ -539,7 +554,8 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   nelle note delle singole righe). `mercato17` e `bennet1709` scadono il 30,
   `lidl24` anche (occhio: alcune sue offerte valgono solo dal 24 al 27 o solo
   dal 28 al 30, non tutto il periodo — già segnato riga per riga). `md22`
-  scade il 4 ottobre, `eurospin24` anche. `ekom22` scade il 5 ottobre. La
+  scade il 4 ottobre, `eurospin24` anche. `ekom22` scade il 5 ottobre, `ipercoop24` il 7 (dentro c'è il latte
+  microfiltrato Coop che vale solo dal 28 settembre al 4 ottobre). La
   pagina Oktoberfest del Bennet (pagine 20-21 di `bennet10`) scade il 4
   ottobre, non il 23 come il resto — occhio quando si ributta il volantino.
   Il weekend Eurospin 25-27 settembre e quello del 2-4 ottobre (vedi sopra)

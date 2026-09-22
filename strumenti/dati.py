@@ -91,6 +91,18 @@ VOLANTINI = [
  # «I più ekonomici», visto da Manlio di carta il 19/9, online dal 22/9 su
  # ekomdiscount.it (non più kimbino: vedi pagine_ekom.py). ekom08 e' scaduto
  # il 21, quindi un giorno di buco (il 21) gia passato quando si legge questo.
+ # IPERCOOP «Extra offerte», dal 24 settembre al 7 ottobre. Trovato il 22/9
+ # sul canale Nova Coop di volantinopiu: era gia caricato ma non ancora
+ # mostrato nell'elenco pubblico del negozio, e si e trovato interrogando gli
+ # id uno per uno su ipercoop.volantinopiu.com/volantino<id>00pv24.html.
+ # ATTENZIONE: Nova Coop stampa QUATTORDICI edizioni diverse dello stesso
+ # volantino, una per zona, e i prezzi di qualche riga cambiano fra l'una e
+ # l'altra (il latte Arborea va da 1,39 a 1,45). La zona e scritta sul
+ # frontespizio. La nostra e la PRIMA, id 28831, «TORINO - COLLEGNO».
+ # Le altre: 28832 Novara, 28833 Borgomanero, 28834 Casale, 28835 Borgosesia,
+ # 28836 Chieri, 28837 Cirie, 28838 Cuorgne, 28839 Cuneo, 28840 Crevoladossola,
+ # 28841 Pinerolo, 28842 Biella, 28843 Gravellona Toce, 28844 Beinasco.
+ _v('ipercoop24',    'Ipercoop',       '«Extra offerte», dal 24 settembre al 7 ottobre', 'Ipercoop «Extra offerte» — 24 settembre-7 ottobre.pdf', '2026-10-07', _VP + '/2/8/8/3/1/pagine/{n}.jpg', '2026-09-24'),
  _v('ekom22',         'Ekom',           '«I più ekonomici», dal 22 settembre al 5 ottobre', 'Ekom «I più ekonomici» — 22 settembre-5 ottobre.pdf', '2026-10-05', None, '2026-09-22', PAGINE_EKOM_22),
 ]
 
@@ -108,21 +120,9 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
-    # IPERCOOP. Per cinque giorni l'ho cercato sul sito sbagliato:
-    # `promoipercoop.it` e di Coop Alleanza (Emilia-Romagna), e rispondeva 503.
-    # A Torino gli Ipercoop sono di NOVA COOP, e i suoi volantini stanno su
-    # volantinopiu, linkati da novacoop.it:
-    #   negozi.volantinopiu.com/ccno-8001120004796.html
-    #   le pagine sono resources.volantinopiu.it/flyer/<cifre dell'id>/pagine/N.jpg
-    # Il 2026-09-22 Nova Coop aveva tre volantini e NESSUNO con prezzi:
-    #   «Scegli tu Grandi Marche» (10-23 settembre) — solo sconti percentuali,
-    #   senza il prezzo di partenza: non si puo ricavare nessun prezzo al kg;
-    #   «Scuola un rientro alla grande» — quaderni e zaini;
-    #   «Expert Orange week» — elettrodomestici.
-    # Quello dei prezzi scade il 23: il successore parte il 24. La fine non la
-    # so ancora e non me la invento.
-    Atteso('Ipercoop', 'il prossimo, dal 24 settembre', '2026-09-24', None,
-           'novacoop.it, che porta a volantinopiu'),
+    # Vuota: l'Ipercoop che stava qui e' stato letto il 2026-09-22 ed e'
+    # passato in VOLANTINI come `ipercoop24`. Si rimette qui dentro un
+    # volantino solo quando SO che sta per uscire e non l'ho ancora letto.
 ]
 
 for _a in VOLANTINI_ATTESI:
@@ -1563,6 +1563,193 @@ PRODOTTI = [
  ("Yogurt","Ekom","ekom22","Freschi","Yogurt greco, magro, magro senza lattosio o intero","150 g",0.150,0.79,16,V,"Prima 0,99."),
  ("Pizza surgelata","Ekom","ekom22","Surgelati","Pizza Kebab","420 g",0.420,2.99,16,V,"Prima 3,99."),
  ("Gelato","Ekom","ekom22","Surgelati","Gelato Mochi Maka Flavor, cocco/vaniglia/mango","180 g",0.180,3.49,16,V,""),
+ # ---------------------------------------------------------------------------
+ # IPERCOOP «Extra offerte», 24 settembre-7 ottobre 2026 (ipercoop24).
+ # Lette a occhio tutte e 47 le pagine il 2026-09-22, edizione TORINO-COLLEGNO
+ # (id 28831 su volantinopiu): le altre tredici edizioni di Nova Coop hanno
+ # qualche prezzo diverso, vedi il commento in VOLANTINI.
+ # I prezzi «solo per i soci» e gli sconti soci sono segnati riga per riga,
+ # come si fa con la MD Buona Spesa Card e con la carta EKOM UP.
+ # ---------------------------------------------------------------------------
+
+ # --- pagina 1 (copertina) ---
+ ("Frutta","Ipercoop","ipercoop24","Ortofrutta","Uva bianca senza semi – Fior Fiore","1 kg",1,3.28,1,V,"Bollino «Conviene»."),
+ ("Carne di bue","Ipercoop","ipercoop24","Macelleria","Hamburger di chianina – Linea You&Meat","200 g",0.200,4.49,1,V,"Bollino «Conviene». Il volantino stampa 22,45 al kg. Ci sono anche altri tipi allo stesso prezzo."),
+ ("Pomodoro e passata","Ipercoop","ipercoop24","Dispensa","Passata rustica Cirio","2 × 680 g (1+1)",1.360,1.69,1,V,"È un 1+1: si pagano 1,69 e se ne portano via due. Una confezione sola costa 2,49. Il volantino stampa 1,25 al kg."),
+ # --- pagina 2 (1+1 e sconti 50%) ---
+ ("Biscotti","Ipercoop","ipercoop24","Colazione","Frollini Gran Dispensa Colussi, tipi vari","2 × 565 g (1+1)",1.130,3.49,2,V,"È un 1+1: si pagano 3,49 e se ne portano via due. Una confezione sola costa 3,49. Il volantino stampa 3,09 al kg."),
+ ("Pane","Ipercoop","ipercoop24","Panetteria","Piadina Sfogliatissima all'olio Loriana","2 × 350 g (1+1)",0.700,2.59,2,V,"È un 1+1: si pagano 2,59 e se ne portano via due. Una confezione sola costa 2,59. Il volantino stampa 3,70 al kg."),
+ ("Olio d'oliva","Ipercoop","ipercoop24","Dispensa","Olio extra vergine di oliva Classico Zucchi","2 × 1 litro (1+1)",2,9.90,2,V,"È un 1+1: si pagano 9,90 e se ne portano via due. Una bottiglia sola costa 9,90. Il volantino stampa 4,95 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Gutturnio frizzante D.O.C. rosso Podere Cantagallo – Cantina Valtidone","2 × 750 ml (1+1)",1.500,5.49,2,V,"È un 1+1: si pagano 5,49 e se ne portano via due. Una bottiglia sola costa 5,49. Il volantino stampa 3,66 al litro."),
+ ("Sapone e bagnoschiuma","Ipercoop","ipercoop24","Igiene","Bagnodoccia Spuma di Sciampagna, varie profumazioni","2 × 650 ml (1+1)",1.300,2.79,2,V,"È un 1+1: si pagano 2,79 e se ne portano via due. Un flacone solo costa 2,79. Il volantino stampa 2,15 al litro."),
+ ("Dentifricio","Ipercoop","ipercoop24","Igiene","Dentifricio Mentadent P white system o microgranuli","4 × 75 ml (1+1 da due)",0.300,4.85,2,V,"È un 1+1: si pagano 4,85 e si portano via due confezioni da due tubetti. Una confezione sola costa 4,85. Il volantino stampa 16,17 al litro."),
+ ("Ammorbidente","Ipercoop","ipercoop24","Cura casa","Ammorbidente concentrato Coccolino, tipi vari","2 × 1,827 litri, 174 lavaggi (1+1)",174,6.99,2,V,"È un 1+1: si pagano 6,99 e se ne portano via due. Un flacone solo costa 6,99 e fa 87 lavaggi. Il volantino stampa 1,92 al litro."),
+ ("Ricotta","Ipercoop","ipercoop24","Freschi","Ricotta Granarolo","450 g",0.450,1.50,2,V,"Sconto del 50%: prima 3,00. Il volantino stampa 3,33 al kg."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop24","Cura casa","Detersivo liquido per lavatrice Dash classico","3,105 litri, 3 × 23 lavaggi",69,11.85,2,V,"Sconto del 50%: prima 23,70. Offerta limitata. Il volantino stampa 3,82 al litro."),
+ # --- pagina 3 («1,2,3 più compri meno paghi») ---
+ ("Carne di bue","Ipercoop","ipercoop24","Macelleria","Hamburgerini di scottona – Fior Fiore","240 g",0.240,6.28,3,V,"Prezzo di una confezione sola (26,17 al kg). Comprandone due 10,04 (5,02 l'una), tre 13,17 (4,39 l'una, cioè 18,29 al kg). Dal quarto pezzo in poi si paga il prezzo più basso; massimo 12 pezzi per scontrino."),
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Mozzarella Latte Fieno Brimi","3 × 100 g",0.300,4.29,3,V,"Prezzo di una confezione sola (14,30 al kg). Comprandone due 6,00 (3,00 l'una), tre 7,71 (2,57 l'una, cioè 8,57 al kg). Dal quarto pezzo in poi si paga il prezzo più basso."),
+ ("Latte","Ipercoop","ipercoop24","Latteria","Latte UHT parzialmente scremato Arborea","1 litro",1,1.39,3,V,"Prezzo di una confezione sola. Comprandone due 1,94 (0,97 l'una), tre 2,49 (0,83 l'una). Dal quarto pezzo in poi si paga il prezzo più basso."),
+ ("Pollo","Ipercoop","ipercoop24","Freschi","Würstel Wudy Cocktail AIA","350 g",0.350,2.99,3,V,"Sono würstel di pollo e tacchino. Prezzo di una confezione sola (8,54 al kg). Comprandone due 4,18 (2,09 l'una), tre 5,37 (1,79 l'una, cioè 5,11 al kg)."),
+ ("Sapone e bagnoschiuma","Ipercoop","ipercoop24","Igiene","Sapone liquido Felce Azzurra, varie profumazioni","300 ml",0.300,1.42,3,V,"Prezzo di un flacone solo (4,73 al litro). Comprandone due 2,26 (1,13 l'uno), tre 2,97 (0,99 l'uno, cioè 3,30 al litro)."),
+ # --- pagina 6 ---
+ ("Latte","Ipercoop","ipercoop24","Latteria","Latte microfiltrato parzialmente scremato o intero Origine Coop","1 litro",1,1.19,6,V,"Vale solo dal 28 settembre al 4 ottobre, non per tutto il volantino. Latte 100% italiano.","2026-09-28","2026-10-04"),
+ # --- pagina 7 ---
+ ("Merendine","Ipercoop","ipercoop24","Colazione","Croissant classico Melegatti","240 g",0.240,0.99,7,V,"Bollino «Conviene». Il volantino stampa 4,13 al kg."),
+ ("Caffè","Ipercoop","ipercoop24","Colazione","Caffè Oro Lavazza","500 g (2 × 250 g)",0.500,11.99,7,V,"Solo per i soci Coop. Il volantino stampa 23,98 al kg."),
+ ("Caffè","Ipercoop","ipercoop24","Colazione","Caffè Aroma Napoli Kimbo","750 g (3 × 250 g)",0.750,11.90,7,V,"Bollino «Conviene». Il volantino stampa 15,87 al kg."),
+ ("Biscotti","Ipercoop","ipercoop24","Colazione","Biscotto Salute Monviso classico o integrale","500 g",0.500,3.09,7,V,"Bollino «Conviene». Il volantino stampa 6,18 al kg."),
+ ("Marmellata","Ipercoop","ipercoop24","Colazione","Composta di frutta zero zuccheri Zuegg","230 g",0.230,2.39,7,V,"Solo per i soci Coop. Il volantino stampa 10,39 al kg."),
+ ("Cereali","Ipercoop","ipercoop24","Colazione","Granola Fitness Nestlé, cioccolato o avena","300 g",0.300,1.53,7,V,"Sconto soci del 40%: senza tessera 2,55, cioè 8,50 al kg. Il volantino stampa 5,10 al kg."),
+ ("Merendine","Ipercoop","ipercoop24","Colazione","Choco Wafer Milka, gusti vari","180 g",0.180,1.99,7,V,"Bollino «Conviene». Il volantino stampa 11,06 al kg."),
+ ("Cioccolato","Ipercoop","ipercoop24","Dispensa","KitKat, gusti vari","124,5 g",0.1245,1.99,7,V,"Bollino «Conviene». Il volantino stampa 15,98 al kg."),
+ ("Creme spalmabili","Ipercoop","ipercoop24","Colazione","Crema spalmabile CremaNovi, barattolo","350 g",0.350,5.99,7,V,"Bollino «Conviene». Il volantino stampa 17,11 al kg."),
+ ("Merendine","Ipercoop","ipercoop24","Colazione","Pandorì Bauli classico o farcito, formati vari","150 g (classico)",0.150,1.79,7,V,"Bollino «Conviene». Il conto è sul formato classico da 150 g. Il volantino stampa 11,93 al kg."),
+ ("Biscotti","Ipercoop","ipercoop24","Colazione","Biscotti Oro Saiwa 5 cereali","420 g",0.420,1.79,7,V,"Bollino «Conviene». Il volantino stampa 4,26 al kg."),
+ # --- pagina 8 ---
+ ("Pasta","Ipercoop","ipercoop24","Dispensa","Pasta di semola Voiello, formati vari","500 g",0.500,0.89,8,V,"Solo per i soci Coop. Il volantino stampa 1,78 al kg."),
+ ("Pasta","Ipercoop","ipercoop24","Dispensa","Pasta all'uovo La Pasta di Camerino, formati vari","250 g",0.250,1.32,8,V,"Sconto soci del 30%: senza tessera 1,89, cioè 7,56 al kg. Il volantino stampa 5,28 al kg."),
+ ("Riso","Ipercoop","ipercoop24","Dispensa","Riso Carnaroli Gallo","1 kg",1,2.79,8,V,"Bollino «Conviene»."),
+ ("Pomodoro e passata","Ipercoop","ipercoop24","Dispensa","Passata siciliana con Piccadilly Agromonte","660 g",0.660,0.99,8,V,"Sconto del 50%: prima 1,99. Il volantino stampa 1,50 al kg."),
+ # --- pagina 9 ---
+ ("Olio d'oliva","Ipercoop","ipercoop24","Dispensa","Olio extra vergine di oliva grezzo naturale Il Casolare Farchioni","1 litro",1,8.19,9,V,"Solo per i soci Coop."),
+ ("Tonno","Ipercoop","ipercoop24","Dispensa","Tonno pescato a canna all'olio di oliva Rio Mare","960 g (12 × 80 g)",0.960,12.90,9,V,"Bollino «Conviene». Il conto è sul peso della scatola, come fa il volantino (13,44 al kg): sgocciolato il tonno è meno, quindi al chilo costa di più."),
+ ("Tonno","Ipercoop","ipercoop24","Dispensa","Filetto di tonno in olio Il Tonnotto, vaso di vetro, gusto delicato","415 g",0.415,4.95,9,V,"Sconto del 50%: prima 9,90. Il conto è sul peso del vaso, come fa il volantino (11,93 al kg): il peso sgocciolato non è stampato, quindi al chilo di tonno costa di più."),
+ # --- pagina 10 (bevande) ---
+ ("Birra","Ipercoop","ipercoop24","Bevande","Birra Ichnusa anima sarda","660 ml",0.660,0.95,10,V,"Bollino «Conviene». Il volantino stampa 1,44 al litro."),
+ ("Birra","Ipercoop","ipercoop24","Bevande","Birra Bud","990 ml (3 × 330 ml)",0.990,2.29,10,V,"Bollino «Conviene». Il volantino stampa 2,31 al litro."),
+ ("Birra","Ipercoop","ipercoop24","Bevande","Birra Beck's, lattina","440 ml",0.440,0.89,10,V,"Sconto soci del 40%: senza tessera 1,49, cioè 3,39 al litro. Il volantino stampa 2,03 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Fira I.G.T. Sartori, bianco o rosso Verona","750 ml",0.750,3.99,10,V,"Bollino «Conviene». Il volantino stampa 5,32 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Soave D.O.C. Pasqua","750 ml",0.750,2.75,10,V,"Sconto del 40%: prima 4,59, cioè 6,12 al litro. Il volantino stampa 3,67 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Freschello Rosso","750 ml",0.750,1.59,10,V,"Solo per i soci Coop. Il volantino stampa 2,12 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Refosco D.O.C. Tenimenti Civa","750 ml",0.750,6.49,10,V,"Bollino «Conviene». Il volantino stampa 8,65 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Prosecco Treviso D.O.C. Maschio","750 ml",0.750,4.13,10,V,"Sconto soci del 30%: senza tessera 5,90, cioè 7,87 al litro. Il volantino stampa 5,51 al litro."),
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Pepsi classica o zero","2 litri",2,1.39,10,V,"Bollino «Conviene». Il volantino stampa 0,70 al litro."),
+ ("Acqua","Ipercoop","ipercoop24","Bevande","Acqua Levissima naturale","1,5 litri",1.5,0.31,10,V,"Solo per i soci Coop. Il volantino stampa 0,21 al litro."),
+ # --- pagina 11 (surgelati) ---
+ ("Pizza surgelata","Ipercoop","ipercoop24","Surgelati","Pizza Ristorante Cameo, gusti e formati vari","320 g (al salame)",0.320,2.39,11,V,"Bollino «Conviene». Il conto è sul formato al salame da 320 g. Il volantino stampa 7,47 al kg."),
+ ("Verdure surgelate","Ipercoop","ipercoop24","Surgelati","Buon Minestrone Orogel","750 g",0.750,1.54,11,V,"Sconto del 50%: prima 3,09, cioè 4,12 al kg. Il volantino stampa 2,05 al kg."),
+ ("Gelato","Ipercoop","ipercoop24","Surgelati","Gelato Cornetto Soft Algida, 4 pezzi, formati vari","324 g (cookies & chocolate)",0.324,2.79,11,V,"Solo per i soci Coop. Il conto è sul formato cookies & chocolate da 324 g. Il volantino stampa 8,61 al kg."),
+ ("Gamberi","Ipercoop","ipercoop24","Surgelati","Gamberi argentini Grand Krust, surgelati","400 g",0.400,6.90,11,V,"Bollino «Conviene». Il volantino stampa 17,25 al kg."),
+ ("Merluzzo e baccalà","Ipercoop","ipercoop24","Surgelati","Fiori di merluzzo d'Alaska Capitan Findus, 10 pezzi","500 g",0.500,7.69,11,V,"Solo per i soci Coop. Il volantino stampa 15,38 al kg."),
+ ("Patate","Ipercoop","ipercoop24","Surgelati","Le Patatine Original McCain, surgelate","1,04 kg",1.040,2.29,11,V,"Solo per i soci Coop. Sono patatine fritte surgelate, non patate fresche. Il volantino stampa 2,20 al kg."),
+ ("Verdure surgelate","Ipercoop","ipercoop24","Surgelati","Friarielli Cubello Orogel","600 g",0.600,2.49,11,V,"Bollino «Conviene». Il volantino stampa 4,15 al kg."),
+ ("Verdure surgelate","Ipercoop","ipercoop24","Surgelati","Spinaci Primavera Findus","800 g",0.800,2.49,11,V,"Bollino «Conviene». Il volantino stampa 3,11 al kg."),
+ ("Merluzzo e baccalà","Ipercoop","ipercoop24","Surgelati","Croccole di merluzzo Capitan Findus, 2 pezzi","216 g",0.216,2.79,11,V,"Solo per i soci Coop. Sono impanate, non filetto nudo. Il volantino stampa 12,92 al kg."),
+ ("Verdure surgelate","Ipercoop","ipercoop24","Surgelati","Pisellini Primavera Findus","700 g",0.700,3.59,11,V,"Bollino «Conviene». Il volantino stampa 5,13 al kg."),
+ # --- pagina 12 (latteria) ---
+ ("Yogurt","Ipercoop","ipercoop24","Latteria","Yogurt intero Müller, gusti vari","250 g (2 × 125 g)",0.250,0.86,12,V,"Sconto del 40%: prima 1,44, cioè 5,76 al kg. Il volantino stampa 3,44 al kg."),
+ ("Latte","Ipercoop","ipercoop24","Latteria","Latte UHT Alta Digeribilità Candia","1 litro",1,1.19,12,V,"Bollino «Conviene»."),
+ ("Merendine","Ipercoop","ipercoop24","Colazione","Dessert Cake Pops Bontà Divina, limone o cacao","84 g (3 × 28 g)",0.084,1.99,12,V,"Bollino «Conviene». Il conto è sui 3 × 28 g scritti sulla confezione: il volantino stampa 23,27 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Fiocchi di latte Santa Lucia Galbani, formato scorta","360 g (2 × 180 g)",0.360,2.49,12,V,"Bollino «Conviene». Il volantino stampa 6,92 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Stracchino alta qualità Granarolo","320 g",0.320,2.98,12,V,"Bollino «Conviene». Il volantino stampa 9,31 al kg."),
+ ("Formaggi spalmabili","Ipercoop","ipercoop24","Freschi","Philadelphia Light","210 g",0.210,1.99,12,V,"Solo per i soci Coop. Il volantino stampa 9,48 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Camoscio d'Oro","200 g",0.200,2.29,12,V,"Bollino «Conviene». Il volantino stampa 11,45 al kg."),
+ # --- pagina 13 (salumi e freschi) ---
+ ("Bresaola","Ipercoop","ipercoop24","Salumi","Bresaola della Valtellina I.G.P. Rigamonti, bipacco","180 g (2 × 90 g)",0.180,6.57,13,V,"Sconto del 40%: prima 10,95, cioè 60,84 al kg. Il volantino stampa 36,50 al kg."),
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Mozzarella fior di latte Vallelata","375 g (3 × 125 g)",0.375,3.09,13,V,"Bollino «Conviene». Il volantino stampa 8,24 al kg."),
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Speck Coop","100 g",0.100,1.69,13,V,"È speck, cioè prosciutto crudo affumicato. Il volantino stampa 16,90 al kg."),
+ ("Pancetta e bacon","Ipercoop","ipercoop24","Salumi","Pancetta a cubetti Tulip, dolce o affumicata","100 g",0.100,1.13,13,V,"Sconto del 40%: prima 1,89, cioè 18,90 al kg. Il volantino stampa 11,30 al kg."),
+ ("Grana e parmigiano","Ipercoop","ipercoop24","Freschi","Grana Padano D.O.P. Virgilio, fresco","700 g",0.700,10.90,13,V,"Bollino «Conviene». Il volantino stampa 15,57 al kg."),
+ ("Uova","Ipercoop","ipercoop24","Freschi","Uova da galline allevate a terra Naturelle","6 pezzi",6,1.95,13,V,"Sconto soci del 30%: senza tessera 2,79."),
+ # --- pagina 14 (macelleria) ---
+ ("Pollo","Ipercoop","ipercoop24","Macelleria","Petto di pollo a fette AIA","al kg",1,11.06,14,V,"Sconto del 30%: prima 15,81 al kg."),
+ ("Carne di bue","Ipercoop","ipercoop24","Macelleria","Macinato di bovino adulto razza piemontese – Fior Fiore","400 g",0.400,6.38,14,V,"Sconto soci del 20%: senza tessera 7,98, cioè 19,95 al kg. Il volantino stampa 15,95 al kg."),
+ ("Vitello","Ipercoop","ipercoop24","Macelleria","Fettine scelte di vitello","al kg",1,21.58,14,V,"Sconto del 20%: prima 26,98 al kg."),
+ ("Suino","Ipercoop","ipercoop24","Macelleria","Linea Mini Spiedini Martini, tipi vari","300 g (di suino)",0.300,3.71,14,V,"Sconto soci del 30%: senza tessera 5,30, cioè 17,67 al kg. Il conto è sul formato di suino da 300 g. Il volantino stampa 12,37 al kg."),
+ ("Pollo","Ipercoop","ipercoop24","Macelleria","Linea Fidatissimi Amadori, tipi e formati vari","600 g (cotoletta)",0.600,5.57,14,V,"Sconto soci del 40%: 7,43 con lo sconto del 20% per tutti (12,38 al kg), 9,29 senza sconti (15,49 al kg). Il conto è sulla cotoletta da 600 g. Il volantino stampa 9,28 al kg col prezzo soci."),
+ ("Pollo","Ipercoop","ipercoop24","Macelleria","Bocconcini di petto di pollo SQ Coop","400 g",0.400,3.96,14,V,"Sconto soci del 25%: senza tessera 5,28, cioè 13,20 al kg. Il volantino stampa 9,90 al kg."),
+ ("Pollo","Ipercoop","ipercoop24","Macelleria","Mini rollé di pollo Fileni","600 g",0.600,6.99,14,V,"Bollino «Conviene». Sono di pollo con suino e tacchino. Il volantino stampa 11,65 al kg."),
+ ("Tacchino","Ipercoop","ipercoop24","Macelleria","Linea Bon Roll di tacchino AIA, vari gusti","680 g",0.680,6.99,14,V,"Bollino «Conviene». Il volantino stampa 10,28 al kg."),
+ # --- pagina 15 (pesce, gastronomia, panetteria) ---
+ ("Pesce fresco","Ipercoop","ipercoop24","Pescheria","Branzino allevato Cromaris","al kg",1,12.67,15,V,"Sconto soci del 25%: senza tessera 16,90 al kg."),
+ ("Salmone","Ipercoop","ipercoop24","Freschi","Trancio di salmone affumicato a caldo Mowi, gusti vari","125 g",0.125,5.19,15,V,"Sconto del 20%: prima 6,49, cioè 51,92 al kg. È affumicato, non salmone fresco. Il volantino stampa 41,52 al kg."),
+ ("Pasta","Ipercoop","ipercoop24","Freschi","Spätzle Valsugana Sapori, verdi o tricolore","500 g",0.500,2.93,15,V,"Sconto soci del 30%: senza tessera 4,19, cioè 8,38 al kg. È pasta fresca. Il volantino stampa 5,86 al kg."),
+ ("Pasta","Ipercoop","ipercoop24","Freschi","Tortellini Gastronomia Piccinini","250 g",0.250,3.63,15,V,"Sconto del 30%: prima 5,19, cioè 20,76 al kg. È pasta fresca ripiena. Il volantino stampa 14,52 al kg."),
+ ("Pane","Ipercoop","ipercoop24","Panetteria","Filone Pan Premium, fibre mais e sesamo","300 g",0.300,1.99,15,V,"Bollino «Conviene». Il volantino stampa 6,63 al kg."),
+ ("Pane","Ipercoop","ipercoop24","Panetteria","Mini pinsa Alimenta","300 g",0.300,2.39,15,V,"Bollino «Conviene». Il volantino stampa 7,97 al kg."),
+ ("Merendine","Ipercoop","ipercoop24","Panetteria","Sogno al cioccolato e albicocca","90 g",0.090,0.85,15,V,"Bollino «Conviene». Il volantino stampa 9,44 al kg."),
+ ("Biscotti","Ipercoop","ipercoop24","Panetteria","Pasticceria secca mista Alle Cascine","400 g",0.400,4.79,15,V,"Solo per i soci Coop. Il volantino stampa 11,98 al kg."),
+ # --- pagina 16 (banco taglio, prezzi all'etto) ---
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Prosciutto di Parma D.O.P., stagionatura 16 mesi, al banco","all'etto (100 g)",0.100,2.59,16,V,"Bollino «Conviene». Il volantino stampa 25,90 al kg."),
+ ("Prosciutto cotto","Ipercoop","ipercoop24","Salumi","Prosciutto cotto alta qualità Riccafetta Raspini, al banco","all'etto (100 g)",0.100,1.39,16,V,"Bollino «Conviene». Il volantino stampa 13,90 al kg."),
+ ("Salame","Ipercoop","ipercoop24","Salumi","Salame Milano, al banco","all'etto (100 g)",0.100,1.59,16,V,"Bollino «Conviene». Il volantino stampa 15,90 al kg."),
+ ("Pancetta e bacon","Ipercoop","ipercoop24","Salumi","Guanciale stagionato Gardani, 2 fette","200 g",0.200,3.13,16,V,"Sconto soci del 30%: senza tessera 4,49, cioè 22,45 al kg. È guanciale, non pancetta. Il volantino stampa 15,65 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Gorgonzola D.O.P., circa 200 g, al banco","all'etto (100 g)",0.100,1.09,16,V,"Sconto soci del 15%: senza tessera 1,29 all'etto, cioè 12,90 al kg. Il volantino stampa 10,90 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Asiago D.O.P. Cheestà, circa 350 g, al banco","all'etto (100 g)",0.100,1.50,16,V,"Sconto del 20%: prima 1,89 all'etto, cioè 18,90 al kg. Il volantino stampa 15,00 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Brie Paysan Breton, al banco","all'etto (100 g)",0.100,0.99,16,V,"Bollino «Conviene». Il volantino stampa 9,90 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Camoscio d'Oro, al banco","all'etto (100 g)",0.100,1.29,16,V,"Bollino «Conviene». È il banco taglio: la confezione da 200 g è a 2,29 (11,45 al kg). Il volantino stampa 12,90 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Formaggio La Scimuda, al banco","all'etto (100 g)",0.100,1.19,16,V,"Bollino «Conviene». Il volantino stampa 11,90 al kg."),
+ # --- pagina 17 (ortofrutta) ---
+ ("Verdura","Ipercoop","ipercoop24","Ortofrutta","Pomodoro rosso a grappolo","al kg",1,2.48,17,V,"Bollino «Conviene»."),
+ ("Verdura","Ipercoop","ipercoop24","Ortofrutta","Zucca tonda Orto Qui","al kg",1,1.28,17,V,"Bollino «Conviene»."),
+ ("Frutta","Ipercoop","ipercoop24","Ortofrutta","Mele SweeTango – Fior Fiore","850 g",0.850,1.78,17,V,"Con meno del 70% di residui di pesticidi rispetto ai limiti di legge. Il volantino stampa 2,09 al kg."),
+ ("Frutta","Ipercoop","ipercoop24","Ortofrutta","Pere Santa Maria","al kg",1,2.28,17,V,"Bollino «Conviene»."),
+ # --- pagina 18 («Tour tra i sapori», Toscana e Lazio) ---
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Pecorino Toscano D.O.P. – Fior Fiore, al banco","all'etto (100 g)",0.100,1.90,18,V,"Sconto soci del 20%: senza tessera 2,39 all'etto, cioè 23,90 al kg. Il volantino stampa 19,00 al kg."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Chianti D.O.C.G. Leonardo","750 ml",0.750,3.87,18,V,"Sconto del 40%: prima 6,45, cioè 8,60 al litro. Il volantino stampa 5,16 al litro."),
+ ("Salsiccia","Ipercoop","ipercoop24","Salumi","Salsiccia lucanica dolce o piccante","90 g",0.090,2.15,18,V,"Sconto soci del 20%: senza tessera 2,69, cioè 29,89 al kg. È salsiccia stagionata da affettare, non da cuocere. Il volantino stampa 23,89 al kg."),
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Prosciutto Toscano D.O.P., stagionatura 16 mesi","100 g",0.100,3.49,18,V,"Sconto del 30%: prima 4,99, cioè 49,90 al kg. Il volantino stampa 34,90 al kg."),
+ ("Biscotti","Ipercoop","ipercoop24","Colazione","Biscotti Artebianca, tipi vari","400 g",0.400,2.29,18,V,"Solo per i soci Coop. Il volantino stampa 5,73 al kg."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Chianti Rosé Loggia del Sole","750 ml",0.750,2.95,18,V,"Sconto del 50%: prima 5,90, cioè 7,87 al litro. Il volantino stampa 3,93 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Montepulciano D.O.C. Vecchia Cantina","750 ml",0.750,3.95,18,V,"Sconto del 40%: prima 6,59, cioè 8,79 al litro. Il volantino stampa 5,27 al litro."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Vermentino I.G.T. Toscana Calaforte Frescobaldi","750 ml",0.750,5.99,18,V,"Sconto del 25%: prima 7,99, cioè 10,66 al litro. Il volantino stampa 7,99 al litro."),
+ ("Pane","Ipercoop","ipercoop24","Panetteria","Pinsa romana Di Marco, multicereali","230 g",0.230,1.95,18,V,"Bollino «Conviene». Il volantino stampa 8,48 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Caciotta di Amatrice, al banco","all'etto (100 g)",0.100,1.75,18,V,"Bollino «Conviene». Il volantino stampa 17,50 al kg."),
+ ("Merluzzo e baccalà","Ipercoop","ipercoop24","Pescheria","Filetto di baccalà bagnato","al kg",1,19.42,18,V,"Sconto soci del 25%: senza tessera 25,90 al kg. È già bagnato, pronto da cucinare."),
+ # --- pagina 19 («Tour tra i sapori», Marche e Puglia) ---
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Prosciutto di Carpegna D.O.P. Beretta, stagionatura 20 mesi","85 g",0.085,3.59,19,V,"Sconto del 40%: prima 5,99, cioè 70,47 al kg. Il volantino stampa 42,24 al kg."),
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Mozzarella Gioiella, 100% latte italiano","500 g",0.500,3.99,19,V,"Sconto del 30%: prima 5,79, cioè 11,58 al kg. Il volantino stampa 7,98 al kg."),
+ ("Suino","Ipercoop","ipercoop24","Macelleria","Linea Bombette pugliesi Zì Marì","280 g",0.280,4.49,19,V,"Bollino «Conviene». Sono involtini di suino da cuocere. Il volantino stampa 16,04 al kg."),
+ ("Pasta","Ipercoop","ipercoop24","Dispensa","Pasta di semola Casa Milo, formati vari","500 g",0.500,0.98,19,V,"Sconto del 30%: prima 1,40, cioè 2,80 al kg. Il volantino stampa 1,96 al kg."),
+ ("Pane","Ipercoop","ipercoop24","Panetteria","Puccia salentina","230 g",0.230,1.10,19,V,"Bollino «Conviene». Il volantino stampa 4,78 al kg."),
+ ("Vino","Ipercoop","ipercoop24","Bevande","Negroamaro Rosato I.G.T. Marmorelle","750 ml",0.750,5.25,19,V,"Sconto soci del 40%: senza tessera 8,75, cioè 11,67 al litro. Il volantino stampa 7,00 al litro."),
+ # --- pagina 20 («Tour tra i sapori», Campania e Molise) ---
+ ("Pasta","Ipercoop","ipercoop24","Freschi","Ravioli ripieni Gusto e Benessere Casa Buratti, gusti vari","250 g",0.250,1.99,20,V,"Solo per i soci Coop. È pasta fresca ripiena. Il volantino stampa 7,96 al kg."),
+ ("Pasta","Ipercoop","ipercoop24","Freschi","Ravioli ripieni Casa Buratti, gusti vari","250 g",0.250,2.27,20,V,"Sconto del 30%: prima 3,25, cioè 13,00 al kg. È pasta fresca ripiena. Il volantino stampa 9,08 al kg."),
+ ("Pomodoro e passata","Ipercoop","ipercoop24","Dispensa","Polpa di pomodoro bio Masseria Mosti, bottiglia","500 g",0.500,1.88,20,V,"Sconto del 30%: prima 2,69, cioè 5,38 al kg. Il volantino stampa 3,76 al kg."),
+ ("Pomodoro e passata","Ipercoop","ipercoop24","Dispensa","Passata di pomodoro bio Masseria Mosti, bottiglia","680 g",0.680,1.88,20,V,"Sconto del 30%: prima 2,69, cioè 3,96 al kg. Il volantino stampa 2,76 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Scamorza bianca o affumicata, circa 340 g, al banco","all'etto (100 g)",0.100,1.29,20,V,"Bollino «Conviene». Il volantino stampa 12,90 al kg."),
+ ("Formaggio","Ipercoop","ipercoop24","Freschi","Caciocavallo Silano D.O.P., al banco","all'etto (100 g)",0.100,1.69,20,V,"Bollino «Conviene». Il volantino stampa 16,90 al kg."),
+ # --- pagina 21 («Tour tra i sapori», Campania, Basilicata, Calabria) ---
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Mozzarella di bufala campana D.O.P.","500 g",0.500,5.99,21,V,"Bollino «Conviene». Il volantino stampa 11,98 al kg."),
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Burrata di bufala Garofalo","125 g",0.125,1.49,21,V,"Bollino «Conviene». È burrata, non mozzarella. Il volantino stampa 11,92 al kg."),
+ ("Salame","Ipercoop","ipercoop24","Salumi","Salame Napoli, al banco","all'etto (100 g)",0.100,1.29,21,V,"Bollino «Conviene». Il volantino stampa 12,90 al kg."),
+ ("Mozzarella","Ipercoop","ipercoop24","Freschi","Mozzarella di bufala campana D.O.P. Sorì","300 g (3 × 100 g)",0.300,3.49,21,V,"Bollino «Conviene». Il volantino stampa 11,63 al kg."),
+ ("Merendine","Ipercoop","ipercoop24","Panetteria","Sfogliatella riccia","54 g",0.054,0.45,21,V,"Bollino «Conviene». Il volantino stampa 8,33 al kg."),
+ ("Frutta","Ipercoop","ipercoop24","Ortofrutta","Mele Melannurca campana I.G.P.","al kg",1,2.48,21,V,"Bollino «Conviene»."),
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Filetto lucano Lucana Salumi","80 g",0.080,2.15,21,V,"Sconto del 20%: prima 2,69, cioè 33,63 al kg. È lonza di suino stagionata. Il volantino stampa 26,88 al kg."),
+ ("Prosciutto crudo","Ipercoop","ipercoop24","Salumi","Capocollo di Calabria, al banco","all'etto (100 g)",0.100,2.19,21,V,"Bollino «Conviene». È capocollo, non prosciutto. Il volantino stampa 21,90 al kg."),
+ ("Salame","Ipercoop","ipercoop24","Salumi","'Nduja calabrese piccante Madeo, in sac à poche","200 g",0.200,4.63,21,V,"Sconto del 20%: prima 5,79, cioè 28,95 al kg. È salame spalmabile piccante. Il volantino stampa 23,15 al kg."),
+ # --- pagina 22 (igiene) ---
+ ("Dentifricio","Ipercoop","ipercoop24","Igiene","Dentifricio Aquafresh tripla protezione","450 ml (6 × 75 ml)",0.450,4.79,22,V,"Bollino «Conviene». Il volantino stampa 10,64 al litro."),
+ ("Sapone e bagnoschiuma","Ipercoop","ipercoop24","Igiene","Bagnoschiuma o sapone liquido Mil Mil, ecoricarica","2 litri",2,2.49,22,V,"Bollino «Conviene». È la ricarica, non il flacone. Il volantino stampa 1,25 al litro."),
+ ("Sapone e bagnoschiuma","Ipercoop","ipercoop24","Igiene","Bagnodoccia Neutro Roberts, varie profumazioni","450 ml",0.450,1.69,22,V,"Bollino «Conviene». Il volantino stampa 3,76 al litro."),
+ ("Shampoo","Ipercoop","ipercoop24","Igiene","Shampoo antiforfora Clear","225 ml",0.225,1.99,22,V,"Bollino «Conviene». Il volantino stampa 8,84 al litro."),
+ ("Dentifricio","Ipercoop","ipercoop24","Igiene","Dentifricio protezione carie Coop","125 ml",0.125,0.99,22,V,"Il volantino stampa 7,92 al litro."),
+ # --- pagina 23 (igiene) ---
+ ("Sapone e bagnoschiuma","Ipercoop","ipercoop24","Igiene","Sapone liquido Vidal, ecoricarica, profumazioni varie","1,2 litri",1.2,1.79,23,V,"Bollino «Conviene». È la ricarica, non il flacone. Il volantino stampa 1,49 al litro."),
+ # --- pagina 24 (carta) ---
+ ("Carta igienica","Ipercoop","ipercoop24","Casa","Carta igienica Maxi Comfort Tempo, 2 veli","12 maxi rotoli",12,6.59,24,V,"Sconto del 40%: prima 10,99. Sono maxi rotoli, più lunghi dei normali."),
+ ("Carta igienica","Ipercoop","ipercoop24","Casa","Carta igienica Cartacamomilla Regina, 3 veli, 300 strappi","6 rotoli",6,3.99,24,V,"Solo per i soci Coop."),
+ ("Carta cucina e tovaglioli","Ipercoop","ipercoop24","Casa","Carta casa Limone Nicky, 2 veli, 100 strappi","6 rotoli",6,5.99,24,V,"Bollino «Conviene»."),
+ ("Carta cucina e tovaglioli","Ipercoop","ipercoop24","Casa","Asciugatutto Tuttofare Scottex, double face decorato","6 rotoli",6,6.19,24,V,"Bollino «Conviene»."),
+ # --- pagina 25 (cura casa) ---
+ ("Detersivo lavastoviglie","Ipercoop","ipercoop24","Cura casa","Detersivo per lavastoviglie gel All in One Pril, limone","1,872 litri, 2 × 52 lavaggi",104,9.95,25,V,"Bollino «Conviene». Il volantino stampa 5,32 al litro."),
+ ("Detersivo lavastoviglie","Ipercoop","ipercoop24","Cura casa","Detersivo per lavastoviglie 5 in 1 Pril, caps","1,004 kg, 54 lavaggi",54,10.90,25,V,"Solo per i soci Coop. Il volantino stampa 10,86 al kg."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop24","Cura casa","Detersivo per lavatrice liquido concentrato Dash Pods","1,086 kg, 60 lavaggi",60,13.65,25,V,"Sconto del 40%: prima 22,75, cioè 20,95 al kg. Offerta limitata. Il volantino stampa 12,57 al kg."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop24","Cura casa","Detersivo per lavatrice in polvere Dash+ Power","4,15 kg, 83 misurini",83,16.74,25,V,"Sconto del 50%: prima 33,48, cioè 8,07 al kg. Offerta limitata. Il volantino stampa 4,03 al kg."),
+ ("Detersivo lavatrice","Ipercoop","ipercoop24","Cura casa","Detersivo per lavatrice Coccolino, tipi vari","2 × 1,48 litri, 74 lavaggi",74,11.90,25,V,"Bollino «Conviene». Il volantino stampa 4,02 al litro."),
+ # --- pagina 28 (fai da te) ---
+ ("Carta cucina e tovaglioli","Ipercoop","ipercoop24","Casa","Rotolone carta Birillo, 500 strappi","1 rotolone",1,3.60,28,V,"Sconto del 20%: prima 4,50. È un rotolone da 500 strappi, cioè quanto cinque rotoli normali: il prezzo al rotolo non si confronta con le confezioni da sei."),
+ # --- pagina 43 (bibite) ---
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Coca Cola original o zero","6 litri (4 × 1,5 l)",6,4.99,43,V,"Solo per i soci Coop. Il volantino stampa 0,83 al litro."),
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Kinley tonic water, gusti vari","1 litro",1,0.89,43,V,"Solo per i soci Coop."),
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Fuze Tea, gusti vari, con o senza zucchero","1,25 litri",1.25,1.05,43,V,"Solo per i soci Coop. Il volantino stampa 0,84 al litro."),
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Fuze Tea mini, limone o pesca","1 litro (4 × 250 ml)",1,1.99,43,V,"Solo per i soci Coop."),
+ ("Succhi e bibite","Ipercoop","ipercoop24","Bevande","Powerade, gusti vari","500 ml",0.500,0.89,43,V,"Solo per i soci Coop. Il volantino stampa 1,78 al litro."),
+ # --- pagina 44 (pubblicità Bellery) ---
+ ("Shampoo","Ipercoop","ipercoop24","Igiene","Shampoo secco Bellery, tipi vari","200 ml",0.200,3.79,44,V,"Sconto soci del 20%: senza tessera 4,74, cioè 23,70 al litro. È uno shampoo secco spray, si usa a spruzzi fra un lavaggio e l'altro: al litro costa molto più di uno shampoo normale. Il volantino stampa 18,95 al litro."),
 ]
 
 # LE OFFERTE CON DATE LORO.

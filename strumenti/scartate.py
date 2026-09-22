@@ -23,6 +23,31 @@ chiavi che non stanno piu in dati.py.
 
 # chiave del volantino -> {numero di pagina: perche l'ho scartata}
 SCARTATE = {
+ # Guardate una per una il 2026-09-22, leggendo il volantino per intero
+ # (47 pagine, edizione Torino-Collegno).
+ 'ipercoop24': {
+   4: '«Grandi Marche Selection»: solo sconti percentuali (30-40%) senza il prezzo di partenza, nessun prezzo ricavabile',
+   5: '«Grandi Marche Selection», seconda pagina: solo sconti percentuali senza prezzo di partenza',
+   26: 'piante e fiori: orchidee, bonsai, composizioni, nessun prezzo di spesa alimentare',
+   27: 'giardinaggio: bulbi, concimi, terricci, sementi, nessun prezzo di spesa alimentare',
+   29: 'fai da te: lampadine, pennelli, idropittura, accendifuoco, nessun prezzo di spesa alimentare',
+   30: 'auto: oli motore, batterie, adblue, nessun prezzo di spesa alimentare',
+   31: 'auto: lavavetri, tappetini, spazzole tergicristallo, nessun prezzo di spesa alimentare',
+   32: '«Occasioni di felicità»: collant, calze, pentole, accessori cucina, nessun prezzo di spesa alimentare',
+   33: '«Occasioni di felicità»: bilancia, zerbino, teli per piante, antifurti, nessun prezzo di spesa alimentare',
+   34: 'libri, biancheria per la casa, filtri per acqua, nessun prezzo di spesa alimentare',
+   35: 'Expert: smartphone, scopa elettrica, forno a microonde, nessun prezzo di spesa alimentare',
+   36: 'Expert: elettrodomestici (lavatrice, asciugatrice, frigorifero), nessun prezzo di spesa alimentare',
+   37: 'raccolta bollini Alessi: i prodotti sponsor hanno solo il numero di bollini, nessun prezzo',
+   38: 'raccolta bollini Alessi, seconda pagina: solo bollini, nessun prezzo',
+   39: 'raccolta bollini Alessi, terza pagina: solo bollini, nessun prezzo',
+   40: 'cura persona a sconto percentuale senza prezzo di partenza, più elenco dei punti vendita e buoni sconto',
+   41: 'pubblicità Asia Mama: ravioli e involtini surgelati pronti, nessuna categoria del catalogo',
+   42: 'pubblicità Knorr: dadi, brodo e risotti pronti, nessuna categoria del catalogo',
+   45: "Dr. Scholl's: solette, creme e lime per i piedi, sconto soci 15% senza prezzo di partenza",
+   46: 'pubblicità Hero: cerottini per brufoli, nessuna categoria del catalogo',
+   47: 'pubblicità vini Tenute del Cerro: solo sconti del 30% senza il prezzo di partenza',
+ },
  # Guardate una per una il 2026-09-18, leggendo il volantino per intero (37 pagine).
  'md22': {
    5: 'pagina "tutto a 1€" di bevande e dolci senza categoria del catalogo (avena drink, frutta da bere, cannucce, maionese, taralli, merende, barrette)',
