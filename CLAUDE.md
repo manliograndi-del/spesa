@@ -255,6 +255,24 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   «sostituisci la scritta look con Colori, basta cambiarla nel tasto»).
   **Dentro la finestra resta «Scegli il look»**: gliel'ho chiesto e ha detto
   che lì va bene.
+- **In cima non ci sono più i quattro tasti (Colori, Novità app, Aiuto,
+  Novità) né la riga «I tuoi prodotti (N) · Tocca per confrontare i prezzi»**
+  (chiesto il 2026-09-22: «togli anche i quattro bottoni superiori, lascia le
+  funzioni, poi troveremo un altro posto dove metterle»). Sono **nascosti con
+  `hidden`, non tolti**: le finestre funzionano ancora e le prove le aprono.
+  **Da fare con lui: trovare dove rimetterli.**
+- **Il tasto «GRANDI MARCHE»** (tutto maiuscolo, chiesto il 2026-09-22) sta
+  accanto a quello rosso, vuoto col bordo rosso. Apre il pannello della
+  ricerca con **20 pillole di grandi marche italiane** (`GRANDI_MARCHE` in
+  `pagina.py`); toccandone una la casella si riempie col nome e restano solo
+  le offerte di quella marca. Regole:
+  - si cerca **a parola intera** (`cercaMarca`): «AIA» come pezzo di parola
+    trovava anche il «maiale»;
+  - le marche sono scelte fra quelle che **compaiono davvero** nei volantini;
+    Ferrero era nella lista ma quel giorno aveva zero offerte valide ed è
+    stata sostituita da Saiwa. **Quando si rileggono i volantini, guardare
+    che nessuna pillola resti vuota**;
+  - come nella ricerca, **niente bollino verde** nei risultati.
 - **Il meno caro è una pastiglia dentro l'elenco, e le offerte non ancora
   cominciate sono sbiadite** (chiesto il 2026-09-22: «che il prodotto meno
   caro venisse messo in una pillola, con un bordo e con un colore che la

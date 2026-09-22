@@ -214,11 +214,26 @@ NOVITA_PAGINA = [
                'che non servivano a fare niente.'),
 ]
 
+# LE VENTI GRANDI MARCHE. Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
+# MARCHE tutto maiuscolo che porta a una scelta fra 20 pillole delle grandi
+# marche italiane più famose; toccandone una si fa una ricerca per nome che dà
+# solo i prodotti di quella marca». Scelte fra le marche italiane che nei
+# volantini letti compaiono davvero (almeno due offerte ciascuna quando sono
+# state scelte): una pillola che non trova niente sarebbe una presa in giro.
+# Ferrero c'era, ma quel giorno le sue offerte erano tutte scadute: tolta.
+# Si cercano a PAROLA INTERA: «AIA» cercata come pezzo di parola trovava anche
+# il «maiale».
+GRANDI_MARCHE = ['Mulino Bianco', 'Barilla', 'Saiwa', 'Lavazza', 'Kimbo',
+                 'Granarolo', 'Galbani', 'Vallelata', 'AIA', 'Amadori',
+                 'Beretta', 'Citterio', 'Rio Mare', 'Orogel', 'Bauli',
+                 "Sant'Anna", 'Levissima', 'Peroni', 'Ichnusa', 'Felce Azzurra']
+
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        catalogo=catalogo,
                        # I nomi vecchi delle categorie, per chi ha una lista
                        # salvata da prima che li accorciassimo: vedi catalogo.py.
                        rinominate=RINOMINATE,
+                       marche=GRANDI_MARCHE,
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        novita=NOVITA_PAGINA,
@@ -392,6 +407,22 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    dentro, la barra diventerebbe piu alta dello schermo e il telefono dovrebbe
    rifarne i conti a ogni tocco. */
 .ricerca[hidden]{display:none}
+/* IL TASTO «GRANDI MARCHE» e le sue venti pillole (2026-09-22). Il tasto sta
+   accanto a quello rosso, vuoto col bordo rosso: e' un'altra strada per la
+   stessa ricerca, non una cosa da premere per prima. */
+.riga-cerca{display:flex;gap:6px;align-items:stretch}
+.riga-cerca .tasto.trova{flex:1 1 auto;width:auto;min-width:0}
+.tasto.marchi{flex:none;border:1.5px solid var(--rosso);color:var(--rosso);
+  background:var(--carta);border-radius:99px;font-weight:700;font-size:13px;
+  letter-spacing:.04em;min-height:42px;padding:6px 12px}
+.tasto.marchi[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
+.marche[hidden]{display:none}
+.marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
+  border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
+  min-height:32px;cursor:pointer;font-family:inherit;color:var(--inchiostro)}
+.marche button[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
+  color:var(--su-rosso)}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
   border-radius:20px;padding:14px}
 .ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:16px;
@@ -695,7 +726,11 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
         <span class="sotto-marca">Offerte dai volantini dei supermercati vicini</span>
       </span>
     </span>
-    <span class="tasti-alti">
+    <!-- I QUATTRO TASTI IN CIMA SONO NASCOSTI, NON TOLTI (Manlio, 2026-09-22:
+         «togli i quattro bottoni superiori, lascia le funzioni, poi troveremo
+         un altro posto dove metterle»). Le finestre Colori, Novità app e Aiuto
+         e il collegamento a Novità funzionano ancora: basta togliere hidden. -->
+    <span class="tasti-alti" hidden>
       <button type="button" class="aiuto" id="apri-look">Colori</button>
       <button type="button" class="aiuto" id="apri-novita-app">Novità app</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
@@ -708,7 +743,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <div class="riga-cerca" id="riga-cerca"></div>
 
 <div class="barra">
-  <p class="capo-prodotti"><span id="quanti-prodotti"></span>
+  <!-- «I tuoi prodotti (N) · Tocca per confrontare i prezzi» nascosto il
+       2026-09-22 su richiesta sua, per guadagnare spazio. -->
+  <p class="capo-prodotti" hidden><span id="quanti-prodotti"></span>
     <span class="suggerimento">Tocca per confrontare i prezzi</span></p>
   <div class="tasti" id="tasti" role="group" aria-label="Scegli il prodotto"></div>
   <p class="stato" id="stato-lista" role="status"></p>
@@ -735,6 +772,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <!-- LA RICERCA STA FUORI DALLA BARRA, come il cassetto. -->
 <div class="ricerca" id="ricerca" hidden>
+  <div class="marche" id="marche" hidden role="group" aria-label="Grandi marche"></div>
   <input class="q" id="q" type="search" placeholder="Scrivi un prodotto, una marca, un negozio…"
          autocomplete="off" aria-label="Cerca fra tutti i prezzi dei volantini">
   <p class="quanti-trovati" id="quanti-trovati" role="status"></p>
@@ -1299,6 +1337,17 @@ function disegnaTasti() {
   const suo = document.getElementById('riga-cerca');
   suo.textContent = '';
   suo.appendChild(cer);
+  const gm = document.createElement('button');
+  gm.type = 'button';
+  gm.className = 'tasto agg marchi';
+  gm.textContent = 'GRANDI MARCHE';
+  gm.setAttribute('aria-pressed', String(ricercaAperta && vistaMarche));
+  gm.onclick = () => {
+    if (ricercaAperta && vistaMarche) { apriRicerca(false); return; }
+    vistaMarche = true;
+    apriRicerca(true, true);
+  };
+  suo.appendChild(gm);
 
   const cont = document.getElementById('quanti-prodotti');
   if (cont) cont.textContent = 'I tuoi prodotti (' + lista.length + ')';
@@ -1349,6 +1398,7 @@ function apriRicerca(si, senzaFuoco) {
      confondere, come per il cassetto. */
   document.getElementById('risultato').hidden = si;
   disegnaTasti();
+  disegnaMarche();
   if (si) {
     quantiMostrati = 40;
     disegnaTrovati();
@@ -1365,6 +1415,8 @@ function apriRicerca(si, senzaFuoco) {
     document.getElementById('q').value = '';
     document.getElementById('q').placeholder = SCRITTA_Q;
     filtroVol = null;
+    vistaMarche = false;
+    marcaScelta = null;
     /* Via la coda «#volantino=...» dall'indirizzo: se no chi ricarica questa
        scheda dopo aver chiuso il pannello se lo ritrova aperto. */
     if (location.hash) {
@@ -1388,7 +1440,42 @@ function apriVolantino(pdf) {
    Qui si cerca dentro le parole, non a parola intera come nell'indice delle
    pagine: li il testo veniva dall'OCR ed era pieno di rumore, qui sono nomi di
    prodotto scritti a mano, e chi scrive «mozzar» si aspetta di trovarli. */
+let vistaMarche = false;   // il pannello e' aperto dal tasto GRANDI MARCHE
+let marcaScelta = null;   // la pillola accesa: si cerca a parola intera
+
+function disegnaMarche() {
+  const box = document.getElementById('marche');
+  box.hidden = !vistaMarche;
+  box.textContent = '';
+  if (!vistaMarche) return;
+  (DATI.marche || []).forEach(m => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = m;
+    b.setAttribute('aria-pressed', String(marcaScelta === m));
+    b.onclick = () => {
+      marcaScelta = marcaScelta === m ? null : m;
+      document.getElementById('q').value = marcaScelta || '';
+      quantiMostrati = 40;
+      disegnaMarche();
+      disegnaTrovati();
+    };
+    box.appendChild(b);
+  });
+}
+
+function cercaMarca(m) {
+  /* I nomi delle marche sono solo lettere, spazi e apostrofi: niente da
+     proteggere dentro l'espressione. */
+  const re = new RegExp('(^|[^a-z0-9])' + norm(m) + '($|[^a-z0-9])');
+  return DATI.offerte
+    .filter(o => !nascosta(o))
+    .filter(o => re.test(norm([o.pro, o.fmt, o.note].join(' '))))
+    .sort((a, b) => a.unitario - b.unitario);
+}
+
 function cercaOfferte(testo) {
+  if (marcaScelta && testo === marcaScelta) return cercaMarca(marcaScelta);
   const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
   if (!parole.length && !filtroVol) return [];
   return DATI.offerte
@@ -2011,6 +2098,7 @@ document.getElementById('cerca').oninput = disegnaScaffali;
 document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
 document.getElementById('chiudi-ricerca').onclick = () => apriRicerca(false);
 document.getElementById('q').addEventListener('input', () => {
+  if (marcaScelta) { marcaScelta = null; disegnaMarche(); }
   quantiMostrati = 40;
   disegnaTrovati();
 });
