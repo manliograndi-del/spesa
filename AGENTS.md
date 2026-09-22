@@ -1,15 +1,18 @@
 # Spesa — memoria di progetto
 
+**Questo file è una copia di `CLAUDE.md`**, fatta il 2026-09-22 perché Manlio
+vuole provare il progetto con un altro programma (Antigravity), che legge
+`AGENTS.md` invece di `CLAUDE.md`. Il contenuto è lo stesso: non è scritto
+apposta per Claude, vale per chiunque lavori su questo progetto. **Chi legge
+questo file da qui in poi tenga aggiornati entrambi** (`CLAUDE.md` e
+`AGENTS.md`) quando cambia qualcosa in questa sezione, altrimenti finiscono
+per raccontare due cose diverse e la prossima sessione — di qualunque
+programma — parte da informazioni sbagliate.
+
 Leggi tutto questo file prima di toccare qualsiasi cosa.
 La storia lunga, col perché di ogni scelta, sta in **`NOTE.md`** (1200 righe):
 vacci quando questo file non basta, e **prima di rifare qualcosa che sembra
 mancare** — quasi sempre è già stato provato e c'è scritto com'è andata.
-
-**Esiste anche `AGENTS.md`, copia di questo file** fatta il 2026-09-22 perché
-Manlio prova il progetto con un altro programma (Antigravity) oltre a Claude.
-**Chi aggiorna questo file aggiorni anche quello**, almeno la parte «Da fare
-adesso»: se restano diversi, la prossima sessione — di uno dei due programmi —
-parte da informazioni vecchie.
 
 ## Chi è l'utente e come lavora
 
