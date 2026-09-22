@@ -2055,6 +2055,45 @@ cima e non dentro la barra, che la finestra **non** si apra da sola, che si
 riapra sempre, che dentro ci siano davvero le otto spiegazioni e che le due
 finestre non stiano aperte insieme.
 
+## Lidl 24-30 settembre, e dove trovare l'Ekom in anteprima — 2026-09-22
+
+**Il Lidl annunciato il 21/9 su anteprimavolantino era ancora senza pagine
+vere** (indirizzi delle immagini a 404): il 22/9, un giorno dopo, le 52 pagine
+c'erano tutte, indirizzo `volantino-lidl-2026-09-24-p-{n:05d}.jpg`. Confermato
+che erano davvero 52 e non di più: la pagina 53 risponde 403 con un corpo da
+1242 byte, la firma del «non esiste» già vista con Mercatò ed Ekom.
+
+**CORRETTO più tardi lo stesso giorno — quanto scritto qui sopra su kimbino era
+incompleto, e ha fatto perdere un giorno.** Manlio ha segnalato
+`ekomdiscount.it/volantini`: il volantino «I più ekonomici» (22 settembre-5
+ottobre) c'era già online **lì**, con tutte le 16 pagine, lo stesso giorno in
+cui kimbino non lo sapeva ancora. **`kimbino.it/ekom/` non è affidabile per
+l'Ekom**: è una fonte di terzi che a volte è indietro rispetto al sito
+ufficiale, non il contrario. **Da qui in poi, per l'Ekom si controlla prima
+`ekomdiscount.it/volantini`, il sito ufficiale — kimbino resta solo un
+secondo controllo.**
+
+**Perché un fetch semplice non basta.** `ekomdiscount.it` è un'app
+Javascript: `curl` o `WebFetch` vedono solo il guscio vuoto della pagina (circa
+1,9 KB), mai i volantini veri. Serve un browser vero. Con Playwright
+(Chromium preinstallato in `/opt/pw-browsers`, va aperto con
+`ignore_https_errors=True` per il proxy dell'ambiente) e ascoltando le
+richieste di rete durante il caricamento, si vede che la pagina chiama:
+
+    https://www.ekomdiscount.it/ebsn/api/leaflet/search?parent_leaflet_type_id=1
+
+che risponde in JSON **senza bisogno del browser**: basta un `curl` normale.
+Dentro c'è la lista dei volantini in corso, con `fromDate`/`toDate` e un
+`baseLocation` per ciascuno; le pagine sono `{baseLocation}{n}.png`, **`n` da
+0** (la pagina 1 stampata è `0.png`, come per Mercatò e per l'Ekom dell'8-21).
+Va ricontrollato che il numero di pagine non cambi da un volantino all'altro:
+si controlla come sempre guardando quando l'indirizzo smette di rispondere
+200 (qui: 403 con un corpo piccolo).
+
+Questa è anche una fonte diversa da kimbino per **scaricare** le pagine, non
+solo per **sapere** che il volantino esiste: gli indirizzi vanno in
+`pagine_ekom.py`, la stessa lista di prima ma con la nuova base.
+
 ## Il tasto «Look»: cento vestiti per la pagina (2026-09-22)
 
 Manlio ha mandato un PDF di Figma con **cento combinazioni di colori** e ha

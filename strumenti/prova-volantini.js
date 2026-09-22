@@ -56,7 +56,7 @@ apri(SITO, (w, d, errori) => {
   const fuori = [...d.querySelectorAll('.vol-t.fuori')];
   if (fuori.length < 2) male.push('solo ' + fuori.length + ' volantini si possono aprire');
   const brutti = fuori.filter(a =>
-    !/^https:\/\/(www\.anteprimavolantino\.it|resources\.volantinopiu\.it|eu\.kimbicdn\.com)\//.test(a.href));
+    !/^https:\/\/(www\.anteprimavolantino\.it|resources\.volantinopiu\.it|eu\.kimbicdn\.com|app\.ekomdiscount\.it)\//.test(a.href));
   if (brutti.length) male.push(brutti.length + ' tasti «Il volantino» portano altrove');
   if (!fuori.every(a => a.target === '_blank' && /noopener/.test(a.rel)))
     male.push('«Il volantino» non si apre in una scheda nuova, in sicurezza');

@@ -23,7 +23,7 @@ setTimeout(() => {
   }
   console.log('righe di prezzo viste:', righe, '| senza collegamento e senza spiegazione:', senza);
   console.log('collegamenti distinti:', tutti.size);
-  const brutti = [...tutti].filter(u => !/^https:\/\/(www\.anteprimavolantino\.it|resources\.volantinopiu\.it)\//.test(u));
+  const brutti = [...tutti].filter(u => !/^https:\/\/(www\.anteprimavolantino\.it|resources\.volantinopiu\.it|eu\.kimbicdn\.com|app\.ekomdiscount\.it)\//.test(u));
   console.log('indirizzi malformati:', brutti.length ? brutti.slice(0,3) : 'nessuno');
   const nuova = [...d.querySelectorAll('a.dove, a.pag-riga')].every(a => a.target === '_blank' && /noopener/.test(a.rel));
   console.log('si aprono in una scheda nuova, in sicurezza:', nuova);
