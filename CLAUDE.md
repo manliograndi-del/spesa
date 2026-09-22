@@ -245,6 +245,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   dietro quel bollino — com'è fatta questa copia, se è solo sua o condivisa —
   è in fondo alla finestra «Aiuto». Il bollino «i» accanto al NOME DEL
   PRODOTTO è un'altra cosa e resta.
+- **In cima NON c'è più nemmeno la riga «Data di riferimento: …»** (tolta il
+  2026-09-22 su richiesta sua, come «Torino · corso Siracusa» prima di lei:
+  spazio occupato da una cosa che non si tocca per fare niente). La data del
+  telefono continua a comandare quello che conta — cosa è scaduto, quanti
+  giorni mancano, quale offerta si può comprare oggi — solo non è più scritta
+  lì in mezzo.
+- **Il tasto dei cento look si chiama «Colori»** (chiesto il 2026-09-22:
+  «sostituisci la scritta look con Colori, basta cambiarla nel tasto»).
+  **Dentro la finestra resta «Scegli il look»**: gliel'ho chiesto e ha detto
+  che lì va bene.
 - **Il meno caro è una pastiglia dentro l'elenco, e le offerte non ancora
   cominciate sono sbiadite** (chiesto il 2026-09-22: «che il prodotto meno
   caro venisse messo in una pillola, con un bordo e con un colore che la

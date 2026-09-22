@@ -189,8 +189,8 @@ NOVITA_PAGINA = [
                'oggi non valgono.'),
     dict(id='2026-09-23-impaginazione', quando='22 settembre',
          titolo='La pagina è rifatta: tutto in schede e pillole',
-         testo='In cima il titolo «Spesa» con la data di riferimento e il '
-               'tasto rosso per cercare fra tutte le offerte. Ogni offerta '
+         testo='In cima il titolo «Spesa» e il tasto rosso per cercare fra '
+               'tutte le offerte. Ogni offerta '
                'adesso è una scheda tutta sua, con in alto il marchio del '
                'negozio, il prodotto, il formato, le condizioni in un '
                'riquadro giallo e a destra i due prezzi: quello della '
@@ -275,7 +275,7 @@ button{font-family:var(--f-testo);color:inherit}
 /* L'IMPAGINAZIONE NUOVA, chiesta da Manlio il 2026-09-22 con una schermata
    alla mano: «l'impaginazione è più bella così, con tutto messo in pillole e
    ordinato». In cima il marchio della pagina, il titolo, il sottotitolo e i
-   tasti; sotto la data di riferimento. */
+   tasti. */
 header{padding:18px 0 2px}
 .riga-alta{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
   flex-wrap:wrap;margin-bottom:12px}
@@ -287,9 +287,12 @@ header{padding:18px 0 2px}
 h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01em;
   line-height:1.05;margin:0}
 .sotto-marca{display:block;color:var(--tenue);font-size:13px;margin-top:2px}
-.riferimento{margin:0 0 6px;padding:11px 15px;border:1.5px solid var(--linea);
-  border-radius:99px;background:var(--pannello);font-size:13.5px;color:var(--tenue)}
-.riferimento b{color:var(--inchiostro)}
+/* LA RIGA «Data di riferimento: …» NON C'E PIU, tolta il 2026-09-22 su
+   richiesta di Manlio, come «Torino · corso Siracusa» prima di lei: una riga
+   in cima che occupa spazio e non si tocca per fare niente. La data del
+   telefono continua a comandare quello che conta — cosa e scaduto, quanti
+   giorni mancano, quale offerta si puo comprare oggi — solo non e piu scritta
+   li in mezzo. */
 /* Il tasto «Novità», in alto a destra. Punta all'INDIRIZZO COMPLETO e non a
    «./novita.html»: la copia di Claude non ha una cartella accanto a se, e un
    collegamento relativo di la porterebbe nel vuoto. Si apre in una finestra
@@ -588,7 +591,6 @@ a.dove.apri::after{content:none}
   .prezzo-riga .val .et{margin:0;align-self:center}
   .prezzo-riga .val .pz{margin:0}
   .prezzo-riga .val .n{font-size:26px}
-  .riferimento{border-radius:16px}
   .tasto.trova{font-size:14.5px}
 }
 
@@ -694,14 +696,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       </span>
     </span>
     <span class="tasti-alti">
-      <button type="button" class="aiuto" id="apri-look">Look</button>
+      <button type="button" class="aiuto" id="apri-look">Colori</button>
       <button type="button" class="aiuto" id="apri-novita-app">Novità app</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
       <a class="novita" href="https://manliograndi-del.github.io/spesa/novita.html"
          target="_blank" rel="noopener noreferrer">Novità</a>
     </span>
   </div>
-  <p class="riferimento">Data di riferimento: <b id="oggi-scritto"></b></p>
 </header>
 
 <div class="riga-cerca" id="riga-cerca"></div>
@@ -2331,14 +2332,6 @@ mostraNovita();
        Manlio l'ha evidenziata fra le cose da togliere. È finita dietro il
        bollino in cima, dove si va a leggere quando si vuole. */
     stato(arrivati.length ? 'Aggiunti alla tua lista: ' + arrivati.join(', ') + '.' : '');
-  }
-  /* La data di riferimento, scritta per esteso: è quella del telefono di chi
-     guarda, la stessa con cui la pagina decide cosa è scaduto. */
-  const gio = document.getElementById('oggi-scritto');
-  if (gio) {
-    const gg = ('domenica lunedì martedì mercoledì giovedì venerdì sabato').split(' ');
-    const dt = new Date(OGGI_ISO + 'T12:00:00');
-    gio.textContent = gg[dt.getDay()] + ' ' + soloGiorno(OGGI_ISO) + ' ' + OGGI_ISO.slice(0, 4);
   }
   const dv = document.getElementById('dove-vive');
   if (dv) dv.textContent = soloMio
