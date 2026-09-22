@@ -89,3 +89,4 @@
 2026-09-22 20:40 UTC  nascosti (non tolti) i quattro tasti in cima e la riga «I tuoi prodotti»; aggiunto il tasto GRANDI MARCHE con 20 pillole di marche italiane, ricerca a parola intera (Ferrero sostituita da Saiwa: zero offerte valide). sw.js v60, tutte le prove passate.
 2026-09-22 20:50 UTC  pubblicato: sito (verificato byte per byte, sw.js v60) e artifact (versione 52) col tasto GRANDI MARCHE e la cima senza tasti.
 2026-09-22 21:10 UTC  GRANDI MARCHE portate da 20 a 40, tutte con almeno un'offerta valida; scartate Fini (trovava i piselli fini) e Moretti (era un tonno). sw.js v61.
+2026-09-22 21:15 UTC  pubblicato: sito (verificato, sw.js v61) e artifact (versione 53) con 40 grandi marche.
