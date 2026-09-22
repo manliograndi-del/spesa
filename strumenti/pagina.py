@@ -214,19 +214,31 @@ NOVITA_PAGINA = [
                'che non servivano a fare niente.'),
 ]
 
-# LE VENTI GRANDI MARCHE. Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
+# LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
 # MARCHE tutto maiuscolo che porta a una scelta fra 20 pillole delle grandi
 # marche italiane più famose; toccandone una si fa una ricerca per nome che dà
 # solo i prodotti di quella marca». Scelte fra le marche italiane che nei
 # volantini letti compaiono davvero (almeno due offerte ciascuna quando sono
 # state scelte): una pillola che non trova niente sarebbe una presa in giro.
 # Ferrero c'era, ma quel giorno le sue offerte erano tutte scadute: tolta.
+# «Fini» e «Moretti» provate e scartate: «Fini» trovava i «piselli fini», e
+# «Moretti» era un tonno, non la birra. Una pillola deve dare quello che dice.
 # Si cercano a PAROLA INTERA: «AIA» cercata come pezzo di parola trovava anche
 # il «maiale».
-GRANDI_MARCHE = ['Mulino Bianco', 'Barilla', 'Saiwa', 'Lavazza', 'Kimbo',
-                 'Granarolo', 'Galbani', 'Vallelata', 'AIA', 'Amadori',
-                 'Beretta', 'Citterio', 'Rio Mare', 'Orogel', 'Bauli',
-                 "Sant'Anna", 'Levissima', 'Peroni', 'Ichnusa', 'Felce Azzurra']
+GRANDI_MARCHE = [
+    # pasta, dolci e colazione
+    'Mulino Bianco', 'Barilla', 'Voiello', 'Rummo', 'Garofalo', 'La Molisana',
+    'Rana', 'Saiwa', 'Pavesi', 'Colussi', 'Bauli', 'Melegatti', 'Kinder',
+    'Novi', 'Zuegg', 'Lavazza', 'Kimbo', 'Vergnano',
+    # latte, formaggi, carne e salumi
+    'Granarolo', 'Parmalat', 'Arborea', 'Galbani', 'Vallelata', 'AIA',
+    'Amadori', 'Beretta', 'Citterio', 'Parmacotto',
+    # dispensa e surgelati
+    'Rio Mare', 'Orogel', 'Sammontana', 'Star', 'Cirio',
+    # bevande
+    "Sant'Anna", 'Levissima', 'Peroni', 'Ichnusa', 'Menabrea',
+    # casa e igiene
+    'Felce Azzurra', 'Omino Bianco']
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        catalogo=catalogo,

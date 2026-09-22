@@ -263,7 +263,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **Da fare con lui: trovare dove rimetterli.**
 - **Il tasto «GRANDI MARCHE»** (tutto maiuscolo, chiesto il 2026-09-22) sta
   accanto a quello rosso, vuoto col bordo rosso. Apre il pannello della
-  ricerca con **20 pillole di grandi marche italiane** (`GRANDI_MARCHE` in
+  ricerca con **40 pillole di grandi marche italiane** (erano 20, portate a 40 su sua richiesta) (`GRANDI_MARCHE` in
   `pagina.py`); toccandone una la casella si riempie col nome e restano solo
   le offerte di quella marca. Regole:
   - si cerca **a parola intera** (`cercaMarca`): «AIA» come pezzo di parola
