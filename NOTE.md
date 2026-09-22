@@ -2054,3 +2054,21 @@ La prova è `prova-aiuto.js`, dentro `prove.sh`: controlla che il tasto stia in
 cima e non dentro la barra, che la finestra **non** si apra da sola, che si
 riapra sempre, che dentro ci siano davvero le otto spiegazioni e che le due
 finestre non stiano aperte insieme.
+
+## Lidl 24-30 settembre, e dove trovare l'Ekom in anteprima — 2026-09-22
+
+**Il Lidl annunciato il 21/9 su anteprimavolantino era ancora senza pagine
+vere** (indirizzi delle immagini a 404): il 22/9, un giorno dopo, le 52 pagine
+c'erano tutte, indirizzo `volantino-lidl-2026-09-24-p-{n:05d}.jpg`. Confermato
+che erano davvero 52 e non di più: la pagina 53 risponde 403 con un corpo da
+1242 byte, la firma del «non esiste» già vista con Mercatò ed Ekom.
+
+**Per l'Ekom, il posto giusto da controllare non è `ekom.it`** (non risponde,
+000/connection reset) **né `ekomdiscount.it` direttamente** (è un'app
+Javascript, un fetch normale vede solo la pagina vuota) **ma
+`kimbino.it/ekom/`**: lì compare il titolo del volantino nuovo appena kimbino
+lo sa, anche prima che abbia un indirizzo con le pagine sfogliabili. Il
+22/9 diceva «Ekom volantino dal 22/09/2026 in anteprima» ma **senza nessun
+link `/ekom-.../` con un id**: quella mancanza è il segno che le pagine non
+sono ancora pubblicate, lo stesso segnale visto con Lidl il 21/9 (titolo
+c'era, indirizzo delle immagini no).

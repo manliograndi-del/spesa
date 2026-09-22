@@ -183,7 +183,31 @@ il 2026-09-05, non dedotto. A Torino ci sono anche Mercatò Local, Big ed Extra,
 con volantini diversi: il più vicino a corso Siracusa è un Local, quindi la
 distanza da sola avrebbe scelto il negozio sbagliato.
 
-## Da fare adesso (aggiornato il 2026-09-21)
+## Da fare adesso (aggiornato il 2026-09-22)
+
+- **Letto per intero il 2026-09-22: Lidl dal 24 al 30 settembre** (`lidl24`,
+  52 pagine, trovato già con le pagine pubblicate — annunciato il 21/9 ma
+  ancora senza pagine vere, oggi c'erano). 93 prezzi nuovi in `dati.py`, in
+  quasi tutti i reparti (macelleria, salumi, formaggi, pesce, surgelati,
+  dispensa, bevande, casa, colazione, ortofrutta). 27 pagine scartate
+  (abbigliamento e stivali bambini, attrezzi auto e fai-da-te Parkside,
+  elettrodomestici SilverCrest, fiori e piante, viaggi Lidl, pubblicità varie):
+  in `scartate.py`. Diverse offerte valgono solo **dal 24 al 27** o solo
+  **dal 28 al 30**, non tutto il periodo: le date sono scritte riga per riga.
+  `lidl17` e `lidlfv17` (17-23 settembre) restano validi altri due giorni,
+  **nessun buco**. Copertura: 52/52 pagine lette.
+- **Ekom «I più ekonomici» (22 settembre-5 ottobre): ancora non online, 4°
+  giorno di fila che si controlla senza trovarlo** (19, 20, 21, 22 settembre
+  — kimbino.it/ekom/ mostra solo «in anteprima» senza un volantino
+  sfogliabile, il sito ufficiale ekomdiscount.it mostra ancora l'8-21).
+  `ekom08` è scaduto il 21: **da ieri non ci sono offerte Ekom** in lista, e
+  Manlio ne è già stato avvisato il 21. **Da fare: appena esce online si legge
+  per intero; se lui manda le foto delle pagine di carta (come per l'8-21), si
+  legge da quelle.**
+- **Ipercoop: `promoipercoop.it` ancora 503**, controllato di nuovo il
+  2026-09-22 (5° giorno di fila). Da riprovare.
+- **Mercatò, Bennet, Eurospin, MD, Carrefour Iper: nessuna novità** il
+  2026-09-22, controllati tutti sulla fonte (anteprimavolantino, kimbino).
 
 - **Fatto il 2026-09-21 il tasto «Aiuto»** in cima accanto a «Novità», col
   testo approvato da Manlio prima di metterlo. Pubblicato su sito e artifact.
@@ -204,12 +228,6 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   da domani, finché non esce il successore, **non ci saranno offerte Ekom** in
   lista. Detto a Manlio. **Da fare: appena esce online si legge per intero;
   se lui manda le foto delle pagine di carta, si legge da quelle.**
-- **Trovato il 2026-09-21 un Lidl nuovo, dal 24 al 30 settembre**, annunciato
-  su anteprimavolantino ma non ancora leggibile (le immagini delle pagine
-  rispondono ancora 404): messo in `VOLANTINI_ATTESI` così compare nella
-  tabella di Novità. `lidl17` scade il 23, questo comincia il 24: nessun buco.
-  **Da fare: appena le pagine sono pubblicate (52 pagine annunciate), leggerlo
-  per intero e toglierlo da `VOLANTINI_ATTESI`.**
 - **Eurospin e MD: niente da fare.** `eurospin10` e `md08` sono scaduti il 20
   settembre ma i loro successori (`eurospin24`, `md22`) erano già dentro
   `dati.py` da prima: nessun buco, nessuna offerta persa. Restano in `dati.py`
@@ -341,25 +359,29 @@ distanza da sola avrebbe scelto il negozio sbagliato.
   In NOTE.md c'è per esteso.
 - **Copertura letta: tutti i volantini con prezzi in `dati.py` sono al 100%**
   (bennet10, lidl17, lidlfv17, eurospin10, eurospin24, md08, carriper15,
-  mercato17, md22, ekom08, bennet1709).
+  mercato17, md22, ekom08, bennet1709, lidl24).
 - **Scadenze da tenere d'occhio nei prossimi giorni**: `md08` ed `eurospin10`
   sono scaduti il 20 settembre (da togliere con `pulisci --fai` appena il
-  programma lo permette), `ekom08` scade il 21, `bennet10` il 23, `lidl17` e
-  `lidlfv17` il 23 (occhio: nel Lidl 17-23 la «Panetteria» vale solo dal 17 al
-  20, e alcune offerte «Il meglio del lunedì» valgono solo dal 21 al 23 — già
-  segnato nelle note delle singole righe). `mercato17` e `bennet1709` scadono
-  il 30. `md22` scade il 4 ottobre, `eurospin24` anche. La pagina Oktoberfest
-  del Bennet (pagine 20-21 di `bennet10`) scade il 4 ottobre, non il 23 come
-  il resto — occhio quando si ributta il volantino. Il weekend Eurospin
-  25-27 settembre e quello del 2-4 ottobre (vedi sopra) valgono solo quei
-  giorni, non tutto il periodo di `eurospin24`.
+  programma lo permette), `ekom08` è scaduto il 21 (successore ancora non
+  online, vedi sopra), `bennet10`, `lidl17` e `lidlfv17` scadono il 23 (occhio:
+  nel Lidl 17-23 la «Panetteria» vale solo dal 17 al 20, e alcune offerte «Il
+  meglio del lunedì» valgono solo dal 21 al 23 — già segnato nelle note delle
+  singole righe). `mercato17` e `bennet1709` scadono il 30, `lidl24` anche
+  (occhio: alcune sue offerte valgono solo dal 24 al 27 o solo dal 28 al 30,
+  non tutto il periodo — già segnato riga per riga). `md22` scade il 4
+  ottobre, `eurospin24` anche. La pagina Oktoberfest del Bennet (pagine 20-21
+  di `bennet10`) scade il 4 ottobre, non il 23 come il resto — occhio quando
+  si ributta il volantino. Il weekend Eurospin 25-27 settembre e quello del
+  2-4 ottobre (vedi sopra) valgono solo quei giorni, non tutto il periodo di
+  `eurospin24`.
 - **Il giro automatico non funziona, e non è un mistero da risolvere leggendo
   il codice**: parte, lavora pochi minuti e non lascia traccia. In NOTE.md c'è
   quello che si sa e quello che non si sa, e perché a mano riesce. Finché non lo
   si vede arrivare in fondo più volte di fila, **i volantini si mettono a
   mano**. **Il 2026-09-10, il 2026-09-15, il 2026-09-16, il 2026-09-17, il
-  2026-09-18, il 2026-09-19 e il 2026-09-20 la sessione da Routine è arrivata
-  in fondo**: ha letto un volantino per intero (o più) e pubblicato — ma il 17 settembre si
+  2026-09-18, il 2026-09-19, il 2026-09-20, il 2026-09-21 e il 2026-09-22 la
+  sessione da Routine è arrivata in fondo**: ha letto un volantino per intero
+  (o più) e pubblicato — ma il 17 settembre si
   è scoperto che le pubblicazioni del 15 e del 16 non erano davvero arrivate
   al sito (vedi sopra): un «pubblicato» nel registro non basta, va controllato
   che sia finito su `main`. Dal 2026-09-18 in poi, dopo ogni push, verificato
