@@ -26,7 +26,7 @@ D = 'DA CONTROLLARE (riassunto online)'
 # moglie vedono nel cassetto.
 from catalogo import UNITA, NOMI
 from pagine_mercato import PAGINE_MERCATO, PAGINE_MERCATO_17
-from pagine_ekom import PAGINE_EKOM_08
+from pagine_ekom import PAGINE_EKOM_08, PAGINE_EKOM_22
 
 # I volantini sono namedtuple e non tuple nude di proposito: il 2026-09-05 e
 # servito aggiungere un campo (l'inizio) e gli otto punti che le spacchettavano
@@ -88,6 +88,10 @@ VOLANTINI = [
  # Annunciato il 21/9 (VOLANTINI_ATTESI), pagine pubblicate il 22/9: letto in
  # anticipo, comincia il 24 (lidl17 scade il 23, nessun buco).
  _v('lidl24',         'Lidl',           'dal 24 al 30 settembre',                       'Lidl — 24-30 settembre.pdf',                        '2026-09-30', _AV + '/2026/09/volantino-lidl-2026-09-24-p-{n:05d}.jpg',       '2026-09-24'),
+ # «I più ekonomici», visto da Manlio di carta il 19/9, online dal 22/9 su
+ # ekomdiscount.it (non più kimbino: vedi pagine_ekom.py). ekom08 e' scaduto
+ # il 21, quindi un giorno di buco (il 21) gia passato quando si legge questo.
+ _v('ekom22',         'Ekom',           '«I più ekonomici», dal 22 settembre al 5 ottobre', 'Ekom «I più ekonomici» — 22 settembre-5 ottobre.pdf', '2026-10-05', None, '2026-09-22', PAGINE_EKOM_22),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -104,13 +108,6 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
- # Questo non l'ho trovato online: l'ha fotografato Manlio il 2026-09-19, la
- # copertina del volantino di carta preso in negozio. Online (kimbino e tutti
- # gli altri) quel giorno c'era ancora solo l'8-21 settembre: la carta esce
- # prima. Appena compare si legge per intero; se non compare, si legge dalle
- # sue foto.
- Atteso('Ekom', '«I più ekonomici», dal 22 settembre al 5 ottobre', '2026-09-22', '2026-10-05',
-        'visto da Manlio sul volantino di carta, non ancora online'),
 ]
 
 for _a in VOLANTINI_ATTESI:
@@ -1442,6 +1439,115 @@ PRODOTTI = [
  ("Verdura","Lidl","lidl24","Ortofrutta","Zucca Hokkaido","al kg",1,1.49,5,V,"Con Lidl Plus. Senza tessera 1,99.","2026-09-24","2026-09-27"),
  ("Verdura","Lidl","lidl24","Ortofrutta","Carote","al kg",1,1.09,52,V,"Con Lidl Plus. Senza tessera 1,49.","2026-09-28","2026-09-30"),
  ("Patate","Lidl","lidl24","Ortofrutta","Patate Iodi – Pizzoli","1,5 kg rete",1.5,2.19,52,V,"Prima 3,19.","2026-09-28","2026-09-30"),
+
+# EKOM, «I più ekonomici», dal 22 settembre al 5 ottobre. Letto per intero il
+# 2026-09-22 dal sito ufficiale (ekomdiscount.it), non più kimbino: vedi
+# pagine_ekom.py. Manlio l'aveva già visto di carta il 19/9 e segnalato di
+# nuovo il 22/9 col link diretto (kimbino non lo aveva ancora, il sito
+# ufficiale sì). Tutto il volantino vale dal 22 settembre al 5 ottobre,
+# nessuna pagina ha un periodo più corto.
+ ("Caffè","Ekom","ekom22","Colazione","Caffè macinato Aroma Oro","250 g",0.250,2.99,2,V,""),
+ ("Caffè","Ekom","ekom22","Colazione","Espresso Bar, 100 capsule","550 g",0.550,12.69,2,V,"Prima 16,99."),
+ ("Merendine","Ekom","ekom22","Colazione","Croissant cioccolato, albicocca o crema","400 g",0.400,1.89,2,V,""),
+ ("Biscotti","Ekom","ekom22","Colazione","Biscotti Cabrioni, diversi tipi","650 g",0.650,1.79,2,V,""),
+ ("Biscotti","Ekom","ekom22","Colazione","Biscotti Buongrano – Mulino Bianco","350 g",0.350,1.59,2,V,"Prima 1,99."),
+ ("Creme spalmabili","Ekom","ekom22","Colazione","Fior di Nocciola, crema cacao e nocciola bicolore","400 g",0.400,1.59,2,V,"Prima 1,99."),
+ ("Cioccolato","Ekom","ekom22","Colazione","Barrette di cioccolato al latte, 16 pezzi","200 g",0.200,1.99,2,V,"Prima 2,49."),
+ ("Pane","Ekom","ekom22","Panetteria","Cracker Fiori d'Acqua – Mulino Bianco","250 g",0.250,1.25,2,V,"Prima 1,79."),
+ ("Riso","Ekom","ekom22","Dispensa","Riso Arborio","1 kg",1,1.99,2,V,"Prima 2,79."),
+ ("Pane","Ekom","ekom22","Panetteria","Baguette precotta, 2 pezzi","300 g",0.300,0.79,2,V,"Prima 0,99."),
+ ("Pomodoro e passata","Ekom","ekom22","Dispensa","Passata di pomodoro – Pomì","750 g",0.750,0.99,2,V,"Prima 1,49."),
+ ("Salmone","Ekom","ekom22","Dispensa","Filetti di salmone all'olio vegetale","150 g",0.150,2.49,3,V,"È in scatola, non fresco."),
+ ("Tonno","Ekom","ekom22","Dispensa","Filetti di tonno all'olio di semi di girasole","180 g",0.180,2.39,3,V,"Prima 2,99."),
+ ("Tonno","Ekom","ekom22","Dispensa","Trancetti di tonno in olio di girasole, formato scorta 12x80 g – Moretti","960 g",0.960,5.99,3,V,"Prima 8,99."),
+ ("Acqua","Ekom","ekom22","Bevande","Acqua Alpi Cozie, frizzante o naturale, 12x500 ml","6 litri",6,1.89,3,V,""),
+ ("Succhi e bibite","Ekom","ekom22","Bevande","Bevanda alla frutta A+C+E, gusti assortiti","1,5 litri",1.5,1.39,3,V,""),
+ ("Birra","Ekom","ekom22","Bevande","Birra Classic","500 ml",0.500,0.53,3,V,"Prima 0,69."),
+ ("Birra","Ekom","ekom22","Bevande","Birra Extra Stout","500 ml",0.500,0.99,3,V,"Prima 1,39."),
+ ("Vino","Ekom","ekom22","Bevande","Nebbiolo delle Langhe DOC","750 ml",0.750,4.25,3,V,"Prima 5,69."),
+ ("Vino","Ekom","ekom22","Bevande","Bonarda dell'Oltrepò Pavese DOC – Fratelli Maggi","750 ml",0.750,1.99,3,V,""),
+ ("Vino","Ekom","ekom22","Bevande","Pinot Nero IGT","750 ml",0.750,2.39,3,V,"Prima 3,29."),
+ ("Vino","Ekom","ekom22","Bevande","Müller Thurgau delle Venezie IGT","750 ml",0.750,2.89,3,V,"Prima 3,89."),
+ ("Vino","Ekom","ekom22","Bevande","Cabernet Sauvignon","750 ml",0.750,1.99,3,V,"Prima 2,69."),
+ ("Detersivo lavastoviglie","Ekom","ekom22","Cura casa","Gel Lavastoviglie Tutto in 1, 57 lavaggi – Scala","750 ml, 57 lavaggi",57,0.99,4,V,"Prima 1,29."),
+ ("Ammorbidente","Ekom","ekom22","Cura casa","Ammorbidente profumato, 40 lavaggi – Solbat","2 litri, 40 lavaggi",2,1.29,4,V,"Prima 1,79."),
+ ("Carta igienica","Ekom","ekom22","Cura casa","Carta igienica 2 veli, 4 maxi rotoli (=8) – Dayly","4 rotoli maxi",8,1.19,5,V,"Prima 1,49. 4 rotoli maxi valgono come 8 normali."),
+ ("Carta cucina e tovaglioli","Ekom","ekom22","Cura casa","Asciugatutto monorotolo decorato 3 veli, 300 strappi – Lalynea","1 rotolo",1,2.39,5,V,"Prima 2,99."),
+ ("Carta cucina e tovaglioli","Ekom","ekom22","Cura casa","Asciugatutto 2 veli, 6 rotoli – Bravo","6 rotoli",6,2.79,5,V,"Prima 3,99."),
+ ("Burro","Ekom","ekom22","Freschi","Burro","500 g",0.500,2.99,6,V,"Prima 4,49."),
+ ("Yogurt","Ekom","ekom22","Freschi","Yogurt cremoso bianco&nocciole e cioccolato","150 g",0.150,0.59,6,V,"Prima 0,79."),
+ ("Formaggio","Ekom","ekom22","Freschi","Fette di formaggio – Bon Fette, 20 pezzi","400 g",0.400,1.99,6,V,""),
+ ("Mozzarella","Ekom","ekom22","Freschi","Mozzarella","100 g",0.100,0.69,6,V,"Prima 0,89."),
+ ("Mozzarella","Ekom","ekom22","Freschi","Mozzarelle fior di latte ciliegine, 8x25 g","200 g",0.200,1.69,6,V,"Prima 2,19."),
+ ("Mozzarella","Ekom","ekom22","Freschi","Mozzarella julienne","200 g",0.200,1.59,6,V,"Prima 1,99."),
+ ("Pasta","Ekom","ekom22","Freschi","Pasta fresca ripiena, diversi tipi – MammAmore","500 g",0.500,1.19,6,V,"Prima 1,69. Sono tortelloni freschi, non pasta secca."),
+ ("Ricotta","Ekom","ekom22","Freschi","Mascarpone","500 g",0.500,2.79,6,V,"Prima 3,49."),
+ ("Formaggio","Ekom","ekom22","Freschi","Stracchino senza lattosio","150 g",0.150,1.49,6,V,"Prima 1,89."),
+ ("Formaggio","Ekom","ekom22","Freschi","Caprino di latte di capra","80 g",0.080,0.99,6,V,"Prima 1,29."),
+ ("Formaggio","Ekom","ekom22","Freschi","Luna di Primosale","200 g",0.200,1.49,6,V,"Prima 1,99."),
+ ("Formaggio","Ekom","ekom22","Freschi","Gorgonzola dolce DOP","400 g",0.400,3.49,7,V,""),
+ ("Formaggio","Ekom","ekom22","Freschi","Formaggio grattugiato mix","100 g",0.100,0.79,7,V,"Prima 0,99."),
+ ("Formaggio","Ekom","ekom22","Freschi","Formaggio Telemea de Vacca – Bayernland","800 g",0.800,5.99,7,V,""),
+ ("Pasta","Ekom","ekom22","Freschi","Pasta fresca, orecchiette o trofie","1 kg",1,1.69,7,V,"Sono fresche, non pasta secca."),
+ ("Uova","Ekom","ekom22","Freschi","10 uova piccole \"S\"","10 uova",10,2.19,7,V,""),
+ ("Salsiccia","Ekom","ekom22","Salumi","Fette di cotechino senza glutine","150 g (3 fette)",0.150,1.49,7,V,"Prima 1,99. È cotechino, salume cotto di maiale, non salsiccia fresca."),
+ ("Suino","Ekom","ekom22","Salumi","Würstel Griglia&Famiglia","1 kg",1,2.59,7,V,"Sono würstel, non carne fresca."),
+ ("Prosciutto cotto","Ekom","ekom22","Salumi","Prosciutto cotto – Salumi Belletti","100 g",0.100,1.29,7,V,""),
+ ("Mortadella","Ekom","ekom22","Salumi","Mortadella intera","150 g",0.150,1.19,7,V,"Prima 1,49."),
+ ("Frutta","Ekom","ekom22","Ortofrutta","Uva Italia","750 g",0.750,2.59,8,V,""),
+ ("Frutta","Ekom","ekom22","Ortofrutta","Uva Pizzutella","750 g",0.750,2.99,8,V,""),
+ ("Frutta","Ekom","ekom22","Ortofrutta","Uva nera","750 g",0.750,1.99,8,V,""),
+ ("Frutta","Ekom","ekom22","Ortofrutta","Mele Golden","al kg",1,1.49,8,V,""),
+ ("Verdura","Ekom","ekom22","Ortofrutta","Pomodori a grappolo","al kg",1,1.99,8,V,""),
+ ("Patate","Ekom","ekom22","Ortofrutta","Patate Selenella","1,5 kg rete",1.5,2.49,8,V,""),
+ ("Prosciutto crudo","Ekom","ekom22","Gastronomia","Speck Alto Adige IGP, al banco","al kg",1,19.90,9,V,"Il volantino stampa 1,99 all'etto. Vale solo nei negozi col banco servito."),
+ ("Bresaola","Ekom","ekom22","Gastronomia","Bresaola punta d'anca IGP – Rigamonti, al banco","al kg",1,34.90,9,V,"Il volantino stampa 3,49 all'etto. Vale solo nei negozi col banco servito."),
+ ("Prosciutto cotto","Ekom","ekom22","Gastronomia","Prosciutto cotto alta qualità – Riccafetta, al banco","al kg",1,15.90,9,V,"Il volantino stampa 1,59 all'etto, prima 1,99. Vale solo nei negozi col banco servito."),
+ ("Prosciutto crudo","Ekom","ekom22","Gastronomia","Prosciutto crudo, al banco","al kg",1,16.90,9,V,"Il volantino stampa 1,69 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom22","Gastronomia","Caciottina Bosco Gerolo, al banco","al kg",1,9.90,9,V,"Il volantino stampa 0,99 all'etto. Vale solo nei negozi col banco servito."),
+ ("Ricotta","Ekom","ekom22","Gastronomia","Ricotta Vallelata, al banco","al kg",1,6.90,9,V,"Il volantino stampa 0,69 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom22","Gastronomia","Gorgonzola dolce DOP, al banco","al kg",1,11.90,9,V,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."),
+ ("Formaggio","Ekom","ekom22","Gastronomia","Certosa – Galbani, al banco","al kg",1,11.90,9,V,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."),
+ ("Carne di bue","Ekom","ekom22","Macelleria","Arrosto di bovino adulto","al kg",1,19.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Carne di bue","Ekom","ekom22","Macelleria","Costata di bovino adulto","al kg",1,18.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Carne di bue","Ekom","ekom22","Macelleria","Polpa magra di bovino adulto","al kg",1,16.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Pollo","Ekom","ekom22","Macelleria","Fuselli di pollo","al kg",1,4.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Pollo","Ekom","ekom22","Macelleria","Rustichelle di pollo BBQ","al kg",1,13.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Suino","Ekom","ekom22","Macelleria","Lonza di suino a tranci, confezione risparmio","al kg",1,7.90,9,V,"Vale solo nei negozi col banco servito."),
+ ("Cereali","Ekom","ekom22","Colazione","High Protein Müesli – Cameo","300 g",0.300,2.89,10,V,"Prima 3,69."),
+ ("Succhi e bibite","Ekom","ekom22","Bevande","Best Hydration, arancia/limone/frutti di bosco – Sant'Anna","330 ml",0.330,0.69,10,V,"Prima 0,99."),
+ ("Succhi e bibite","Ekom","ekom22","Bevande","Sport Drink, limone o arancio","500 ml",0.500,0.59,10,V,"Prima 0,79."),
+ ("Creme spalmabili","Ekom","ekom22","Colazione","Peanut Butter, 100% arachidi – Fiorentini","350 g",0.350,2.79,10,V,"Prima 3,49. È burro di arachidi, non crema al cioccolato."),
+ ("Succhi e bibite","Ekom","ekom22","Bevande","Powerade, diversi tipi","500 ml",0.500,1.09,10,V,""),
+ ("Shampoo","Ekom","ekom22","Cura persona","Doccia Shampoo Luxury, diversi tipi","500 ml",0.500,0.85,11,V,"Prima 1,25. È un 2 in 1 doccia e shampoo."),
+ ("Detersivo lavatrice","Ekom","ekom22","Cura casa","Detersivo capi sportivi, 18 lavaggi – Chanteclair","900 ml, 18 lavaggi",18,2.19,11,V,"Prima 2,99."),
+ ("Carne di bue","Ekom","ekom22","Macelleria","Polpettine di carne bovina – Amica Natura","500 g",0.500,3.99,14,V,"Solo con la carta EKOM UP. Senza tessera 4,99."),
+ ("Formaggi spalmabili","Ekom","ekom22","Freschi","Philadelphia Classico","220 g",0.220,2.19,14,V,"Solo con la carta EKOM UP."),
+ ("Olio di semi","Ekom","ekom22","Dispensa","Olio di semi di girasole – Dante","1 litro",1,2.19,14,V,"Solo con la carta EKOM UP. Senza tessera 2,79."),
+ ("Tonno","Ekom","ekom22","Dispensa","Tonno all'olio di oliva, 6x120 g – Rio Mare","720 g",0.720,8.99,14,V,"Solo con la carta EKOM UP. Senza tessera 11,99."),
+ ("Verdure in scatola","Ekom","ekom22","Dispensa","Olive olivolì nere toste – Saclà","100 g",0.100,0.79,14,V,"Solo con la carta EKOM UP. Senza tessera 0,99."),
+ ("Succhi e bibite","Ekom","ekom22","Bevande","Coca Cola Classica, 6x330 ml","1,98 litri",1.98,3.99,14,V,"Solo con la carta EKOM UP. Senza tessera 4,99."),
+ ("Birra","Ekom","ekom22","Bevande","Birra Nastro Azzurro – Peroni","500 ml",0.500,0.99,14,V,"Solo con la carta EKOM UP."),
+ ("Vino","Ekom","ekom22","Bevande","Vino DOC Capetta, Monferrato Chiaretto o Cortese dell'Alto Monferrato","750 ml",0.750,2.99,14,V,"Solo con la carta EKOM UP. Senza tessera 4,69."),
+ ("Detersivo lavastoviglie","Ekom","ekom22","Cura casa","Pastiglie lavastoviglie Tutto in 1 Extra, 36 lavaggi – Pril","36 lavaggi",36,5.59,14,V,"Solo con la carta EKOM UP. Senza tessera 7,99."),
+ ("Carta igienica","Ekom","ekom22","Cura casa","Carta igienica That's Amore, 8 rotoli 4 veli – Lalynea","8 rotoli",8,1.99,14,V,"Solo con la carta EKOM UP. Senza tessera 2,99."),
+ ("Calamari e seppie","Ekom","ekom22","Surgelati","Tentacoli di totano gigante","500 g",0.500,2.99,15,V,"Prima 3,99."),
+ ("Merluzzo e baccalà","Ekom","ekom22","Surgelati","Filetti di merluzzo d'Alaska","400 g",0.400,1.99,15,V,"Prima 2,99."),
+ ("Merluzzo e baccalà","Ekom","ekom22","Surgelati","Filetti di platessa impanati","300 g",0.300,2.99,15,V,"Prima 3,99. Sono impanate."),
+ ("Verdure surgelate","Ekom","ekom22","Surgelati","Spinaci in cubi","1 kg",1,1.49,15,V,"Prima 1,99."),
+ ("Verdure surgelate","Ekom","ekom22","Surgelati","Minestrone","450 g",0.450,0.79,15,V,"Prima 0,99."),
+ ("Verdure surgelate","Ekom","ekom22","Surgelati","Contorno broccoli e patate","450 g",0.450,1.99,15,V,"Prima 2,49."),
+ ("Patate","Ekom","ekom22","Surgelati","Patate stick prefritte","1 kg",1,1.49,15,V,"Prima 1,99."),
+ ("Sughi pronti","Ekom","ekom22","Surgelati","Sugo alle vongole – Appetais","300 g",0.300,2.39,15,V,"Prima 2,99."),
+ ("Gelato","Ekom","ekom22","Surgelati","Gelato stecco Mini King","280 g",0.280,2.79,15,V,"Prima 3,49."),
+ ("Gelato","Ekom","ekom22","Surgelati","Vaschetta gelato, gusti assortiti – Kome Te","400 g",0.400,1.49,15,V,"Prima 1,99."),
+ ("Tè e tisane","Ekom","ekom22","Colazione","Tè verde freddo, diversi gusti, 16 filtri – Everton","40 g",0.040,1.99,16,V,"Prima 2,49."),
+ ("Formaggio","Ekom","ekom22","Freschi","Camembert francese","250 g",0.250,2.49,16,V,""),
+ ("Formaggio","Ekom","ekom22","Freschi","Feta greca DOP a cubetti","150 g",0.150,2.49,16,V,""),
+ ("Salmone","Ekom","ekom22","Freschi","Salmone affumicato","200 g",0.200,5.49,16,V,""),
+ ("Yogurt","Ekom","ekom22","Freschi","Yogurt greco, magro, magro senza lattosio o intero","150 g",0.150,0.79,16,V,"Prima 0,99."),
+ ("Pizza surgelata","Ekom","ekom22","Surgelati","Pizza Kebab","420 g",0.420,2.99,16,V,"Prima 3,99."),
+ ("Gelato","Ekom","ekom22","Surgelati","Gelato Mochi Maka Flavor, cocco/vaniglia/mango","180 g",0.180,3.49,16,V,""),
 ]
 
 # LE OFFERTE CON DATE LORO.

@@ -35,3 +35,29 @@ PAGINE_EKOM_08 = (
  'https://eu.kimbicdn.com/thumbor/p4uhff2BGN5lWLHVzWhB9I8xLwU=/0x0/filters:format(webp):quality(65)/it/data/162/167414/14.jpg?t=1788922633',
  'https://eu.kimbicdn.com/thumbor/-DMsP8zF3xkHHgfSfI-iu9r5AF4=/0x0/filters:format(webp):quality(65)/it/data/162/167414/15.jpg?t=1788922633',
 )
+
+# «I più ekonomici», dal 22 settembre al 5 ottobre. Fonte diversa dall'8-21:
+# non più kimbino ma il sito ufficiale ekomdiscount.it, che è un'app
+# Javascript e non risponde niente a un fetch semplice. Le pagine vere
+# arrivano dall'API che l'app chiama in pagina, non dalla pagina stessa:
+# `https://www.ekomdiscount.it/ebsn/api/leaflet/search?parent_leaflet_type_id=1`
+# torna la lista dei volantini con un `baseLocation` e le pagine sono
+# `{baseLocation}{n}.png`, n da 0. In NOTE.md c'è per esteso.
+PAGINE_EKOM_22 = (
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/0.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/1.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/2.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/3.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/4.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/5.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/6.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/7.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/8.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/9.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/10.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/11.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/12.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/13.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/14.png',
+ 'https://app.ekomdiscount.it/photo/leaflets/2026/09/15/73/15.png',
+)

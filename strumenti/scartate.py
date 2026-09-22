@@ -220,4 +220,10 @@ SCARTATE = {
    50: 'pubblicità Lidl Viaggi: hotel a Parma, nessun prezzo di spesa',
    51: 'pubblicità Lidl Viaggi: montagna, terme e Madrid, nessun prezzo di spesa',
  },
+ # Guardate una per una il 2026-09-22, leggendo il volantino per intero (16 pagine).
+ 'ekom22': {
+   1:  'copertina: solo il titolo «I più ekonomici» e le date, nessun prezzo',
+   12: 'concorso a premi "Punta in alto: Up&Vinci" della carta fedeltà EKOM UP: come partecipare, nessun prezzo di spesa',
+   13: 'pubblicità app EKOM UP: offerte riservate e coupon, nessun prezzo di spesa qui (le offerte riservate vere stanno nella pagina dopo)',
+ },
 }
