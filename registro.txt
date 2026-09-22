@@ -94,3 +94,4 @@
 2026-09-22 21:40 UTC  pubblicato: sito (verificato, sw.js v62) e artifact (versione 54) con le pillole delle marche spente.
 2026-09-22 21:55 UTC  con GRANDI MARCHE aperto le categorie spariscono, tornano alla chiusura. sw.js v63.
 2026-09-22 22:00 UTC  pubblicato: sito (verificato, sw.js v63) e artifact (versione 55): con GRANDI MARCHE aperto le categorie spariscono.
+2026-09-22 22:40 UTC  GRANDI MARCHE coi marchi veri (32 su 46, in strumenti/marchi/). Scoperto e sistemato: i quattro tasti in cima e «I tuoi prodotti» si vedevano ancora sul telefono (hidden battuto dal display:flex). Tasto rosso che va a capo invece di tagliarsi. sw.js v64.

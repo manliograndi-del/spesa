@@ -17,7 +17,7 @@ prima versione:
 
 La lista vive in localStorage, non sul server: vedi NOTE.md.
 """
-import json, os
+import json, os, re
 from dati import OFFERTE, VOLANTINI, UNITA, D
 from catalogo import CATALOGO, REPARTI, RINOMINATE
 from lista import PARTENZA
@@ -245,12 +245,38 @@ GRANDI_MARCHE = [
     # casa e igiene
     'Felce Azzurra', 'Omino Bianco']
 
+# I MARCHI DELLE GRANDI MARCHE, uno per file in strumenti/marchi/ (chiesti il
+# 2026-09-22: «trova anche i marchi delle grandi marche e usali al posto dei
+# bottoni»). Come per i supermercati: per aggiungerne uno basta mettere il
+# file li, col nome della marca in minuscolo e i trattini al posto di spazi e
+# apostrofi; se manca, la pillola resta col nome scritto. Diventano immagini
+# scritte dentro la pagina, cosi la pagina resta un file solo.
+def _chiave_marca(m):
+    import unicodedata
+    s = ''.join(c for c in unicodedata.normalize('NFD', m.lower())
+                if unicodedata.category(c) != 'Mn')
+    return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+
+def _marchi_marche():
+    import base64
+    dove = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'marchi')
+    tipi = {'webp': 'image/webp', 'png': 'image/png', 'svg': 'image/svg+xml'}
+    fuori = {}
+    for m in GRANDI_MARCHE:
+        for est, tipo in tipi.items():
+            f = os.path.join(dove, _chiave_marca(m) + '.' + est)
+            if os.path.exists(f):
+                fuori[m] = 'data:%s;base64,%s' % (tipo, base64.b64encode(open(f, 'rb').read()).decode())
+                break
+    return fuori
+
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
                        catalogo=catalogo,
                        # I nomi vecchi delle categorie, per chi ha una lista
                        # salvata da prima che li accorciassimo: vedi catalogo.py.
                        rinominate=RINOMINATE,
                        marche=GRANDI_MARCHE,
+                       marchiMarche=_marchi_marche(),
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
                        novita=NOVITA_PAGINA,
@@ -428,18 +454,37 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    accanto a quello rosso, vuoto col bordo rosso: e' un'altra strada per la
    stessa ricerca, non una cosa da premere per prima. */
 .riga-cerca{display:flex;gap:6px;align-items:stretch}
-.riga-cerca .tasto.trova{flex:1 1 auto;width:auto;min-width:0}
+.riga-cerca .tasto.trova{flex:1 1 auto;width:auto;min-width:0;white-space:normal;
+  line-height:1.15;font-size:14px;padding:5px 12px;text-align:center}
+/* Sul telefono, accanto a GRANDI MARCHE, la scritta del tasto rosso non ci
+   stava su una riga e veniva tagliata ai due lati («erca un prodotto o una
+   ma»): adesso va a capo dentro la pastiglia invece di sparire. */
 .tasto.marchi{flex:none;border:1.5px solid var(--rosso);color:var(--rosso);
-  background:var(--carta);border-radius:99px;font-weight:700;font-size:13px;
-  letter-spacing:.04em;min-height:42px;padding:6px 12px}
+  background:var(--carta);border-radius:99px;font-weight:700;font-size:12.5px;
+  letter-spacing:.02em;min-height:42px;padding:6px 10px}
 .tasto.marchi[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
 .marche[hidden],.barra[hidden]{display:none}
+/* «hidden» da solo NON basta su un elemento a cui il CSS da display:flex: il
+   2026-09-22 i quattro tasti in cima e la riga «I tuoi prodotti» erano stati
+   nascosti cosi, le prove (che guardano l'attributo) dicevano di si, e sul
+   telefono si vedevano ancora. Scoperto guardando una schermata vera. */
+.tasti-alti[hidden],.capo-prodotti[hidden]{display:none}
 .marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
   border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
   min-height:32px;cursor:pointer;font-family:inherit;color:var(--inchiostro)}
 .marche button:disabled{opacity:.4;border-style:dashed;cursor:default;
   font-weight:500}
+/* Le pillole col marchio vero: fondo BIANCO fisso come quelle dei
+   supermercati, se no con un look scuro i loghi sparirebbero. Quella scelta
+   non diventa rossa piena (coprirebbe il logo): prende un bordo rosso spesso.
+   Quelle spente diventano grigie, oltre che sbiadite. */
+.marche button.col-logo{background:#FFFFFF;padding:3px 10px;min-height:36px;
+  display:inline-flex;align-items:center}
+.marche button.col-logo img{height:24px;width:auto;max-width:110px;display:block;object-fit:contain}
+.marche button.col-logo:disabled img{filter:grayscale(1)}
+.marche button.col-logo[aria-pressed="true"]{background:#FFFFFF;
+  border-color:var(--rosso);box-shadow:0 0 0 2px var(--rosso)}
 .marche button[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
   color:var(--su-rosso)}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
@@ -1477,7 +1522,18 @@ function disegnaMarche() {
   (DATI.marche || []).forEach(m => {
     const b = document.createElement('button');
     b.type = 'button';
-    b.textContent = m;
+    const logo = (DATI.marchiMarche || {})[m];
+    if (logo) {
+      /* Il marchio al posto del nome, e il nome dentro, nascosto alla vista:
+         un logo, per chi non lo vede, e un buco. */
+      b.className = 'col-logo';
+      b.innerHTML = '<img alt=""><span class="solo-voce"></span>';
+      b.querySelector('img').src = logo;
+      b.querySelector('.solo-voce').textContent = m;
+      b.title = m;
+    } else {
+      b.textContent = m;
+    }
     b.setAttribute('aria-pressed', String(marcaScelta === m));
     if (!cercaMarca(m).length) {
       b.disabled = true;

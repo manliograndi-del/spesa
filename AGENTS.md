@@ -263,7 +263,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   (chiesto il 2026-09-22: «togli anche i quattro bottoni superiori, lascia le
   funzioni, poi troveremo un altro posto dove metterle»). Sono **nascosti con
   `hidden`, non tolti**: le finestre funzionano ancora e le prove le aprono.
-  **Da fare con lui: trovare dove rimetterli.**
+  **Da fare con lui: trovare dove rimetterli.** ATTENZIONE: `hidden` da
+  solo non basta su un elemento che nel CSS ha `display:flex` — fino al
+  2026-09-22 sera sul telefono si vedevano ancora, mentre le prove (che
+  guardano l'attributo) dicevano di no. Ci vuole la regola `[hidden]{display:none}`.
 - **Il tasto «GRANDI MARCHE»** (tutto maiuscolo, chiesto il 2026-09-22) sta
   accanto a quello rosso, vuoto col bordo rosso. Apre il pannello della
   ricerca con **46 pillole di grandi marche italiane** (20, poi 40, poi 46 con quelle spente) (`GRANDI_MARCHE` in
@@ -276,6 +279,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     stata sostituita da Saiwa. **Quando si rileggono i volantini, guardare
     che nessuna pillola resti vuota**;
   - come nella ricerca, **niente bollino verde** nei risultati.
+  - **Le pillole hanno il MARCHIO VERO dove c'è** (chiesto il 2026-09-22):
+    32 su 46, uno per file in `strumenti/marchi/` (nome della marca in
+    minuscolo con i trattini, `.webp`), fonti in `marchi/FONTI.txt`. Come per
+    i supermercati: fondo bianco fisso, nome nascosto dentro per chi non vede
+    e per le prove, e se il file manca la pillola resta col nome scritto.
+    **Ogni marchio è stato guardato prima di metterlo**: le ricerche automatiche
+    ne avevano presi di sbagliati (un'«AIA» di compagnie aeree, una «Star» di
+    un'altra azienda). Per aggiungerne uno basta mettere il file lì.
   - **Con le grandi marche aperte le categorie (la `.barra` coi prodotti)
     non si vedono** (chiesto il 2026-09-22: «non ha senso, non devono
     apparire»). Tornano appena si chiude il pannello. Con la ricerca normale
