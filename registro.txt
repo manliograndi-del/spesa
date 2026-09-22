@@ -55,3 +55,5 @@
 2026-09-21 09:09 UTC  spostata l'ora del controllo automatico: da 0 6 * * * a 0 5 * * * (UTC), cioe dalle 8:12 alle 7:06 italiane. Chiesto da Manlio. Da rimettere a 0 6 * * * il 25 ottobre, quando torna l'ora solare
 2026-09-21 11:37 UTC  tasto «Aiuto» in cima accanto a Novita, con la finestra che spiega come si usa la pagina: testo approvato da Manlio prima di metterlo (ha tolto il blocco «due cose da sapere»). Prova nuova prova-aiuto.js; sw.js a v45
 2026-09-22 05:07 UTC  sveglia: clonato
+2026-09-22 05:11 UTC  passo1: pulisci - eurospin10 e md08 scaduti (successori gia in dati.py). bennet10/lidl17/lidlfv17 scadono domani 23, ekom08 scaduto ieri 21.
+2026-09-22 05:11 UTC  passo1: giro insegne - Mercato/Bennet/Eurospin/MD/Carrefour Iper nessuna novita oltre dati.py. Ekom 'I piu ekonomici' ancora NON online, 4o giorno di fila (19,20,21,22 set): kimbino.it/ekom/ solo 'in anteprima' senza id sfogliabile, ekomdiscount.it mostra ancora l'8-21. Ipercoop: promoipercoop.it 503, 4o giorno di fila. TROVATO Lidl 24-30 settembre ORA CON PAGINE PUBBLICATE (52 pagine, verificate vere la 1 e la 52). Comincio a scaricarlo e leggerlo.
