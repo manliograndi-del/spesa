@@ -220,23 +220,28 @@ NOVITA_PAGINA = [
 # solo i prodotti di quella marca». Scelte fra le marche italiane che nei
 # volantini letti compaiono davvero (almeno due offerte ciascuna quando sono
 # state scelte): una pillola che non trova niente sarebbe una presa in giro.
-# Ferrero c'era, ma quel giorno le sue offerte erano tutte scadute: tolta.
+# LE MARCHE SENZA OFFERTE NON SI TOLGONO: SI SPENGONO (Manlio, 2026-09-22:
+# «metti anche Ferrero e quelle che non appaiono, facendo i pulsanti
+# disattivati e di un colore molto piu tenue»). La pillola spenta la decide
+# il TELEFONO di chi guarda, ogni volta che apre il pannello, con la sua data:
+# un volantino che scade la spegne da sola, uno nuovo che la contiene la
+# riaccende da solo al primo aggiornamento. Niente da ricordarsi a mano.
 # «Fini» e «Moretti» provate e scartate: «Fini» trovava i «piselli fini», e
 # «Moretti» era un tonno, non la birra. Una pillola deve dare quello che dice.
 # Si cercano a PAROLA INTERA: «AIA» cercata come pezzo di parola trovava anche
 # il «maiale».
 GRANDI_MARCHE = [
     # pasta, dolci e colazione
-    'Mulino Bianco', 'Barilla', 'Voiello', 'Rummo', 'Garofalo', 'La Molisana',
-    'Rana', 'Saiwa', 'Pavesi', 'Colussi', 'Bauli', 'Melegatti', 'Kinder',
+    'Ferrero', 'Mulino Bianco', 'Barilla', 'De Cecco', 'Voiello', 'Rummo', 'Garofalo', 'La Molisana',
+    'Rana', 'Saiwa', 'Pavesi', 'Balocco', 'Loacker', 'Colussi', 'Bauli', 'Melegatti', 'Kinder',
     'Novi', 'Zuegg', 'Lavazza', 'Kimbo', 'Vergnano',
     # latte, formaggi, carne e salumi
     'Granarolo', 'Parmalat', 'Arborea', 'Galbani', 'Vallelata', 'AIA',
     'Amadori', 'Beretta', 'Citterio', 'Parmacotto',
     # dispensa e surgelati
-    'Rio Mare', 'Orogel', 'Sammontana', 'Star', 'Cirio',
+    'Rio Mare', 'Orogel', 'Sammontana', 'Star', 'Cirio', 'Mutti',
     # bevande
-    "Sant'Anna", 'Levissima', 'Peroni', 'Ichnusa', 'Menabrea',
+    "Sant'Anna", 'San Benedetto', 'Levissima', 'Peroni', 'Ichnusa', 'Menabrea',
     # casa e igiene
     'Felce Azzurra', 'Omino Bianco']
 
@@ -433,6 +438,8 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
   border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
   min-height:32px;cursor:pointer;font-family:inherit;color:var(--inchiostro)}
+.marche button:disabled{opacity:.4;border-style:dashed;cursor:default;
+  font-weight:500}
 .marche button[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
   color:var(--su-rosso)}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
@@ -1465,6 +1472,10 @@ function disegnaMarche() {
     b.type = 'button';
     b.textContent = m;
     b.setAttribute('aria-pressed', String(marcaScelta === m));
+    if (!cercaMarca(m).length) {
+      b.disabled = true;
+      b.title = 'Nei volantini di adesso non c\'è nessuna offerta ' + m;
+    }
     b.onclick = () => {
       marcaScelta = marcaScelta === m ? null : m;
       document.getElementById('q').value = marcaScelta || '';

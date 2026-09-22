@@ -266,7 +266,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **Da fare con lui: trovare dove rimetterli.**
 - **Il tasto «GRANDI MARCHE»** (tutto maiuscolo, chiesto il 2026-09-22) sta
   accanto a quello rosso, vuoto col bordo rosso. Apre il pannello della
-  ricerca con **40 pillole di grandi marche italiane** (erano 20, portate a 40 su sua richiesta) (`GRANDI_MARCHE` in
+  ricerca con **46 pillole di grandi marche italiane** (20, poi 40, poi 46 con quelle spente) (`GRANDI_MARCHE` in
   `pagina.py`); toccandone una la casella si riempie col nome e restano solo
   le offerte di quella marca. Regole:
   - si cerca **a parola intera** (`cercaMarca`): «AIA» come pezzo di parola
@@ -276,6 +276,15 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     stata sostituita da Saiwa. **Quando si rileggono i volantini, guardare
     che nessuna pillola resti vuota**;
   - come nella ricerca, **niente bollino verde** nei risultati.
+  - **Le marche senza offerte non si tolgono: si SPENGONO** (chiesto il
+    2026-09-22: «metti anche Ferrero e quelle che non appaiono, facendo i
+    pulsanti disattivati e di un colore molto più tenue»). Sono 46 pillole;
+    quelle senza nessuna offerta valida sono tratteggiate e sbiadite e non si
+    toccano. **Lo decide il telefono di chi guarda, con la sua data**, ogni
+    volta che apre il pannello: un volantino che scade le spegne, uno nuovo
+    le riaccende al primo aggiornamento. Non serve fare niente a mano. Fini e
+    Moretti restano FUORI: non erano vuote, trovavano la cosa sbagliata
+    («piselli fini», un tonno Moretti).
 - **Il meno caro è una pastiglia dentro l'elenco, e le offerte non ancora
   cominciate sono sbiadite** (chiesto il 2026-09-22: «che il prodotto meno
   caro venisse messo in una pillola, con un bordo e con un colore che la
