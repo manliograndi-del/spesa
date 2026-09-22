@@ -77,7 +77,7 @@ setTimeout(() => {
   const tasto = d.getElementById('apri-look');
   const buio = d.getElementById('buio-look');
   if (!tasto || !buio) { console.error('MANCA il tasto Look o la sua finestra'); process.exit(1); }
-  if (!d.querySelector('header').contains(tasto)) male.push('il tasto Look non sta in cima');
+  if (!d.getElementById('buio-config').contains(tasto)) male.push('il tasto dei colori non sta nella configurazione');
   if (d.querySelector('.barra').contains(buio)) male.push('LA FINESTRA STA DENTRO LA BARRA');
   if (!buio.hidden) male.push('la finestra dei look si apre da sola');
 

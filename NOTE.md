@@ -2759,3 +2759,32 @@ Il prompt della Routine notturna nominava sette insegne e le fonti di prima
 (kimbino per Ekom, niente per Pam e Conad). Riscritto con le dieci insegne e,
 per ognuna, dove si trova il volantino nuovo. Più una regola: se prompt e
 CLAUDE.md dicono cose diverse, vale CLAUDE.md, che è più recente.
+
+### L'ingranaggio e la scelta dei supermercati (stessa notte)
+
+Mezz'ora dopo, Manlio: «ci dovrebbe essere anche un tasto per scegliere i
+supermercati. Appare l'elenco completo e tu scegli quello che vuoi. Si
+potrebbe fare un pallino unico di configurazione che porta a una pagina con i
+colori, i supermercati e le altre opzioni… No, mi sono sbagliato, ci vanno due
+pallini, uno di configurazione e l'altro novità».
+
+La scelta dei negozi era stata chiesta e rifiutata due volte il 22 mattina
+(era scritto in CLAUDE.md «non si fa e non si mette»). Stavolta l'ha chiesta
+lui, in chiaro: si fa, e la regola in CLAUDE.md è cambiata.
+
+Come è fatta:
+- la ruota dei colori è diventata un **ingranaggio**; apre «Configurazione»,
+  una finestra come quelle di Aiuto e Look;
+- dentro, i dieci **marchi** in fila: pieni con la spunta verde quelli tenuti,
+  grigi e tratteggiati quelli tolti; sotto, «Colori della pagina», «Aiuto» e
+  «Cosa c'è di nuovo», che prima erano tasti in cima;
+- la scelta sta nel telefono (`spesa.negozi.v1`) e si ricordano i negozi
+  **tolti**: un'insegna nuova (com'erano Pam e Conad) compare da sola a tutti;
+- la pagina tratta un'offerta di un negozio tolto come una scaduta: la regola
+  sta in un posto solo (`nascosta`) e vale per prezzi, «il meno caro»,
+  ricerca e grandi marche senza toccare nient'altro;
+- non si possono togliere tutti: all'ultimo compare «Almeno un supermercato
+  deve restare».
+
+I pallini e lo scorrimento delle grandi marche, che lui diceva di non vedere,
+erano già online dalle 23:33: li aveva guardati prima della pubblicazione.

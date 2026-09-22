@@ -32,7 +32,8 @@ setTimeout(() => {
   const buio = d.getElementById('buio-aiuto');
   if (!tasto || !buio) { console.error('MANCA il tasto Aiuto o la sua finestra'); process.exit(1); }
   if (!/aiuto/i.test(tasto.textContent)) male.push('il tasto non dice «Aiuto»');
-  if (!d.querySelector('header').contains(tasto)) male.push('il tasto Aiuto non sta in cima');
+  if (!d.getElementById('buio-config').contains(tasto)) male.push('il tasto Aiuto non sta nella configurazione');
+  if (!d.querySelector('header #apri-config')) male.push('manca l\'ingranaggio della configurazione in cima');
   const novita = d.querySelector('header .novita');
   if (!novita) male.push('non trovo il tasto «Novità» accanto a cui sta');
   if (d.querySelector('.barra').contains(tasto))

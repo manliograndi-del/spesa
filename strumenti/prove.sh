@@ -22,6 +22,7 @@ for f in out/sito.html out/pagina.html out/spesa-da-sola.html; do
   node "$S/prova-novita-pagina.js" "$f"
   node "$S/prova-aiuto.js" "$f"
   node "$S/prova-look.js" "$f"
+  node "$S/prova-negozi.js" "$f"
   node "$S/prova-meno-caro.js" "$f"
   node "$S/prova-giorni.js" "$f"
   if [ "$f" = out/pagina.html ]; then

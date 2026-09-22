@@ -218,11 +218,18 @@ NOVITA_PAGINA = [
     dict(id='2026-09-23-pallini', quando='22 settembre',
          titolo='Due pallini in alto, le grandi marche, il Pam',
          testo='In alto a destra, accanto al titolo, ci sono due pallini: '
-               'quello coi colori dell\'arcobaleno cambia i colori della '
-               'pagina, quello con la N apre le novità dei volantini. Accanto '
+               'l\'ingranaggio apre la configurazione (colori, supermercati, '
+               'aiuto), quello con la N apre le novità dei volantini. Accanto '
                'al tasto rosso c\'è «GRANDI MARCHE»: tocchi un marchio e la '
                'pagina scende da sola alle sue offerte. E fra i negozi adesso '
                'ci sono anche il Pam e il Conad.'),
+    dict(id='2026-09-23-supermercati', quando='22 settembre',
+         titolo='Scegli i tuoi supermercati',
+         testo='Tocca l\'ingranaggio in alto a destra: c\'è l\'elenco di tutti '
+               'i supermercati. Toccandone uno lo togli o lo rimetti, e quelli '
+               'tolti spariscono dai prezzi, dalla ricerca e dalle grandi '
+               'marche. La scelta resta sul tuo telefono. Lì dentro ci sono '
+               'anche i colori della pagina e l\'aiuto.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -329,6 +336,7 @@ HTML = r'''<title>Spesa</title>
   --f-prezzo:'Oswald','Arial Narrow',ui-sans-serif,sans-serif;
   /* La lente del tasto rosso, disegnata qui dentro: nessun carattere
      speciale, che sui telefoni diventa un quadratino. */
+  --ingranaggio:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z'/%3E%3C/svg%3E");
   --lente:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.5 16.5 21 21'/%3E%3C/svg%3E");
   color-scheme:light;
 }
@@ -392,12 +400,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .look-riga .scelto{flex:none;color:var(--rosso);font-weight:700;font-size:13px}
 .gruppo-look{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
   font-size:12px;font-weight:600;color:var(--tenue);margin:18px 0 2px}
-.tasti-alti{flex:1 1 auto;display:flex;align-items:center;gap:8px;flex-wrap:wrap;
-  justify-content:flex-end;min-width:0}
-.aiuto{background:var(--carta);border:1.5px solid var(--linea-forte);color:var(--inchiostro);
-  border-radius:99px;padding:9px 15px;font-size:14px;font-weight:600;letter-spacing:.02em;
-  min-height:40px;line-height:1;cursor:pointer;white-space:nowrap}
-.aiuto:hover{border-color:var(--rosso);color:var(--rosso)}
 
 /* ---- barra dei prodotti ---- */
 .riga-cerca{margin:8px 0 0}
@@ -479,17 +481,36 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    2026-09-22 i quattro tasti in cima e la riga «I tuoi prodotti» erano stati
    nascosti cosi, le prove (che guardano l'attributo) dicevano di si, e sul
    telefono si vedevano ancora. Scoperto guardando una schermata vera. */
-.tasti-alti[hidden],.capo-prodotti[hidden]{display:none}
+.capo-prodotti[hidden]{display:none}
 /* I DUE PALLINI accanto al titolo, a destra (2026-09-22). Piccoli, 32 px: il
-   primo è una ruota di colori e apre la scelta dei colori; il secondo ha una
-   N e apre le novità. La ruota è fatta di colori FISSI, non delle variabili
-   del look: deve dire «colori» anche con un look addosso. */
+   primo è l'ingranaggio della configurazione (colori, supermercati, aiuto),
+   il secondo ha una N e apre le novità. */
 .riga-alta{align-items:center;flex-wrap:nowrap}
 .pallini{flex:none;display:flex;align-items:center;gap:8px}
 .pallino{flex:none;width:32px;height:32px;min-height:0;border-radius:50%;padding:0;
   display:grid;place-items:center;cursor:pointer;text-decoration:none;line-height:1}
-.pallino.colori{border:2px solid var(--carta);box-shadow:0 0 0 1.5px var(--linea-forte);
-  background:conic-gradient(#E53935,#FB8C00,#FDD835,#43A047,#1E88E5,#5E35B1,#D81B60,#E53935)}
+.pallino.config{background:var(--carta);border:1.5px solid var(--linea-forte);color:var(--inchiostro)}
+.pallino.config::before{content:'';width:19px;height:19px;background:currentColor;
+  -webkit-mask:var(--ingranaggio) center/contain no-repeat;mask:var(--ingranaggio) center/contain no-repeat}
+/* LA FINESTRA DELLA CONFIGURAZIONE: i supermercati da tenere, e le altre
+   finestre (colori, aiuto, novità della pagina). */
+.sez-config{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
+  font-size:13px;font-weight:600;color:var(--tenue);margin:16px 0 6px}
+.negozi{display:flex;flex-wrap:wrap;gap:8px}
+.negozi button{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;
+  border:2px solid var(--verde);border-radius:99px;padding:3px 10px 3px 4px;cursor:pointer;
+  min-height:42px;font-family:inherit}
+.negozi button::after{content:'\2713';color:var(--verde);font-weight:700;font-size:15px}
+.negozi button .marchio{border:0;min-height:0;padding:2px 4px}
+.negozi button[aria-pressed="false"]{border:1.5px dashed var(--linea-forte);opacity:.45}
+.negozi button[aria-pressed="false"] img,.negozi button[aria-pressed="false"] svg{filter:grayscale(1)}
+.negozi button[aria-pressed="false"]::after{content:'';}
+.avviso-negozi{margin:8px 0 0;font-size:13px;color:var(--ambra);font-weight:600}
+.voci-config{display:grid;gap:8px}
+.voci-config button{width:100%;text-align:left;background:var(--carta);
+  border:1.5px solid var(--linea-forte);border-radius:14px;padding:11px 14px;
+  font-size:15px;font-weight:600;cursor:pointer;min-height:46px;font-family:inherit;
+  color:var(--inchiostro)}
 .pallino.novita{background:var(--rosso);color:var(--su-rosso);border:0;
   font-family:var(--f-prezzo);font-size:16px;font-weight:700;letter-spacing:0;gap:0}
 .pallino.novita::after{content:none}
@@ -814,22 +835,17 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
         <span class="sotto-marca">Offerte grande distribuzione</span>
       </span>
     </span>
-    <!-- I DUE PALLINI IN CIMA A DESTRA (Manlio, 2026-09-22: «i quattro
-         bottoni in alto non devono più esserci; rimangono solo un tasto
-         novità, rotondo, e uno rotondo con tanti colori per cambiare i colori
-         ... devono essere piccolini, al limite scrivi solo N al centro»).
-         Quello coi colori apre «Scegli il look»; la N apre il diario delle
-         novità dei prezzi. Aiuto e Novità app NON ci sono più in vista: le
-         loro finestre restano nel codice (e le prove le aprono), nascoste. -->
+    <!-- I DUE PALLINI IN CIMA A DESTRA (Manlio, 2026-09-22: prima «un tasto
+         novità e uno rotondo con tanti colori», poi, la stessa notte, «un
+         pallino unico di configurazione che porta a una pagina con i colori,
+         i supermercati e le altre opzioni... ci vanno due pallini, uno di
+         configurazione e l'altro novità»). L'ingranaggio apre la finestra
+         «Configurazione»; la N apre il diario delle novità dei prezzi. -->
     <span class="pallini">
-      <button type="button" class="pallino colori" id="apri-look"
-              aria-label="Colori" title="Colori"></button>
+      <button type="button" class="pallino config" id="apri-config"
+              aria-label="Configurazione" title="Configurazione"></button>
       <a class="pallino novita" href="https://manliograndi-del.github.io/spesa/novita.html"
          target="_blank" rel="noopener noreferrer" aria-label="Novità" title="Novità">N</a>
-    </span>
-    <span class="tasti-alti" hidden>
-      <button type="button" class="aiuto" id="apri-novita-app">Novità app</button>
-      <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
     </span>
   </div>
 </header>
@@ -973,6 +989,32 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
      lo stesso vestito: una finestra sopra la pagina, non un pezzo che le
      cresce dentro. Questa pero NON si apre da sola e si puo riaprire quante
      volte si vuole: e li per quando serve. -->
+<!-- LA FINESTRA DELLA CONFIGURAZIONE (Manlio, 2026-09-22 notte): «un pallino
+     unico di configurazione che porta a una pagina con i colori, i
+     supermercati e le altre opzioni che volevo mettere in alto». Si apre
+     dall'ingranaggio in cima; come le altre sta fuori dalla barra e non resta
+     aperta insieme a un'altra finestra. -->
+<div class="buio" id="buio-config" hidden>
+  <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-config">
+    <h2 id="titolo-config">Configurazione</h2>
+    <h3 class="sez-config">Supermercati</h3>
+    <p class="sotto-titolo">Tocca un supermercato per toglierlo o rimetterlo. Quelli
+    tolti spariscono dai prezzi, dalla ricerca, dalle grandi marche e dall'elenco dei
+    volantini. La scelta resta su questo telefono.</p>
+    <div class="negozi" id="negozi" role="group" aria-label="Supermercati da tenere"></div>
+    <p class="avviso-negozi" id="avviso-negozi" role="status"></p>
+    <h3 class="sez-config">Altro</h3>
+    <div class="voci-config">
+      <button type="button" id="apri-look">Colori della pagina</button>
+      <button type="button" id="apri-aiuto">Aiuto: come si usa</button>
+      <button type="button" id="apri-novita-app">Cosa c'è di nuovo nella pagina</button>
+    </div>
+    <div class="pie-finestra">
+      <button type="button" class="chiudi" id="chiudi-config">Fatto</button>
+    </div>
+  </div>
+</div>
+
 <div class="buio" id="buio-aiuto" hidden>
   <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-aiuto">
     <h2 id="titolo-aiuto">Come si usa</h2>
@@ -1023,6 +1065,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <p>Ogni riga ha due tasti: <b>«Le offerte»</b> mostra i prezzi letti da quel
       volantino, <b>«Il volantino»</b> apre le sue pagine. Si aprono in una pagina
       nuova, così non perdi il posto.</p>
+    </div>
+    <div class="voce">
+      <h3>L'ingranaggio in alto: la configurazione</h3>
+      <p>Il pallino con l'ingranaggio, accanto al titolo, apre la configurazione: lì
+      scegli <b>i supermercati</b> da tenere (quelli tolti spariscono dai prezzi e
+      dalla ricerca), i <b>colori</b> della pagina, questo aiuto e le novità della
+      pagina.</p>
     </div>
     <div class="voce">
       <h3>Il tasto «Novità»</h3>
@@ -1305,7 +1354,19 @@ function durata(o) {
    prezzo che non gli fanno. Un VOLANTINO INTERO non ancora cominciato invece
    resta visibile con «vale dal»: quello e voluto, serve a sapere cosa arriva.
    La differenza e che li e tutto il volantino, e si vede. */
-const nascosta = o => scaduto(o) || (o.ristretta && futuro(o));
+/* I SUPERMERCATI TOLTI (Manlio, 2026-09-22 notte: «ci dovrebbe essere anche
+   un tasto per scegliere i supermercati: appare l'elenco completo e tu
+   scegli quello che vuoi»). Si ricordano quelli TOLTI, non quelli tenuti:
+   un'insegna nuova, messa dopo, compare da sola a tutti. La scelta sta nel
+   telefono di chi guarda: Manlio e sua moglie possono tenere negozi diversi.
+   Un'offerta di un negozio tolto e nascosta come una scaduta, quindi sparisce
+   dappertutto (prezzi, «il meno caro», ricerca, grandi marche) senza altro. */
+const NEGOZI_TOLTI = 'spesa.negozi.v1';
+let tolti = [];
+try { tolti = JSON.parse(localStorage.getItem(NEGOZI_TOLTI) || '[]') || []; } catch (e) { tolti = []; }
+if (!Array.isArray(tolti)) tolti = [];
+const tolta = ins => tolti.indexOf(ins) >= 0;
+const nascosta = o => tolta(o.ins) || scaduto(o) || (o.ristretta && futuro(o));
 
 /* IN ORDINE DI PREZZO E BASTA, dal 2026-09-05.
    Prima le offerte dei volantini non ancora cominciati venivano spinte in
@@ -2141,7 +2202,9 @@ function disegna() {
 
 /* ---------- volantini in fondo ---------- */
 const ul = document.getElementById('vol');
-DATI.volantini.forEach(v => {
+function disegnaVolantini() {
+ul.textContent = '';
+DATI.volantini.filter(v => !tolta(v.ins)).forEach(v => {
   const li = document.createElement('li');
   li.innerHTML = `<div class="capo-vol"><span><span class="i"></span> <span class="p"></span></span><span class="n"></span></div>`;
   li.querySelector('.i').textContent = v.ins;
@@ -2202,6 +2265,8 @@ DATI.volantini.forEach(v => {
   li.appendChild(tasti);
   ul.appendChild(li);
 });
+}
+disegnaVolantini();
 
 /* Ogni bollino «i» apre e chiude il pannello che gli sta subito dopo il
    titolo. Un solo giro per tutti: aggiungendo una sezione basta scriverci il
@@ -2455,7 +2520,7 @@ function disegnaLook() {
 function apriLook(si) {
   const buio = document.getElementById('buio-look');
   if (!buio) return;
-  if (si) { chiudiNovita(); apriAiuto(false); }
+  if (si) { chiudiNovita(); apriAiuto(false); apriConfig(false); }
   buio.hidden = !si;
   if (si) {
     disegnaLook();
@@ -2485,7 +2550,7 @@ document.getElementById('buio-look').onclick = ev => {
 function apriAiuto(si) {
   const buio = document.getElementById('buio-aiuto');
   if (!buio) return;
-  if (si) { chiudiNovita(); apriLook(false); }   // una finestra alla volta
+  if (si) { chiudiNovita(); apriLook(false); apriConfig(false); }   // una finestra alla volta
   buio.hidden = !si;
   if (si) {
     try { document.getElementById('chiudi-aiuto').focus({ preventScroll: true }); } catch (e) {}
@@ -2497,7 +2562,7 @@ document.getElementById('apri-aiuto').onclick = () => apriAiuto(true);
 /* «Novità app» riapre la finestra «Cosa c'è di nuovo» anche a chi l'ha già
    vista: prima si poteva solo aspettare che si aprisse da sola. */
 document.getElementById('apri-novita-app').onclick = () => {
-  apriAiuto(false); apriLook(false);
+  apriAiuto(false); apriLook(false); apriConfig(false);
   const buio = document.getElementById('buio');
   const box = document.getElementById('voci-novita');
   const tutte = DATI.novita || [];
@@ -2528,7 +2593,56 @@ addEventListener('keydown', ev => {
   chiudiNovita();
   apriAiuto(false);
   apriLook(false);
+  apriConfig(false);
 });
+
+/* ---------- la configurazione ---------- */
+function apriConfig(si) {
+  const buio = document.getElementById('buio-config');
+  if (!buio) return;
+  if (si) { chiudiNovita(); apriAiuto(false); apriLook(false); disegnaNegozi(); }
+  buio.hidden = !si;
+  if (si) {
+    try { buio.querySelector('.finestra').scrollTop = 0; } catch (e) {}
+    try { document.getElementById('chiudi-config').focus({ preventScroll: true }); } catch (e) {}
+  }
+}
+
+function disegnaNegozi() {
+  const box = document.getElementById('negozi');
+  box.textContent = '';
+  document.getElementById('avviso-negozi').textContent = '';
+  const insegne = [];
+  DATI.volantini.forEach(v => { if (insegne.indexOf(v.ins) < 0) insegne.push(v.ins); });
+  insegne.forEach(ins => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.appendChild(marchio(ins));
+    b.setAttribute('aria-pressed', String(!tolta(ins)));
+    b.title = ins;
+    b.onclick = () => {
+      if (!tolta(ins) && insegne.filter(x => !tolta(x)).length <= 1) {
+        /* Tolti tutti, la pagina resterebbe senza un prezzo: meglio dirlo. */
+        document.getElementById('avviso-negozi').textContent =
+          'Almeno un supermercato deve restare.';
+        return;
+      }
+      tolti = tolta(ins) ? tolti.filter(x => x !== ins) : tolti.concat([ins]);
+      try { localStorage.setItem(NEGOZI_TOLTI, JSON.stringify(tolti)); } catch (e) {}
+      disegnaNegozi();
+      disegna();
+      disegnaVolantini();
+      if (!document.getElementById('ricerca').hidden) { disegnaMarche(); disegnaTrovati(); }
+    };
+    box.appendChild(b);
+  });
+}
+
+document.getElementById('apri-config').onclick = () => apriConfig(true);
+document.getElementById('chiudi-config').onclick = () => apriConfig(false);
+document.getElementById('buio-config').onclick = ev => {
+  if (ev.target.id === 'buio-config') apriConfig(false);
+};
 mostraNovita();
 
 /* Va in fondo, DOPO che «lista» e stata creata e la pagina disegnata una prima

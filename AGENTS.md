@@ -238,8 +238,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     c'è, è il nome dell'insegna scritto nei suoi colori, con fondo e scritta
     fissati tutti e due così da leggersi uguale con qualunque look. Le prove
     riconoscono il negozio da `.marchio`, non più da `.sotto b`.
-  - **La scelta dei negozi non si fa e non si mette**: chiesta e rifiutata da
-    lui lo stesso giorno, due volte. Niente tasto «Negozi», niente «7 su 7».
+  - **La scelta dei negozi C'È, dentro la configurazione** (chiesta da lui il
+    2026-09-22 notte: «ci dovrebbe essere anche un tasto per scegliere i
+    supermercati: appare l'elenco completo e tu scegli quello che vuoi»).
+    Prima, lo stesso giorno, era stata chiesta e rifiutata due volte: adesso
+    l'ha chiesta lui, e vale questo. Ancora NIENTE contatore «7 su 7» in cima.
   - **Sotto i 560 px la scheda va in colonna**: i prezzi scendono su una riga
     loro. A due colonne, sul telefono, il nome andava a capo ogni due parole.
   - Nessuna riga dice più **«letto a occhio dal volantino»**: tolta su sua
@@ -301,16 +304,22 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     le riaccende al primo aggiornamento. Non serve fare niente a mano. Fini e
     Moretti restano FUORI: non erano vuote, trovavano la cosa sbagliata
     («piselli fini», un tonno Moretti).
-- **In cima, a destra del titolo, ci sono solo DUE PALLINI** (chiesto il
-  2026-09-22: «i quattro bottoni in alto non devono più esserci; rimangono solo
-  un tasto novità, rotondo, e uno rotondo con tanti colori per cambiare i
-  colori… devono essere piccolini, al limite scrivi solo N al centro»). Sono
-  tondi da 32 px: la **ruota dei colori** (`.pallino.colori`, id `apri-look`,
-  colori fissi e non del look, così dice «colori» anche con un look addosso)
-  apre «Scegli il look»; la **N** rossa (`.pallino.novita`) apre il diario
-  delle novità. **Aiuto e Novità app non si vedono più**: le finestre restano
-  nel codice, nascoste, e le prove le aprono. **Il sottotitolo è «Offerte
-  grande distribuzione».**
+- **In cima, a destra del titolo, ci sono solo DUE PALLINI** da 32 px
+  (chiesto il 2026-09-22 notte, dopo un primo giro con la ruota dei colori:
+  «ci vanno due pallini, uno di configurazione e l'altro novità»):
+  - l'**ingranaggio** (`#apri-config`) apre la finestra **«Configurazione»**
+    (`#buio-config`, fuori dalla `.barra`, mai aperta insieme a un'altra):
+    in cima **i supermercati**, uno per marchio, da toccare per toglierli o
+    rimetterli; sotto i tasti **Colori della pagina** (`#apri-look`),
+    **Aiuto** (`#apri-aiuto`) e **Cosa c'è di nuovo** (`#apri-novita-app`);
+  - la **N** rossa (`.pallino.novita`) apre il diario delle novità.
+  **I supermercati tolti** stanno in `localStorage` (`spesa.negozi.v1`), cioè
+  sul telefono di chi guarda: Manlio e sua moglie possono tenerne di diversi.
+  Si ricordano i TOLTI, non i tenuti, così un'insegna nuova compare da sola.
+  Un'offerta di un negozio tolto è trattata come scaduta (`nascosta`), quindi
+  sparisce da prezzi, «meno caro», ricerca e grandi marche; i suoi volantini
+  spariscono dall'elenco in fondo. **Non si possono togliere tutti.** La prova
+  è `prova-negozi.js`. **Il sottotitolo è «Offerte grande distribuzione».**
 - **Toccando una grande marca la pagina scorre da sola ai risultati**
   (chiesto il 2026-09-22): le 46 pillole occupano uno schermo, e senza lo
   scorrimento le offerte restavano sotto, fuori vista.
