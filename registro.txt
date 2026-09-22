@@ -87,3 +87,4 @@
 2026-09-22 19:45 UTC  tolta la riga «Data di riferimento», tasto «Look» rinominato «Colori» (dentro la finestra resta «Scegli il look», come ha detto lui). Allineata anche la vecchia novità che nominava la data. sw.js v59.
 2026-09-22 20:00 UTC  pubblicato: sito (main, verificato byte per byte, sw.js v59 online) e artifact (versione 51) senza la riga della data e col tasto «Colori».
 2026-09-22 20:40 UTC  nascosti (non tolti) i quattro tasti in cima e la riga «I tuoi prodotti»; aggiunto il tasto GRANDI MARCHE con 20 pillole di marche italiane, ricerca a parola intera (Ferrero sostituita da Saiwa: zero offerte valide). sw.js v60, tutte le prove passate.
+2026-09-22 20:50 UTC  pubblicato: sito (verificato byte per byte, sw.js v60) e artifact (versione 52) col tasto GRANDI MARCHE e la cima senza tasti.
