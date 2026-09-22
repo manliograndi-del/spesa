@@ -179,6 +179,22 @@ NOVITA_PAGINA = [
                'scelta se la ricorda il telefono, e con «Originale» torni '
                'com\'era. Cambiano solo i colori: le offerte e la tua lista '
                'restano quelle.'),
+    dict(id='2026-09-22-meno-caro', quando='22 settembre',
+         titolo='Il meno caro si vede da lontano',
+         testo='Nell\'elenco dei prezzi, l\'offerta meno cara che puoi '
+               'comprare oggi adesso sta dentro una pastiglia con il bordo '
+               'verde, staccata dalle altre. E le offerte che devono ancora '
+               'cominciare sono sbiadite: si leggono, ma si vede subito che '
+               'oggi non valgono.'),
+    dict(id='2026-09-22-giorni', quando='22 settembre',
+         titolo='Quanti giorni restano, su ogni offerta',
+         testo='Accanto a ogni offerta c\'è un cerchietto con dentro un '
+               'numero: sono i giorni che restano per comprarla, oggi '
+               'compreso. L\'anello si consuma man mano che il volantino '
+               'scade, e negli ultimi tre giorni diventa arancione. «1 oggi» '
+               'vuol dire che oggi è l\'ultimo giorno. In cima, intanto, ho '
+               'tolto «Torino · corso Siracusa» e il bollino accanto: erano '
+               'le uniche cose lassù che non servivano a fare niente.'),
 ]
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
@@ -236,11 +252,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    Il bollino stava attaccato al titolo grande e andava a capo da solo, su una
    riga tutta sua: Manlio l'ha visto e ha chiesto di alzarlo. Qui la riga è
    corta e ci sta. */
-.riga-alta{display:flex;align-items:center;justify-content:space-between;gap:10px;
+.riga-alta{display:flex;align-items:center;justify-content:flex-end;gap:10px;
   flex-wrap:wrap;margin-bottom:6px}
 .dove{color:var(--rosso);font-size:12px;letter-spacing:.16em;text-transform:uppercase;
   font-weight:600;margin:0;display:flex;align-items:center;gap:8px}
-.sottotitolo{color:var(--tenue);margin:8px 0 0;font-size:14px;max-width:62ch}
 /* Il tasto «Novità», in alto a destra. Punta all'INDIRIZZO COMPLETO e non a
    «./novita.html»: la copia di Claude non ha una cartella accanto a se, e un
    collegamento relativo di la porterebbe nel vuoto. Si apre in una finestra
@@ -299,8 +314,8 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 /* ---- aggiunta ---- */
 .cassetto[hidden]{display:none}
 .cassetto{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
-  border-radius:12px;padding:12px}
-.cerca{width:100%;border:1.5px solid var(--linea-forte);border-radius:10px;
+  border-radius:20px;padding:14px}
+.cerca{width:100%;border:1.5px solid var(--linea-forte);border-radius:16px;
   padding:12px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
   font-family:var(--f-testo)}
 .cerca:focus{outline:none;border-color:var(--rosso)}
@@ -308,14 +323,14 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   font-size:11.5px;font-weight:600;color:var(--tenue);margin:16px 0 8px}
 .reparto:first-child{margin-top:14px}
 .chiudi{width:100%;margin-top:16px;background:var(--inchiostro);color:var(--carta);border:0;
-  border-radius:10px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
+  border-radius:99px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
 .fuori-catalogo{margin:8px 0 0;font-size:13.5px;color:var(--tenue)}
 .form-agg{display:flex;gap:8px;margin-top:16px}
 .form-agg input{flex:1;min-width:0;background:var(--carta);color:var(--inchiostro);
-  border:1.5px solid var(--rosso);border-radius:10px;padding:12px 13px;
+  border:1.5px solid var(--rosso);border-radius:16px;padding:12px 13px;
   font-family:var(--f-testo);font-size:16px}
 .form-agg input:focus{outline:none}
-.form-agg button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:10px;
+.form-agg button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:99px;
   padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
 /* ---- la casella che cerca fra TUTTI i prezzi ---- */
@@ -324,8 +339,8 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    rifarne i conti a ogni tocco. */
 .ricerca[hidden]{display:none}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
-  border-radius:12px;padding:12px}
-.ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:10px;
+  border-radius:20px;padding:14px}
+.ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:16px;
   padding:13px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
   font-family:var(--f-testo)}
 .ricerca .q:focus{outline:none}
@@ -343,9 +358,9 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   min-height:38px;line-height:1.1;white-space:nowrap}
 .conferma[hidden]{display:none}
 .conferma{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;
-  background:var(--rosso-tenue);border:1.5px solid var(--rosso);border-radius:10px;padding:10px 12px}
+  background:var(--rosso-tenue);border:1.5px solid var(--rosso);border-radius:18px;padding:11px 13px}
 .conferma span{font-size:14.5px;font-weight:600;flex:1;min-width:9em}
-.conferma button{border-radius:9px;padding:9px 15px;font-size:14.5px;font-weight:600;
+.conferma button{border-radius:99px;padding:9px 15px;font-size:14.5px;font-weight:600;
   cursor:pointer;min-height:42px;border:1.5px solid var(--rosso);background:var(--carta);
   color:var(--rosso)}
 .conferma .si{background:var(--rosso);color:var(--su-rosso)}
@@ -358,7 +373,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 .sinonimi em{font-style:normal;background:var(--pannello);border:1px solid var(--linea);
   border-radius:99px;padding:2px 9px;font-size:13px;color:var(--inchiostro)}
 .gestisci{display:flex;gap:9px;margin:12px 0 0;flex-wrap:wrap}
-.gestisci button{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:9px;
+.gestisci button{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:99px;
   padding:10px 16px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:44px}
 .form-rin{display:none;gap:8px;margin-top:10px}
 .form-rin.on{display:flex}
@@ -366,9 +381,35 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   padding:12px 13px;font-family:var(--f-testo);font-size:16px;background:var(--carta);
   color:var(--inchiostro)}
 .form-rin input:focus{outline:none}
-.form-rin button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:10px;
+.form-rin button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:99px;
   padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
+/* ---- il cerchietto dei giorni che mancano ---- */
+/* Chiesto da Manlio il 2026-09-22, con in mano le schermate dei riquadri
+   Material: «quella dove c'è scritto 6.80, potresti utilizzarla, messa in
+   ogni offerta, magari piccola, per indicare quanti giorni mancano».
+   L'anello si consuma come si consuma il volantino: quasi pieno il primo
+   giorno, un filo l'ultimo. Il numero dentro conta ANCHE OGGI, quindi non
+   arriva mai a zero: «1» vuol dire «oggi è l'ultimo giorno».
+
+   Blu finché c'è tempo, ambra negli ultimi tre giorni: l'ambra, in questa
+   pagina, è il colore di «attenzione alla data», e resta ambra in tutti i
+   look. Il rosso no: lì vuol dire «premi qui». */
+.giorni{display:flex;flex-direction:column;align-items:center;gap:2px;margin-top:8px}
+.giorni .anello{position:relative;width:38px;height:38px}
+.giorni svg{width:38px;height:38px;display:block;transform:rotate(-90deg)}
+.giorni .fondo{fill:none;stroke:var(--blu-tenue);stroke-width:4}
+.giorni .arco{fill:none;stroke:var(--blu);stroke-width:4;stroke-linecap:round}
+.giorni .num{position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--f-prezzo);font-size:15px;font-weight:700;color:var(--blu);
+  font-variant-numeric:tabular-nums;line-height:1}
+.giorni .gg{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  font-weight:700;color:var(--blu);font-family:var(--f-testo)}
+.giorni.poco .fondo{stroke:var(--ambra-tenue)}
+.giorni.poco .arco{stroke:var(--ambra)}
+.giorni.poco .num,.giorni.poco .gg{color:var(--ambra)}
+/* Nelle righe dell'elenco sta sotto il prezzo, appoggiato a destra come lui. */
+.prezzo-riga .giorni{align-items:flex-end}
 /* ---- elenco prezzi ---- */
 .fascia{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
   font-size:12.5px;font-weight:600;color:var(--tenue);margin:22px 0 0}
@@ -385,8 +426,24 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
   letter-spacing:.08em;text-transform:uppercase;color:var(--tenue);margin-top:4px}
 .prezzo-riga .coda{grid-column:1/-1;margin:7px 0 0;display:flex;flex-wrap:wrap;gap:6px;
   align-items:center}
+/* LA RIGA DEL MENO CARO È UNA PASTIGLIA. Chiesto da Manlio il 2026-09-22:
+   «mi piacerebbe che il prodotto meno caro venisse messo in una pillola, con
+   un bordo e con un colore che la evidenzi, magari lo stesso colore del fondo
+   ma un po' più forte». Il fondo è `--pannello`, che è esattamente quello: lo
+   sfondo della pagina un gradino più forte. Il bordo è verde, perché il verde
+   qui vuol dire «il meno caro» e resta verde in tutti i cento look. */
+.prezzo-riga.vince{background:var(--pannello);border:2px solid var(--verde);
+  border-radius:26px;padding:15px 17px;margin:12px 0}
+.prezzo-riga.vince:first-of-type{border-top:2px solid var(--verde)}
+.prezzo-riga.vince + .prezzo-riga{border-top:0}
+
+/* LE OFFERTE CHE DEVONO ANCORA COMINCIARE SONO SBIADITE, chiesto lo stesso
+   giorno: «che le offerte che non sono ancora cominciate apparissero
+   sbiadite». Sbiadite, non nascoste: un prezzo che parte lunedì serve
+   saperlo. Non si va più giù di così, se no il prezzo non si legge. */
+.prezzo-riga.dopo{opacity:.72}
 .bollo{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;
-  border-radius:5px;padding:3px 8px}
+  border-radius:99px;padding:4px 11px}
 .bollo.meno{background:var(--verde-tenue);color:var(--verde)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
 .bollo.dopo{background:var(--blu-tenue);color:var(--blu)}
@@ -415,12 +472,12 @@ a.pag-riga.apribile .ins{color:var(--rosso);text-decoration:underline;text-under
 a.pag-riga.apribile .np{color:var(--rosso)}
 a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-size:13px}
 .altre{width:100%;margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
-  border-radius:10px;padding:12px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:46px}
+  border-radius:99px;padding:12px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:46px}
 .vuoto{color:var(--tenue);font-size:14.5px;margin:14px 0 0;background:var(--pannello);
-  border-radius:10px;padding:14px}
+  border-radius:20px;padding:16px}
 
 /* ---- coda ---- */
-.spiega{margin-top:34px;background:var(--pannello);border-radius:12px;padding:16px 16px 4px}
+.spiega{margin-top:34px;background:var(--pannello);border-radius:22px;padding:18px 18px 6px}
 .spiega h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:15px;
   letter-spacing:.04em;margin:0;display:flex;align-items:center;gap:9px}
 /* Il bollino «i». Manlio: «la pagina è molto lunga, le spiegazioni meglio che
@@ -445,7 +502,7 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .buio[hidden]{display:none}
 .buio{position:fixed;inset:0;z-index:60;background:rgba(20,19,18,.5);
   display:flex;align-items:center;justify-content:center;padding:16px}
-.finestra{background:var(--carta);border-radius:14px;max-width:460px;width:100%;
+.finestra{background:var(--carta);border-radius:24px;max-width:460px;width:100%;
   max-height:84vh;overflow:auto;padding:18px 18px 0;
   box-shadow:0 18px 50px rgba(0,0,0,.28)}
 /* Il tasto per chiudere resta SEMPRE in fondo allo schermo, attaccato: con le
@@ -463,7 +520,7 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .finestra .voce h3{margin:0 0 4px;font-size:16px}
 .finestra .voce p{margin:0;font-size:14px;color:var(--inchiostro)}
 .vol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:1px;background:var(--linea);
-  border:1px solid var(--linea);border-radius:10px;overflow:hidden}
+  border:1px solid var(--linea);border-radius:20px;overflow:hidden}
 .vol li{background:var(--carta);padding:11px 13px;font-size:14px}
 .vol .capo-vol{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
 /* I DUE TASTI DI OGNI VOLANTINO, chiesti da Manlio il 2026-09-18: uno apre i
@@ -473,7 +530,7 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .vol-tasti{display:flex;gap:8px;margin-top:9px}
 .vol-t{flex:1 1 0;min-height:40px;display:flex;align-items:center;justify-content:center;
   gap:3px;text-align:center;padding:8px 10px;border:1.5px solid var(--linea-forte);
-  border-radius:9px;background:var(--pannello);color:var(--rosso);font-weight:600;
+  border-radius:99px;background:var(--pannello);color:var(--rosso);font-weight:600;
   font-size:13.5px;font-family:inherit;text-decoration:none;cursor:pointer}
 .vol-t.fuori::after{content:'\2197'}
 .vol-t.spento{color:var(--tenue);border-style:dashed;cursor:default;font-weight:400}
@@ -487,10 +544,14 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 
 <div class="guscio">
 <header>
+  <!-- IN CIMA NON C'E PIU «Torino · corso Siracusa» NE IL BOLLINO «i».
+       Manlio, 2026-09-22: «togli Torino corso Siracusa e informazioni, che e
+       inutile, cioe la lettera i che c'e accanto al corso Siracusa». Dove
+       sono i negozi lo sa gia lui, ed era l'unica cosa in cima che non si
+       poteva toccare per fare qualcosa. Quello che stava dietro il bollino
+       (com'e fatta questa copia) e finito in fondo alla finestra «Aiuto»,
+       che e il posto delle spiegazioni. -->
   <div class="riga-alta">
-    <p class="dove">Torino · Corso Siracusa
-      <button type="button" class="info" aria-expanded="false"
-              aria-label="Come funziona questa pagina">i</button></p>
     <span class="tasti-alti">
       <button type="button" class="aiuto" id="apri-look">Look</button>
       <button type="button" class="aiuto" id="apri-aiuto">Aiuto</button>
@@ -499,12 +560,6 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     </span>
   </div>
   <h1>La lista della spesa</h1>
-  <div class="dettaglio" id="dett-testa" hidden>
-    <p class="sottotitolo">Tocca un prodotto: qui sotto compaiono le offerte, dalla più
-    conveniente in giù. Con «+ altri prodotti» scegli i tuoi dal catalogo.
-    Volantini di Mercatò, Lidl, Eurospin, MD, Bennet, Ekom, Ipercoop e Carrefour Iper.</p>
-    <p class="sottotitolo" id="dove-vive"></p>
-  </div>
 </header>
 
 <div class="barra">
@@ -682,6 +737,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <h3>Il tasto «Novità»</h3>
       <p>Dice cosa è cambiato: quali volantini sono stati aggiornati, quali stanno per
       arrivare e quali prezzi si sono mossi.</p>
+    </div>
+    <div class="voce">
+      <h3>Questa copia</h3>
+      <p id="dove-vive"></p>
     </div>
     <div class="pie-finestra">
       <button type="button" class="chiudi" id="chiudi-aiuto">Ho capito</button>
@@ -1316,13 +1375,50 @@ function inCima() {
   catch (e) { window.scrollTo(0, meta); }
 }
 
+/* ---------- il cerchietto dei giorni ---------- */
+/* Quanti giorni restano per comprarla, OGGI COMPRESO: se l'offerta finisce
+   oggi ne resta uno, non zero. Un «0» su una riga ancora valida si
+   leggerebbe «è finita» e farebbe saltare un'offerta buona. */
+const UN_GIORNO = 86400000;
+const dataDi = iso => Date.parse(iso + 'T00:00:00Z');
+function giorniRimasti(o) {
+  if (!o.fino) return null;
+  const g = Math.round((dataDi(o.fino) - dataDi(OGGI_ISO)) / UN_GIORNO);
+  return g < 0 ? null : g + 1;
+}
+function cerchioGiorni(o) {
+  if (futuro(o)) return null;        // non ancora cominciata: la riga lo dice già
+  const resta = giorniRimasti(o);
+  if (resta === null) return null;
+  const inizio = o.inizio && o.inizio <= o.fino ? o.inizio : null;
+  const tutti = inizio
+    ? Math.round((dataDi(o.fino) - dataDi(inizio)) / UN_GIORNO) + 1
+    : Math.max(resta, 14);
+  const quota = Math.max(0.06, Math.min(1, resta / tutti));
+  const giro = 2 * Math.PI * 16;
+  const d = document.createElement('div');
+  d.className = 'giorni' + (resta <= 3 ? ' poco' : '');
+  d.innerHTML = '<span class="anello">'
+    + '<svg viewBox="0 0 38 38" aria-hidden="true" focusable="false">'
+    + '<circle class="fondo" cx="19" cy="19" r="16"></circle>'
+    + '<circle class="arco" cx="19" cy="19" r="16"'
+    + ' stroke-dasharray="' + (giro * quota).toFixed(1) + ' ' + giro.toFixed(1) + '"></circle>'
+    + '</svg><span class="num"></span></span><span class="gg"></span>';
+  d.querySelector('.num').textContent = String(resta);
+  d.querySelector('.gg').textContent = resta === 1 ? 'oggi' : 'giorni';
+  d.title = resta === 1
+    ? 'Ultimo giorno: scade oggi'
+    : 'Restano ' + resta + ' giorni, fino al ' + soloGiorno(o.fino);
+  return d;
+}
+
 /* ---------- righe ---------- */
 /* «meno» non vuol dire «prima riga»: e il meno caro fra quelli che valgono
    oggi. Le righe sono in ordine di prezzo, e la prima puo essere di un
    volantino che deve ancora cominciare. */
 function rigaPrezzo(o, meno) {
   const d = document.createElement('article');
-  d.className = 'prezzo-riga';
+  d.className = 'prezzo-riga' + (meno ? ' vince' : '') + (futuro(o) ? ' dopo' : '');
   d.innerHTML = `<div><p class="nome"></p><p class="sotto"></p></div>
     <p class="val"><span class="n"></span><span class="u"></span></p>
     <div class="coda"></div>`;
@@ -1342,6 +1438,8 @@ function rigaPrezzo(o, meno) {
   }
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
+  const cer = cerchioGiorni(o);
+  if (cer) d.querySelector('.val').appendChild(cer);
   const coda = d.querySelector('.coda');
   if (meno) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
   if (o.ristretta) coda.insertAdjacentHTML('beforeend',
@@ -1502,10 +1600,10 @@ function disegna() {
   };
 
   if (off.length) {
+    const meno = menoCaroOggi(off);
     const f = document.createElement('p');
     f.className = 'fascia'; f.textContent = 'Prezzi letti dal volantino';
     out.appendChild(f);
-    const meno = menoCaroOggi(off);
     off.forEach(o => out.appendChild(rigaPrezzo(o, o === meno)));
   } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
     /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
@@ -1753,9 +1851,16 @@ function chiudiNovita() {
   const buio = document.getElementById('buio');
   if (!buio || buio.hidden) return;
   buio.hidden = true;
+  /* SI SEGNA IL PIU GRANDE, NON L'ULTIMO DELL'ELENCO.
+     Il confronto fra id e alfabetico, e due novita dello stesso giorno
+     finiscono in elenco nell'ordine in cui le ho scritte, non in ordine di
+     nome: segnando l'ultima, «2026-09-22-look» restava «mai vista» perche
+     viene dopo «2026-09-22-giorni» in ordine alfabetico, e la finestra
+     tornava a ogni apertura. */
   const tutte = DATI.novita || [];
   if (tutte.length) {
-    try { localStorage.setItem(NOVITA_VISTE, tutte[tutte.length - 1].id); } catch (e) {}
+    const piu = tutte.reduce((a, n) => (n.id > a ? n.id : a), tutte[0].id);
+    try { localStorage.setItem(NOVITA_VISTE, piu); } catch (e) {}
   }
 }
 

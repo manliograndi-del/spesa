@@ -2181,3 +2181,96 @@ La scelta sta in `localStorage` (`spesa.look.v1`) e si applica cambiando le
 variabili CSS su `documentElement`, più il `theme-color` della barra del
 browser. Niente foglio di stile in più, niente pagine generate in più: i cento
 look sono un pezzo di dati dentro `DATI`, circa 30 KB.
+
+## Il riquadro del meno caro, i giorni che mancano, e la cima più vuota — 2026-09-22
+
+Tre richieste di Manlio nello stesso pomeriggio, tutte sulla stessa cosa:
+**far arrivare prima la risposta**.
+
+### «Il meno caro in una pillola, e le offerte non ancora cominciate sbiadite»
+
+Prima ha chiesto «descrivicelo solo il meno caro, in un riquadrino colorato»
+e ho fatto un riquadro verde in cima ai prezzi, prima dell'elenco. Poi, senza
+averlo ancora visto, si è spiegato meglio: «che il prodotto meno caro venisse
+messo in una pillola, con un bordo e con un colore che la evidenzi, magari lo
+stesso colore del fondo ma un po' più forte. E che le offerte che non sono
+ancora cominciate apparissero sbiadite».
+
+**Il riquadro separato è stato tolto.** Era durato mezz'ora e non l'ha mai
+visto, ed è giusto così: diceva le stesse identiche cose della riga
+sottostante — nome, negozio, formato, prezzo della confezione, scadenza, nota,
+collegamento — due volte di fila. La stessa risposta scritta due volte non è
+due risposte.
+
+Adesso c'è **una** cosa sola: la riga del meno caro è una pastiglia, fondo
+`--pannello` (che è letteralmente «lo stesso colore del fondo ma un po' più
+forte»), bordo verde, angoli tondi, staccata dalle vicine. E le offerte che
+devono ancora cominciare sono a `opacity:.72`.
+
+Le due richieste si tengono per mano più di quanto sembri. Il riquadro in
+cima serviva a una cosa sola che la pastiglia da sola non faceva: **il meno
+caro che vale oggi non è sempre la prima riga**, perché l'elenco è in ordine
+di prezzo e sopra ci possono stare offerte che partono lunedì. Sbiadendo
+quelle, la pastiglia si trova da sola anche quando è la terza: le righe sopra
+si vedono che non contano. Il problema che il riquadro risolveva l'ha
+risolto la sbiadatura.
+
+Sbiadite **non vuol dire nascoste**: un prezzo che parte lunedì serve saperlo,
+e 0,72 è il punto in cui si legge ancora. Più giù il prezzo diventa un
+suggerimento.
+
+La pastiglia **non compare** nei risultati di «Cerca fra i prezzi» né nelle
+offerte di un singolo volantino, esattamente come il bollino verde e per la
+stessa ragione già scritta più su: lì «il meno caro» vorrebbe dire «di quello
+che hai cercato» o «di questo negozio», e si leggerebbe «di tutti».
+
+Il fondo `--pannello` ha costretto a stringere una vite nel generatore dei
+look. Verde, blu e ambra erano portati a 4,5 di contrasto **sulla carta**, e
+basta; sulla pastiglia stanno invece sul pannello, che è un gradino più
+scuro. Adesso vengono spinti anche contro il pannello, e `_tinta()` — che
+calcola i fondi tenui dei bollini — stende la tinta *finché* tutto quello che
+ci finisce sopra resta leggibile. Otto misure nuove in `MISURE`; i look che
+non passavano si sono aggiustati da soli.
+
+### «Quella dove c'è scritto 6.80, usala piccola per i giorni che mancano»
+
+Ha mandato quattro schermate di riquadri Material, fra cui l'anello del
+traffico dati di Google Fi: numero grande dentro, anello che si consuma
+intorno. Adesso ogni offerta ha il suo, piccolo, a destra sotto il prezzo —
+pastiglia del meno caro compresa.
+
+Due scelte che non vanno cambiate:
+
+- **Il numero conta oggi.** Un'offerta che scade stasera dice «1 oggi», non
+  «0». Uno zero su una riga ancora valida si legge «è finita», e fa saltare
+  un'offerta buona: è la stessa regola della novità falsa, al contrario.
+- **Blu, e ambra negli ultimi tre giorni.** Non rosso: in questa pagina il
+  rosso pieno vuol dire «premi qui» o «prodotto acceso», e un anello rosso
+  su ogni riga lo svuoterebbe di senso. L'ambra è già il colore delle date da
+  guardare, e resta ambra in tutti i cento look.
+
+Le offerte che devono ancora cominciare non hanno l'anello: lì il numero
+direbbe quanto manca alla *fine* mentre la riga dice quando comincia, e due
+numeri che dicono cose diverse sulla stessa riga sono peggio di nessun numero.
+
+Nel frattempo gli angoli di tutta la pagina si sono ammorbiditi nella stessa
+direzione delle schermate che ha mandato: pannelli e riquadri a 20-24 px, i
+bollini e i tastini dei volantini diventati pastiglie tonde, i bottoni larghi
+a pillola.
+
+### «Togli Torino corso Siracusa e il bollino i»
+
+Erano le due uniche cose in cima che non servivano a fare niente: dove sono i
+negozi lo sa già lui. Tolte tutte e due. Quello che stava dietro il bollino
+(se questa copia è solo sua o condivisa) è finito in fondo alla finestra
+«Aiuto», che è il posto delle spiegazioni. Il bollino «i» accanto al *nome
+del prodotto* è un'altra cosa e resta dov'è.
+
+### Un baco trovato di rimbalzo
+
+Aggiungendo tre novità nello stesso giorno, la finestra «Cosa c'è di nuovo»
+ha ricominciato ad aprirsi a ogni apertura. Il motivo: chiudendola si
+segnava come «vista» l'**ultima dell'elenco**, ma il confronto fra id è
+alfabetico e `2026-09-22-look` viene *dopo* `2026-09-22-giorni`. Adesso si
+segna l'id più grande, non l'ultimo. Finché le novità erano una al giorno il
+baco non poteva vedersi.

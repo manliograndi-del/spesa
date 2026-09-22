@@ -81,6 +81,23 @@ def _porta_a(colore, fondo, quanto, verso):
 
 # ---------------------------------------------------------------- da palette a look
 
+def _tinta(carta, tinta, sopra, quanto=0.16):
+    """Il fondo tenue di un bollino: la tinta stesa sulla carta.
+
+    Non troppa, pero: dentro quei riquadri ci va scritto qualcosa, e se il
+    fondo si avvicina alla tinta il bollino diventa una macchia. Si stende
+    finche la tinta stessa e tutto quello che ci finisce sopra (`sopra`: il
+    testo, e nel riquadro del meno caro anche il cerchietto dei giorni) ci
+    restano leggibili.
+    """
+    da_leggere = [tinta] + list(sopra)
+    fondo = mescola(carta, tinta, quanto)
+    while quanto > 0.02 and any(contrasto(c, fondo) < 4.5 for c in da_leggere):
+        quanto -= 0.02
+        fondo = mescola(carta, tinta, quanto)
+    return fondo
+
+
 def _look(palette):
     """Le quattro (o più) tinte di una palette diventano i colori della pagina."""
     colori = list(palette['colori'])
@@ -120,18 +137,25 @@ def _look(palette):
 
     # Verde e ambra restano verde e ambra: cambia solo quanto sono chiari, per
     # stare su una pagina scura senza sparire.
-    verde = _porta_a('#1E7A4B' if not notte else '#4ADE80', carta, 4.5, 'bianco' if notte else 'nero')
-    ambra = _porta_a('#8A5A08' if not notte else '#F0B429', carta, 4.5, 'bianco' if notte else 'nero')
-    blu = _porta_a('#2B4A7A' if not notte else '#9DBBEA', carta, 4.5, 'bianco' if notte else 'nero')
+    verso = 'bianco' if notte else 'nero'
+    verde = _porta_a('#1E7A4B' if not notte else '#4ADE80', carta, 4.5, verso)
+    ambra = _porta_a('#8A5A08' if not notte else '#F0B429', carta, 4.5, verso)
+    blu = _porta_a('#2B4A7A' if not notte else '#9DBBEA', carta, 4.5, verso)
+    # Questi tre finiscono anche sul pannello: il bordo verde e il cerchietto
+    # dei giorni della pastiglia del meno caro ci stanno sopra. Se sul
+    # pannello non staccano, si spingono ancora un po'.
+    verde = _porta_a(verde, pannello, 4.5, verso)
+    ambra = _porta_a(ambra, pannello, 4.5, verso)
+    blu = _porta_a(blu, pannello, 4.5, verso)
 
     return {
         'carta': carta, 'pannello': pannello, 'inchiostro': inchiostro, 'tenue': tenue,
         'linea': linea, 'linea-forte': linea_forte,
         'rosso': accento, 'su-rosso': su_accento,
-        'rosso-tenue': mescola(carta, accento, 0.14),
-        'verde': verde, 'verde-tenue': mescola(carta, verde, 0.16),
-        'ambra': ambra, 'ambra-tenue': mescola(carta, ambra, 0.16),
-        'blu': blu, 'blu-tenue': mescola(carta, blu, 0.16),
+        'rosso-tenue': _tinta(carta, accento, [inchiostro], 0.14),
+        'verde': verde, 'verde-tenue': _tinta(carta, verde, [inchiostro]),
+        'ambra': ambra, 'ambra-tenue': _tinta(carta, ambra, [inchiostro]),
+        'blu': blu, 'blu-tenue': _tinta(carta, blu, [inchiostro]),
         'notte': notte,
     }
 
@@ -163,6 +187,20 @@ MISURE = [
     ('il verde del «meno caro»', 'verde', 'carta', 4.5),
     ('l\'ambra degli avvisi', 'ambra', 'carta', 4.5),
     ('il testo sul pannello', 'inchiostro', 'pannello', 6.0),
+    # I riquadri colorati: dentro ci va scritto, e quello che c'e scritto si
+    # deve leggere. Il riquadro del «meno caro» (chiesto il 2026-09-22) e il
+    # piu importante di tutti: e la risposta alla domanda per cui uno apre la
+    # pagina.
+    ('il verde dentro il riquadro del meno caro', 'verde', 'verde-tenue', 4.5),
+    ('il testo dentro il riquadro del meno caro', 'inchiostro', 'verde-tenue', 4.5),
+    ('l\'ambra dentro il suo bollino', 'ambra', 'ambra-tenue', 4.5),
+    ('il blu dentro il suo bollino', 'blu', 'blu-tenue', 4.5),
+    ('il testo dentro il riquadro della conferma', 'inchiostro', 'rosso-tenue', 4.5),
+    # La pastiglia del meno caro ha il fondo del pannello: sopra ci stanno il
+    # suo bordo verde e il cerchietto dei giorni (blu, o ambra sul finire).
+    ('il bordo verde della pastiglia', 'verde', 'pannello', 4.5),
+    ('il cerchietto dei giorni sulla pastiglia', 'blu', 'pannello', 4.5),
+    ('il cerchietto degli ultimi giorni sulla pastiglia', 'ambra', 'pannello', 4.5),
 ]
 
 def verifica(look=None):
