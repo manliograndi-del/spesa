@@ -48,7 +48,7 @@ setTimeout(() => {
     return anno + '-' + String(mese).padStart(2, '0') + '-' + String(Number(m[1])).padStart(2, '0');
   }
 
-  let conCerchio = 0, senza = 0, ambra = 0, ultimi = 0;
+  let conCerchio = 0, senza = 0, ambra = 0, ultimi = 0, inizi = 0;
   const tasti = [...d.querySelectorAll('#tasti .tasto:not(.agg)')];
   if (!tasti.length) { console.error('NESSUN prodotto in lista'); process.exit(1); }
 
@@ -59,10 +59,31 @@ setTimeout(() => {
       const cer = r.querySelector('.giorni');
       const futura = /vale dal|vale dall/.test(testo);
       if (futura) {
-        if (cer) male.push('un\'offerta non ancora cominciata ha il cerchietto: ' + testo.slice(0, 60));
+        if (cer) male.push('un\'offerta non ancora cominciata ha il cerchietto dei giorni: ' + testo.slice(0, 60));
+        /* Al suo posto ha il tondino di quando comincia: giorno dentro,
+           mese sotto. Chiesto da Manlio il 2026-09-22. */
+        const parte = r.querySelector('.parte');
+        const m = testo.match(/vale dall?[' ](\d+) (\w+)/);
+        if (!parte) {
+          male.push('un\'offerta non ancora cominciata non dice quando comincia: ' + testo.slice(0, 60));
+        } else if (m) {
+          const g = parte.querySelector('.num').textContent;
+          const mese = parte.querySelector('.mese').textContent;
+          if (Number(g) !== Number(m[1]))
+            male.push('il tondino dice il giorno ' + g + ' ma la riga dice il ' + m[1]);
+          if (m[2].slice(0, 3).toLowerCase() !== mese.toLowerCase())
+            male.push('il tondino dice «' + mese + '» ma la riga dice «' + m[2] + '»');
+          inizi++;
+        }
+        /* E il prezzo è grigio, non rosso: «si nota poco che non sono ancora
+           attivi». Qui si controlla che la riga porti la classe giusta. */
+        if (!r.classList.contains('dopo'))
+          male.push('un\'offerta non ancora cominciata non è segnata come tale');
         senza++;
         return;
       }
+      if (r.querySelector('.parte'))
+        male.push('un\'offerta già valida ha il tondino di quando comincia: ' + testo.slice(0, 60));
       if (!cer) { senza++; return; }
       conCerchio++;
       const n = Number(cer.querySelector('.num').textContent);
@@ -96,4 +117,5 @@ setTimeout(() => {
   console.log('  cerchietto dei giorni: su ' + conCerchio + ' offerte (' + senza
               + ' senza, perché devono ancora cominciare o non hanno una fine)');
   console.log('  il conto torna con le date scritte; ' + ultimi + ' negli ultimi tre giorni, in ambra');
+  console.log('  ' + inizi + ' offerte non ancora cominciate, col tondino del giorno in cui partono');
 }, 700);

@@ -2274,3 +2274,28 @@ segnava come «vista» l'**ultima dell'elenco**, ma il confronto fra id è
 alfabetico e `2026-09-22-look` viene *dopo* `2026-09-22-giorni`. Adesso si
 segna l'id più grande, non l'ultimo. Finché le novità erano una al giorno il
 baco non poteva vedersi.
+
+### Tre rifiniture dello stesso pomeriggio (2026-09-22, sera)
+
+**«Apri la pagina del volantino» è diventato un'icona.** Era una riga intera
+di scritta maiuscola su *ogni* offerta, e le offerte per un prodotto sono
+venti. Adesso è una pastiglietta col foglietto del volantino, il numero della
+pagina e la freccia, in fila con gli altri bollini. La frase intera resta nel
+`title` e nell'`aria-label`: chi tiene premuto o usa un lettore di schermo la
+sente tutta. Quando l'offerta non ha l'indirizzo della pagina resta la riga
+scritta in fondo — un'icona che non apre niente è una presa in giro.
+
+**«Vale dal 24 settembre» è diventato un tondino**, su richiesta sua: «potrebbe
+anche lui diventare un'icona rotonda come quella dei giorni di validità, con
+al centro il numero del giorno e sotto il nome del mese». Sta nello stesso
+angolo del cerchietto dei giorni, e non si pestano mai i piedi: o un'offerta è
+cominciata e conta quanto le resta, o deve cominciare e dice quando. La riga
+scritta continua comunque a dire «vale dal 24 settembre al 30 settembre», che
+è la versione lunga per chi la vuole.
+
+**Il prezzo di un'offerta che non è ancora cominciata è grigio.** Manlio: «si
+nota poco che non sono ancora attivi». Aveva ragione, e il motivo era preciso:
+il numero rosso grande è la cosa che si vede di più della riga, e continuava a
+gridare «sono qui» anche quando in cassa quel prezzo non lo facevano. Adesso è
+`--tenue`, e la riga è salita da 0,72 a 0,82 di opacità — sbiadire *tutto* di
+più avrebbe reso illeggibile anche quello che serve leggere.

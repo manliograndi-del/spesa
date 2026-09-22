@@ -192,9 +192,15 @@ NOVITA_PAGINA = [
                'numero: sono i giorni che restano per comprarla, oggi '
                'compreso. L\'anello si consuma man mano che il volantino '
                'scade, e negli ultimi tre giorni diventa arancione. «1 oggi» '
-               'vuol dire che oggi è l\'ultimo giorno. In cima, intanto, ho '
-               'tolto «Torino · corso Siracusa» e il bollino accanto: erano '
-               'le uniche cose lassù che non servivano a fare niente.'),
+               'vuol dire che oggi è l\'ultimo giorno. La scritta lunga «apri '
+               'la pagina del volantino» è diventata un bottoncino col '
+               'foglietto e il numero della pagina, così ogni offerta occupa '
+               'meno schermo. Le offerte che devono ancora cominciare, invece '
+               'del cerchietto, hanno un tondino col giorno in cui partono e '
+               'il mese sotto, e il prezzo scritto in grigio: si vede subito '
+               'che oggi non valgono. E in cima ho tolto «Torino · corso '
+               'Siracusa» e il bollino accanto: erano le uniche cose lassù '
+               'che non servivano a fare niente.'),
 ]
 
 DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
@@ -410,6 +416,29 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
 .giorni.poco .num,.giorni.poco .gg{color:var(--ambra)}
 /* Nelle righe dell'elenco sta sotto il prezzo, appoggiato a destra come lui. */
 .prezzo-riga .giorni{align-items:flex-end}
+
+/* IL TONDINO DI QUANDO COMINCIA. Chiesto da Manlio il 2026-09-22: «"vale dal",
+   che adesso è in una pillola, potrebbe anche lui diventare un'icona rotonda
+   come quella dei giorni di validità, con al centro il numero del giorno e
+   sotto il nome del mese». Sta nello stesso posto del cerchietto dei giorni,
+   nella colonna del prezzo: le due cose non capitano mai insieme, o
+   un'offerta è cominciata o deve cominciare. */
+.parte{display:flex;flex-direction:column;align-items:flex-end;gap:2px;margin-top:8px}
+.parte .anello{position:relative;width:38px;height:38px}
+.parte svg{width:38px;height:38px;display:block}
+.parte .giro{fill:none;stroke:var(--blu-tenue);stroke-width:4}
+.parte .num{position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--f-prezzo);font-size:15px;font-weight:700;color:var(--blu);
+  font-variant-numeric:tabular-nums;line-height:1}
+.parte .mese{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  font-weight:700;color:var(--blu);font-family:var(--f-testo)}
+
+/* IL PREZZO DI UN'OFFERTA CHE NON È ANCORA COMINCIATA È GRIGIO. Manlio,
+   2026-09-22: «si nota poco che non sono ancora attivi; secondo me dovrebbero
+   avere il prezzo in grigio». Il numero rosso grande era la cosa che si
+   vedeva di più della riga, e continuava a gridare «sono qui» anche quando
+   in cassa non lo facevano. */
+.prezzo-riga.dopo .val .n{color:var(--tenue)}
 /* ---- elenco prezzi ---- */
 .fascia{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
   font-size:12.5px;font-weight:600;color:var(--tenue);margin:22px 0 0}
@@ -441,22 +470,35 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01
    giorno: «che le offerte che non sono ancora cominciate apparissero
    sbiadite». Sbiadite, non nascoste: un prezzo che parte lunedì serve
    saperlo. Non si va più giù di così, se no il prezzo non si legge. */
-.prezzo-riga.dopo{opacity:.72}
+.prezzo-riga.dopo{opacity:.82}
 .bollo{font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;font-weight:700;
   border-radius:99px;padding:4px 11px}
 .bollo.meno{background:var(--verde-tenue);color:var(--verde)}
 .bollo.dubbio{background:var(--ambra-tenue);color:var(--ambra)}
-.bollo.dopo{background:var(--blu-tenue);color:var(--blu)}
 .bollo.stretta{background:var(--rosso);color:var(--su-rosso)}
 .prezzo-riga .sotto .quando{white-space:nowrap}
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
 .prezzo-riga .nota{grid-column:1/-1;margin:6px 0 0;font-size:13.5px;color:var(--tenue)}
 .prezzo-riga .dove{grid-column:1/-1;margin:6px 0 0;font-size:13px;color:var(--tenue);
   border-left:3px solid var(--linea);padding-left:9px}
-a.dove.apri{display:inline-block;margin-top:8px;color:var(--rosso);font-weight:600;
-  text-decoration:underline;text-underline-offset:3px;border-left:0;padding:7px 0;
-  min-height:34px}
-a.dove.apri::after{content:' \2197'}
+/* «APRI LA PAGINA … DEL VOLANTINO» È DIVENTATO UN'ICONA. Chiesto da Manlio il
+   2026-09-22: «potrebbe essere sostituito da un'icona, più o meno delle
+   dimensioni perché ci vada bene di fianco». Scritta per esteso si prendeva
+   una riga intera su ogni offerta, e le offerte sono tante: adesso è una
+   pastiglietta con dentro il foglietto del volantino e il numero della
+   pagina, in fila con gli altri bollini.
+
+   Resta alta 34 px perché il dito ci arrivi, e la frase intera («Apri la
+   pagina 14 del volantino») resta nel titolo e nell'etichetta: chi usa un
+   lettore di schermo, o tiene premuto, la sente tutta. */
+a.dove.apri{display:inline-flex;align-items:center;gap:5px;margin:0;padding:4px 10px 4px 8px;
+  border:1.5px solid var(--linea-forte);border-left:1.5px solid var(--linea-forte);
+  border-radius:99px;background:var(--carta);color:var(--rosso);
+  font-size:13px;font-weight:700;letter-spacing:0;text-transform:none;
+  text-decoration:none;min-height:34px;line-height:1}
+a.dove.apri svg{width:15px;height:15px;flex:none;fill:none;stroke:currentColor;
+  stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+a.dove.apri::after{content:'\2197';font-size:12px;font-weight:600}
 
 /* ---- elenco pagine ---- */
 .pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -724,8 +766,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       spariscono da sole</b>, secondo la data del telefono.</p>
     </div>
     <div class="voce">
-      <h3>«Apri la pagina … del volantino»</h3>
-      <p>Apre il volantino vero del negozio, alla pagina dove sta quell'offerta.</p>
+      <h3>Il foglietto col numero</h3>
+      <p>Su ogni offerta c'è un bottoncino con dentro un foglietto e un numero:
+      è la pagina del volantino dove sta quell'offerta. Toccalo e si apre il
+      volantino vero del negozio, a quella pagina, in una scheda nuova.</p>
     </div>
     <div class="voce">
       <h3>In fondo: l'elenco dei volantini</h3>
@@ -1412,6 +1456,23 @@ function cerchioGiorni(o) {
   return d;
 }
 
+/* Il tondino di quando comincia: il giorno grande dentro, il mese sotto. */
+const MESI_CORTI = ('gen feb mar apr mag giu lug ago set ott nov dic').split(' ');
+function cerchioInizio(o) {
+  if (!o.inizio) return null;
+  const p = o.inizio.split('-');
+  const d = document.createElement('div');
+  d.className = 'parte';
+  d.innerHTML = '<span class="anello">'
+    + '<svg viewBox="0 0 38 38" aria-hidden="true" focusable="false">'
+    + '<circle class="giro" cx="19" cy="19" r="16"></circle>'
+    + '</svg><span class="num"></span></span><span class="mese"></span>';
+  d.querySelector('.num').textContent = String(Number(p[2]));
+  d.querySelector('.mese').textContent = MESI_CORTI[Number(p[1]) - 1] || '';
+  d.title = 'Non è ancora cominciata: vale ' + giorno(o.inizio);
+  return d;
+}
+
 /* ---------- righe ---------- */
 /* «meno» non vuol dire «prima riga»: e il meno caro fra quelli che valgono
    oggi. Le righe sono in ordine di prezzo, e la prima puo essere di un
@@ -1438,21 +1499,23 @@ function rigaPrezzo(o, meno) {
   }
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
-  const cer = cerchioGiorni(o);
+  const cer = cerchioGiorni(o) || cerchioInizio(o);
   if (cer) d.querySelector('.val').appendChild(cer);
   const coda = d.querySelector('.coda');
+  const link = dove(o);
+  if (link.tagName === 'A') coda.appendChild(link);
   if (meno) coda.insertAdjacentHTML('beforeend', '<span class="bollo meno">il meno caro</span>');
   if (o.ristretta) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
-  else if (futuro(o)) coda.insertAdjacentHTML('beforeend',
-    '<span class="bollo dopo">vale ' + giorno(o.inizio) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
   if (!coda.children.length) coda.remove();
   if (o.note) {
     const n = document.createElement('p'); n.className = 'nota'; n.textContent = o.note;
     d.appendChild(n);
   }
-  d.appendChild(dove(o));
+  /* Senza indirizzo resta la riga scritta, in fondo: non c'e niente da
+     toccare, e un'icona che non apre niente sarebbe una presa in giro. */
+  if (link.tagName !== 'A') d.appendChild(link);
   return d;
 }
 
@@ -1472,7 +1535,16 @@ function dove(o) {
   a.href = o.url;
   a.target = '_blank';
   a.rel = 'noopener noreferrer';
-  a.textContent = `Apri la pagina ${o.pag} del volantino`;
+  /* Il foglietto del volantino con l'orecchia piegata, disegnato a mano:
+     nessun carattere speciale, che sui telefoni diventa un quadratino. */
+  a.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+    + '<path d="M3.2 1.8h5.6l3.4 3.4v9H3.2z"></path>'
+    + '<path d="M8.8 1.8v3.4h3.4"></path>'
+    + '<path d="M5.6 8.2h4.8M5.6 10.8h3.2"></path></svg><span></span>';
+  a.querySelector('span').textContent = o.pag || '';
+  const frase = `Apri la pagina ${o.pag} del volantino`;
+  a.title = frase;
+  a.setAttribute('aria-label', frase);
   return a;
 }
 

@@ -179,9 +179,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     pagina un gradino più forte, come ha chiesto), bordo verde, angoli tondi.
     **Una sola per prodotto**, sulla riga che ha il bollino verde: è la meno
     cara **che si può comprare oggi**, che può non essere la prima riga.
-  - Le sbiadite sono `.prezzo-riga.dopo`, `opacity:.72`. **Sbiadite, non
-    nascoste**: un prezzo che parte lunedì serve saperlo. Non si scende sotto
-    quel valore, se no il prezzo non si legge.
+  - Le sbiadite sono `.prezzo-riga.dopo`, `opacity:.82`, **col prezzo in
+    grigio** (`--tenue` invece del rosso, chiesto il 2026-09-22: «si nota poco
+    che non sono ancora attivi»). **Sbiadite, non nascoste**: un prezzo che
+    parte lunedì serve saperlo, e sotto quel valore non si legge più.
   - **Un riquadro separato in cima non c'è e non va rimesso**: c'era per
     mezz'ora il 2026-09-22 e diceva le stesse identiche cose della pastiglia,
     due volte di fila. Con le righe future sbiadite, la pastiglia si trova da
@@ -196,7 +197,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   - **il numero conta OGGI COMPRESO**: l'ultimo giorno dice «1 oggi», mai
     «0» — uno zero su un'offerta ancora valida si leggerebbe «è finita»;
   - **le offerte che devono ancora cominciare non ce l'hanno**: lì il numero
-    direbbe una cosa e la riga un'altra;
+    direbbe una cosa e la riga un'altra. Al suo posto, nello stesso angolo,
+    hanno il **tondino di quando partono** (`.parte`): il giorno grande
+    dentro, il mese sotto, chiesto il 2026-09-22 al posto della pastiglia
+    «vale dal 24 settembre»;
   - **blu finché c'è tempo, ambra negli ultimi tre giorni.** Non rosso: il
     rosso, in questa pagina, vuol dire «premi qui».
   La prova è `prova-giorni.js`.
@@ -204,6 +208,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
   scritte in ordine di importanza (`-look` dopo `-giorni`) facevano tornare
   la finestra a ogni apertura. Sistemato il 2026-09-22.
+- **«Apri la pagina … del volantino» è un'icona, non una scritta** (chiesta
+  il 2026-09-22). È una pastiglietta col foglietto del volantino, il numero
+  della pagina e la freccia, in fila con gli altri bollini: la frase intera
+  resta nel `title` e nell'`aria-label`. Sta ancora nel `dove(o)` di
+  `pagina.py` e tiene le classi `dove apri`, con cui la riconosce
+  `prova-collegamenti.js`. Quando l'offerta non ha l'indirizzo della pagina
+  resta la riga scritta in fondo: un'icona che non apre niente è una presa
+  in giro.
 - **Il tasto «Look» sta in cima, prima di «Aiuto»** (chiesto il 2026-09-22) e
   apre l'elenco dei cento look: tocchi una riga e la pagina si ricolora subito.
   I cento look **non si scrivono a mano**: li calcola `strumenti/look.py` dalle
@@ -255,11 +267,13 @@ distanza da sola avrebbe scelto il negozio sbagliato.
 
 ## Da fare adesso (aggiornato il 2026-09-22)
 
-- **Fatto il 2026-09-22, tutto in un rilascio (`sw.js` v49)**: il riquadro
-  verde del «meno caro» in cima ai prezzi, il cerchietto dei giorni che
-  mancano su ogni offerta, gli angoli più morbidi in tutta la pagina
-  (pannelli, bollini e tasti tondi come i riquadri Material che ha mandato
-  lui) e la riga «Torino · corso Siracusa» tolta dalla cima col suo bollino.
+- **Fatto il 2026-09-22 (`sw.js` v50)**: la pastiglia del «meno caro»
+  nell'elenco, le offerte non ancora cominciate sbiadite col prezzo grigio e
+  col tondino del giorno in cui partono, il cerchietto dei giorni che mancano
+  su ogni offerta, «apri la pagina del volantino» ridotto a un'icona, gli
+  angoli più morbidi in tutta la pagina (pannelli, bollini e tasti tondi come
+  i riquadri Material che ha mandato lui) e la riga «Torino · corso Siracusa»
+  tolta dalla cima col suo bollino.
 
 - **Fatto il 2026-09-22 il tasto «Look»**: cento look ricavati dalle cento
   combinazioni di colori che ha mandato Manlio (il PDF di Figma). Pubblicato
