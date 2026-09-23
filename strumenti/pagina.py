@@ -426,6 +426,13 @@ NOVITA_PAGINA = [
                'stanno in fondo allo schermo, sempre a portata di pollice, ognuno con '
                'la sua icona. Quello rosso è la parte in cui sei. In cima resta più '
                'spazio per i tuoi prodotti.'),
+    dict(id='2026-09-23-zzzz-prezzi', quando='23 settembre',
+         titolo='I prezzi a destra',
+         testo='Sulle schede il prezzo sta a destra, su due righe: sopra quello al '
+               'chilo (o al litro), sotto quanto costa la confezione e quanto pesa. '
+               'A sinistra restano il nome e i bollini. Tolti il foglietto rosso del '
+               'volantino (basta toccare la scheda), il simbolo dell\'euro e la '
+               'scritta «prezzo al kg» accanto al nome del prodotto.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI

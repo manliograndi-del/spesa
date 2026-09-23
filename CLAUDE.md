@@ -355,8 +355,22 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     supermercati: appare l'elenco completo e tu scegli quello che vuoi»).
     Prima, lo stesso giorno, era stata chiesta e rifiutata due volte: adesso
     l'ha chiesta lui, e vale questo. Ancora NIENTE contatore «7 su 7» in cima.
-  - **Sotto i 560 px la scheda va in colonna**: i prezzi scendono su una riga
-    loro. A due colonne, sul telefono, il nome andava a capo ogni due parole.
+  - **I prezzi stanno A DESTRA anche sul telefono, uno sopra l'altro**
+    (2026-09-23, Manlio: «non è tutto un po' troppo sbilanciato sulla
+    sinistra… a destra ci potrebbe stare il prezzo, eventualmente su due
+    linee»): sopra il prezzo per unità «8,69/kg», sotto la confezione
+    «1,39 · 160 g» (solo la prima parte del formato: «4x160 g, sgocciolati
+    425 g» → «4x160 g»; si taglia a «, » o « (», mai alla virgola dei
+    decimali). **Niente «€» sulle schede** (resta nelle frasi, come la riga in
+    cima e le pillole), **unità corta** attaccata al numero (`unitaCorta()`:
+    «/kg», «/l», «/rotolo»…), e **niente «prezzo al kg» accanto al nome del
+    prodotto**. Il 22 settembre la scheda era andata in colonna sotto i
+    560 px perché i due prezzi AFFIANCATI rubavano metà riga al nome: in
+    colonna stretta, uno sopra l'altro, il problema non c'è.
+  - **Il foglietto rosso del volantino non c'è più** (stesso giorno: «è
+    diventato completamente inutile, ed essendo rosso fallo sparire»): si
+    tocca la scheda. `dove(o)` resta solo per scrivere la riga quando
+    l'indirizzo della pagina manca.
   - Nessuna riga dice più **«letto a occhio dal volantino»**: tolta su sua
     richiesta.
 - **In cima NON c'è più «Torino · corso Siracusa» né il bollino «i»**
@@ -665,17 +679,10 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v88** (menù in
-  basso). Tutte le prove passano.
-- **ATTENZIONE — sul ramo di lavoro c'è una PROVA NON ANCORA APPROVATA**, un
-  commit più avanti di `main` («Prova: prezzi a destra…»): prezzi a destra su
-  due righe anche sul telefono, foglietto rosso del volantino tolto, niente
-  «€» sulle schede, niente «prezzo al kg» accanto al nome, formato accorciato
-  («4x160 g»). Manlio ha detto «ok a tutto» alle quattro idee e ha visto tre
-  schermate, ma **non ha ancora detto di pubblicarla**. Finché non lo dice:
-  NON portare `main` avanti, NON alzare `sw.js`, NON ripubblicare l'artifact.
-  Se dice sì: `sw.js` a v89, novità nella finestra, CLAUDE/AGENTS/NOTE, e
-  pubblicazione come sempre. Se dice no: tornare indietro di quel commit.
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v89**. Tutte le
+  prove passano.
+- **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
+  `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
 - **L'analisi esterna in 7 punti**: fatti 1 (categorie pulite), 2 (note in
   bollini, poi «Dettagli» tolto e le cose importanti in pillole beige),
   3 (riga in cima solo se il meno caro di oggi non è fra le prime tre

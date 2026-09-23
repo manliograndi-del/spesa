@@ -3175,3 +3175,18 @@ tasti non stanno più in cima: `sistemaBarra()` mette le pillole ferme a
 `top:0`, `altaFissa()` conta solo loro. Aggiornate `prova-marche.js` (cercava
 la striscia in alto) e `prova-scorrimento.js` (misurava la striscia in alto,
 adesso le pillole ferme).
+
+## Prezzi a destra, via il foglietto, via «€» — 2026-09-23
+
+Manlio, dopo il menù in basso: il foglietto rosso «è diventato completamente
+inutile»; la scheda «è tutta sbilanciata sulla sinistra… a destra ci potrebbe
+stare il prezzo, eventualmente su due linee»; «prezzo al chilo» scritto due
+volte; «c'è sempre scritto euro». Gli ho risposto prima di fare (lui: «dammi
+delle risposte»), poi «ok a tutto», tre schermate, «va bene, pubblicala».
+
+Due cose scoperte facendo: un formato lungo («4x160 g, sgocciolati 425 g»)
+allargava la colonna dei prezzi e schiacciava i bollini, quindi del formato
+si scrive solo la prima parte; e il primo taglio alla virgola avrebbe fatto
+di «1,5 l» un «1» — si taglia a «, » (virgola e spazio), non alla virgola.
+Sull'«€»: nei volantini veri c'è quasi sempre, piccolo; gliel'ho detto, ha
+scelto di toglierlo lo stesso dalle schede.
