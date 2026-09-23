@@ -477,6 +477,10 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Rifatto il 2026-09-23 il marchio EKOM** con l'immagine vera mandata da
+  Manlio («il logo di Ekom in realtà è questo»): riquadro arancione, lettere
+  in caselle bianche, «IL DISCOUNT VICINO A TE.». Quello di prima era una
+  scritta rossa inclinata, sbagliata. `loghi/ekom.svg`, fatto con `vettore`.
 - **Controllo del 23 settembre: niente di nuovo da leggere, solo pulizia.**
   Controllate tutte e dieci le insegne sulla fonte (anteprimavolantino per
   Lidl/Eurospin/MD/Bennet/Carrefour Iper, kimbino per Mercatò, l'API ufficiale

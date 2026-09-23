@@ -1900,7 +1900,7 @@ const MARCHI = {
   'MD':             ['#D4001F', '#FFFFFF'],
   'Bennet':         ['#C8102E', '#FFFFFF'],
   'Mercatò':        ['#8A1538', '#FFFFFF'],
-  'Ekom':           ['#B3001B', '#FFFFFF'],
+  'Ekom':           ['#F47A20', '#FFFFFF'],
   'Ipercoop':       ['#A3123A', '#FFFFFF'],
   'Carrefour Iper': ['#004E9F', '#FFFFFF'],
   'Pam':            ['#00843D', '#FFFFFF'],
