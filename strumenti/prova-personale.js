@@ -77,6 +77,14 @@ setTimeout(() => {
   if (d.querySelectorAll('#riepilogo-pers .bollo.meno, #riepilogo-pers .prezzo-riga.vince').length)
     male.push('C\'È IL BOLLINO VERDE nel riepilogo');
 
+  // una pillola aperta alla volta: toccarne un'altra chiude la prima
+  const tocca = parola => [...d.querySelectorAll('#pillole-pers .nome-pers')].find(b => b.textContent === parola).click();
+  tocca('mozzarella'); tocca('tonno');
+  const rosse = [...d.querySelectorAll('#pillole-pers .pillola-pers.aperta .nome-pers')].map(b => b.textContent);
+  if (rosse.join('|') !== 'tonno') male.push('pillole rosse dopo due tocchi: ' + (rosse.join(', ') || 'nessuna'));
+  if (blocco('mozzarella').querySelectorAll('.prezzo-riga').length !== 1)
+    male.push('toccando «tonno», «mozzarella» resta tutta aperta');
+
   // i supermercati di questa sezione
   d.getElementById('apri-negozi-pers').click();
   const bottoni = [...d.querySelectorAll('#negozi-pers button')];

@@ -505,6 +505,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .riga-cerca{position:sticky;top:0;z-index:25;background:var(--carta);
   margin:0 -15px;padding:8px 15px;border-bottom:1.5px solid var(--linea)}
 .barra{position:static}
+.barra.fissa{position:sticky;z-index:20;margin-top:0;padding-top:10px}
 /* Con l'id: la regola dei quattro tasti, più sotto, rimette gap:7px. */
 #riga-cerca .tasto.marchi{flex-direction:column;gap:0}
 .riga-gm{display:block;line-height:1.05}
@@ -1699,7 +1700,31 @@ function disegnaTasti() {
 
   const cont = document.getElementById('quanti-prodotti');
   if (cont) cont.textContent = 'I tuoi prodotti (' + lista.length + ')';
+  sistemaBarra();
 }
+
+/* LE PILLOLE DEI PRODOTTI RESTANO FERME IN ALTO, SE SONO POCHE (Manlio,
+   2026-09-23: «dato che la parte superiore è molto diminuita è inutile far
+   salire in alto l'elenco dei prodotti, perché già si vedono; al limite la
+   parte superiore, se non ci sono troppi prodotti, potrebbe rimanere
+   fissa»). Sotto la striscia dei quattro tasti, finché non occupano più di
+   un terzo dello schermo: con tanti prodotti le pillole si mangerebbero le
+   offerte, e allora scorrono via come prima. */
+function sistemaBarra() {
+  const barra = document.querySelector('.barra');
+  const striscia = document.getElementById('riga-cerca');
+  if (!barra || !striscia) return;
+  barra.classList.remove('fissa');
+  barra.style.top = '';
+  if (barra.hidden) return;
+  const alta = barra.getBoundingClientRect().height;
+  const schermo = window.innerHeight || 0;
+  if (alta > 0 && schermo > 0 && alta <= schermo / 3) {
+    barra.classList.add('fissa');
+    barra.style.top = Math.round(striscia.getBoundingClientRect().height) + 'px';
+  }
+}
+window.addEventListener('resize', () => { try { sistemaBarra(); } catch (e) {} });
 
 /* IL CASSETTO. Chiesto da Manlio il 2026-09-05: scrivere il nome di un
    prodotto per aggiungerlo era scomodo, e chi non ero io non poteva farlo.
@@ -1807,8 +1832,11 @@ function disegnaPersonale() {
     n.type = 'button'; n.className = 'nome-pers'; n.textContent = w;
     n.title = 'Tutte le offerte di «' + w + '»';
     /* Toccando la pillola si aprono tutte le sue offerte, e la pagina ci va. */
+    /* UNA APERTA ALLA VOLTA (Manlio, 2026-09-23: «i tasti sono rimasti tutti
+       rossi»): ogni pillola toccata restava rossa, e dopo qualche tocco lo
+       erano tutte. Adesso toccarne una chiude le altre, e rossa è solo lei. */
     n.onclick = () => {
-      if (aperte.indexOf(w) < 0) aperte.push(w);
+      aperte = [w];
       disegnaPersonale();
       const b = [...document.querySelectorAll('.blocco-pers')].find(x => x.dataset.parola === w);
       if (b && b.scrollIntoView) b.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -1860,7 +1888,7 @@ function disegnaPersonale() {
       t.textContent = tutte ? 'Mostra solo la più conveniente'
                             : 'Mostra tutte le ' + off.length + ' offerte';
       t.onclick = () => {
-        aperte = tutte ? aperte.filter(y => y !== w) : aperte.concat([w]);
+        aperte = tutte ? [] : [w];
         disegnaPersonale();
       };
       b.appendChild(t);
@@ -2001,6 +2029,7 @@ function disegnaMarche() {
      volantini (Manlio, 2026-09-23: prima solo con le grandi marche). */
   document.querySelector('.barra').hidden = ricercaAperta || personaleAperto;
   document.querySelector('.spiega').hidden = ricercaAperta || personaleAperto;
+  sistemaBarra();   // le pillole ricompaiono: vanno rimesse ferme se sono poche
   box.textContent = '';
   if (!vistaMarche) return;
   (DATI.marche || []).forEach(m => {
@@ -2222,7 +2251,10 @@ function vaiInizio() {
    quella dei tre tasti, non più le pillole dei prodotti. */
 function altaFissa() {
   const s = document.getElementById('riga-cerca');
-  return s ? s.getBoundingClientRect().height : 0;
+  const b = document.querySelector('.barra');
+  /* Con le pillole ferme in alto, sotto c'è anche la loro altezza. */
+  const pillole = b && !b.hidden && b.classList.contains('fissa') ? b.getBoundingClientRect().height : 0;
+  return (s ? s.getBoundingClientRect().height : 0) + pillole;
 }
 
 /* Cambiando prodotto si torna all'inizio del suo elenco.

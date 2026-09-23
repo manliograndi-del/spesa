@@ -2958,3 +2958,19 @@ una riga, stretta fra i bordi tondi. Adesso è sempre su due righe. Due
 tranelli: la regola dei quattro tasti, scritta più sotto, rimetteva `gap:7px`
 fra le due righe (serve l'id per vincere), e a 360 px «Personale» toccava i
 bordi (scritta a 13 px sotto i 380).
+
+## «Tutti rossi» e le pillole ferme in alto — 2026-09-23
+
+Manlio: «guarda che succede, i tasti sono rimasti tutti rossi; inoltre dato
+che la parte superiore è molto diminuita adesso è inutile fare salire in alto
+l'elenco dei prodotti perché già si vedono; al limite la parte superiore, se
+non ci sono troppi prodotti, potrebbe rimanere fissa».
+
+- «Tutti rossi»: i quattro tasti in alto, provati su un telefono finto (tocco
+  vero, tutte e tre le copie, tutti e cento i look), si accendevano giusti.
+  Rosse restavano invece le pillole del Personale: ogni pillola toccata si
+  apriva e restava rossa. Adesso una alla volta. Se intendeva altro, lo dirà.
+- Le pillole dei prodotti tornano ferme in alto, sotto i quattro tasti, se
+  occupano al massimo un terzo dello schermo. Con le sue 13 voci su un
+  telefono da 800 px sono 230 px: ferme. Col cassetto o con una lista lunga
+  scorrono via.

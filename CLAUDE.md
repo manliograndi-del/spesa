@@ -209,11 +209,15 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     cima alla stessa sezione;
   - **la striscia dei tre tasti (`.riga-cerca`) resta attaccata in alto**
     quando si scorre; **il titolo no** (scorre via: «Prodotti» fa già la sua
-    stessa cosa), e **le pillole dei prodotti (`.barra`) NON sono più
-    appiccicate** (`position:static`): per cambiare prodotto dal fondo di un
-    elenco si tocca «Prodotti». Tutte e due le cose le ha scelte lui («sì a
-    tutti e tre»). Lo scorrimento al cambio di prodotto conta l'altezza della
-    striscia (`altaFissa()`), non più quella della barra;
+    stessa cosa). **Le pillole dei prodotti (`.barra`) restano ferme sotto la
+    striscia SE SONO POCHE** (classe `.fissa`, decisa da `sistemaBarra()`:
+    alte al massimo un terzo dello schermo), chiesto il 2026-09-23: «è
+    inutile far salire in alto l'elenco dei prodotti, perché già si vedono; se
+    non ci sono troppi prodotti la parte superiore potrebbe rimanere fissa».
+    Con tante pillole scorrono via e per tornarci si tocca «Prodotti».
+    Lo scorrimento al cambio di prodotto conta la striscia più le pillole
+    ferme (`altaFissa()`). `sistemaBarra()` va richiamata anche quando la
+    barra ricompare (in `disegnaMarche`), se no tornando da Cerca non è ferma;
   - **alti 44 px**, più delle pillole (34): chiesto da lui, «essendo adesso i
     pulsanti così importanti»; scritta 14 px;
   - **«Grandi marche» con le minuscole** (sì suo): tutto maiuscolo non ci
@@ -243,7 +247,9 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     kg. È il meno caro **che si compra oggi**; se oggi non ce n'è, il meno
     caro in assoluto. **Niente bollino verde** nel riepilogo.
   - **Toccando una pillola** si aprono tutte le sue offerte e la pagina ci
-    va; la × la toglie. Una parola già presente (anche con maiuscole
+    va; **una aperta alla volta**, e rossa è solo quella (il 2026-09-23 ogni
+    pillola toccata restava rossa e Manlio le ha viste «tutte rosse»); la ×
+    la toglie. Una parola già presente (anche con maiuscole
     diverse) non si aggiunge due volte.
   - Nel Personale non si vedono né le categorie né l'elenco dei volantini in
     fondo, come in Cerca e Grandi marche. La prova è `prova-personale.js`.
@@ -543,6 +549,11 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Pillole dei prodotti ferme in alto se sono poche; nel Personale una
+  pillola aperta alla volta** (2026-09-23, Manlio: «i tasti sono rimasti
+  tutti rossi» e «è inutile far salire l'elenco dei prodotti»). `sw.js` a v78.
+  Detto a lui che «tutti rossi» l'ho letto come le pillole del Personale: se
+  intendeva altro, da riguardare.
 - **«Grandi marche» sempre su due righe** (2026-09-23, chiesto da Manlio:
   «mi sembra schiacciata»). `sw.js` a v77.
 - **La sezione «Personale»** (2026-09-23, chiesta da Manlio): quarto tasto
