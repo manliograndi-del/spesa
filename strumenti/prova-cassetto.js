@@ -14,6 +14,10 @@ const errori = [];
 const dom = new JSDOM(fs.readFileSync(process.argv[2], 'utf8'), {
   runScripts: 'dangerously', pretendToBeVisual: true,
   url: 'https://manliograndi-del.github.io/spesa/',
+  /* Dal 2026-09-23 sera «+ altri prodotti» sta in basso e aprendo il
+     cassetto la pagina torna in cima: il browser finto non sa scorrere, e
+     senza questo lo scriverebbe come un errore della pagina. */
+  beforeParse(w) { w.scrollTo = () => {}; },
   virtualConsole: new VirtualConsole()
     .on('jsdomError', e => errori.push(String(e.detail || e.message).split('\n')[0])),
 });

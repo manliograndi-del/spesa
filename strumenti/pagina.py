@@ -765,7 +765,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .riga-cerca{position:sticky;top:0;z-index:25;background:var(--carta);
   margin:0 -15px;padding:8px 15px;border-bottom:1.5px solid var(--linea)}
 .barra{position:static}
-.barra.fissa{position:sticky;z-index:20;margin-top:0;padding-top:10px}
 /* Con l'id: la regola dei quattro tasti, più sotto, rimette gap:7px. */
 #riga-cerca .tasto.marchi{flex-direction:column;gap:0}
 .riga-gm{display:block;line-height:1.05}
@@ -1276,6 +1275,27 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
    con meno interlinea»). */
 #riga-cerca .riga-gm{display:block;line-height:.95}
 .guscio{padding-bottom:100px}
+/* LE PILLOLE DEI PRODOTTI STANNO IN BASSO, SOPRA IL MENÙ, IN UNA GRIGLIA
+   (Manlio, 2026-09-23 sera: «sempre per fare piacere al pollice, se i
+   prodotti rimettessimo in basso sopra il menù inferiore»; e: «come le grandi
+   marche, quello dei prodotti è molto disordinato… una griglia, lasciando
+   quelle più lunghe per l'ultima riga»). Quattro per riga, larghe uguali: al
+   13 px ci stanno 64 nomi del catalogo su 71. Quelli che non ci stanno
+   (Salmone affumicato, Carta igienica… e «+ altri prodotti») prendono due
+   caselle e vanno in fondo: lo decide sistemaBarra() misurandoli. Con tante
+   pillole la griglia non supera un terzo di schermo e dentro scorre. */
+.barra{position:fixed;left:0;right:0;top:auto;bottom:var(--menu-alto,70px);z-index:29;
+  margin:0;padding:8px 12px;background:var(--carta);border-top:1.5px solid var(--linea);
+  border-bottom:0;max-height:34vh;overflow-y:auto;overscroll-behavior:contain;
+  box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+.barra .tasti{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;
+  max-width:770px;margin:0 auto}
+.barra .tasto{min-height:34px;min-width:0;padding:4px 6px;font-size:13px;text-align:center;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barra .tasto.lunga{grid-column:span 2;order:1}
+.barra .tasto.agg{order:2}
+.barra .stato:empty{display:none}
+.guscio{padding-bottom:calc(var(--barra-alta,0px) + 100px)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1982,7 +2002,8 @@ function disegnaTasti() {
   piu.textContent = cassettoAperto ? 'Chiudi' : '+ altri prodotti';
   piu.setAttribute('aria-expanded', String(cassettoAperto));
   piu.setAttribute('aria-controls', 'cassetto');
-  piu.onclick = () => { apriCassetto(!cassettoAperto); };
+  /* Il tasto sta in basso, il cassetto si apre in cima: ci si va. */
+  piu.onclick = () => { const apri = !cassettoAperto; apriCassetto(apri); if (apri) suInCima(); };
   box.appendChild(piu);
 
   /* «Cerca fra i prezzi» e un'altra cosa dal cassetto, e vanno tenute
@@ -2093,22 +2114,30 @@ function disegnaTasti() {
    un terzo dello schermo: con tanti prodotti le pillole si mangerebbero le
    offerte, e allora scorrono via come prima. */
 function sistemaBarra() {
+  /* Dal 2026-09-23 sera le pillole dei prodotti stanno IN BASSO, sopra il
+     menù, in una griglia (vedi il CSS). Qui tre conti: quanto è alto il menù
+     (la griglia gli sta sopra), quali nomi non stanno in una casella (ne
+     prendono due, in fondo), e quanto è alta la griglia (la pagina lascia
+     quello spazio in fondo, se no l'ultima offerta ci finisce sotto). */
   const barra = document.querySelector('.barra');
-  const striscia = document.getElementById('riga-cerca');
-  if (!barra || !striscia) return;
-  barra.classList.remove('fissa');
-  barra.style.top = '';
-  if (barra.hidden) return;
-  const alta = barra.getBoundingClientRect().height;
-  const schermo = window.innerHeight || 0;
-  if (alta > 0 && schermo > 0 && alta <= schermo / 3) {
-    /* Dal 2026-09-23 i tasti delle sezioni stanno IN BASSO: le pillole
-       ferme stanno proprio in cima, a zero. */
-    barra.classList.add('fissa');
-    barra.style.top = '0px';
-  }
+  const menu = document.getElementById('riga-cerca');
+  if (!barra || !menu) return;
+  const radice = document.documentElement.style;
+  radice.setProperty('--menu-alto', (menu.getBoundingClientRect().height || 0) + 'px');
+  barra.querySelectorAll('.tasto').forEach(t => {
+    t.classList.remove('lunga');
+    if (t.scrollWidth > t.clientWidth) t.classList.add('lunga');
+  });
+  radice.setProperty('--barra-alta', (barra.hidden ? 0 : barra.getBoundingClientRect().height || 0) + 'px');
 }
 window.addEventListener('resize', () => { try { sistemaBarra(); } catch (e) {} });
+/* I nomi si misurano col carattere vero: finché non è arrivato, la misura
+   sarebbe col carattere di riserva, più largo o più stretto. */
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(() => { try { sistemaBarra(); } catch (e) {} });
+  if (document.fonts.addEventListener)
+    document.fonts.addEventListener('loadingdone', () => { try { sistemaBarra(); } catch (e) {} });
+}
 
 /* IL CASSETTO. Chiesto da Manlio il 2026-09-05: scrivere il nome di un
    prodotto per aggiungerlo era scomodo, e chi non ero io non poteva farlo.
@@ -2637,11 +2666,9 @@ function vaiInizio() {
 /* Quanto è alta la striscia che resta attaccata in alto. Dal 2026-09-23 è
    quella dei tre tasti, non più le pillole dei prodotti. */
 function altaFissa() {
-  /* Quanto è occupato in cima: solo le pillole, se sono ferme. I tasti delle
-     sezioni dal 2026-09-23 stanno in basso (menù in fondo, Manlio: «lo sai
-     che mi piace davvero»), e non coprono più niente in alto. */
-  const b = document.querySelector('.barra');
-  return b && !b.hidden && b.classList.contains('fissa') ? b.getBoundingClientRect().height : 0;
+  /* Quanto è occupato in cima. Dal 2026-09-23 sera niente: i tasti delle
+     sezioni e le pillole dei prodotti stanno tutti e due in basso. */
+  return 0;
 }
 
 /* Cambiando prodotto si torna all'inizio del suo elenco.

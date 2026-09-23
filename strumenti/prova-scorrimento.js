@@ -7,8 +7,8 @@
    jsdom non impagina: se lo si lascia fare, ogni misura viene zero e la prova
    passa senza aver controllato il conto. Quindi qui le misure gliele diamo noi
    — elenco che comincia a 420 dall'alto della pagina, barra dei bottoni alta
-   150 — e si pretende che la pagina risalga esattamente a 262, cioe al primo
-   prezzo appena sotto la barra. */
+   150 ma in basso — e si pretende che la pagina risalga esattamente a 412,
+   cioe al primo prezzo, in cima. */
 const fs = require('fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const dom = new JSDOM(fs.readFileSync(process.argv[2], 'utf8'), {
@@ -23,14 +23,15 @@ setTimeout(() => {
   const tasti = [...d.querySelectorAll('.tasto')].filter(b => !b.classList.contains('agg'));
   const guai = [];
 
-  const CIMA_ELENCO = 420, ALTA_BARRA = 150, ATTESA = CIMA_ELENCO - ALTA_BARRA - 8;
+  /* Dal 2026-09-23 sera anche le pillole dei prodotti stanno IN BASSO, sopra
+     il menù: in cima non c'è più niente di fermo, e la pagina deve risalire
+     al primo prezzo senza togliere l'altezza della barra (che adesso è
+     sotto). Qui la barra la si fa alta 150, e il conto non deve contarla. */
+  const CIMA_ELENCO = 420, ALTA_BARRA = 150, ATTESA = CIMA_ELENCO - 8;
   d.getElementById('risultato').getBoundingClientRect =
     () => ({ top: CIMA_ELENCO - (w.scrollY || 0), height: 3000 });
-  // dal 2026-09-23 (menù in basso) in alto restano ferme solo le pillole
-  // dei prodotti, quando sono poche
   const barra = d.querySelector('.barra');
-  barra.getBoundingClientRect = () => ({ top: 0, height: ALTA_BARRA });
-  barra.classList.add('fissa');
+  barra.getBoundingClientRect = () => ({ top: 700, height: ALTA_BARRA });
 
   // finge di aver scorso in giu, e cambia DAVVERO prodotto
   // (tasti[0] e gia quello acceso: toccarlo di nuovo non e un cambio)
@@ -39,7 +40,7 @@ setTimeout(() => {
   tasti[2].click();
   if (!chiamate.length) guai.push('cambiando prodotto dopo aver scorso, non risale');
   else if (chiamate[0] !== ATTESA)
-    guai.push(`risale a ${chiamate[0]} invece che a ${ATTESA} (il primo prezzo sotto la barra)`);
+    guai.push(`risale a ${chiamate[0]} invece che a ${ATTESA} (il primo prezzo, in cima)`);
   console.log(`  scorso in basso, cambio prodotto → risale a ${chiamate[0] ?? 'niente'} (atteso ${ATTESA})`);
 
   // ritoccando lo stesso bottone non deve muoversi
