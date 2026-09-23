@@ -119,3 +119,4 @@
 2026-09-23 08:51 UTC  tre tasti delle sezioni (Prodotti, Cerca, Grandi marche), alti 44 px e sempre in alto; le pillole dei prodotti non restano più attaccate. sw.js v75.
 2026-09-23 08:52 UTC  pubblicato: sito (verificato, sw.js v75) e artifact (versione 66): i tre tasti delle sezioni.
 2026-09-23 09:25 UTC  sezione «Personale»: parole proprie in pillole, la più conveniente per ognuna (col tasto tutte), supermercati scelti solo lì, tutto sul telefono. sw.js v76.
+2026-09-23 09:26 UTC  pubblicato: sito (verificato, sw.js v76) e artifact (versione 67): sezione Personale.
