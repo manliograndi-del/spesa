@@ -157,6 +157,17 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
   invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
   pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
+- **I TASTI SONO RETTANGOLI ARROTONDATI, NON PILLOLE** (2026-09-23 sera,
+  Manlio: «non potresti fare tutte le pillole dei comandi un po' Material
+  3, più squadrate?»; viste quattro schermate: «cambiamenti perfetti»).
+  Angoli da 10 px ai tasti piccoli (prodotti, catalogo, parole del
+  Personale, «Aggiungi», «Personalizza supermercati», «Mostra tutte», le
+  caselle di Cerca e Personale, i supermercati nella configurazione, le
+  grandi marche), 14 px al menù in basso e ai tasti grandi («Fatto», «Ho
+  capito», «Chiudi» del volantino). **Restano tondi** i bollini dentro le
+  schede (marchio, giorni, calendarietto, sconto, beige, verde): non si
+  toccano. Restano tondi anche i due pallini in alto. Quando qui sotto
+  c'è scritto «pillola» per un tasto, adesso vuol dire questo rettangolo.
 - **SOPRA LE OFFERTE DI UN PRODOTTO C'È SOLO UNA BANDA ROSSA BASSA COL NOME
   BIANCO AL CENTRO** (2026-09-23 sera, Manlio: «con le pillole sotto
   quell'elenco si vede un po' strano… una banda colorata in alto per
@@ -812,14 +823,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Sul ramo di lavoro, NON ANCORA PUBBLICATA**: la banda rossa col nome
-  sopra le offerte (scelta C). In prova, solo in schermata e non nel codice:
-  **tutti i tasti più squadrati** (stile Material 3: angoli 10 px ai tasti
-  piccoli, 14 px al menù e ai tasti grandi; i bollini dentro le schede
-  restano tondi perché non si toccano). Si aspetta la sua risposta: se gli
-  piacciono si pubblica tutto insieme, se no la banda da sola. Chi pubblica
-  porti `main` avanti come sempre.
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v98** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v99** (banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.

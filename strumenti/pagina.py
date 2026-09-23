@@ -518,6 +518,12 @@ NOVITA_PAGINA = [
                '«Organizza i prodotti»: lì accendi quelli che vuoi e spegni quelli che '
                'non ti servono più. Per una cosa che nel catalogo non c\'è, scrivila '
                'in «Personale».'),
+    dict(id='2026-09-23-zzzzzzzz-tasti', quando='23 settembre',
+         titolo='Una banda rossa col nome, e tasti più squadrati',
+         testo='Sopra le offerte c\'è una banda rossa bassa col nome del prodotto '
+               'che stai guardando: stacca le offerte dalla parte in alto. È '
+               'squadrata perché non è un tasto, è solo il nome. I tasti invece '
+               'hanno tutti gli angoli un po\' meno tondi.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -705,7 +711,14 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    34 px, che con un dito si prende lo stesso, e i nomi sono di una parola
    sola (vedi catalogo.py), quindi in una riga ce ne stanno il doppio. */
 .tasti{display:flex;flex-wrap:wrap;gap:6px}
-.tasto{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:99px;
+/* I TASTI SONO RETTANGOLI ARROTONDATI, NON PILLOLE (Manlio, 2026-09-23
+   sera: «non potresti fare tutte le pillole dei comandi un po' Material 3,
+   più squadrate?», visto in quattro schermate: «cambiamenti perfetti»).
+   10 px agli angoli dei tasti piccoli (prodotti, catalogo, parole del
+   Personale, caselle), 14 px al menù in basso e ai tasti grandi («Fatto»,
+   «Chiudi»). I bollini dentro le schede restano tondi: non si toccano. La
+   banda col nome sopra le offerte è squadrata del tutto: non è un tasto. */
+.tasto{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:10px;
   padding:6px 12px;font-size:14px;font-weight:600;cursor:pointer;line-height:1.1;
   min-height:34px;white-space:nowrap}
 .tasto[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
@@ -719,7 +732,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    torna a voler dire quello che deve: «premi qui». */
 .tasto.trova{display:flex;align-items:center;justify-content:center;gap:8px;
   width:100%;background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso);
-  border-style:solid;border-radius:99px;font-weight:700;font-size:15px;min-height:42px}
+  border-style:solid;border-radius:10px;font-weight:700;font-size:15px;min-height:42px}
 .tasto.trova::before{content:'';flex:none;width:17px;height:17px;
   background:currentColor;-webkit-mask:var(--lente) center/contain no-repeat;
   mask:var(--lente) center/contain no-repeat}
@@ -736,7 +749,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   font-size:11.5px;font-weight:600;color:var(--tenue);margin:16px 0 8px}
 .reparto:first-child{margin-top:14px}
 .chiudi{width:100%;margin-top:16px;background:var(--inchiostro);color:var(--carta);border:0;
-  border-radius:99px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
+  border-radius:14px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
 
 /* ---- la casella che cerca fra TUTTI i prezzi ---- */
 /* Sta fuori dalla barra appiccicata, come il cassetto e per la stessa ragione:
@@ -753,7 +766,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    stava su una riga e veniva tagliata ai due lati («erca un prodotto o una
    ma»): adesso va a capo dentro la pastiglia invece di sparire. */
 .tasto.marchi{flex:none;border:1.5px solid var(--rosso);color:var(--rosso);
-  background:var(--carta);border-radius:99px;font-weight:700;font-size:12.5px;
+  background:var(--carta);border-radius:10px;font-weight:700;font-size:12.5px;
   letter-spacing:.02em;min-height:42px;padding:6px 10px}
 .tasto.marchi[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
 /* I DUE TASTI SONO GRANDI UGUALI (Manlio, 2026-09-23: «i tasti Grandi Marche
@@ -780,15 +793,15 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .personale[hidden],.negozi-pers-box[hidden]{display:none}
 .personale{margin-top:14px}
 .form-pers{display:flex;gap:8px}
-.form-pers input{flex:1;min-width:0;border:1.5px solid var(--rosso);border-radius:99px;
+.form-pers input{flex:1;min-width:0;border:1.5px solid var(--rosso);border-radius:10px;
   padding:11px 18px;font-size:16px;background:var(--carta);color:var(--inchiostro);
   font-family:var(--f-testo)}
 .form-pers input:focus{outline:none}
 .form-pers button{flex:none;background:var(--rosso);color:var(--su-rosso);border:0;
-  border-radius:99px;padding:0 18px;font-size:15px;font-weight:700;cursor:pointer;min-height:46px}
+  border-radius:10px;padding:0 18px;font-size:15px;font-weight:700;cursor:pointer;min-height:46px}
 .pillole-pers{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .pillola-pers{display:inline-flex;align-items:stretch;border:1.5px solid var(--linea-forte);
-  border-radius:99px;background:var(--carta);overflow:hidden}
+  border-radius:10px;background:var(--carta);overflow:hidden}
 .pillola-pers .nome-pers{background:none;border:0;padding:6px 4px 6px 13px;font-size:14px;
   font-weight:600;cursor:pointer;min-height:34px;font-family:inherit;color:var(--inchiostro)}
 .pillola-pers .via-pers{background:none;border:0;padding:0 11px 0 7px;font-size:17px;
@@ -796,7 +809,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .pillola-pers.aperta{border-color:var(--rosso);background:var(--rosso)}
 .pillola-pers.aperta .nome-pers,.pillola-pers.aperta .via-pers{color:var(--su-rosso)}
 .tasto-negozi-pers{margin-top:12px;background:var(--carta);border:1.5px solid var(--linea-forte);
-  border-radius:99px;padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer;
+  border-radius:10px;padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer;
   min-height:38px;font-family:inherit;color:var(--inchiostro)}
 .tasto-negozi-pers[aria-expanded="true"]{border-color:var(--rosso);color:var(--rosso)}
 .negozi-pers-box{margin-top:10px;background:var(--pannello);border-radius:18px;padding:12px}
@@ -825,7 +838,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 /* La pagina della ricerca è solo una pillola dove scrivere: niente riquadro
    intorno. */
 #ricerca{background:none;border:0;padding:0}
-.ricerca .q{border-radius:99px;padding:11px 18px}
+.ricerca .q{border-radius:10px;padding:11px 18px}
 .marche[hidden],.barra[hidden]{display:none}
 /* «hidden» da solo NON basta su un elemento a cui il CSS da display:flex: il
    2026-09-22 i quattro tasti in cima e la riga «I tuoi prodotti» erano stati
@@ -848,7 +861,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   font-size:13px;font-weight:600;color:var(--tenue);margin:16px 0 6px}
 .negozi{display:flex;flex-wrap:wrap;gap:8px}
 .negozi button{display:inline-flex;align-items:center;gap:6px;background:#FFFFFF;
-  border:2px solid var(--verde);border-radius:99px;padding:3px 10px 3px 4px;cursor:pointer;
+  border:2px solid var(--verde);border-radius:10px;padding:3px 10px 3px 4px;cursor:pointer;
   min-height:42px;font-family:inherit}
 .negozi button::after{content:'\2713';color:var(--verde);font-weight:700;font-size:15px}
 .negozi button .marchio{border:0;min-height:0;padding:2px 4px}
@@ -869,7 +882,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .pallino.novita::after{content:none}
 .marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
 .marche button{background:var(--carta);border:1.5px solid var(--linea-forte);
-  border-radius:99px;padding:5px 11px;font-size:13.5px;font-weight:600;
+  border-radius:10px;padding:5px 11px;font-size:13.5px;font-weight:600;
   min-height:32px;cursor:pointer;font-family:inherit;color:var(--inchiostro)}
 .marche button:disabled{opacity:.4;border-style:dashed;cursor:default;
   font-weight:500}
@@ -902,13 +915,13 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 @supports (height:100dvh){
   .marche{--alta:clamp(34px, calc((100dvh - var(--sopra-sotto)) / var(--righe, 12) - 5px), 54px)}
 }
-.marche button,.marche button.col-logo{height:auto;min-height:0;border-radius:12px;padding:3px 6px;
+.marche button,.marche button.col-logo{height:auto;min-height:0;border-radius:10px;padding:3px 6px;
   display:flex;align-items:center;justify-content:center;text-align:center;
   font-size:13px;line-height:1.1;white-space:normal;min-width:0}
 .marche button.col-logo img{height:auto;width:auto;max-width:100%;max-height:calc(var(--alta) - 12px)}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
   border-radius:20px;padding:14px}
-.ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:16px;
+.ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:10px;
   padding:13px 13px;font-size:16px;background:var(--carta);color:var(--inchiostro);
   font-family:var(--f-testo)}
 .ricerca .q:focus{outline:none}
@@ -1144,7 +1157,7 @@ a.dove.apri::after{content:none}
 
 /* ---- «Mostra le altre» e le righe «non ci sono offerte» ---- */
 .altre{width:100%;margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
-  border-radius:99px;padding:12px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:46px}
+  border-radius:10px;padding:12px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:46px}
 .vuoto{color:var(--tenue);font-size:14.5px;margin:14px 0 0;background:var(--pannello);
   border-radius:20px;padding:16px}
 
@@ -1198,7 +1211,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 .vol-sopra .avviso-vol a{color:#FFFFFF;font-weight:700}
 .vol-sopra .chiudi-vol{position:absolute;left:14px;right:14px;
   bottom:calc(14px + env(safe-area-inset-bottom,0px));min-height:58px;border:0;
-  border-radius:99px;background:var(--rosso);color:var(--su-rosso);font-family:inherit;
+  border-radius:14px;background:var(--rosso);color:var(--su-rosso);font-family:inherit;
   font-size:19px;font-weight:700;letter-spacing:.02em;cursor:pointer;
   box-shadow:0 6px 24px rgba(0,0,0,.45)}
 /* LA RIGA IN CIMA A OGNI PRODOTTO (punto 3): verde per «oggi», come la
@@ -1255,7 +1268,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   padding:7px max(12px,calc((100% - 770px) / 2)) calc(7px + env(safe-area-inset-bottom,0px))}
 #riga-cerca .tasto,#riga-cerca .tasto.trova,#riga-cerca .tasto.marchi,#riga-cerca .tasto.sez{
   justify-content:center;border:1.5px solid var(--linea-forte);background:var(--carta);
-  color:var(--inchiostro);border-radius:99px;min-height:50px;padding:5px 4px;gap:2px}
+  color:var(--inchiostro);border-radius:14px;min-height:50px;padding:5px 4px;gap:2px}
 #riga-cerca .tasto::before{width:19px;height:19px}
 #riga-cerca .tasto[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
   color:var(--su-rosso)}

@@ -3410,4 +3410,7 @@ Material 3». Fatta solo in schermata (CSS iniettato, non nel codice): 10 px
 agli angoli dei tasti piccoli (prodotti, catalogo, parole del Personale,
 casella di ricerca), 14 px al menù e ai tasti grandi. I bollini dentro le
 schede restano tondi: non si toccano, e in Material 3 sono le etichette a
-essere tonde, i comandi a rettangolo arrotondato. In attesa della risposta.
+essere tonde, i comandi a rettangolo arrotondato. Risposta: «tutto assieme,
+hai fatto dei cambiamenti perfetti». Messi nel codice (cambiati i valori delle
+regole, niente `!important`), pubblicati insieme alla banda: `sw.js` v99,
+novità `2026-09-23-zzzzzzzz-tasti`.
