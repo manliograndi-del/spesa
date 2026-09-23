@@ -690,10 +690,15 @@ nuova. Lo stato, in breve:
   bollini, poi «Dettagli» tolto e le cose importanti in pillole beige),
   3 (riga in cima solo se il meno caro di oggi non è fra le prime tre
   schede), 4 (N non rossa, calendarietto, «Elimina» dentro la «i»),
-  5 (menù in basso). **Restano 6 («Dove conviene questa settimana»: per
-  ogni supermercato quanti prodotti della lista sono in offerta e quanto si
-  risparmia) e 7 (grandi marche: elenco o loghi tutti uguali)** — «li
-  vediamo dopo», ha detto lui: vanno proposti, non fatti.
+  5 (menù in basso). **Il 6 («Dove conviene questa settimana») NON SI FA**:
+  proposto il 2026-09-23 sera (contare in quanti dei suoi prodotti ogni
+  negozio è il meno caro, oggi e da domani, senza totale in euro perché non
+  sappiamo quanto compra né il prezzo fuori offerta), e Manlio: «no, io non
+  aggiungerei niente». Non riproporlo. **Resta il 7 (grandi marche: elenco
+  o loghi tutti uguali)**, da proporre, non da fare. Prima del 7 Manlio ha
+  chiesto di parlare di due cose delle schede: il nome del prodotto meno
+  nero (tutto è in grassetto, quindi niente risalta) e i prezzi a destra
+  allineati in alto o a metà della scheda, non alla prima riga del nome.
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».
