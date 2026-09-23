@@ -191,6 +191,69 @@ def brevi(pro, note):
         out.append('Quantità limitata')
     return out
 
+# I TITOLI DELLE OFFERTE: LA MARCA PER PRIMA (Manlio, 2026-09-23 sera: «alle
+# volte ci sono dei trattini tra una parte e l'altra, alle volte delle
+# virgole, molte volte una marca… le marche sono una cosa importante, magari
+# quando ci sono le potresti mettere per prime e evidenziarle»; scelta A fra
+# due schermate: la marca su una riga sua, sopra il nome).
+# Nei dati la marca sta SEMPRE dopo « – » («Tonno all'olio d'oliva –
+# Poseidon»): 565 righe erano già così, 449 nomi sono stati riscritti a mano
+# spostando la marca (le parole sono le stesse, storia.py lo sa). Chi legge un
+# volantino nuovo scrive la marca così. Qui il nome si divide in tre:
+#   - la MARCA, che la scheda scrive sopra, in maiuscolo piccolo;
+#   - il NOME, con quello che dice davvero cos'è («frizzante o naturale»);
+#   - le AGGIUNTE (quanti pezzi, gusti vari, al banco…), in grigio dopo il
+#     nome. Quelle che la scheda dice già — «al banco» col suo bollino, «3+1»
+#     col suo, il peso uguale a quello accanto al prezzo — non si scrivono.
+# Nella pagina va solo quello che cambia: «nome» se è diverso da «pro»,
+# «marca» e «agg» se ci sono. «pro» resta intero: «Cerca» cerca lì.
+_AGGIUNTA = re.compile(
+    r'^(?:\d|\(per esempio|vari\b|varie\b|assortit|gusti\b|tipi\b|formati\b|diversi tipi|'
+    r'profumazion|conf\.|confezione|formato|pezzi|pz\b|capsule|caps\b|tabs\b|rotoli|veli\b|'
+    r'strappi|lavaggi|al banco|surgelat|lattin|bottiglia|fardello|bipac|bi-pack|brik|'
+    r'biologic|circa|vaschetta|trancio da|pezzi da|rete\b|sacco|cassetta|calibro|take away|'
+    r'in sac|squeezer|vaso di vetro|in scatola|decongelat|allevat|stagionat|doppio formato|'
+    r'maxi formato|ecoricarica|monoporzion|affettat|con bicchiere)', re.I)
+
+def _pezzi(s):
+    # Divide alle virgole seguite da spazio, ma non dentro parentesi o «»:
+    # «vari tipi (per esempio maasdam, 8 fette)» è un pezzo solo. La virgola
+    # dei decimali («1,5 litri») non ha lo spazio dopo, e non divide.
+    out, prof, da = [], 0, 0
+    for i, ch in enumerate(s):
+        if ch in '(«':
+            prof += 1
+        elif ch in ')»':
+            prof = max(0, prof - 1)
+        elif ch == ',' and prof == 0 and s[i + 1:i + 2] == ' ':
+            out.append(s[da:i]); da = i + 2
+    out.append(s[da:])
+    return [p.strip() for p in out if p.strip()]
+
+def _uguale(a, b):
+    return re.sub(r'[\s×x]+', '', (a or '').lower()) == re.sub(r'[\s×x]+', '', (b or '').lower())
+
+def titolo(pro, fmt, bolli):
+    marca, destra = '', []
+    sinistra = pro
+    if ' – ' in pro:
+        sinistra, dopo = pro.split(' – ', 1)
+        p = _pezzi(dopo)
+        marca, destra = (p[0], p[1:]) if p else ('', [])
+    p = _pezzi(sinistra) or [sinistra]
+    nome, resto, agg = p[0], [], []
+    per_formato = _pezzi((fmt or '').replace(' (', ', ('))[:1]
+    for a in p[1:] + destra:
+        if re.fullmatch(r'al banco', a, re.I) and 'Al banco' in bolli:
+            continue
+        if _uguale(a, fmt) or (per_formato and _uguale(a, per_formato[0])):
+            continue
+        (agg if _AGGIUNTA.match(a) else resto).append(a)
+    for b in bolli:
+        if re.fullmatch(r'\d\+\d', b):
+            nome = re.sub(r'\s+' + re.escape(b) + r'\b', '', nome)
+    return marca, ', '.join([nome] + resto), agg
+
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
 # «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
@@ -204,6 +267,14 @@ offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.
                 fino=o.fino or FINO[o.chiave],
                 ristretta=bool(o.inizio or o.fino))
            for o in OFFERTE]
+for _o in offerte:
+    _marca, _nome, _agg = titolo(_o['pro'], _o['fmt'], _o['bolli'])
+    if _marca:
+        _o['marca'] = _marca
+    if _nome != _o['pro']:
+        _o['nome'] = _nome
+    if _agg:
+        _o['agg'] = _agg
 
 # indice.json sta nel progetto, non nella cartella di lavoro: le immagini dei
 # volantini non si tengono (non sono nostre) e prima l'elenco delle pagine
@@ -424,6 +495,15 @@ NOVITA_PAGINA = [
                'A sinistra restano il nome e i bollini. Tolti il foglietto rosso del '
                'volantino (basta toccare la scheda), il simbolo dell\'euro e la '
                'scritta «prezzo al kg» accanto al nome del prodotto.'),
+    dict(id='2026-09-23-zzzzz-marca', quando='23 settembre',
+         titolo='La marca in cima, e in fondo niente elenco',
+         testo='In ogni offerta la marca adesso sta sopra il nome, in maiuscolo: '
+               'non più dopo un trattino o in mezzo alle altre parole. Dopo il nome, '
+               'in grigio, quanti pezzi, i gusti o il formato. Il nome è meno nero '
+               'e il prezzo sta a metà della scheda. In «Grandi marche» i marchi sono '
+               'riquadri tutti uguali e stanno in una schermata. In fondo alla pagina '
+               'non c\'è più l\'elenco dei volantini: quali negozi si leggono lo dice '
+               'l\'Aiuto, dentro l\'ingranaggio, e le date dei volantini il tasto «N».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -933,6 +1013,12 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    tutto in grassetto, niente risalta. Un gradino sotto, non sottile: è il
    titolo dell'offerta e si deve leggere bene. */
 .prezzo-riga .nome{margin:5px 0 0;font-size:16px;font-weight:500;line-height:1.25}
+/* La marca sopra il nome, in maiuscolo piccolo e scuro; le aggiunte dopo il
+   nome, in grigio (vedi titolo() in pagina.py). */
+.prezzo-riga .nome .marca{display:block;font-size:12.5px;font-weight:700;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--inchiostro);margin-bottom:1px;line-height:1.3}
+.prezzo-riga .nome .agg{color:var(--tenue);font-size:14px}
+.prezzo-riga .nome .agg.corta{white-space:nowrap}
 .prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
 .prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
@@ -2702,7 +2788,24 @@ function rigaPrezzo(o, meno) {
     '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
 
-  d.querySelector('.nome').textContent = o.pro;
+  /* IL TITOLO: la marca sopra, poi il nome, poi le aggiunte in grigio
+     (vedi titolo() in pagina.py). Le aggiunte corte non vanno mai a capo a
+     metà: «20 / pezzi» su due righe era una delle cose che non tornavano. */
+  const nome = d.querySelector('.nome');
+  if (o.marca) {
+    const m = document.createElement('span');
+    m.className = 'marca';
+    m.textContent = o.marca;
+    nome.appendChild(m);
+    nome.appendChild(document.createTextNode(' '));
+  }
+  nome.appendChild(document.createTextNode(o.nome || o.pro));
+  (o.agg || []).forEach(a => {
+    const s = document.createElement('span');
+    s.className = 'agg' + (a.length <= 24 ? ' corta' : '');
+    s.textContent = ' · ' + a;
+    nome.appendChild(s);
+  });
 
   /* QUANDO I DUE PREZZI SONO LO STESSO NUMERO, SI SCRIVE UNA VOLTA SOLA.
      Chiesto da Manlio il 2026-09-22: «ci sono dei prodotti col prezzo al kg

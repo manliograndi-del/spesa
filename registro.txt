@@ -152,3 +152,4 @@
 2026-09-23 19:07 UTC  pubblicato: sito (verificato, sw.js v91) e artifact (versione 82): grandi marche a riquadri.
 2026-09-23 19:24 UTC  tolto il riquadro in fondo coi volantini (Come leggerla, Quando arrivano, I volantini). sw.js v92.
 2026-09-23 19:25 UTC  pubblicato: sito (verificato, sw.js v92) e artifact (versione 83): via il riquadro in fondo.
+2026-09-23 19:50 UTC  titoli delle offerte con la marca per prima: 449 nomi riscritti con la marca dopo il trattino, storia.py confronta per parole. sw.js v93.

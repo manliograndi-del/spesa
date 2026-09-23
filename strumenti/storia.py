@@ -22,7 +22,7 @@ sparite e altrettante nuove — erano le stesse, spostate di scaffale. Un
 cambio di reparto si racconta a parte, e il prezzo invece deve poter cambiare:
 quella è proprio la cosa che vogliamo vedere.
 """
-import datetime, json, os, subprocess, sys, tempfile
+import datetime, json, os, re, subprocess, sys, tempfile
 from dati import OFFERTE, VOLANTINI, UNITA
 from catalogo import RINOMINATE
 
@@ -30,12 +30,27 @@ QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOVE = os.path.join(QUI, 'storia')
 FOTO = os.path.join(DOVE, 'stato.json')
 
+def stessa(pro):
+    """Il nome di un'offerta ridotto alle sue parole, in ordine alfabetico.
+
+    Il 2026-09-23 sera, per mettere la marca per prima nelle schede, 449 nomi
+    sono stati riscritti spostando la marca dopo il trattino: «Salmone
+    affumicato norvegese Pam» è diventato «Salmone affumicato norvegese –
+    Pam». È la stessa offerta. Confrontando i nomi lettera per lettera il
+    diario del giorno dopo avrebbe annunciato 454 offerte sparite e 454 nuove,
+    tutte finte: una novità falsa è peggio di nessuna. Le parole invece sono
+    le stesse, e si confrontano quelle."""
+    return ' '.join(sorted(re.findall(r'\w+', (pro or '').lower())))
+
+def chiave(o):
+    return '\t'.join((o['ins'], stessa(o['pro']), o['fmt']))
+
 def fotografia():
     offerte = {}
     vol = {v.chiave: v for v in VOLANTINI}
     for o in OFFERTE:
         v = vol[o.chiave]
-        offerte['\t'.join((o.ins, o.pro, o.fmt))] = dict(
+        offerte['\t'.join((o.ins, stessa(o.pro), o.fmt))] = dict(
             cat=o.cat, ins=o.ins, pro=o.pro, fmt=o.fmt, prezzo=o.prezzo,
             unitario=round(o.prezzo / o.qta, 3), chiave=o.chiave,
             inizio=o.inizio or v.inizio, fino=o.fino or v.fino)
@@ -152,6 +167,11 @@ def differenza(prima, adesso):
     # Si traduce la fotografia VECCHIA coi nomi di adesso e si confronta.
     op = {k: (dict(o, cat=RINOMINATE[o['cat']]) if o.get('cat') in RINOMINATE else o)
           for k, o in op.items()}
+    # Le chiavi si rifanno qui dai valori, con le parole in ordine (stessa()):
+    # una fotografia salvata prima del 2026-09-23 sera le ha ancora col nome
+    # scritto lettera per lettera.
+    op = {chiave(o): o for o in op.values()}
+    oa = {chiave(o): o for o in oa.values()}
     mp = meno_caro(op, prima.get('giorno', adesso['giorno']))
     ma = meno_caro(oa, adesso['giorno'])
 
@@ -164,7 +184,7 @@ def differenza(prima, adesso):
     capovolti = []
     for cat, nuovo in ma.items():
         vecchio = mp.get(cat)
-        if vecchio and (vecchio['ins'], vecchio['pro']) != (nuovo['ins'], nuovo['pro']):
+        if vecchio and (vecchio['ins'], stessa(vecchio['pro'])) != (nuovo['ins'], stessa(nuovo['pro'])):
             capovolti.append(dict(cat=cat, ins=nuovo['ins'], pro=nuovo['pro'],
                                   unitario=nuovo['unitario'],
                                   ins_prima=vecchio['ins'], pro_prima=vecchio['pro'],

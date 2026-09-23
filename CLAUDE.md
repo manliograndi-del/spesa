@@ -90,6 +90,11 @@ Serve `npm install` dentro il progetto.
 
 ## Come si leggono i volantini — la parte che ho sbagliato tre volte
 
+**La marca si scrive dopo « – »**: «Tonno all'olio d'oliva – Rio Mare, vaso
+di vetro». È da lì che la pagina la prende per metterla in cima alla scheda
+(vedi «I titoli delle offerte» più sotto). Senza trattino, per la pagina la
+marca non c'è.
+
 **Si leggono per intero, pagina per pagina.** NON si interroga l'indice delle
 parole per aprire solo le pagine che rispondono: così si trova soltanto quello
 che si è già pensato di cercare. Le pizze, Mercatò e il pesce sono lo stesso
@@ -145,6 +150,29 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   vicino a «Cambia nome», con la stessa conferma «Elimino …?» (2026-09-23,
   punto 4: stava accanto al nome, grande quanto il titolo). Accanto al nome
   resta solo la «i»: lo controlla `prova-intestazione.js`.
+- **I TITOLI DELLE OFFERTE HANNO LA MARCA PER PRIMA** (2026-09-23 sera,
+  Manlio: «le marche sono una cosa importante, magari quando ci sono le
+  potresti mettere per prime ed evidenziarle»; scelta A fra due schermate).
+  La marca sta su una riga sua SOPRA il nome, in maiuscolo piccolo e scuro;
+  dopo il nome, in grigio, le aggiunte (quanti pezzi, gusti vari, bottiglia…),
+  che se corte non vanno mai a capo a metà. Non si scrivono le aggiunte che
+  la scheda dice già: «al banco» col suo bollino, «3+1» col suo, il peso
+  uguale a quello accanto al prezzo. Lo fa `titolo()` in `pagina.py`, e nella
+  pagina vanno solo `marca`, `nome` (se diverso da `pro`) e `agg`: `pro`
+  resta intero, perché «Cerca» e le grandi marche cercano lì.
+  **Nei dati la marca sta SEMPRE dopo « – »**: «Nome – Marca, aggiunte».
+  565 righe erano già così; il 2026-09-23 sera 449 nomi (454 righe) sono
+  stati riletti a mano uno per uno e riscritti spostando la marca, con le
+  stesse identiche parole. Dove la marca non c'è (carne, frutta, molti
+  discount) o non ero sicuro che lo fosse (Mon Amour, Fiocco, Doré, i vini
+  con nomi di cantina incerti, le cose «Bluey» che sono un personaggio e
+  non una marca) il nome è rimasto com'era. Quando la marca È il prodotto
+  (Coca-Cola, Philadelphia) il nome diventa la variante («Zero»,
+  «Light»); se resta vuoto («Coca-Cola» da sola) non si divide.
+  **`storia.py` confronta i nomi per parole in ordine alfabetico**
+  (`stessa()`): se no uno spostamento di marca diventa una sparita più una
+  nuova, cioè una novità falsa. La prova è `prova-titoli.js`: niente parole
+  inventate, niente parole perse, niente trattini in vista.
 - **L'elenco è in ordine di prezzo e basta.** Niente eccezioni in fondo. Il
   bollino verde «il meno caro» va al meno caro **che vale oggi**, che può non
   essere la prima riga.
@@ -713,7 +741,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v92** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v93** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
@@ -730,18 +758,12 @@ nuova. Lo stato, in breve:
   in una schermata. Prima del 7 (`sw.js` v90): nome del prodotto meno nero
   e prezzi a metà della scheda. **L'analisi esterna è chiusa.** Dopo
   (`sw.js` v92): tolto tutto il riquadro in fondo coi volantini.
-- **IN ATTESA DI RISPOSTA (2026-09-23 sera): i titoli delle offerte.**
-  Manlio: trattini, virgole e marche messi in modi diversi, «le marche sono
-  una cosa importante, magari mettile per prime ed evidenziale, o dimmi cosa
-  potresti fare». Proposto con quattro schermate: A) marca su una riga sua
-  SOPRA il nome, maiuscolo piccolo scuro (consigliata); B) marca DAVANTI al
-  nome in grassetto. In tutte e due: via i trattini, le aggiunte dopo la
-  virgola in grigio dopo il nome e mai spezzate, via quelle che la scheda
-  dice già (al banco, 3+1, il peso). Serve la marca come campo a parte nei
-  dati: 565 righe la hanno dopo « – », ~290 si riconoscono da sole, le altre
-  ~700 vanno rilette a mano (molte non hanno marca: carne, frutta, discount).
-  Anche chiesto, senza risposta: togliere l'elenco delle pagine («ci ho
+- **Fatto (`sw.js` v93): i titoli con la marca per prima** (scelta A di
+  Manlio), vedi la regola «I titoli delle offerte». Novità
+  `2026-09-23-zzzzz-marca`, che racconta anche le altre cose della sera.
+  **Chiesto senza risposta**: togliere anche l'elenco delle pagine («ci ho
   trovato: uovo — pag. 15», «Mostra le altre 11 pagine») sotto le offerte.
+  Non richiederlo subito: aspettare che ne riparli lui o che capiti.
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».

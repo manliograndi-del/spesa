@@ -3264,3 +3264,39 @@ volantino). Aggiornate anche `prova-marche.js`, `prova-negozi.js` e
 Resta, sotto le offerte di ogni prodotto, l'elenco delle pagine dei volantini
 dove compare la parola («ci ho trovato: uovo — pag. 15», «Mostra le altre 11
 pagine»): chiesto a Manlio se togliere anche quello.
+
+## I titoli delle offerte: la marca per prima — 2026-09-23 sera
+
+Manlio: «i testi dei prodotti alle volte hanno delle barrette, alle volte
+delle virgole, molte volte una marca… le marche sono una cosa importante,
+magari quando ci sono le potresti mettere per prime e magari evidenziarle, o
+comunque dimmi cosa potresti fare». Mandate quattro schermate (oggi; A marca
+sopra il nome; B marca davanti in grassetto; A sul Tonno). Ha scelto A.
+
+Com'erano i nomi: 565 su 1555 con la marca dopo « – » (tutti scritti così
+dalle sessioni che leggevano i volantini), 990 senza trattino, con la marca in
+fondo («Tonno pinne gialle all'olio di oliva Pam»), in mezzo («Latte UHT
+parzialmente scremato Bontà e Linea Parmalat»), o senza marca. 430 con
+aggiunte dopo una virgola, alcune già dette dalla scheda («, al banco»).
+
+Cosa si è fatto:
+- **i dati**: la regola «Nome – Marca, aggiunte» vale per tutti. I 970 nomi
+  senza trattino li ho riletti uno per uno: 449 avevano una marca e sono stati
+  riscritti spostandola dopo il trattino (454 righe; controllato a programma
+  che le parole restassero le stesse, e riscritti per posizione esatta con
+  `ast`, non con un cerca-e-sostituisci). Lasciati com'erano i dubbi.
+- **la pagina**: `titolo()` in `pagina.py` divide in marca, nome, aggiunte.
+  Le virgole dentro parentesi o «» non dividono («vari tipi (per esempio
+  maasdam, 8 fette)»). Un'aggiunta va in grigio solo se è chiaramente una
+  quantità o una variante (regola `_AGGIUNTA`); se no resta nel nome con la
+  sua virgola («Acqua, frizzante o naturale»): meglio un pezzo nero in più che
+  una parola importante in grigio.
+- **il diario**: `storia.py` adesso confronta i nomi per parole in ordine
+  alfabetico. Provato sul commit di prima: zero offerte nuove, zero sparite,
+  zero «meno caro cambiato». Senza, il giorno dopo avrebbe annunciato 454
+  offerte sparite e 454 nuove.
+- la prova `prova-titoli.js` e una novità nella finestra «Cosa c'è di
+  nuovo» (`2026-09-23-zzzzz-marca`) che racconta tutte le cose della sera.
+
+1019 offerte su 1555 hanno la marca in cima; sulle schede dei suoi 13
+prodotti, 215 su 338.
