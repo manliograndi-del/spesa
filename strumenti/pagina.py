@@ -839,7 +839,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    intorno. */
 #ricerca{background:none;border:0;padding:0}
 .ricerca .q{border-radius:10px;padding:11px 18px}
-.marche[hidden],.barra[hidden]{display:none}
+.marche[hidden]{display:none}
 /* «hidden» da solo NON basta su un elemento a cui il CSS da display:flex: il
    2026-09-22 i quattro tasti in cima e la riga «I tuoi prodotti» erano stati
    nascosti cosi, le prove (che guardano l'attributo) dicevano di si, e sul
@@ -1293,6 +1293,19 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 .barra .tasto.lunga{grid-column:span 2;order:1}
 .barra .tasto.agg{order:2}
 .barra .stato:empty{display:none}
+/* LA GRIGLIA SALE E SCENDE (Manlio, 2026-09-23 sera: «un'animazioncina che
+   fa uscire i nomi dei prodotti quando si schiaccia su Prodotti e la fa
+   andare giù quando si schiaccia sulle altre voci di menù»). Scende dietro il
+   menù, che le sta sopra (z-index 30 contro 29), in un quarto di secondo.
+   È una CLASSE, «giu», e non l'attributo «hidden»: il link Claude aggiunge da
+   sé una regola che con «hidden» spegne tutto di colpo (display:none con
+   !important), e da display:none non si anima niente. «visibility» cambia a
+   fine corsa: mentre scende si vede, dopo non si tocca e chi usa il lettore
+   di schermo non la sente. Chi ha chiesto al telefono meno movimento non la
+   vede muoversi: c'è la regola prefers-reduced-motion qui sotto. */
+.barra{transition:transform .25s ease-out,visibility 0s linear 0s}
+.barra.giu{transform:translateY(100%);visibility:hidden;pointer-events:none;
+  transition:transform .25s ease-in,visibility 0s linear .25s}
 .guscio{padding-bottom:calc(var(--barra-alta,0px) + 100px)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -2068,7 +2081,7 @@ function sistemaBarra() {
     t.classList.remove('lunga');
     if (t.scrollWidth > t.clientWidth) t.classList.add('lunga');
   });
-  radice.setProperty('--barra-alta', (barra.hidden ? 0 : barra.getBoundingClientRect().height || 0) + 'px');
+  radice.setProperty('--barra-alta', (barra.classList.contains('giu') ? 0 : barra.getBoundingClientRect().height || 0) + 'px');
 }
 window.addEventListener('resize', () => { try { sistemaBarra(); } catch (e) {} });
 /* I nomi si misurano col carattere vero: finché non è arrivato, la misura
@@ -2382,7 +2395,7 @@ function disegnaMarche() {
   /* Col pannello aperto (ricerca, grandi marche o un volantino) non si
      vedono le categorie (Manlio, 2026-09-23: prima solo con le grandi
      marche). */
-  document.querySelector('.barra').hidden = ricercaAperta || personaleAperto;
+  document.querySelector('.barra').classList.toggle('giu', ricercaAperta || personaleAperto);
   sistemaBarra();   // le pillole ricompaiono: vanno rimesse ferme se sono poche
   box.textContent = '';
   if (!vistaMarche) return;

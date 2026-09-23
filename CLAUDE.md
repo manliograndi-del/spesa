@@ -820,6 +820,14 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
+- **Sul ramo di lavoro, IN PROVA E NON PUBBLICATA** (2026-09-23 sera):
+  l'animazione della griglia dei prodotti, che sale da dietro il menù
+  toccando «Prodotti» e ci scende toccando le altre voci (un quarto di
+  secondo; classe `.giu` al posto di `hidden`, perché il link Claude con
+  `hidden` spegne tutto di colpo). Manlio ha visto un video. **Se dice sì**:
+  novità nella pagina, `sw.js` v100, pubblicare. **Se dice no**: togliere il
+  commit «Prova: la griglia dei prodotti sale e scende» prima di portare
+  `main` avanti. `index.html` e `sw.js` non sono stati toccati.
 - **Pubblicato e verificato**: sito e link Claude a `sw.js` **v99** (banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):

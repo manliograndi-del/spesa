@@ -45,7 +45,7 @@ setTimeout(() => {
   if (sez.hidden) male.push('«Personale» non apre la sezione');
   if (d.getElementById('vai-personale').getAttribute('aria-pressed') !== 'true') male.push('«Personale» non diventa rosso');
   if (d.getElementById('vai-prodotti').getAttribute('aria-pressed') !== 'false') male.push('nel Personale «Prodotti» resta rosso');
-  if (!d.querySelector('.barra').hidden) male.push('nel Personale si vedono le categorie');
+  if (!d.querySelector('.barra').classList.contains('giu')) male.push('nel Personale si vedono le categorie');
   if (d.querySelector('.barra').contains(sez)) male.push('la sezione sta dentro la barra');
 
   const scrivi = parola => {

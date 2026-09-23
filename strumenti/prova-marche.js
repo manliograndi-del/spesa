@@ -51,14 +51,14 @@ setTimeout(() => {
   if (rosso2().textContent !== 'Cerca') male.push('il tasto dice «' + rosso2().textContent + '», non «Cerca»');
   if (rosso2().getAttribute('aria-pressed') !== 'true') male.push('nella ricerca «Cerca» non è rosso');
   if (gm2().getAttribute('aria-pressed') !== 'false') male.push('nella ricerca GRANDI MARCHE non è bianco');
-  if (!d.querySelector('.barra').hidden) male.push('nella ricerca si vedono ancora le categorie');
+  if (!d.querySelector('.barra').classList.contains('giu')) male.push('nella ricerca si vedono ancora le categorie');
   /* L'elenco dei volantini in fondo non c'è più da nessuna parte (Manlio,
      2026-09-23 sera: «lo toglierei dappertutto»). */
   if (d.querySelector('.spiega, #vol')) male.push('in fondo c\'è ancora l\'elenco dei volantini');
   // il titolo riporta all'inizio
   d.getElementById('vai-inizio').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
   if (!d.getElementById('ricerca').hidden) male.push('toccando il titolo la ricerca resta aperta');
-  if (d.querySelector('.barra').hidden) male.push('dopo il titolo le categorie non tornano');
+  if (d.querySelector('.barra').classList.contains('giu')) male.push('dopo il titolo le categorie non tornano');
   if (rosso2().getAttribute('aria-pressed') !== 'false' || gm2().getAttribute('aria-pressed') !== 'false')
     male.push('all\'inizio i due tasti non sono bianchi tutti e due');
   // i tre tasti sono sezioni: ritoccare quello acceso non chiude, «Prodotti» riporta all'inizio

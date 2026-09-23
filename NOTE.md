@@ -3414,3 +3414,23 @@ essere tonde, i comandi a rettangolo arrotondato. Risposta: «tutto assieme,
 hai fatto dei cambiamenti perfetti». Messi nel codice (cambiati i valori delle
 regole, niente `!important`), pubblicati insieme alla banda: `sw.js` v99,
 novità `2026-09-23-zzzzzzzz-tasti`.
+
+## 2026-09-23 sera — la griglia dei prodotti che sale e scende (in prova)
+
+Manlio: «un'animazioncina che fa uscire i nomi dei prodotti quando si
+schiaccia su Prodotti e la fa andare giù quando si schiaccia sulle altre voci
+di menù sarebbe difficile da fare?». No: la griglia scivola da dietro il menù
+in un quarto di secondo. **Non si poteva farlo con `hidden`**: il link Claude
+mette da sé, in cima alla pagina, `[hidden]{display:none!important}`, e da
+`display:none` non si anima niente. Quindi la griglia ha una classe, `giu`, che
+la sposta sotto (`translateY(100%)`, il menù le sta sopra) e a fine corsa la
+rende invisibile (`visibility`, così non si tocca e il lettore di schermo non
+la legge). Le prove guardano la classe. Chi ha chiesto al telefono meno
+movimento non la vede muoversi (regola `prefers-reduced-motion`, già c'era).
+
+Il video per lui: una registrazione normale di Playwright esce a 1× e con
+una cornice grigia (i fotogrammi sono in pixel CSS). Per averlo nitido le
+animazioni si rallentano dieci volte (`Animation.setPlaybackRate` via CDP),
+si scattano le foto a 2× una per una, e i tempi si riportano a quelli veri
+nella lista di `ffmpeg` (quello completo arriva da `pip install
+imageio-ffmpeg`: quello di Playwright sa fare solo VP8).
