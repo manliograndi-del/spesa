@@ -27,8 +27,8 @@ setTimeout(() => {
   const rosso = riga.querySelector('.trova'), gm = riga.querySelector('.marchi');
   if (!rosso || !gm) { console.error('MANCA uno dei due tasti'); process.exit(1); }
   if (tasti.indexOf(gm) < tasti.indexOf(rosso)) male.push('GRANDI MARCHE non sta a destra');
-  if (!/\.riga-cerca \.tasto\.trova,\.riga-cerca \.tasto\.marchi\{flex:1 1 0/.test(html))
-    male.push('manca la regola che fa i due tasti larghi uguali');
+  if (!/\.riga-cerca \.tasto\.trova,\.riga-cerca \.tasto\.marchi,\.riga-cerca \.tasto\.sez\{flex:1 1 0/.test(html))
+    male.push('manca la regola che fa i tre tasti larghi uguali');
 
   const q = d.getElementById('q'), marche = d.getElementById('marche');
   gm.click();
@@ -56,10 +56,24 @@ setTimeout(() => {
   if (d.querySelector('.barra').hidden || d.querySelector('.spiega').hidden) male.push('dopo il titolo le categorie o il fondo non tornano');
   if (rosso2().getAttribute('aria-pressed') !== 'false' || gm2().getAttribute('aria-pressed') !== 'false')
     male.push('all\'inizio i due tasti non sono bianchi tutti e due');
-  gm2().click(); gm2().click();
-  if (!d.getElementById('ricerca').hidden) male.push('GRANDI MARCHE non si chiude');
+  // i tre tasti sono sezioni: ritoccare quello acceso non chiude, «Prodotti» riporta all'inizio
+  const pro = () => d.getElementById('vai-prodotti');
+  if (!pro()) male.push('manca il tasto «Prodotti»');
+  else {
+    const ordine = [...d.querySelectorAll('#riga-cerca button')].map(b => b.textContent);
+    if (ordine.join('|') !== 'Prodotti|Cerca|Grandi marche') male.push('i tre tasti sono ' + ordine.join(', '));
+    if (pro().getAttribute('aria-pressed') !== 'true') male.push('all\'inizio «Prodotti» non è acceso');
+    gm2().click(); gm2().click();
+    if (d.getElementById('ricerca').hidden) male.push('ritoccando Grandi marche la sezione si chiude');
+    if (pro().getAttribute('aria-pressed') !== 'false') male.push('nelle marche «Prodotti» resta acceso');
+    pro().click();
+    if (!d.getElementById('ricerca').hidden) male.push('«Prodotti» non riporta alla pagina dei prodotti');
+    if (pro().getAttribute('aria-pressed') !== 'true') male.push('tornati ai prodotti, «Prodotti» non è acceso');
+  }
+  if (!/\.riga-cerca\{position:sticky;top:0/.test(html)) male.push('la striscia dei tre tasti non resta in alto');
+  if (!/\.barra\{position:static\}/.test(html)) male.push('le pillole dei prodotti restano ancora attaccate in alto');
 
   if (male.length) { console.error('MALE:\n  ' + male.join('\n  ')); process.exit(1); }
-  console.log('  i due tasti: grandi uguali, GRANDI MARCHE a destra, marche senza casella, ricerca senza marche');
+  console.log('  i due tasti: grandi uguali, tre sezioni Prodotti/Cerca/Grandi marche, marche senza casella, ricerca senza marche');
   process.exit(0);
 }, 400);

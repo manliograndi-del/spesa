@@ -199,13 +199,32 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
   delle offerte sono più compatte (meno aria, non meno roba): stesso
   contenuto, angoli 16 px, prezzo grande 26 px.
+- **IN ALTO CI SONO TRE TASTI, UNO PER SEZIONE: «Prodotti», «Cerca»,
+  «Grandi marche»** (chiesto il 2026-09-23: «i tasti diventano tre e ognuno
+  porta alla sua sezione, e quando si è nella sua sezione diventa
+  colorato»). Regole decise con lui:
+  - **quello della sezione in cui sei è rosso pieno**, gli altri bianchi col
+    bordo rosso. All'apertura è acceso «Prodotti» (`#vai-prodotti`, la pagina
+    con le pillole). Ritoccare il tasto acceso NON chiude niente: torna in
+    cima alla stessa sezione;
+  - **la striscia dei tre tasti (`.riga-cerca`) resta attaccata in alto**
+    quando si scorre; **il titolo no** (scorre via: «Prodotti» fa già la sua
+    stessa cosa), e **le pillole dei prodotti (`.barra`) NON sono più
+    appiccicate** (`position:static`): per cambiare prodotto dal fondo di un
+    elenco si tocca «Prodotti». Tutte e due le cose le ha scelte lui («sì a
+    tutti e tre»). Lo scorrimento al cambio di prodotto conta l'altezza della
+    striscia (`altaFissa()`), non più quella della barra;
+  - **alti 44 px**, più delle pillole (34): chiesto da lui, «essendo adesso i
+    pulsanti così importanti»; scritta 14 px;
+  - **«Grandi marche» con le minuscole** (sì suo): tutto maiuscolo non ci
+    stava. Sotto i 420 px va a capo dentro il tasto invece di toccare i bordi.
 - **Il tasto si chiama solo «Cerca», con la lente** (chiesto il 2026-09-23;
   prima «Cerca un prodotto o una marca», scelto il 2026-09-22). È alto 34 px
   come le pastiglie dei prodotti, e così GRANDI MARCHE accanto. **All'inizio
   tutti e due sono BIANCHI** (bordo e scritta rossi); diventa rosso pieno
-  quello della pagina aperta. Che cerca fra **tutte** le offerte lette sta
-  scritto nell'Aiuto: `prova-aiuto.js` controlla che l'Aiuto nomini «Cerca» e
-  GRANDI MARCHE.
+  quello della pagina aperta (dal 2026-09-23 vedi sopra: i tasti sono tre,
+  alti 44). Che cerca fra **tutte** le offerte lette sta scritto nell'Aiuto:
+  `prova-aiuto.js` controlla che l'Aiuto nomini i tre tasti.
 - **La pagina della ricerca e quella delle grandi marche sono SOLO
   quello** (2026-09-23): niente categorie, niente riquadro grigio, niente
   tasto «Fatto» (nascosto: le prove lo usano), **nessuna scritta sotto la
@@ -495,6 +514,11 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **I tre tasti delle sezioni** (2026-09-23, chiesto da Manlio):
+  «Prodotti», «Cerca», «Grandi marche», alti 44 px, sempre in alto quando si
+  scorre, rosso quello della sezione in cui si è. Le pillole dei prodotti non
+  restano più attaccate in alto. Novità nella finestra «Cosa c'è di nuovo»
+  (`2026-09-23-tretasti`). `sw.js` a v75.
 - **Cerca e GRANDI MARCHE rifatti** (2026-09-23, chiesto da Manlio): «Cerca»
   con la lente, alti come le pastiglie, bianchi all'inizio; le due pagine
   senza categorie, senza «Fatto», senza scritte e senza l'elenco dei

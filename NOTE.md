@@ -2900,3 +2900,27 @@ in tutto il sito.
   un singolo volantino, dove dice QUALE volantino si sta guardando.
 - Il titolo è un collegamento al sito: nella pagina il clic è intercettato e
   chiude tutto; nella pagina Novità porta davvero alla pagina dei prezzi.
+
+## Tre tasti, tre sezioni — 2026-09-23
+
+Manlio: «i tasti diventano tre e ognuno porta alla sua sezione, e quando si è
+nella sua sezione diventa colorato: Prodotti, che è la pagina principale;
+Cerca, con la casella; Grandi marche. Quando si fa scroll sarebbe importante
+che i tre tasti rimanessero sempre visibili in alto». Prima di farlo gli ho
+proposto tre scelte e ha detto sì a tutte: in alto restano solo i tre tasti
+(non il titolo); le pillole dei prodotti smettono di essere appiccicate;
+«Grandi marche» con le minuscole. Poi ha chiesto i tasti più alti: 44 px.
+
+- Perché non tenere attaccati sia i tasti sia le pillole: sul telefono le
+  pillole sono due-tre righe, e insieme ai tasti e al titolo si sarebbero
+  prese metà schermo. Il prezzo è un tocco in più per cambiare prodotto dal
+  fondo di un elenco («Prodotti» riporta su).
+- Il tasto acceso non è più un interruttore: ritoccato, non chiude, torna in
+  cima. «Prodotti» e il titolo fanno la stessa cosa (`vaiInizio`).
+- `inCima()` e l'apertura di un volantino da `#volantino=` misuravano
+  l'altezza della `.barra` appiccicata; adesso misurano la striscia dei
+  tasti (`altaFissa`). `prova-scorrimento.js` finge l'altezza di quella.
+- A 390 px «Grandi marche» in grassetto 14 px sfiorava il bordo tondo del
+  tasto (115 px di scritta in 116): sotto i 420 px va a capo. La regola deve
+  stare su `#riga-cerca .tasto`, perché quella con `white-space:nowrap` viene
+  dopo nel foglio e a parità di peso vinceva lei.

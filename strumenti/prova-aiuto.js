@@ -56,7 +56,7 @@ setTimeout(() => {
       male.push('una spiegazione troppo corta per spiegare qualcosa');
   });
   const dentro = buio.textContent;
-  ['per unità', 'il meno caro', '+ altri prodotti', '«Cerca»', 'GRANDI MARCHE', 'Novità']
+  ['per unità', 'il meno caro', '+ altri prodotti', '«Prodotti»', '«Cerca»', '«Grandi marche»', 'Novità']
     .forEach(x => { if (dentro.indexOf(x) < 0) male.push('l\'aiuto non parla di «' + x + '»'); });
 
   /* Toccare dentro non chiude, il buio intorno sì. */

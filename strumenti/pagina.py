@@ -230,6 +230,12 @@ NOVITA_PAGINA = [
                'tolti spariscono dai prezzi, dalla ricerca e dalle grandi '
                'marche. La scelta resta sul tuo telefono. Lì dentro ci sono '
                'anche i colori della pagina e l\'aiuto.'),
+    dict(id='2026-09-23-tretasti', quando='23 settembre',
+         titolo='Tre tasti, tre parti della pagina',
+         testo='In alto ci sono «Prodotti», «Cerca» e «Grandi marche», e restano '
+               'lì anche quando scorri. Quello rosso è la parte in cui sei. Per '
+               'tornare ai tuoi prodotti da qualunque punto basta toccare '
+               '«Prodotti».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -479,16 +485,31 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 /* I DUE TASTI SONO GRANDI UGUALI (Manlio, 2026-09-23: «i tasti Grandi Marche
    e Cerca devono essere delle stesse dimensioni, Grandi Marche messo a
    destra»). Metà riga ciascuno, stessa altezza. */
-.riga-cerca .tasto.trova,.riga-cerca .tasto.marchi{flex:1 1 0;width:auto;min-width:0;
-  margin:0}
+.riga-cerca .tasto.trova,.riga-cerca .tasto.marchi,.riga-cerca .tasto.sez{flex:1 1 0;
+  width:auto;min-width:0;margin:0;letter-spacing:0}
 .ricerca .q[hidden]{display:none}
+/* LA STRISCIA DEI TRE TASTI RESTA SEMPRE IN ALTO (Manlio, 2026-09-23: «quando
+   si fa scroll i tre tasti devono rimanere sempre visibili in alto»). Prima
+   restavano attaccate le pillole dei prodotti: due o tre righe che, insieme ai
+   tasti, si sarebbero mangiate mezzo schermo. Adesso le pillole scorrono via
+   e per tornarci si tocca «Prodotti». I tasti sono alti 44 px, più delle
+   pillole (34): sono i tasti principali della pagina, da prendere al volo. */
+.riga-cerca{position:sticky;top:0;z-index:25;background:var(--carta);
+  margin:0 -15px;padding:8px 15px;border-bottom:1.5px solid var(--linea)}
+.barra{position:static}
+/* Sui telefoni più stretti «Grandi marche» non sta su una riga: va a capo
+   dentro il tasto, che resta alto uguale, invece di uscire dai bordi. */
+@media (max-width:420px){
+  #riga-cerca .tasto{white-space:normal;text-align:center}
+}
 /* I DUE TASTI ALTI COME LE PASTIGLIE DEI PRODOTTI, BIANCHI ALL'INIZIO
    (Manlio, 2026-09-23). Quello della pagina aperta diventa rosso pieno:
    «Cerca» rosso nella ricerca, «GRANDI MARCHE» rosso nelle marche. */
-.riga-cerca .tasto.trova,.riga-cerca .tasto.marchi{min-height:34px;padding:6px 12px;
-  font-size:14px;line-height:1.1;background:var(--carta);color:var(--rosso);
+.riga-cerca .tasto.trova,.riga-cerca .tasto.marchi,.riga-cerca .tasto.sez{min-height:44px;
+  padding:6px 4px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:7px;line-height:1.1;background:var(--carta);color:var(--rosso);
   border:1.5px solid var(--rosso);font-weight:700;white-space:nowrap}
-.riga-cerca .tasto.trova[aria-pressed="true"],.riga-cerca .tasto.marchi[aria-pressed="true"]{
+.riga-cerca .tasto.trova[aria-pressed="true"],.riga-cerca .tasto.marchi[aria-pressed="true"],
+.riga-cerca .tasto.sez[aria-pressed="true"]{
   background:var(--rosso);color:var(--su-rosso)}
 .spiega[hidden],.chiudi[hidden]{display:none}
 /* La pagina della ricerca è solo una pillola dove scrivere: niente riquadro
@@ -1082,11 +1103,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       puoi anche scrivere un nome che nel catalogo non c'è.</p>
     </div>
     <div class="voce">
-      <h3>Il tasto «Cerca»</h3>
-      <p>Serve a trovare <b>una singola offerta</b> fra <b>tutte</b> quelle lette: scrivi
-      un prodotto, una marca, un formato o il nome di un negozio, e le offerte escono
-      mentre scrivi. Accanto c'è <b>«GRANDI MARCHE»</b>: tocchi una marca ed escono le
-      sue offerte. Per tornare all'inizio tocca il titolo «Spesa». È un'altra cosa dalla casella dentro
+      <h3>I tre tasti in alto: «Prodotti», «Cerca», «Grandi marche»</h3>
+      <p>Sono le tre parti della pagina, e restano sempre in alto anche quando
+      scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
+      con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
+      <b>tutte</b> quelle lette: scrivi un prodotto, una marca, un formato o il
+      nome di un negozio, e le offerte escono mentre scrivi. <b>«Grandi
+      marche»</b>: tocchi una marca ed escono le sue offerte. È un'altra cosa dalla casella dentro
       il cassetto, che invece accende i prodotti della lista.</p>
     </div>
     <div class="voce">
@@ -1541,30 +1564,49 @@ function disegnaTasti() {
   cer.setAttribute('aria-expanded', String(cercaAperta));
   cer.setAttribute('aria-pressed', String(cercaAperta));
   cer.setAttribute('aria-controls', 'ricerca');
+  /* Toccato quando si è già nella ricerca, resta lì e torna in cima: è una
+     sezione, non un interruttore (Manlio, 2026-09-23, i tre tasti). */
   cer.onclick = () => {
-    if (cercaAperta) { apriRicerca(false); return; }
+    if (cercaAperta) { suInCima(); return; }
     vistaMarche = false; marcaScelta = null;
     document.getElementById('q').value = '';
     apriRicerca(true);
+    suInCima();
   };
   /* Sta SOPRA i prodotti e FUORI dalla barra appiccicata, come nella
      schermata che ha mandato Manlio il 2026-09-22: è la prima cosa che si
      vede, e la barra resta bassa. */
+  /* I TRE TASTI DELLE SEZIONI (Manlio, 2026-09-23: «i tasti diventano tre e
+     ognuno porta alla sua sezione, e quando si è nella sua sezione diventa
+     colorato»). «Prodotti» è la pagina principale, con le pillole: è acceso
+     finché non si è nella ricerca o nelle marche. Tiene «agg» come gli altri
+     due, così le prove non lo contano fra i prodotti. */
   const suo = document.getElementById('riga-cerca');
   suo.textContent = '';
+  const pro = document.createElement('button');
+  pro.type = 'button';
+  pro.className = 'tasto agg sez';
+  pro.id = 'vai-prodotti';
+  pro.textContent = 'Prodotti';
+  pro.setAttribute('aria-pressed', String(!ricercaAperta));
+  pro.onclick = vaiInizio;
+  suo.appendChild(pro);
   suo.appendChild(cer);
   const gm = document.createElement('button');
   gm.type = 'button';
   gm.className = 'tasto agg marchi';
-  gm.textContent = 'GRANDI MARCHE';
+  /* Con le minuscole dal 2026-09-23: in un terzo di schermo, tutto
+     maiuscolo non ci stava. */
+  gm.textContent = 'Grandi marche';
   gm.setAttribute('aria-pressed', String(ricercaAperta && vistaMarche));
   gm.onclick = () => {
-    if (ricercaAperta && vistaMarche) { apriRicerca(false); return; }
+    if (ricercaAperta && vistaMarche) { suInCima(); return; }
     vistaMarche = true;
     marcaScelta = null;
     filtroVol = null;
     document.getElementById('q').value = '';
     apriRicerca(true, true);
+    suInCima();
   };
   suo.appendChild(gm);
 
@@ -1884,6 +1926,27 @@ function disegnaScaffali() {
     : 'Nel catalogo non c\u2019\u00e8 niente con questo nome. Scrivilo lo stesso qui sopra: cerco la parola nelle pagine dei volantini.';
 }
 
+/* In cima alla pagina. La usano i tre tasti delle sezioni: la striscia coi
+   tasti resta attaccata in alto, quindi si possono toccare anche in fondo a
+   un elenco, e la sezione nuova deve cominciare dall'inizio. */
+function suInCima() {
+  try { window.scrollTo(0, 0); } catch (x) {}
+}
+
+/* «Prodotti», e il titolo «Spesa»: la pagina principale, dall'inizio. */
+function vaiInizio() {
+  if (ricercaAperta) apriRicerca(false);
+  if (cassettoAperto) apriCassetto(false);
+  suInCima();
+}
+
+/* Quanto è alta la striscia che resta attaccata in alto. Dal 2026-09-23 è
+   quella dei tre tasti, non più le pillole dei prodotti. */
+function altaFissa() {
+  const s = document.getElementById('riga-cerca');
+  return s ? s.getBoundingClientRect().height : 0;
+}
+
 /* Cambiando prodotto si torna all'inizio del suo elenco.
    Manlio: scorreva i prezzi del tonno, toccava «Suino», e si ritrovava in
    mezzo alla lista del suino invece che in cima — perche la pagina cambiava
@@ -1893,9 +1956,8 @@ function disegnaScaffali() {
    l'elenco. Se si e gia lassu non si muove niente. */
 function inCima() {
   const r = document.getElementById('risultato');
-  const barra = document.querySelector('.barra');
   if (!r) return;
-  const alto = barra ? barra.getBoundingClientRect().height : 0;
+  const alto = altaFissa();
   /* Il taglio a zero va fatto PRIMA del confronto, non dopo: con una meta
      negativa «sono gia sopra?» risponde sempre no, e la pagina chiederebbe di
      scorrere anche stando gia in cima. */
@@ -2365,12 +2427,7 @@ document.querySelectorAll('.info').forEach(b => {
 document.getElementById('cerca').oninput = disegnaScaffali;
 document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
 document.getElementById('chiudi-ricerca').onclick = () => apriRicerca(false);
-document.getElementById('vai-inizio').onclick = e => {
-  e.preventDefault();
-  if (ricercaAperta) apriRicerca(false);
-  if (cassettoAperto) apriCassetto(false);
-  try { window.scrollTo(0, 0); } catch (x) {}
-};
+document.getElementById('vai-inizio').onclick = e => { e.preventDefault(); vaiInizio(); };
 document.getElementById('q').addEventListener('input', () => {
   if (marcaScelta) { marcaScelta = null; disegnaMarche(); }
   quantiMostrati = 40;
@@ -2436,8 +2493,7 @@ disegna();
      quelle, non la fila dei prodotti. */
   try {
     const pan = document.getElementById('ricerca');
-    const barra = document.querySelector('.barra');
-    const alto = barra ? barra.getBoundingClientRect().height : 0;
+    const alto = altaFissa();
     window.scrollTo(0, Math.max(0, pan.getBoundingClientRect().top + (window.scrollY || 0) - alto - 8));
   } catch (e) {}
 })();

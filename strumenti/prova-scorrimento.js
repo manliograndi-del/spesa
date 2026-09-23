@@ -26,7 +26,8 @@ setTimeout(() => {
   const CIMA_ELENCO = 420, ALTA_BARRA = 150, ATTESA = CIMA_ELENCO - ALTA_BARRA - 8;
   d.getElementById('risultato').getBoundingClientRect =
     () => ({ top: CIMA_ELENCO - (w.scrollY || 0), height: 3000 });
-  d.querySelector('.barra').getBoundingClientRect = () => ({ top: 0, height: ALTA_BARRA });
+  // dal 2026-09-23 la striscia attaccata in alto è quella dei tre tasti
+  d.getElementById('riga-cerca').getBoundingClientRect = () => ({ top: 0, height: ALTA_BARRA });
 
   // finge di aver scorso in giu, e cambia DAVVERO prodotto
   // (tasti[0] e gia quello acceso: toccarlo di nuovo non e un cambio)
