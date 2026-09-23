@@ -660,6 +660,41 @@ Conad»): è il Conad «normale» più vicino, a 2,7 km (codice negozio 009843).
 Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
+## PER RIPARTIRE (scritto il 2026-09-23 sera, prima di cambiare conversazione)
+
+Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
+nuova. Lo stato, in breve:
+
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v88**, ultimo
+  commit su `main` = ramo di lavoro. Tutte le prove passano.
+- **L'analisi esterna in 7 punti**: fatti 1 (categorie pulite), 2 (note in
+  bollini, poi «Dettagli» tolto e le cose importanti in pillole beige),
+  3 (riga in cima solo se il meno caro di oggi non è fra le prime tre
+  schede), 4 (N non rossa, calendarietto, «Elimina» dentro la «i»),
+  5 (menù in basso). **Restano 6 («Dove conviene questa settimana»: per
+  ogni supermercato quanti prodotti della lista sono in offerta e quanto si
+  risparmia) e 7 (grandi marche: elenco o loghi tutti uguali)** — «li
+  vediamo dopo», ha detto lui: vanno proposti, non fatti.
+- **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
+  sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
+  «Formato · fino al» tolta dalla vista; sezione «Personale».
+- **Domande aperte da fargli, quando capita** (non tutte insieme):
+  1. sul link Claude la pagina del volantino si vede, o compare «Aprila sul
+     sito»?
+  2. i suoi negozi sono davvero Pam di corso Orbassano e Conad di via Cesana?
+     Ipercoop: Torino o Beinasco?
+  3. nel Personale, toccando una pillola preferisce andare in «Cerca»?
+  4. i banchi all'etto: la scritta «al pezzo» accanto al prezzo all'etto;
+  5. dove rimettere i tasti nascosti (Colori, Aiuto, Novità app: oggi sono
+     dentro l'ingranaggio, forse basta così).
+- **Scadenze**: `lidl24`, `mercato17`, `bennet1709` finiscono il 30
+  settembre; `carriper15` il 28. La Routine delle 7 continua a cercare i
+  volantini nuovi. **25 ottobre**: rimettere la Routine a `0 6 * * *`.
+- **Come lavora lui**: frasi brevi dettate al telefono, a volte con parole
+  storpiate dal dettato; vuole meno giri di prove raccontati e più
+  risultati. Per le prove grafiche gli basta vedere 3-4 schermate
+  (mandate con SendUserFile) prima di pubblicare.
+
 ## Da fare adesso (aggiornato il 2026-09-23)
 
 - **Punto 5 fatto: il menù in basso** (2026-09-23, provato prima in quattro
