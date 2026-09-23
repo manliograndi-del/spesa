@@ -236,6 +236,14 @@ NOVITA_PAGINA = [
                'lì anche quando scorri. Quello rosso è la parte in cui sei. Per '
                'tornare ai tuoi prodotti da qualunque punto basta toccare '
                '«Prodotti».'),
+    # «u» dopo «tretasti»: le novità si segnano per id più grande.
+    dict(id='2026-09-23-u-personale', quando='23 settembre',
+         titolo='La tua sezione: «Personale»',
+         testo='Il quarto tasto in alto. Scrivi un prodotto o una marca e tocca '
+               '«Aggiungi»: diventa una pillola, e sotto trovi la sua offerta più '
+               'conveniente, con un tasto per vederle tutte. Con «Personalizza '
+               'supermercati» scegli dove cercare, solo per questa sezione. Le '
+               'parole restano sul tuo telefono: ognuno ha le sue.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -497,6 +505,37 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .riga-cerca{position:sticky;top:0;z-index:25;background:var(--carta);
   margin:0 -15px;padding:8px 15px;border-bottom:1.5px solid var(--linea)}
 .barra{position:static}
+/* ---- la sezione personale ---- */
+.personale[hidden],.negozi-pers-box[hidden]{display:none}
+.personale{margin-top:14px}
+.form-pers{display:flex;gap:8px}
+.form-pers input{flex:1;min-width:0;border:1.5px solid var(--rosso);border-radius:99px;
+  padding:11px 18px;font-size:16px;background:var(--carta);color:var(--inchiostro);
+  font-family:var(--f-testo)}
+.form-pers input:focus{outline:none}
+.form-pers button{flex:none;background:var(--rosso);color:var(--su-rosso);border:0;
+  border-radius:99px;padding:0 18px;font-size:15px;font-weight:700;cursor:pointer;min-height:46px}
+.pillole-pers{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.pillola-pers{display:inline-flex;align-items:stretch;border:1.5px solid var(--linea-forte);
+  border-radius:99px;background:var(--carta);overflow:hidden}
+.pillola-pers .nome-pers{background:none;border:0;padding:6px 4px 6px 13px;font-size:14px;
+  font-weight:600;cursor:pointer;min-height:34px;font-family:inherit;color:var(--inchiostro)}
+.pillola-pers .via-pers{background:none;border:0;padding:0 11px 0 7px;font-size:17px;
+  line-height:1;cursor:pointer;color:var(--tenue);font-family:inherit}
+.pillola-pers.aperta{border-color:var(--rosso);background:var(--rosso)}
+.pillola-pers.aperta .nome-pers,.pillola-pers.aperta .via-pers{color:var(--su-rosso)}
+.tasto-negozi-pers{margin-top:12px;background:var(--carta);border:1.5px solid var(--linea-forte);
+  border-radius:99px;padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer;
+  min-height:38px;font-family:inherit;color:var(--inchiostro)}
+.tasto-negozi-pers[aria-expanded="true"]{border-color:var(--rosso);color:var(--rosso)}
+.negozi-pers-box{margin-top:10px;background:var(--pannello);border-radius:18px;padding:12px}
+.negozi-pers-box .sotto-titolo{margin:0 0 10px;color:var(--tenue);font-size:13.5px}
+.blocco-pers{margin-top:18px;scroll-margin-top:70px}
+.blocco-pers h2{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.02em;
+  font-size:21px;font-weight:600;margin:0}
+.blocco-pers .nulla{color:var(--tenue);font-size:14px;margin:6px 0 0}
+.vuoto-pers{color:var(--tenue);font-size:14.5px;margin:16px 0 0;background:var(--pannello);
+  border-radius:20px;padding:16px}
 /* Sui telefoni più stretti «Grandi marche» non sta su una riga: va a capo
    dentro il tasto, che resta alto uguale, invece di uscire dai bordi. */
 @media (max-width:420px){
@@ -953,6 +992,28 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <button type="button" class="chiudi" id="chiudi-ricerca" hidden>Fatto</button>
 </div>
 
+<!-- LA SEZIONE PERSONALE (Manlio, 2026-09-23): parole sue, fatte pillole,
+     con sotto il riepilogo delle offerte di ognuna e una scelta dei
+     supermercati che vale solo qui. Sta fuori dalla barra come la ricerca.
+     Tutto resta sul telefono di chi la usa. -->
+<div class="personale" id="personale" hidden>
+  <form class="form-pers" id="form-pers">
+    <input id="parola-pers" type="text" placeholder="Prodotto o marca…"
+           autocomplete="off" aria-label="Parola da aggiungere alla sezione personale">
+    <button type="submit">Aggiungi</button>
+  </form>
+  <div class="pillole-pers" id="pillole-pers" role="group" aria-label="Le tue parole"></div>
+  <button type="button" class="tasto-negozi-pers" id="apri-negozi-pers"
+          aria-expanded="false" aria-controls="negozi-pers-box">Personalizza supermercati</button>
+  <div class="negozi-pers-box" id="negozi-pers-box" hidden>
+    <p class="sotto-titolo">Tocca un supermercato per toglierlo o rimetterlo. Vale solo
+    per questa sezione, e resta su questo telefono.</p>
+    <div class="negozi" id="negozi-pers" role="group" aria-label="Supermercati della sezione personale"></div>
+    <p class="avviso-negozi" id="avviso-negozi-pers" role="status"></p>
+  </div>
+  <div id="riepilogo-pers"></div>
+</div>
+
 <div id="risultato"></div>
 
 
@@ -1103,13 +1164,17 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       puoi anche scrivere un nome che nel catalogo non c'è.</p>
     </div>
     <div class="voce">
-      <h3>I tre tasti in alto: «Prodotti», «Cerca», «Grandi marche»</h3>
-      <p>Sono le tre parti della pagina, e restano sempre in alto anche quando
+      <h3>I tasti in alto: «Prodotti», «Cerca», «Grandi marche», «Personale»</h3>
+      <p>Sono le parti della pagina, e restano sempre in alto anche quando
       scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
       con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
       <b>tutte</b> quelle lette: scrivi un prodotto, una marca, un formato o il
       nome di un negozio, e le offerte escono mentre scrivi. <b>«Grandi
-      marche»</b>: tocchi una marca ed escono le sue offerte. È un'altra cosa dalla casella dentro
+      marche»</b>: tocchi una marca ed escono le sue offerte. <b>«Personale»</b>
+      è tua: scrivi un prodotto o una marca, tocchi «Aggiungi» e diventa una
+      pillola; sotto trovi la sua offerta più conveniente, e col tasto tutte le
+      altre. Lì dentro puoi anche scegliere in quali supermercati cercare. Le
+      tue parole restano su questo telefono. È un'altra cosa dalla casella dentro
       il cassetto, che invece accende i prodotti della lista.</p>
     </div>
     <div class="voce">
@@ -1568,6 +1633,7 @@ function disegnaTasti() {
      sezione, non un interruttore (Manlio, 2026-09-23, i tre tasti). */
   cer.onclick = () => {
     if (cercaAperta) { suInCima(); return; }
+    if (personaleAperto) apriPersonale(false);
     vistaMarche = false; marcaScelta = null;
     document.getElementById('q').value = '';
     apriRicerca(true);
@@ -1588,7 +1654,7 @@ function disegnaTasti() {
   pro.className = 'tasto agg sez';
   pro.id = 'vai-prodotti';
   pro.textContent = 'Prodotti';
-  pro.setAttribute('aria-pressed', String(!ricercaAperta));
+  pro.setAttribute('aria-pressed', String(!ricercaAperta && !personaleAperto));
   pro.onclick = vaiInizio;
   suo.appendChild(pro);
   suo.appendChild(cer);
@@ -1601,6 +1667,7 @@ function disegnaTasti() {
   gm.setAttribute('aria-pressed', String(ricercaAperta && vistaMarche));
   gm.onclick = () => {
     if (ricercaAperta && vistaMarche) { suInCima(); return; }
+    if (personaleAperto) apriPersonale(false);
     vistaMarche = true;
     marcaScelta = null;
     filtroVol = null;
@@ -1609,6 +1676,16 @@ function disegnaTasti() {
     suInCima();
   };
   suo.appendChild(gm);
+  /* «Personale», il quarto (Manlio, 2026-09-23): le sue parole e le loro
+     offerte. Anche lui è una sezione: ritoccato non chiude. */
+  const per = document.createElement('button');
+  per.type = 'button';
+  per.className = 'tasto agg sez';
+  per.id = 'vai-personale';
+  per.textContent = 'Personale';
+  per.setAttribute('aria-pressed', String(personaleAperto));
+  per.onclick = () => { if (!personaleAperto) apriPersonale(true); suInCima(); };
+  suo.appendChild(per);
 
   const cont = document.getElementById('quanti-prodotti');
   if (cont) cont.textContent = 'I tuoi prodotti (' + lista.length + ')';
@@ -1623,6 +1700,7 @@ let cassettoAperto = false;
 
 function apriCassetto(si) {
   cassettoAperto = si;
+  if (si && personaleAperto) apriPersonale(false);
   if (si && ricercaAperta) apriRicerca(false);   // uno alla volta
   const c = document.getElementById('cassetto');
   c.hidden = !si;
@@ -1638,6 +1716,194 @@ function apriCassetto(si) {
   else document.getElementById('cerca').value = '';
 }
 
+/* ---------- la sezione personale ---------- */
+/* Chiesta da Manlio il 2026-09-23: «una sezione personale: si scrivono delle
+   parole e col tasto Aggiungi diventano pillole che restano lì; in basso le
+   offerte per questi prodotti, con davanti il nome; all'inizio solo il più
+   conveniente per ciascuno, premendo il tasto tutte le offerte; e un tasto
+   Personalizza supermercati che vale solo per questa sezione». E: «una
+   versione personale per ogni telefonino». Per questo le parole e i
+   supermercati tolti stanno in localStorage, sul telefono di chi li sceglie,
+   come la scelta dei negozi generale: nessuno vede quelle degli altri. */
+const PAROLE_PERS = 'spesa.personale.v1';
+const NEGOZI_PERS = 'spesa.personale.negozi.v1';
+let personaleAperto = false;
+let parolePers = [];
+let toltiPers = [];
+let aperte = [];          // le parole di cui si vedono tutte le offerte
+try { parolePers = JSON.parse(localStorage.getItem(PAROLE_PERS) || '[]') || []; } catch (e) { parolePers = []; }
+try { toltiPers = JSON.parse(localStorage.getItem(NEGOZI_PERS) || '[]') || []; } catch (e) { toltiPers = []; }
+if (!Array.isArray(parolePers)) parolePers = [];
+if (!Array.isArray(toltiPers)) toltiPers = [];
+
+function salvaPers() {
+  try { localStorage.setItem(PAROLE_PERS, JSON.stringify(parolePers)); } catch (e) {}
+  try { localStorage.setItem(NEGOZI_PERS, JSON.stringify(toltiPers)); } catch (e) {}
+}
+
+/* Le offerte di una parola: la stessa ricerca del tasto «Cerca» (tutte le
+   parole scritte devono esserci), meno i supermercati tolti qui. */
+function offertePers(parola) {
+  const parole = norm(parola).split(/\s+/).filter(x => x.length > 1);
+  if (!parole.length) return [];
+  return DATI.offerte
+    .filter(o => !nascosta(o) && toltiPers.indexOf(o.ins) < 0)
+    .filter(o => {
+      const pagliaio = norm([o.pro, o.ins, o.cat, o.fmt, o.note].join(' '));
+      return parole.every(w => pagliaio.indexOf(w) >= 0);
+    })
+    .sort((a, b) => a.unitario - b.unitario);
+}
+
+/* IL PIÙ CONVENIENTE DI UNA PAROLA. I prezzi per unità si confrontano solo
+   dentro lo stesso reparto: «tonno» trova il tonno al kg ma anche la pizza
+   al tonno al pezzo, e 3 euro al pezzo non è «meno caro» di 9 al kg. Quindi
+   si prende il reparto con più offerte per quella parola, e lì la meno cara
+   che si può comprare OGGI (una che parte lunedì non manda nessuno in
+   negozio stasera). Se oggi non ce n'è, la meno cara in assoluto. */
+function piuConveniente(off) {
+  if (!off.length) return null;
+  const conta = {};
+  off.forEach(o => { conta[o.cat] = (conta[o.cat] || 0) + 1; });
+  const cat = Object.keys(conta).sort((a, b) => conta[b] - conta[a])[0];
+  const dentro = off.filter(o => o.cat === cat);
+  return dentro.find(o => !futuro(o)) || dentro[0];
+}
+
+function apriPersonale(si) {
+  if (si) {
+    if (ricercaAperta) apriRicerca(false);
+    if (cassettoAperto) apriCassetto(false);
+  }
+  personaleAperto = si;
+  document.getElementById('personale').hidden = !si;
+  document.getElementById('risultato').hidden = si || ricercaAperta || cassettoAperto;
+  if (!si) {
+    document.getElementById('negozi-pers-box').hidden = true;
+    document.getElementById('apri-negozi-pers').setAttribute('aria-expanded', 'false');
+  }
+  disegnaTasti();
+  disegnaMarche();
+  if (si) disegnaPersonale();
+}
+
+function disegnaPersonale() {
+  const box = document.getElementById('pillole-pers');
+  box.textContent = '';
+  parolePers.forEach(w => {
+    const p = document.createElement('span');
+    p.className = 'pillola-pers' + (aperte.indexOf(w) >= 0 ? ' aperta' : '');
+    const n = document.createElement('button');
+    n.type = 'button'; n.className = 'nome-pers'; n.textContent = w;
+    n.title = 'Tutte le offerte di «' + w + '»';
+    /* Toccando la pillola si aprono tutte le sue offerte, e la pagina ci va. */
+    n.onclick = () => {
+      if (aperte.indexOf(w) < 0) aperte.push(w);
+      disegnaPersonale();
+      const b = [...document.querySelectorAll('.blocco-pers')].find(x => x.dataset.parola === w);
+      if (b && b.scrollIntoView) b.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+    const x = document.createElement('button');
+    x.type = 'button'; x.className = 'via-pers'; x.textContent = '\u00d7';
+    x.setAttribute('aria-label', 'Togli «' + w + '»');
+    x.onclick = () => {
+      parolePers = parolePers.filter(y => y !== w);
+      aperte = aperte.filter(y => y !== w);
+      salvaPers(); disegnaPersonale();
+    };
+    p.appendChild(n); p.appendChild(x);
+    box.appendChild(p);
+  });
+
+  const out = document.getElementById('riepilogo-pers');
+  out.textContent = '';
+  if (!parolePers.length) {
+    out.innerHTML = '<p class="vuoto-pers">Scrivi qui sopra un prodotto o una marca '
+      + '(per esempio <i>tonno</i>, <i>mozzarella</i>, <i>Barilla</i>) e tocca '
+      + '«Aggiungi»: diventa una pillola, e qui sotto trovi la sua offerta più '
+      + 'conveniente. Le parole restano su questo telefono.</p>';
+    return;
+  }
+  parolePers.forEach(w => {
+    const off = offertePers(w);
+    const b = document.createElement('section');
+    b.className = 'blocco-pers';
+    b.dataset.parola = w;
+    const h = document.createElement('h2');
+    h.textContent = w;
+    b.appendChild(h);
+    if (!off.length) {
+      const n = document.createElement('p');
+      n.className = 'nulla';
+      n.textContent = 'Nessuna offerta adesso, nei supermercati scelti.';
+      b.appendChild(n);
+      out.appendChild(b);
+      return;
+    }
+    const tutte = aperte.indexOf(w) >= 0;
+    /* Niente bollino verde nemmeno qui: vorrebbe dire «il meno caro della
+       categoria», e questo è il meno caro di una parola scritta a mano. */
+    (tutte ? off : [piuConveniente(off)]).forEach(o => b.appendChild(rigaPrezzo(o, false)));
+    if (off.length > 1) {
+      const t = document.createElement('button');
+      t.type = 'button'; t.className = 'altre';
+      t.textContent = tutte ? 'Mostra solo la più conveniente'
+                            : 'Mostra tutte le ' + off.length + ' offerte';
+      t.onclick = () => {
+        aperte = tutte ? aperte.filter(y => y !== w) : aperte.concat([w]);
+        disegnaPersonale();
+      };
+      b.appendChild(t);
+    }
+    out.appendChild(b);
+  });
+}
+
+function disegnaNegoziPers() {
+  const box = document.getElementById('negozi-pers');
+  box.textContent = '';
+  document.getElementById('avviso-negozi-pers').textContent = '';
+  /* Solo i supermercati tenuti nella configurazione generale: uno tolto là
+     non ha niente da mostrare nemmeno qui. */
+  const insegne = [];
+  DATI.volantini.forEach(v => { if (insegne.indexOf(v.ins) < 0 && !tolta(v.ins)) insegne.push(v.ins); });
+  const via = ins => toltiPers.indexOf(ins) >= 0;
+  insegne.forEach(ins => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.appendChild(marchio(ins));
+    b.setAttribute('aria-pressed', String(!via(ins)));
+    b.title = ins;
+    b.onclick = () => {
+      if (!via(ins) && insegne.filter(x => !via(x)).length <= 1) {
+        document.getElementById('avviso-negozi-pers').textContent =
+          'Almeno un supermercato deve restare.';
+        return;
+      }
+      toltiPers = via(ins) ? toltiPers.filter(x => x !== ins) : toltiPers.concat([ins]);
+      salvaPers(); disegnaNegoziPers(); disegnaPersonale();
+    };
+    box.appendChild(b);
+  });
+}
+
+document.getElementById('form-pers').onsubmit = ev => {
+  ev.preventDefault();
+  const i = document.getElementById('parola-pers');
+  const w = i.value.trim().replace(/\s+/g, ' ');
+  if (w.length < 2) return;
+  if (!parolePers.some(y => norm(y) === norm(w))) parolePers.push(w);
+  i.value = '';
+  salvaPers(); disegnaPersonale();
+};
+document.getElementById('apri-negozi-pers').onclick = () => {
+  const box = document.getElementById('negozi-pers-box');
+  const apri = box.hidden;
+  box.hidden = !apri;
+  document.getElementById('apri-negozi-pers').setAttribute('aria-expanded', String(apri));
+  if (apri) disegnaNegoziPers();
+};
+
 /* ---------- cercare fra tutti i prezzi ---------- */
 let ricercaAperta = false;
 let quantiMostrati = 40;
@@ -1652,6 +1918,7 @@ let filtroVol = null;
 const SCRITTA_Q = document.getElementById('q').placeholder;
 
 function apriRicerca(si, senzaFuoco) {
+  if (si && personaleAperto) apriPersonale(false);
   ricercaAperta = si;
   if (!si) { vistaMarche = false; marcaScelta = null; }
   if (si && cassettoAperto) apriCassetto(false);
@@ -1722,8 +1989,8 @@ function disegnaMarche() {
   /* Col pannello aperto (ricerca, grandi marche o un volantino) non si
      vedono né le categorie né, in fondo, le spiegazioni e l'elenco dei
      volantini (Manlio, 2026-09-23: prima solo con le grandi marche). */
-  document.querySelector('.barra').hidden = ricercaAperta;
-  document.querySelector('.spiega').hidden = ricercaAperta;
+  document.querySelector('.barra').hidden = ricercaAperta || personaleAperto;
+  document.querySelector('.spiega').hidden = ricercaAperta || personaleAperto;
   box.textContent = '';
   if (!vistaMarche) return;
   (DATI.marche || []).forEach(m => {
@@ -1935,6 +2202,7 @@ function suInCima() {
 
 /* «Prodotti», e il titolo «Spesa»: la pagina principale, dall'inizio. */
 function vaiInizio() {
+  if (personaleAperto) apriPersonale(false);
   if (ricercaAperta) apriRicerca(false);
   if (cassettoAperto) apriCassetto(false);
   suInCima();
@@ -2768,6 +3036,7 @@ function disegnaNegozi() {
       disegna();
       disegnaVolantini();
       if (!document.getElementById('ricerca').hidden) { disegnaMarche(); disegnaTrovati(); }
+      if (personaleAperto) disegnaPersonale();
     };
     box.appendChild(b);
   });

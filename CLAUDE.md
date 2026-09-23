@@ -218,6 +218,31 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     pulsanti così importanti»; scritta 14 px;
   - **«Grandi marche» con le minuscole** (sì suo): tutto maiuscolo non ci
     stava. Sotto i 420 px va a capo dentro il tasto invece di toccare i bordi.
+- **IL QUARTO TASTO È «Personale»** (chiesto il 2026-09-23: «una sezione
+  personale… si possono scrivere delle parole e avrà un tasto di fianco
+  aggiungi per creare delle pillole… in basso le offerte per questi prodotti…
+  inizialmente solo il prodotto più conveniente, premendo il tasto tutte le
+  offerte… un tasto personalizza supermercati solo per questa sezione… una
+  versione personale per ogni telefonino»). Regole:
+  - **Tutto sta sul telefono di chi la usa** (`localStorage`): le parole in
+    `spesa.personale.v1`, i supermercati tolti QUI in
+    `spesa.personale.negozi.v1`. Nessuno vede quelle degli altri. Il sito e il
+    link Claude sono due indirizzi diversi, quindi hanno due sezioni
+    personali separate anche sullo stesso telefono.
+  - **Le offerte di una parola** sono quelle della ricerca di «Cerca» (tutte
+    le parole scritte devono esserci), meno i supermercati tolti qui e quelli
+    tolti nella configurazione generale. L'elenco dei supermercati di questa
+    sezione mostra solo quelli tenuti nella configurazione generale.
+  - **Il più conveniente di una parola** si sceglie **nel reparto con più
+    offerte per quella parola** (`piuConveniente`): «tonno» trova anche la
+    pizza al tonno al pezzo, e un prezzo al pezzo non si confronta con uno al
+    kg. È il meno caro **che si compra oggi**; se oggi non ce n'è, il meno
+    caro in assoluto. **Niente bollino verde** nel riepilogo.
+  - **Toccando una pillola** si aprono tutte le sue offerte e la pagina ci
+    va; la × la toglie. Una parola già presente (anche con maiuscole
+    diverse) non si aggiunge due volte.
+  - Nel Personale non si vedono né le categorie né l'elenco dei volantini in
+    fondo, come in Cerca e Grandi marche. La prova è `prova-personale.js`.
 - **Il tasto si chiama solo «Cerca», con la lente** (chiesto il 2026-09-23;
   prima «Cerca un prodotto o una marca», scelto il 2026-09-22). È alto 34 px
   come le pastiglie dei prodotti, e così GRANDI MARCHE accanto. **All'inizio
@@ -514,6 +539,12 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **La sezione «Personale»** (2026-09-23, chiesta da Manlio): quarto tasto
+  in alto; parole sue fatte pillole, per ognuna l'offerta più conveniente
+  (col tasto tutte), «Personalizza supermercati» che vale solo lì. Tutto sul
+  telefono di chi la usa. Novità `2026-09-23-u-personale`. `sw.js` a v76.
+  **Da chiedergli**: se toccando una pillola preferisce andare nella ricerca
+  di «Cerca» con quella parola invece di aprire lì tutte le offerte.
 - **I tre tasti delle sezioni** (2026-09-23, chiesto da Manlio):
   «Prodotti», «Cerca», «Grandi marche», alti 44 px, sempre in alto quando si
   scorre, rosso quello della sezione in cui si è. Le pillole dei prodotti non

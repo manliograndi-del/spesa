@@ -2924,3 +2924,28 @@ proposto tre scelte e ha detto sì a tutte: in alto restano solo i tre tasti
   tasto (115 px di scritta in 116): sotto i 420 px va a capo. La regola deve
   stare su `#riga-cerca .tasto`, perché quella con `white-space:nowrap` viene
   dopo nel foglio e a parità di peso vinceva lei.
+
+## La sezione «Personale» — 2026-09-23
+
+Manlio: «una sezione personale alla quale si accederà con una pillola messa
+anche in alto con scritto personale: si possono scrivere delle parole e avrà
+un tasto di fianco Aggiungi per creare delle pillole che appariranno sempre
+nella sezione personale e che faranno aprire le ricerche per ciascuna di
+esse; in basso le offerte per questi prodotti, tutti con davanti la
+categoria; inizialmente solo il prodotto più conveniente per ciascuna,
+premendo il tasto appariranno tutte le offerte; un tasto Personalizza
+supermercati solo per questa sezione… spero che sia possibile fare una
+versione personale per ogni telefonino».
+
+- «Per ogni telefonino» = `localStorage`, come la lista e i supermercati
+  tolti: niente server, niente account, ognuno ha le sue. Il prezzo: il sito
+  e il link Claude sono origini diverse e non si parlano.
+- «Con davanti la categoria»: ho letto «categoria» come la parola sua (il
+  titolo del blocco è la parola), perché è quella che lui chiama così nella
+  stessa frase («il prodotto più conveniente per ciascuna categoria»).
+- «Faranno aprire le ricerche»: toccando la pillola si aprono lì sotto tutte
+  le offerte di quella parola e la pagina ci scorre. Andare in «Cerca» avrebbe
+  perso la scelta dei supermercati della sezione. Da confermare con lui.
+- Il più conveniente si sceglie dentro il reparto più numeroso della parola:
+  il prezzo per unità di reparti diversi (kg, pezzo, litro) non si confronta.
+- Quattro tasti in alto: a 360 px sono larghi 78, «Personale» ci sta (77).
