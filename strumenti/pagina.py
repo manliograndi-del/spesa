@@ -63,6 +63,43 @@ _oggi = _dt.date.today()
 INIZIO = {v.chiave: v.inizio for v in VOLANTINI}
 FINO   = {v.chiave: v.fino for v in VOLANTINI}
 
+# LO SCONTO IN PERCENTUALE (Manlio, 2026-09-23: «in molti prodotti c'è
+# scritto che sconto hanno: questa cifra in percentuale andrebbe messa fra il
+# cerchietto dei giorni e l'icona del volantino»). Si legge dalla nota, che
+# riporta quello che stampa il volantino:
+#   1. se il volantino stampa la percentuale («−30%, prima 3,29», «Sconto del
+#      30%: …», «Sconto soci del 40%»), vale quella, così com'è;
+#   2. se stampa solo il prezzo di prima («Prima 2,99»), la si calcola, ma solo
+#      quando il conto è sicuro: il «prima» dev'essere il prezzo della STESSA
+#      confezione, non quello al kg o all'etto («… al kg, prima 1,50»), e non
+#      su una riga «1+1», dove il prezzo scritto e il «prima» possono
+#      riferirsi a quantità diverse;
+#   3. altrimenti niente: meglio nessun bollino che uno sbagliato.
+# «Senza tessera 4,99» NON è uno sconto stampato: non si trasforma in uno.
+_PCT = [re.compile(r'^\s*[−–-]\s?(\d{1,2})\s?%'),
+        re.compile(r'[Ss]conto(?: soci)?(?: del)? (\d{1,2})\s?%'),
+        re.compile(r'(?<![\d,])[−–]\s?(\d{1,2})\s?%')]
+_PRIMA = re.compile(r'\b[Pp]rima (\d+,\d{2})(?!\s*(?:€\s*)?(?:al|all|a |per|l\'))')
+_UNITA_PRIMA = re.compile(r'(?:al|all[\'’]|a)\s*(?:kg|chilo|litro|l|etto|pezzo|lavaggio|rotolo)\s*,?\s*$')
+
+def sconto(prezzo, fmt, note):
+    n = note or ''
+    for rx in _PCT:
+        m = rx.search(n)
+        if m:
+            v = int(m.group(1))
+            return v if 5 <= v <= 90 else None
+    m = _PRIMA.search(n)
+    if not m or _UNITA_PRIMA.search(n[:m.start()]):
+        return None
+    if re.search(r'\d\s*\+\s*\d', fmt or ''):
+        return None
+    prima = float(m.group(1).replace(',', '.'))
+    if prima <= prezzo:
+        return None
+    v = round((1 - prezzo / prima) * 100)
+    return v if 5 <= v <= 80 else None
+
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
 # «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
@@ -70,6 +107,7 @@ offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.
                 unitario=round(o.prezzo / o.qta, 3), pag=o.pag, pdf=PDF[o.chiave],
                 url=indirizzo(o.chiave, o.pag),
                 periodo=PERIODO[o.chiave], dubbio=(o.fonte == D), note=o.note,
+                sconto=sconto(o.prezzo, o.fmt, o.note),
                 inizio=o.inizio or INIZIO[o.chiave],
                 fino=o.fino or FINO[o.chiave],
                 ristretta=bool(o.inizio or o.fino))
@@ -802,6 +840,13 @@ a.dove.apri::after{content:none}
 .angolo .num{font-size:12.5px}
 .angolo .parte .mese{font-size:8.5px;margin-top:-1px}
 .angolo a.dove.apri{min-height:30px;min-width:30px;padding:2px}
+/* Lo sconto: una pastiglia scura alta come il tondino. Non rossa (il rosso
+   qui vuol dire «premi qui»), non verde («il meno caro»), non ambra
+   («attenzione»): è un'informazione, e si legge con qualunque look. */
+.angolo .sconto{display:inline-flex;align-items:center;height:30px;padding:0 9px;
+  border-radius:99px;background:var(--inchiostro);color:var(--carta);
+  font-family:var(--f-prezzo);font-size:14px;font-weight:700;letter-spacing:.02em;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
 .angolo a.dove.apri svg{width:23px;height:23px}
 /* TUTTA LA RIGA IN CIMA ALLA SCHEDA È ALTA 30 PX (Manlio, 2026-09-23: «porta
    le pillole dei marchi alla dimensione del cerchio dei giorni e del
@@ -2429,10 +2474,19 @@ function rigaPrezzo(o, meno) {
      «giorni» sotto: in quella riga ci sono già le parole che servono. */
   const cer = cerchioGiorni(o) || cerchioInizio(o);
   const link = dove(o);
-  if (cer || link.tagName === 'A') {
+  if (cer || o.sconto || link.tagName === 'A') {
     const ang = document.createElement('div');
     ang.className = 'angolo';
     if (cer) ang.appendChild(cer);
+    /* LO SCONTO, fra il tondino e il foglietto (Manlio, 2026-09-23). Solo
+       dove il volantino lo dice: il conto sta in pagina.py, «sconto()». */
+    if (o.sconto) {
+      const s = document.createElement('span');
+      s.className = 'sconto';
+      s.textContent = '\u2212' + o.sconto + '%';
+      s.title = 'Sconto del ' + o.sconto + '% sul prezzo di prima';
+      ang.appendChild(s);
+    }
     if (link.tagName === 'A') ang.appendChild(link);
     coda.insertBefore(ang, coda.children[1] || null);
   }

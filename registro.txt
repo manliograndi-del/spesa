@@ -124,3 +124,4 @@
 2026-09-23 09:59 UTC  pubblicato: sito (verificato, sw.js v77) e artifact (versione 68): «Grandi marche» su due righe.
 2026-09-23 10:45 UTC  pillole dei prodotti ferme in alto se sono poche; nel Personale una pillola aperta (rossa) alla volta. sw.js v78.
 2026-09-23 10:46 UTC  pubblicato: sito (verificato, sw.js v78) e artifact (versione 69): pillole ferme in alto, una rossa alla volta nel Personale.
+2026-09-23 11:39 UTC  sconto in percentuale su ogni scheda, fra il cerchietto e il foglietto (558 offerte). sw.js v79.

@@ -2974,3 +2974,23 @@ non ci sono troppi prodotti, potrebbe rimanere fissa».
   occupano al massimo un terzo dello schermo. Con le sue 13 voci su un
   telefono da 800 px sono 230 px: ferme. Col cassetto o con una lista lunga
   scorrono via.
+
+## Lo sconto in percentuale sulle schede — 2026-09-23
+
+Manlio: «i dati ce li hai tutti ma forse non li hai letti: in molti prodotti
+c'è scritto che sconto hanno; questa cifra in percentuale andrebbe messa fra
+il cerchietto dei giorni e l'icona del volantino».
+
+Aveva ragione: stava già tutto nelle note, scritto a mano leggendo i
+volantini. 269 note hanno la percentuale stampata («−30%, prima 3,29»,
+«Sconto del 30%: prima 4,99», «Sconto soci del 40%: …»), 538 hanno il prezzo
+di prima. `sconto()` in `pagina.py`:
+- percentuale stampata → quella (fra 5 e 90);
+- solo «prima X» → (1 − prezzo/X), fra 5 e 80, ma NON se il «prima» è di un
+  prezzo al kg/litro/etto (prima di «prima» c'è «al kg,»), non sulle righe
+  «1+1», non se X non è più alto del prezzo. Le righe «100 g × 2» invece sì:
+  lì prezzo e «prima» sono della stessa confezione multipla;
+- «Senza tessera 4,99», «9% Vol.» (il vino!) → niente.
+Risultato: 558 offerte su 1555 col bollino. Controllati a mano i casi con
+«kg» nella nota: tutti o con la percentuale stampata o col «prima» della
+confezione.

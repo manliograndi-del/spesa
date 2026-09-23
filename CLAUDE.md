@@ -446,6 +446,19 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     cerchio** (stessa richiesta: «in modo che abbia sempre la stessa
     altezza»): prima il mese sporgeva sotto e il tondino era più alto degli
     altri. Adesso è `.parte .dentro`, centrato nell'anello.
+  - **Fra il cerchietto e il foglietto c'è lo SCONTO in percentuale**
+    (`.angolo .sconto`, chiesto il 2026-09-23: «in molti prodotti c'è scritto
+    che sconto hanno: questa cifra in percentuale andrebbe messa fra il
+    cerchietto dei giorni e l'icona del volantino»). Lo legge `sconto()` in
+    `pagina.py` dalla nota: se il volantino stampa la percentuale («−30%»,
+    «Sconto del 30%», «Sconto soci del 40%») vale quella; se stampa solo
+    «Prima 2,99» si calcola, ma **mai** quando il «prima» è al kg o all'etto
+    («… al kg, prima 1,50») né sulle righe «1+1». «Senza tessera 4,99» non è
+    uno sconto e non lo diventa. Pastiglia scura, alta 30 px: non rossa, non
+    verde, non ambra (quei colori vogliono già dire altro). Il 2026-09-23 erano
+    558 offerte su 1555. **Quando si leggono volantini nuovi, scrivere sempre
+    nella nota lo sconto come lo stampa il volantino** («−30%, prima 3,29»):
+    è da lì che il bollino nasce. La prova è `prova-sconto.js`.
   La prova è `prova-giorni.js`.
 - **Le novità della pagina si segnano per id PIÙ GRANDE, non per ultima
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
@@ -549,6 +562,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Lo sconto in percentuale su ogni scheda** (2026-09-23, chiesto da Manlio),
+  fra il cerchietto dei giorni e il foglietto: letto dalle note, 558 offerte
+  su 1555. `sw.js` a v79.
 - **Pillole dei prodotti ferme in alto se sono poche; nel Personale una
   pillola aperta alla volta** (2026-09-23, Manlio: «i tasti sono rimasti
   tutti rossi» e «è inutile far salire l'elenco dei prodotti»). `sw.js` a v78.
