@@ -3392,3 +3392,22 @@ righe e le parole delle 436 pagine dentro `DATI`: la pagina pesa 2,8 MB
 invece di 3,4. `indice.json` resta nel progetto: lo usano gli strumenti.
 Tolta `prova-pagine.js`; `prova.js` adesso vuole prezzi o la riga «non ci sono
 offerte», e nessun elenco di pagine.
+
+## 2026-09-23 sera — la banda rossa col nome sopra le offerte
+
+Tolta l'intestazione, Manlio: «con le pillole sotto quell'elenco si vede un
+po' strano… una banda colorata in alto per staccare dall'intestazione, o la
+parola del titolo con due righe ai lati». Gli avevo consigliato le righe; lui:
+«fai una piccola prova, che immaginare non è lo stesso di vedere». Quattro
+prove in schermata (Tonno e Manzo): A banda rosata col nome rosso, B nome nero
+con righe grigie, poi su sua richiesta C banda rossa molto bassa col nome
+bianco, D nome e righe rossi. Io consigliavo D (il rosso pieno qui vuol dire
+«premi»); ha scelto **C**: «si clicca solo su cose rotondeggianti». La banda
+è squadrata, e questo basta a dire che non è un tasto.
+
+Subito dopo ha chiesto una prova di **tutti i tasti più squadrati**, «un po'
+Material 3». Fatta solo in schermata (CSS iniettato, non nel codice): 10 px
+agli angoli dei tasti piccoli (prodotti, catalogo, parole del Personale,
+casella di ricerca), 14 px al menù e ai tasti grandi. I bollini dentro le
+schede restano tondi: non si toccano, e in Material 3 sono le etichette a
+essere tonde, i comandi a rettangolo arrotondato. In attesa della risposta.

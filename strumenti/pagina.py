@@ -1204,6 +1204,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 /* LA RIGA IN CIMA A OGNI PRODOTTO (punto 3): verde per «oggi», come la
    scheda del meno caro; blu per «da domani», come il tondino di quando
    parte un'offerta. */
+/* La banda col nome del prodotto sopra le sue offerte (2026-09-23 sera):
+   rossa, bassa, larga quanto lo schermo, nome bianco al centro. Squadrata:
+   in questa pagina si tocca solo quello che ha gli angoli tondi. */
+.banda{margin:4px -15px 0;padding:3px 15px 2px;background:var(--rosso);color:var(--su-rosso);
+  font-family:var(--f-prezzo);text-transform:uppercase;text-align:center;
+  letter-spacing:.12em;font-size:15px;font-weight:600;line-height:1.25;
+  overflow-wrap:anywhere}
 .sintesi{display:grid;gap:6px;margin:12px 0 0}
 .sint{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;text-align:left;
   border:0;border-radius:14px;padding:9px 13px;font:inherit;font-size:14.5px;cursor:pointer;
@@ -2950,7 +2957,17 @@ function disegna() {
      deselezionandoli nella lista; la personalizzazione dei sinonimi forse è
      un po' troppo complicata… se vogliono mettere una cosa strana la possono
      mettere nella parte personalizzata»). Un prodotto si toglie spegnendolo
-     in «Organizza i prodotti»; le parole sue vanno in «Personale». */
+     in «Organizza i prodotti»; le parole sue vanno in «Personale».
+
+     AL SUO POSTO UNA BANDA ROSSA BASSA COL NOME BIANCO (Manlio, poco dopo:
+     «con le pillole sotto quell'elenco si vede un po' strano… una banda
+     colorata in alto per staccare dall'intestazione», scelta C fra quattro
+     prove viste in schermata). Solo il nome: niente tasti dentro. È
+     squadrata apposta: «si clicca solo su cose rotondeggianti». */
+  const banda = document.createElement('h2');
+  banda.className = 'banda';
+  banda.textContent = v.nome;
+  out.appendChild(banda);
 
   if (off.length) {
     const meno = menoCaroOggi(off);

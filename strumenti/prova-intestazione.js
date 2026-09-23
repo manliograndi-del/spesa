@@ -1,5 +1,5 @@
-/* Sopra le offerte di un prodotto non c'è niente: niente nome ripetuto,
-   niente «i», niente «Offerte ordinate…».
+/* Sopra le offerte di un prodotto c'è solo la banda rossa col nome: niente
+   «i», niente «Offerte ordinate…», niente tasti.
 
    Manlio, 2026-09-23 sera: «dato che la categoria di prodotti si capisce già
    perché il tasto è acceso, non si potrebbe togliere l'intestazione con il
@@ -9,9 +9,15 @@
    forse è un po' troppo complicata… se vogliono mettere una cosa strana la
    possono mettere nella parte personalizzata».
 
+   Poi, la stessa sera, la banda rossa bassa col nome bianco al centro
+   (scelta C fra quattro prove): «si clicca solo su cose rotondeggianti»,
+   quindi dentro la banda non c'è niente da toccare.
+
    Qui si controlla:
    - sopra le offerte non c'è l'intestazione, né la «i», né il suo pannello
      («Elimina prodotto», «Cambia nome», i sinonimi), né la scritta;
+   - c'è la banda, una sola, in cima, col nome del prodotto acceso e senza
+     tasti dentro;
    - un prodotto si toglie spegnendolo in «Organizza i prodotti», e si
      rimette riaccendendolo;
    - un prodotto che uno si era scritto a mano (fuori catalogo) sta in cima
@@ -45,6 +51,17 @@ setTimeout(() => {
                             ['i sinonimi', '.sinonimi'], ['il conteggio', '.quanti']])
     if (r.querySelector(sel)) guai.push('sopra le offerte c\'è ancora ' + che);
   if (/Offerte ordinate/.test(r.textContent)) guai.push('c\'è ancora «Offerte ordinate dal prezzo…»');
+  // la banda rossa col nome: una sola, in cima, senza tasti
+  const bande = r.querySelectorAll('.banda');
+  const acceso = d.querySelector('#tasti .tasto[aria-pressed="true"]');
+  if (bande.length !== 1) guai.push('le bande col nome sopra le offerte sono ' + bande.length + ', non una');
+  else {
+    if (r.firstElementChild !== bande[0]) guai.push('la banda col nome non è la prima cosa sopra le offerte');
+    if (!acceso || bande[0].textContent.trim() !== acceso.textContent.trim())
+      guai.push('la banda dice «' + bande[0].textContent.trim() + '», il prodotto acceso è «'
+                + (acceso ? acceso.textContent.trim() : 'nessuno') + '»');
+    if (bande[0].querySelector('button, a')) guai.push('dentro la banda c\'è qualcosa da toccare');
+  }
   if (d.getElementById('form-agg') || d.getElementById('nuovo'))
     guai.push('nel catalogo c\'è ancora la casella per scrivere nomi nuovi');
 
@@ -76,7 +93,7 @@ setTimeout(() => {
   trova('Pollo').click();
   if (!prodotti().includes('Pollo')) guai.push('riaccendendo «Pollo» non torna');
   if (prodotti().length !== prima) guai.push('spegni e riaccendi: i prodotti erano ' + prima + ', sono ' + prodotti().length);
-  console.log('  sopra le offerte: niente intestazione, niente «i», niente scritta');
+  console.log('  sopra le offerte: solo la banda col nome, niente «i», niente scritta');
   console.log('  «Organizza i prodotti»: si spegne e si riaccende; lo scritto a mano si toglie dal catalogo');
 
   if (errori.length) guai.push('errori in pagina: ' + errori.join(' | '));

@@ -154,7 +154,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
   invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
   pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
-- **SOPRA LE OFFERTE DI UN PRODOTTO NON C'È PIÙ NIENTE, e il tasto in fondo
+- **SOPRA LE OFFERTE DI UN PRODOTTO C'È SOLO UNA BANDA ROSSA BASSA COL NOME
+  BIANCO AL CENTRO** (2026-09-23 sera, Manlio: «con le pillole sotto
+  quell'elenco si vede un po' strano… una banda colorata in alto per
+  staccare dall'intestazione»; scelta C fra quattro prove in schermata:
+  banda rosata, righe grigie ai lati, banda rossa, righe rosse). È `.banda`
+  in `disegna()`, larga quanto lo schermo, alta ~24 px, **squadrata e
+  senza niente da toccare dentro**: «si clicca solo su cose rotondeggianti».
+  La controlla `prova-intestazione.js`. **Per il resto vale la regola qui
+  sotto**: niente «i», niente scritte, niente tasti.
+- **SOPRA LE OFFERTE DI UN PRODOTTO NON C'È PIÙ NIENTE (poi la banda, vedi sopra), e il tasto in fondo
   alla griglia si chiama «Organizza i prodotti»** (2026-09-23 sera, Manlio:
   «dato che la categoria di prodotti si capisce già perché il tasto è
   acceso, non si potrebbe togliere l'intestazione con il nome ripetuto in
@@ -800,6 +809,13 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
+- **Sul ramo di lavoro, NON ANCORA PUBBLICATA**: la banda rossa col nome
+  sopra le offerte (scelta C). In prova, solo in schermata e non nel codice:
+  **tutti i tasti più squadrati** (stile Material 3: angoli 10 px ai tasti
+  piccoli, 14 px al menù e ai tasti grandi; i bollini dentro le schede
+  restano tondi perché non si toccano). Si aspetta la sua risposta: se gli
+  piacciono si pubblica tutto insieme, se no la banda da sola. Chi pubblica
+  porti `main` avanti come sempre.
 - **Pubblicato e verificato**: sito e link Claude a `sw.js` **v98** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
