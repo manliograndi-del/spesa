@@ -227,18 +227,9 @@ MESI = ('gennaio febbraio marzo aprile maggio giugno luglio agosto '
 # La data in fondo alla pagina si calcola: scritta a mano era rimasta indietro
 # di due giorni e Manlio l'ha fotografata mentre si contraddiceva da sola.
 OGGI = f'{_oggi.day} {MESI[_oggi.month - 1]} {_oggi.year}'
-# Il primo indirizzo utile di ogni volantino: e quello che apre il tasto «Il
-# volantino» in fondo alla pagina. Si prende dall'indice, cioe da pagine che
-# esistono davvero, e non dal modello con dentro il numero: cosi il tasto non
-# porta mai su un indirizzo inventato.
-PRIMA = {}
-for _r in pagine:
-    if _r['url'] and _r['pdf'] not in PRIMA:
-        PRIMA[_r['pdf']] = _r['url']
 
 volantini = [x for x in (dict(ins=v.insegna, periodo=v.periodo, pdf=v.pdf,
                               pagine=len([y for y in pagine if y['pdf'] == v.pdf]),
-                              apri=PRIMA.get(v.pdf),
                               inizio=v.inizio, fino=v.fino)
                          for v in VOLANTINI) if x['pagine']]
 
@@ -745,7 +736,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .riga-cerca .tasto.trova[aria-pressed="true"],.riga-cerca .tasto.marchi[aria-pressed="true"],
 .riga-cerca .tasto.sez[aria-pressed="true"]{
   background:var(--rosso);color:var(--su-rosso)}
-.spiega[hidden],.chiudi[hidden]{display:none}
+.chiudi[hidden]{display:none}
 /* La pagina della ricerca è solo una pillola dove scrivere: niente riquadro
    intorno. */
 #ricerca{background:none;border:0;padding:0}
@@ -1098,10 +1089,6 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .vuoto{color:var(--tenue);font-size:14.5px;margin:14px 0 0;background:var(--pannello);
   border-radius:20px;padding:16px}
 
-/* ---- coda ---- */
-.spiega{margin-top:34px;background:var(--pannello);border-radius:22px;padding:18px 18px 6px}
-.spiega h2{font-family:var(--f-prezzo);text-transform:uppercase;font-size:15px;
-  letter-spacing:.04em;margin:0;display:flex;align-items:center;gap:9px}
 /* Il bollino «i». Manlio: «la pagina è molto lunga, le spiegazioni meglio che
    appaiano solo quando si fa clic su un bollino di informazioni». Tondo, con
    la i minuscola, grande abbastanza da prendersi col dito. */
@@ -1112,11 +1099,6 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .info[aria-expanded="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
 .dettaglio[hidden]{display:none}
 .dettaglio{margin-top:10px}
-.spiega .dettaglio > p:last-child{margin-bottom:12px}
-.spiega > h2 + .dettaglio{margin-bottom:0}
-.spiega > h2:not(:first-child){margin-top:18px}
-.spiega p{font-size:14px;margin:0 0 12px}
-.spiega .ev{color:var(--ambra);font-weight:700}
 /* ---- la finestra delle novità della pagina ---- */
 /* Sta SOPRA tutto (la barra appiccicata ha z-index 20) e si chiude in tre
    modi: il tasto, il buio intorno, il tasto Esc. Si apre una volta sola:
@@ -1141,24 +1123,6 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
   letter-spacing:.06em;text-transform:uppercase;font-weight:700;margin-bottom:3px}
 .finestra .voce h3{margin:0 0 4px;font-size:16px}
 .finestra .voce p{margin:0;font-size:14px;color:var(--inchiostro)}
-.vol{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:1px;background:var(--linea);
-  border:1px solid var(--linea);border-radius:20px;overflow:hidden}
-.vol li{background:var(--carta);padding:11px 13px;font-size:14px}
-.vol .capo-vol{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-/* I DUE TASTI DI OGNI VOLANTINO, chiesti da Manlio il 2026-09-18: uno apre i
-   prezzi letti da quel volantino, l'altro il volantino stesso sul sito di chi
-   lo pubblica. Larghi uguali, uno accanto all'altro, alti abbastanza da
-   prendersi col dito sul telefono. */
-.vol-tasti{display:flex;gap:8px;margin-top:9px}
-.vol-t{flex:1 1 0;min-height:40px;display:flex;align-items:center;justify-content:center;
-  gap:3px;text-align:center;padding:8px 10px;border:1.5px solid var(--linea-forte);
-  border-radius:99px;background:var(--pannello);color:var(--rosso);font-weight:600;
-  font-size:13.5px;font-family:inherit;text-decoration:none;cursor:pointer}
-.vol-t.fuori::after{content:'\2197'}
-.vol-t.spento{color:var(--tenue);border-style:dashed;cursor:default;font-weight:400}
-.vol .i{font-weight:600}
-.vol .p{color:var(--tenue);font-size:13px}
-.vol .n{color:var(--tenue);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   color:var(--tenue);font-size:13px}
 /* ---- LA PAGINA DEL VOLANTINO, SOPRA L'ELENCO (Manlio, 2026-09-23: «fare
@@ -1332,71 +1296,12 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 <div id="risultato"></div>
 
 
-<section class="spiega">
-  <h2>Come leggerla <button type="button" class="info" aria-expanded="false" aria-label="Mostra la spiegazione">i</button></h2>
-  <div class="dettaglio" hidden>
-  <p>In cima ci sono <b>i prodotti che hai scelto tu</b>. Per cambiarli tocca
-  <b>«+ altri prodotti»</b>: si apre un cassetto con tutto il catalogo, diviso per reparto come
-  il negozio. Tocca un prodotto per accenderlo, toccalo di nuovo per spegnerlo, poi «Fatto».
-  <b>Nessuno deve chiedere niente a nessuno</b>: ognuno accende i suoi, sul suo telefono.</p>
-  <p>Nel cassetto c'è anche <b>una casella per cercare</b>, e cerca anche fra i nomi che usa il
-  volantino: scrivendo «bovino» trovi la carne di bue, scrivendo «lavatrice» trovi il
-  detersivo.</p>
-  <p>I prezzi sono <b>letti a mano</b>, uno per uno, dalle pagine dei volantini. Il confronto è
-  per unità e cambia col prodotto: la carne al chilo, il latte al litro, le uova all'uovo, la
-  carta igienica al rotolo, il detersivo a lavaggio. Al chilo il detersivo darebbe un numero
-  vero e inutile.</p>
-  <p><b>Non tutte le voci del catalogo hanno già i prezzi.</b> Quelle che non ce l'hanno ancora
-  ti dicono in quali pagine dei volantini compare la parola, e il prezzo lo leggi tu aprendo la
-  pagina. Le sto leggendo a mano, un reparto per volta: compariranno senza che tu debba fare
-  niente.</p>
-  <p>Se ti serve <b>qualcosa che nel catalogo non c'è</b>, scrivilo nella casella in fondo al
-  cassetto: puoi mettere anche più nomi separati da virgola — per esempio
-  <i>tovaglioli, salviette</i> — e la pagina cerca le pagine dove compare almeno uno di quelli.</p>
-  <p>Le righe segnate <span class="ev">da controllare</span> vengono da riassunti trovati
-  online e possono essere sbagliate: di errori così ne ho già trovati tre.</p>
-  <p>Certi prezzi valgono <b>solo con la tessera</b> — soci Coop, Lidl Plus, Bennet Club — e
-  qualche riga confronta cose diverse fra loro: il caffè in capsule al chilo costa sempre molto
-  più del macinato, e l'ammorbidente non è detersivo. Sta scritto nella riga.</p>
-  <p>Le parole le ha lette il computer dalle immagini: sulle scritte grandi spesso sbaglia. Se
-  un prodotto dà zero pagine può esserci lo stesso, prova a chiamarlo in un altro modo.</p>
-
-  </div>
-
-  <h2>Quando arrivano le offerte nuove <button type="button" class="info" aria-expanded="false" aria-label="Mostra la spiegazione">i</button></h2>
-  <div class="dettaglio" hidden>
-  <p>I prezzi qui sopra sono dei volantini <b id="letto"></b>. Quando escono quelli nuovi
-  <b>la pagina si aggiorna da sola</b>: chi l'ha aperta col link ricarica e vede i prezzi nuovi,
-  senza premere niente e senza che nessuno debba rimandare niente. Vale per chiunque abbia il
-  link, da qualsiasi telefono.</p>
-  <p>L'unica copia che <b>non</b> si aggiorna è il file salvato sul telefono: quello resta fermo
-  al giorno in cui è stato fatto. Se ti interessa avere sempre i prezzi giusti, usa il link.</p>
-  <p id="p-lista"></p>
-  <p>Un prodotto acceso adesso mostra <b>subito le pagine</b> dove compare, ma i
-  <b>prezzi arrivano dopo</b>: quelli vanno letti dalle pagine dei volantini a occhio, non c'è
-  modo di ricavarli da soli. Quando li ho letti compaiono anche quelli, senza che dobbiate
-  rifare niente.</p>
-
-  </div>
-
-  <h2>I volantini</h2>
-  <ul class="vol" id="vol"></ul>
-  <p style="margin-top:12px">Su ogni riga ci sono due tasti, e tutti e due aprono
-  <b>una pagina nuova</b>, così non perdi quello che stavi guardando:
-  <b>«Le offerte»</b> ti mostra i prezzi letti da quel volantino, reparto per reparto;
-  <b>«Il volantino»</b> apre le sue pagine sul sito di chi lo pubblica.</p>
-  <p style="margin-top:12px">I <b>marchi dei supermercati</b> restano di chi li ha:
-  stanno qui solo per far riconoscere a colpo d'occhio di quale negozio è un'offerta.
-  Dove un marchio non c'è, al suo posto trovi il nome scritto.</p>
-  <p style="margin-top:12px">Di Mercatò si legge il volantino del punto vendita di
-  <b>via Filadelfia 232</b>. Mercatò Local, Big ed Extra sono insegne diverse con volantini
-  diversi: quello di via Demargherita, per dire, è un Local e queste offerte non sono le sue.</p>
-  <p style="margin-top:12px">Di Pam si legge il volantino dei <b>supermercati Pam</b>, quello
-  del Pam di <b>corso Orbassano 212</b>, il più vicino. I Pam Panorama hanno un volantino loro,
-  con prezzi diversi.</p>
-  <p style="margin-top:12px">Di Conad si legge il volantino del <b>Conad di via Cesana 78</b>,
-  preso direttamente dal sito di Conad. I Conad City e i Superstore hanno volantini loro.</p>
-</section>
+<!-- IN FONDO NON C'È PIÙ NIENTE (Manlio, 2026-09-23 sera, con la schermata
+     del riquadro «Come leggerla / Quando arrivano le offerte nuove / I
+     volantini»: «questo immenso elenco c'è in praticamente tutte le pagine,
+     io lo toglierei dappertutto»). Come si usa la pagina lo dice l'Aiuto,
+     dentro l'ingranaggio; quali negozi e di chi sono i marchi, anche; i
+     volantini con le loro date stanno nella pagina Novità. -->
 
 <footer id="pie"></footer>
 </div>
@@ -1530,10 +1435,13 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       vuoi sul sito del negozio.</p>
     </div>
     <div class="voce">
-      <h3>In fondo: l'elenco dei volantini</h3>
-      <p>Ogni riga ha due tasti: <b>«Le offerte»</b> mostra i prezzi letti da quel
-      volantino, <b>«Il volantino»</b> apre le sue pagine. Si aprono in una pagina
-      nuova, così non perdi il posto.</p>
+      <h3>Quali negozi</h3>
+      <p>Di Mercatò si legge il volantino di <b>via Filadelfia 232</b> (i Mercatò
+      Local, Big ed Extra ne hanno di diversi), di Pam quello di <b>corso Orbassano
+      212</b> (non i Pam Panorama), di Conad quello di <b>via Cesana 78</b> (non i
+      Conad City). I marchi dei supermercati e delle marche restano di chi li ha:
+      stanno qui solo per farli riconoscere a colpo d'occhio. Tutti i volantini, con
+      le loro date, sono nel tasto «Novità».</p>
     </div>
     <div class="voce">
       <h3>L'ingranaggio in alto: la configurazione</h3>
@@ -2380,8 +2288,10 @@ function apriRicerca(si, senzaFuoco) {
   }
 }
 
-/* Apre il pannello sulle offerte di un volantino solo. Lo chiamano i tasti in
-   fondo (di solito in una scheda nuova) e l'indirizzo con «#volantino=». */
+/* Apre il pannello sulle offerte di un volantino solo. Lo apriva il tasto
+   «Le offerte» dell'elenco dei volantini in fondo, tolto il 2026-09-23 sera;
+   resta l'indirizzo con «#volantino=», per chi ha ancora aperta quella
+   scheda. Se un giorno si rivuole, basta un tasto che porti lì. */
 function apriVolantino(pdf) {
   filtroVol = pdf;
   const q = document.getElementById('q');
@@ -2413,10 +2323,9 @@ function disegnaMarche() {
      pastiglie dei prodotti li in mezzo erano solo rumore. Tornano appena si
      chiude il pannello. */
   /* Col pannello aperto (ricerca, grandi marche o un volantino) non si
-     vedono né le categorie né, in fondo, le spiegazioni e l'elenco dei
-     volantini (Manlio, 2026-09-23: prima solo con le grandi marche). */
+     vedono le categorie (Manlio, 2026-09-23: prima solo con le grandi
+     marche). */
   document.querySelector('.barra').hidden = ricercaAperta || personaleAperto;
-  document.querySelector('.spiega').hidden = ricercaAperta || personaleAperto;
   sistemaBarra();   // le pillole ricompaiono: vanno rimesse ferme se sono poche
   box.textContent = '';
   if (!vistaMarche) return;
@@ -2915,8 +2824,9 @@ function rigaPrezzo(o, meno) {
   if (link.tagName !== 'A') dati.appendChild(link);
 
   /* NIENTE «Vedi tutte le offerte del volantino» in fondo a ogni scheda:
-     tolto il 2026-09-22 su richiesta di Manlio, «e inutile». Le offerte di un
-     volantino si aprono lo stesso, dal suo tasto in fondo alla pagina. */
+     tolto il 2026-09-22 su richiesta di Manlio, «e inutile». (Le offerte di un
+     volantino si aprivano dal suo tasto in fondo alla pagina, tolto anche
+     quello il 2026-09-23 sera.) */
   return d;
 }
 
@@ -2980,7 +2890,7 @@ function disegna() {
      scritto dopo carne di bue e lascerei solo una piccola scritta o un'icona
      per cancellarla». Quanti prezzi ci sono, con che altri nomi si cerca e il
      cambio nome sono roba da guardare una volta ogni tanto: stanno dietro il
-     bollino «i», come le spiegazioni in fondo. Restano il nome e la crocetta. */
+     bollino «i». Restano il nome e la crocetta. */
   const capo = document.createElement('div');
   capo.className = 'capo';
   /* Il bottone dice cosa fa. Prima c'era una crocetta, e Manlio: «la x per
@@ -3123,94 +3033,7 @@ function disegna() {
   }
 }
 
-/* ---------- volantini in fondo ---------- */
-const ul = document.getElementById('vol');
-function disegnaVolantini() {
-ul.textContent = '';
-DATI.volantini.filter(v => !tolta(v.ins)).forEach(v => {
-  const li = document.createElement('li');
-  li.innerHTML = `<div class="capo-vol"><span><span class="i"></span> <span class="p"></span></span><span class="n"></span></div>`;
-  li.querySelector('.i').textContent = v.ins;
-  li.querySelector('.p').textContent = v.periodo
-    + (scaduto(v) ? ' — scaduto' : futuro(v) ? ' — non ancora cominciato' : '');
-  if (scaduto(v) || futuro(v)) li.querySelector('.p').style.color = 'var(--ambra)';
-  li.querySelector('.n').textContent = v.pagine + ' pag.';
 
-  /* I DUE TASTI, chiesti da Manlio il 2026-09-18: «visto che alla fine c'e
-     l'elenco dei supermercati, un tasto per vedere le offerte e uno per vedere
-     il volantino». Tutti e due aprono una scheda nuova, come ha chiesto: chi
-     guarda non perde la lista ne il punto in cui era. */
-  const tasti = document.createElement('div');
-  tasti.className = 'vol-tasti';
-
-  /* Quante ne valgono OGGI, non quante ne ho lette: di un volantino scaduto
-     non c'e niente da aprire, e il tasto lo direbbe per finta. Il conto lo fa
-     il browser di chi guarda, con la sua data, come tutto il resto. */
-  const quante = DATI.offerte.filter(o => o.pdf === v.pdf && !nascosta(o)).length;
-  if (quante) {
-    const a = document.createElement('a');
-    a.className = 'vol-t';
-    a.href = location.href.split('#')[0] + '#volantino=' + encodeURIComponent(v.pdf);
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.textContent = 'Le offerte (' + quante + ')';
-    /* La scheda nuova si apre a mano, e non per capriccio: dentro la copia di
-       Claude la pagina sta in una cornice che a volte la scheda nuova non la
-       lascia aprire. Se non si apre, invece di non fare niente si apre il
-       pannello qui, sulla stessa pagina: meglio un tasto che funziona in un
-       modo un po' diverso di un tasto che non fa niente. */
-    a.onclick = ev => {
-      ev.preventDefault();
-      let nuova = null;
-      try { nuova = window.open(a.href, '_blank'); } catch (e) { nuova = null; }
-      if (nuova) { try { nuova.opener = null; } catch (e) {} return; }
-      apriVolantino(v.pdf);
-      inCima();
-    };
-    tasti.appendChild(a);
-  } else {
-    const spento = document.createElement('span');
-    spento.className = 'vol-t spento';
-    spento.textContent = scaduto(v) ? 'offerte scadute'
-      : futuro(v) ? 'prezzi in arrivo' : 'prezzi non ancora letti';
-    tasti.appendChild(spento);
-  }
-
-  if (v.apri) {
-    const b = document.createElement('a');
-    b.className = 'vol-t fuori';
-    b.href = v.apri;
-    b.target = '_blank';
-    b.rel = 'noopener noreferrer';
-    b.textContent = 'Il volantino';
-    tasti.appendChild(b);
-  }
-  li.appendChild(tasti);
-  ul.appendChild(li);
-});
-}
-disegnaVolantini();
-
-/* Ogni bollino «i» apre e chiude il pannello che gli sta subito dopo il
-   titolo. Un solo giro per tutti: aggiungendo una sezione basta scriverci il
-   bollino e il pannello, senza toccare questo. */
-document.querySelectorAll('.info').forEach(b => {
-  /* h1 O h2: il primo bollino di questa pagina stava in un h2, e cercare solo
-     quello bastava. Aggiungendone uno nel titolone in cima, closest('h2') ha
-     dato niente e la pagina è uscita MUTA — bottoni compresi, perché l'errore
-     fermava tutto il resto dello script. È lo stesso guasto del tag di
-     chiusura scritto per esteso: da fuori sembra a posto e non funziona
-     niente. Se un giorno un bollino finisce in un h3, va aggiunto qui. */
-  const testa = b.closest('h1, h2');
-  const pannello = testa && testa.nextElementSibling;
-  if (!pannello || !pannello.classList.contains('dettaglio')) return;
-  b.onclick = () => {
-    const apri = pannello.hidden;
-    pannello.hidden = !apri;
-    b.setAttribute('aria-expanded', String(apri));
-    b.setAttribute('aria-label', apri ? 'Nascondi la spiegazione' : 'Mostra la spiegazione');
-  };
-});
 
 document.getElementById('cerca').oninput = disegnaScaffali;
 document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
@@ -3241,30 +3064,15 @@ document.getElementById('form-agg').onsubmit = ev => {
 /* Una data sola per tutta la pagina. Prima quella in fondo era scritta a mano e
    restava indietro: la pagina diceva 4 settembre in mezzo e 2 settembre in fondo,
    e se n'e accorto Manlio. */
-document.getElementById('letto').textContent = 'letti il ' + DATI.letto;
 document.getElementById('pie').textContent =
-  'Volantini letti il ' + DATI.letto + '. I numeri di pagina sono quelli dei volantini.';
-aggiornaTestoLista();
+  'Volantini letti il ' + DATI.letto + '. I numeri di pagina sono quelli dei volantini. '
+  + 'I marchi dei supermercati e delle marche restano di chi li ha.';
 
-/* Cosa dire della lista dipende dalla copia che si sta guardando: sul sito e
-   una per telefono, sulla copia di Claude e una sola per tutti. Scriverne una
-   sola delle due era una bugia per meta dei lettori. */
-function aggiornaTestoLista() {
-  const p = document.getElementById('p-lista');
-  if (!p) return;
-  p.innerHTML = soloMio
-    ? '<b>La lista dei prodotti è tua e resta su questo telefono.</b> Puoi aggiungere e '
-      + 'togliere quello che vuoi senza toccare quella di nessun altro. Chi apre da un altro '
-      + 'telefono riparte dai prodotti di partenza e se la regola per conto suo.'
-    : '<b>La lista dei prodotti è una sola, condivisa.</b> Chi apre il link vede la stessa, e se '
-      + 'la cambia la cambia per tutti. Quando qualcuno la tocca, gli altri schermi si aggiornano '
-      + 'da soli.';
-}
 
 
 disegna();
 
-/* «#volantino=...» in coda all'indirizzo: e quello che i tasti in fondo mettono
+/* «#volantino=...» in coda all'indirizzo: e quello che i tasti in fondo mettevano
    nella scheda nuova. Qui si legge e si apre subito il pannello con le offerte
    di quel volantino. Se non corrisponde a niente non succede niente: meglio la
    pagina normale che un pannello vuoto. */
@@ -3612,7 +3420,6 @@ function disegnaNegozi() {
       try { localStorage.setItem(NEGOZI_TOLTI, JSON.stringify(tolti)); } catch (e) {}
       disegnaNegozi();
       disegna();
-      disegnaVolantini();
       if (!document.getElementById('ricerca').hidden) { disegnaMarche(); disegnaTrovati(); }
       if (personaleAperto) disegnaPersonale();
     };
@@ -3651,7 +3458,6 @@ mostraNovita();
   if (dv) dv.textContent = soloMio
     ? 'Questa copia è solo tua: quello che cambi resta su questo telefono.'
     : 'Questa copia è condivisa: quello che cambi lo vede anche chi ha il link.';
-  aggiornaTestoLista();
   disegna();
 })();
 </script>'''

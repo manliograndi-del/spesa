@@ -3237,3 +3237,30 @@ Misurato: 46 marche in una schermata a 390×844 (50 px), 390×664 (35),
 412×780 (45), 360×640 (34), 430×932 (54). I riquadri senza marchio tengono
 il fondo della pagina (`--carta`), non il bianco fisso: con un look scuro
 la scritta è chiara, e su bianco non si leggerebbe.
+
+## Via il riquadro in fondo coi volantini — 2026-09-23 sera
+
+Manlio ha mandato la schermata del riquadro in fondo («Come leggerla», «Quando
+arrivano le offerte nuove», «I volantini» con due tasti per volantino):
+«questo immenso elenco c'è in praticamente tutte le pagine, io lo toglierei
+dappertutto». Tolto tutto il riquadro, non solo l'elenco: le due voci col
+bollino «i» sopra sarebbero rimaste lì da sole, e quello che dicevano (come
+si usa, chi vede la lista) lo dice già l'Aiuto.
+
+Quello che valeva la pena tenere è stato spostato, non buttato:
+- quali negozi si leggono (Mercatò di via Filadelfia, Pam di corso Orbassano,
+  Conad di via Cesana) → Aiuto, voce «Quali negozi», al posto di quella che
+  spiegava l'elenco (il numero di voci resta lo stesso);
+- «i marchi restano di chi li ha» → nel piede e nell'Aiuto;
+- solo tua / condivisa → c'era già nell'Aiuto, «Questa copia»; la prova
+  `prova-testi.js` adesso guarda lì.
+Il pannello delle offerte di un volantino solo resta, raggiungibile con
+`#volantino=` nell'indirizzo (chi aveva una scheda aperta dal vecchio tasto
+non la trova rotta); `prova-volantini.js` lo prova partendo dall'indirizzo.
+Tolti i dati che servivano solo all'elenco (`apri`, la prima pagina di ogni
+volantino). Aggiornate anche `prova-marche.js`, `prova-negozi.js` e
+`prova-quando.js`, che guardavano l'elenco.
+
+Resta, sotto le offerte di ogni prodotto, l'elenco delle pagine dei volantini
+dove compare la parola («ci ho trovato: uovo — pag. 15», «Mostra le altre 11
+pagine»): chiesto a Manlio se togliere anche quello.

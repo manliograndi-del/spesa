@@ -305,11 +305,25 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   quello** (2026-09-23): niente categorie, niente riquadro grigio, niente
   tasto «Fatto» (nascosto: le prove lo usano), **nessuna scritta sotto la
   casella** (né «scrivi almeno due lettere» né «28 offerte…»), e **in fondo
-  niente spiegazioni né elenco dei volantini** (`.spiega` nascosta). Le
+  niente spiegazioni né elenco dei volantini** (dal 2026-09-23 sera non ci
+  sono più da nessuna parte, vedi sotto). Le
   offerte escono mentre si scrive. Si torna all'inizio **toccando il titolo
   «Spesa»** (`#vai-inizio`), che fa la stessa cosa anche nella pagina Novità.
   La prova è `prova-marche.js`.
-- **In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
+- **IN FONDO ALLA PAGINA NON C'È PIÙ NIENTE** (2026-09-23 sera, Manlio, con la
+  schermata del riquadro «Come leggerla / Quando arrivano le offerte nuove /
+  I volantini»: «questo immenso elenco c'è in praticamente tutte le pagine,
+  io lo toglierei dappertutto»). Tolto tutto il riquadro (`.spiega`), non
+  solo l'elenco. Resta il piede, una riga: data dei volantini e «i marchi
+  restano di chi li ha». Quali negozi (Mercatò di via Filadelfia, Pam di
+  corso Orbassano, Conad di via Cesana) sta nell'Aiuto, voce «Quali
+  negozi», al posto di quella che spiegava l'elenco; di chi è la copia
+  (solo tua / condivisa) sta nell'Aiuto, «Questa copia». Il pannello «Le
+  offerte» di un volantino solo resta, ma ci si arriva solo con
+  `#volantino=` nell'indirizzo: se un giorno si rivuole, basta un tasto.
+  Non rimettere l'elenco senza chiederglielo. La regola qui sotto è la
+  storia di com'era.
+- **(TOLTO il 2026-09-23 sera, vedi sopra) In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
   **«Le offerte (N)»** apre le offerte lette da quel volantino, divise per
   reparto, e **«Il volantino ↗»** apre la sua prima pagina sul sito di chi lo
   pubblica. Tutti e due in una **pagina nuova**, come ha chiesto lui. Regole da
@@ -342,8 +356,8 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     sotto, «La pagina del volantino sopra l'elenco»).
     **In fondo alla scheda non c'è niente**: la scritta «Vedi tutte le offerte
     del volantino» c'era e Manlio l'ha fatta togliere lo stesso giorno,
-    «è inutile» — quelle offerte si aprono dal tasto del volantino in fondo
-    alla pagina.
+    «è inutile» — quelle offerte si aprivano dal tasto del volantino in
+    fondo alla pagina (tolto anche quello il 2026-09-23 sera).
   - **Il negozio è un MARCHIO, non una scritta** (`.marchio`, chiesto il
     2026-09-22: «mettici il marchio dei supermercati»). Dove il marchio c'è
     davvero (cinque su otto) è quello vero, da `strumenti/loghi/`; dove non
@@ -699,7 +713,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v91** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v92** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
@@ -714,7 +728,8 @@ nuova. Lo stato, in breve:
   aggiungerei niente». Non riproporlo. **Fatto anche il 7** (`sw.js` v91):
   le grandi marche sono riquadri tutti uguali, quattro per riga, e stanno
   in una schermata. Prima del 7 (`sw.js` v90): nome del prodotto meno nero
-  e prezzi a metà della scheda. **L'analisi esterna è chiusa.**
+  e prezzi a metà della scheda. **L'analisi esterna è chiusa.** Dopo
+  (`sw.js` v92): tolto tutto il riquadro in fondo coi volantini.
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».

@@ -1,5 +1,6 @@
 /* Controlla che la pagina non dica cose false su se stessa: la data dev'essere
-   una sola, e la frase sulla lista deve dire la verita per QUESTA copia.
+   quella dei volantini, e la frase su chi vede la lista deve dire la verita
+   per QUESTA copia.
 
        node prova-testi.js out/sito.html
        node prova-testi.js out/pagina.html --condivisa
@@ -25,25 +26,26 @@ const dom = new JSDOM(fs.readFileSync(file, 'utf8'), {
 });
 setTimeout(() => {
   const d = dom.window.document;
-  const letto = d.getElementById('letto').textContent;
+  /* Dal 2026-09-23 sera il riquadro in fondo non c'è più (Manlio: «lo
+     toglierei dappertutto»): la data resta solo nel piede, e la frase su chi
+     vede la lista sta nell'Aiuto («Questa copia»). */
+  const letto = dom.window.eval('DATI.letto');
   const pie = d.getElementById('pie').textContent;
-  const lista = d.getElementById('p-lista').textContent;
-  const scaduti = [...d.querySelectorAll('#vol .p')].filter(e => /scaduto/.test(e.textContent));
+  const lista = d.getElementById('dove-vive').textContent;
   console.log('  copia provata come:', condivisa ? 'condivisa (di Claude)' : 'solo tua (sito o file)');
-  console.log('  in mezzo:', letto);
+  console.log('  letti il:', letto);
   console.log('  in fondo:', pie);
-  const d1 = (letto.match(/\d+ \w+ \d{4}/) || [''])[0];
   const d2 = (pie.match(/\d+ \w+ \d{4}/) || [''])[0];
-  const dice_condivisa = /una sola, condivisa/.test(lista);
+  const dice_condivisa = /condivisa/.test(lista);
   const guai = [];
-  if (!d1 || d1 !== d2) guai.push(`le due date non combaciano: «${d1}» e «${d2}»`);
+  if (!letto || d2 !== letto) guai.push(`la data in fondo non è quella dei volantini: «${d2}» e «${letto}»`);
   if (!/volantini\./.test(pie)) guai.push('il piede parla ancora di PDF');
+  if (!/marchi .*restano di chi li ha/.test(pie)) guai.push('il piede non dice più di chi sono i marchi');
+  if (!lista.trim()) guai.push('l\'Aiuto non dice di chi è questa copia');
   if (dice_condivisa !== condivisa)
     guai.push(`dice «${dice_condivisa ? 'condivisa' : 'solo tua'}» ma questa copia e l'altra cosa`);
-  console.log('  le due date combaciano:', d1 === d2 && !!d1, `(${d1})`);
-  console.log('  frase sulla lista:', lista.slice(0, 72) + '…');
-  console.log('  volantini segnati scaduti:',
-    scaduti.map(e => e.textContent.split('—')[0].trim()).join(', ') || 'nessuno');
+  console.log('  la data in fondo è quella dei volantini:', d2 === letto && !!letto, `(${d2})`);
+  console.log('  frase sulla copia:', lista.slice(0, 72) + '…');
   if (errori.length) guai.push('errori in pagina: ' + errori.join(' | '));
   if (guai.length) {
     console.log('\nNON VA:'); guai.forEach(g => console.log('  ✗ ' + g));

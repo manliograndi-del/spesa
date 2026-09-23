@@ -4,8 +4,8 @@
 
    Qui si controlla quello che, se si rompe, non si vede rileggendo:
    - l'elenco ha TUTTE le insegne dei volantini, e all'inizio sono tutte tenute;
-   - togliendone una, le sue offerte spariscono dai prezzi, dalla ricerca e
-     dall'elenco dei volantini in fondo;
+   - togliendone una, le sue offerte spariscono dai prezzi e dalla ricerca
+     (l'elenco dei volantini in fondo non c'è più dal 2026-09-23 sera);
    - la scelta si ricorda (resta sul telefono) e rimettendola torna tutto;
    - non si possono togliere tutte: la pagina resterebbe senza un prezzo.     */
 const fs = require('fs');
@@ -54,8 +54,6 @@ setTimeout(() => {
 
   const conta = ins => [...d.querySelectorAll('#risultato .prezzo-riga')]
     .filter(r => negozioDi(r) === ins).length;
-  const volantiniDi = ins => [...d.querySelectorAll('#vol li .i')]
-    .filter(e => e.textContent === ins).length;
 
   // la prima insegna che ha offerte sul prodotto acceso
   const vittima = insegne.find(i => conta(i) > 0);
@@ -64,7 +62,6 @@ setTimeout(() => {
     const prima = conta(vittima);
     tasti().find(b => b.title === vittima).dispatchEvent(new w.Event('click'));
     if (conta(vittima)) male.push('tolto «' + vittima + '», le sue offerte restano nei prezzi');
-    if (volantiniDi(vittima)) male.push('tolto «' + vittima + '», i suoi volantini restano in fondo');
     const b = tasti().find(x => x.title === vittima);
     if (b.getAttribute('aria-pressed') !== 'false') male.push('il tasto tolto non si vede spento');
     const salvato = w.localStorage.getItem('spesa.negozi.v1') || '';
@@ -81,7 +78,7 @@ setTimeout(() => {
     const due = apri({ 'spesa.negozi.v1': salvato });
     setTimeout(() => {
       const d2 = due.dom.window.document;
-      const ancora = [...d2.querySelectorAll('#vol li .i')].filter(e => e.textContent === vittima).length;
+      const ancora = [...d2.querySelectorAll('#risultato .prezzo-riga')].filter(r => negozioDi(r) === vittima).length;
       if (ancora) male.push('riaprendo la pagina il negozio tolto torna');
 
       // rimesso, torna tutto

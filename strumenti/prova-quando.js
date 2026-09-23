@@ -82,11 +82,6 @@ setTimeout(() => {
   if (senzaDurata.length)
     guai.push(`${senzaDurata.length} righe non dicono fino a quando valgono`);
   console.log(`  righe guardate: ${visti}, di cui non ancora valide: ${futuri}`);
-  const segnati = f => [...d.querySelectorAll('#vol li')]
-    .filter(li => f.test(li.textContent))
-    .map(li => li.querySelector('.i').textContent + ' ' + li.querySelector('.p').textContent.split('—')[0].trim());
-  console.log('  «non ancora cominciato»: ' + (segnati(/non ancora cominciato/).join(' · ') || 'nessuno'));
-  console.log('  «scaduto»: ' + (segnati(/— scaduto/).join(' · ') || 'nessuno'));
   if (errori.length) guai.push('errori in pagina: ' + errori.join(' | '));
   if (guai.length) {
     console.log('\nNON VA:'); guai.forEach(g => console.log('  ✗ ' + g));
