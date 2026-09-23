@@ -2856,3 +2856,10 @@ all'interno del cerchio in modo che abbia sempre la stessa altezza».
   7 px). Misurato col browser su tutte le offerte che partono il 24: il testo
   sta da 5 px sotto il bordo alto a 6 px sopra quello basso.
 - `prova-giorni.js` legge ancora `.num` e `.mese`: le classi sono rimaste.
+
+## Via la versione coi tasti sotto — 2026-09-23
+
+Manlio, dopo averle guardate tutte e due: «lascia perdere la versione con i
+tasti sotto, elimina completamente». Resta la pagina com'era, coi due tasti
+sopra le categorie. Cancellati `prova-tasti-sotto.html` dal sito e
+`strumenti/variante.py`; tolti i due passi dalle istruzioni e dalla Routine.

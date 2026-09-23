@@ -79,14 +79,13 @@ pubblicato — non basta che il push sia andato a buon fine.
     python3 -m pagina              # le tre copie in out/
     python3 -m storia              # il diario delle novità del giorno
     python3 -m novita              # la pagina delle novità (tasto in alto a destra)
-    python3 -m variante            # la versione di prova (prova-tasti-sotto.html), finché c'è
     python3 -m stampa              # il PDF del catalogo da stampare
     python3 -m lette               # quante pagine ho letto davvero
     bash <progetto>/strumenti/prove.sh    # TUTTE le prove
     python3 -m pulizia out/sito.html      # codice rimasto in giro
 
 Poi `cp out/sito.html index.html`, `cp out/novita.html novita.html`,
-`cp out/catalogo.pdf catalogo.pdf`, `cp out/prova-tasti-sotto.html .` (finché c'è la prova), alza `sw.js`, commit, push, e ripubblica
+`cp out/catalogo.pdf catalogo.pdf`, alza `sw.js`, commit, push, e ripubblica
 l'artifact.
 
 **`prove.sh` è il comando che conta.** Una pagina che non passa non si pubblica.
@@ -334,13 +333,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 - **Toccando una grande marca la pagina scorre da sola ai risultati**
   (chiesto il 2026-09-22): le 46 pillole occupano uno schermo, e senza lo
   scorrimento le offerte restavano sotto, fuori vista.
-- **C'è una VERSIONE DI PROVA con i due tasti (rosso e GRANDI MARCHE) SOTTO le
-  categorie** invece che sopra (chiesta il 2026-09-22: «prova a farne anche
-  una versione»). È `prova-tasti-sotto.html` sul sito, fatta da
-  `strumenti/variante.py` a partire da `out/sito.html`: stessa pagina, una riga
-  spostata. Sta sullo stesso sito, quindi legge la stessa lista del telefono.
-  **Quando Manlio sceglie**: se vuole questa, si sposta la riga in `pagina.py`;
-  in tutti e due i casi poi si cancellano `variante.py` e la prova sul sito.
+- **I due tasti (rosso e GRANDI MARCHE) stanno SOPRA le categorie, ed è
+  deciso.** Il 2026-09-22 c'era una versione di prova coi tasti sotto
+  (`prova-tasti-sotto.html`, fatta da `variante.py`); il 2026-09-23 Manlio:
+  «lascia perdere la versione con i tasti sotto, elimina completamente».
+  Tolti la pagina dal sito e il programma che la faceva. Non rifarla.
 - **Il meno caro è una pastiglia dentro l'elenco, e le offerte non ancora
   cominciate sono sbiadite** (chiesto il 2026-09-22: «che il prodotto meno
   caro venisse messo in una pillola, con un bordo e con un colore che la
@@ -485,6 +482,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Eliminata la versione di prova coi tasti sotto le categorie**
+  (2026-09-23, Manlio: «lascia perdere… elimina completamente»). Non c'è più
+  né sul sito né in `strumenti/`. `sw.js` a v72.
 - **Allineata la riga in cima a ogni offerta** (2026-09-23, chiesto da
   Manlio): la pillola del marchio, il cerchietto dei giorni e l'icona del
   volantino sono tutti alti 30 px, e nelle offerte non ancora cominciate il
