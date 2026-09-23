@@ -531,13 +531,15 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   La prova è `prova-giorni.js`.
 - **La riga in cima a ogni prodotto, SOLO QUANDO SERVE** (punto 3
   dell'analisi esterna, 2026-09-23, Manlio: «va bene la prima»). È
-  `sintesi()` in `pagina.py`, sopra «Offerte ordinate…», e ha al massimo due
-  righe-tasto: **verde** «Oggi il meno caro: MD, 16,90 € al kg» se la scheda
-  verde NON è la prima; **blu** «Da domani conviene di più: Conad, 9,90 € al
-  kg» (o «dopodomani», o «giovedì 25») se un'offerta che parte nei prossimi
-  giorni costa meno, come si legge. Toccandole la pagina scende alla loro
-  scheda. **Se il meno caro di oggi è già la prima scheda e non arriva niente
-  di meglio, la riga NON c'è**: è la differenza col riquadro del 2026-09-22,
+  `sintesi()` in `pagina.py`, sopra «Offerte ordinate…». **Compare solo se
+  la scheda verde NON è fra le prime tre** (Manlio, subito dopo: «metterei
+  quella barra solo quando il prezzo più conveniente non è fra i primi tre»),
+  e ha al massimo due righe-tasto: **verde** «Oggi il meno caro: MD, 16,90 €
+  al kg»; **blu** «Da domani conviene di più: Conad, 9,90 € al
+  kg» (o «dopodomani», o «giovedì 25») se in più un'offerta che parte nei
+  prossimi giorni costa meno, come si legge. Toccandole la pagina scende alla
+  loro scheda. **Se il meno caro di oggi è fra le prime tre schede, o non ce
+  n'è uno, la riga NON c'è**: è la differenza col riquadro del 2026-09-22,
   tolto perché ripeteva la scheda verde. La prova è `prova-sintesi.js`.
 - **Le novità della pagina si segnano per id PIÙ GRANDE, non per ultima
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
@@ -642,9 +644,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 ## Da fare adesso (aggiornato il 2026-09-23)
 
 - **Punto 3 fatto: la riga in cima a ogni prodotto, solo quando serve**
-  (2026-09-23, «va bene la prima, procedi»). Il 23 settembre compare in 7
-  prodotti su 13 della sua lista. Novità `2026-09-23-z-sintesi`. `sw.js` a
-  v85. **Prossimo, chiedendoglielo prima**: 4) colori, date, «Elimina».
+  (2026-09-23, «va bene la prima, procedi»), poi ristretta: solo quando la
+  scheda verde è dalla quarta in giù. Il 23 settembre compare solo nel Manzo
+  (scheda verde ottava). Novità `2026-09-23-z-sintesi`. `sw.js` a v86. **Prossimo, chiedendoglielo prima**: 4) colori, date, «Elimina».
 
 - **Le cose importanti dei vecchi «Dettagli» sono pillole beige** (2026-09-23,
   chiesto da Manlio): prezzo senza tessera, cos'è davvero il prodotto, peso

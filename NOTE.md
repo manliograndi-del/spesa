@@ -3141,3 +3141,8 @@ Scoperto facendo la prova: il marchio SVG del Carrefour portava dentro
 `<title>logo</title><desc>Created with Sketch.</desc>`. Era già nascosto al
 lettore di schermo, ma col mouse sopra compariva «logo». `loghi.py` adesso
 toglie titoli e descrizioni da tutti i marchi.
+
+Poco dopo, Manlio: «io metterei quella barra solo quando il prezzo più
+conveniente non è fra i primi tre». Se la scheda verde è la prima, la seconda
+o la terza, sul telefono si vede già senza scorrere. Adesso la barra c'è solo
+dalla quarta in giù; il 23 settembre resta nel solo Manzo.

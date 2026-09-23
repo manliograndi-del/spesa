@@ -1,9 +1,10 @@
 /* La riga in cima a ogni prodotto, SOLO QUANDO SERVE (Manlio, 2026-09-23,
    punto 3: «va bene la prima»). Per ogni prodotto della lista si controlla:
-   - «Oggi il meno caro» c'è se e solo se la scheda verde NON è la prima, e
-     dice il negozio e il prezzo della scheda verde;
-   - «Da … conviene di più» c'è se e solo se un'offerta che parte nei
-     prossimi giorni costa meno (come si legge) della scheda verde;
+   - la riga c'è se e solo se la scheda verde NON è fra le prime tre (poi
+     Manlio: «solo quando il prezzo più conveniente non è fra i primi tre»);
+   - «Oggi il meno caro» dice il negozio e il prezzo della scheda verde;
+   - «Da … conviene di più» c'è se un'offerta che parte nei prossimi giorni
+     costa meno (come si legge) della scheda verde;
    - se non c'è niente da dire, la riga non c'è affatto;
    - toccando una riga la pagina scende (qui: chiede di scorrere).       */
 const fs = require('fs');
@@ -28,8 +29,10 @@ setTimeout(() => {
     const verde = schede.find(x => x.classList.contains('vince'));
     const num = x => parseFloat(x.querySelector('.val .n').textContent.replace(',', '.'));
     const futura = schede.find(x => x.classList.contains('dopo'));
-    const vuoleOggi = verde && schede[0] !== verde;
-    const vuoleDopo = futura && (!verde || num(futura) < num(verde));
+    /* Solo se la scheda verde è dalla quarta in giù (Manlio: «solo quando il
+       prezzo più conveniente non è fra i primi tre»). */
+    const vuoleOggi = verde && schede.indexOf(verde) >= 3;
+    const vuoleDopo = vuoleOggi && futura && num(futura) < num(verde);
     const bo = s && s.querySelector('.sint.oggi'), bd = s && s.querySelector('.sint.dopo');
     if (!!bo !== !!vuoleOggi) male.push(t.textContent + ': «Oggi il meno caro» ' + (bo ? 'c\'è e non serve' : 'manca'));
     if (!!bd !== !!vuoleDopo) male.push(t.textContent + ': «Da … conviene di più» ' + (bd ? 'c\'è e non serve' : 'manca'));

@@ -408,10 +408,11 @@ NOVITA_PAGINA = [
     dict(id='2026-09-23-z-sintesi', quando='23 settembre',
          titolo='In cima: dove conviene',
          testo='Quando serve, in cima alle offerte di un prodotto c\'è una riga in '
-               'più: in verde il meno caro che si compra oggi, se non è la prima '
-               'scheda; in blu l\'offerta che costerà meno fra qualche giorno, e da '
-               'quando. Toccala e la pagina scende a quella scheda. Quando il meno '
-               'caro di oggi è già il primo, la riga non c\'è.'),
+               'più: in verde il meno caro che si compra oggi, quando sopra ci sono '
+               'tre o più offerte che partono nei prossimi giorni; in blu l\'offerta '
+               'che costerà meno fra qualche giorno, e da quando. Toccala e la '
+               'pagina scende a quella scheda. Quando il meno caro di oggi è fra le '
+               'prime tre schede, la riga non c\'è.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1411,8 +1412,8 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <div class="voce">
       <h3>La riga in cima</h3>
       <p>A volte, sopra le offerte di un prodotto, c'è una riga in più. <b>In
-      verde</b>: il meno caro che puoi comprare <b>oggi</b>, quando non è la
-      prima scheda (sopra ci sono offerte che partono nei prossimi giorni).
+      verde</b>: il meno caro che puoi comprare <b>oggi</b>, quando non è fra
+      le prime tre schede (sopra ci sono offerte che partono nei prossimi giorni).
       <b>In blu</b>: un'offerta che costerà <b>meno</b> e parte fra poco, con il
       giorno. Toccala e la pagina scende a quella scheda.</p>
     </div>
@@ -1768,13 +1769,12 @@ const menoCaroOggi = off => off.find(o => !futuro(o));
 /* LA RIGA IN CIMA A OGNI PRODOTTO, SOLO QUANDO SERVE (Manlio, 2026-09-23,
    punto 3 dell'analisi esterna: «va bene la prima», cioè la riga che compare
    solo quando dice qualcosa che dall'elenco non si capisce al primo sguardo).
-   Due casi, e basta:
-   - il meno caro di OGGI non è la prima scheda (sopra ci sono offerte che
-     partono nei prossimi giorni): «Oggi il meno caro: MD, 16,90 € al kg»;
-   - un'offerta PIÙ conveniente parte nei prossimi giorni: «Da domani conviene
-     di più: Conad, 9,90 € al kg».
-   Se il meno caro di oggi è già la prima scheda e non arriva niente di
-   meglio, la riga NON c'è: il 2026-09-22 un riquadro che ripeteva la scheda
+   Compare solo quando il meno caro di OGGI è dalla quarta scheda in giù
+   (sopra ci sono offerte che partono nei prossimi giorni), e dice:
+   - «Oggi il meno caro: MD, 16,90 € al kg»;
+   - se un'offerta PIÙ conveniente parte nei prossimi giorni, anche «Da
+     domani conviene di più: Conad, 9,90 € al kg».
+   Se il meno caro di oggi è fra le prime tre schede, la riga NON c'è: il 2026-09-22 un riquadro che ripeteva la scheda
    verde era stato tolto dopo mezz'ora. Toccando una riga la pagina scende
    alla sua scheda. Il confronto è sui numeri come si leggono (eur). */
 const SETTIMANA = 'domenica lunedì martedì mercoledì giovedì venerdì sabato'.split(' ');
@@ -1788,9 +1788,15 @@ function quandoParte(iso) {
 function sintesi(off, meno, schede) {
   const prima = off.find(o => futuro(o));
   const piuBasso = (a, b) => parseFloat(eur(a.unitario).replace(',', '.')) < parseFloat(eur(b.unitario).replace(',', '.'));
-  const righe = [];
-  if (meno && off[0] !== meno) righe.push(['oggi', meno, 'Oggi il meno caro']);
-  if (prima && (!meno || piuBasso(prima, meno))) {
+  /* SOLO SE LA SCHEDA VERDE NON È FRA LE PRIME TRE (Manlio, 2026-09-23:
+     «metterei quella barra solo quando il prezzo più conveniente non è fra i
+     primi tre»): se è la prima, la seconda o la terza si vede già senza
+     scorrere. E senza un meno caro di oggi niente barra: la prima scheda è
+     già l'offerta che arriva. */
+  const pos = meno ? off.indexOf(meno) : -1;
+  if (pos < 3) return null;
+  const righe = [['oggi', meno, 'Oggi il meno caro']];
+  if (prima && piuBasso(prima, meno)) {
     const q = quandoParte(prima.inizio);
     righe.push(['dopo', prima, 'Da ' + q + (meno ? ' conviene di più' : '')]);
   }
