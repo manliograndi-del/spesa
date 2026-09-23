@@ -32,14 +32,18 @@ setTimeout(() => {
   dimmi(ris && ris.querySelectorAll('.prezzo-riga').length > 0,
         `${ris ? ris.querySelectorAll('.prezzo-riga').length : 0} righe di prezzo al primo sguardo`);
 
-  // clicco ogni bottone e pretendo prezzi o almeno pagine da guardare
+  // clicco ogni bottone e pretendo prezzi, o una riga che dica che non ce ne
+  // sono. L'elenco delle pagine sotto le offerte non c'è più dal 2026-09-23
+  // sera (Manlio: «togli anche l'elenco delle pagine sotto le offerte»).
   for (const b of tasti) {
     errori.length = 0;
     b.dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
     const prezzi = ris.querySelectorAll('.prezzo-riga').length;
-    const pagine = ris.querySelectorAll('.pag-riga').length;
-    dimmi(errori.length === 0 && (prezzi > 0 || pagine > 0),
-          `«${b.textContent}»: ${prezzi} prezzi, ${pagine} pagine` +
+    const detto = ris.querySelector('.vuoto');
+    const pagine = ris.querySelectorAll('.pag-riga, .altre').length;
+    dimmi(errori.length === 0 && (prezzi > 0 || !!detto) && pagine === 0,
+          `«${b.textContent}»: ${prezzi} prezzi` + (prezzi ? '' : ', «' + (detto ? detto.textContent : 'niente') + '»') +
+          (pagine ? ', e l\'elenco delle pagine c\'è ancora' : '') +
           (errori.length ? ' — ' + errori.join(' ;; ') : ''));
   }
   console.log(male ? `  ${male} cose non vanno\n` : '  tutto a posto\n');

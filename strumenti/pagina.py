@@ -576,7 +576,7 @@ def _marchi_marche():
                 break
     return fuori
 
-DATI = json.dumps(dict(offerte=offerte, pagine=pagine, volantini=volantini,
+DATI = json.dumps(dict(offerte=offerte, volantini=volantini,
                        catalogo=catalogo,
                        # I nomi vecchi delle categorie, per chi ha una lista
                        # salvata da prima che li accorciassimo: vedi catalogo.py.
@@ -1142,19 +1142,7 @@ a.dove.apri::after{content:none}
 .prezzo-riga .bollo{display:inline-flex;align-items:center;height:24px;padding-top:0;
   padding-bottom:0;box-sizing:border-box}
 
-/* ---- elenco pagine ---- */
-.pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
-  padding:11px 0;border-top:1px solid var(--linea);font-size:14.5px}
-.pag-riga:first-of-type{border-top:1.5px solid var(--inchiostro)}
-.pag-riga .ins{font-weight:600}
-.pag-riga .per{display:block;color:var(--tenue);font-size:12.5px;font-weight:400}
-.pag-riga .np{font-family:var(--f-prezzo);font-size:19px;font-weight:600;
-  font-variant-numeric:tabular-nums;white-space:nowrap}
-a.pag-riga{text-decoration:none;color:inherit}
-a.pag-riga.apribile{padding:13px 0;min-height:48px}
-a.pag-riga.apribile .ins{color:var(--rosso);text-decoration:underline;text-underline-offset:3px}
-a.pag-riga.apribile .np{color:var(--rosso)}
-a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-size:13px}
+/* ---- «Mostra le altre» e le righe «non ci sono offerte» ---- */
 .altre{width:100%;margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
   border-radius:99px;padding:12px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:46px}
 .vuoto{color:var(--tenue);font-size:14.5px;margin:14px 0 0;background:var(--pannello);
@@ -1776,7 +1764,6 @@ function salva() {
 
 let lista = leggiLista();
 let scelto = 0;
-let tutteLePagine = false;
 
 /* Le offerte gia in corso prima, quelle che devono ancora cominciare dopo.
    I volantini nuovi si leggono in anticipo — quello dell'Eurospin letto il
@@ -1911,31 +1898,6 @@ function sintesi(off, meno, schede) {
   return box;
 }
 
-/* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
-   Se non ha nomi alternativi si cerca il nome stesso. */
-/* PAROLE INTERE, NON PEZZI DI PAROLA.
-   Prima si guardava se il termine comparisse dentro il testo della pagina, in
-   qualunque posizione: «oro» (di Oro Saiwa) lo trovava dentro «loro», «cola»
-   dentro «piccola», «anca» dentro «bianca». Manlio se n'è accorto da fuori:
-   «per pizza surgelata appaiono pagine nelle quali la pizza non c'entra
-   niente». Quarantacinque pagine su sessantanove erano rumore, per i biscotti.
-
-   E si tiene conto di QUANTE parole ha preso ogni pagina: una che ne ha tre
-   parla davvero di quel prodotto, una che ne ha una può essere una ricetta che
-   nomina la pizza di sfuggita. Le migliori vanno in cima, e ogni riga dice
-   quali parole ha trovato, così si giudica invece di indovinare. */
-const pagineDi = v => {
-  const termini = (v.parole && v.parole.length ? v.parole : [v.nome]).map(norm);
-  return DATI.pagine
-    .map(p => {
-      const dentro = new Set(norm(p.parole).split(' '));
-      const prese = termini.filter(t => dentro.has(t));
-      return prese.length ? { ...p, prese } : null;
-    })
-    .filter(Boolean)
-    .sort((a, b) => b.prese.length - a.prese.length);
-};
-
 /* ---------- barra dei prodotti ---------- */
 function disegnaTasti() {
   const box = document.getElementById('tasti');
@@ -1946,7 +1908,7 @@ function disegnaTasti() {
     b.setAttribute('aria-pressed', String(i === scelto));
     b.onclick = () => {
       const cambiato = scelto !== i;
-      scelto = i; tutteLePagine = false;
+      scelto = i;
       if (cassettoAperto) apriCassetto(false);
       disegna();
       if (cambiato) inCima();
@@ -2564,7 +2526,6 @@ function accendi(nome) {
   } else {
     lista.push({ nome: voce.nome, parole: voce.parole.slice(), cat: voce.nome });
     scelto = lista.length - 1;
-    tutteLePagine = false;
   }
   salva(); disegnaScaffali(); disegna();
 }
@@ -2967,32 +2928,19 @@ function dove(o) {
   return a;
 }
 
-function rigaPagina(p) {
-  const d = document.createElement(p.url ? 'a' : 'div');
-  d.className = 'pag-riga' + (p.url ? ' apribile' : '');
-  if (p.url) { d.href = p.url; d.target = '_blank'; d.rel = 'noopener noreferrer'; }
-  d.innerHTML = `<span><span class="ins"></span><span class="per"></span></span><span class="np"></span>`;
-  d.querySelector('.ins').textContent = p.ins;
-  d.querySelector('.per').textContent = (p.prese && p.prese.length)
-    ? 'ci ho trovato: ' + p.prese.join(', ')
-    : p.periodo;
-  d.querySelector('.np').textContent = 'pag. ' + p.pag;
-  return d;
-}
-
 /* ---------- pagina ---------- */
 function disegna() {
   disegnaTasti();
   const out = document.getElementById('risultato');
   out.textContent = '';
   if (!lista.length) {
-    out.innerHTML = '<p class="vuoto">La lista è vuota. Tocca «+ aggiungi» per rimetterci qualcosa.</p>';
+    out.innerHTML = '<p class="vuoto">La lista è vuota. Tocca «Organizza i prodotti» per rimetterci qualcosa.</p>';
     return;
   }
   if (scelto >= lista.length) scelto = lista.length - 1;
 
   const v = lista[scelto];
-  const off = offerteDi(v), pag = pagineDi(v);
+  const off = offerteDi(v);
 
   /* NIENTE INTESTAZIONE SOPRA LE OFFERTE (Manlio, 2026-09-23 sera: «dato che
      la categoria di prodotti si capisce già perché il tasto è acceso, non si
@@ -3013,39 +2961,20 @@ function disegna() {
     const sint = sintesi(off, meno, schede);
     if (sint) out.appendChild(sint);
     off.forEach(o => out.appendChild(schede.get(o)));
-  } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
-    /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
-       vuoto: senza questa riga sembrerebbe che il prodotto non sia mai stato
-       in offerta da nessuna parte. */
-    const p = document.createElement('p');
-    p.className = 'vuoto';
-    p.textContent = 'I volantini che avevano questo prodotto sono tutti scaduti, '
-      + 'e quelli nuovi non li ho ancora letti. Qui sotto ci sono comunque le pagine.';
-    out.appendChild(p);
-  }
-
-  const f2 = document.createElement('p');
-  f2.className = 'fascia';
-  f2.textContent = off.length ? 'Altre pagine che lo nominano' : 'Pagine da guardare';
-  out.appendChild(f2);
-
-  if (pag.length) {
-    const quante = tutteLePagine ? pag.length : 10;
-    pag.slice(0, quante).forEach(p => out.appendChild(rigaPagina(p)));
-    if (pag.length > quante) {
-      const b = document.createElement('button');
-      b.type = 'button'; b.className = 'altre';
-      b.textContent = `Mostra le altre ${pag.length - quante} pagine`;
-      b.onclick = () => { tutteLePagine = true; disegna(); };
-      out.appendChild(b);
-    }
   } else {
+    /* NIENTE PIÙ ELENCO DELLE PAGINE SOTTO LE OFFERTE (Manlio, 2026-09-23
+       sera: «togli anche l'elenco delle pagine sotto le offerte»). Quando le
+       offerte non ci sono, lo si dice in una riga: se c'erano e sono scadute,
+       o se nei volantini di adesso non ce ne sono. */
     const p = document.createElement('p');
     p.className = 'vuoto';
-    p.textContent = 'Il computer non ha letto questa parola in nessuna pagina. Può esserci lo stesso: prova a chiamare il prodotto in un altro modo, con una parola più comune.';
+    p.textContent = v.cat && DATI.offerte.some(o => o.cat === v.cat)
+      ? 'I volantini che avevano questo prodotto sono tutti scaduti, e quelli nuovi non li ho ancora letti.'
+      : 'Nei volantini di adesso non ci sono offerte per questo prodotto.';
     out.appendChild(p);
   }
 }
+
 
 
 

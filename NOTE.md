@@ -3372,3 +3372,23 @@ link Claude, dove la lista è quella condivisa); `prova-arrivi.js` toglie la
 Marmellata spegnendola nel catalogo. Il tasto «+ altri prodotti» si chiama
 «Organizza i prodotti»; l'Aiuto lo dice, e dice che le cose fuori catalogo
 vanno in «Personale».
+
+## Via l'elenco delle pagine sotto le offerte — 2026-09-23 sera
+
+Manlio: «togli anche l'elenco delle pagine sotto le offerte». Era l'elenco
+«Altre pagine che lo nominano» (le pagine dei volantini dove l'OCR aveva letto
+una parola del prodotto, con «ci ho trovato: …» e «Mostra le altre N
+pagine»). Nato quando i prezzi erano pochi e le pagine erano l'unico modo di
+arrivare alle offerte; oggi le offerte lette sono 1555 e ogni scheda apre la
+sua pagina del volantino.
+
+Per i prodotti senza offerte l'elenco era l'unica cosa che compariva: adesso
+c'è una riga, «Nei volantini di adesso non ci sono offerte per questo
+prodotto» (o che i volantini che le avevano sono scaduti). Controllato su
+«Zucchero», l'unica voce del catalogo senza offerte oggi.
+
+Tolti anche `rigaPagina()`, `pagineDi()`, `tutteLePagine`, lo stile delle
+righe e le parole delle 436 pagine dentro `DATI`: la pagina pesa 2,8 MB
+invece di 3,4. `indice.json` resta nel progetto: lo usano gli strumenti.
+Tolta `prova-pagine.js`; `prova.js` adesso vuole prezzi o la riga «non ci sono
+offerte», e nessun elenco di pagine.

@@ -162,3 +162,4 @@
 2026-09-23 20:59 UTC  pubblicato: sito (verificato, sw.js v96) e artifact (versione 87): menù a pillole.
 2026-09-23 21:23 UTC  niente intestazione sopra le offerte; «Organizza i prodotti»; via la «i», «Cambia nome», i sinonimi e i nomi fuori catalogo. sw.js v97.
 2026-09-23 21:24 UTC  pubblicato: sito (verificato, sw.js v97) e artifact (versione 88): Organizza i prodotti, niente intestazione.
+2026-09-23 21:31 UTC  via l'elenco delle pagine sotto le offerte; pagina da 3,4 a 2,8 MB. sw.js v98.

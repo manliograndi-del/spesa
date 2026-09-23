@@ -146,6 +146,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 
 ## Regole della pagina decise con lui
 
+- **SOTTO LE OFFERTE NON C'È PIÙ L'ELENCO DELLE PAGINE** (2026-09-23 sera,
+  Manlio: «togli anche l'elenco delle pagine sotto le offerte»): via «Altre
+  pagine che lo nominano», «ci ho trovato: …», «Mostra le altre N pagine».
+  Un prodotto senza offerte ha una riga sola: «Nei volantini di adesso non ci
+  sono offerte per questo prodotto» (o «…sono tutti scaduti…» se c'erano).
+  Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
+  invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
+  pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
 - **SOPRA LE OFFERTE DI UN PRODOTTO NON C'È PIÙ NIENTE, e il tasto in fondo
   alla griglia si chiama «Organizza i prodotti»** (2026-09-23 sera, Manlio:
   «dato che la categoria di prodotti si capisce già perché il tasto è
@@ -792,7 +800,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v97** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v98** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
@@ -812,9 +820,8 @@ nuova. Lo stato, in breve:
 - **Fatto (`sw.js` v93): i titoli con la marca per prima** (scelta A di
   Manlio), vedi la regola «I titoli delle offerte». Novità
   `2026-09-23-zzzzz-marca`, che racconta anche le altre cose della sera.
-  **Chiesto senza risposta**: togliere anche l'elenco delle pagine («ci ho
-  trovato: uovo — pag. 15», «Mostra le altre 11 pagine») sotto le offerte.
-  Non richiederlo subito: aspettare che ne riparli lui o che capiti.
+  L'elenco delle pagine sotto le offerte l'ha fatto togliere lui (`sw.js`
+  v98).
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».

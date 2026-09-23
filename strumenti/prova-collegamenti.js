@@ -19,13 +19,12 @@ setTimeout(() => {
       const a = r.querySelector('a.dove');
       if (a) tutti.add(a.href); else if (!/non individuata/.test(r.textContent)) senza++;
     }
-    for (const a of ris.querySelectorAll('a.pag-riga')) tutti.add(a.href);
   }
   console.log('righe di prezzo viste:', righe, '| senza collegamento e senza spiegazione:', senza);
   console.log('collegamenti distinti:', tutti.size);
   const brutti = [...tutti].filter(u => !/^https:\/\/(www\.anteprimavolantino\.it|resources\.volantinopiu\.it|eu\.kimbicdn\.com|app\.ekomdiscount\.it)\//.test(u));
   console.log('indirizzi malformati:', brutti.length ? brutti.slice(0,3) : 'nessuno');
-  const nuova = [...d.querySelectorAll('a.dove, a.pag-riga')].every(a => a.target === '_blank' && /noopener/.test(a.rel));
+  const nuova = [...d.querySelectorAll('a.dove')].every(a => a.target === '_blank' && /noopener/.test(a.rel));
   console.log('si aprono in una scheda nuova, in sicurezza:', nuova);
   console.log(errori.length ? 'ERRORI: ' + errori.join(' ;; ') : 'nessun errore');
   fs.writeFileSync('/tmp/link-campione.txt', [...tutti].join('\n'));
