@@ -149,3 +149,4 @@
 2026-09-23 18:55 UTC  nome del prodotto meno nero e prezzi a metà della scheda. sw.js v90.
 2026-09-23 18:56 UTC  pubblicato: sito (verificato, sw.js v90) e artifact (versione 81): nome meno nero, prezzi a metà.
 2026-09-23 19:05 UTC  punto 7: grandi marche a riquadri tutti uguali, quattro per riga, in una schermata. sw.js v91.
+2026-09-23 19:07 UTC  pubblicato: sito (verificato, sw.js v91) e artifact (versione 82): grandi marche a riquadri.
