@@ -85,8 +85,10 @@ setTimeout(() => {
     male.push('C\'E UN BOLLINO VERDE fra i risultati: direbbe una cosa falsa');
 
   if (cerca('a').length) male.push('una lettera sola cerca lo stesso');
-  if (!d.getElementById('quanti-trovati').textContent.includes('due lettere'))
-    male.push('con una lettera non spiega cosa fare');
+  /* Dal 2026-09-23, su richiesta di Manlio, sotto la casella con meno di due
+     lettere non si scrive niente. */
+  if (d.getElementById('quanti-trovati').textContent.trim())
+    male.push('con una lettera sotto la casella c\'è ancora una scritta');
   if (cerca('qwertyx').length) male.push('una parola inventata trova qualcosa');
 
   // ogni riga deve dire negozio, prezzo per unita e dove sta

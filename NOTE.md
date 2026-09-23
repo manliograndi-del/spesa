@@ -2881,3 +2881,22 @@ pagina dove c'è solo la ricerca».
 - Col pannello delle marche aperto, il tasto rosso passa alla ricerca (con la
   casella vuota) invece di chiudere; e viceversa.
 - Prova nuova `prova-marche.js`, dentro `prove.sh`.
+
+## «Cerca» e GRANDI MARCHE, seconda passata — 2026-09-23
+
+Manlio, dopo averli visti grandi uguali: il tasto deve dire solo «Cerca» con la
+lente; tutti e due alti come le pastiglie dei prodotti e bianchi all'inizio;
+nella ricerca solo la pillola dove scrivere, niente categorie, niente «Fatto»,
+niente scritta sotto la casella, niente elenco «le offerte / il volantino» in
+fondo; «Cerca» rosso e GRANDI MARCHE bianco nella ricerca, il contrario nelle
+marche; toccando «Spesa, Offerte grande distribuzione» si torna all'inizio,
+in tutto il sito.
+
+- Il riquadro grigio attorno alla ricerca non se ne andava con `.ricerca{…}`:
+  la regola vecchia veniva dopo e vinceva. Ci vuole `#ricerca`.
+- «Fatto» è nascosto, non tolto: tre prove lo usano per chiudere il pannello.
+- La scritta sotto la casella è sparita anche coi risultati («28 offerte,
+  dalla meno cara…»), non solo a casella vuota. Resta solo nel pannello di
+  un singolo volantino, dove dice QUALE volantino si sta guardando.
+- Il titolo è un collegamento al sito: nella pagina il clic è intercettato e
+  chiude tutto; nella pagina Novità porta davvero alla pagina dei prezzi.

@@ -199,13 +199,21 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
   delle offerte sono più compatte (meno aria, non meno roba): stesso
   contenuto, angoli 16 px, prezzo grande 26 px.
-- **Il tasto rosso si chiama «Cerca un prodotto o una marca»** ed è una
-  pastiglia alta 42 px (scelto da lui il 2026-09-22 fra tre proposte; prima
-  diceva «Cerca fra i prezzi di tutte le offerte», che era lungo il doppio).
-  Quello che la scritta non dice più — che cerca fra **tutte** le offerte
-  lette, non fra i prodotti della lista — **resta scritto nell'Aiuto** e nella
-  casella che si apre. Se si cambia ancora il nome del tasto, va cambiato
-  anche l'Aiuto: `prova-aiuto.js` controlla che i due combacino.
+- **Il tasto si chiama solo «Cerca», con la lente** (chiesto il 2026-09-23;
+  prima «Cerca un prodotto o una marca», scelto il 2026-09-22). È alto 34 px
+  come le pastiglie dei prodotti, e così GRANDI MARCHE accanto. **All'inizio
+  tutti e due sono BIANCHI** (bordo e scritta rossi); diventa rosso pieno
+  quello della pagina aperta. Che cerca fra **tutte** le offerte lette sta
+  scritto nell'Aiuto: `prova-aiuto.js` controlla che l'Aiuto nomini «Cerca» e
+  GRANDI MARCHE.
+- **La pagina della ricerca e quella delle grandi marche sono SOLO
+  quello** (2026-09-23): niente categorie, niente riquadro grigio, niente
+  tasto «Fatto» (nascosto: le prove lo usano), **nessuna scritta sotto la
+  casella** (né «scrivi almeno due lettere» né «28 offerte…»), e **in fondo
+  niente spiegazioni né elenco dei volantini** (`.spiega` nascosta). Le
+  offerte escono mentre si scrive. Si torna all'inizio **toccando il titolo
+  «Spesa»** (`#vai-inizio`), che fa la stessa cosa anche nella pagina Novità.
+  La prova è `prova-marche.js`.
 - **In fondo, ogni volantino dell'elenco ha due tasti** (chiesti il 2026-09-18):
   **«Le offerte (N)»** apre le offerte lette da quel volantino, divise per
   reparto, e **«Il volantino ↗»** apre la sua prima pagina sul sito di chi lo
@@ -487,6 +495,10 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Cerca e GRANDI MARCHE rifatti** (2026-09-23, chiesto da Manlio): «Cerca»
+  con la lente, alti come le pastiglie, bianchi all'inizio; le due pagine
+  senza categorie, senza «Fatto», senza scritte e senza l'elenco dei
+  volantini in fondo; il titolo «Spesa» riporta all'inizio. `sw.js` a v74.
 - **I tasti «Cerca» e «GRANDI MARCHE» sono grandi uguali e aprono due
   pagine separate** (2026-09-23, chiesto da Manlio): le marche senza la
   casella di ricerca, la ricerca senza le marche. `sw.js` a v73.

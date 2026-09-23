@@ -118,6 +118,7 @@ header{padding:20px 0 2px}
 h1{font-family:var(--f-prezzo);font-weight:700;font-size:26px;letter-spacing:.01em;
   line-height:1.05;margin:0;text-transform:uppercase}
 h1 span{display:block;color:var(--rosso);font-size:12px;letter-spacing:.16em;margin-bottom:6px}
+h1 a.casa{text-decoration:none;color:inherit}
 .torna{display:inline-block;margin-top:14px;color:var(--rosso);font-weight:600;font-size:15px;
   text-decoration:underline;text-underline-offset:3px;padding:6px 0;min-height:34px}
 .scelta{display:flex;gap:8px;margin:18px 0 0;border-bottom:2px solid var(--inchiostro);
@@ -223,7 +224,9 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--linea);
 <body>
 <div class="guscio">
 <header>
-  <h1><span>Spesa · Torino, corso Siracusa</span>Novità</h1>
+  <!-- Il titolo riporta alla pagina dei prezzi (Manlio, 2026-09-23: «in tutto
+       il sito, cliccando sopra Spesa si tornerà alla pagina iniziale»). -->
+  <h1><a class="casa" href="https://manliograndi-del.github.io/spesa/"><span>Spesa · Offerte grande distribuzione</span></a>Novità</h1>
   <a class="torna" href="./index.html">← Torna ai prezzi</a>
 </header>
 
