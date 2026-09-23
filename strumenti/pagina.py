@@ -504,6 +504,13 @@ NOVITA_PAGINA = [
                'riquadri tutti uguali e stanno in una schermata. In fondo alla pagina '
                'non c\'è più l\'elenco dei volantini: quali negozi si leggono lo dice '
                'l\'Aiuto, dentro l\'ingranaggio, e le date dei volantini il tasto «N».'),
+    dict(id='2026-09-23-zzzzzz-griglia', quando='23 settembre',
+         titolo='I tuoi prodotti in basso, sotto il pollice',
+         testo='I bottoni dei tuoi prodotti adesso stanno in basso, appena sopra il '
+               'menù, in una griglia ordinata: quattro per riga, larghi uguali. I nomi '
+               'troppo lunghi per una casella ne prendono due, nell\'ultima riga. '
+               'Toccando «+ altri prodotti» la pagina torna in cima e lì si apre il '
+               'catalogo. In «Cerca», «Grandi marche» e «Personale» resta solo il menù.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1155,6 +1162,24 @@ a.dove.apri::after{content:none}
 .prezzo-riga .val .pz{font-size:15px;color:var(--inchiostro)}
 .prezzo-riga .val .et{margin-left:4px;font-size:12px}
 .prezzo-riga .val .et.fmt{font-size:12px}
+/* TUTTE LE PILLOLE DELLA SCHEDA SONO ALTE UGUALI, 24 PX (Manlio, 2026-09-23
+   sera, con una schermata: «le pillole non hanno tutte la stessa altezza; io
+   diminuirei quelle più grandi, perché già sono molto grandi all'altezza del
+   logo»). Il marchio, il cerchietto dei giorni, il calendarietto e lo sconto
+   erano alti 30 px, i bollini beige e quello verde 21-22: adesso tutti 24. */
+.prezzo-riga .coda .marchio{height:24px}
+.prezzo-riga .coda .marchio.col-logo{padding:0 7px}
+.prezzo-riga .coda .marchio.col-logo svg,.prezzo-riga .coda .marchio.col-logo img{height:17px;max-width:84px}
+.angolo .anello,.angolo svg{width:24px;height:24px}
+.angolo .num{font-size:11px}
+.angolo .sconto{height:24px;padding:0 8px;font-size:12.5px}
+.angolo a.dove.apri{min-height:24px;min-width:24px}
+.angolo a.dove.apri svg{width:19px;height:19px}
+.parte .cal{width:24px;height:24px;border-radius:5px}
+.parte .cal .mese{font-size:6.5px;line-height:8px;height:8px}
+.parte .cal .num{font-size:11px}
+.prezzo-riga .bollo{display:inline-flex;align-items:center;height:24px;padding-top:0;
+  padding-bottom:0;box-sizing:border-box}
 
 /* ---- elenco pagine ---- */
 .pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -1484,8 +1509,8 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       davvero meno.</p>
     </div>
     <div class="voce">
-      <h3>I bottoni in cima sono i tuoi prodotti</h3>
-      <p>Toccane uno: sotto escono tutte le offerte, <b>dalla meno cara in giù</b>.
+      <h3>I bottoni in basso sono i tuoi prodotti</h3>
+      <p>Toccane uno: sulla pagina escono tutte le sue offerte, <b>dalla meno cara in giù</b>.
       La scheda col bordo verde e la scritta <b>«il meno caro valido oggi»</b> è
       quella che puoi comprare <b>oggi</b>: se la prima costa meno ma comincia
       fra qualche giorno, il verde va a quella dopo. Le offerte non ancora

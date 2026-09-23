@@ -253,6 +253,23 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     è solo quello che si legge sul bottone. La ricerca nelle pagine usa le
     `parole`, non il nome (per questo «Pesce» può chiamarsi così senza tirare
     dentro i bastoncini e i sughi di pesce).
+- **LE PILLOLE DEI PRODOTTI STANNO IN BASSO, SOPRA IL MENÙ, IN UNA GRIGLIA**
+  (2026-09-23 sera, Manlio: «sempre per fare piacere al pollice, se i
+  prodotti rimettessimo in basso sopra il menù inferiore», e «come le grandi
+  marche… una griglia, lasciando quelle più lunghe per l'ultima riga»; visto
+  in quattro schermate, «sì, pubblicala»). La `.barra` è `position:fixed`
+  sopra il menù (`--menu-alto`), quattro caselle per riga larghe uguali,
+  scritta 13 px. Un nome che non ci sta (lo misura `sistemaBarra()`, anche
+  quando arriva il carattere) prende due caselle e va in fondo (`.lunga`,
+  `order`); «+ altri prodotti» è sempre l'ultimo. Studio dei nomi: al 13 px
+  ci stanno 64 voci del catalogo su 71; non ci stanno Salmone affumicato,
+  Verdure surgelate, Ammorbidente, Bagnoschiuma, Carta igienica,
+  Lavastoviglie, Asciugatutto, Olio di semi — NON si accorciano, prendono
+  due caselle. La griglia non supera un terzo di schermo (dentro scorre) e
+  la pagina lascia in fondo il suo spazio (`--barra-alta`). In cima non
+  resta niente di fermo: `altaFissa()` dà zero. Toccando «+ altri prodotti»
+  la pagina torna in cima, dove si apre il catalogo. Le regole «pillole
+  ferme in alto se sono poche» qui sotto sono la storia di com'era.
 - **Le pastiglie dei prodotti sono basse 34 px, non 44** (stessa richiesta):
   scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
   delle offerte sono più compatte (meno aria, non meno roba): stesso
@@ -568,6 +585,12 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     giorni che mancano;
   - **blu finché c'è tempo, ambra negli ultimi tre giorni.** Non rosso: il
     rosso, in questa pagina, vuol dire «premi qui».
+  - **Dal 2026-09-23 sera TUTTE le pillole della scheda sono alte 24 px**
+    (Manlio, con una schermata: «le pillole non hanno tutte la stessa
+    altezza; io diminuirei quelle più grandi, perché già sono molto grandi
+    all'altezza del logo»): marchio (logo alto 17 px), cerchietto dei
+    giorni, calendarietto, sconto, bollino verde e bollini beige. La regola
+    qui sotto dei 30 px è la storia di com'era.
   - **Marchio, cerchietto e icona del volantino sono alti uguali, 30 px**
     (chiesto il 2026-09-23: «porta le pillole dei marchi alla dimensione del
     cerchio dei giorni e del volantino che hanno di fianco in altezza»). Il
@@ -745,7 +768,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v94** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v95** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.

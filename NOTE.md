@@ -3309,3 +3309,33 @@ titolo della voce dell'Aiuto che li elenca, e le due prove che controllano
 l'ordine; in `prova-marche.js` la vecchia regola «GRANDI MARCHE a destra di
 Cerca» (del giorno stesso, quando i tasti erano due) è diventata «Cerca è
 l'ultimo».
+
+## I prodotti in basso, in una griglia; le pillole della scheda a 24 px — 2026-09-23 sera
+
+Manlio: «ho un'idea geniale: sempre per fare piacere al pollice, se i
+prodotti rimettessimo in basso sopra il menù inferiore», e poi: «come le
+grandi marche, quello dei prodotti è molto disordinato… non c'è una maniera
+di fare una griglia, eventualmente lasciando quelle più lunghe per l'ultima
+riga… potremmo fare uno studio dei nomi dei prodotti».
+
+Lo studio: misurati col carattere vero (Asap 600) i 71 nomi del catalogo in
+una casella larga un quarto di schermo a 390 px (69 px utili). Al 14 px non
+ci stanno 13 nomi, al 13 px 8 (Salmone affumicato, Verdure surgelate,
+Ammorbidente, Bagnoschiuma, Carta igienica, Lavastoviglie, Asciugatutto, Olio
+di semi) più «+ altri prodotti». Quindi 13 px, e i nomi lunghi non si
+accorciano: prendono due caselle e vanno in fondo. I suoi 13 ci stanno tutti
+a 390 px; a 360 px anche «Marmellata» va su due.
+
+Due cose scoperte facendo: la misura va rifatta quando arriva il carattere
+(prima c'è quello di riserva, di un'altra larghezza); e «Marmellata» a 360 px
+sforava di un pixel solo — la soglia deve essere stretta, se no il nome esce
+tagliato coi puntini. Aggiornate `prova-scorrimento.js` (in cima non c'è più
+niente di fermo: si risale al primo prezzo senza togliere niente) e
+`prova-cassetto.js` (aprendo il cassetto la pagina torna in cima, e il
+browser finto delle prove non sa scorrere).
+
+Mentre pubblicavo, Manlio con una schermata del suo telefono: «le pillole non
+hanno tutte la stessa altezza, io diminuirei quelle più grandi perché già sono
+molto grandi all'altezza del logo». In cima alla scheda marchio, cerchietto,
+calendarietto e sconto erano 30 px, i bollini beige 21: adesso tutte 24 px,
+logo alto 17. Pubblicate insieme, `sw.js` v95.
