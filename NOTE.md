@@ -2839,3 +2839,20 @@ Quindi adesso le due cose stanno separate: in `VOLANTINI` l'indirizzo del
 visore, per chi apre dal telefono; in `PDF` (sempre in `dati.py`) il PDF da cui
 `scarica.py` fa le immagini per leggerle. È anche più pulito dal lato del
 copyright: il collegamento porta al visore ufficiale di Conad.
+
+## Marchi, cerchietti e icone alla stessa altezza — 2026-09-23
+
+Manlio: «porta le pillole dei marchi alla dimensione del cerchio dei giorni e
+del volantino che hanno di fianco in altezza; inoltre per le promozioni non
+ancora iniziate cerca di fare stare il numero del giorno e la sigla del mese
+all'interno del cerchio in modo che abbia sempre la stessa altezza».
+
+- La pillola del marchio era più alta del cerchietto (imbottitura sopra e
+  sotto più il logo). Adesso dentro `.coda` è alta 30 px fissi, come
+  l'anello dei giorni e l'icona del volantino; il logo è alto 21 px.
+- Il tondino «parte il…» aveva il numero dentro l'anello e il mese sotto,
+  fuori: era alto più degli altri e la riga ballava. Adesso numero e mese sono
+  in `.dentro`, una colonna centrata sopra l'anello (numero 11,5 px, mese
+  7 px). Misurato col browser su tutte le offerte che partono il 24: il testo
+  sta da 5 px sotto il bordo alto a 6 px sopra quello basso.
+- `prova-giorni.js` legge ancora `.num` e `.mese`: le classi sono rimaste.

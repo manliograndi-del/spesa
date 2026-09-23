@@ -416,6 +416,23 @@ a.dove.apri::after{content:none}
 .angolo .parte .mese{font-size:8.5px;margin-top:-1px}
 .angolo a.dove.apri{min-height:30px;min-width:30px;padding:2px}
 .angolo a.dove.apri svg{width:23px;height:23px}
+/* TUTTA LA RIGA IN CIMA ALLA SCHEDA È ALTA 30 PX (Manlio, 2026-09-23: «porta
+   le pillole dei marchi alla dimensione del cerchio dei giorni e del
+   volantino che hanno di fianco, in altezza»). Il marchio era alto 34-36 px e
+   sporgeva sopra e sotto il cerchietto. */
+.prezzo-riga .coda .marchio{height:30px;min-height:0;padding-top:0;padding-bottom:0;
+  box-sizing:border-box}
+.prezzo-riga .coda .marchio.col-logo{padding:0 8px}
+.prezzo-riga .coda .marchio.col-logo svg,.prezzo-riga .coda .marchio.col-logo img{height:21px;max-width:96px}
+/* IL GIORNO E IL MESE STANNO TUTTI E DUE DENTRO IL TONDINO (stessa richiesta:
+   «il numero del giorno e la sigla del mese all'interno del cerchio, in modo
+   che abbia sempre la stessa altezza»). Prima il mese stava sotto e la
+   riga delle offerte non ancora cominciate era più alta delle altre. */
+.parte .dentro{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;line-height:1}
+.parte .dentro .num{position:static;display:block;inset:auto}
+.angolo .parte .dentro .num{font-size:11.5px}
+.angolo .parte .dentro .mese{font-size:7px;margin-top:0;letter-spacing:.02em}
 
 /* SUL TELEFONO LA SCHEDA VA IN COLONNA. A 390 px le due colonne si
    strozzano: il nome del prodotto andava a capo ogni due parole e i prezzi
@@ -1580,7 +1597,7 @@ function cerchioInizio(o) {
   d.innerHTML = '<span class="anello">'
     + '<svg viewBox="0 0 38 38" aria-hidden="true" focusable="false">'
     + '<circle class="giro" cx="19" cy="19" r="16"></circle>'
-    + '</svg><span class="num"></span></span><span class="mese"></span>';
+    + '</svg><span class="dentro"><span class="num"></span><span class="mese"></span></span></span>';
   d.querySelector('.num').textContent = String(Number(p[2]));
   d.querySelector('.mese').textContent = MESI_CORTI[Number(p[1]) - 1] || '';
   d.title = 'Non è ancora cominciata: vale ' + giorno(o.inizio);

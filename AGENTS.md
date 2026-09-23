@@ -374,6 +374,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     «vale dal 24 settembre»;
   - **blu finché c'è tempo, ambra negli ultimi tre giorni.** Non rosso: il
     rosso, in questa pagina, vuol dire «premi qui».
+  - **Marchio, cerchietto e icona del volantino sono alti uguali, 30 px**
+    (chiesto il 2026-09-23: «porta le pillole dei marchi alla dimensione del
+    cerchio dei giorni e del volantino che hanno di fianco in altezza»). Il
+    logo dentro la pillola è alto 21 px.
+  - **Nel tondino di quando partono, giorno e mese stanno DENTRO il
+    cerchio** (stessa richiesta: «in modo che abbia sempre la stessa
+    altezza»): prima il mese sporgeva sotto e il tondino era più alto degli
+    altri. Adesso è `.parte .dentro`, centrato nell'anello.
   La prova è `prova-giorni.js`.
 - **Le novità della pagina si segnano per id PIÙ GRANDE, non per ultima
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
@@ -477,6 +485,10 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Allineata la riga in cima a ogni offerta** (2026-09-23, chiesto da
+  Manlio): la pillola del marchio, il cerchietto dei giorni e l'icona del
+  volantino sono tutti alti 30 px, e nelle offerte non ancora cominciate il
+  giorno e il mese («24 SET») stanno dentro il cerchio. `sw.js` a v71.
 - **I collegamenti Conad aprono la PAGINA, non il volantino intero**
   (2026-09-23, Manlio: «il volantino Conad non fa vedere la pagina ma il
   volantino completo»). Il PDF con `#page=n` sul telefono si apriva
