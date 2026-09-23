@@ -2863,3 +2863,21 @@ Manlio, dopo averle guardate tutte e due: «lascia perdere la versione con i
 tasti sotto, elimina completamente». Resta la pagina com'era, coi due tasti
 sopra le categorie. Cancellati `prova-tasti-sotto.html` dal sito e
 `strumenti/variante.py`; tolti i due passi dalle istruzioni e dalla Routine.
+
+## Cerca e GRANDI MARCHE: grandi uguali, due pagine separate — 2026-09-23
+
+Manlio: «i tasti Grandi Marche e Cerca devono essere delle stesse dimensioni,
+quello di Grandi Marche messo a destra; deve portare a una pagina dove ci sono
+solo i tasti delle grandi marche e non un tasto di ricerca, l'altro ha una
+pagina dove c'è solo la ricerca».
+
+- Metà riga ciascuno (`flex:1 1 0`, stessa imbottitura: con imbottiture
+  diverse venivano 179 e 175 px).
+- Il pannello è sempre lo stesso `#ricerca`, fuori dalla barra: cambia cosa
+  si vede. Con le marche la casella è nascosta ma resta lì, perché la marca
+  toccata ci viene scritta dentro ed è così che parte la ricerca. Senza marca
+  scelta la scritta dice «Tocca una marca», non più «Scrivi almeno due
+  lettere» (non c'è niente dove scrivere).
+- Col pannello delle marche aperto, il tasto rosso passa alla ricerca (con la
+  casella vuota) invece di chiudere; e viceversa.
+- Prova nuova `prova-marche.js`, dentro `prove.sh`.

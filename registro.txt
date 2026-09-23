@@ -112,3 +112,4 @@
 2026-09-23 06:14 UTC  pubblicato: sito (verificato, sw.js v70), prova-tasti-sotto.html e artifact (versione 62): i collegamenti Conad aprono la pagina giusta. Routine aggiornata sul visore Conad.
 2026-09-23 07:11 UTC  marchio, cerchietto dei giorni e icona del volantino alti uguali (30 px); nel tondino «parte il» giorno e mese dentro il cerchio. sw.js v71.
 2026-09-23 07:12 UTC  pubblicato: sito (verificato, sw.js v71), prova-tasti-sotto.html e artifact (versione 63): marchi, cerchietti e icone alti uguali, giorno e mese dentro il tondino.
+2026-09-23 08:03 UTC  tolta la versione di prova coi tasti sotto (sw.js v72); tasti Cerca e GRANDI MARCHE grandi uguali, marche senza casella e ricerca senza marche, prova-marche.js. sw.js v73.

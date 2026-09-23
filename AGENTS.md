@@ -301,6 +301,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     **Ogni marchio è stato guardato prima di metterlo**: le ricerche automatiche
     ne avevano presi di sbagliati (un'«AIA» di compagnie aeree, una «Star» di
     un'altra azienda). Per aggiungerne uno basta mettere il file lì.
+  - **I due tasti sono grandi uguali, GRANDI MARCHE a destra, e aprono due
+    pagine SEPARATE** (chiesto il 2026-09-23: «deve portare a una pagina dove
+    ci sono solo i tasti delle grandi marche e non un tasto di ricerca;
+    l'altro ha una pagina dove c'è solo la ricerca»). Con GRANDI MARCHE la
+    casella `#q` è nascosta (ci si scrive dentro il nome della marca toccata,
+    ed è così che si cerca); col tasto rosso le pillole non ci sono. Da una
+    pagina si passa all'altra toccando l'altro tasto, senza chiudere. La
+    prova è `prova-marche.js`.
   - **Con le grandi marche aperte le categorie (la `.barra` coi prodotti)
     non si vedono** (chiesto il 2026-09-22: «non ha senso, non devono
     apparire»). Tornano appena si chiude il pannello. Con la ricerca normale
@@ -482,6 +490,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **I tasti «Cerca» e «GRANDI MARCHE» sono grandi uguali e aprono due
+  pagine separate** (2026-09-23, chiesto da Manlio): le marche senza la
+  casella di ricerca, la ricerca senza le marche. `sw.js` a v73.
 - **Eliminata la versione di prova coi tasti sotto le categorie**
   (2026-09-23, Manlio: «lascia perdere… elimina completamente»). Non c'è più
   né sul sito né in `strumenti/`. `sw.js` a v72.

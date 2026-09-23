@@ -174,6 +174,12 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   background:var(--carta);border-radius:99px;font-weight:700;font-size:12.5px;
   letter-spacing:.02em;min-height:42px;padding:6px 10px}
 .tasto.marchi[aria-pressed="true"]{background:var(--rosso);color:var(--su-rosso)}
+/* I DUE TASTI SONO GRANDI UGUALI (Manlio, 2026-09-23: «i tasti Grandi Marche
+   e Cerca devono essere delle stesse dimensioni, Grandi Marche messo a
+   destra»). Metà riga ciascuno, stessa altezza. */
+.riga-cerca .tasto.trova,.riga-cerca .tasto.marchi{flex:1 1 0;width:auto;min-width:0;
+  min-height:42px;margin:0;padding:5px 10px}
+.ricerca .q[hidden]{display:none}
 .marche[hidden],.barra[hidden]{display:none}
 /* «hidden» da solo NON basta su un elemento a cui il CSS da display:flex: il
    2026-09-22 i quattro tasti in cima e la riga «I tuoi prodotti» erano stati
@@ -1203,10 +1209,19 @@ function disegnaTasti() {
      Quello che si perde — che cerca fra TUTTE le offerte lette, non fra i
      prodotti della lista — resta scritto nell'Aiuto e nella casella che si
      apre («Scrivi un prodotto, una marca, un negozio…»). */
-  cer.textContent = ricercaAperta ? 'Chiudi la ricerca' : 'Cerca un prodotto o una marca';
-  cer.setAttribute('aria-expanded', String(ricercaAperta));
+  /* Le due pagine sono separate (Manlio, 2026-09-23): il tasto rosso apre
+     SOLO la ricerca, GRANDI MARCHE SOLO le marche. Col pannello delle marche
+     aperto, il rosso passa alla ricerca invece di chiudere. */
+  const cercaAperta = ricercaAperta && !vistaMarche;
+  cer.textContent = cercaAperta ? 'Chiudi la ricerca' : 'Cerca un prodotto o una marca';
+  cer.setAttribute('aria-expanded', String(cercaAperta));
   cer.setAttribute('aria-controls', 'ricerca');
-  cer.onclick = () => { apriRicerca(!ricercaAperta); };
+  cer.onclick = () => {
+    if (cercaAperta) { apriRicerca(false); return; }
+    vistaMarche = false; marcaScelta = null;
+    document.getElementById('q').value = '';
+    apriRicerca(true);
+  };
   /* Sta SOPRA i prodotti e FUORI dalla barra appiccicata, come nella
      schermata che ha mandato Manlio il 2026-09-22: è la prima cosa che si
      vede, e la barra resta bassa. */
@@ -1221,6 +1236,9 @@ function disegnaTasti() {
   gm.onclick = () => {
     if (ricercaAperta && vistaMarche) { apriRicerca(false); return; }
     vistaMarche = true;
+    marcaScelta = null;
+    filtroVol = null;
+    document.getElementById('q').value = '';
     apriRicerca(true, true);
   };
   suo.appendChild(gm);
@@ -1323,6 +1341,12 @@ let marcaScelta = null;   // la pillola accesa: si cerca a parola intera
 function disegnaMarche() {
   const box = document.getElementById('marche');
   box.hidden = !vistaMarche;
+  /* NELLA PAGINA DELLE MARCHE NON C'È LA CASELLA (Manlio, 2026-09-23: «deve
+     portare a una pagina dove ci sono solo i tasti delle grandi marche e non
+     un tasto di ricerca; l'altro ha una pagina dove c'è solo la ricerca»). La
+     casella resta nascosta e ci si scrive dentro il nome della marca toccata:
+     è così che si cercano le sue offerte. */
+  document.getElementById('q').hidden = vistaMarche && ricercaAperta;
   /* CON LE GRANDI MARCHE APERTE LE CATEGORIE NON SI VEDONO (Manlio,
      2026-09-22: «quando c'è grandi marche ci sono anche le categorie, non ha
      senso, non devono apparire»). Si cerca per marca, non per prodotto: le
@@ -1399,6 +1423,10 @@ function disegnaTrovati() {
   const capo = document.getElementById('quanti-trovati');
   box.textContent = '';
   const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
+  if (!parole.length && !filtroVol && vistaMarche) {
+    capo.innerHTML = 'Tocca una marca: escono tutte le sue offerte, dalla meno cara in giù.';
+    return;
+  }
   if (!parole.length && !filtroVol) {
     capo.innerHTML = 'Scrivi almeno due lettere. Cerca fra <b>tutte</b> le offerte '
       + 'dei volantini: il nome del prodotto, la marca, il negozio, il formato.';
