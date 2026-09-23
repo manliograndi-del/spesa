@@ -189,6 +189,11 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .riga-cerca{position:sticky;top:0;z-index:25;background:var(--carta);
   margin:0 -15px;padding:8px 15px;border-bottom:1.5px solid var(--linea)}
 .barra{position:static}
+/* Con l'id: la regola dei quattro tasti, più sotto, rimette gap:7px. */
+#riga-cerca .tasto.marchi{flex-direction:column;gap:0}
+.riga-gm{display:block;line-height:1.05}
+/* Sui telefoni più stretti, un filo più piccola: «Personale» toccava i bordi. */
+@media (max-width:380px){ #riga-cerca .tasto{font-size:13px} }
 /* ---- la sezione personale ---- */
 .personale[hidden],.negozi-pers-box[hidden]{display:none}
 .personale{margin-top:14px}
@@ -1348,7 +1353,12 @@ function disegnaTasti() {
   gm.className = 'tasto agg marchi';
   /* Con le minuscole dal 2026-09-23: in un terzo di schermo, tutto
      maiuscolo non ci stava. */
-  gm.textContent = 'Grandi marche';
+  /* SEMPRE SU DUE RIGHE, «Grandi» sopra e «marche» sotto (Manlio,
+     2026-09-23: «mi sembra davvero schiacciata, meglio su due righe»). Prima
+     andava a capo solo sotto i 420 px; sui telefoni più larghi stava su una
+     riga, stretta fra i bordi tondi. Lo spazio fra le due parti resta, così
+     chi legge il testo (e le prove) trova ancora «Grandi marche». */
+  gm.innerHTML = '<span class="riga-gm">Grandi</span> <span class="riga-gm">marche</span>';
   gm.setAttribute('aria-pressed', String(ricercaAperta && vistaMarche));
   gm.onclick = () => {
     if (ricercaAperta && vistaMarche) { suInCima(); return; }

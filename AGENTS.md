@@ -220,7 +220,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   - **alti 44 px**, più delle pillole (34): chiesto da lui, «essendo adesso i
     pulsanti così importanti»; scritta 14 px;
   - **«Grandi marche» con le minuscole** (sì suo): tutto maiuscolo non ci
-    stava. Sotto i 420 px va a capo dentro il tasto invece di toccare i bordi.
+    stava. **Sempre su due righe**, «Grandi» sopra e «marche» sotto (chiesto
+    il 2026-09-23: «mi sembra davvero schiacciata, meglio su due righe»):
+    prima andava a capo solo sotto i 420 px. Due `<span class="riga-gm">`
+    separati da uno spazio, così il testo resta «Grandi marche». Sotto i
+    380 px la scritta dei tasti è 13 px, se no «Personale» tocca i bordi.
 - **IL QUARTO TASTO È «Personale»** (chiesto il 2026-09-23: «una sezione
   personale… si possono scrivere delle parole e avrà un tasto di fianco
   aggiungi per creare delle pillole… in basso le offerte per questi prodotti…
@@ -542,6 +546,8 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **«Grandi marche» sempre su due righe** (2026-09-23, chiesto da Manlio:
+  «mi sembra schiacciata»). `sw.js` a v77.
 - **La sezione «Personale»** (2026-09-23, chiesta da Manlio): quarto tasto
   in alto; parole sue fatte pillole, per ognuna l'offerta più conveniente
   (col tasto tutte), «Personalizza supermercati» che vale solo lì. Tutto sul

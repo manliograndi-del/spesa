@@ -2949,3 +2949,12 @@ versione personale per ogni telefonino».
 - Il più conveniente si sceglie dentro il reparto più numeroso della parola:
   il prezzo per unità di reparti diversi (kg, pezzo, litro) non si confronta.
 - Quattro tasti in alto: a 360 px sono larghi 78, «Personale» ci sta (77).
+
+## «Grandi marche» su due righe — 2026-09-23
+
+Manlio: «la scritta grandi marche mi sembra davvero schiacciata, meglio farla
+su due righe». Andava a capo solo sotto i 420 px: sul suo telefono stava su
+una riga, stretta fra i bordi tondi. Adesso è sempre su due righe. Due
+tranelli: la regola dei quattro tasti, scritta più sotto, rimetteva `gap:7px`
+fra le due righe (serve l'id per vincere), e a 360 px «Personale» toccava i
+bordi (scritta a 13 px sotto i 380).
