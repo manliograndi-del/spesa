@@ -108,3 +108,4 @@
 2026-09-23 05:41 UTC  verificato: sito online identico byte per byte a out/sito.html dopo aver riallineato main al ramo di lavoro (era rimasto indietro come il 17/9). Niente di nuovo da leggere oggi: giornata di sola pulizia.
 2026-09-23 06:05 UTC  marchio EKOM rifatto con l'immagine vera mandata da Manlio (arancione, caselle bianche). sw.js v69.
 2026-09-23 06:06 UTC  pubblicato: sito (verificato, sw.js v69), prova-tasti-sotto.html e artifact (versione 61) col marchio Ekom vero.
+2026-09-23 06:13 UTC  i collegamenti Conad aprono la pagina giusta sul visore di Conad (volantini.conad.it/.../<n>) invece del PDF intero. sw.js v70.

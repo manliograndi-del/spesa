@@ -12,19 +12,19 @@ parte e le due copie divergevano.
 Scarica solo quello che non c'è già: rilanciarlo non riscarica niente.
 """
 import os, subprocess, sys
-from dati import VOLANTINI
+from dati import VOLANTINI, PDF
 
 UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120'
 soltanto = set(sys.argv[1:])
 
 def da_pdf(v):
-    """Conad (dal 2026-09-22) mette il volantino sul suo sito come PDF, e
-    l'indirizzo delle righe è il PDF con «#page={n}». Qui il PDF si scarica
-    UNA volta e se ne fanno le immagini delle pagine, grandi come le altre.
-    Senza questo, lo schema con {n} farebbe scaricare il PDF intero sessanta
-    volte e lo salverebbe col nome di un'immagine."""
+    """Conad (dal 2026-09-22) mette il volantino sul suo sito come PDF: il PDF
+    sta in PDF dentro dati.py, e qui si scarica UNA volta e se ne fanno le
+    immagini delle pagine, grandi come le altre. L'indirizzo in VOLANTINI
+    invece è quello del visore Conad, pagina per pagina, da aprire sul
+    telefono: non va scaricato."""
     import pymupdf, tempfile
-    pdf = v.indirizzo.split('#', 1)[0]
+    pdf = PDF[v.chiave]
     with tempfile.TemporaryDirectory() as tmp:
         dove = os.path.join(tmp, 'v.pdf')
         subprocess.run(['curl', '-sS', '-f', '--max-time', '120', '-A', UA, '-o', dove, pdf],
@@ -44,7 +44,7 @@ for v in VOLANTINI:
     chiave, modello = v.chiave, v.indirizzo
     if soltanto and chiave not in soltanto:
         continue
-    if modello and '.pdf#page=' in modello:
+    if chiave in PDF:
         os.makedirs(f'pg/{chiave}', exist_ok=True)
         if not os.listdir(f'pg/{chiave}'):
             da_pdf(v)

@@ -2821,3 +2821,21 @@ trovati interrogando gli id vicini a quello letto («Extra offerte», 28831):
 settembre al 21 ottobre) e 28868 «Grandi marche a tasso zero» (finanziamenti
 Expert). Stesso motivo delle «Grandi Marche Selection» di Ipercoop già viste:
 niente prezzo di spesa vera.
+
+## Il volantino Conad si apriva intero — 2026-09-23
+
+Manlio: «il volantino Conad non fa vedere la pagina ma il volantino completo».
+Il collegamento di ogni riga Conad era il PDF sul sito Conad con `#page=n`:
+sul computer il visore dei PDF salta alla pagina, sul telefono no — il PDF si
+apre dall'inizio, o si scarica. Il numero di pagina si perdeva.
+
+La pagina del volantino su conad.it («Guarda il volantino») mostra le pagine
+con Yumpu, e i suoi tasti di condivisione portano a
+`https://volantini.conad.it/volantino-freschi-di-convenienza-conad-piemonte/71286440`.
+Lì ogni pagina ha un indirizzo suo, `.../71286440/5`: provato con un browser
+da telefono, apre la pagina 5 (affiancata alla 4, come nel volantino di carta).
+
+Quindi adesso le due cose stanno separate: in `VOLANTINI` l'indirizzo del
+visore, per chi apre dal telefono; in `PDF` (sempre in `dati.py`) il PDF da cui
+`scarica.py` fa le immagini per leggerle. È anche più pulito dal lato del
+copyright: il collegamento porta al visore ufficiale di Conad.

@@ -62,6 +62,13 @@ Volantino.__new__.__defaults__ = (None, None)   # inizio: se manca, e gia in cor
 def _v(*campi):
     return Volantino(*campi)
 
+# I volantini che si scaricano da un PDF invece che pagina per pagina (Conad):
+# scarica.py prende il PDF e ne fa le immagini. L'indirizzo in VOLANTINI resta
+# quello da aprire sul telefono, pagina per pagina.
+PDF = {
+ 'conad24': 'https://www.conad.it/assets/common/volantini/cno/v20262/20262620PCONADPIEMONTE.pdf',
+}
+
 VOLANTINI = [
  _v('bennet10',       'Bennet',         'dal 10 al 23 settembre',                       'Bennet — 10-23 settembre.pdf',                      '2026-09-23', _AV + '/2026/09/volantino-bennet-2026-09-10-p-{n:05d}.jpg'),
 
@@ -126,7 +133,14 @@ VOLANTINI = [
  # Il collegamento di ogni riga porta al PDF sul sito Conad alla sua pagina
  # (#page=n). scarica.py sa leggere questi PDF: lo scarica una volta e ne fa
  # le immagini delle pagine.
- _v('conad24',        'Conad',          '«Freschi di convenienza», dal 24 settembre al 7 ottobre', 'Conad — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.conad.it/assets/common/volantini/cno/v20262/20262620PCONADPIEMONTE.pdf#page={n}', '2026-09-24'),
+ # IL COLLEGAMENTO NON È IL PDF (Manlio, 2026-09-23: «il volantino Conad non fa
+ # vedere la pagina ma il volantino completo»). Sul telefono il PDF con
+ # «#page=n» si apre dall'inizio, o si scarica: il numero di pagina si perde.
+ # Il sito Conad ha il suo visore (Yumpu, su volantini.conad.it) e lì ogni
+ # pagina ha un indirizzo suo: .../<id>/<n>. L'id e il nome si leggono nella
+ # pagina del volantino su conad.it («Guarda il volantino», i tasti di
+ # condivisione). Il PDF serve solo a scaricare le pagine: sta in PDF qui sotto.
+ _v('conad24',        'Conad',          '«Freschi di convenienza», dal 24 settembre al 7 ottobre', 'Conad — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://volantini.conad.it/volantino-freschi-di-convenienza-conad-piemonte/71286440/{n}', '2026-09-24'),
  # Il foglio «Perché conviene» (conad.it/.../vperch/PERCHECONVIENEPPN20PI.pdf)
  # ripete tre offerte di conad24 agli stessi prezzi (detersivo ACE, crudo
  # Assisi, olio Conad): non è un volantino a parte, guardato e lasciato fuori.

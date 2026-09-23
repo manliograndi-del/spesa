@@ -474,6 +474,15 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **I collegamenti Conad aprono la PAGINA, non il volantino intero**
+  (2026-09-23, Manlio: «il volantino Conad non fa vedere la pagina ma il
+  volantino completo»). Il PDF con `#page=n` sul telefono si apriva
+  dall'inizio. Adesso il collegamento è il visore di Conad,
+  `volantini.conad.it/<nome>/<id>/<n>`, che apre la pagina giusta (affiancata
+  alla vicina, come sulla carta). Il PDF serve solo a scaricare le pagine e sta
+  in `PDF` dentro `dati.py`. **A ogni Conad nuovo servono tutti e due**: il PDF
+  e l'indirizzo del visore, che si legge nella pagina «Guarda il volantino» su
+  conad.it (i tasti di condivisione portano a volantini.conad.it/...).
 - **Rifatto il 2026-09-23 il marchio EKOM** con l'immagine vera mandata da
   Manlio («il logo di Ekom in realtà è questo»): riquadro arancione, lettere
   in caselle bianche, «IL DISCOUNT VICINO A TE.». Quello di prima era una
