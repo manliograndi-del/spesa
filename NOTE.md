@@ -3103,3 +3103,23 @@ sarebbe bene mettere in sovrimpressione un bel tastone chiudi in basso».
 - Sul link Claude il riquadro dell'artifact potrebbe non lasciar passare le
   immagini di altri siti: al posto della pagina compare «Aprila sul sito».
   Da farsi dire da lui.
+
+## Le cose importanti dei dettagli, in pillole beige — 2026-09-23
+
+Manlio, dopo aver tolto «Dettagli»: «se invece quello che c'è scritto in
+questi dettagli è davvero importante e soprattutto breve, lo si può fare
+apparire in un'altra pillola beige accanto a quella che già c'è».
+
+Guardate tutte le frasi rimaste e scelte quelle che cambiano la spesa:
+- **quanto costa senza la tessera** (111 offerte): è la cosa più importante,
+  chi non ha la tessera paga quello. L'unità va dietro se la nota ce l'ha:
+  «senza tessera 25,90 al kg» del baccalà, scritto «25,90 €», si sarebbe letto
+  come il prezzo della confezione. Un primo giro prendeva anche la virgola
+  dopo il numero («7,98, €»): corretto, e la prova ora lo controlla;
+- **cos'è davvero il prodotto** («È burrata, non mozzarella» → «Burrata»),
+  solo se breve e non già nel nome («Fresche» su «Pasta fresca» no);
+- **il peso**: sgocciolato, o no (il tonno col conto sulla scatola);
+- **una confezione sola** nei 1+1, e la **quantità limitata**.
+Lasciato fuori il **prezzo all'etto** dei banchi: provato, ma è il prezzo al
+kg diviso dieci, un numero ripetuto — il contrario di quello che aveva
+chiesto col punto 2. Fuori anche origine, «vari tipi», formati.

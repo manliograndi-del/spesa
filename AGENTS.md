@@ -496,7 +496,15 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     resto della nota NON si mostra**: c'era un tasto «Dettagli» e lo stesso
     giorno Manlio l'ha fatto togliere, «toglierei del tutto la scritta
     dettagli e ciò che fa apparire: molto spesso sono di troppo e sono davvero
-    dei dettagli». Non rimetterlo senza chiederglielo. Li decide `condizioni()` in
+    dei dettagli». Non rimetterlo senza chiederglielo. **Quello che conta
+    davvero ed è breve diventa una pillola beige in più** (chiesto subito
+    dopo: «se è davvero importante e soprattutto breve, in un'altra pillola
+    beige accanto»), da `brevi()` in `pagina.py`: «Senza tessera 3,49 €»
+    (con l'unità, se la nota ce l'ha: «… € al kg»), cos'è davvero il
+    prodotto («Burrata», «Già cotte», «Capsule»: al massimo 26 caratteri e
+    mai se è già nel nome), «Peso sgocciolato» / «Peso non sgocciolato»,
+    «Una sola 1,79 €» nei 1+1, «Quantità limitata». **Il prezzo all'etto dei
+    banchi NO**: è il prezzo al kg diviso dieci, un numero ripetuto. Li decide `condizioni()` in
     `pagina.py`, dalla nota: «Con tessera» (Pam «Solo con app», Lidl «Con
     Lidl Plus», Ipercoop «Solo soci»), «Al banco» (non se il formato lo dice
     già), «Surgelato» (non nelle categorie surgelate), «1+1», «Più ne
@@ -622,6 +630,11 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Le cose importanti dei vecchi «Dettagli» sono pillole beige** (2026-09-23,
+  chiesto da Manlio): prezzo senza tessera, cos'è davvero il prodotto, peso
+  sgocciolato, una sola nei 1+1, quantità limitata. `sw.js` a v84. **Poi il
+  punto 3**, chiedendoglielo prima.
 
 - **Tolto «Dettagli»; toccando una scheda si apre la pagina del volantino
   sopra l'elenco, col tastone «Chiudi» in basso** (2026-09-23, chiesto da

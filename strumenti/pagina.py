@@ -137,6 +137,60 @@ def condizioni(ins, cat, fmt, note):
         bolli.append('Non in tutti i negozi')
     return bolli
 
+# LE COSE DAVVERO IMPORTANTI DEI VECCHI «DETTAGLI», IN UNA PILLOLA BEIGE IN
+# PIÙ (Manlio, 2026-09-23: «se quello che c'è scritto in questi dettagli è
+# davvero importante e soprattutto breve, lo si può fare apparire in
+# un'altra pillola beige accanto a quella che già c'è»). Solo tre tipi di
+# cose, e solo se stanno in poche parole (NON il prezzo all'etto dei banchi:
+# è il prezzo al kg diviso per dieci, un numero ripetuto):
+#   - quanto costa SENZA la tessera («Senza tessera 3,49 €»);
+#   - COS'È DAVVERO il prodotto, quando la nota lo dice («È burrata, non
+#     mozzarella» → «Burrata»; «Sono capsule: …» → «Capsule»), purché non sia
+#     già scritto nel nome;
+#   - il PESO: sgocciolato, o no («Peso non sgocciolato» sul tonno col conto
+#     sul peso della scatola), e il prezzo di una confezione sola nei 1+1.
+# Tutto il resto dei dettagli resta fuori, come ha chiesto.
+_MAX_BREVE = 26
+_COSE = re.compile(r"^(?:È|Sono) (?:(?:un|una|uno|il|la|lo|l'|i|le|gli) )?(.+?)(?=[,:;(]|\.$| non |$)")
+
+def _gia_nel_nome(cosa, pro):
+    # «Fresche» su «Pasta fresca», «Birra al 10%» su «Birra Faxe 10%»: ogni
+    # parola che conta (i primi cinque caratteri) è già nel nome.
+    nome = (pro or '').lower()
+    parole = [w[:5] for w in re.findall(r"[\wà-ù%]+", cosa.lower()) if len(w) >= 3 and w not in ('con', 'per', 'non')]
+    return all(w in nome for w in parole)
+
+def brevi(pro, note):
+    n = note or ''
+    out = []
+    # L'unità si porta dietro: «senza tessera 25,90 al kg» scritto «25,90 €»
+    # si leggerebbe come il prezzo della confezione.
+    m = re.search(r"[Ss]enza tessera (\d+(?:,\d+)?)( (?:al kg|al litro|all'etto|al pezzo))?", n)
+    if m:
+        out.append(f'Senza tessera {m.group(1)} €' + (m.group(2) or ''))
+    for f in re.split(r'(?<=\.)\s+(?=[A-ZÈÉ«−–\d])', n.strip()):
+        m = _COSE.match(f)
+        if m and not re.match(r'\d\s*\+\s*\d', m.group(1)):
+            cosa = m.group(1).strip()
+            cosa = cosa[:1].upper() + cosa[1:]
+            if len(cosa) <= _MAX_BREVE and not _gia_nel_nome(cosa, pro) and not cosa.lower().startswith('banco'):
+                out.append(cosa)
+            break
+        m = re.match(r'^(Già cott[eoia]|Precott[eoia]|Panat[oaie]|Impanat[oaie])\b', f)
+        if m:
+            out.append(m.group(1))
+            break
+    if re.search(r'sgocciolato non è stampato|sgocciolato il tonno è meno', n):
+        out.append('Peso non sgocciolato')
+    elif re.search(r'sgocciolat', n):
+        out.append('Peso sgocciolato')
+    m = re.search(r'Una confezione sola costa (\d+(?:,\d+)?)', n)
+    if m:
+        out.append(f'Una sola {m.group(1)} €')
+    if re.search(r'[Qq]uantità limitata|Offerta limitata', n):
+        out.append('Quantità limitata')
+    return out
+
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
 # «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
@@ -145,7 +199,7 @@ offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.
                 url=indirizzo(o.chiave, o.pag),
                 periodo=PERIODO[o.chiave], dubbio=(o.fonte == D), note=o.note,
                 sconto=sconto(o.prezzo, o.fmt, o.note), prima=prima(o.note),
-                bolli=condizioni(o.ins, o.cat, o.fmt, o.note),
+                bolli=condizioni(o.ins, o.cat, o.fmt, o.note) + brevi(o.pro, o.note),
                 inizio=o.inizio or INIZIO[o.chiave],
                 fino=o.fino or FINO[o.chiave],
                 ristretta=bool(o.inizio or o.fino))
@@ -348,8 +402,9 @@ NOVITA_PAGINA = [
                'sta quell\'offerta si apre sopra l\'elenco. Per tornare ai prezzi '
                'c\'è il tasto grande «Chiudi» in basso (va bene anche il tasto '
                '«indietro» del telefono). In alto, «Apri sul sito» la apre sul '
-               'sito del negozio. Tolto anche «Dettagli»: sulle schede restano '
-               'solo i bollini con le condizioni.'),
+               'sito del negozio. Tolto anche «Dettagli»: quello che contava davvero '
+               'è diventato una pillola beige in più (il prezzo senza tessera, il '
+               'peso sgocciolato, cos\'è davvero il prodotto).'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1343,7 +1398,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       rosso è il prezzo <b>per unità</b>, quello con cui si confrontano i negozi;
       accanto, quanto costa la confezione e quanto pesa. Sotto il nome, quando servono, dei
       <b>bollini gialli con le condizioni</b>: con tessera, solo con app, al banco,
-      surgelato, 1+1. <b>Le offerte scadute
+      surgelato, 1+1; e, quando conta, quanto costa senza tessera, se il peso è
+      sgocciolato o cos'è davvero il prodotto («Burrata», «Già cotte»).
+      <b>Le offerte scadute
       spariscono da sole</b>, secondo la data del telefono.</p>
     </div>
     <div class="voce">

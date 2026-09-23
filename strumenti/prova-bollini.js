@@ -25,6 +25,14 @@ setTimeout(() => {
       male.push(`«${o.pro}» (${o.ins}): la nota dice tessera ma il bollino non c'è`);
     if (o.ins === 'Pam' && /Perte Plus/.test(n) && !b.includes('Solo con app'))
       male.push(`«${o.pro}»: Pam con app senza «Solo con app»`);
+    /* Il prezzo senza tessera è una pillola sua, con la sua unità se ce l'ha
+       (Manlio, 2026-09-23: «se è davvero importante e breve, in un'altra
+       pillola beige»). */
+    const st = n.match(/[Ss]enza tessera (\d+(?:,\d+)?)( al kg| al litro| all'etto)?/);
+    if (st && !b.includes('Senza tessera ' + st[1] + ' €' + (st[2] || '')))
+      male.push(`«${o.pro}»: manca «Senza tessera ${st[1]} €${st[2] || ''}»`);
+    b.forEach(x => { if (/\d,\s|,\s*€/.test(x)) male.push(`«${o.pro}»: numero scritto male, «${x}»`); });
+    b.forEach(x => { if (x.length > 34) male.push(`«${o.pro}»: pillola troppo lunga, «${x}»`); });
     if (/\d\s*\+\s*\d/.test(o.fmt) && !b.some(x => /^\d\+\d$/.test(x)))
       male.push(`«${o.pro}»: ${o.fmt} senza il bollino 1+1`);
   });
