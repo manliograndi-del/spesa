@@ -733,6 +733,18 @@ nuova. Lo stato, in breve:
   in una schermata. Prima del 7 (`sw.js` v90): nome del prodotto meno nero
   e prezzi a metà della scheda. **L'analisi esterna è chiusa.** Dopo
   (`sw.js` v92): tolto tutto il riquadro in fondo coi volantini.
+- **IN ATTESA DI RISPOSTA (2026-09-23 sera): i titoli delle offerte.**
+  Manlio: trattini, virgole e marche messi in modi diversi, «le marche sono
+  una cosa importante, magari mettile per prime ed evidenziale, o dimmi cosa
+  potresti fare». Proposto con quattro schermate: A) marca su una riga sua
+  SOPRA il nome, maiuscolo piccolo scuro (consigliata); B) marca DAVANTI al
+  nome in grassetto. In tutte e due: via i trattini, le aggiunte dopo la
+  virgola in grigio dopo il nome e mai spezzate, via quelle che la scheda
+  dice già (al banco, 3+1, il peso). Serve la marca come campo a parte nei
+  dati: 565 righe la hanno dopo « – », ~290 si riconoscono da sole, le altre
+  ~700 vanno rilette a mano (molte non hanno marca: carne, frutta, discount).
+  Anche chiesto, senza risposta: togliere l'elenco delle pagine («ci ho
+  trovato: uovo — pag. 15», «Mostra le altre 11 pagine») sotto le offerte.
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».
