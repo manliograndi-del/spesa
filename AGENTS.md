@@ -872,6 +872,7 @@ nuova. Lo stato, in breve:
 - **Scadenze**: `lidl24`, `mercato17`, `bennet1709` finiscono il 30
   settembre; `carriper15` il 28. La Routine delle 7 continua a cercare i
   volantini nuovi. **25 ottobre**: rimettere la Routine a `0 6 * * *`.
+- **Il suo telefono è un Android** (detto da lui il 2026-09-24: la tastiera di «Cerca» a griglia scesa «funziona benissimo»). Le prove in Chromium valgono per lui.
 - **Come lavora lui**: frasi brevi dettate al telefono, a volte con parole
   storpiate dal dettato; vuole meno giri di prove raccontati e più
   risultati. Per le prove grafiche gli basta vedere 3-4 schermate

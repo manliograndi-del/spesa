@@ -3445,5 +3445,6 @@ Grandi marche) o se il telefono chiede meno movimento. Misurato in Chromium:
 discesa finita a 287 ms, fuoco a 288. **Da tenere d'occhio**: su iPhone
 Safari un `focus()` che non arriva dentro il tocco può non aprire la
 tastiera; se Manlio dice che in «Cerca» deve toccare la casella, è questo.
+**Risolto**: Manlio ha un Android, e sul suo telefono «funziona benissimo».
 Pubblicato: `sw.js` v100, novità `2026-09-24-griglia` (l'id col 24 perché in
 Italia era già passata mezzanotte).
