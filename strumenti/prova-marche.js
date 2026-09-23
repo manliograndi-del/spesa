@@ -70,7 +70,8 @@ setTimeout(() => {
     if (!d.getElementById('ricerca').hidden) male.push('«Prodotti» non riporta alla pagina dei prodotti');
     if (pro().getAttribute('aria-pressed') !== 'true') male.push('tornati ai prodotti, «Prodotti» non è acceso');
   }
-  if (!/\.riga-cerca\{position:sticky;top:0/.test(html)) male.push('la striscia dei tre tasti non resta in alto');
+  /* Dal 2026-09-23 i tasti delle sezioni sono il menù IN BASSO. */
+  if (!/#riga-cerca\{position:fixed;top:auto;bottom:0/.test(html)) male.push('i tasti delle sezioni non stanno in fondo allo schermo');
   if (!/\.barra\{position:static\}/.test(html)) male.push('le pillole dei prodotti restano ancora attaccate in alto');
 
   if (male.length) { console.error('MALE:\n  ' + male.join('\n  ')); process.exit(1); }

@@ -232,8 +232,19 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
   delle offerte sono più compatte (meno aria, non meno roba): stesso
   contenuto, angoli 16 px, prezzo grande 26 px.
+- **DAL 2026-09-23 I QUATTRO TASTI DELLE SEZIONI SONO UN MENÙ IN BASSO**
+  (punto 5 dell'analisi esterna; Manlio ha visto quattro schermate di una
+  copia di prova e: «lo sai che mi piace davvero, bravo, possiamo farla»).
+  `#riga-cerca` è `position:fixed` in fondo allo schermo; ogni tasto ha
+  un'icona sopra la scritta; quello della sezione in cui si è è rosso su
+  fondino rosa (`--rosso-tenue`), gli altri grigi. «Grandi marche» resta su
+  due righe strette («lo lascerei così, con meno interlinea»). In cima
+  restano ferme solo le pillole dei prodotti, se sono poche (`.barra.fissa`,
+  `top:0`), e `altaFissa()` conta solo quelle. Le regole della striscia in
+  alto qui sotto restano valide per il resto (sezioni, colori, «Prodotti»
+  che torna in cima), non per la posizione.
 - **IN ALTO CI SONO TRE TASTI, UNO PER SEZIONE: «Prodotti», «Cerca»,
-  «Grandi marche»** (chiesto il 2026-09-23: «i tasti diventano tre e ognuno
+  «Grandi marche»** (poi quattro, e dal 2026-09-23 in basso, vedi sopra) (chiesto il 2026-09-23: «i tasti diventano tre e ognuno
   porta alla sua sezione, e quando si è nella sua sezione diventa
   colorato»). Regole decise con lui:
   - **quello della sezione in cui sei è rosso pieno**, gli altri bianchi col
@@ -653,6 +664,11 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Punto 5 fatto: il menù in basso** (2026-09-23, provato prima in quattro
+  schermate e piaciuto a Manlio). Novità `2026-09-23-zzz-menu`. `sw.js` a
+  v88. **Restano i punti 6 («Dove conviene questa settimana») e 7 (grandi
+  marche)**: «li vediamo dopo», ha detto lui.
 
 - **Punto 4 fatto** (2026-09-23): la N non più rossa (il resto del rosso
   resta, ha detto lui), il calendarietto al posto del tondino di quando parte

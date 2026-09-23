@@ -3159,3 +3159,19 @@ Proposte tre cose; le risposte di Manlio:
 3. «Elimina prodotto» dentro la «i»: «ottima, falla». Aggiornate
    `prova-intestazione.js` e `prova-arrivi.js`, che lo cercavano accanto al
    nome.
+
+## Punto 5: il menù in basso — 2026-09-23
+
+Manlio: «prova a fare un fork, crea una versione con il menù in fondo; non
+devi fare tante prove, basta che ne fai lo screenshot di tre o quattro
+schermate». Fatta una copia fuori dal sito (la pagina vera più un foglio di
+stile in coda) e mandate quattro schermate: Manzo aperto, Manzo scorrendo,
+Cerca, Grandi marche. Risposta: «lo sai che mi piace davvero, bravo,
+possiamo farla. Grandi marche lo lascerei così, con meno interlinea».
+
+Messa nella pagina vera: `#riga-cerca` fisso in fondo, icone sopra le
+scritte, quello attivo rosso su fondino rosa. Due conti cambiati perché i
+tasti non stanno più in cima: `sistemaBarra()` mette le pillole ferme a
+`top:0`, `altaFissa()` conta solo loro. Aggiornate `prova-marche.js` (cercava
+la striscia in alto) e `prova-scorrimento.js` (misurava la striscia in alto,
+adesso le pillole ferme).

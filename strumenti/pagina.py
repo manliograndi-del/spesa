@@ -420,6 +420,12 @@ NOVITA_PAGINA = [
                'cerchietto dei giorni che mancano. La N in alto a destra non è più '
                'rossa. «Elimina prodotto» non sta più accanto al nome: lo trovi '
                'toccando la «i», vicino a «Cambia nome».'),
+    dict(id='2026-09-23-zzz-menu', quando='23 settembre',
+         titolo='Il menù in basso',
+         testo='I quattro tasti Prodotti, Cerca, Grandi marche e Personale adesso '
+               'stanno in fondo allo schermo, sempre a portata di pollice, ognuno con '
+               'la sua icona. Quello rosso è la parte in cui sei. In cima resta più '
+               'spazio per i tuoi prodotti.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1142,6 +1148,33 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 .sint .freccia{margin-left:auto;font-weight:700}
 .sint.oggi{background:var(--verde-tenue);color:var(--verde)}
 .sint.dopo{background:var(--blu-tenue);color:var(--blu)}
+/* IL MENÙ IN BASSO (Manlio, 2026-09-23, punto 5, dopo le schermate di
+   prova: «lo sai che mi piace davvero, bravo, possiamo farla»). I quattro
+   tasti delle sezioni stanno in fondo allo schermo, sempre visibili, come
+   nelle app: si toccano col pollice. Icona sopra, scritta sotto; quello
+   della sezione in cui si è è rosso su un fondino rosa, gli altri grigi.
+   Tutte le regole hanno l'id: devono vincere su quelle della striscia in
+   alto, più sopra, che restano per la storia. */
+#riga-cerca{position:fixed;top:auto;bottom:0;left:0;right:0;margin:0;z-index:30;
+  background:var(--carta);border-bottom:0;border-top:1.5px solid var(--linea);
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom,0px));gap:4px;
+  box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+#riga-cerca .tasto,#riga-cerca .tasto.trova,#riga-cerca .tasto.marchi,#riga-cerca .tasto.sez{
+  flex-direction:column;justify-content:flex-start;border:0;background:none;color:var(--tenue);
+  min-height:56px;font-size:11.5px;gap:4px;border-radius:14px;padding:6px 2px 4px;
+  font-weight:700;white-space:normal;text-align:center;line-height:1.1}
+#riga-cerca .tasto::before{content:'';display:block;flex:none;width:23px;height:23px;
+  background:currentColor;-webkit-mask:var(--ic) center/contain no-repeat;
+  mask:var(--ic) center/contain no-repeat}
+#riga-cerca .tasto[aria-pressed="true"]{color:var(--rosso);background:var(--rosso-tenue)}
+#vai-prodotti{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M4 7h16M4 12h16M4 17h10'/%3E%3C/svg%3E")}
+#riga-cerca .tasto.trova{--ic:var(--lente)}
+#riga-cerca .tasto.marchi{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12V4h8l10 10-8 8z'/%3E%3Ccircle cx='7.5' cy='8.5' r='1.5'/%3E%3C/svg%3E")}
+#vai-personale{--ic:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='12' cy='8' r='4'/%3E%3Cpath d='M4 21c0-4 4-6 8-6s8 2 8 6'/%3E%3C/svg%3E")}
+/* «Grandi marche» resta su due righe, ma strette (Manlio: «lo lascerei così,
+   con meno interlinea»). */
+#riga-cerca .riga-gm{display:block;line-height:.95}
+.guscio{padding-bottom:100px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1403,9 +1436,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       puoi anche scrivere un nome che nel catalogo non c'è.</p>
     </div>
     <div class="voce">
-      <h3>I tasti in alto: «Prodotti», «Cerca», «Grandi marche», «Personale»</h3>
-      <p>Sono le parti della pagina, e restano sempre in alto anche quando
-      scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
+      <h3>Il menù in basso: «Prodotti», «Cerca», «Grandi marche», «Personale»</h3>
+      <p>Sono le parti della pagina, e restano sempre in fondo allo schermo anche
+      quando scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
       con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
       <b>tutte</b> quelle lette: scrivi un prodotto, una marca, un formato o il
       nome di un negozio, e le offerte escono mentre scrivi. <b>«Grandi
@@ -2022,8 +2055,10 @@ function sistemaBarra() {
   const alta = barra.getBoundingClientRect().height;
   const schermo = window.innerHeight || 0;
   if (alta > 0 && schermo > 0 && alta <= schermo / 3) {
+    /* Dal 2026-09-23 i tasti delle sezioni stanno IN BASSO: le pillole
+       ferme stanno proprio in cima, a zero. */
     barra.classList.add('fissa');
-    barra.style.top = Math.round(striscia.getBoundingClientRect().height) + 'px';
+    barra.style.top = '0px';
   }
 }
 window.addEventListener('resize', () => { try { sistemaBarra(); } catch (e) {} });
@@ -2552,11 +2587,11 @@ function vaiInizio() {
 /* Quanto è alta la striscia che resta attaccata in alto. Dal 2026-09-23 è
    quella dei tre tasti, non più le pillole dei prodotti. */
 function altaFissa() {
-  const s = document.getElementById('riga-cerca');
+  /* Quanto è occupato in cima: solo le pillole, se sono ferme. I tasti delle
+     sezioni dal 2026-09-23 stanno in basso (menù in fondo, Manlio: «lo sai
+     che mi piace davvero»), e non coprono più niente in alto. */
   const b = document.querySelector('.barra');
-  /* Con le pillole ferme in alto, sotto c'è anche la loro altezza. */
-  const pillole = b && !b.hidden && b.classList.contains('fissa') ? b.getBoundingClientRect().height : 0;
-  return (s ? s.getBoundingClientRect().height : 0) + pillole;
+  return b && !b.hidden && b.classList.contains('fissa') ? b.getBoundingClientRect().height : 0;
 }
 
 /* Cambiando prodotto si torna all'inizio del suo elenco.

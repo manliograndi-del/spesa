@@ -142,3 +142,4 @@
 2026-09-23 16:37 UTC  pubblicato: sito (verificato, sw.js v86) e artifact (versione 77): riga in cima solo oltre i primi tre.
 2026-09-23 17:12 UTC  punto 4: N non più rossa, calendarietto per le offerte che partono, «Elimina prodotto» dentro la «i». sw.js v87.
 2026-09-23 17:18 UTC  pubblicato: sito (verificato, sw.js v87) e artifact (versione 78): punto 4.
+2026-09-23 17:26 UTC  punto 5: menù in basso coi quattro tasti delle sezioni. sw.js v88.
