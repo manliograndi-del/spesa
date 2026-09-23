@@ -2788,3 +2788,36 @@ Come è fatta:
 
 I pallini e lo scorrimento delle grandi marche, che lui diceva di non vedere,
 erano già online dalle 23:33: li aveva guardati prima della pubblicazione.
+
+## Il controllo del 23 settembre: niente da leggere, ma due bug trovati
+
+Giro di routine: tutte e dieci le insegne controllate sulla fonte, nessun
+volantino nuovo che non fosse già in `dati.py`. Il lavoro vero è stato pulire
+`eurospin10` e `md08` (scaduti da tre giorni, coperti da `eurospin24` e
+`md22` senza buchi) e sistemare due bug trovati facendolo.
+
+**Il cerchietto dei giorni, sull'ultimo giorno, non si spiegava al tocco
+lungo.** `pagina.py`, funzione `cerchioGiorni`: quando `resta === 1` il
+`title` era `'Ultimo giorno: scade oggi'`, senza nessuna cifra dentro. La
+prova `prova-giorni.js` controlla `/\d/.test(cer.title)` — vuole sempre un
+numero — e non l'aveva mai beccato perché non era mai capitato, in una prova,
+che un'offerta scadesse esattamente oggi. Oggi ne scadevano tre insieme
+(bennet10, lidl17, lidlfv17) e la prova ha finalmente trovato il buco.
+Corretto aggiungendo la data anche lì: `'Ultimo giorno: scade oggi, ' +
+soloGiorno(o.fino)`.
+
+**`variante.py` guardava nel posto sbagliato.** Cercava e scriveva sempre
+dentro `strumenti/out/` (la cartella dello script stesso, presa con
+`os.path.dirname(os.path.abspath(__file__))`), invece che in `out/` dentro
+la cartella da cui si lancia il comando — cosa che fanno tutti gli altri
+script (`pagina.py`, `novita.py`, `stampa.py` usano un `out/` relativo). La
+routine gira da `/tmp/lavoro`, quindi `python3 -m variante` falliva sempre
+con «file non trovato» finché non si lanciava da un posto preciso dentro il
+repository. Tolto il `QUI` sbagliato, ora usa `out/` come gli altri.
+
+Guardati anche, e lasciati fuori, due volantini Ipercoop non alimentari
+trovati interrogando gli id vicini a quello letto («Extra offerte», 28831):
+28792 «Tendenze d'Autunno» (abbigliamento ed elettronica Expert, dal 24
+settembre al 21 ottobre) e 28868 «Grandi marche a tasso zero» (finanziamenti
+Expert). Stesso motivo delle «Grandi Marche Selection» di Ipercoop già viste:
+niente prezzo di spesa vera.

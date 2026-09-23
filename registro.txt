@@ -103,3 +103,4 @@
 2026-09-22 21:45 UTC  in cima l'ingranaggio della configurazione (supermercati da tenere o togliere, colori, aiuto, novità della pagina) e la N delle novità. sw.js v67.
 2026-09-22 21:46 UTC  pubblicato: sito (verificato, sw.js v67), prova-tasti-sotto.html (verificata) e artifact (versione 59) con l'ingranaggio e la scelta dei supermercati.
 2026-09-23 05:19 UTC  sveglia: controllo del 23 settembre
+2026-09-23 05:37 UTC  controllo del 23 settembre: nessuna insegna nuova; tolti eurospin10 e md08 (scaduti, coperti senza buchi); corretto avviso cerchietto giorni e bug variante.py; sw.js v68

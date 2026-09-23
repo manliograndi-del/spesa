@@ -464,7 +464,31 @@ Conad»): è il Conad «normale» più vicino, a 2,7 km (codice negozio 009843).
 Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
-## Da fare adesso (aggiornato il 2026-09-22)
+## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Controllo del 23 settembre: niente di nuovo da leggere, solo pulizia.**
+  Controllate tutte e dieci le insegne sulla fonte (anteprimavolantino per
+  Lidl/Eurospin/MD/Bennet/Carrefour Iper, kimbino per Mercatò, l'API ufficiale
+  per Ekom, volantinopiu per Ipercoop e Pam, il sito Conad): nessun volantino
+  nuovo che non fosse già dentro `dati.py`. Bennet10, Lidl17 e Lidlfv17
+  scadevano oggi ma sono già coperti senza buchi da bennet1709 e lidl24.
+  - **Tolti `eurospin10` (10-20 settembre) e `md08` (8-20 settembre)**, scaduti
+    da tre giorni e già coperti da `eurospin24` e `md22`: 215 righe di prezzo
+    in meno da `PRODOTTI`, le loro voci tolte anche da `scartate.py`.
+  - **Trovato e corretto un avviso sbagliato**: il cerchietto dei giorni,
+    sull'ultimo giorno di un'offerta, diceva solo «Ultimo giorno: scade oggi»
+    al tocco lungo, senza il numero — la prova `prova-giorni.js` lo controlla
+    (vuole sempre una cifra) e con tre volantini che scadevano lo stesso
+    giorno l'ha beccato per la prima volta. Ora dice anche la data.
+  - **Trovato e corretto un bug in `variante.py`**: cercava e scriveva sempre
+    dentro `strumenti/out/` invece che nella cartella dove giri i comandi,
+    quindi non funzionava se non lanciato da un posto preciso. Sistemato per
+    farlo comportare come `pagina.py` e gli altri.
+  - **Guardati e lasciati fuori due volantini Ipercoop non alimentari**:
+    «Tendenze d'Autunno» (abbigliamento ed elettronica, Expert) e «Grandi
+    marche a tasso zero» (finanziamenti Expert): nessun prezzo di spesa vera.
+  - Pubblicato: sito (verificato byte per byte) e artifact col catalogo
+    pulito. `sw.js` a v68.
 
 - **CHIUSA: il CONAD è dentro, la decima insegna** (chiesto da Manlio il
   2026-09-22 notte). Letto per intero **«Freschi di convenienza» dal 24
