@@ -3123,3 +3123,21 @@ Guardate tutte le frasi rimaste e scelte quelle che cambiano la spesa:
 Lasciato fuori il **prezzo all'etto** dei banchi: provato, ma è il prezzo al
 kg diviso dieci, un numero ripetuto — il contrario di quello che aveva
 chiesto col punto 2. Fuori anche origine, «vari tipi», formati.
+
+## La riga in cima a ogni prodotto — 2026-09-23
+
+Punto 3 dell'analisi esterna. Prima di farla, guardati i suoi 13 prodotti
+coi prezzi del 23 settembre: in 7 da domani partiva un'offerta più
+conveniente (Pollo: oggi MD 3,40, da domani Eurospin 2,69; Manzo: oggi MD
+16,90, da domani Conad 9,90), e nel Manzo la scheda verde era l'ottava.
+
+Gli ho proposto due strade: una riga sempre presente, o una riga solo quando
+dice qualcosa che dall'elenco non si capisce. Ha scelto la seconda. Il motivo
+per cui ho spinto su quella è il riquadro del 22 settembre, tolto dopo mezz'ora
+perché ripeteva la scheda verde: qui la riga c'è solo se la scheda verde non è
+la prima, o se arriva qualcosa di meglio.
+
+Scoperto facendo la prova: il marchio SVG del Carrefour portava dentro
+`<title>logo</title><desc>Created with Sketch.</desc>`. Era già nascosto al
+lettore di schermo, ma col mouse sopra compariva «logo». `loghi.py` adesso
+toglie titoli e descrizioni da tutti i marchi.

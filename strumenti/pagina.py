@@ -405,6 +405,13 @@ NOVITA_PAGINA = [
                'sito del negozio. Tolto anche «Dettagli»: quello che contava davvero '
                'è diventato una pillola beige in più (il prezzo senza tessera, il '
                'peso sgocciolato, cos\'è davvero il prodotto).'),
+    dict(id='2026-09-23-z-sintesi', quando='23 settembre',
+         titolo='In cima: dove conviene',
+         testo='Quando serve, in cima alle offerte di un prodotto c\'è una riga in '
+               'più: in verde il meno caro che si compra oggi, se non è la prima '
+               'scheda; in blu l\'offerta che costerà meno fra qualche giorno, e da '
+               'quando. Toccala e la pagina scende a quella scheda. Quando il meno '
+               'caro di oggi è già il primo, la riga non c\'è.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1116,6 +1123,17 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   border-radius:99px;background:var(--rosso);color:var(--su-rosso);font-family:inherit;
   font-size:19px;font-weight:700;letter-spacing:.02em;cursor:pointer;
   box-shadow:0 6px 24px rgba(0,0,0,.45)}
+/* LA RIGA IN CIMA A OGNI PRODOTTO (punto 3): verde per «oggi», come la
+   scheda del meno caro; blu per «da domani», come il tondino di quando
+   parte un'offerta. */
+.sintesi{display:grid;gap:6px;margin:12px 0 0}
+.sint{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;text-align:left;
+  border:0;border-radius:14px;padding:9px 13px;font:inherit;font-size:14.5px;cursor:pointer;
+  line-height:1.25}
+.sint b{font-weight:700}
+.sint .freccia{margin-left:auto;font-weight:700}
+.sint.oggi{background:var(--verde-tenue);color:var(--verde)}
+.sint.dopo{background:var(--blu-tenue);color:var(--blu)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1389,6 +1407,14 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       altre. Lì dentro puoi anche scegliere in quali supermercati cercare. Le
       tue parole restano su questo telefono. È un'altra cosa dalla casella dentro
       il cassetto, che invece accende i prodotti della lista.</p>
+    </div>
+    <div class="voce">
+      <h3>La riga in cima</h3>
+      <p>A volte, sopra le offerte di un prodotto, c'è una riga in più. <b>In
+      verde</b>: il meno caro che puoi comprare <b>oggi</b>, quando non è la
+      prima scheda (sopra ci sono offerte che partono nei prossimi giorni).
+      <b>In blu</b>: un'offerta che costerà <b>meno</b> e parte fra poco, con il
+      giorno. Toccala e la pagina scende a quella scheda.</p>
     </div>
     <div class="voce">
       <h3>Cosa dice ogni riga</h3>
@@ -1738,6 +1764,56 @@ const offerteDi = v => v.cat
    negozio a chiedere un prezzo che non gli fanno ancora — e lasciare senza
    bollo l'offerta che invece stasera gli farebbero. */
 const menoCaroOggi = off => off.find(o => !futuro(o));
+
+/* LA RIGA IN CIMA A OGNI PRODOTTO, SOLO QUANDO SERVE (Manlio, 2026-09-23,
+   punto 3 dell'analisi esterna: «va bene la prima», cioè la riga che compare
+   solo quando dice qualcosa che dall'elenco non si capisce al primo sguardo).
+   Due casi, e basta:
+   - il meno caro di OGGI non è la prima scheda (sopra ci sono offerte che
+     partono nei prossimi giorni): «Oggi il meno caro: MD, 16,90 € al kg»;
+   - un'offerta PIÙ conveniente parte nei prossimi giorni: «Da domani conviene
+     di più: Conad, 9,90 € al kg».
+   Se il meno caro di oggi è già la prima scheda e non arriva niente di
+   meglio, la riga NON c'è: il 2026-09-22 un riquadro che ripeteva la scheda
+   verde era stato tolto dopo mezz'ora. Toccando una riga la pagina scende
+   alla sua scheda. Il confronto è sui numeri come si leggono (eur). */
+const SETTIMANA = 'domenica lunedì martedì mercoledì giovedì venerdì sabato'.split(' ');
+function quandoParte(iso) {
+  const d0 = new Date(OGGI_ISO + 'T12:00:00'), d1 = new Date(iso + 'T12:00:00');
+  const n = Math.round((d1 - d0) / 86400000);
+  if (n === 1) return 'domani';
+  if (n === 2) return 'dopodomani';
+  return SETTIMANA[d1.getDay()] + ' ' + d1.getDate();
+}
+function sintesi(off, meno, schede) {
+  const prima = off.find(o => futuro(o));
+  const piuBasso = (a, b) => parseFloat(eur(a.unitario).replace(',', '.')) < parseFloat(eur(b.unitario).replace(',', '.'));
+  const righe = [];
+  if (meno && off[0] !== meno) righe.push(['oggi', meno, 'Oggi il meno caro']);
+  if (prima && (!meno || piuBasso(prima, meno))) {
+    const q = quandoParte(prima.inizio);
+    righe.push(['dopo', prima, 'Da ' + q + (meno ? ' conviene di più' : '')]);
+  }
+  if (!righe.length) return null;
+  const box = document.createElement('div');
+  box.className = 'sintesi';
+  for (const [tipo, o, testo] of righe) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'sint ' + tipo;
+    b.innerHTML = '<span class="cosa"></span> <b></b><span class="freccia" aria-hidden="true">\u2193</span>';
+    b.querySelector('.cosa').textContent = testo + ':';
+    b.querySelector('b').textContent = o.ins + ', ' + eur(o.unitario) + ' € ' + (DATI.unita[o.cat] || 'al kg');
+    b.onclick = () => {
+      const el = schede.get(o);
+      if (!el) return;
+      const meta = Math.max(0, el.getBoundingClientRect().top + (window.scrollY || 0) - altaFissa() - 10);
+      try { window.scrollTo({ top: meta, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, meta); }
+    };
+    box.appendChild(b);
+  }
+  return box;
+}
 
 /* Le pagine dei volantini dove compare almeno uno dei nomi del prodotto.
    Se non ha nomi alternativi si cerca il nome stesso. */
@@ -2877,8 +2953,12 @@ function disegna() {
     const f = document.createElement('p');
     f.className = 'fascia';
     f.textContent = 'Offerte ordinate dal prezzo per unità più conveniente';
+    const schede = new Map();
+    off.forEach(o => schede.set(o, rigaPrezzo(o, o === meno)));
+    const sint = sintesi(off, meno, schede);
+    if (sint) out.appendChild(sint);
     out.appendChild(f);
-    off.forEach(o => out.appendChild(rigaPrezzo(o, o === meno)));
+    off.forEach(o => out.appendChild(schede.get(o)));
   } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
     /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
        vuoto: senza questa riga sembrerebbe che il prodotto non sia mai stato

@@ -54,6 +54,10 @@ def _ripulisci(testo, nome):
     # commenti dell'editore con cui e stato fatto
     testo = testo[testo.index('<svg'):]
 
+    # via i titoli e le descrizioni lasciati dall'editore («logo», «Created
+    # with Sketch.»): passandoci sopra col mouse comparivano come suggerimento
+    testo = re.sub(r'<(title|desc)\b[^>]*>.*?</\1>', '', testo, flags=re.S)
+
     # gli id: prima si raccolgono, poi si rinominano ovunque compaiano
     ids = set(re.findall(r'\sid="([^"]+)"', testo))
     for vecchio in sorted(ids, key=len, reverse=True):

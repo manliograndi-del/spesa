@@ -136,3 +136,4 @@
 2026-09-23 13:48 UTC  pubblicato: sito (verificato, sw.js v83, anche novita.html) e artifact (versione 74): via «Dettagli», volantino sopra l'elenco con «Chiudi».
 2026-09-23 14:03 UTC  le cose importanti dei vecchi dettagli diventano pillole beige (senza tessera, cos'è, peso sgocciolato, una sola nei 1+1). sw.js v84.
 2026-09-23 14:08 UTC  pubblicato: sito (verificato, sw.js v84, anche novita.html) e artifact (versione 75): pillole beige dai vecchi dettagli.
+2026-09-23 16:25 UTC  riga in cima a ogni prodotto solo quando serve (meno caro di oggi se non è il primo, offerta più conveniente in arrivo). sw.js v85.
