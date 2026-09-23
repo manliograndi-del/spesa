@@ -107,47 +107,18 @@ def prima(note):
 # LE NOTE DIVENTANO BOLLINI BREVI (Manlio, 2026-09-23, punto 2 della critica
 # esterna: «le note gialle diventano bollini brevi, e tolgo i numeri
 # ripetuti»). Prima ogni scheda aveva sotto un riquadro ambra lungo due o tre
-# righe, e metà di quello che diceva era già scritto altrove: lo sconto nel
-# suo bollino, le date nel bollino rosso, il prezzo al kg nel prezzo grande.
-# Adesso:
-#   - le CONDIZIONI (tessera, app, al banco, surgelato, 1+1, non in tutti i
-#     negozi) sono bollini di una o due parole, sotto il nome;
-#   - quello che resta della nota, tolte le frasi che ripetono cose già sulla
-#     scheda, sta dietro il tasto «Dettagli».
-# Le frasi si tolgono SOLO quando la stessa cosa è scritta davvero sulla
-# scheda: lo sconto solo se c'è il suo bollino, le date solo se la riga ha
-# le sue date (bollino rosso), «il volantino stampa N al kg» solo se N è lo
-# stesso numero del prezzo grande. Tutto il resto resta nei dettagli: «è
-# pasta di lenticchie, non di grano» o «senza tessera 3,49» non si buttano.
-# La nota intera resta nei dati: «Cerca» cerca anche lì dentro.
+# righe. Adesso le CONDIZIONI (tessera, app, al banco, surgelato, 1+1, non in
+# tutti i negozi) sono bollini di una o due parole, sotto il nome, e il resto
+# della nota NON SI MOSTRA (Manlio, lo stesso giorno: «toglierei del tutto la
+# scritta dettagli e ciò che fa apparire: molto spesso sono di troppo e sono
+# davvero dei dettagli»). La nota intera resta nei dati: «Cerca» cerca anche
+# lì dentro, ed è da lì che nascono i bollini e lo sconto.
 _TESSERA = re.compile(r"Lidl Plus|Buona Spesa Card|Carta Insieme|[Ss]olo titolari|"
                       r"EKOM UP|SpesAmica|\bsoci\b|CARTA BENNET|Fidelity Card|"
                       r"Perte Plus|\bcon APP\b|\bl'app\b|[Tt]essera")
 _BOLLO_TESSERA = {'Pam': 'Solo con app', 'Lidl': 'Con Lidl Plus', 'Ipercoop': 'Solo soci'}
-_FRASI_VIA = [
-    re.compile(r"^(?:Con Lidl Plus|Solo con (?:la |l'|il )?[^.,]*"
-               r"(?:Card|Conad|EKOM UP|Payback|Perte Plus|Club)|Solo per i soci Coop|"
-               r"Solo titolari[^.,]*)\.$"),
-    re.compile(r'^(?:Bollino )?«[^»]+»\.$'),
-    re.compile(r'^Speciale [A-Z][a-z]+\.$'),
-    re.compile(r'^(?:Al banco|Surgelat[oaie])\.$'),
-    re.compile(r'^Offerta \d\+\d: due \w+ al prezzo di una\.$'),
-    re.compile(r'^Solo nei punti vendita[^.]*\.$|^Vale solo nei negozi[^.]*\.$'),
-]
-_FRASE_SCONTO = re.compile(r'^(?:[−–-]\s?\d{1,2}\s?%(?: SOLO CON LA CARTA [A-Z ]+)?,\s*prima [\d,]+(?: (?:al|all\')\s?\w+)?|'
-                           r'(?:Con Lidl Plus,\s*)?[Pp]rima [\d,]+(?: (?:al|all\')\s?\w+)?|'
-                           r'Sconto(?: soci)?(?: del)? \d{1,2}\s?%:\s*prima [\d,]+(?:, cioè [\d,]+ (?:al|all\')\s?\w+)?)\.$')
-_FRASE_DATE = re.compile(r'(?:[Vv]alid[oa]|[Vv]ale) (?:solo )?(?:da|fino)[^.]*(?:settembre|ottobre)[^.]*\.$')
-_FRASE_STAMPA = re.compile(r'^Il volantino stampa ([\d,]+) (?:al|all\')\s?(?:kg|litro|pezzo|lavaggio|rotolo)\.$')
 
-def _scritto(n):
-    # Il numero COME LO SCRIVE LA PAGINA (la «eur» del JavaScript, sul valore
-    # arrotondato a tre decimali che le arriva): «uguale» vuol dire uguale a
-    # quello che si legge, non a un centesimo di differenza.
-    n = round(n, 3)
-    return f'{n:.3f}' if n < 1 else f'{n:.2f}'
-
-def condizioni(ins, cat, fmt, note, unitario, sconto_, ristretta):
+def condizioni(ins, cat, fmt, note):
     n = note or ''
     bolli = []
     if _TESSERA.search(n):
@@ -164,21 +135,7 @@ def condizioni(ins, cat, fmt, note, unitario, sconto_, ristretta):
         bolli.append('Più ne prendi')
     if re.search(r'Solo nei punti vendita|Vale solo nei negozi', n):
         bolli.append('Non in tutti i negozi')
-    resto = []
-    for f in re.split(r'(?<=\.)\s+(?=[A-ZÈÉ«−–\d])', n.strip()):
-        if not f:
-            continue
-        if any(rx.search(f) for rx in _FRASI_VIA):
-            continue
-        if sconto_ and _FRASE_SCONTO.search(f):
-            continue
-        if ristretta and _FRASE_DATE.search(f) and len(f) < 110:
-            continue
-        s = _FRASE_STAMPA.search(f)
-        if s and float(s.group(1).replace(',', '.')) == float(_scritto(unitario)):
-            continue
-        resto.append(f)
-    return bolli, ' '.join(resto)
+    return bolli
 
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
@@ -188,9 +145,7 @@ offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.
                 url=indirizzo(o.chiave, o.pag),
                 periodo=PERIODO[o.chiave], dubbio=(o.fonte == D), note=o.note,
                 sconto=sconto(o.prezzo, o.fmt, o.note), prima=prima(o.note),
-                **dict(zip(('bolli', 'det'), condizioni(
-                    o.ins, o.cat, o.fmt, o.note, o.prezzo / o.qta,
-                    sconto(o.prezzo, o.fmt, o.note), bool(o.inizio or o.fino)))),
+                bolli=condizioni(o.ins, o.cat, o.fmt, o.note),
                 inizio=o.inizio or INIZIO[o.chiave],
                 fino=o.fino or FINO[o.chiave],
                 ristretta=bool(o.inizio or o.fino))
@@ -378,8 +333,7 @@ NOVITA_PAGINA = [
          titolo='Schede più corte',
          testo='Le note gialle lunghe sono diventate bollini brevi sotto il nome: '
                '«Con tessera», «Solo con app», «Al banco», «Surgelato», «1+1». '
-               'Quello che c\'è da sapere in più (per esempio il prezzo senza '
-               'tessera) si legge toccando «Dettagli». Tolti anche i numeri '
+               'Tolti anche i numeri '
                'scritti due volte: il prezzo della confezione sta solo a destra. '
                'Così in una schermata ci stanno più offerte.'),
     dict(id='2026-09-23-x-formato', quando='23 settembre',
@@ -388,6 +342,14 @@ NOVITA_PAGINA = [
                'lo dice il cerchietto dei giorni, «al kg» lo dice il prezzo grande. '
                'Il peso della confezione adesso sta accanto al suo prezzo, dove '
                'prima c\'era scritto «al pezzo».'),
+    dict(id='2026-09-23-y-volantino', quando='23 settembre',
+         titolo='Tocca un\'offerta e vedi il volantino',
+         testo='Tocca un punto qualunque di una scheda: la pagina del volantino dove '
+               'sta quell\'offerta si apre sopra l\'elenco. Per tornare ai prezzi '
+               'c\'è il tasto grande «Chiudi» in basso (va bene anche il tasto '
+               '«indietro» del telefono). In alto, «Apri sul sito» la apre sul '
+               'sito del negozio. Tolto anche «Dettagli»: sulle schede restano '
+               'solo i bollini con le condizioni.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -928,21 +890,12 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .prezzo-riga .sotto .quando{white-space:nowrap}
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
 /* Le condizioni, in bollini brevi sotto il nome: tessera, app, al banco,
-   surgelato, 1+1. Ambra, che qui vuol dire «attenzione a questo». Accanto,
-   se la nota ha altro da dire, il tasto «Dettagli» che la apre. */
+   surgelato, 1+1. Ambra, che qui vuol dire «attenzione a questo». */
 .prezzo-riga .cond{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0 0}
 .bollo.cond{background:var(--ambra-tenue);color:var(--ambra);font-size:11px;
   padding:3px 9px;letter-spacing:.03em}
-.prezzo-riga .dettagli{font:inherit;font-size:12.5px;font-weight:600;color:var(--rosso);
-  background:none;border:0;padding:3px 2px;cursor:pointer;display:inline-flex;
-  align-items:center;gap:3px;min-height:24px}
-.prezzo-riga .dettagli::after{content:'▾';font-size:11px;transition:transform .15s}
-.prezzo-riga .dettagli[aria-expanded="true"]::after{transform:rotate(180deg)}
-/* Il resto della nota, aperto da «Dettagli». */
-.prezzo-riga .nota[hidden]{display:none}
-.prezzo-riga .nota{margin:7px 0 0;font-size:12.5px;
-  background:var(--ambra-tenue);color:var(--ambra);border-radius:11px;
-  padding:6px 10px;line-height:1.3;font-weight:600}
+.prezzo-riga.apribile{cursor:pointer}
+.prezzo-riga.apribile:active{border-color:var(--rosso)}
 .prezzo-riga .dove{margin:8px 0 0;font-size:12.5px;color:var(--tenue)}
 a.dove.apri{display:inline-flex;align-items:center;justify-content:center;margin:0;
   padding:5px;border:0;background:none;color:var(--rosso);
@@ -1081,6 +1034,33 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .vol .n{color:var(--tenue);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
 footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   color:var(--tenue);font-size:13px}
+/* ---- LA PAGINA DEL VOLANTINO, SOPRA L'ELENCO (Manlio, 2026-09-23: «fare
+   aprire il volantino quando si fa clic in qualunque di queste schede… e
+   mettere in sovrimpressione un bel tastone chiudi in basso»). L'immagine
+   NON è nostra e non sta sul sito: la pagina la chiede al sito di chi
+   pubblica il volantino, come faceva il collegamento. Il tasto «Chiudi» è
+   largo quanto lo schermo e resta attaccato in basso. ---- */
+.vol-sopra[hidden]{display:none}
+.vol-sopra{position:fixed;inset:0;z-index:70;background:rgba(20,19,18,.92);
+  display:flex;flex-direction:column}
+.vol-sopra .testa-vol{flex:none;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:10px 14px;color:#FFFFFF;font-size:14px}
+.vol-sopra .testa-vol b{font-weight:700}
+.vol-sopra .testa-vol a{color:#FFFFFF;font-weight:600;text-decoration:underline;
+  text-underline-offset:3px;white-space:nowrap}
+.vol-sopra .foglio{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;
+  padding:0 8px 96px}
+.vol-sopra .foglio img{display:block;width:100%;height:auto;margin:0 auto;max-width:900px;
+  background:#FFFFFF;border-radius:6px}
+.vol-sopra .foglio iframe{display:block;width:100%;height:100%;border:0;background:#FFFFFF;
+  border-radius:6px}
+.vol-sopra .avviso-vol{color:#FFFFFF;text-align:center;margin:40px 16px;font-size:15px}
+.vol-sopra .avviso-vol a{color:#FFFFFF;font-weight:700}
+.vol-sopra .chiudi-vol{position:absolute;left:14px;right:14px;
+  bottom:calc(14px + env(safe-area-inset-bottom,0px));min-height:58px;border:0;
+  border-radius:99px;background:var(--rosso);color:var(--su-rosso);font-family:inherit;
+  font-size:19px;font-weight:700;letter-spacing:.02em;cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,0,0,.45)}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 
@@ -1288,6 +1268,14 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
      supermercati e le altre opzioni che volevo mettere in alto». Si apre
      dall'ingranaggio in cima; come le altre sta fuori dalla barra e non resta
      aperta insieme a un'altra finestra. -->
+<!-- LA PAGINA DEL VOLANTINO, SOPRA L'ELENCO: si apre toccando una scheda. -->
+<div class="vol-sopra" id="vol-sopra" hidden role="dialog" aria-modal="true" aria-labelledby="titolo-vol">
+  <div class="testa-vol"><span id="titolo-vol"></span>
+    <a id="fuori-vol" target="_blank" rel="noopener noreferrer">Apri sul sito</a></div>
+  <div class="foglio" id="foglio-vol"></div>
+  <button type="button" class="chiudi-vol" id="chiudi-vol">Chiudi</button>
+</div>
+
 <div class="buio" id="buio-config" hidden>
   <div class="finestra" role="dialog" aria-modal="true" aria-labelledby="titolo-config">
     <h2 id="titolo-config">Configurazione</h2>
@@ -1355,15 +1343,16 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       rosso è il prezzo <b>per unità</b>, quello con cui si confrontano i negozi;
       accanto, quanto costa la confezione e quanto pesa. Sotto il nome, quando servono, dei
       <b>bollini gialli con le condizioni</b>: con tessera, solo con app, al banco,
-      surgelato, 1+1. Se c'è altro da sapere (il prezzo senza tessera, il peso
-      sgocciolato) si legge toccando <b>«Dettagli»</b>. <b>Le offerte scadute
+      surgelato, 1+1. <b>Le offerte scadute
       spariscono da sole</b>, secondo la data del telefono.</p>
     </div>
     <div class="voce">
-      <h3>Il foglietto del volantino</h3>
-      <p>Su ogni offerta, accanto al tondino dei giorni, c'è un foglietto:
-      toccalo e si apre il volantino vero del negozio, alla pagina dove sta
-      quell'offerta, in una scheda nuova.</p>
+      <h3>Il volantino di ogni offerta</h3>
+      <p><b>Tocca un'offerta</b>, in un punto qualunque della scheda: sopra
+      l'elenco si apre la pagina del volantino vero dove sta quell'offerta. Per
+      tornare ai prezzi tocca il tasto grande <b>«Chiudi»</b> in basso, o il
+      tasto «indietro» del telefono. In alto c'è <b>«Apri sul sito»</b>, se la
+      vuoi sul sito del negozio.</p>
     </div>
     <div class="voce">
       <h3>In fondo: l'elenco dei volantini</h3>
@@ -2636,37 +2625,33 @@ function rigaPrezzo(o, meno) {
   }
 
   const dati = d.querySelector('.dati');
-  /* LE CONDIZIONI SONO BOLLINI BREVI, e il resto della nota sta dietro
-     «Dettagli» (Manlio, 2026-09-23: «le note gialle diventano bollini brevi,
-     e tolgo i numeri ripetuti»). Quali bollini e quale resto lo decide
-     pagina.py, «condizioni()»: qui si disegna e basta. */
-  if ((o.bolli && o.bolli.length) || o.det) {
+  /* LE CONDIZIONI SONO BOLLINI BREVI (Manlio, 2026-09-23). Il resto della
+     nota non si mostra: «Dettagli» c'era e l'ha fatto togliere lo stesso
+     giorno, «sono davvero dei dettagli». Quali bollini lo decide pagina.py,
+     «condizioni()». */
+  if (o.bolli && o.bolli.length) {
     const c = document.createElement('p');
     c.className = 'cond';
-    for (const b of o.bolli || []) {
+    for (const b of o.bolli) {
       const e = document.createElement('span');
       e.className = 'bollo cond';
       e.textContent = b;
       c.appendChild(e);
     }
     dati.appendChild(c);
-    if (o.det) {
-      const n = document.createElement('p');
-      n.className = 'nota';
-      n.hidden = true;
-      n.textContent = o.det;
-      const t = document.createElement('button');
-      t.type = 'button';
-      t.className = 'dettagli';
-      t.setAttribute('aria-expanded', 'false');
-      t.textContent = 'Dettagli';
-      t.addEventListener('click', () => {
-        n.hidden = !n.hidden;
-        t.setAttribute('aria-expanded', String(!n.hidden));
-      });
-      c.appendChild(t);
-      dati.appendChild(n);
-    }
+  }
+  /* TUTTA LA SCHEDA APRE LA PAGINA DEL VOLANTINO (Manlio, 2026-09-23:
+     «fare aprire il volantino quando si fa clic in qualunque di queste
+     schede: così probabilmente la gente ne aprirebbe di più»). Si apre sopra
+     l'elenco, con un tastone «Chiudi» in basso: vedi apriPaginaVol(). Anche
+     il foglietto in cima fa lo stesso; tenuto premuto resta un collegamento
+     normale, che si apre in un'altra scheda. */
+  if (o.url) {
+    d.classList.add('apribile');
+    d.addEventListener('click', ev => {
+      ev.preventDefault();
+      apriPaginaVol(o);
+    });
   }
   /* Senza indirizzo resta la riga scritta: non c'e niente da toccare, e
      un'icona che non apre niente sarebbe una presa in giro. */
@@ -3259,8 +3244,66 @@ document.getElementById('buio-aiuto').onclick = ev => {
 document.getElementById('chiudi-novita').onclick = chiudiNovita;
 /* Il buio intorno chiude, la finestra no: toccando dentro non deve sparire. */
 document.getElementById('buio').onclick = ev => { if (ev.target.id === 'buio') chiudiNovita(); };
+/* ---------- la pagina del volantino, sopra l'elenco ---------- */
+/* Toccando una scheda (Manlio, 2026-09-23). Le pagine di nove insegne su
+   dieci sono immagini sul sito di chi le pubblica, e si mostrano così come
+   sono; il Conad ha un visore suo, che si apre qui dentro. Se l'immagine non
+   arriva (niente rete, o un sito che la rifiuta) resta scritto come aprirla
+   fuori. Il tasto «indietro» del telefono chiude, come «Chiudi»: si mette una
+   voce nella cronologia apposta. */
+const E_IMMAGINE = /\.(?:jpe?g|png|webp|gif)(?:\?|$)|\/thumbor\//i;
+let volAperto = false;
+function apriPaginaVol(o) {
+  const box = document.getElementById('vol-sopra');
+  const foglio = document.getElementById('foglio-vol');
+  document.getElementById('titolo-vol').innerHTML = '<b></b> · pagina <span></span>';
+  document.querySelector('#titolo-vol b').textContent = o.ins;
+  document.querySelector('#titolo-vol span').textContent = o.pag;
+  document.getElementById('fuori-vol').href = o.url;
+  foglio.textContent = '';
+  const guasto = () => {
+    foglio.innerHTML = '<p class="avviso-vol">La pagina qui non si vede. <a target="_blank" rel="noopener noreferrer">Aprila sul sito</a></p>';
+    foglio.querySelector('a').href = o.url;
+  };
+  if (E_IMMAGINE.test(o.url)) {
+    const img = document.createElement('img');
+    img.alt = 'Pagina ' + o.pag + ' del volantino ' + o.ins;
+    img.referrerPolicy = 'no-referrer';
+    img.onerror = guasto;
+    img.src = o.url;
+    foglio.appendChild(img);
+  } else {
+    const f = document.createElement('iframe');
+    f.title = 'Pagina ' + o.pag + ' del volantino ' + o.ins;
+    f.referrerPolicy = 'no-referrer';
+    f.src = o.url;
+    foglio.appendChild(f);
+  }
+  box.hidden = false;
+  document.documentElement.style.overflow = 'hidden';
+  foglio.scrollTop = 0;
+  if (!volAperto) {
+    volAperto = true;
+    try { history.pushState({ volSopra: 1 }, '', location.href); } catch (e) {}
+  }
+  try { document.getElementById('chiudi-vol').focus({ preventScroll: true }); } catch (e) {}
+}
+function chiudiPaginaVol(daIndietro) {
+  const box = document.getElementById('vol-sopra');
+  if (box.hidden) return;
+  box.hidden = true;
+  document.getElementById('foglio-vol').textContent = '';
+  document.documentElement.style.overflow = '';
+  if (volAperto) {
+    volAperto = false;
+    if (!daIndietro) { try { history.back(); } catch (e) {} }
+  }
+}
+document.getElementById('chiudi-vol').onclick = () => chiudiPaginaVol(false);
+addEventListener('popstate', () => { if (volAperto) chiudiPaginaVol(true); });
 addEventListener('keydown', ev => {
   if (ev.key !== 'Escape') return;
+  chiudiPaginaVol(false);
   chiudiNovita();
   apriAiuto(false);
   apriLook(false);

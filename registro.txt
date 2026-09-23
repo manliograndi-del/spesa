@@ -132,3 +132,4 @@
 2026-09-23 12:17 UTC  pubblicato: sito (verificato, sw.js v81, anche novita.html) e artifact (versione 72): note in bollini brevi.
 2026-09-23 12:30 UTC  tolta dalla vista la riga «Formato · fino al» su ogni scheda; peso della confezione accanto al suo prezzo. sw.js v82.
 2026-09-23 12:31 UTC  pubblicato: sito (verificato, sw.js v82, anche novita.html) e artifact (versione 73): via la riga «Formato · fino al».
+2026-09-23 13:43 UTC  tolto «Dettagli»; toccando una scheda la pagina del volantino si apre sopra l'elenco, col tasto «Chiudi» in basso. sw.js v83.

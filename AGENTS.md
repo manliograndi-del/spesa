@@ -324,8 +324,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **fuori dalla barra appiccicata**. Poi «I tuoi prodotti (N)» con le
   pastiglie. Regole da non cambiare:
   - **Ogni offerta è una scheda** (`.prezzo-riga`), con in cima il marchio del
-    negozio e i bollini, poi il nome, i bollini delle condizioni col
-    tasto «Dettagli» (vedi sotto) e i due prezzi (per unità e al pezzo).
+    negozio e i bollini, poi il nome, i bollini delle condizioni e i due
+    prezzi (per unità e della confezione). **Toccandola in un punto
+    qualunque si apre la pagina del suo volantino SOPRA L'ELENCO** (vedi
+    sotto, «La pagina del volantino sopra l'elenco»).
     **In fondo alla scheda non c'è niente**: la scritta «Vedi tutte le offerte
     del volantino» c'era e Manlio l'ha fatta togliere lo stesso giorno,
     «è inutile» — quelle offerte si aprono dal tasto del volantino in fondo
@@ -489,22 +491,35 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     nella nota lo sconto come lo stampa il volantino** («−30%, prima 3,29»):
     è da lì che il bollino nasce. La prova è `prova-sconto.js`.
   - **Le note NON sono più un riquadro ambra lungo: sono BOLLINI BREVI**
-    sotto il nome, più un tasto «Dettagli» per il resto (chiesto il
-    2026-09-23, punto 2 dell'analisi esterna: «le note gialle diventano
-    bollini brevi, e tolgo i numeri ripetuti»). Li decide `condizioni()` in
+    sotto il nome (chiesto il 2026-09-23, punto 2 dell'analisi esterna: «le
+    note gialle diventano bollini brevi, e tolgo i numeri ripetuti»). **Il
+    resto della nota NON si mostra**: c'era un tasto «Dettagli» e lo stesso
+    giorno Manlio l'ha fatto togliere, «toglierei del tutto la scritta
+    dettagli e ciò che fa apparire: molto spesso sono di troppo e sono davvero
+    dei dettagli». Non rimetterlo senza chiederglielo. Li decide `condizioni()` in
     `pagina.py`, dalla nota: «Con tessera» (Pam «Solo con app», Lidl «Con
     Lidl Plus», Ipercoop «Solo soci»), «Al banco» (non se il formato lo dice
     già), «Surgelato» (non nelle categorie surgelate), «1+1», «Più ne
-    prendi», «Non in tutti i negozi». Dalla nota si tolgono **solo** le frasi
-    che la scheda dice già: lo sconto se c'è il suo bollino (il «prima» va nel
-    `title` del bollino), le date se la riga ha le sue (bollino rosso), «il
-    volantino stampa N al kg» solo se N è **lo stesso numero scritto** del
-    prezzo grande, le etichette («Bollino «Conviene»», «Speciale Sardegna») e
-    le frasi della tessera. **Tutto il resto resta in «Dettagli»** («senza
-    tessera 3,49», «è pasta di lenticchie, non di grano»). La nota intera
-    resta nei dati: «Cerca» cerca anche lì. Il 2026-09-23 le note lunghe
-    sono passate da 1280 a 529. La prova è `prova-bollini.js`, che controlla
-    anche che **nessun numero della nota sparisca** senza stare altrove.
+    prendi», «Non in tutti i negozi». La nota intera resta nei dati: «Cerca»
+    cerca anche lì, e da lì nascono bollini e sconto (il «prima» sta nel
+    `title` del bollino dello sconto). **Quando si leggono volantini nuovi,
+    le condizioni vere (tessera, app, 1+1) vanno scritte nella nota con le
+    parole che `condizioni()` riconosce**, se no il bollino non nasce. La
+    prova è `prova-bollini.js`.
+- **La pagina del volantino sopra l'elenco** (chiesta il 2026-09-23:
+  «fare aprire il volantino quando si fa clic in qualunque di queste
+  schede… mettere in sovrimpressione un bel tastone chiudi in basso»).
+  Toccando una scheda (`.prezzo-riga.apribile`), o il suo foglietto, si apre
+  `#vol-sopra`: in cima insegna, pagina e «Apri sul sito» (collegamento
+  normale, scheda nuova), in mezzo la pagina, in basso il tasto rosso
+  **«Chiudi»** largo quanto lo schermo, alto 58 px, sempre attaccato. Chiude
+  anche il tasto «indietro» del telefono (`pushState`/`popstate`) ed Esc.
+  **La pagina NON è nostra e non sta sul sito** (vincolo 2): per nove insegne
+  su dieci è l'immagine sul sito di chi la pubblica, chiesta da lì come
+  faceva il collegamento; per il Conad è il suo visore ufficiale in un
+  riquadro. Se l'immagine non arriva, resta scritto «Aprila sul sito». Il
+  foglietto tenuto premuto resta un collegamento vero (`prova-collegamenti.js`
+  vuole `target=_blank`). La prova è `prova-bollini.js`.
   La prova è `prova-giorni.js`.
 - **Le novità della pagina si segnano per id PIÙ GRANDE, non per ultima
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
@@ -607,6 +622,13 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Tolto «Dettagli»; toccando una scheda si apre la pagina del volantino
+  sopra l'elenco, col tastone «Chiudi» in basso** (2026-09-23, chiesto da
+  Manlio prima del punto 3). Novità `2026-09-23-y-volantino`. `sw.js` a v83.
+  **Da verificare con lui**: che sul link Claude la pagina si veda davvero
+  (lì il riquadro potrebbe bloccare le immagini di altri siti: in quel caso
+  compare «Aprila sul sito»). **Poi il punto 3**, chiedendoglielo prima.
 
 - **Tolta dalla vista la riga «Formato… · fino al…»** (2026-09-23, chiesto
   da Manlio subito dopo il punto 2: «prima pensiamo a questo»). La scadenza

@@ -1,12 +1,14 @@
 /* Le note diventano bollini brevi (Manlio, 2026-09-23: «le note gialle
-   diventano bollini brevi, e tolgo i numeri ripetuti»). Qui si controlla:
+   diventano bollini brevi, e tolgo i numeri ripetuti»), e il resto della
+   nota non si mostra più («toglierei del tutto la scritta dettagli»). Qui si
+   controlla:
    - un'offerta con tessera, app o soci ha il suo bollino, e quelle Pam
      dicono «Solo con app»;
    - un 1+1 ha il bollino «1+1»;
-   - NESSUN NUMERO DELLA NOTA SI PERDE: ogni prezzo scritto nella nota o sta
-     ancora nei dettagli, o è lo stesso numero di un prezzo della scheda, o è
-     il «prima» dello sconto che ha il suo bollino;
-   - sulla scheda la nota è chiusa, «Dettagli» la apre e la richiude.     */
+   - sulle schede non c'è né «Dettagli» né il riquadro della nota;
+   - TOCCANDO UNA SCHEDA si apre la pagina del volantino sopra l'elenco
+     (immagine, o il visore per il Conad), col tasto «Chiudi» che la chiude
+     (Manlio, 2026-09-23).                                               */
 const fs = require('fs');
 const { JSDOM, VirtualConsole } = require('jsdom');
 const file = process.argv[2] || 'out/sito.html';
@@ -16,8 +18,6 @@ const dom = new JSDOM(fs.readFileSync(file, 'utf8'), { runScripts: 'dangerously'
 setTimeout(() => {
   const w = dom.window, d = w.document, D = w.eval('DATI');
   const male = [];
-  const num = t => parseFloat(t.replace(',', '.'));
-  const eur = w.eval('eur');
   D.offerte.forEach(o => {
     const n = o.note || '', b = o.bolli || [];
     if (/Lidl Plus|Buona Spesa Card|Carta Insieme|EKOM UP|SpesAmica|CARTA BENNET|Fidelity Card|Perte Plus|soci Coop/.test(n)
@@ -27,46 +27,43 @@ setTimeout(() => {
       male.push(`«${o.pro}»: Pam con app senza «Solo con app»`);
     if (/\d\s*\+\s*\d/.test(o.fmt) && !b.some(x => /^\d\+\d$/.test(x)))
       male.push(`«${o.pro}»: ${o.fmt} senza il bollino 1+1`);
-    if (o.det && o.det.length > n.length) male.push(`«${o.pro}»: i dettagli sono più lunghi della nota`);
-    /* Nessun numero perso. */
-    /* I numeri come la scheda li scrive: «uguale» vuol dire uguale a quello
-       che si legge. */
-    const noti = [eur(o.prezzo), eur(o.unitario)].map(num);
-    const re = /(\d+,\d+)/g;
-    let m;
-    while ((m = re.exec(n))) {
-      if (o.det.includes(m[1])) continue;
-      /* Il «prima» dello sconto (anche al kg, «prima 2,69, cioè 33,63 al
-         kg») sta nel bollino dello sconto. */
-      if (o.sconto && /[Pp]rima (?:[\d,]+,? cioè )?$/.test(n.slice(Math.max(0, m.index - 25), m.index))) continue;
-      if (noti.includes(num(m[1]))) continue;
-      male.push(`«${o.pro}»: il numero ${m[1]} della nota è sparito (${n})`);
-    }
   });
   /* Sulle schede vere. */
   let schede = 0, aperte = 0, bolli = 0;
+  const sopra = d.getElementById('vol-sopra');
   const tasti = [...d.querySelectorAll('.barra .tasto:not(.agg)')];
   tasti.forEach(t => {
     t.click();
-    d.querySelectorAll('#risultato .prezzo-riga').forEach(r => {
+    d.querySelectorAll('#risultato .prezzo-riga').forEach((r, i) => {
       schede++;
       bolli += r.querySelectorAll('.cond .bollo.cond').length;
-      const nota = r.querySelector('.nota'), bt = r.querySelector('.dettagli');
-      if (!nota && bt) male.push('«Dettagli» senza niente da aprire');
-      if (!nota) return;
-      if (!bt) { male.push('una nota senza il tasto «Dettagli»'); return; }
-      if (!nota.hidden) male.push('una nota è aperta prima di toccare «Dettagli»');
-      bt.click();
-      if (nota.hidden || bt.getAttribute('aria-expanded') !== 'true') male.push('«Dettagli» non apre la nota');
+      if (r.querySelector('.dettagli, .nota')) male.push('c\'è ancora «Dettagli» o la nota');
+      if (i > 2) return;                    // ne basta qualcuna per prodotto
+      if (!r.classList.contains('apribile')) { male.push('una scheda non si apre toccandola'); return; }
+      r.querySelector('.nome').click();
+      if (sopra.hidden) { male.push('toccando la scheda il volantino non si apre'); return; }
+      const f = sopra.querySelector('#foglio-vol img, #foglio-vol iframe');
+      if (!f) male.push('il volantino si apre vuoto');
+      if (!/pagina \d+/.test(d.getElementById('titolo-vol').textContent))
+        male.push('in cima non dice che pagina è');
+      if (!d.getElementById('fuori-vol').href) male.push('manca «Apri sul sito»');
+      if (!/^Chiudi$/.test(d.getElementById('chiudi-vol').textContent.trim())) male.push('manca il tasto «Chiudi»');
+      d.getElementById('chiudi-vol').click();
+      if (!sopra.hidden) male.push('«Chiudi» non chiude');
       else aperte++;
-      bt.click();
-      if (!nota.hidden) male.push('«Dettagli» non richiude la nota');
     });
   });
-  if (!aperte) male.push('nessuna scheda ha «Dettagli»');
+  /* Il foglietto in cima alla scheda apre la stessa finestra, non un'altra
+     scheda del browser. */
+  const a = d.querySelector('#risultato .prezzo-riga a.dove.apri');
+  if (a) {
+    a.click();
+    if (sopra.hidden) male.push('il foglietto non apre la pagina sopra l\'elenco');
+    d.getElementById('chiudi-vol').click();
+  }
+  if (!aperte) male.push('nessuna scheda provata');
   if (!bolli) male.push('nessuna scheda ha bollini');
   if (male.length) { console.error('MALE:\n  ' + [...new Set(male)].slice(0, 15).join('\n  ')); process.exit(1); }
-  const conNota = D.offerte.filter(o => o.note).length, conDet = D.offerte.filter(o => o.det).length;
-  console.log(`  bollini: note lunghe da ${conNota} a ${conDet}; sulle schede dei prodotti in lista ${bolli} bollini, ${aperte} «Dettagli» provati su ${schede}`);
+  console.log(`  bollini: ${bolli} sulle ${schede} schede dei prodotti in lista, niente «Dettagli»; ${aperte} schede toccate aprono il volantino e «Chiudi» lo chiude`);
   process.exit(0);
 }, 500);

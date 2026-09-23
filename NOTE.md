@@ -3076,3 +3076,30 @@ riga non si veda e che ogni scheda abbia il cerchietto o il tondino.
 
 Si perde una cosa, e l'ho detta a lui: per le offerte non ancora cominciate
 si vede il giorno in cui partono, non quello in cui finiscono.
+
+## Via «Dettagli», e il volantino sopra l'elenco — 2026-09-23
+
+Manlio, prima del punto 3: «toglierei del tutto la scritta dettagli e ciò che
+fa apparire: molto spesso sono di troppo e sono davvero dei dettagli. Pensa
+alla possibilità di fare aprire il volantino quando si fa clic in qualunque di
+queste schede: in questo modo probabilmente la gente ne aprirebbe di più, e
+sarebbe bene mettere in sovrimpressione un bel tastone chiudi in basso».
+
+- «Dettagli» e la nota ridotta sono spariti; `condizioni()` ora fa solo i
+  bollini. Le regole per sfoltire le frasi (con la prova che nessun numero
+  andasse perso) non servono più e sono state tolte: se un giorno i dettagli
+  tornano, stanno nella storia di git (commit «Note delle schede in bollini
+  brevi»).
+- Tutta la scheda apre `#vol-sopra`. «In sovrimpressione» l'ho letto così:
+  sopra un'altra scheda del browser un tasto nostro non si può mettere, quindi
+  la pagina si apre dentro la nostra, sopra l'elenco, e il tasto «Chiudi»
+  riporta ai prezzi esattamente dov'erano.
+- Vincolo 2 (non si pubblicano le immagini dei volantini): l'immagine non è
+  copiata né caricata sul sito, la chiede il telefono di chi guarda al sito
+  di chi la pubblica — lo stesso indirizzo che prima apriva il collegamento.
+  Controllato il 2026-09-23 che anteprimavolantino, volantinopiu, kimbicdn e
+  app.ekomdiscount rispondano anche da un altro sito, e che il visore Conad
+  non vieti di stare in un riquadro. Detto a Manlio.
+- Sul link Claude il riquadro dell'artifact potrebbe non lasciar passare le
+  immagini di altri siti: al posto della pagina compare «Aprila sul sito».
+  Da farsi dire da lui.
