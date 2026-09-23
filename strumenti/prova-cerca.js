@@ -105,7 +105,7 @@ setTimeout(() => {
 
   // aprire il cassetto deve chiudere la ricerca, e viceversa: uno alla volta
   const piu = [...d.querySelectorAll('#tasti .tasto')]
-    .find(b => b.textContent.includes('altri prodotti'));
+    .find(b => b.textContent.includes('Organizza i prodotti'));
   if (piu) {
     piu.dispatchEvent(new w.Event('click'));
     if (!d.getElementById('ricerca').hidden)

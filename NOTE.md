@@ -3349,3 +3349,26 @@ combaciano con quelle di sopra), stesso bordo e fondo, scritta scura invece
 che grigia, icona sopra. Quello acceso è rosso pieno come il prodotto acceso
 (prima: scritta rossa su fondino rosa). Provato a 390 e 360 px e con le grandi
 marche: ci stanno ancora tutte e 46 in una schermata.
+
+## Niente intestazione sopra le offerte; «Organizza i prodotti» — 2026-09-23 sera
+
+Manlio: il nome del prodotto in cima «si capisce già perché il tasto è
+acceso», e la scritta «Offerte ordinate dal prezzo…» non serve; «se proprio
+si vuole, una piccola pillola… ma non so se è necessaria». Avevo cominciato a
+ridurla a una pillolina, perché accanto c'era la «i» con «Cambia nome» ed
+«Elimina prodotto». Poi lui stesso ha tolto il motivo: «i prodotti si
+potrebbero togliere deselezionandoli nella lista» e «la personalizzazione dei
+sinonimi forse è un po' troppo complicata… le cose strane nella parte
+personalizzata». Quindi via tutto: intestazione, «i», il suo pannello
+(conteggio, sinonimi, «Cambia nome», «Elimina»), la scritta, e nel catalogo la
+casella dei nomi fuori catalogo (con `costruisci()` e `nomiDi()`, che
+servivano solo lì) e 33 regole di stile rimaste senza niente da vestire.
+
+Il rischio era uno: chi si era scritto un prodotto a mano (fuori catalogo)
+non avrebbe più avuto modo di toglierlo. Adesso quei prodotti stanno in cima
+al catalogo, «I tuoi, fuori catalogo», accesi: toccandoli si spengono.
+`prova-intestazione.js` riscritta per controllare proprio questo (anche sul
+link Claude, dove la lista è quella condivisa); `prova-arrivi.js` toglie la
+Marmellata spegnendola nel catalogo. Il tasto «+ altri prodotti» si chiama
+«Organizza i prodotti»; l'Aiuto lo dice, e dice che le cose fuori catalogo
+vanno in «Personale».

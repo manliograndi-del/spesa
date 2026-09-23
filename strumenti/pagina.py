@@ -511,6 +511,13 @@ NOVITA_PAGINA = [
                'troppo lunghi per una casella ne prendono due, nell\'ultima riga. '
                'Toccando «+ altri prodotti» la pagina torna in cima e lì si apre il '
                'catalogo. In «Cerca», «Grandi marche» e «Personale» resta solo il menù.'),
+    dict(id='2026-09-23-zzzzzzz-organizza', quando='23 settembre',
+         titolo='«Organizza i prodotti», e le offerte subito',
+         testo='Sopra le offerte non c\'è più il nome del prodotto ripetuto: si vede '
+               'già dal bottone acceso. L\'ultimo bottone della griglia si chiama '
+               '«Organizza i prodotti»: lì accendi quelli che vuoi e spegni quelli che '
+               'non ti servono più. Per una cosa che nel catalogo non c\'è, scrivila '
+               'in «Personale».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -730,14 +737,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .reparto:first-child{margin-top:14px}
 .chiudi{width:100%;margin-top:16px;background:var(--inchiostro);color:var(--carta);border:0;
   border-radius:99px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
-.fuori-catalogo{margin:8px 0 0;font-size:13.5px;color:var(--tenue)}
-.form-agg{display:flex;gap:8px;margin-top:16px}
-.form-agg input{flex:1;min-width:0;background:var(--carta);color:var(--inchiostro);
-  border:1.5px solid var(--rosso);border-radius:16px;padding:12px 13px;
-  font-family:var(--f-testo);font-size:16px}
-.form-agg input:focus{outline:none}
-.form-agg button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:99px;
-  padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
 /* ---- la casella che cerca fra TUTTI i prezzi ---- */
 /* Sta fuori dalla barra appiccicata, come il cassetto e per la stessa ragione:
@@ -917,44 +916,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .quanti-trovati b{color:var(--inchiostro)}
 #trovati{margin-top:4px}
 #trovati .fascia:first-child{margin-top:14px}
-
-/* ---- intestazione del risultato ---- */
-.capo{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:20px 0 2px}
-.capo .info{flex:none}
-/* Dice cosa fa, invece di una crocetta da interpretare. */
-.elimina{flex:none;background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
-  border-radius:99px;padding:8px 15px;font-size:14px;font-weight:600;cursor:pointer;
-  min-height:38px;line-height:1.1;white-space:nowrap}
-.conferma[hidden]{display:none}
-.conferma{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:10px;
-  background:var(--rosso-tenue);border:1.5px solid var(--rosso);border-radius:18px;padding:11px 13px}
-.conferma span{font-size:14.5px;font-weight:600;flex:1;min-width:9em}
-.conferma button{border-radius:99px;padding:9px 15px;font-size:14.5px;font-weight:600;
-  cursor:pointer;min-height:42px;border:1.5px solid var(--rosso);background:var(--carta);
-  color:var(--rosso)}
-.conferma .si{background:var(--rosso);color:var(--su-rosso)}
-.capo h2{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.02em;
-  font-size:23px;font-weight:600;margin:0}
-.capo .unita{flex:none;background:var(--pannello);border:1px solid var(--linea);
-  border-radius:99px;padding:4px 11px;font-size:12.5px;color:var(--tenue);
-  font-weight:600;white-space:nowrap}
-#risultato .quanti{color:var(--tenue);font-size:13px;font-variant-numeric:tabular-nums;
-  margin:0 0 8px}
-.sinonimi{margin:6px 0 0;font-size:13.5px;color:var(--tenue);display:flex;
-  flex-wrap:wrap;gap:6px;align-items:baseline}
-.sinonimi em{font-style:normal;background:var(--pannello);border:1px solid var(--linea);
-  border-radius:99px;padding:2px 9px;font-size:13px;color:var(--inchiostro)}
-.gestisci{display:flex;gap:9px;margin:12px 0 0;flex-wrap:wrap}
-.gestisci button{background:var(--carta);border:1.5px solid var(--linea-forte);border-radius:99px;
-  padding:10px 16px;font-size:14.5px;font-weight:600;cursor:pointer;min-height:44px}
-.form-rin{display:none;gap:8px;margin-top:10px}
-.form-rin.on{display:flex}
-.form-rin input{flex:1;min-width:0;border:1.5px solid var(--rosso);border-radius:10px;
-  padding:12px 13px;font-family:var(--f-testo);font-size:16px;background:var(--carta);
-  color:var(--inchiostro)}
-.form-rin input:focus{outline:none}
-.form-rin button{background:var(--rosso);color:var(--su-rosso);border:0;border-radius:99px;
-  padding:0 18px;font-size:15px;font-weight:600;cursor:pointer;min-height:46px}
 
 /* ---- il cerchietto dei giorni che mancano ---- */
 /* Chiesto da Manlio il 2026-09-22, con in mano le schermate dei riquadri
@@ -1199,16 +1160,6 @@ a.pag-riga.apribile .np::after{content:' \2197';font-family:var(--f-testo);font-
 .vuoto{color:var(--tenue);font-size:14.5px;margin:14px 0 0;background:var(--pannello);
   border-radius:20px;padding:16px}
 
-/* Il bollino «i». Manlio: «la pagina è molto lunga, le spiegazioni meglio che
-   appaiano solo quando si fa clic su un bollino di informazioni». Tondo, con
-   la i minuscola, grande abbastanza da prendersi col dito. */
-.info{flex:none;width:24px;height:24px;border-radius:50%;border:1.5px solid var(--linea-forte);
-  background:var(--carta);color:var(--tenue);font-family:var(--f-testo);font-size:14px;
-  font-weight:700;line-height:1;cursor:pointer;padding:0;display:grid;place-items:center}
-.info:hover{border-color:var(--rosso);color:var(--rosso)}
-.info[aria-expanded="true"]{background:var(--rosso);border-color:var(--rosso);color:var(--su-rosso)}
-.dettaglio[hidden]{display:none}
-.dettaglio{margin-top:10px}
 /* ---- la finestra delle novità della pagina ---- */
 /* Sta SOPRA tutto (la barra appiccicata ha z-index 20) e si chiude in tre
    modi: il tasto, il buio intorno, il tasto Esc. Si apre una volta sola:
@@ -1395,12 +1346,6 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <input class="cerca" id="cerca" type="text" placeholder="Cerca un prodotto…"
          autocomplete="off" aria-label="Cerca un prodotto nel catalogo">
   <div id="scaffali"></div>
-  <form class="form-agg" id="form-agg">
-    <input id="nuovo" type="text" placeholder="Un altro nome, o più separati da virgola"
-           autocomplete="off" aria-label="Nomi del prodotto da aggiungere, separati da virgola">
-    <button type="submit">Aggiungi</button>
-  </form>
-  <p class="fuori-catalogo" id="fuori-catalogo"></p>
   <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
 </div>
 
@@ -1531,10 +1476,11 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       cominciate sono sbiadite, col prezzo in grigio.</p>
     </div>
     <div class="voce">
-      <h3>Per cambiare i prodotti: «+ altri prodotti»</h3>
-      <p>Si apre un cassetto col catalogo diviso per reparto, come il negozio. Tocca
-      per accendere, tocca di nuovo per spegnere, poi «Fatto». In fondo al cassetto
-      puoi anche scrivere un nome che nel catalogo non c'è.</p>
+      <h3>Per cambiare i prodotti: «Organizza i prodotti»</h3>
+      <p>È l'ultimo tasto della griglia. Si apre il catalogo diviso per reparto,
+      come il negozio. Tocca un prodotto per accenderlo, toccalo di nuovo per
+      spegnerlo e toglierlo dalla lista, poi «Fatto». Se ti serve qualcosa che nel
+      catalogo non c'è, scrivilo in «Personale».</p>
     </div>
     <div class="voce">
       <h3>Il menù in basso: «Prodotti», «Grandi marche», «Personale», «Cerca»</h3>
@@ -1990,35 +1936,6 @@ const pagineDi = v => {
     .sort((a, b) => b.prese.length - a.prese.length);
 };
 
-/* tutti i nomi di un prodotto: quello sul bottone piu gli altri con cui cercarlo */
-function nomiDi(v) {
-  const out = [v.nome];
-  (v.parole || []).forEach(p => { if (norm(p) !== norm(v.nome)) out.push(p); });
-  return out;
-}
-
-/* Un prodotto si puo chiamare in piu modi, e il volantino ne usa uno solo:
-   «detersivo» o «lavatrice», «carne di bue» o «bovino». Qui si scrivono tutti,
-   separati da virgola, e la pagina cerca le pagine dove compare ALMENO UNO.
-   Il primo nome e quello che si legge sul bottone, gli altri lavorano sotto.
-   Se uno dei nomi e gia noto (uno dei dodici di partenza, o una delle sue
-   parole), si porta dietro anche i prezzi letti a mano e le sue parole. */
-function costruisci(testo) {
-  const termini = testo.split(/[,;]+/).map(x => x.trim()).filter(Boolean);
-  if (!termini.length) return null;
-  let seme = null;
-  for (const t of termini) {
-    const n = norm(t);
-    seme = DATI.catalogo.find(x => norm(x.nome) === n || (x.parole || []).some(w => norm(w) === n));
-    if (seme) break;
-  }
-  const parole = [];
-  for (const p of termini.concat(seme ? seme.parole : [])) {
-    if (!parole.some(x => norm(x) === norm(p))) parole.push(p);
-  }
-  return { nome: maiuscola(termini[0]), parole, cat: seme ? seme.nome : null };
-}
-
 /* ---------- barra dei prodotti ---------- */
 function disegnaTasti() {
   const box = document.getElementById('tasti');
@@ -2038,7 +1955,9 @@ function disegnaTasti() {
   });
   const piu = document.createElement('button');
   piu.type = 'button'; piu.className = 'tasto agg';
-  piu.textContent = cassettoAperto ? 'Chiudi' : '+ altri prodotti';
+  /* «Organizza i prodotti», non più «+ altri prodotti» (Manlio, 2026-09-23
+     sera): lì si accendono E si spengono. */
+  piu.textContent = cassettoAperto ? 'Chiudi' : 'Organizza i prodotti';
   piu.setAttribute('aria-expanded', String(cassettoAperto));
   piu.setAttribute('aria-controls', 'cassetto');
   /* Il tasto sta in basso, il cassetto si apre in cima: ci si va. */
@@ -2660,12 +2579,35 @@ function disegnaScaffali() {
      nove volte con la roba che cresceva sotto. Si vedeva: comparivano le prime
      categorie, poi si piantava. */
   const mucchio = document.createDocumentFragment();
-  let quanti = 0;
+  /* I PRODOTTI DELLA LISTA CHE NEL CATALOGO NON CI SONO: chi li aveva scritti
+     a mano, quando c'era la casella per farlo (tolta il 2026-09-23 sera),
+     li trova qui in cima, accesi, e li spegne come gli altri. Senza questo
+     non ci sarebbe più modo di toglierli. */
+  const suoi = lista.filter(v => !DATI.catalogo.some(c => norm(c.nome) === norm(v.nome)
+    || norm(c.nome) === norm(v.cat || '')) && (!filtro || norm(v.nome).includes(filtro)));
+  if (suoi.length) {
+    const h = document.createElement('p');
+    h.className = 'reparto'; h.textContent = 'I tuoi, fuori catalogo';
+    mucchio.appendChild(h);
+    const fila = document.createElement('div');
+    fila.className = 'tasti';
+    suoi.forEach(v => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.className = 'tasto'; b.textContent = v.nome;
+      b.setAttribute('aria-pressed', 'true');
+      b.onclick = () => {
+        lista = lista.filter(x => x !== v);
+        if (scelto >= lista.length) scelto = Math.max(0, lista.length - 1);
+        salva(); disegnaScaffali(); disegna();
+      };
+      fila.appendChild(b);
+    });
+    mucchio.appendChild(fila);
+  }
   DATI.reparti.forEach(rep => {
     const voci = DATI.catalogo.filter(v => v.rep === rep && (!filtro
       || norm(v.nome).includes(filtro) || v.parole.some(w => norm(w).includes(filtro))));
     if (!voci.length) return;
-    quanti += voci.length;
     const h = document.createElement('p');
     h.className = 'reparto'; h.textContent = rep;
     mucchio.appendChild(h);
@@ -2681,10 +2623,6 @@ function disegnaScaffali() {
     mucchio.appendChild(fila);
   });
   box.appendChild(mucchio);
-  const f = document.getElementById('fuori-catalogo');
-  f.textContent = quanti
-    ? 'Non c\u2019\u00e8 quello che cerchi? Scrivilo qui sopra: cerco la parola nelle pagine dei volantini.'
-    : 'Nel catalogo non c\u2019\u00e8 niente con questo nome. Scrivilo lo stesso qui sopra: cerco la parola nelle pagine dei volantini.';
 }
 
 /* In cima alla pagina. La usano i tre tasti delle sezioni: la striscia coi
@@ -3056,119 +2994,24 @@ function disegna() {
   const v = lista[scelto];
   const off = offerteDi(v), pag = pagineDi(v);
 
-  /* SOTTO IL NOME DEL PRODOTTO NON CI VA PIÙ NIENTE.
-     Manlio, 2026-09-05, foto alla mano: «toglierei tutto quello che c'è
-     scritto dopo carne di bue e lascerei solo una piccola scritta o un'icona
-     per cancellarla». Quanti prezzi ci sono, con che altri nomi si cerca e il
-     cambio nome sono roba da guardare una volta ogni tanto: stanno dietro il
-     bollino «i». Restano il nome e la crocetta. */
-  const capo = document.createElement('div');
-  capo.className = 'capo';
-  /* Il bottone dice cosa fa. Prima c'era una crocetta, e Manlio: «la x per
-     togliere il prodotto mi sembra poco comprensibile, metterei invece un
-     bottone elimina prodotto». La «i» viene subito dopo, come ha chiesto. */
-  /* «Elimina prodotto» NON sta più qui: è dentro la «i», accanto a «Cambia
-     nome» (Manlio, 2026-09-23, punto 4: «anche qua la tua soluzione è
-     ottima»). Era grande quanto il titolo per un'azione che si fa di rado. */
-  /* Niente più «prezzo al kg» accanto al nome (Manlio, 2026-09-23): lo dice
-     già ogni prezzo, «8,69/kg». */
-  capo.innerHTML = '<h2></h2>'
-    + '<button type="button" class="info" aria-expanded="false"'
-    + ' aria-label="Mostra i dettagli del prodotto">i</button>';
-  capo.querySelector('h2').textContent = v.nome;
-  out.appendChild(capo);
-
-  /* «Elimina prodotto» (dentro la «i»): un tocco per sbaglio non deve
-     far sparire un prodotto. Chiede conferma lì dove si è toccato, senza
-     finestrelle di sistema che sul telefono arrivano da tutt'altra parte. */
-  const conferma = document.createElement('div');
-  conferma.className = 'conferma';
-  conferma.hidden = true;
-  conferma.innerHTML = '<span></span><button type="button" class="si">Elimina</button>'
-    + '<button type="button" class="no">Lascia</button>';
-  conferma.querySelector('span').textContent = 'Elimino «' + v.nome + '»?';
-  conferma.querySelector('.si').onclick = () => {
-    lista.splice(scelto, 1);
-    if (scelto > 0) scelto--;
-    salva(); disegna();
-  };
-  conferma.querySelector('.no').onclick = () => { conferma.hidden = true; };
-
-  const dett = document.createElement('div');
-  dett.className = 'dettaglio';
-  dett.hidden = true;
-
-  const quanti = document.createElement('p');
-  quanti.className = 'quanti';
-  quanti.textContent = off.length
-    ? `${off.length} ${off.length === 1 ? 'offerta letta' : 'offerte lette'} dal volantino · ${pag.length} pagine da guardare`
-    : `${pag.length} ${pag.length === 1 ? 'pagina lo nomina' : 'pagine lo nominano'}`;
-  dett.appendChild(quanti);
-
-  const altri = nomiDi(v).slice(1);
-  if (altri.length) {
-    const p = document.createElement('p');
-    p.className = 'sinonimi';
-    p.innerHTML = '<span></span> ';
-    p.querySelector('span').textContent = 'cerca anche:';
-    altri.forEach(a => {
-      const c = document.createElement('em');
-      c.textContent = a;
-      p.appendChild(c);
-    });
-    dett.appendChild(p);
-  }
-
-  const g = document.createElement('div');
-  g.className = 'gestisci';
-  const bRin = document.createElement('button');
-  bRin.type = 'button'; bRin.textContent = 'Cambia nome';
-  g.appendChild(bRin);
-  const bVia = document.createElement('button');
-  bVia.type = 'button'; bVia.className = 'elimina'; bVia.textContent = 'Elimina prodotto';
-  bVia.setAttribute('aria-label', 'Elimina «' + v.nome + '» dalla lista');
-  bVia.onclick = () => { conferma.hidden = !conferma.hidden; };
-  g.appendChild(bVia);
-  dett.appendChild(g);
-  dett.appendChild(conferma);
-
-  const fr = document.createElement('form');
-  fr.className = 'form-rin';
-  fr.innerHTML = '<input type="text" aria-label="Nomi del prodotto, separati da virgola"><button type="submit">Salva</button>';
-  const inp = fr.querySelector('input');
-  fr.onsubmit = ev => {
-    ev.preventDefault();
-    const t = inp.value.trim();
-    if (!t) return;
-    const v2 = costruisci(t);
-    if (!v2) return;
-    lista[scelto] = v2;
-    salva(); disegna();
-  };
-  bRin.onclick = () => {
-    fr.classList.add('on');
-    inp.value = nomiDi(v).join(', ');
-    inp.focus(); inp.select();
-  };
-  dett.appendChild(fr);
-  out.appendChild(dett);
-
-  capo.querySelector('.info').onclick = () => {
-    const apri = dett.hidden;
-    dett.hidden = !apri;
-    capo.querySelector('.info').setAttribute('aria-expanded', String(apri));
-  };
+  /* NIENTE INTESTAZIONE SOPRA LE OFFERTE (Manlio, 2026-09-23 sera: «dato che
+     la categoria di prodotti si capisce già perché il tasto è acceso, non si
+     potrebbe togliere l'intestazione con il nome ripetuto in alto»). Con lei
+     se ne va la «i» e quello che c'era dentro: «Elimina prodotto» e «Cambia
+     nome» e i sinonimi (subito dopo: «i prodotti si potrebbero togliere
+     deselezionandoli nella lista; la personalizzazione dei sinonimi forse è
+     un po' troppo complicata… se vogliono mettere una cosa strana la possono
+     mettere nella parte personalizzata»). Un prodotto si toglie spegnendolo
+     in «Organizza i prodotti»; le parole sue vanno in «Personale». */
 
   if (off.length) {
     const meno = menoCaroOggi(off);
-    const f = document.createElement('p');
-    f.className = 'fascia';
-    f.textContent = 'Offerte ordinate dal prezzo per unità più conveniente';
+    /* Niente più «Offerte ordinate dal prezzo per unità più conveniente»
+       (Manlio, 2026-09-23 sera): che siano in ordine di prezzo si vede. */
     const schede = new Map();
     off.forEach(o => schede.set(o, rigaPrezzo(o, o === meno)));
     const sint = sintesi(off, meno, schede);
     if (sint) out.appendChild(sint);
-    out.appendChild(f);
     off.forEach(o => out.appendChild(schede.get(o)));
   } else if (v.cat && DATI.offerte.some(o => o.cat === v.cat)) {
     /* I prezzi c'erano e sono tutti scaduti. Dirlo, invece di far comparire il
@@ -3216,20 +3059,6 @@ document.getElementById('q').addEventListener('input', () => {
   disegnaTrovati();
 });
 
-document.getElementById('form-agg').onsubmit = ev => {
-  ev.preventDefault();
-  const c = document.getElementById('nuovo');
-  const t = c.value.trim();
-  if (!t) return;
-  const v2 = costruisci(t);
-  if (!v2) return;
-  lista.push(v2);
-  scelto = lista.length - 1;
-  tutteLePagine = false;
-  c.value = '';
-  apriCassetto(false);
-  salva(); disegna();
-};
 
 
 /* Una data sola per tutta la pagina. Prima quella in fondo era scritta a mano e

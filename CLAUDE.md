@@ -146,7 +146,25 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 
 ## Regole della pagina decise con lui
 
-- **«Elimina prodotto» sta dentro la «i»** accanto al nome del prodotto,
+- **SOPRA LE OFFERTE DI UN PRODOTTO NON C'È PIÙ NIENTE, e il tasto in fondo
+  alla griglia si chiama «Organizza i prodotti»** (2026-09-23 sera, Manlio:
+  «dato che la categoria di prodotti si capisce già perché il tasto è
+  acceso, non si potrebbe togliere l'intestazione con il nome ripetuto in
+  alto e soprattutto quella scritta che i prodotti sono ordinati in ordine
+  di prezzo»; e poi: «l'ultimo tasto dice aggiungi prodotti ma potrebbe
+  essere organizza i prodotti, e i prodotti si potrebbero togliere
+  deselezionandoli nella lista; la personalizzazione dei sinonimi forse è un
+  po' troppo complicata… se vogliono mettere una cosa strana la possono
+  mettere nella parte personalizzata»). Tolti: il nome del prodotto in
+  cima, la «i» e tutto quello che c'era dentro («Elimina prodotto», «Cambia
+  nome», il conteggio, i sinonimi), la scritta «Offerte ordinate…», e nel
+  catalogo la casella per scrivere nomi nuovi. **Un prodotto si toglie
+  spegnendolo nel catalogo.** Chi aveva prodotti scritti a mano li trova in
+  cima al catalogo, sotto «I tuoi, fuori catalogo», accesi, e li spegne come
+  gli altri. Le cose strane vanno in «Personale». Le regole qui sotto su
+  «Elimina», «Cambia nome» e la «i» sono la storia di com'era. La prova è
+  `prova-intestazione.js` (riscritta).
+- **(TOLTA il 2026-09-23 sera, vedi sopra) «Elimina prodotto» sta dentro la «i»** accanto al nome del prodotto,
   vicino a «Cambia nome», con la stessa conferma «Elimino …?» (2026-09-23,
   punto 4: stava accanto al nome, grande quanto il titolo). Accanto al nome
   resta solo la «i»: lo controlla `prova-intestazione.js`.
@@ -774,7 +792,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v96** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v97** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.

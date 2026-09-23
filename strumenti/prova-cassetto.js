@@ -43,7 +43,7 @@ setTimeout(() => {
     guai.push('il cassetto sta dentro la barra appiccicata: aprendolo il telefono si blocca');
 
   apri.click();
-  if (cassetto.hidden) guai.push('toccando «+ altri prodotti» il cassetto non si apre');
+  if (cassetto.hidden) guai.push('toccando «Organizza i prodotti» il cassetto non si apre');
   if (inCima().join('|') !== prima.join('|')) guai.push('aprire il cassetto ha cambiato i bottoni in cima');
   console.log(`  aperto: ${scaffale().length} prodotti in ${reparti().length} reparti`);
   if (d.activeElement === d.getElementById('cerca'))
