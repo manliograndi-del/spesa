@@ -19,7 +19,6 @@ pagina.py, e questo file e la prova sul sito si cancellano.
 """
 import os
 
-QUI = os.path.dirname(os.path.abspath(__file__))
 RIGA = '<div class="riga-cerca" id="riga-cerca"></div>\n'
 FINE_BARRA = '  <p class="stato" id="stato-lista" role="status"></p>\n</div>\n'
 STILE = ('<style>/* versione di prova: i due tasti sotto le categorie */\n'
@@ -27,13 +26,13 @@ STILE = ('<style>/* versione di prova: i due tasti sotto le categorie */\n'
 
 
 def fai():
-    t = open(os.path.join(QUI, 'out', 'sito.html'), encoding='utf-8').read()
+    t = open(os.path.join('out', 'sito.html'), encoding='utf-8').read()
     # Se la pagina cambia forma, meglio fermarsi che pubblicare una prova rotta.
     assert t.count(RIGA) == 1, 'non trovo la riga dei due tasti'
     assert t.count(FINE_BARRA) == 1, 'non trovo la fine della barra delle categorie'
     t = t.replace(RIGA, '', 1)
     t = t.replace(FINE_BARRA, FINE_BARRA + STILE + RIGA, 1)
-    dove = os.path.join(QUI, 'out', 'prova-tasti-sotto.html')
+    dove = os.path.join('out', 'prova-tasti-sotto.html')
     open(dove, 'w', encoding='utf-8').write(t)
     print('scritta', dove)
 

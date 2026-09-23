@@ -67,12 +67,10 @@ VOLANTINI = [
 
  # In arrivo: letti in anticipo, con la data d'inizio. Fino a quel giorno la
  # pagina li segna «dal ...» invece di farli passare per offerte di oggi.
- _v('eurospin10',     'Eurospin',       'dal 10 al 20 settembre',                       'Eurospin — 10-20 settembre.pdf',                    '2026-09-20', _AV + '/2026/09/volantino-eurospin-2026-09-10-p-{n:02d}.jpg', '2026-09-10'),
- # Trovato online il 2026-09-20, letto in anticipo: colma il buco di 4 giorni
- # gia segnato in VOLANTINI_ATTESI il 17/9. Occhio: questo usa 5 cifre
- # (p-00001), non 2 come eurospin10 — la fonte non numera sempre uguale.
+ # eurospin10 (10-20 settembre) scaduto e tolto il 2026-09-23: copertura senza
+ # buchi passata a eurospin24 dal giorno stesso in cui e scaduto.
  _v('eurospin24',     'Eurospin',       'dal 24 settembre al 4 ottobre',                'Eurospin — 24 settembre-4 ottobre.pdf',            '2026-10-04', _AV + '/2026/09/volantino-eurospin-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
- _v('md08',           'MD',             "dall'8 al 20 settembre",                       'MD — 8-20 settembre.pdf',                          '2026-09-20', _AV + '/2026/09/volantino-md-2026-09-08-p-{n:02d}.jpg',       '2026-09-08'),
+ # md08 (8-20 settembre) scaduto e tolto il 2026-09-23: copertura passata a md22.
  _v('carriper15',     'Carrefour Iper', 'dal 15 al 28 settembre',                       'Carrefour Iper — 15-28 settembre.pdf',              '2026-09-28', _AV + '/2026/09/volantino-carrefour-iper-2026-09-15-p-{n:05d}.jpg', '2026-09-15'),
  _v('lidl17',         'Lidl',           'dal 17 al 23 settembre',                       'Lidl — 17-23 settembre.pdf',                        '2026-09-23', _AV + '/2026/09/volantino-lidl-2026-09-17-p-{n:05d}.jpg',       '2026-09-17'),
  _v('lidlfv17',       'Lidl',           'speciale Frutta e Verdura, dal 17 al 23 settembre', 'Lidl Frutta e Verdura — 17-23 settembre.pdf',      '2026-09-23', _AV + '/2026/09/volantino-lidl-frutta-e-verdura-2026-09-17-p-{n:05d}.jpg', '2026-09-17'),
@@ -161,106 +159,41 @@ for _a in VOLANTINI_ATTESI:
 
 PRODOTTI = [
  # ------------------------------- CARNE DI BUE (kg) -------------------------------
- ("Manzo","MD","md08","Macelleria","Hamburger di Angus – Mister Meat","180 g",0.180,3.79,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Carne 100% irlandese. Il volantino stampa 21,06 al kg.","2026-09-18","2026-09-21"),
- ("Manzo","MD","md08","Macelleria","Hamburger di suino e bovino","al kg",1,10.90,9,V,"È misto suino e bovino, non solo bue."),
- ("Manzo","Eurospin","eurospin10","Macelleria","Spalla e reale a fette di bovino adulto","al kg",1,13.99,13,V,""),
- ("Manzo","MD","md08","Macelleria","Polpa scelta per roastbeef di bovino adulto","al kg",1,15.90,9,V,""),
- ("Bresaola","Eurospin","eurospin10","Salumi","Bresaola punta d'anca","80 g",0.080,2.19,5,V,"Prima 2,99. È bresaola, salume di bovino: il prezzo al chilo non si confronta con la carne fresca."),
  # ------------------------------- TONNO (kg) -------------------------------
- ("Tonno","MD","md08","Dispensa","Tonno al naturale – Poseidon","240 g (3 × 80 g)",0.240,1.69,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 1,99, cioè 8,29 al kg. È al naturale, non all'olio."),
- ("Tonno","Eurospin","eurospin10","Dispensa","Tonno all'olio di oliva pinna gialla – Ondina","960 g (12 × 80 g)",0.960,7.49,1,V,"Prima 10,99. Quantità limitata. Confezione grande."),
- ("Tonno","MD","md08","Freschi","Tonno o pesce spada affumicato – Fish Fine","100 g",0.100,3.49,4,V,"Prima 3,99. È affumicato al banco, e la confezione può essere pesce spada."),
  # ------------------------------- SALMONE (kg) -------------------------------
- ("Salmone","Eurospin","eurospin10","Dispensa","Filetti di salmone al naturale – Ondina","150 g, sgocciolati 100 g",0.100,2.39,6,V,"Prima 3,19. È in scatola. Il volantino conta i 100 g sgocciolati: 23,90 al kg."),
  # ------------------------------- CAFFÈ (kg) -------------------------------
  # ------------------------------- LATTE (litri) -------------------------------
  # ------------------------------- PASTA (kg) -------------------------------
  # ------------------------------- OLIO D'OLIVA (litri) -------------------------------
- ("Olio d'oliva","Eurospin","eurospin10","Dispensa","Olio extra vergine di oliva Fruttato o Fruttato Leggero – Frantoio La Rocca","1 litro",1,4.49,6,V,"Prima 5,99."),
  # ------------------------------- POLLO (kg) -------------------------------
- ("Pollo","MD","md08","Freschi","Würstel di pollo e tacchino – La Fattoria","1 kg",1,2.29,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 2,59. Senza glutine.","2026-09-18","2026-09-21"),
- ("Pollo","Eurospin","eurospin10","Macelleria","Fusi e sovracosce di pollo","Confezione Famiglia, al kg",1,3.29,13,V,""),
- ("Pollo","MD","md08","Macelleria","Sovracosce di pollo","al kg",1,4.49,9,V,""),
- ("Pollo","MD","md08","Macelleria","Fuselli di pollo","al kg",1,4.49,9,V,""),
- ("Pollo","Eurospin","eurospin10","Gastronomia","Ali di pollo cotte piccanti","500 g",0.500,2.99,13,V,"Già cotte. Il volantino stampa 5,98 al kg."),
- ("Tacchino","Eurospin","eurospin10","Macelleria","Hamburger di tacchino","204 g",0.204,1.29,13,V,"È tacchino. Il volantino stampa 6,32 al kg."),
- ("Pollo","MD","md08","Surgelati","Spinacine classiche – AIA","500 g",0.500,4.99,9,V,"Il volantino stampa 9,98 al kg."),
- ("Pollo","MD","md08","Surgelati","Cordon bleu classico – AIA","490 g",0.490,4.99,9,V,"Il volantino stampa 10,18 al kg."),
  # ------------------------------- FORMAGGIO (kg) -------------------------------
- ("Mozzarella","MD","md08","Freschi","Formaggio a pasta filata (mozzarella)","1 kg",1,4.99,1,V,"Prima 6,89."),
- ("Mozzarella","Eurospin","eurospin10","Freschi","Ciliegine di mozzarella","150 g",0.150,0.99,5,V,"Prima 1,39. Latte 100% italiano."),
- ("Ricotta","MD","md08","Freschi","Ricotta bianca salata stagionata","al kg",1,6.99,4,V,"Prima 7,90. Speciale Sicilia."),
- ("Ricotta","MD","md08","Freschi","Ricotta al forno dura","al kg",1,7.39,4,V,"Prima 8,90. Speciale Sicilia."),
- ("Formaggio","MD","md08","Freschi","Formaggio canestrato tuma","al kg",1,8.99,4,V,"Prima 9,90. Speciale Sicilia."),
- ("Formaggio","MD","md08","Freschi","Formaggio pecoricco","al kg",1,8.99,4,V,"Prima 9,99. Speciale Sicilia."),
- ("Grana","Eurospin","eurospin10","Freschi","Grana Padano DOP","al kg",1,9.99,5,V,"Prima 13,29. Lo sconto del 25% si vede alla cassa."),
- ("Formaggio","MD","md08","Freschi","Formaggetta mista","al kg",1,9.99,4,V,"Prima 12,90. Speciale Sicilia."),
  # ------------------------------- UOVA (uova) -------------------------------
  # ------------------------------- CARTA IGIENICA (rotoli) -------------------------------
  # ------------------------------- DETERSIVO (lavaggi) -------------------------------
  # ------------------------------- SUINO (kg) -------------------------------
- ("Suino","MD","md08","Macelleria","Cotolette o nodini di suino","al kg",1,6.90,9,V,""),
- ("Suino","Eurospin","eurospin10","Macelleria","Lonza o arista di suino a tranci","al kg",1,6.99,13,V,""),
- ("Salame","Eurospin","eurospin10","Salumi","Salame ungherese o Milano","150 g",0.150,1.15,5,V,"Prima 1,55. Solo con la tessera Eurospin Family."),
- ("Suino","Eurospin","eurospin10","Macelleria","Spiedini di suino","Confezione Famiglia, 1 kg",1,8.49,13,V,""),
- ("Pancetta","Eurospin","eurospin10","Salumi","Pancetta arrotolata","100 g",0.100,0.99,15,V,"Prima 1,29."),
- ("Pancetta","MD","md08","Salumi","Bacon a fette leggermente affumicato – La Fattoria","150 g",0.150,1.49,13,V,"Prima 1,69."),
- ("Suino","MD","md08","Macelleria","Involtini di suino","al kg",1,10.90,9,V,""),
- ("Prosciutto","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità 2% di grassi","150 g",0.150,1.69,1,V,"Quantità limitata."),
- ("Mortadella","Eurospin","eurospin10","Salumi","Mortadella Bologna IGP con pistacchio","120 g",0.120,1.59,5,V,"Prima 1,99."),
- ("Prosciutto","Eurospin","eurospin10","Salumi","Prosciutto cotto alta qualità Praga","120 g",0.120,1.69,5,V,"Prima 1,99."),
- ("Prosciutto","Eurospin","eurospin10","Salumi","Lonzino stagionato","120 g",0.120,1.99,5,V,"Prima 2,49."),
- ("Prosciutto","MD","md08","Salumi","Prosciutto cotto nazionale selezione – La Fattoria","100 g",0.100,1.69,1,V,"Prima 2,59."),
- ("Salame","MD","md08","Salumi","Salame siciliano con pistacchio","80 g",0.080,1.79,4,V,"Prima 2,19."),
- ("Mortadella","MD","md08","Salumi","Mortadella di suino nero dei Nebrodi","80 g",0.080,2.39,4,V,"Prima 2,99."),
- ("Prosciutto","Eurospin","eurospin10","Salumi","Prosciutto crudo stagionato 24 mesi","100 g",0.100,3.19,5,V,"Prima 3,99. Carne italiana."),
  # Ci stanno sia i tagli freschi sia i salumi: sono tutti maiale, e il formato
  # di ogni riga dice cos'e. Se un domani vuole separarli, basta una categoria in piu.
  # ------------------------------- BISCOTTI (kg) -------------------------------
- ("Biscotti","MD","md08","Colazione","Biscotti Oswego – Le Bon","500 g",0.500,1.39,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,69.","2026-09-18","2026-09-21"),
- ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con cacao e nocciole – Dolciando","700 g",0.700,1.69,6,V,"Prima 2,19. Senza olio di palma."),
- ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con granelli di zucchero di canna","700 g",0.700,1.79,15,V,"Prima 2,19. Senza olio di palma."),
- ("Biscotti","Eurospin","eurospin10","Colazione","Frollini con gocce di cioccolato – Dolciando","1 kg",1,2.69,3,V,"Quantità limitata. Senza olio di palma."),
- ("Biscotti","MD","md08","Colazione","Frollini senza zuccheri aggiunti – Vivo Meglio","200 g",0.200,0.89,3,V,"Prima 1,49, sconto 40%."),
  # ------------------------------- YOGURT (kg) -------------------------------
- ("Yogurt","MD","md08","Freschi","Yogurt intero bianco – Buona Spesa!","1 kg",1,1.99,13,V,"Prima 2,39. Secchiello da un chilo."),
- ("Yogurt","Eurospin","eurospin10","Freschi","Fermenti attivi da bere alla fragola o multifrutti","600 g (6 × 100 g)",0.600,1.49,5,V,"Prima 1,99. Sono da bere, non vasetti."),
- ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt fragola o banana con confetti al cioccolato","110 g",0.110,0.49,5,V,"Prima 0,69. Solo con la tessera Eurospin Family."),
- ("Yogurt","MD","md08","Freschi","Yogurt proteico magro bianco – Milk Pro","180 g",0.180,1.00,18,V,"Prima 1,45. 20 g di proteine."),
  # ------------------------------- MARMELLATA (kg) -------------------------------
- ("Marmellata","MD","md08","Colazione","Confettura light ciliegia, albicocca, fragola o prugna – Vivo Meglio","310 g",0.310,1.59,3,V,"Prima 1,99. Con stevia."),
- ("Marmellata","Eurospin","eurospin10","Colazione","Confettura extra di lamponi – Alpenspitz","340 g",0.340,2.39,10,V,"Quantità limitata."),
  # ------------------------------- CIOCCOLATO (kg) -------------------------------
  # ------------------------------- MERLUZZO E BACCALÀ (kg) -------------------------------
  # ------------------------------- RISO (kg) -------------------------------
- ("Riso","Eurospin","eurospin10","Dispensa","Riso Arborio","5 kg (5 × 1 kg)",5,6.96,3,V,"Quantità limitata. Riso italiano."),
  # ------------------------------- PANE (kg) -------------------------------
- ("Pane","Eurospin","eurospin10","Dispensa","Taralli multipack","500 g (10 × 50 g)",0.500,1.49,3,V,"Quantità limitata. Senza olio di palma."),
  # ------------------------------- POMODORO E PASSATA (kg) -------------------------------
- ("Pomodoro","Eurospin","eurospin10","Dispensa","Polpa di pomodoro a pezzetti","2,4 kg (6 × 400 g)",2.4,2.49,3,V,"Quantità limitata. 100% pomodori italiani."),
  # ------------------------------- OLIO DI SEMI (litri) -------------------------------
- ("Olio di semi","MD","md08","Dispensa","Olio di semi vari – Semì","1 litro",1,1.55,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 1,79.","2026-09-18","2026-09-21"),
- ("Olio di semi","Eurospin","eurospin10","Dispensa","Olio di semi di girasole","5 litri",5,6.59,3,V,"Prima 7,75."),
  # ------------------------------- LEGUMI IN SCATOLA (kg) -------------------------------
- ("Legumi","Eurospin","eurospin10","Dispensa","Fagioli borlotti","6 × 400 g, sgocciolati 1,44 kg",1.44,1.99,3,V,"Quantità limitata. Il conto usa il peso sgocciolato."),
  # ------------------------------- SUGHI PRONTI (kg) -------------------------------
  # ------------------------------- VERDURE IN SCATOLA (kg) -------------------------------
- ("Conserve","MD","md08","Dispensa","Mais, piselli e peperoni cotti a vapore – Buona Spesa!","420 g (3 × 140 g)",0.420,1.39,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 2,29.","2026-09-18","2026-09-21"),
- ("Conserve","Eurospin","eurospin10","Dispensa","Carciofini alla contadina sott'olio","535 g",0.535,1.99,3,V,"Quantità limitata."),
  # ------------------------------- MERENDINE (kg) -------------------------------
  # ------------------------------- MIELE (kg) -------------------------------
  # ------------------------------- VERDURE SURGELATE (kg) -------------------------------
  # ------------------------------- PIZZA SURGELATA (kg) -------------------------------
- ("Pizza","MD","md08","Surgelati","Pizza ai funghi","375 g",0.375,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,69, cioè 7,17 al kg."),
- ("Pizza","Eurospin","eurospin10","Surgelati","Pizza alle verdure","415 g",0.415,1.99,15,V,"Prima 2,49. Il volantino stampa 4,80 al kg."),
- ("Pizza","MD","md08","Surgelati","Pizza ai 4 formaggi","350 g",0.350,1.79,12,V,"Solo con la MD Buona Spesa Card. Senza tessera 2,89, cioè 8,26 al kg."),
  # ------------------------------- FRUTTA (kg) -------------------------------
- ("Frutta","MD","md08","Ortofrutta","Uva bianca in bauletto","2 kg",2,2.78,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Il volantino stampa 1,39 al kg.","2026-09-18","2026-09-21"),
  # ------------------------------- VERDURA (kg) -------------------------------
  # ------------------------------- INSALATA IN BUSTA (kg) -------------------------------
  # ------------------------------- PATATE (kg) -------------------------------
  # ------------------------------- ACQUA (litri) -------------------------------
- ("Acqua","MD","md08","Bevande","Acqua naturale – Sant'Anna","2 litri",2,0.45,35,V,"Vale solo dal 18 al 21 settembre («Weekend più uno»), non per tutto il volantino. Prima 0,65.","2026-09-18","2026-09-21"),
  # ------------------------------- VINO (litri) -------------------------------
  # ------------------------------- BIRRA (litri) -------------------------------
  # ------------------------------- SUCCHI E BIBITE (litri) -------------------------------
@@ -282,27 +215,8 @@ PRODOTTI = [
  # gamberi». Aveva ragione, ed era di nuovo un buco mio: gamberi zero e merluzzo
  # due, con sette volantini in casa. La pescheria del Bennet (pagina 3) e la
  # pagina «Pesce» del Carrefour non le avevo mai aperte.
- ("Gamberi","Eurospin","eurospin10","Surgelati","Gamberi argentini – Ondina","800 g",0.800,9.89,8,V,"Prima 11,99. Il volantino stampa 12,37 al kg."),
- ("Gamberi","Eurospin","eurospin10","Surgelati","Code di mazzancolla tropicale sgusciate precotte","240 g",0.240,3.79,8,V,"Prima 4,79. Il volantino stampa 15,80 al kg."),
- ("Bastoncini","Eurospin","eurospin10","Surgelati","Bastoncini di filetti di merluzzo, 15 pezzi","450 g",0.450,2.89,14,V,"Prima 3,49. Il volantino stampa 6,43 al kg."),
 
  # Trovati sulle stesse pagine mentre cercavo il pesce: non buttarli via.
- ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Minestrone 14 verdure","1,5 kg",1.5,1.79,8,V,"Prima 2,19. Il volantino stampa 1,20 al kg."),
- ("Verdure surgelate","Eurospin","eurospin10","Surgelati","Vellutata di verdure","600 g",0.600,1.59,8,V,"Prima 1,99. Il volantino stampa 2,65 al kg."),
- ("Patate","Eurospin","eurospin10","Surgelati","Patatine da forno","750 g",0.750,1.39,8,V,"Prima 1,79. Il volantino stampa 1,86 al kg."),
- ("Gelato","Eurospin","eurospin10","Surgelati","Vaschette gelato gusti assortiti","500 g",0.500,2.19,8,V,"Prima 2,89. Il volantino stampa 4,38 al kg."),
- ("Gelato","Eurospin","eurospin10","Surgelati","Coni gelato gusti assortiti, 6 pezzi","450 g",0.450,2.19,8,V,"Prima 2,89. Il volantino stampa 4,87 al kg."),
- ("Pizza","Eurospin","eurospin10","Surgelati","Pizza margherita, 3 pezzi","960 g",0.960,3.49,8,V,"Prima 4,35. Il volantino stampa 3,64 al kg."),
- ("Yogurt","Eurospin","eurospin10","Freschi","Yogurt magro da bere 0,1% di grassi","500 g",0.500,0.79,14,V,"Prima 0,99. Il volantino stampa 1,58 al kg."),
- ("Pomodoro","Eurospin","eurospin10","Dispensa","Passata rustica di pomodoro","680 g",0.680,0.75,14,V,"Prima 0,99. Pomodoro 100% italiano. Il volantino stampa 1,11 al kg."),
- ("Riso","Eurospin","eurospin10","Dispensa","Riso Basmati","1 kg",1,1.89,14,V,"Prima 2,49."),
- ("Olio d'oliva","Eurospin","eurospin10","Dispensa","Olio extra vergine di oliva bio","750 ml",0.750,6.49,14,V,"Prima 8,49. Il volantino stampa 8,66 al litro."),
- ("Bibite","Eurospin","eurospin10","Bevande","Cola Zero","1,5 litri",1.5,0.49,14,V,"Prima 0,69. Il volantino stampa 0,33 al litro."),
- ("Biscotti","Eurospin","eurospin10","Colazione","Fourré con farcitura al cacao","500 g",0.500,1.69,14,V,"Prima 1,99. Il volantino stampa 3,38 al kg."),
- ("Biscotti","Eurospin","eurospin10","Colazione","Biscottini alla vaniglia, 12 pezzi","570 g",0.570,2.75,8,V,"Prima 3,69. Il volantino stampa 4,83 al kg."),
- ("Pollo","Eurospin","eurospin10","Surgelati","Cotolette di pollo, agli spinaci o cordon bleu","240 g",0.240,1.59,8,V,"Prima 2,19. Carne italiana. Il volantino stampa 6,63 al kg."),
- ("Tacchino","Eurospin","eurospin10","Salumi","Cotto di tacchino con olive","90 g",0.090,0.89,14,V,"Prima 1,15. Il volantino stampa 9,89 al kg."),
- ("Spalmabili","Eurospin","eurospin10","Freschi","Robiola","200 g (100 g × 2)",0.200,1.49,14,V,"Prima 1,79. Latte 100% italiano. Il volantino stampa 7,45 al kg."),
  # ----- Mercatò, le pagine che il primo giro aveva saltato (lette il 2026-09-05) -----
  # Birra, vino, merendine, sapone: quattro categorie che per Mercatò erano vuote
  # e che stavano tutte dietro pagine mai aperte.
@@ -310,9 +224,6 @@ PRODOTTI = [
  # Voce nuova del 2026-09-05: prima queste offerte le vedevo e le lasciavo fuori
  # perche non avevano dove stare. Sono al banco o surgelate, e il prezzo al kg
  # del banco viene dai cartellini all'etto, moltiplicati per dieci.
- ("Pesce","Eurospin","eurospin10","Surgelati","Preparato per risotto di mare","300 g",0.300,1.79,8,V,"Prima 2,15. È un misto di frutti di mare, non pesce intero. Il volantino stampa 5,97 al kg."),
- ("Pesce","Eurospin","eurospin10","Surgelati","Scampi interi – Ondina","450 g",0.450,5.99,14,V,"Prima 7,19. Il volantino stampa 13,32 al kg."),
- ("Pesce","Eurospin","eurospin10","Surgelati","Filetti di branzino spigola – Ondina","380 g",0.380,6.29,8,V,"Prima 7,99. Il volantino stampa 16,56 al kg."),
  # ----- Carrefour Iper, le 39 pagine mai aperte (lette il 2026-09-07) -----
  # Il volantino era a 11 pagine lette su 50. Qui ci sono tutte le altre.
  # La copertina dice «DAL 4 AL 13 SETTEMBRE»: la fine non e piu una stima.
@@ -447,137 +358,9 @@ PRODOTTI = [
  # Passata Mutti, Pizza Cameo, Birra Beck's, Mozzarella Granarolo) non si
  # ripetono qui: sono la stessa offerta, non una nuova.
  # ------------------------------- MD08, pagine lette il 2026-09-10 -------------------------------
- ("Mozzarella","MD","md08","Freschi","Fior di Latte Molisano – Lettere dall'Italia","250 g",0.250,1.99,2,V,""),
- ("Spalmabili","MD","md08","Freschi","Formaggio fresco spalmabile light – Exquisa","300 g",0.300,1.39,2,V,""),
- ("Salame","MD","md08","Salumi","Salame Ungherese o Milano – Buona Spesa!","100 g",0.100,1.39,2,V,""),
- ("Salame","MD","md08","Salumi","Spianata piccante – La Fattoria","100 g",0.100,0.99,2,V,""),
- ("Patate","MD","md08","Surgelati","Patate da forno – Le Specialità di Beppe","750 g",0.750,0.99,2,V,"Surgelate."),
- ("Pollo","MD","md08","Surgelati","2 Cordon bleu di pollo – Le Specialità di Beppe","240 g",0.240,1.31,2,V,""),
- ("Cioccolato","MD","md08","Colazione","Preparato per bevanda al cacao magro – Cioko Nut","600 g",0.600,2.89,2,V,""),
- ("Ricotta","MD","md08","Freschi","Ricotta dolce stracciatella o limone","180 g",0.180,1.89,5,V,""),
- ("Gelato","MD","md08","Surgelati","4 coni al pistacchio – Lettere dall'Italia","280 g",0.280,1.99,5,V,""),
- ("Pasta","MD","md08","Freschi","Busiate fresche","400 g",0.400,1.59,5,V,""),
- ("Gelato","MD","md08","Surgelati","Vaschetta gelato cassata siciliana","400 g",0.400,2.49,5,V,""),
- ("Merendine","MD","md08","Colazione","Brioscia cu' tuppu","150 g (2 pezzi)",0.150,1.89,5,V,""),
- ("Vino","MD","md08","Bevande","Vino liquoroso moscato o zibibbo","50 cl",0.5,2.49,5,V,""),
- ("Pomodoro","MD","md08","Dispensa","Salsa pronta di ciliegino – Agromonte","330 g",0.330,1.29,6,V,""),
- ("Miele","MD","md08","Colazione","Miele Millefiori – Cavallaro","350 g",0.350,2.99,6,V,""),
- ("Vino","MD","md08","Bevande","Lucido Terre Siciliane IGT – Enotrium","75 cl",0.75,1.99,6,V,""),
- ("Pomodoro","MD","md08","Dispensa","Salsa pronta di datterino – Lettere dall'Italia","350 g",0.350,0.89,6,V,""),
- ("Vino","MD","md08","Bevande","I 7 Siciliani IGT Terre Siciliane biologico","75 cl",0.75,2.99,6,V,""),
- ("Pasta","MD","md08","Dispensa","Pasta trafilata al bronzo, spaghetto rustico/strappatella/riccioli/anelloni","500 g",0.500,0.49,6,V,""),
- ("Cioccolato","MD","md08","Colazione","Cioccolato di Modica IGP","100 g",0.100,1.99,6,V,""),
- ("Frutta","MD","md08","Ortofrutta","Banane","al kg",1,0.99,8,V,""),
- ("Frutta","MD","md08","Ortofrutta","Mele Gala","al kg",1,1.49,8,V,""),
- ("Frutta","MD","md08","Ortofrutta","Melone Verde","al kg",1,0.89,8,V,""),
- ("Frutta","MD","md08","Ortofrutta","Uva bianca senza semi","500 g",0.500,1.49,8,V,""),
- ("Verdura","MD","md08","Ortofrutta","Peperoni rossi o gialli","al kg",1,1.99,8,V,""),
- ("Verdura","MD","md08","Ortofrutta","Pomodori Piccadilly","500 g",0.500,1.69,8,V,""),
- ("Verdura","MD","md08","Ortofrutta","Melanzane tonde nere","al kg",1,1.49,8,V,""),
- ("Prosciutto","MD","md08","Gastronomia","Prosciutto crudo stagionato – Alcar Uno","all'etto",0.1,1.69,10,V,"Al banco."),
- ("Bresaola","MD","md08","Gastronomia","Bresaola della Valtellina IGP – Pini","all'etto",0.1,3.39,10,V,"Al banco."),
- ("Prosciutto","MD","md08","Gastronomia","Prosciutto cotto alta qualità Naturalis – Bombieri","all'etto",0.1,0.99,10,V,"Al banco."),
- ("Formaggio","MD","md08","Gastronomia","Asiago DOP – Latterie Vicentine","all'etto",0.1,0.89,10,V,"Al banco."),
- ("Formaggio","MD","md08","Gastronomia","Pecorino Romano DOP Cappato Nero – Sepi","all'etto",0.1,1.59,10,V,"Al banco."),
- ("Formaggio","MD","md08","Gastronomia","Caciotta – Bosco Gerolo","all'etto",0.1,1.09,10,V,"Al banco."),
- ("Conserve","MD","md08","Gastronomia","Olive Duetto Italiano verdi/nere denocciolate condite – Le Olive Miccio","all'etto",0.1,0.69,10,V,"Al banco."),
- ("Insalata","MD","md08","Freschi","Cuori di iceberg – Buona Spesa!","200 g",0.200,0.99,11,V,"Solo con la MD Buona Spesa Card."),
- ("Formaggio","MD","md08","Freschi","Stracchino – Lettere dall'Italia","165 g",0.165,1.39,11,V,"Solo con la MD Buona Spesa Card."),
- ("Yogurt","MD","md08","Freschi","Skyr da bere – Exquisa","250 ml",0.250,1.39,11,V,"Solo con la MD Buona Spesa Card."),
- ("Pasta","MD","md08","Freschi","Pasta fresca – Cà Bianca, strozzapreti/trofie/orecchiette/cavatelli","500 g",0.500,0.75,11,V,"Solo con la MD Buona Spesa Card."),
- ("Bibite","MD","md08","Colazione","Succo di mirtillo 20% – Pfanner","1 litro",1,1.39,14,V,""),
- ("Bibite","MD","md08","Colazione","Spremuta 100% arancia o ananas – Buona Spesa!","75 cl",0.75,1.69,14,V,""),
- ("Cereali","MD","md08","Colazione","Cereali Multigrano extra fondente o frutti rossi – Nature Più","300 g",0.300,1.59,14,V,""),
- ("Cereali","MD","md08","Colazione","Cereali Multigrano gusto classico – Nature Più","375 g",0.375,1.19,14,V,""),
- ("Biscotti","MD","md08","Colazione","Biscotti Dolcesenza yogurt – Misura","400 g",0.400,2.19,14,V,""),
- ("Biscotti","MD","md08","Colazione","Frollini con granella di zucchero – Le Bon","700 g",0.700,1.49,14,V,""),
- ("Biscotti","MD","md08","Colazione","Fette biscottate BIO integrali","320 g",0.320,1.59,14,V,""),
- ("Merendine","MD","md08","Colazione","8 Pancake","280 g",0.280,1.59,14,V,""),
- ("Merendine","MD","md08","Colazione","Ciambelle zuccherate – La Dolce","180 g (6 pezzi)",0.180,1.29,14,V,""),
- ("Merendine","MD","md08","Colazione","6 Croissant con sfoglia zuccherata","300 g",0.300,2.99,14,V,""),
- ("Cereali","MD","md08","Colazione","Fiocchi di avena","500 g",0.500,1.15,14,V,""),
- ("Pane","MD","md08","Colazione","Pane Bauletto Proteico","400 g",0.400,1.49,19,V,""),
- ("Merendine","MD","md08","Colazione","8 Pancake proteici caramello salato","200 g",0.200,1.99,19,V,""),
- ("Merendine","MD","md08","Colazione","Protein Muffin caramello salato","252 g",0.252,2.79,19,V,""),
- ("Merendine","MD","md08","Colazione","Tortina proteica","50 g",0.050,1.29,19,V,""),
- ("Biscotti","MD","md08","Colazione","Cookie proteico brownie","50 g",0.050,1.29,19,V,""),
- ("Cereali","MD","md08","Colazione","Granola proteica, nocciole/mandorle/cioccolato o brownie/cherry","300 g",0.300,2.99,19,V,""),
- ("Formaggio","MD","md08","Freschi","Sottilette classiche o light – Kraft","200 g",0.200,1.69,21,V,""),
- ("Birra","MD","md08","Bevande","Birra Corona Extra","1,98 litri (6 × 33 cl)",1.98,5.99,21,V,""),
- ("Tonno","MD","md08","Dispensa","Tonno Filo d'Olio – Rio Mare","208 g (sgocc., 4 × 52 g)",0.208,4.49,21,V,"Sul volantino anche in confezione da 4×65 g allo stesso prezzo."),
- ("Creme","MD","md08","Colazione","Nutella B-ready – Ferrero","220 g",0.220,2.99,21,V,""),
- ("Shampoo","MD","md08","Igiene","Shampoo classic clean 2in1 – Head & Shoulders","500 ml",0.500,3.99,21,V,""),
- ("Lavatrice","MD","md08","Casa","Detersivo lavatrice salva colore – Dash","50 lavaggi",50,8.90,21,V,""),
- ("Yogurt","MD","md08","Freschi","Bevanda allo yogurt stile turco – Ayran","250 g",0.250,0.39,23,V,""),
- ("Yogurt","MD","md08","Freschi","Cuore di Kefir Bufala","125 g",0.125,2.29,23,V,""),
- ("Formaggio","MD","md08","Freschi","Formaggio grattugiato – Malga Paradiso","100 g",0.100,0.79,23,V,""),
- ("Prosciutto","MD","md08","Salumi","2 hamburger di prosciutto cotto – La Fattoria, classico o mozzarella","150 g",0.150,1.49,23,V,""),
- ("Tacchino","MD","md08","Salumi","Arrosto di tacchino – Vivo Meglio","100 g",0.100,1.09,23,V,""),
- ("Bresaola","MD","md08","Salumi","Bresaola – La Fattoria","80 g",0.080,2.49,23,V,""),
- ("Prosciutto","MD","md08","Salumi","Speck – La Fattoria","100 g",0.100,1.39,23,V,""),
- ("Pane","MD","md08","Freschi","Piadina Romagnola IGP alla Riminese – Lettere dall'Italia","360 g",0.360,0.99,23,V,""),
- ("Verdure surgelate","MD","md08","Surgelati","Spinaci a foglia porzionati","1 kg",1,1.39,24,V,""),
- ("Sughi","MD","md08","Surgelati","Sugo pronto mare e monti – Le Specialità di Beppe","300 g",0.300,2.19,24,V,""),
- ("Pesce","MD","md08","Surgelati","Cozze cilene con guscio","500 g",0.500,1.99,24,V,""),
- ("Pollo","MD","md08","Surgelati","Stick di petto di pollo – Fripozo","250 g",0.250,2.19,24,V,""),
- ("Pasta","MD","md08","Surgelati","Ravioli al pomodoro, ricotta e spinaci – Le Specialità di Beppe","500 g",0.500,2.39,24,V,""),
- ("Vino","MD","md08","Bevande","Spumante Sauvignon Blanc brut millesimato","75 cl",0.75,2.99,24,V,""),
- ("Bibite","MD","md08","Bevande","Tè al limone o pesca – Casado","1,5 litri",1.5,0.59,24,V,""),
- ("Birra","MD","md08","Bevande","Birra APA o Rossa – Contessa","50 cl",0.5,1.69,24,V,""),
- ("Biscotti","MD","md08","Colazione","Wafers alla nocciola o vaniglia – Le Bon","400 g",0.400,1.79,25,V,""),
- ("Carta igienica","MD","md08","Casa","Carta igienica 4 rotoli 4 veli – Blou","4 rotoli",4,1.49,25,V,""),
- ("Bagnoschiuma","MD","md08","Igiene","Sapone liquido ricarica petali di rosa o neutro – Cliosan","1 litro",1,1.19,25,V,""),
- ("Bagnoschiuma","MD","md08","Igiene","Bagnoschiuma cremoso neutro – Cliosan","500 ml",0.500,1.29,25,V,""),
  # ------------------------------- EUROSPIN10, pagine lette il 2026-09-10 -------------------------------
  # Pagina «Doppio Weekend di follia»: due finestre corte con date proprie
  # (11-13 e 18-20 settembre), diverse dal resto del volantino (10-20).
- ("Gelato","Eurospin","eurospin10","Surgelati","Big Cioc con mandorle, 6 pezzi","510 g",0.510,2.99,2,V,"Quantità limitata."),
- ("Pancetta","Eurospin","eurospin10","Salumi","Pancetta Premium a cubetti affumicata","400 g (4 × 100 g)",0.400,3.49,2,V,"Quantità limitata."),
- ("Formaggio","Eurospin","eurospin10","Freschi","Grattugiato italiano","250 g",0.250,2.49,2,V,"Quantità limitata."),
- ("Formaggio","Eurospin","eurospin10","Freschi","Fettine di formaggio fuso, 32 fette","800 g",0.800,3.49,2,V,"Quantità limitata."),
- ("Mozzarella","Eurospin","eurospin10","Freschi","Mozzarella a julienne","500 g",0.500,3.49,2,V,"Quantità limitata."),
- ("Burro","Eurospin","eurospin10","Freschi","Burro","1 kg",1,5.89,2,V,"Quantità limitata."),
- ("Spalmabili","Eurospin","eurospin10","Freschi","Latticino fresco light","300 g",0.300,1.29,2,V,"Quantità limitata."),
- ("Caffè","Eurospin","eurospin10","Colazione","Capsule caffè espresso, 30 pezzi, compatibili Dolce Gusto","210 g",0.210,4.79,4,V,"Quantità limitata."),
- ("Miele","Eurospin","eurospin10","Colazione","Miele Millefiori","1 kg",1,5.49,4,V,"Quantità limitata."),
- ("Creme","Eurospin","eurospin10","Colazione","Crema alla nocciola","1 kg",1,3.79,4,V,"Quantità limitata."),
- ("Bibite","Eurospin","eurospin10","Bevande","Cola o Limonata, 6 pezzi","6 × 330 ml",1.98,1.69,4,V,"Prezzo a confezione. Quantità limitata."),
- ("Vino","Eurospin","eurospin10","Bevande","Vino bianco","5 litri",5,4.19,4,V,"Quantità limitata."),
- ("Asciugatutto","Eurospin","eurospin10","Casa","Asciugatutto, 8 rotoli, 3 veli","8 rotoli",8,3.99,4,V,"Quantità limitata."),
- ("Carta igienica","Eurospin","eurospin10","Casa","Carta igienica «La Lunghissima», 12 rotoli, 2 veli","12 rotoli",12,6.49,4,V,"Quantità limitata."),
- ("Lavatrice","Eurospin","eurospin10","Casa","Liquido lavatrice classico Superbianco","50 lavaggi",50,5.49,4,V,"Quantità limitata."),
- ("Merendine","Eurospin","eurospin10","Colazione","Trancino ai 5 cereali","270 g",0.270,1.79,7,V,""),
- ("Bibite","Eurospin","eurospin10","Bevande","ACE","1,5 litri",1.5,0.99,7,V,""),
- ("Bibite","Eurospin","eurospin10","Bevande","Succo e polpa di pera – Puertosol","1,2 litri (6 × 200 ml)",1.2,1.25,7,V,"Offerta Family."),
- ("Bibite","Eurospin","eurospin10","Bevande","Tè alla pesca o al limone","1,5 litri",1.5,0.59,7,V,""),
- ("Bibite","Eurospin","eurospin10","Bevande","Aranciata","1,5 litri",1.5,0.59,7,V,""),
- ("Vino","Eurospin","eurospin10","Bevande","Prosecco DOC Treviso Millesimato Extra Dry","750 ml",0.750,2.99,7,V,""),
- ("Asciugatutto","Eurospin","eurospin10","Casa","Asciugatutto decorato, 4 rotoli, 2 veli","4 rotoli",4,1.79,7,V,""),
- ("Asciugatutto","Eurospin","eurospin10","Casa","Tovaglioli Space monovelo, 450 pezzi","450 pezzi",450,2.29,7,V,""),
- ("Carta igienica","Eurospin","eurospin10","Casa","Carta igienica «La Morbida», 12 rotoli, 3 veli","12 rotoli",12,2.45,7,V,""),
- ("Lavatrice","Eurospin","eurospin10","Casa","Liquido lavatrice aloe o lavanda","50 lavaggi",50,4.29,7,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Radler – Best Bräu","500 ml",0.500,0.55,11,V,"Offerta Family."),
- ("Birra","Eurospin","eurospin10","Bevande","Birra Premium Bock Doppio Malto – Best Bräu","1,32 litri (4 × 330 ml)",1.32,2.89,11,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Birra – Best Bräu","500 ml",0.500,0.49,11,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Birra Premium Lager – Best Bräu","660 ml",0.660,0.89,11,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Birra Rossa 5,4% – Adler Privat","500 ml",0.500,0.59,11,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Birra Extra Strong – Best Bräu","500 ml",0.500,0.79,11,V,""),
- ("Birra","Eurospin","eurospin10","Bevande","Birra Super Strong – Becker's 9.0","330 ml",0.330,0.85,11,V,""),
- ("Frutta","Eurospin","eurospin10","Ortofrutta","Uva Italia","al kg",1,1.99,12,V,""),
- ("Verdura","Eurospin","eurospin10","Ortofrutta","Carote, vaschetta 1 kg","1 kg",1,0.99,12,V,""),
- ("Verdura","Eurospin","eurospin10","Ortofrutta","Pomodoro Grappolo","al kg",1,1.49,12,V,""),
- ("Frutta","Eurospin","eurospin10","Ortofrutta","Pere Coscia","750 g",0.750,1.99,12,V,"Valido dal 14 settembre.",'2026-09-14'),
- ("Frutta","Eurospin","eurospin10","Ortofrutta","Melone Giallo","al kg",1,0.89,12,V,"Valido dal 14 settembre.",'2026-09-14'),
- ("Insalata","Eurospin","eurospin10","Ortofrutta","Insalata Misticanza","125 g",0.125,0.79,12,V,"Valido dal 14 settembre.",'2026-09-14'),
- ("Frutta","Eurospin","eurospin10","Ortofrutta","Mirtilli","250 g",0.250,2.49,22,V,"«Doppio weekend di follia», valido solo da venerdì 11 a domenica 13 settembre.","2026-09-11","2026-09-13"),
- ("Ricotta","Eurospin","eurospin10","Freschi","Mascarpone cremoso","500 g",0.500,1.99,22,V,"«Doppio weekend di follia», valido solo da venerdì 11 a domenica 13 settembre.","2026-09-11","2026-09-13"),
- ("Tonno","Eurospin","eurospin10","Dispensa","Tonno pinna gialla all'olio extravergine di oliva – Ondina","240 g (3 × 80 g)",0.240,2.79,22,V,"«Doppio weekend di follia», valido solo da venerdì 11 a domenica 13 settembre.","2026-09-11","2026-09-13"),
- ("Latte","Eurospin","eurospin10","Freschi","Latte alta digeribilità scremato UHT","3 litri (6 × 500 ml)",3,3.00,22,V,"«Doppio weekend di follia», valido solo da venerdì 11 a domenica 13 settembre e solo comprando le 6 confezioni insieme.","2026-09-11","2026-09-13"),
- ("Biscotti","Eurospin","eurospin10","Colazione","Frollini classici","1 kg",1,1.29,22,V,"«Doppio weekend di follia», valido solo da venerdì 11 a domenica 13 settembre.","2026-09-11","2026-09-13"),
- ("Patate","Eurospin","eurospin10","Ortofrutta","Patate gialle, sacco da 4 kg","4 kg",4,2.76,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
- ("Carta igienica","Eurospin","eurospin10","Casa","Carta igienica «La Setosa», 12 rotoli, 2 veli","12 rotoli",12,2.29,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
- ("Patate","Eurospin","eurospin10","Surgelati","Patate fritte surgelate","3 kg",3,2.89,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
- ("Formaggio","Eurospin","eurospin10","Freschi","Formaggio dolce a pasta filata","300 g",0.300,1.39,22,V,"«Doppio weekend di follia», valido solo da venerdì 18 a domenica 20 settembre.","2026-09-18","2026-09-20"),
 
  # ---- Carrefour Iper, 15-28 settembre: letto per intero, 50/50 pagine ----
  # È in gran parte «Grandi Marche», sconti percentuali su intere linee senza

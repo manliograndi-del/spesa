@@ -1864,7 +1864,7 @@ function cerchioGiorni(o) {
   d.querySelector('.num').textContent = String(resta);
   d.querySelector('.gg').textContent = resta === 1 ? 'oggi' : 'giorni';
   d.title = resta === 1
-    ? 'Ultimo giorno: scade oggi'
+    ? 'Ultimo giorno: scade oggi, ' + soloGiorno(o.fino)
     : 'Restano ' + resta + ' giorni, fino al ' + soloGiorno(o.fino);
   return d;
 }
