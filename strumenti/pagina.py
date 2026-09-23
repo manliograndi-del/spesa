@@ -413,6 +413,13 @@ NOVITA_PAGINA = [
                'che costerà meno fra qualche giorno, e da quando. Toccala e la '
                'pagina scende a quella scheda. Quando il meno caro di oggi è fra le '
                'prime tre schede, la riga non c\'è.'),
+    dict(id='2026-09-23-zz-colori', quando='23 settembre',
+         titolo='Calendarietto, N ed «Elimina»',
+         testo='Le offerte che devono ancora cominciare hanno un calendarietto col '
+               'giorno in cui partono, invece del tondino: così non si confonde col '
+               'cerchietto dei giorni che mancano. La N in alto a destra non è più '
+               'rossa. «Elimina prodotto» non sta più accanto al nome: lo trovi '
+               'toccando la «i», vicino a «Cambia nome».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -765,7 +772,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   border:1.5px solid var(--linea-forte);border-radius:14px;padding:11px 14px;
   font-size:15px;font-weight:600;cursor:pointer;min-height:46px;font-family:inherit;
   color:var(--inchiostro)}
-.pallino.novita{background:var(--rosso);color:var(--su-rosso);border:0;
+/* LA N NON È PIÙ ROSSA (Manlio, 2026-09-23, punto 4: «toglie il rosso solo
+   dal pulsante in alto a destra rotondo con N in mezzo»): bianca col bordo,
+   come l'ingranaggio accanto. */
+.pallino.novita{background:var(--carta);color:var(--inchiostro);border:1.5px solid var(--linea-forte);
   font-family:var(--f-prezzo);font-size:16px;font-weight:700;letter-spacing:0;gap:0}
 .pallino.novita::after{content:none}
 .marche{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
@@ -869,9 +879,6 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    nella colonna del prezzo: le due cose non capitano mai insieme, o
    un'offerta è cominciata o deve cominciare. */
 .parte{display:flex;flex-direction:column;align-items:flex-end;gap:2px;margin-top:8px}
-.parte .anello{position:relative;width:38px;height:38px}
-.parte svg{width:38px;height:38px;display:block}
-.parte .giro{fill:none;stroke:var(--blu-tenue);stroke-width:4}
 .parte .num{position:absolute;inset:0;display:grid;place-items:center;
   font-family:var(--f-prezzo);font-size:15px;font-weight:700;color:var(--blu);
   font-variant-numeric:tabular-nums;line-height:1}
@@ -973,7 +980,6 @@ a.dove.apri::after{content:none}
 .angolo .giorni .gg{display:none}
 .angolo .anello,.angolo svg{width:30px;height:30px}
 .angolo .num{font-size:12.5px}
-.angolo .parte .mese{font-size:8.5px;margin-top:-1px}
 .angolo a.dove.apri{min-height:30px;min-width:30px;padding:2px}
 /* Lo sconto: una pastiglia scura alta come il tondino. Non rossa (il rosso
    qui vuol dire «premi qui»), non verde («il meno caro»), non ambra
@@ -991,15 +997,16 @@ a.dove.apri::after{content:none}
   box-sizing:border-box}
 .prezzo-riga .coda .marchio.col-logo{padding:0 8px}
 .prezzo-riga .coda .marchio.col-logo svg,.prezzo-riga .coda .marchio.col-logo img{height:21px;max-width:96px}
-/* IL GIORNO E IL MESE STANNO TUTTI E DUE DENTRO IL TONDINO (stessa richiesta:
-   «il numero del giorno e la sigla del mese all'interno del cerchio, in modo
-   che abbia sempre la stessa altezza»). Prima il mese stava sotto e la
-   riga delle offerte non ancora cominciate era più alta delle altre. */
-.parte .dentro{position:absolute;inset:0;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;line-height:1}
-.parte .dentro .num{position:static;display:block;inset:auto}
-.angolo .parte .dentro .num{font-size:11.5px}
-.angolo .parte .dentro .mese{font-size:7px;margin-top:0;letter-spacing:.02em}
+/* IL CALENDARIETTO DI QUANDO PARTE UN'OFFERTA (punto 4, 2026-09-23): mese
+   nella striscia in alto e giorno sotto, tutti e due DENTRO, così è alto 30 px
+   come il marchio e il cerchietto (Manlio, 2026-09-23: «in modo che abbia
+   sempre la stessa altezza»). */
+.parte .cal{display:flex;flex-direction:column;width:30px;height:30px;border-radius:6px;
+  border:1.5px solid var(--blu);background:var(--carta);overflow:hidden;box-sizing:border-box}
+.parte .cal .mese{display:block;background:var(--blu);color:var(--carta);font-size:7.5px;
+  line-height:9px;height:9px;text-align:center;letter-spacing:.04em;margin:0;font-weight:700}
+.parte .cal .num{position:static;display:grid;place-items:center;flex:1;font-size:12.5px;
+  color:var(--blu);line-height:1}
 
 /* SUL TELEFONO LA SCHEDA VA IN COLONNA. A 390 px le due colonne si
    strozzano: il nome del prodotto andava a capo ogni due parole e i prezzi
@@ -1421,7 +1428,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <h3>Cosa dice ogni riga</h3>
       <p>Ogni offerta è una scheda. In cima il <b>marchio del negozio</b>, poi il
       <b>cerchietto dei giorni che mancano</b> (o, se l'offerta deve ancora
-      cominciare, il giorno in cui parte), poi il prodotto. Il numero grande
+      cominciare, un <b>calendarietto</b> col giorno in cui parte), poi il prodotto. Il numero grande
       rosso è il prezzo <b>per unità</b>, quello con cui si confrontano i negozi;
       accanto, quanto costa la confezione e quanto pesa. Sotto il nome, quando servono, dei
       <b>bollini gialli con le condizioni</b>: con tessera, solo con app, al banco,
@@ -2616,10 +2623,12 @@ function cerchioInizio(o) {
   const p = o.inizio.split('-');
   const d = document.createElement('div');
   d.className = 'parte';
-  d.innerHTML = '<span class="anello">'
-    + '<svg viewBox="0 0 38 38" aria-hidden="true" focusable="false">'
-    + '<circle class="giro" cx="19" cy="19" r="16"></circle>'
-    + '</svg><span class="dentro"><span class="num"></span><span class="mese"></span></span></span>';
+  /* UN CALENDARIETTO, NON UN TONDINO (Manlio, 2026-09-23, punto 4: «va bene
+     la tua soluzione del calendarietto»). Il tondino dei giorni che mancano e
+     quello del giorno in cui parte avevano la stessa forma e si
+     confondevano: adesso questo è un foglietto quadrato con la striscia del
+     mese in alto, come i calendari da tavolo. Alto 30 px come il resto. */
+  d.innerHTML = '<span class="cal"><span class="mese"></span><span class="num"></span></span>';
   d.querySelector('.num').textContent = String(Number(p[2]));
   d.querySelector('.mese').textContent = MESI_CORTI[Number(p[1]) - 1] || '';
   d.title = 'Non è ancora cominciata: vale ' + giorno(o.inizio);
@@ -2868,16 +2877,17 @@ function disegna() {
   /* Il bottone dice cosa fa. Prima c'era una crocetta, e Manlio: «la x per
      togliere il prodotto mi sembra poco comprensibile, metterei invece un
      bottone elimina prodotto». La «i» viene subito dopo, come ha chiesto. */
+  /* «Elimina prodotto» NON sta più qui: è dentro la «i», accanto a «Cambia
+     nome» (Manlio, 2026-09-23, punto 4: «anche qua la tua soluzione è
+     ottima»). Era grande quanto il titolo per un'azione che si fa di rado. */
   capo.innerHTML = '<h2></h2><span class="unita"></span>'
-    + '<button type="button" class="elimina">Elimina prodotto</button>'
     + '<button type="button" class="info" aria-expanded="false"'
     + ' aria-label="Mostra i dettagli del prodotto">i</button>';
   capo.querySelector('h2').textContent = v.nome;
   capo.querySelector('.unita').textContent = 'prezzo ' + (DATI.unita[v.cat] || 'al kg');
-  capo.querySelector('.elimina').setAttribute('aria-label', 'Elimina «' + v.nome + '» dalla lista');
   out.appendChild(capo);
 
-  /* La crocetta è piccola e sta accanto al nome: un tocco per sbaglio non deve
+  /* «Elimina prodotto» (dentro la «i»): un tocco per sbaglio non deve
      far sparire un prodotto. Chiede conferma lì dove si è toccato, senza
      finestrelle di sistema che sul telefono arrivano da tutt'altra parte. */
   const conferma = document.createElement('div');
@@ -2892,8 +2902,6 @@ function disegna() {
     salva(); disegna();
   };
   conferma.querySelector('.no').onclick = () => { conferma.hidden = true; };
-  capo.querySelector('.elimina').onclick = () => { conferma.hidden = !conferma.hidden; };
-  out.appendChild(conferma);
 
   const dett = document.createElement('div');
   dett.className = 'dettaglio';
@@ -2925,7 +2933,13 @@ function disegna() {
   const bRin = document.createElement('button');
   bRin.type = 'button'; bRin.textContent = 'Cambia nome';
   g.appendChild(bRin);
+  const bVia = document.createElement('button');
+  bVia.type = 'button'; bVia.className = 'elimina'; bVia.textContent = 'Elimina prodotto';
+  bVia.setAttribute('aria-label', 'Elimina «' + v.nome + '» dalla lista');
+  bVia.onclick = () => { conferma.hidden = !conferma.hidden; };
+  g.appendChild(bVia);
   dett.appendChild(g);
+  dett.appendChild(conferma);
 
   const fr = document.createElement('form');
   fr.className = 'form-rin';

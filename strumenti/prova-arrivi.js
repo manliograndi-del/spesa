@@ -41,7 +41,8 @@ function apri(dopo) {
   const c = await apri((d, w) => {
     [...d.querySelectorAll('.tasto')].find(x => x.textContent.trim() === 'Marmellata').click();
     // dal 2026-09-05 si toglie con la crocetta accanto al nome, e va confermato
-    d.querySelector('.capo .elimina').click();
+    // dal 2026-09-23 «Elimina prodotto» sta dentro la «i»
+    d.querySelector('#risultato .elimina').click();
     d.querySelector('.conferma .si').click();
   });
   console.log('tolta Marmellata → ' + c.tasti.join(' · '));

@@ -3146,3 +3146,16 @@ Poco dopo, Manlio: «io metterei quella barra solo quando il prezzo più
 conveniente non è fra i primi tre». Se la scheda verde è la prima, la seconda
 o la terza, sul telefono si vede già senza scorrere. Adesso la barra c'è solo
 dalla quarta in giù; il 23 settembre resta nel solo Manzo.
+
+## Punto 4: la N, il calendarietto, «Elimina» — 2026-09-23
+
+Proposte tre cose; le risposte di Manlio:
+1. Il rosso: «toglie il rosso solo dal pulsante in alto a destra rotondo con
+   N… lascialo dalle altre parti, perché è un collegamento tra Prodotti,
+   manzo, prezzo meno caro… che i pulsanti non attivi abbiano un contorno
+   rosso non mi sembra la fine del mondo». Quindi solo la N è diventata bianca
+   col bordo. I prezzi restano rossi, il foglietto resta rosso.
+2. Il calendarietto al posto del tondino di quando parte: «va bene».
+3. «Elimina prodotto» dentro la «i»: «ottima, falla». Aggiornate
+   `prova-intestazione.js` e `prova-arrivi.js`, che lo cercavano accanto al
+   nome.

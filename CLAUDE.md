@@ -141,6 +141,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 
 ## Regole della pagina decise con lui
 
+- **«Elimina prodotto» sta dentro la «i»** accanto al nome del prodotto,
+  vicino a «Cambia nome», con la stessa conferma «Elimino …?» (2026-09-23,
+  punto 4: stava accanto al nome, grande quanto il titolo). Accanto al nome
+  resta solo la «i»: lo controlla `prova-intestazione.js`.
 - **L'elenco è in ordine di prezzo e basta.** Niente eccezioni in fondo. Il
   bollino verde «il meno caro» va al meno caro **che vale oggi**, che può non
   essere la prima riga.
@@ -417,7 +421,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     in cima **i supermercati**, uno per marchio, da toccare per toglierli o
     rimetterli; sotto i tasti **Colori della pagina** (`#apri-look`),
     **Aiuto** (`#apri-aiuto`) e **Cosa c'è di nuovo** (`#apri-novita-app`);
-  - la **N** rossa (`.pallino.novita`) apre il diario delle novità.
+  - la **N** (`.pallino.novita`) apre il diario delle novità. **Non è più
+    rossa** dal 2026-09-23 (punto 4, Manlio: «toglie il rosso solo dal
+    pulsante in alto a destra rotondo con N»): bianca col bordo, come
+    l'ingranaggio. Il rosso resta dove c'è: tasti, pillole, prezzi, foglietto
+    («non mi sembra la fine del mondo… lasciali così»).
   **I supermercati tolti** stanno in `localStorage` (`spesa.negozi.v1`), cioè
   sul telefono di chi guarda: Manlio e sua moglie possono tenerne di diversi.
   Si ricordano i TOLTI, non i tenuti, così un'insegna nuova compare da sola.
@@ -461,9 +469,12 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     «0» — uno zero su un'offerta ancora valida si leggerebbe «è finita»;
   - **le offerte che devono ancora cominciare non ce l'hanno**: lì il numero
     direbbe una cosa e la riga un'altra. Al suo posto, nello stesso angolo,
-    hanno il **tondino di quando partono** (`.parte`): il giorno grande
-    dentro, il mese sotto, chiesto il 2026-09-22 al posto della pastiglia
-    «vale dal 24 settembre»;
+    hanno il **segno di quando partono** (`.parte`): era un tondino (chiesto il
+    2026-09-22 al posto della pastiglia «vale dal 24 settembre»), e **dal
+    2026-09-23 è un CALENDARIETTO** (`.parte .cal`, punto 4, Manlio: «va bene
+    la tua soluzione del calendarietto»): quadrato, striscia blu col mese in
+    alto, giorno sotto, 30 px. Col tondino si confondeva col cerchietto dei
+    giorni che mancano;
   - **blu finché c'è tempo, ambra negli ultimi tre giorni.** Non rosso: il
     rosso, in questa pagina, vuol dire «premi qui».
   - **Marchio, cerchietto e icona del volantino sono alti uguali, 30 px**
@@ -639,6 +650,13 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Punto 4 fatto** (2026-09-23): la N non più rossa (il resto del rosso
+  resta, ha detto lui), il calendarietto al posto del tondino di quando parte
+  un'offerta, «Elimina prodotto» dentro la «i». Novità
+  `2026-09-23-zz-colori`. `sw.js` a v87. **Prossimo, chiedendoglielo
+  prima**: 5) menù in basso (solo se lo vuole), 6) «Dove conviene questa
+  settimana», 7) grandi marche.
 
 - **Punto 3 fatto: la riga in cima a ogni prodotto, solo quando serve**
   (2026-09-23, «va bene la prima, procedi»), poi ristretta: solo quando la

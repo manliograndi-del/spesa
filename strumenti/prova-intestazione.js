@@ -37,8 +37,12 @@ setTimeout(() => {
   if (!capo) { console.log('NON VA:\n  ✗ non c’è l’intestazione del prodotto'); process.exit(1); }
   const tasti = [...capo.querySelectorAll('button')].map(b => b.className);
   console.log('  accanto al nome: ' + (tasti.join(' + ') || 'niente'));
-  if (tasti.join() !== 'elimina,info')
-    guai.push('accanto al nome ci sono ' + (tasti.join(' + ') || 'zero bottoni') + ', devono essere elimina + info');
+  /* Dal 2026-09-23 «Elimina prodotto» sta dentro la «i», accanto a «Cambia
+     nome» (Manlio, punto 4): accanto al nome resta solo la «i». */
+  if (tasti.join() !== 'info')
+    guai.push('accanto al nome ci sono ' + (tasti.join(' + ') || 'zero bottoni') + ', deve esserci solo la «i»');
+  if (vede(d.querySelector('#risultato .elimina')))
+    guai.push('«Elimina prodotto» si vede senza toccare la «i»');
 
   for (const [che, sel] of [['il conteggio', '#risultato .quanti'],
                             ['i sinonimi', '#risultato .sinonimi'],
@@ -54,13 +58,14 @@ setTimeout(() => {
 
   // la crocetta chiede conferma, e «Lascia» non cancella niente
   const prima = prodotti();
-  capo.querySelector('.elimina').click();
+  d.querySelector('#risultato .elimina').click();
   const conf = d.querySelector('.conferma');
   if (!vede(conf)) guai.push('«Elimina prodotto» cancella senza chiedere conferma');
   else console.log('  «Elimina prodotto» chiede: ' + conf.querySelector('span').textContent);
   conf.querySelector('.no').click();
   if (prodotti() !== prima) guai.push('«Lascia» ha cancellato lo stesso');
-  d.querySelector('.capo .elimina').click();
+  d.querySelector('#risultato .info').click();
+  d.querySelector('#risultato .elimina').click();
   d.querySelector('.conferma .si').click();
   if (prodotti() !== prima - 1) guai.push('«Elimina» non ha tolto il prodotto');
   console.log(`  «Lascia» lascia (${prima}), «Elimina» elimina (${prodotti()})`);
