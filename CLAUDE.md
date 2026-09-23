@@ -257,6 +257,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   scritta da 14 px, poco imbottitura, 6 px fra una e l'altra. Anche le schede
   delle offerte sono più compatte (meno aria, non meno roba): stesso
   contenuto, angoli 16 px, prezzo grande 26 px.
+- **L'ORDINE DEL MENÙ IN BASSO È: Prodotti, Grandi marche, Personale, Cerca**
+  (2026-09-23 sera, Manlio: «metti Cerca come ultima cosa nella barra di
+  sotto»). Prima «Cerca» era il secondo. Lo controllano `prova-marche.js` e
+  `prova-personale.js`.
 - **DAL 2026-09-23 I QUATTRO TASTI DELLE SEZIONI SONO UN MENÙ IN BASSO**
   (punto 5 dell'analisi esterna; Manlio ha visto quattro schermate di una
   copia di prova e: «lo sai che mi piace davvero, bravo, possiamo farla»).
@@ -741,7 +745,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v93** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v94** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.

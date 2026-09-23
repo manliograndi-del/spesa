@@ -26,7 +26,10 @@ setTimeout(() => {
   const tasti = [...riga.querySelectorAll('button')];
   const rosso = riga.querySelector('.trova'), gm = riga.querySelector('.marchi');
   if (!rosso || !gm) { console.error('MANCA uno dei due tasti'); process.exit(1); }
-  if (tasti.indexOf(gm) < tasti.indexOf(rosso)) male.push('GRANDI MARCHE non sta a destra');
+  /* Dal 2026-09-23 sera «Cerca» è l'ultimo tasto in basso (Manlio: «metti
+     Cerca come ultima cosa nella barra di sotto»); prima GRANDI MARCHE stava
+     alla sua destra. */
+  if (tasti.indexOf(rosso) !== tasti.length - 1) male.push('«Cerca» non è l\'ultimo tasto in basso');
   if (!/\.riga-cerca \.tasto\.trova,\.riga-cerca \.tasto\.marchi,\.riga-cerca \.tasto\.sez\{flex:1 1 0/.test(html))
     male.push('manca la regola che fa i tre tasti larghi uguali');
 
@@ -63,7 +66,7 @@ setTimeout(() => {
   if (!pro()) male.push('manca il tasto «Prodotti»');
   else {
     const ordine = [...d.querySelectorAll('#riga-cerca button')].map(b => b.textContent);
-    if (ordine.join('|') !== 'Prodotti|Cerca|Grandi marche|Personale') male.push('i tre tasti sono ' + ordine.join(', '));
+    if (ordine.join('|') !== 'Prodotti|Grandi marche|Personale|Cerca') male.push('i tre tasti sono ' + ordine.join(', '));
     if (pro().getAttribute('aria-pressed') !== 'true') male.push('all\'inizio «Prodotti» non è acceso');
     gm2().click(); gm2().click();
     if (d.getElementById('ricerca').hidden) male.push('ritoccando Grandi marche la sezione si chiude');
@@ -77,6 +80,6 @@ setTimeout(() => {
   if (!/\.barra\{position:static\}/.test(html)) male.push('le pillole dei prodotti restano ancora attaccate in alto');
 
   if (male.length) { console.error('MALE:\n  ' + male.join('\n  ')); process.exit(1); }
-  console.log('  i due tasti: grandi uguali, tre sezioni Prodotti/Cerca/Grandi marche, marche senza casella, ricerca senza marche');
+  console.log('  i due tasti: grandi uguali, quattro sezioni, «Cerca» per ultimo, marche senza casella, ricerca senza marche');
   process.exit(0);
 }, 400);

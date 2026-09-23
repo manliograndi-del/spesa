@@ -3300,3 +3300,12 @@ Cosa si è fatto:
 
 1019 offerte su 1555 hanno la marca in cima; sulle schede dei suoi 13
 prodotti, 215 su 338.
+
+## «Cerca» ultimo nel menù in basso — 2026-09-23 sera
+
+Manlio: «metti Cerca come ultima icona… come ultima cosa nella barra di
+sotto». Adesso: Prodotti, Grandi marche, Personale, Cerca. Cambiato anche il
+titolo della voce dell'Aiuto che li elenca, e le due prove che controllano
+l'ordine; in `prova-marche.js` la vecchia regola «GRANDI MARCHE a destra di
+Cerca» (del giorno stesso, quando i tasti erano due) è diventata «Cerca è
+l'ultimo».

@@ -1478,7 +1478,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       puoi anche scrivere un nome che nel catalogo non c'è.</p>
     </div>
     <div class="voce">
-      <h3>Il menù in basso: «Prodotti», «Cerca», «Grandi marche», «Personale»</h3>
+      <h3>Il menù in basso: «Prodotti», «Grandi marche», «Personale», «Cerca»</h3>
       <p>Sono le parti della pagina, e restano sempre in fondo allo schermo anche
       quando scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
       con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
@@ -2043,7 +2043,6 @@ function disegnaTasti() {
   pro.setAttribute('aria-pressed', String(!ricercaAperta && !personaleAperto));
   pro.onclick = vaiInizio;
   suo.appendChild(pro);
-  suo.appendChild(cer);
   const gm = document.createElement('button');
   gm.type = 'button';
   gm.className = 'tasto agg marchi';
@@ -2077,6 +2076,9 @@ function disegnaTasti() {
   per.setAttribute('aria-pressed', String(personaleAperto));
   per.onclick = () => { if (!personaleAperto) apriPersonale(true); suInCima(); };
   suo.appendChild(per);
+  /* «CERCA» È L'ULTIMO (Manlio, 2026-09-23 sera: «metti Cerca come ultima
+     cosa nella barra di sotto»): Prodotti, Grandi marche, Personale, Cerca. */
+  suo.appendChild(cer);
 
   const cont = document.getElementById('quanti-prodotti');
   if (cont) cont.textContent = 'I tuoi prodotti (' + lista.length + ')';

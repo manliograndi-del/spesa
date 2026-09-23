@@ -39,7 +39,7 @@ setTimeout(() => {
   const per = d.getElementById('vai-personale');
   if (!per) { console.error('MANCA il tasto «Personale»'); process.exit(1); }
   const ordine = [...d.querySelectorAll('#riga-cerca button')].map(b => b.textContent);
-  if (ordine.join('|') !== 'Prodotti|Cerca|Grandi marche|Personale') male.push('i tasti sono ' + ordine.join(', '));
+  if (ordine.join('|') !== 'Prodotti|Grandi marche|Personale|Cerca') male.push('i tasti sono ' + ordine.join(', '));
   per.click();
   const sez = d.getElementById('personale');
   if (sez.hidden) male.push('«Personale» non apre la sezione');
