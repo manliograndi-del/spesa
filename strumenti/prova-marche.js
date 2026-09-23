@@ -79,7 +79,25 @@ setTimeout(() => {
   if (!/#riga-cerca\{position:fixed;top:auto;bottom:0/.test(html)) male.push('i tasti delle sezioni non stanno in fondo allo schermo');
   if (!/\.barra\{position:static\}/.test(html)) male.push('le pillole dei prodotti restano ancora attaccate in alto');
 
-  if (male.length) { console.error('MALE:\n  ' + male.join('\n  ')); process.exit(1); }
-  console.log('  i due tasti: grandi uguali, quattro sezioni, «Cerca» per ultimo, marche senza casella, ricerca senza marche');
-  process.exit(0);
+  /* LA TASTIERA ARRIVA A GRIGLIA SCESA (Manlio, 2026-09-24 notte): toccando
+     «Cerca» dai prodotti la casella prende il fuoco solo quando la griglia è
+     finita dietro il menù, non subito. jsdom non anima: qui vale il tempo
+     massimo (350 ms). Dalle grandi marche la griglia è già giù, e il fuoco va
+     subito. */
+  d.getElementById('vai-prodotti').click();
+  q.blur();   // jsdom non toglie il fuoco a una casella che sparisce: il telefono sì
+  rosso2().click();
+  if (d.activeElement === q) male.push('toccando «Cerca» la casella prende il fuoco subito, prima che la griglia scenda');
+  setTimeout(() => {
+    if (d.activeElement !== q) male.push('toccando «Cerca» la casella non prende mai il fuoco');
+    d.getElementById('vai-prodotti').click();
+    q.blur();
+    gm2().click();
+    rosso2().click();
+    if (d.activeElement !== q) male.push('dalle grandi marche a «Cerca» la casella non prende subito il fuoco');
+    if (male.length) { console.error('MALE:\n  ' + male.join('\n  ')); process.exit(1); }
+    console.log('  i due tasti: grandi uguali, quattro sezioni, «Cerca» per ultimo, marche senza casella, ricerca senza marche');
+    console.log('  «Cerca»: la casella prende il fuoco a griglia scesa');
+    process.exit(0);
+  }, 600);
 }, 400);

@@ -3434,3 +3434,16 @@ animazioni si rallentano dieci volte (`Animation.setPlaybackRate` via CDP),
 si scattano le foto a 2× una per una, e i tempi si riportano a quelli veri
 nella lista di `ffmpeg` (quello completo arriva da `pip install
 imageio-ffmpeg`: quello di Playwright sa fare solo VP8).
+
+Risposta al video: «meravigliosa l'animazione, va benissimo», e in più:
+«selezionare la casella di testo nella scheda Cerca dopo che la scheda è
+sparita, per non fare apparire la tastiera prima che sia finita
+l'animazione». Il fuoco prima arrivava subito dentro `apriRicerca`; adesso lo
+dà `fuocoAGrigliaScesa()` quando la discesa finisce (`transitionend` sulla
+`transform`, tempo massimo 350 ms), subito se la griglia era già giù (dalle
+Grandi marche) o se il telefono chiede meno movimento. Misurato in Chromium:
+discesa finita a 287 ms, fuoco a 288. **Da tenere d'occhio**: su iPhone
+Safari un `focus()` che non arriva dentro il tocco può non aprire la
+tastiera; se Manlio dice che in «Cerca» deve toccare la casella, è questo.
+Pubblicato: `sw.js` v100, novità `2026-09-24-griglia` (l'id col 24 perché in
+Italia era già passata mezzanotte).

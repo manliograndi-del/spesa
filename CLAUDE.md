@@ -154,6 +154,18 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
   invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
   pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
+- **LA GRIGLIA DEI PRODOTTI SALE E SCENDE** (2026-09-24 notte, Manlio:
+  «un'animazioncina che fa uscire i nomi dei prodotti quando si schiaccia su
+  Prodotti e la fa andare giù quando si schiaccia sulle altre voci»; visto
+  un video, «meravigliosa»). Un quarto di secondo, da e dietro il menù. È
+  la classe `.giu` sulla `.barra`, **non `hidden`**: il link Claude mette da
+  sé `[hidden]{display:none!important}` e da lì non si anima niente. Le
+  prove guardano la classe. **In «Cerca» la casella prende il fuoco (e il
+  telefono apre la tastiera) solo a griglia scesa** (Manlio, subito dopo:
+  «per non fare apparire la tastiera prima che sia finita l'animazione»):
+  `fuocoAGrigliaScesa()` aspetta `transitionend`, al massimo 350 ms; subito
+  se la griglia era già giù o se il telefono chiede meno movimento. Lo
+  controlla `prova-marche.js`.
 - **I TASTI SONO RETTANGOLI ARROTONDATI, NON PILLOLE** (2026-09-23 sera,
   Manlio: «non potresti fare tutte le pillole dei comandi un po' Material
   3, più squadrate?»; viste quattro schermate: «cambiamenti perfetti»).
@@ -820,15 +832,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Sul ramo di lavoro, IN PROVA E NON PUBBLICATA** (2026-09-23 sera):
-  l'animazione della griglia dei prodotti, che sale da dietro il menù
-  toccando «Prodotti» e ci scende toccando le altre voci (un quarto di
-  secondo; classe `.giu` al posto di `hidden`, perché il link Claude con
-  `hidden` spegne tutto di colpo). Manlio ha visto un video. **Se dice sì**:
-  novità nella pagina, `sw.js` v100, pubblicare. **Se dice no**: togliere il
-  commit «Prova: la griglia dei prodotti sale e scende» prima di portare
-  `main` avanti. `index.html` e `sw.js` non sono stati toccati.
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v99** (banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v100** (la griglia dei prodotti sale e scende col menù, la tastiera di «Cerca» arriva a griglia scesa; a v99: banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.

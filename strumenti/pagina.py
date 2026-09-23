@@ -524,6 +524,11 @@ NOVITA_PAGINA = [
                'che stai guardando: stacca le offerte dalla parte in alto. È '
                'squadrata perché non è un tasto, è solo il nome. I tasti invece '
                'hanno tutti gli angoli un po\' meno tondi.'),
+    dict(id='2026-09-24-griglia', quando='24 settembre',
+         titolo='I prodotti salgono e scendono',
+         testo='Toccando «Grandi marche», «Personale» o «Cerca», la griglia dei tuoi '
+               'prodotti scende dietro il menù; toccando «Prodotti» risale. In «Cerca» '
+               'la tastiera arriva quando la griglia è già scesa.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -2323,6 +2328,7 @@ const SCRITTA_Q = document.getElementById('q').placeholder;
 
 function apriRicerca(si, senzaFuoco) {
   if (si && personaleAperto) apriPersonale(false);
+  const giaGiu = document.querySelector('.barra').classList.contains('giu');
   ricercaAperta = si;
   if (!si) { vistaMarche = false; marcaScelta = null; }
   if (si && cassettoAperto) apriCassetto(false);
@@ -2343,7 +2349,7 @@ function apriRicerca(si, senzaFuoco) {
        ECCEZIONE: quando il pannello si apre da solo per mostrare un volantino
        intero non c'e niente da scrivere, e la tastiera coprirebbe le offerte
        appena arrivate. */
-    if (!senzaFuoco) { try { document.getElementById('q').focus(); } catch (e) {} }
+    if (!senzaFuoco) fuocoAGrigliaScesa(giaGiu);
   } else {
     document.getElementById('q').value = '';
     document.getElementById('q').placeholder = SCRITTA_Q;
@@ -2356,6 +2362,32 @@ function apriRicerca(si, senzaFuoco) {
       try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     }
   }
+}
+
+/* IL FUOCO SULLA CASELLA DI «CERCA» ARRIVA A GRIGLIA SCESA (Manlio,
+   2026-09-24 notte: «selezionare la casella di testo nella scheda Cerca dopo
+   che la scheda è sparita, per non far apparire la tastiera prima che sia
+   finita l'animazione»). Si aspetta la fine della discesa (transitionend),
+   con un tempo massimo per quando non arriva: chi ha chiesto al telefono
+   meno movimento, o una discesa interrotta. Se la griglia era già giù (da
+   Grandi marche) il fuoco va subito. Quando arriva si guarda di essere
+   ancora nella ricerca: in un quarto di secondo uno può aver toccato altro. */
+function fuocoAGrigliaScesa(giaGiu) {
+  const q = document.getElementById('q');
+  const barra = document.querySelector('.barra');
+  let fatto = false;
+  const fine = e => { if (e.target === barra && e.propertyName === 'transform') vai(); };
+  const vai = () => {
+    if (fatto) return;
+    fatto = true;
+    barra.removeEventListener('transitionend', fine);
+    if (ricercaAperta && !q.hidden) { try { q.focus(); } catch (e) {} }
+  };
+  let fermo = false;   // chi ha chiesto meno movimento: la griglia non scende, sparisce
+  try { fermo = matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (giaGiu || fermo) { vai(); return; }
+  barra.addEventListener('transitionend', fine);
+  setTimeout(vai, 350);
 }
 
 /* Apre il pannello sulle offerte di un volantino solo. Lo apriva il tasto
