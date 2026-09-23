@@ -147,3 +147,4 @@
 2026-09-23 17:59 UTC  prezzi a destra su due righe, via il foglietto del volantino, niente € né «prezzo al kg» doppio. sw.js v89.
 2026-09-23 18:05 UTC  pubblicato: sito (verificato, sw.js v89) e artifact (versione 80): prezzi a destra.
 2026-09-23 18:55 UTC  nome del prodotto meno nero e prezzi a metà della scheda. sw.js v90.
+2026-09-23 18:56 UTC  pubblicato: sito (verificato, sw.js v90) e artifact (versione 81): nome meno nero, prezzi a metà.
