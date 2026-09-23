@@ -139,3 +139,4 @@
 2026-09-23 16:25 UTC  riga in cima a ogni prodotto solo quando serve (meno caro di oggi se non è il primo, offerta più conveniente in arrivo). sw.js v85.
 2026-09-23 16:31 UTC  pubblicato: sito (verificato, sw.js v85, anche novita.html) e artifact (versione 76): riga in cima ai prodotti.
 2026-09-23 16:32 UTC  riga in cima ai prodotti solo se il meno caro di oggi non è fra le prime tre schede. sw.js v86.
+2026-09-23 16:37 UTC  pubblicato: sito (verificato, sw.js v86) e artifact (versione 77): riga in cima solo oltre i primi tre.
