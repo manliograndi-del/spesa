@@ -38,6 +38,17 @@ Pubblicata in due posti, **e vanno aggiornati tutti e due**:
 - il sito, `https://manliograndi-del.github.io/spesa/` — un commit su `main`
 - l'artifact, il link che ha anche sua moglie — `Artifact` con lo stesso URL
 
+**GitHub Pages pubblica solo da `main`.** Chi lavora dentro Claude Code parte
+spesso da un ramo di lavoro diverso (assegnato dalla sessione, non scelto):
+committare e spingere lì NON aggiorna il sito, anche se le prove passano e
+tutto sembra a posto. Il 2026-09-23 `main` era rimasto indietro di nuovo
+(stessa cosa del 17 settembre, vedi NOTE.md): il lavoro del giorno prima era
+tutto sul ramo di lavoro e mai arrivato a `main`. **Prima di dire «pubblicato»,
+porta sempre `main` avanti fino al ramo di lavoro** (`git push origin
+HEAD:main`, un fast-forward: sicuro, non riscrive storia) e verifica scaricando
+`index.html` dal sito e confrontandolo byte per byte col file appena
+pubblicato — non basta che il push sia andato a buon fine.
+
 ## Vincoli tecnici — non negoziabili senza chiederglielo
 
 1. **I prezzi si leggono a occhio dalle pagine dei volantini.** L'OCR non legge
