@@ -127,3 +127,4 @@
 2026-09-23 11:39 UTC  sconto in percentuale su ogni scheda, fra il cerchietto e il foglietto (558 offerte). sw.js v79.
 2026-09-23 11:40 UTC  pubblicato: sito (verificato, sw.js v79) e artifact (versione 70): sconto in percentuale sulle schede.
 2026-09-23 11:59 UTC  categorie pulite: würstel, preparati, affettati, panati, salmone affumicato, collutorio fuori dalla carne e dal pesce freschi (95 righe); guardia in dati.py. sw.js v80.
+2026-09-23 12:00 UTC  pubblicato: sito (verificato, sw.js v80, anche catalogo.pdf) e artifact (versione 71): categorie pulite.
