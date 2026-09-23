@@ -3339,3 +3339,13 @@ hanno tutte la stessa altezza, io diminuirei quelle più grandi perché già son
 molto grandi all'altezza del logo». In cima alla scheda marchio, cerchietto,
 calendarietto e sconto erano 30 px, i bollini beige 21: adesso tutte 24 px,
 logo alto 17. Pubblicate insieme, `sw.js` v95.
+
+## Anche il menù in basso a pillole — 2026-09-23 sera
+
+Manlio, visti i prodotti in griglia: «per omogeneità, se i tasti sono su una
+pillola, perché i tasti principali no?». I quattro tasti del menù adesso sono
+pillole come quelle dei prodotti: stessa griglia da quattro (le colonne
+combaciano con quelle di sopra), stesso bordo e fondo, scritta scura invece
+che grigia, icona sopra. Quello acceso è rosso pieno come il prodotto acceso
+(prima: scritta rossa su fondino rosa). Provato a 390 e 360 px e con le grandi
+marche: ci stanno ancora tutte e 46 in una schermata.

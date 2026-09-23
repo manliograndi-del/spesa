@@ -158,3 +158,4 @@
 2026-09-23 20:31 UTC  pubblicato: sito (verificato, sw.js v94) e artifact (versione 85): «Cerca» ultimo nel menù.
 2026-09-23 20:52 UTC  prodotti in basso sopra il menù, in una griglia da quattro; pillole della scheda tutte a 24 px. sw.js v95.
 2026-09-23 20:53 UTC  pubblicato: sito (verificato, sw.js v95) e artifact (versione 86): prodotti in basso in griglia, pillole a 24 px.
+2026-09-23 20:59 UTC  menù in basso a pillole, come i prodotti. sw.js v96.

@@ -716,6 +716,20 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 /* «Grandi marche» resta su due righe, ma strette (Manlio: «lo lascerei così,
    con meno interlinea»). */
 #riga-cerca .riga-gm{display:block;line-height:.95}
+/* I QUATTRO TASTI DEL MENÙ SONO PILLOLE, COME QUELLI DEI PRODOTTI (Manlio,
+   2026-09-23 sera: «per omogeneità, se i tasti sono su una pillola, perché i
+   tasti principali no?»). Stessa griglia da quattro della griglia dei prodotti
+   qui sopra, stesso bordo, stesso fondo, angoli tondi; l'icona resta sopra la
+   scritta. Quello della sezione in cui si è è rosso pieno, come il prodotto
+   acceso. */
+#riga-cerca{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;
+  padding:7px max(12px,calc((100% - 770px) / 2)) calc(7px + env(safe-area-inset-bottom,0px))}
+#riga-cerca .tasto,#riga-cerca .tasto.trova,#riga-cerca .tasto.marchi,#riga-cerca .tasto.sez{
+  justify-content:center;border:1.5px solid var(--linea-forte);background:var(--carta);
+  color:var(--inchiostro);border-radius:99px;min-height:50px;padding:5px 4px;gap:2px}
+#riga-cerca .tasto::before{width:19px;height:19px}
+#riga-cerca .tasto[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
+  color:var(--su-rosso)}
 .guscio{padding-bottom:100px}
 /* LE PILLOLE DEI PRODOTTI STANNO IN BASSO, SOPRA IL MENÙ, IN UNA GRIGLIA
    (Manlio, 2026-09-23 sera: «sempre per fare piacere al pollice, se i

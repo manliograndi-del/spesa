@@ -256,6 +256,12 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     è solo quello che si legge sul bottone. La ricerca nelle pagine usa le
     `parole`, non il nome (per questo «Pesce» può chiamarsi così senza tirare
     dentro i bastoncini e i sughi di pesce).
+- **ANCHE I QUATTRO TASTI DEL MENÙ SONO PILLOLE** (2026-09-23 sera, Manlio:
+  «per omogeneità, se i tasti sono su una pillola, perché i tasti principali
+  no?»): stessa griglia da quattro della griglia dei prodotti, stesso bordo,
+  fondo e angoli tondi; icona sopra la scritta; quello della sezione in cui
+  si è è ROSSO PIENO, come il prodotto acceso (prima era rosso su fondino
+  rosa). Alti circa 54 px («Grandi marche» su due righe decide l'altezza).
 - **LE PILLOLE DEI PRODOTTI STANNO IN BASSO, SOPRA IL MENÙ, IN UNA GRIGLIA**
   (2026-09-23 sera, Manlio: «sempre per fare piacere al pollice, se i
   prodotti rimettessimo in basso sopra il menù inferiore», e «come le grandi
@@ -771,7 +777,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v95** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v96** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
