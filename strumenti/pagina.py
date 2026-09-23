@@ -282,6 +282,15 @@ NOVITA_PAGINA = [
                'conveniente, con un tasto per vederle tutte. Con «Personalizza '
                'supermercati» scegli dove cercare, solo per questa sezione. Le '
                'parole restano sul tuo telefono: ognuno ha le sue.'),
+    # «v» dopo «u-personale»: le novità si segnano per id più grande.
+    dict(id='2026-09-23-v-categorie', quando='23 settembre',
+         titolo='Categorie più pulite',
+         testo='Würstel, hamburger, polpette, cotolette e nuggets non stanno più '
+               'insieme alla carne fresca: hanno le categorie «Würstel» e '
+               '«Preparati». Così il meno caro di Suino, Manzo e Pollo è davvero '
+               'carne. Nuove anche «Affettati», «Salmone affumicato», '
+               '«Collutorio» e «Panati» (i bastoncini e il pesce impanato). Se ti '
+               'servono, le accendi da «+ altri prodotti».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI

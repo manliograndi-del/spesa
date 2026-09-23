@@ -22,10 +22,10 @@ significa mettere in cima all'elenco l'offerta sbagliata.
 # reparto, [(nome, parole, unità)]
 REPARTI = [
  ('Macelleria e salumi', [
-  ('Manzo',               'bovino manzo scottona roastbeef hamburger macinato fettine bistecca costata reale', 'kg'),
+  ('Manzo',               'bovino manzo scottona roastbeef macinato fettine bistecca costata reale', 'kg'),
   ('Vitello',             'vitello vitellone fesa tagliata', 'kg'),
   ('Suino',               'suino maiale lonza coppa braciole arista spezzato costine nodini involtini', 'kg'),
-  ('Pollo',               'pollo petto alette fusi sovracosce cosce filettini nuggets', 'kg'),
+  ('Pollo',               'pollo petto alette fusi sovracosce cosce filettini', 'kg'),
   ('Tacchino',            'tacchino fesa spinacine', 'kg'),
   ('Salsiccia',           'salsiccia salamella luganega bocconcini', 'kg'),
   ('Prosciutto',          'prosciutto crudo cotto stagionato daniele parma speck praga', 'kg'),
@@ -33,14 +33,28 @@ REPARTI = [
   ('Mortadella',          'mortadella bologna', 'kg'),
   ('Bresaola',            'bresaola punta anca', 'kg'),
   ('Pancetta',            'pancetta bacon guanciale cubetti', 'kg'),
+  # LE CARNI LAVORATE HANNO CATEGORIE LORO (Manlio, 2026-09-23, scelta «A»
+  # fra due): prima stavano con la carne fresca e il «meno caro» del Suino
+  # erano i würstel, quello del Manzo le polpettine. Un bollino verde così
+  # manda in negozio a comprare la cosa sbagliata.
+  ('Würstel',             'wurstel wudy wuber frankfurter', 'kg'),
+  ('Preparati',           'hamburger polpette polpettine cotolette cotoletta cordon nuggets spiedini bombette kebab rolle', 'kg'),
+  ('Affettati',           'arrosto forno affettato affettati', 'kg'),
  ]),
  ('Pesce', [
   ('Tonno',               'tonno tonnetto pinne gialle yellowfin', 'kg'),
-  ('Salmone',             'salmone filetto affumicato sashimi saku', 'kg'),
+  ('Salmone',             'salmone filetto sashimi saku', 'kg'),
+  # Due parole apposta, come «Verdure surgelate»: «Affumicato» da solo non si
+  # capirebbe. Costa tre o quattro volte il salmone fresco: insieme, il
+  # confronto non aveva senso.
+  ('Salmone affumicato',  'affumicato affumicata', 'kg'),
   ('Merluzzo',            'merluzzo baccala nasello platessa filetti bianchi', 'kg'),
   ('Gamberi',             'gamberi gamberetti mazzancolle code', 'kg'),
   ('Calamari',            'calamari seppie totano anelli moscardini', 'kg'),
-  ('Bastoncini',          'bastoncini findus capitan', 'kg'),
+  # Era «Bastoncini»: dal 2026-09-23 ci stanno anche croccole, fishburger,
+  # filetti impanati, fritto misto e tempura, tolti dal merluzzo, dai
+  # calamari e dai gamberi freschi.
+  ('Panati',              'bastoncini findus capitan croccole panato panati impanati fishburger pastella tempura', 'kg'),
   # Chiesta da Manlio il 2026-09-05: sui volantini c'erano orata a 8,90 al kg,
   # branzino, polpo, vongole, verdesca, scampi — offerte vere che non avevano
   # nessuna casa e restavano fuori. Una voce sola per tutto cio che non e tonno,
@@ -112,7 +126,8 @@ REPARTI = [
   ('Asciugatutto',        'asciugatutto tovaglioli fazzoletti cucina strappi', 'rotolo'),
   ('Bagnoschiuma',        'bagnoschiuma sapone docciaschiuma intimo mani', 'litro'),
   ('Shampoo',             'shampoo balsamo capelli', 'litro'),
-  ('Dentifricio',         'dentifricio collutorio spazzolino mentadent colgate', 'litro'),
+  ('Dentifricio',         'dentifricio spazzolino mentadent colgate', 'litro'),
+  ('Collutorio',          'collutorio listerine', 'litro'),
  ]),
 ]
 
@@ -156,7 +171,8 @@ RINOMINATE = {
  'Pancetta e bacon':          'Pancetta',
  'Merluzzo e baccalà':        'Merluzzo',
  'Calamari e seppie':         'Calamari',
- 'Bastoncini di pesce':       'Bastoncini',
+ 'Bastoncini di pesce':       'Panati',
+ 'Bastoncini':                'Panati',
  'Pesce fresco':              'Pesce',
  'Grana e parmigiano':        'Grana',
  'Formaggi spalmabili':       'Spalmabili',

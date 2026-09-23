@@ -2994,3 +2994,38 @@ di prima. `sconto()` in `pagina.py`:
 Risultato: 558 offerte su 1555 col bollino. Controllati a mano i casi con
 «kg» nella nota: tutti o con la percentuale stampata o col «prima» della
 confezione.
+
+## Categorie pulite: la carne lavorata fuori dalla fresca — 2026-09-23
+
+Manlio ha incollato un'analisi dell'interfaccia fatta con un altro
+assistente. La conclusione più forte non era sui colori: «il difetto più
+costoso è nei dati: in Carne i würstel finiscono accanto alla lonza». L'ho
+verificata sui dati: il meno caro di oggi del Suino erano i würstel (2,59
+€/kg), del Manzo le polpettine, del Dentifricio un collutorio, del Salmone un
+salmone in scatola. Proposte due strade: A) categorie separate, B) restano ma
+senza bollino verde. Ha scelto A.
+
+Rivista a mano OGNI riga di Manzo, Vitello, Suino, Pollo, Tacchino,
+Salsiccia, Merluzzo, Salmone, Pesce, Tonno, Gamberi, Calamari, Dentifricio,
+Tè, Legumi (non solo gli esempi). 95 righe spostate:
+- Würstel (6), Preparati (43: hamburger, polpette, cotolette e cordon bleu,
+  nuggets, spiedini, bombette, rollé, Bon Roll, kebab, panzerotti, cotechino),
+  Affettati (9: pollo e tacchino al forno o arrosto, roast beef all'inglese),
+  Panati (19, era Bastoncini: più croccole, fishburger, impanati, fritto
+  misto, tempura), Salmone affumicato (11), Collutorio (1);
+- in Conserve: salmone in scatola (2), carne in scatola (1), piselli e
+  carote (1); in Salame: chorizo e capocollo stagionato.
+Lasciati dove sono: tartare e carpaccio (carne cruda), camomilla e tisane nel
+Tè (la voce era nata «Tè e tisane»), il formaggio fuso nel Formaggio (le
+sottilette sono fra le sue parole da sempre).
+
+Tolte «hamburger» dalle parole del Manzo, «nuggets» dal Pollo, «affumicato»
+dal Salmone, «collutorio» dal Dentifricio: servono a trovare le pagine della
+voce giusta.
+
+La guardia in `dati.py` ha fermato al primo colpo «Cotolette e nodini di
+suino» del Bennet: sono costolette fresche, non impanate. Eccezione scritta.
+
+Il diario del giorno dice «Spostati di reparto 91» in una sezione piccola, e
+i «meno caro adesso» di Suino, Manzo, Dentifricio, Salmone cambiati: è vero,
+non è una novità falsa.

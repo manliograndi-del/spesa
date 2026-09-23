@@ -32,7 +32,7 @@ Conseguenze operative, e non sono formalità:
 Una pagina che cerca i prodotti suoi nei volantini dei supermercati vicini a
 casa (Torino, corso Siracusa). Ogni prodotto è un bottone: lo tocchi ed escono
 le offerte, dalla più conveniente in giù, col prezzo per unità. Chi non trova
-quello che vuole lo accende da un catalogo di 67 voci diviso per reparto.
+quello che vuole lo accende da un catalogo di 71 voci diviso per reparto.
 
 Pubblicata in due posti, **e vanno aggiornati tutti e due**:
 - il sito, `https://manliograndi-del.github.io/spesa/` — un commit su `main`
@@ -127,6 +127,17 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   servono solo al caso vero (la pagina «Weekend più uno» dell'MD).
 - **Categorie fuori catalogo**: un prezzo in una categoria che non esiste
   verrebbe caricato e non mostrato a nessuno, in silenzio.
+- **Carne e pesce lavorati nella categoria del fresco** (dal 2026-09-23): il
+  «meno caro» del Suino erano i würstel, quello del Manzo le polpettine.
+  Würstel, hamburger, polpette, cotolette, nuggets, spiedini, affettati al
+  forno, pesce impanato, salmone affumicato e collutorio hanno categorie loro
+  (**Würstel, Preparati, Affettati, Panati, Salmone affumicato,
+  Collutorio**) e `dati.py` si ferma se una riga così finisce in Manzo,
+  Vitello, Suino, Pollo, Tacchino, Merluzzo, Pesce, Calamari, Gamberi,
+  Salmone o Dentifricio. Le «cotolette e nodini» di suino sono carne fresca
+  (costolette): eccezione scritta lì. Il salmone e la carne **in scatola** e
+  le verdure miste in scatola vanno in **Conserve**, chorizo e capocollo
+  stagionato in **Salame**.
 
 ## Regole della pagina decise con lui
 
@@ -181,6 +192,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **Carta igienica** (da sola «Igienica» non si legge) e **Verdure surgelate**
   (da sola «Verdure» si confonderebbe con la **Verdura** fresca, che è un'altra
   categoria). **Prosciutto crudo e cotto sono una voce sola, «Prosciutto».**
+  Dal 2026-09-23 c'è una quinta voce con due parole, **Salmone affumicato**
+  («Affumicato» da solo non si capisce), e **Bastoncini si chiama «Panati»**
+  (in `RINOMINATE`), perché adesso ci stanno anche croccole, fishburger,
+  pesce impanato, fritto misto e tempura.
   - **La tabella `RINOMINATE` in `catalogo.py` non si cancella mai.** I nomi
     vecchi sono scritti nella lista salvata nel telefono di Manlio e in quello
     di sua moglie: la tabella fa sì che il loro bottone prenda il nome nuovo
@@ -562,6 +577,16 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
 
+- **Categorie pulite** (2026-09-23, scelta «A» di Manlio fra due, dopo
+  un'analisi esterna che gli indicava il difetto più costoso: «in Carne i
+  würstel finiscono accanto alla lonza»). 95 offerte spostate; 5 voci nuove e
+  Bastoncini → Panati; `dati.py` blocca le ricadute. `sw.js` a v80. **Nella
+  lista di Manlio le voci nuove non ci sono**: se gli servono, le accende da
+  «+ altri prodotti». **Da qui in poi, col resto dell'analisi, nell'ordine
+  concordato**: 2) note trasformate in bollini brevi e ripetizioni tolte,
+  3) riga di sintesi in cima a ogni prodotto, 4) colori, date, «Elimina»,
+  5) menù in basso (solo se lo vuole), 6) «Dove conviene questa settimana»,
+  7) grandi marche.
 - **Lo sconto in percentuale su ogni scheda** (2026-09-23, chiesto da Manlio),
   fra il cerchietto dei giorni e il foglietto: letto dalle note, 558 offerte
   su 1555. `sw.js` a v79.
