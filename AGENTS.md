@@ -176,12 +176,14 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   puoi toglierli nel caso in cui coincidano»). Riguarda tutto quello che si
   vende sfuso — al kg, al banco: lì la confezione non esiste, e ripetere
   «12,99 € al kg» e «12,99 € al pezzo» era lo stesso numero due volte.
-  Sparisce sia il secondo prezzo (`.val .p2`) sia il «… € la confezione»
-  nella riga del formato; resta «Formato: al kg · fino al 28 settembre».
+  Sparisce il secondo prezzo (`.val .p2`); resta «Formato: al kg · fino al
+  28 settembre». (Dal 2026-09-23 il «… € la confezione» non sta più nella
+  riga del formato per NESSUNA offerta: il prezzo della confezione è solo a
+  destra, in `.val .p2`.)
   Il confronto si fa sui numeri **come vengono scritti** (`eur`), non sui
   decimali interi. Sono 296 offerte su 1387. La prova è `prova-meno-caro.js`,
-  che adesso controlla le due strade: o c'è scritto quanto costa la
-  confezione e allora il secondo prezzo c'è, o non c'è né l'uno né l'altro.
+  che controlla che nessun numero sia scritto due volte: niente «la
+  confezione» nella riga del formato, e `.p2` mai uguale al prezzo grande.
   **Resta da decidere con lui** il caso dei banchi all'etto (il prosciutto a
   2,59 all'etto e 25,90 al kg): lì i numeri sono diversi, ma la scritta
   «al pezzo» non è giusta — un etto non è un pezzo.
@@ -313,8 +315,8 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **fuori dalla barra appiccicata**. Poi «I tuoi prodotti (N)» con le
   pastiglie. Regole da non cambiare:
   - **Ogni offerta è una scheda** (`.prezzo-riga`), con in cima il marchio del
-    negozio e i bollini, poi nome, formato e prezzo della confezione, la nota
-    in un riquadro ambra e a destra i due prezzi (al pezzo e per unità).
+    negozio e i bollini, poi nome e formato, i bollini delle condizioni col
+    tasto «Dettagli» (vedi sotto) e i due prezzi (per unità e al pezzo).
     **In fondo alla scheda non c'è niente**: la scritta «Vedi tutte le offerte
     del volantino» c'era e Manlio l'ha fatta togliere lo stesso giorno,
     «è inutile» — quelle offerte si aprono dal tasto del volantino in fondo
@@ -477,6 +479,23 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     558 offerte su 1555. **Quando si leggono volantini nuovi, scrivere sempre
     nella nota lo sconto come lo stampa il volantino** («−30%, prima 3,29»):
     è da lì che il bollino nasce. La prova è `prova-sconto.js`.
+  - **Le note NON sono più un riquadro ambra lungo: sono BOLLINI BREVI**
+    sotto il nome, più un tasto «Dettagli» per il resto (chiesto il
+    2026-09-23, punto 2 dell'analisi esterna: «le note gialle diventano
+    bollini brevi, e tolgo i numeri ripetuti»). Li decide `condizioni()` in
+    `pagina.py`, dalla nota: «Con tessera» (Pam «Solo con app», Lidl «Con
+    Lidl Plus», Ipercoop «Solo soci»), «Al banco» (non se il formato lo dice
+    già), «Surgelato» (non nelle categorie surgelate), «1+1», «Più ne
+    prendi», «Non in tutti i negozi». Dalla nota si tolgono **solo** le frasi
+    che la scheda dice già: lo sconto se c'è il suo bollino (il «prima» va nel
+    `title` del bollino), le date se la riga ha le sue (bollino rosso), «il
+    volantino stampa N al kg» solo se N è **lo stesso numero scritto** del
+    prezzo grande, le etichette («Bollino «Conviene»», «Speciale Sardegna») e
+    le frasi della tessera. **Tutto il resto resta in «Dettagli»** («senza
+    tessera 3,49», «è pasta di lenticchie, non di grano»). La nota intera
+    resta nei dati: «Cerca» cerca anche lì. Il 2026-09-23 le note lunghe
+    sono passate da 1280 a 529. La prova è `prova-bollini.js`, che controlla
+    anche che **nessun numero della nota sparisca** senza stare altrove.
   La prova è `prova-giorni.js`.
 - **Le novità della pagina si segnano per id PIÙ GRANDE, non per ultima
   dell'elenco.** Il confronto è alfabetico: due novità dello stesso giorno
@@ -579,6 +598,12 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Punto 2 fatto: note in bollini brevi e numeri ripetuti tolti**
+  (2026-09-23, «Sì, procedi col punto 2»). Schede più basse; il resto della
+  nota dietro «Dettagli». Novità `2026-09-23-w-bollini`. `sw.js` a v81.
+  **Prossimo, chiedendoglielo prima**: 3) riga di sintesi in cima a ogni
+  prodotto («Oggi: X · da giovedì: Y»).
 
 - **Categorie pulite** (2026-09-23, scelta «A» di Manlio fra due, dopo
   un'analisi esterna che gli indicava il difetto più costoso: «in Carne i

@@ -74,19 +74,18 @@ setTimeout(() => {
       male.push(t.textContent + ': senza prezzo per unità');
     if (!r.querySelector('.marchio').textContent.trim())
       male.push(t.textContent + ': non dice in che negozio');
-    /* Quanto costa la confezione si scrive solo se e un numero DIVERSO dal
-       prezzo per unita: sulle offerte sfuse (al kg, al banco) e lo stesso
-       numero, e Manlio ha fatto togliere il doppione il 2026-09-23. Qui si
-       controlla proprio questo: o c'e la confezione, o i due numeri
-       coincidevano e allora il secondo prezzo NON deve esserci. */
-    const due = r.querySelector('.val .p2');
-    if (/la confezione/.test(dentro)) {
-      if (!due) male.push(t.textContent + ': dice il prezzo della confezione ma non lo mostra');
-    } else {
-      if (due) male.push(t.textContent + ': prezzo della confezione ripetuto senza dirlo');
-      const n = r.querySelector('.val .n').textContent.trim();
-      if (!n) male.push(t.textContent + ': senza nessun prezzo');
-    }
+    /* Ogni numero si scrive UNA volta sola. Il prezzo della confezione sta
+       a destra (.p2) e non si ripete più nella riga del formato (tolto il
+       2026-09-23, «tolgo i numeri ripetuti»); e se è lo stesso numero del
+       prezzo per unità (offerte sfuse, al kg, al banco) non c'è nemmeno lì:
+       Manlio ha fatto togliere il doppione il 2026-09-22. */
+    if (/la confezione/.test(r.querySelector('.sotto').textContent))
+      male.push(t.textContent + ': il prezzo della confezione è ripetuto nella riga del formato');
+    const n = r.querySelector('.val .n').textContent.trim();
+    if (!n) male.push(t.textContent + ': senza nessun prezzo');
+    const due = r.querySelector('.val .pz');
+    if (due && parseFloat(due.textContent.replace(',', '.')) === parseFloat(n.replace(',', '.')))
+      male.push(t.textContent + ': lo stesso prezzo scritto due volte');
     if (!r.querySelector('.quando'))
       male.push(t.textContent + ': non dice fino a quando vale');
     const link = r.querySelector('a.dove');

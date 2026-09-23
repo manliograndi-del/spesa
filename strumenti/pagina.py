@@ -100,6 +100,86 @@ def sconto(prezzo, fmt, note):
     v = round((1 - prezzo / prima) * 100)
     return v if 5 <= v <= 80 else None
 
+def prima(note):
+    m = _PRIMA.search(note or '')
+    return m.group(1) if m else ''
+
+# LE NOTE DIVENTANO BOLLINI BREVI (Manlio, 2026-09-23, punto 2 della critica
+# esterna: «le note gialle diventano bollini brevi, e tolgo i numeri
+# ripetuti»). Prima ogni scheda aveva sotto un riquadro ambra lungo due o tre
+# righe, e metà di quello che diceva era già scritto altrove: lo sconto nel
+# suo bollino, le date nel bollino rosso, il prezzo al kg nel prezzo grande.
+# Adesso:
+#   - le CONDIZIONI (tessera, app, al banco, surgelato, 1+1, non in tutti i
+#     negozi) sono bollini di una o due parole, sotto il nome;
+#   - quello che resta della nota, tolte le frasi che ripetono cose già sulla
+#     scheda, sta dietro il tasto «Dettagli».
+# Le frasi si tolgono SOLO quando la stessa cosa è scritta davvero sulla
+# scheda: lo sconto solo se c'è il suo bollino, le date solo se la riga ha
+# le sue date (bollino rosso), «il volantino stampa N al kg» solo se N è lo
+# stesso numero del prezzo grande. Tutto il resto resta nei dettagli: «è
+# pasta di lenticchie, non di grano» o «senza tessera 3,49» non si buttano.
+# La nota intera resta nei dati: «Cerca» cerca anche lì dentro.
+_TESSERA = re.compile(r"Lidl Plus|Buona Spesa Card|Carta Insieme|[Ss]olo titolari|"
+                      r"EKOM UP|SpesAmica|\bsoci\b|CARTA BENNET|Fidelity Card|"
+                      r"Perte Plus|\bcon APP\b|\bl'app\b|[Tt]essera")
+_BOLLO_TESSERA = {'Pam': 'Solo con app', 'Lidl': 'Con Lidl Plus', 'Ipercoop': 'Solo soci'}
+_FRASI_VIA = [
+    re.compile(r"^(?:Con Lidl Plus|Solo con (?:la |l'|il )?[^.,]*"
+               r"(?:Card|Conad|EKOM UP|Payback|Perte Plus|Club)|Solo per i soci Coop|"
+               r"Solo titolari[^.,]*)\.$"),
+    re.compile(r'^(?:Bollino )?«[^»]+»\.$'),
+    re.compile(r'^Speciale [A-Z][a-z]+\.$'),
+    re.compile(r'^(?:Al banco|Surgelat[oaie])\.$'),
+    re.compile(r'^Offerta \d\+\d: due \w+ al prezzo di una\.$'),
+    re.compile(r'^Solo nei punti vendita[^.]*\.$|^Vale solo nei negozi[^.]*\.$'),
+]
+_FRASE_SCONTO = re.compile(r'^(?:[−–-]\s?\d{1,2}\s?%(?: SOLO CON LA CARTA [A-Z ]+)?,\s*prima [\d,]+(?: (?:al|all\')\s?\w+)?|'
+                           r'(?:Con Lidl Plus,\s*)?[Pp]rima [\d,]+(?: (?:al|all\')\s?\w+)?|'
+                           r'Sconto(?: soci)?(?: del)? \d{1,2}\s?%:\s*prima [\d,]+(?:, cioè [\d,]+ (?:al|all\')\s?\w+)?)\.$')
+_FRASE_DATE = re.compile(r'(?:[Vv]alid[oa]|[Vv]ale) (?:solo )?(?:da|fino)[^.]*(?:settembre|ottobre)[^.]*\.$')
+_FRASE_STAMPA = re.compile(r'^Il volantino stampa ([\d,]+) (?:al|all\')\s?(?:kg|litro|pezzo|lavaggio|rotolo)\.$')
+
+def _scritto(n):
+    # Il numero COME LO SCRIVE LA PAGINA (la «eur» del JavaScript, sul valore
+    # arrotondato a tre decimali che le arriva): «uguale» vuol dire uguale a
+    # quello che si legge, non a un centesimo di differenza.
+    n = round(n, 3)
+    return f'{n:.3f}' if n < 1 else f'{n:.2f}'
+
+def condizioni(ins, cat, fmt, note, unitario, sconto_, ristretta):
+    n = note or ''
+    bolli = []
+    if _TESSERA.search(n):
+        bolli.append(_BOLLO_TESSERA.get(ins, 'Con tessera'))
+    if re.search(r'\b[Aa]l banco\b|banco servito|banco taglio', n) and 'banco' not in (fmt or ''):
+        bolli.append('Al banco')
+    if (re.search(r'\b[Ss]urgelat', n) and not re.search(r'non surgelat', n)
+            and 'surgel' not in cat.lower()):
+        bolli.append('Surgelato')
+    m = re.search(r'(\d)\s*\+\s*(\d)', fmt or '') or re.search(r'\b(\d)\s*\+\s*(\d)\b', n)
+    if m:
+        bolli.append(f'{m.group(1)}+{m.group(2)}')
+    elif re.search(r'[Cc]omprando|[Pp]iù compri|[Dd]al (?:secondo|terzo|quarto) pezzo', n):
+        bolli.append('Più ne prendi')
+    if re.search(r'Solo nei punti vendita|Vale solo nei negozi', n):
+        bolli.append('Non in tutti i negozi')
+    resto = []
+    for f in re.split(r'(?<=\.)\s+(?=[A-ZÈÉ«−–\d])', n.strip()):
+        if not f:
+            continue
+        if any(rx.search(f) for rx in _FRASI_VIA):
+            continue
+        if sconto_ and _FRASE_SCONTO.search(f):
+            continue
+        if ristretta and _FRASE_DATE.search(f) and len(f) < 110:
+            continue
+        s = _FRASE_STAMPA.search(f)
+        if s and float(s.group(1).replace(',', '.')) == float(_scritto(unitario)):
+            continue
+        resto.append(f)
+    return bolli, ' '.join(resto)
+
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
 # «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
@@ -107,7 +187,10 @@ offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.
                 unitario=round(o.prezzo / o.qta, 3), pag=o.pag, pdf=PDF[o.chiave],
                 url=indirizzo(o.chiave, o.pag),
                 periodo=PERIODO[o.chiave], dubbio=(o.fonte == D), note=o.note,
-                sconto=sconto(o.prezzo, o.fmt, o.note),
+                sconto=sconto(o.prezzo, o.fmt, o.note), prima=prima(o.note),
+                **dict(zip(('bolli', 'det'), condizioni(
+                    o.ins, o.cat, o.fmt, o.note, o.prezzo / o.qta,
+                    sconto(o.prezzo, o.fmt, o.note), bool(o.inizio or o.fino)))),
                 inizio=o.inizio or INIZIO[o.chiave],
                 fino=o.fino or FINO[o.chiave],
                 ristretta=bool(o.inizio or o.fino))
@@ -291,6 +374,14 @@ NOVITA_PAGINA = [
                'carne. Nuove anche «Affettati», «Salmone affumicato», '
                '«Collutorio» e «Panati» (i bastoncini e il pesce impanato). Se ti '
                'servono, le accendi da «+ altri prodotti».'),
+    dict(id='2026-09-23-w-bollini', quando='23 settembre',
+         titolo='Schede più corte',
+         testo='Le note gialle lunghe sono diventate bollini brevi sotto il nome: '
+               '«Con tessera», «Solo con app», «Al banco», «Surgelato», «1+1». '
+               'Quello che c\'è da sapere in più (per esempio il prezzo senza '
+               'tessera) si legge toccando «Dettagli». Tolti anche i numeri '
+               'scritti due volte: il prezzo della confezione sta solo a destra. '
+               'Così in una schermata ci stanno più offerte.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -828,8 +919,19 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .bollo.stretta{background:var(--rosso);color:var(--su-rosso)}
 .prezzo-riga .sotto .quando{white-space:nowrap}
 .prezzo-riga .sotto .quando.stretta{color:var(--rosso);font-weight:700}
-/* La nota con le condizioni: tessera, sgocciolato, «max 6 pezzi». In una
-   pillola ambra, che qui vuol dire «attenzione a questo». */
+/* Le condizioni, in bollini brevi sotto il nome: tessera, app, al banco,
+   surgelato, 1+1. Ambra, che qui vuol dire «attenzione a questo». Accanto,
+   se la nota ha altro da dire, il tasto «Dettagli» che la apre. */
+.prezzo-riga .cond{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0 0}
+.bollo.cond{background:var(--ambra-tenue);color:var(--ambra);font-size:11px;
+  padding:3px 9px;letter-spacing:.03em}
+.prezzo-riga .dettagli{font:inherit;font-size:12.5px;font-weight:600;color:var(--rosso);
+  background:none;border:0;padding:3px 2px;cursor:pointer;display:inline-flex;
+  align-items:center;gap:3px;min-height:24px}
+.prezzo-riga .dettagli::after{content:'▾';font-size:11px;transition:transform .15s}
+.prezzo-riga .dettagli[aria-expanded="true"]::after{transform:rotate(180deg)}
+/* Il resto della nota, aperto da «Dettagli». */
+.prezzo-riga .nota[hidden]{display:none}
 .prezzo-riga .nota{margin:7px 0 0;font-size:12.5px;
   background:var(--ambra-tenue);color:var(--ambra);border-radius:11px;
   padding:6px 10px;line-height:1.3;font-weight:600}
@@ -1240,10 +1342,12 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <div class="voce">
       <h3>Cosa dice ogni riga</h3>
       <p>Ogni offerta è una scheda. In cima il <b>marchio del negozio</b>, poi il
-      prodotto, il formato, quanto costa la confezione e <b>fino a quando vale
-      l'offerta</b>. Il numero grande rosso è il prezzo <b>per unità</b>, quello
-      con cui si confrontano i negozi. Sotto, quando serve, una nota con le condizioni: tessera del
-      negozio, surgelato, «prendi 2 paghi 1», peso sgocciolato. <b>Le offerte scadute
+      prodotto, il formato e <b>fino a quando vale l'offerta</b>. Il numero grande
+      rosso è il prezzo <b>per unità</b>, quello con cui si confrontano i negozi;
+      accanto, quanto costa la confezione. Sotto il nome, quando servono, dei
+      <b>bollini gialli con le condizioni</b>: con tessera, solo con app, al banco,
+      surgelato, 1+1. Se c'è altro da sapere (il prezzo senza tessera, il peso
+      sgocciolato) si legge toccando <b>«Dettagli»</b>. <b>Le offerte scadute
       spariscono da sole</b>, secondo la data del telefono.</p>
     </div>
     <div class="voce">
@@ -2457,12 +2561,13 @@ function rigaPrezzo(o, meno) {
      sono la stessa cosa. */
   const doppio = eur(o.prezzo) === eur(o.unitario);
 
-  /* La riga sotto il nome: formato, quanto costa la confezione, fino a quando
-     vale. Il negozio NON si ripete qui: sta nel marchio in cima. */
+  /* La riga sotto il nome: formato e fino a quando vale. Il negozio NON si
+     ripete qui: sta nel marchio in cima. E nemmeno quanto costa la
+     confezione (tolto il 2026-09-23, «tolgo i numeri ripetuti»): è già a
+     destra, nel secondo prezzo «al pezzo». */
   const s = d.querySelector('.sotto');
-  s.innerHTML = doppio ? 'Formato: <b></b>' : 'Formato: <b></b> · <span></span>';
+  s.innerHTML = 'Formato: <b></b>';
   s.querySelector('b').textContent = o.fmt;
-  if (!doppio) s.querySelector('span').textContent = eur(o.prezzo) + ' € la confezione';
   const q = durata(o);
   if (q) {
     const d2 = document.createElement('span');
@@ -2493,7 +2598,7 @@ function rigaPrezzo(o, meno) {
       const s = document.createElement('span');
       s.className = 'sconto';
       s.textContent = '\u2212' + o.sconto + '%';
-      s.title = 'Sconto del ' + o.sconto + '% sul prezzo di prima';
+      s.title = 'Sconto del ' + o.sconto + '%' + (o.prima ? ': prima ' + o.prima + ' €' : ' sul prezzo di prima');
       ang.appendChild(s);
     }
     if (link.tagName === 'A') ang.appendChild(link);
@@ -2501,9 +2606,37 @@ function rigaPrezzo(o, meno) {
   }
 
   const dati = d.querySelector('.dati');
-  if (o.note) {
-    const n = document.createElement('p'); n.className = 'nota'; n.textContent = o.note;
-    dati.appendChild(n);
+  /* LE CONDIZIONI SONO BOLLINI BREVI, e il resto della nota sta dietro
+     «Dettagli» (Manlio, 2026-09-23: «le note gialle diventano bollini brevi,
+     e tolgo i numeri ripetuti»). Quali bollini e quale resto lo decide
+     pagina.py, «condizioni()»: qui si disegna e basta. */
+  if ((o.bolli && o.bolli.length) || o.det) {
+    const c = document.createElement('p');
+    c.className = 'cond';
+    for (const b of o.bolli || []) {
+      const e = document.createElement('span');
+      e.className = 'bollo cond';
+      e.textContent = b;
+      c.appendChild(e);
+    }
+    dati.appendChild(c);
+    if (o.det) {
+      const n = document.createElement('p');
+      n.className = 'nota';
+      n.hidden = true;
+      n.textContent = o.det;
+      const t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'dettagli';
+      t.setAttribute('aria-expanded', 'false');
+      t.textContent = 'Dettagli';
+      t.addEventListener('click', () => {
+        n.hidden = !n.hidden;
+        t.setAttribute('aria-expanded', String(!n.hidden));
+      });
+      c.appendChild(t);
+      dati.appendChild(n);
+    }
   }
   /* Senza indirizzo resta la riga scritta: non c'e niente da toccare, e
      un'icona che non apre niente sarebbe una presa in giro. */

@@ -3029,3 +3029,31 @@ suino» del Bennet: sono costolette fresche, non impanate. Eccezione scritta.
 Il diario del giorno dice «Spostati di reparto 91» in una sezione piccola, e
 i «meno caro adesso» di Suino, Manzo, Dentifricio, Salmone cambiati: è vero,
 non è una novità falsa.
+
+## Le note diventano bollini brevi — 2026-09-23
+
+Punto 2 dell'analisi esterna, «Sì, procedi col punto 2». Le schede avevano
+sotto il nome un riquadro ambra lungo due o tre righe, e più di metà di quello
+che diceva era già scritto sulla scheda: «−33%, prima 2,98» accanto al
+bollino «−33%», «Valido solo dal 21 al 23 settembre» accanto al bollino rosso
+con le stesse date, «Il volantino stampa 8,79 al kg» sotto un prezzo grande
+di 8,79 al kg. E la riga del formato ripeteva «1,39 € la confezione», che
+stava già a destra come «1,39 € al pezzo».
+
+Adesso `condizioni()` in `pagina.py` legge la nota e ne fa due cose:
+- i bollini delle condizioni, ambra, sotto il nome: con tessera / app / soci,
+  al banco, surgelato, 1+1, più ne prendi, non in tutti i negozi;
+- il resto, tolte le frasi che la scheda dice già, dietro «Dettagli».
+
+La regola che non va rotta: **si toglie una frase solo se la stessa cosa è
+scritta davvero sulla scheda.** Per questo «il volantino stampa N al kg»
+sparisce solo quando N è identico al numero che la pagina scrive (confronto
+sul numero arrotondato come lo scrive `eur`, non «a un centesimo»: 1,42 e
+1,43 sono due numeri diversi per chi legge). `prova-bollini.js` controlla ogni
+numero di ogni nota: o sta nei dettagli, o è un prezzo della scheda, o è il
+«prima» di uno sconto che ha il suo bollino. Al primo giro ha trovato
+quindici «cioè 33,63 al kg» dopo un «prima»: sono il prima al kg, che va col
+bollino dello sconto, e la prova ora lo sa.
+
+1280 note → 529 con qualcosa ancora da dire. Nella lista di Manlio (13
+prodotti) 338 schede, 133 con «Dettagli».
