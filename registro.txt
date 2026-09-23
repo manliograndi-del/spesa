@@ -129,3 +129,4 @@
 2026-09-23 11:59 UTC  categorie pulite: würstel, preparati, affettati, panati, salmone affumicato, collutorio fuori dalla carne e dal pesce freschi (95 righe); guardia in dati.py. sw.js v80.
 2026-09-23 12:00 UTC  pubblicato: sito (verificato, sw.js v80, anche catalogo.pdf) e artifact (versione 71): categorie pulite.
 2026-09-23 12:16 UTC  note delle schede in bollini brevi (tessera, app, al banco, surgelato, 1+1…) col resto dietro «Dettagli»; tolto il prezzo della confezione ripetuto nel formato. sw.js v81.
+2026-09-23 12:17 UTC  pubblicato: sito (verificato, sw.js v81, anche novita.html) e artifact (versione 72): note in bollini brevi.
