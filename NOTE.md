@@ -3218,3 +3218,22 @@ Per le schermate: il Chromium di queste sessioni non si fida del proxy e
 non scarica i caratteri da Google; si scaricano con curl e si danno alla
 pagina come file locali, se no le schermate escono con un carattere diverso
 (più largo e più nero) da quello che vede lui.
+
+## Punto 7: le grandi marche a riquadri tutti uguali — 2026-09-23 sera
+
+Mandate tre schermate: com'era (pillole larghe quanto il marchio, Amadori
+enorme e Mulino Bianco minuscolo, mescolate ai nomi scritti), A) riquadri
+tutti uguali quattro per riga, B) elenco dei soli nomi su due colonne (più
+ordinato, ma senza i marchi che aveva chiesto e lungo due schermi e mezzo).
+Consigliata la A. Manlio: «ok va bene, ma almeno fai le pillole un pochino
+più basse perché ci stiano tutte nella pagina».
+
+Una schermata non è la stessa su tutti i telefoni, e nel browser le barre
+ne mangiano un pezzo: un'altezza fissa sarebbe stata giusta solo su uno.
+Quindi l'altezza dei riquadri si calcola sullo schermo di chi guarda
+(`100dvh`, con `100vh` di riserva), meno lo spazio del titolo e del menù in
+basso, diviso per le righe; fra 34 px (le pillole dei prodotti) e 54 px.
+Misurato: 46 marche in una schermata a 390×844 (50 px), 390×664 (35),
+412×780 (45), 360×640 (34), 430×932 (54). I riquadri senza marchio tengono
+il fondo della pagina (`--carta`), non il bianco fisso: con un look scuro
+la scritta è chiara, e su bianco non si leggerebbe.

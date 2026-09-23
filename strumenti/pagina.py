@@ -809,6 +809,27 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   border-color:var(--rosso);box-shadow:0 0 0 2px var(--rosso)}
 .marche button[aria-pressed="true"]{background:var(--rosso);border-color:var(--rosso);
   color:var(--su-rosso)}
+/* LE GRANDI MARCHE SONO RIQUADRI TUTTI UGUALI, QUATTRO PER RIGA (punto 7,
+   Manlio, 2026-09-23: scelta A fra riquadri ed elenco dei nomi, «ma almeno
+   fai le pillole un pochino più basse, perché ci stiano tutte nella
+   pagina»). Prima erano pillole larghe quanto il loro marchio: Amadori
+   enorme, Mulino Bianco minuscolo, mescolate ai nomi scritti. Adesso ogni
+   marchio sta nel suo riquadro, grande uguale agli altri.
+   L'ALTEZZA SI FA SUL TELEFONO DI CHI GUARDA: lo schermo, meno il titolo
+   sopra e il menù sotto (--sopra-sotto), diviso per le righe (--righe, messo
+   da disegnaMarche). Così le 46 marche stanno in una schermata; su un
+   telefono molto basso non scendono sotto i 34 px, l'altezza delle pillole
+   dei prodotti, e resta da scorrere un poco. */
+.marche{--sopra-sotto:calc(186px + env(safe-area-inset-top,0px) + env(safe-area-inset-bottom,0px));
+  --alta:clamp(34px, calc((100vh - var(--sopra-sotto)) / var(--righe, 12) - 5px), 54px);
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:var(--alta);gap:5px}
+@supports (height:100dvh){
+  .marche{--alta:clamp(34px, calc((100dvh - var(--sopra-sotto)) / var(--righe, 12) - 5px), 54px)}
+}
+.marche button,.marche button.col-logo{height:auto;min-height:0;border-radius:12px;padding:3px 6px;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:13px;line-height:1.1;white-space:normal;min-width:0}
+.marche button.col-logo img{height:auto;width:auto;max-width:100%;max-height:calc(var(--alta) - 12px)}
 .ricerca{margin-top:14px;background:var(--pannello);border:1.5px solid var(--linea);
   border-radius:20px;padding:14px}
 .ricerca .q{width:100%;border:1.5px solid var(--rosso);border-radius:16px;
@@ -2399,6 +2420,8 @@ function disegnaMarche() {
   sistemaBarra();   // le pillole ricompaiono: vanno rimesse ferme se sono poche
   box.textContent = '';
   if (!vistaMarche) return;
+  /* Quante righe di quattro: serve al CSS per farle stare in una schermata. */
+  box.style.setProperty('--righe', Math.ceil((DATI.marche || []).length / 4) || 1);
   (DATI.marche || []).forEach(m => {
     const b = document.createElement('button');
     b.type = 'button';

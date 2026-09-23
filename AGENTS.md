@@ -430,6 +430,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     **Ogni marchio è stato guardato prima di metterlo**: le ricerche automatiche
     ne avevano presi di sbagliati (un'«AIA» di compagnie aeree, una «Star» di
     un'altra azienda). Per aggiungerne uno basta mettere il file lì.
+  - **Dal 2026-09-23 sera non sono più pillole: sono RIQUADRI TUTTI UGUALI,
+    quattro per riga** (punto 7, scelta A di Manlio fra riquadri ed elenco
+    dei nomi, «ma almeno fai le pillole un pochino più basse, perché ci
+    stiano tutte nella pagina»). Il marchio sta dentro grande uguale agli
+    altri; dove non c'è, il nome scritto. **L'altezza la decide il telefono
+    di chi guarda**: schermo meno titolo e menù (`--sopra-sotto`, 186 px),
+    diviso per le righe (`--righe`, messo da `disegnaMarche`), fra 34 e
+    54 px. Provato: tutte e 46 in una schermata da 360×640 a 430×932. Se si
+    aggiungono marche, le righe crescono e i riquadri si abbassano da soli
+    fino a 34 px; sotto, si scorre.
   - **I due tasti sono grandi uguali, GRANDI MARCHE a destra, e aprono due
     pagine SEPARATE** (chiesto il 2026-09-23: «deve portare a una pagina dove
     ci sono solo i tasti delle grandi marche e non un tasto di ricerca;
@@ -692,7 +702,7 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v90** (nome meno nero, prezzi a metà della scheda, 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v91** (nome meno nero, prezzi a metà della scheda, grandi marche a riquadri; 2026-09-23 sera). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
@@ -704,10 +714,10 @@ nuova. Lo stato, in breve:
   proposto il 2026-09-23 sera (contare in quanti dei suoi prodotti ogni
   negozio è il meno caro, oggi e da domani, senza totale in euro perché non
   sappiamo quanto compra né il prezzo fuori offerta), e Manlio: «no, io non
-  aggiungerei niente». Non riproporlo. **Resta il 7 (grandi marche: elenco
-  o loghi tutti uguali)**, da proporre, non da fare. Prima del 7, fatti e
-  pubblicati (`sw.js` v90): nome del prodotto meno nero e prezzi a metà
-  della scheda.
+  aggiungerei niente». Non riproporlo. **Fatto anche il 7** (`sw.js` v91):
+  le grandi marche sono riquadri tutti uguali, quattro per riga, e stanno
+  in una schermata. Prima del 7 (`sw.js` v90): nome del prodotto meno nero
+  e prezzi a metà della scheda. **L'analisi esterna è chiusa.**
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».
