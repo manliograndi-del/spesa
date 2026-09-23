@@ -96,7 +96,11 @@ setTimeout(() => {
   if (r0) {
     if (!r0.querySelector('.marchio').textContent.trim()) male.push('manca il marchio del negozio');
     if (!r0.querySelector('.val .n').textContent.trim()) male.push('manca il prezzo');
-    if (!r0.querySelector('.dove')) male.push('manca la riga che dice dov\'e');
+    /* Dal 2026-09-23 il foglietto non c'è più: dice dov'è la scheda stessa,
+       che toccata apre la pagina del volantino. La riga scritta resta solo
+       dove l'indirizzo manca. */
+    if (!r0.classList.contains('apribile') && !r0.querySelector('.dove'))
+      male.push('manca il modo di arrivare alla pagina del volantino');
   }
 
   // aprire il cassetto deve chiudere la ricerca, e viceversa: uno alla volta

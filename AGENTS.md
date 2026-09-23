@@ -668,8 +668,17 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
 nuova. Lo stato, in breve:
 
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v88**, ultimo
-  commit su `main` = ramo di lavoro. Tutte le prove passano.
+- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v88** (menù in
+  basso). Tutte le prove passano.
+- **ATTENZIONE — sul ramo di lavoro c'è una PROVA NON ANCORA APPROVATA**, un
+  commit più avanti di `main` («Prova: prezzi a destra…»): prezzi a destra su
+  due righe anche sul telefono, foglietto rosso del volantino tolto, niente
+  «€» sulle schede, niente «prezzo al kg» accanto al nome, formato accorciato
+  («4x160 g»). Manlio ha detto «ok a tutto» alle quattro idee e ha visto tre
+  schermate, ma **non ha ancora detto di pubblicarla**. Finché non lo dice:
+  NON portare `main` avanti, NON alzare `sw.js`, NON ripubblicare l'artifact.
+  Se dice sì: `sw.js` a v89, novità nella finestra, CLAUDE/AGENTS/NOTE, e
+  pubblicazione come sempre. Se dice no: tornare indietro di quel commit.
 - **L'analisi esterna in 7 punti**: fatti 1 (categorie pulite), 2 (note in
   bollini, poi «Dettagli» tolto e le cose importanti in pillole beige),
   3 (riga in cima solo se il meno caro di oggi non è fra le prime tre

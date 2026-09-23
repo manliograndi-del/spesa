@@ -1019,15 +1019,26 @@ a.dove.apri::after{content:none}
    finivano schiacciati a sinistra. Sotto i 560 px i prezzi scendono su una
    riga loro, sotto il nome. */
 @media (max-width:560px){
-  .prezzo-riga{grid-template-columns:1fr}
-  .prezzo-riga .dati{grid-column:1;grid-row:2}
-  .prezzo-riga .val{grid-column:1;grid-row:3;text-align:left;display:flex;flex-wrap:wrap;
-    align-items:baseline;gap:2px 9px;margin-top:11px;white-space:normal}
-  .prezzo-riga .val .et{margin:0 0 0 5px;align-self:center}
-  .prezzo-riga .val .pz{margin:0}
-  .prezzo-riga .val .n{font-size:26px}
   .tasto.trova{font-size:14.5px}
 }
+/* I PREZZI TORNANO A DESTRA, ANCHE SUL TELEFONO (Manlio, 2026-09-23: «non è
+   tutto un po' troppo sbilanciato sulla sinistra… a destra ci potrebbe
+   stare il prezzo, eventualmente su due linee»). Il 22 settembre la scheda
+   era andata in colonna perché i due prezzi affiancati, con le loro scritte,
+   rubavano metà riga al nome. Adesso stanno uno SOPRA l'altro e senza «€»:
+   la colonna è stretta. Sopra il prezzo per unità, sotto quello della
+   confezione col suo peso. */
+.prezzo-riga{grid-template-columns:minmax(0,1fr) auto}
+.prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;margin:4px 0 0;
+  white-space:nowrap}
+.prezzo-riga .val .p1,.prezzo-riga .val .p2{display:block;margin:0;white-space:nowrap}
+.bollo.cond{white-space:nowrap}
+.prezzo-riga .val .u{text-transform:none;letter-spacing:0;font-size:13px;margin-left:1px;
+  font-weight:600}
+.prezzo-riga .val .pz{font-size:15px;color:var(--inchiostro)}
+.prezzo-riga .val .et{margin-left:4px;font-size:12px}
+.prezzo-riga .val .et.fmt{font-size:12px}
 
 /* ---- elenco pagine ---- */
 .pag-riga{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
@@ -2717,6 +2728,12 @@ function marchio(ins) {
    confezione resta «al pezzo» (o niente, se è lo stesso numero). */
 const FORMATO_BANALE = /^(?:al (?:kg|litro|pezzo)|1 ?(?:kg|l|litro|rotolo)|kg 1|1000 g)(?: confezione)?(?: \(al banco\))?$/;
 
+/* «al kg» -> «/kg», «al litro» -> «/l», «all'uovo» -> «/uovo». */
+function unitaCorta(u) {
+  const v = u.replace(/^(?:al|allo|alla|a)\s+|^all['’]/, '');
+  return '/' + (v === 'litro' ? 'l' : v === 'pezzo' ? 'pz' : v);
+}
+
 function rigaPrezzo(o, meno) {
   const d = document.createElement('article');
   d.className = 'prezzo-riga' + (meno ? ' vince' : '') + (futuro(o) ? ' dopo' : '');
@@ -2778,11 +2795,23 @@ function rigaPrezzo(o, meno) {
   if (doppio && banale) p2.remove();
   else {
     if (doppio) p2.querySelector('.pz').remove();
-    else p2.querySelector('.pz').textContent = eur(o.prezzo) + ' €';
-    if (!banale) { et.textContent = o.fmt; et.classList.add('fmt'); }
+    else p2.querySelector('.pz').textContent = eur(o.prezzo);
+    /* Del formato si scrive solo la prima parte: «4x160 g, sgocciolati
+       425 g» diventa «4x160 g», «360 g (2 × 180 g)» diventa «360 g». Il
+       resto allargava la colonna dei prezzi e schiacciava il nome; lo
+       sgocciolato ha già la sua pillola. */
+    const corto = o.fmt.split(/,\s|\s\(/)[0].trim() || o.fmt;   // «1,5 l» resta intero
+    if (!banale) { et.textContent = (doppio ? '' : '· ') + corto; et.classList.add('fmt'); }
   }
-  d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
-  d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
+  /* SENZA «€» E CON L'UNITÀ CORTA ATTACCATA AL NUMERO (Manlio, 2026-09-23:
+     «in più c'è sempre scritto euro… la scritta prezzo al chilo appare sia
+     di fianco al nome del prodotto in alto che accanto al prezzo»): in una
+     scheda ogni numero è un prezzo, e «8,69/kg» si legge da solo. L'unità
+     resta su ogni prezzo perché in Cerca, Grandi marche e Personale le
+     offerte mescolano chili, litri e rotoli. Nelle frasi (la riga in cima)
+     il «€» resta. */
+  d.querySelector('.val .n').textContent = eur(o.unitario);
+  d.querySelector('.val .u').textContent = unitaCorta(DATI.unita[o.cat] || 'al kg');
 
   /* IL TONDINO E IL FOGLIETTO STANNO IN CIMA, accanto al marchio, chiesto da
      Manlio il 2026-09-22: prima il tondino dei giorni, poi il foglietto del
@@ -2790,7 +2819,11 @@ function rigaPrezzo(o, meno) {
      «giorni» sotto: in quella riga ci sono già le parole che servono. */
   const cer = cerchioGiorni(o) || cerchioInizio(o);
   const link = dove(o);
-  if (cer || o.sconto || link.tagName === 'A') {
+  /* IL FOGLIETTO ROSSO DEL VOLANTINO NON C'È PIÙ (Manlio, 2026-09-23: «è
+     diventato completamente inutile, ed essendo rosso fallo sparire»): tutta
+     la scheda apre il volantino, e dentro c'è «Apri sul sito». Resta la riga
+     scritta solo dove l'indirizzo della pagina non c'è. */
+  if (cer || o.sconto) {
     const ang = document.createElement('div');
     ang.className = 'angolo';
     if (cer) ang.appendChild(cer);
@@ -2803,7 +2836,6 @@ function rigaPrezzo(o, meno) {
       s.title = 'Sconto del ' + o.sconto + '%' + (o.prima ? ': prima ' + o.prima + ' €' : ' sul prezzo di prima');
       ang.appendChild(s);
     }
-    if (link.tagName === 'A') ang.appendChild(link);
     coda.insertBefore(ang, coda.children[1] || null);
   }
 
@@ -2915,11 +2947,12 @@ function disegna() {
   /* «Elimina prodotto» NON sta più qui: è dentro la «i», accanto a «Cambia
      nome» (Manlio, 2026-09-23, punto 4: «anche qua la tua soluzione è
      ottima»). Era grande quanto il titolo per un'azione che si fa di rado. */
-  capo.innerHTML = '<h2></h2><span class="unita"></span>'
+  /* Niente più «prezzo al kg» accanto al nome (Manlio, 2026-09-23): lo dice
+     già ogni prezzo, «8,69/kg». */
+  capo.innerHTML = '<h2></h2>'
     + '<button type="button" class="info" aria-expanded="false"'
     + ' aria-label="Mostra i dettagli del prodotto">i</button>';
   capo.querySelector('h2').textContent = v.nome;
-  capo.querySelector('.unita').textContent = 'prezzo ' + (DATI.unita[v.cat] || 'al kg');
   out.appendChild(capo);
 
   /* «Elimina prodotto» (dentro la «i»): un tocco per sbaglio non deve
