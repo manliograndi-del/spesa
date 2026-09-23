@@ -123,3 +123,4 @@
 2026-09-23 09:59 UTC  «Grandi marche» sempre su due righe; scritta dei tasti a 13 px sotto i 380 px. sw.js v77.
 2026-09-23 09:59 UTC  pubblicato: sito (verificato, sw.js v77) e artifact (versione 68): «Grandi marche» su due righe.
 2026-09-23 10:45 UTC  pillole dei prodotti ferme in alto se sono poche; nel Personale una pillola aperta (rossa) alla volta. sw.js v78.
+2026-09-23 10:46 UTC  pubblicato: sito (verificato, sw.js v78) e artifact (versione 69): pillole ferme in alto, una rossa alla volta nel Personale.
