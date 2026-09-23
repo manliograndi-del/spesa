@@ -148,6 +148,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   bollino verde «il meno caro» va al meno caro **che vale oggi**, che può non
   essere la prima riga.
 - **Ogni riga dice fino a quando vale.** I volantini durano periodi diversi.
+  **Lo dice col cerchietto dei giorni, non con una scritta** (dal 2026-09-23,
+  Manlio: «le righe formato al kg e vale dal eccetera secondo me vanno tutte
+  tolte, perché la data in cui scade c'è scritta e sotto c'è scritto il prezzo
+  al kg»). La riga «Formato: … · fino al …» (`.sotto`) c'è ancora ma è
+  `.solo-voce`: la legge solo il lettore di schermo, e le prove la usano per
+  sapere le date. **Il peso della confezione sta accanto al suo prezzo**
+  («1,19 € 100 g» al posto di «1,19 € al pezzo»); sulle offerte sfuse
+  (`FORMATO_BANALE`: «al kg», «1 kg», «1 litro», «al kg (al banco)») non si
+  scrive. `prova-meno-caro.js` controlla che la riga non si veda e che ogni
+  scheda abbia il cerchietto o il tondino di quando parte.
 - Le offerte scadute spariscono da sole: il giudizio lo dà il browser di chi
   guarda, con la sua data, non il programma che genera.
 - **«Cerca fra i prezzi» cerca fra TUTTE le offerte, non nel catalogo.** È il
@@ -176,8 +186,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   puoi toglierli nel caso in cui coincidano»). Riguarda tutto quello che si
   vende sfuso — al kg, al banco: lì la confezione non esiste, e ripetere
   «12,99 € al kg» e «12,99 € al pezzo» era lo stesso numero due volte.
-  Sparisce il secondo prezzo (`.val .p2`); resta «Formato: al kg · fino al
-  28 settembre». (Dal 2026-09-23 il «… € la confezione» non sta più nella
+  Sparisce il secondo prezzo (`.val .p2`). (Dal 2026-09-23 il «… € la confezione» non sta più nella
   riga del formato per NESSUNA offerta: il prezzo della confezione è solo a
   destra, in `.val .p2`.)
   Il confronto si fa sui numeri **come vengono scritti** (`eur`), non sui
@@ -315,7 +324,7 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   **fuori dalla barra appiccicata**. Poi «I tuoi prodotti (N)» con le
   pastiglie. Regole da non cambiare:
   - **Ogni offerta è una scheda** (`.prezzo-riga`), con in cima il marchio del
-    negozio e i bollini, poi nome e formato, i bollini delle condizioni col
+    negozio e i bollini, poi il nome, i bollini delle condizioni col
     tasto «Dettagli» (vedi sotto) e i due prezzi (per unità e al pezzo).
     **In fondo alla scheda non c'è niente**: la scritta «Vedi tutte le offerte
     del volantino» c'era e Manlio l'ha fatta togliere lo stesso giorno,
@@ -598,6 +607,12 @@ Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## Da fare adesso (aggiornato il 2026-09-23)
+
+- **Tolta dalla vista la riga «Formato… · fino al…»** (2026-09-23, chiesto
+  da Manlio subito dopo il punto 2: «prima pensiamo a questo»). La scadenza
+  la dice il cerchietto, il peso sta accanto al prezzo della confezione.
+  Novità `2026-09-23-x-formato`. `sw.js` a v82. **Poi si riprende dal punto
+  3**, chiedendogli prima se farlo.
 
 - **Punto 2 fatto: note in bollini brevi e numeri ripetuti tolti**
   (2026-09-23, «Sì, procedi col punto 2»). Schede più basse; il resto della

@@ -50,6 +50,15 @@ setTimeout(() => {
     if (vince.length !== bollini.length)
       male.push(t.textContent + ': pastiglie ' + vince.length + ', bollini verdi ' + bollini.length);
 
+    /* La riga «Formato · fino al» si legge solo col lettore di schermo
+       (Manlio, 2026-09-23: «vanno tutte tolte»): la scadenza la dice il
+       cerchietto, o il tondino di quando parte. */
+    righe.forEach(r => {
+      if (!r.querySelector('.sotto').classList.contains('solo-voce'))
+        male.push(t.textContent + ': si vede ancora la riga «Formato · fino al»');
+      if (!r.querySelector('.angolo .giorni, .angolo .parte'))
+        male.push(t.textContent + ': una scheda non mostra quando scade');
+    });
     /* Le sbiadite sono tutte e sole quelle che devono ancora cominciare. */
     righe.forEach(r => {
       const futura = /vale dal|vale dall/.test(r.querySelector('.sotto').textContent);

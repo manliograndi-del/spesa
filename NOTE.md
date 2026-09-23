@@ -3057,3 +3057,22 @@ bollino dello sconto, e la prova ora lo sa.
 
 1280 note → 529 con qualcosa ancora da dire. Nella lista di Manlio (13
 prodotti) 338 schede, 133 con «Dettagli».
+
+## Via la riga «Formato · fino al» — 2026-09-23
+
+Subito dopo i bollini, Manlio: «le righe formato al kg e vale dal eccetera
+secondo me vanno tutte tolte, perché la data in cui scade c'è scritta e sotto
+c'è scritto il prezzo al kg». Vero per due terzi: la scadenza la dice il
+cerchietto (o il tondino di quando parte, o il bollino rosso delle date
+strette) e «al kg» lo dice il prezzo grande. Il terzo che non stava altrove era
+il peso della confezione («160 g», «2 × 300 g (1+1)»): adesso sta accanto al
+suo prezzo, al posto della scritta «al pezzo». Sulle offerte sfuse («al kg»,
+«1 kg», «1 litro») resta «al pezzo» o niente.
+
+La riga non è cancellata: è `.solo-voce`. Per chi usa il lettore di schermo il
+cerchietto è un numero senza contesto, e la riga scritta glielo dà. Le prove
+continuano a leggere lì le date; `prova-meno-caro.js` in più controlla che la
+riga non si veda e che ogni scheda abbia il cerchietto o il tondino.
+
+Si perde una cosa, e l'ho detta a lui: per le offerte non ancora cominciate
+si vede il giorno in cui partono, non quello in cui finiscono.

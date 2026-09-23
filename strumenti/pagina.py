@@ -152,7 +152,7 @@ def condizioni(ins, cat, fmt, note, unitario, sconto_, ristretta):
     bolli = []
     if _TESSERA.search(n):
         bolli.append(_BOLLO_TESSERA.get(ins, 'Con tessera'))
-    if re.search(r'\b[Aa]l banco\b|banco servito|banco taglio', n) and 'banco' not in (fmt or ''):
+    if re.search(r'\b[Aa]l banco\b|banco servito|banco taglio', n + ' ' + (fmt or '')):
         bolli.append('Al banco')
     if (re.search(r'\b[Ss]urgelat', n) and not re.search(r'non surgelat', n)
             and 'surgel' not in cat.lower()):
@@ -382,6 +382,12 @@ NOVITA_PAGINA = [
                'tessera) si legge toccando «Dettagli». Tolti anche i numeri '
                'scritti due volte: il prezzo della confezione sta solo a destra. '
                'Così in una schermata ci stanno più offerte.'),
+    dict(id='2026-09-23-x-formato', quando='23 settembre',
+         titolo='Via la riga «Formato… fino al…»',
+         testo='Sotto il nome non c\'è più «Formato: … · fino al …»: quando scade '
+               'lo dice il cerchietto dei giorni, «al kg» lo dice il prezzo grande. '
+               'Il peso della confezione adesso sta accanto al suo prezzo, dove '
+               'prima c\'era scritto «al pezzo».'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -878,6 +884,8 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
 .prezzo-riga .val .u,.prezzo-riga .val .et{display:inline-block;font-size:10.5px;
   letter-spacing:.07em;text-transform:uppercase;font-weight:700;color:var(--tenue);
   margin-left:7px}
+/* Il peso della confezione accanto al suo prezzo: minuscolo, come si scrive. */
+.prezzo-riga .val .et.fmt{text-transform:none;letter-spacing:0;font-size:13px;font-weight:600}
 /* Sul telefono i due prezzi finiscono sulla stessa riga: senza questo,
    «al pezzo» resta appiccicato all'euro di prima. */
 .prezzo-riga .val .p2{margin-left:2px}
@@ -986,7 +994,7 @@ a.dove.apri::after{content:none}
   .prezzo-riga .dati{grid-column:1;grid-row:2}
   .prezzo-riga .val{grid-column:1;grid-row:3;text-align:left;display:flex;flex-wrap:wrap;
     align-items:baseline;gap:2px 9px;margin-top:11px;white-space:normal}
-  .prezzo-riga .val .et{margin:0;align-self:center}
+  .prezzo-riga .val .et{margin:0 0 0 5px;align-self:center}
   .prezzo-riga .val .pz{margin:0}
   .prezzo-riga .val .n{font-size:26px}
   .tasto.trova{font-size:14.5px}
@@ -1342,9 +1350,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
     <div class="voce">
       <h3>Cosa dice ogni riga</h3>
       <p>Ogni offerta è una scheda. In cima il <b>marchio del negozio</b>, poi il
-      prodotto, il formato e <b>fino a quando vale l'offerta</b>. Il numero grande
+      <b>cerchietto dei giorni che mancano</b> (o, se l'offerta deve ancora
+      cominciare, il giorno in cui parte), poi il prodotto. Il numero grande
       rosso è il prezzo <b>per unità</b>, quello con cui si confrontano i negozi;
-      accanto, quanto costa la confezione. Sotto il nome, quando servono, dei
+      accanto, quanto costa la confezione e quanto pesa. Sotto il nome, quando servono, dei
       <b>bollini gialli con le condizioni</b>: con tessera, solo con app, al banco,
       surgelato, 1+1. Se c'è altro da sapere (il prezzo senza tessera, il peso
       sgocciolato) si legge toccando <b>«Dettagli»</b>. <b>Le offerte scadute
@@ -2531,6 +2540,11 @@ function marchio(ins) {
   return e;
 }
 
+/* I formati che non dicono niente più del prezzo per unità: «al kg», «1 kg»,
+   «1 litro», «al kg (al banco)». Per questi, accanto al prezzo della
+   confezione resta «al pezzo» (o niente, se è lo stesso numero). */
+const FORMATO_BANALE = /^(?:al (?:kg|litro|pezzo)|1 ?(?:kg|l|litro|rotolo)|kg 1|1000 g)(?: confezione)?(?: \(al banco\))?$/;
+
 function rigaPrezzo(o, meno) {
   const d = document.createElement('article');
   d.className = 'prezzo-riga' + (meno ? ' vince' : '') + (futuro(o) ? ' dopo' : '');
@@ -2561,11 +2575,15 @@ function rigaPrezzo(o, meno) {
      sono la stessa cosa. */
   const doppio = eur(o.prezzo) === eur(o.unitario);
 
-  /* La riga sotto il nome: formato e fino a quando vale. Il negozio NON si
-     ripete qui: sta nel marchio in cima. E nemmeno quanto costa la
-     confezione (tolto il 2026-09-23, «tolgo i numeri ripetuti»): è già a
-     destra, nel secondo prezzo «al pezzo». */
+  /* LA RIGA «Formato: … · fino al …» NON SI VEDE PIÙ (Manlio, 2026-09-23:
+     «le righe formato al kg e vale dal eccetera secondo me vanno tutte tolte,
+     perché la data in cui scade c'è scritta e sotto c'è scritto il prezzo al
+     kg»). La scadenza la dice il cerchietto dei giorni (o il tondino di
+     quando parte, o il bollino rosso delle date strette), «al kg» lo dice il
+     prezzo grande. La riga resta dentro la scheda SOLO PER CHI NON VEDE
+     (.solo-voce): per un lettore di schermo il cerchietto è un numero muto. */
   const s = d.querySelector('.sotto');
+  s.classList.add('solo-voce');
   s.innerHTML = 'Formato: <b></b>';
   s.querySelector('b').textContent = o.fmt;
   const q = durata(o);
@@ -2577,8 +2595,20 @@ function rigaPrezzo(o, meno) {
     s.appendChild(d2);
   }
 
-  if (doppio) d.querySelector('.val .p2').remove();
-  else d.querySelector('.val .pz').textContent = eur(o.prezzo) + ' €';
+  /* IL PESO DELLA CONFEZIONE VA ACCANTO AL SUO PREZZO: «1,39 € 160 g» al
+     posto di «1,39 € al pezzo». Era l'unica cosa della riga tolta che non
+     stava già altrove. Sulle offerte sfuse («al kg», «1 kg», «1 litro») il
+     formato non dice niente di più del prezzo grande e non si scrive; se
+     dice qualcosa (una confezione «2 × 500 g (1+1)» che costa come un
+     chilo) si scrive da solo accanto al prezzo per unità. */
+  const banale = FORMATO_BANALE.test(o.fmt);
+  const p2 = d.querySelector('.val .p2'), et = p2.querySelector('.et');
+  if (doppio && banale) p2.remove();
+  else {
+    if (doppio) p2.querySelector('.pz').remove();
+    else p2.querySelector('.pz').textContent = eur(o.prezzo) + ' €';
+    if (!banale) { et.textContent = o.fmt; et.classList.add('fmt'); }
+  }
   d.querySelector('.val .n').textContent = eur(o.unitario) + ' €';
   d.querySelector('.val .u').textContent = DATI.unita[o.cat] || 'al kg';
 
