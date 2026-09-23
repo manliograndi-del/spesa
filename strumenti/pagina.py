@@ -916,7 +916,11 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   background:var(--carta);border:1.5px solid var(--linea);border-radius:16px;
   padding:10px 13px 9px;margin-top:8px}
 .prezzo-riga .dati{grid-column:1;grid-row:2;min-width:0}
-.prezzo-riga .nome{margin:5px 0 0;font-size:16px;font-weight:700;line-height:1.25}
+/* Il nome è MENO NERO del resto (Manlio, 2026-09-23: «praticamente tutte le
+   scritte sono in grassetto, in particolare quella della descrizione»): se è
+   tutto in grassetto, niente risalta. Un gradino sotto, non sottile: è il
+   titolo dell'offerta e si deve leggere bene. */
+.prezzo-riga .nome{margin:5px 0 0;font-size:16px;font-weight:500;line-height:1.25}
 .prezzo-riga .sotto{margin:4px 0 0;color:var(--tenue);font-size:13.5px}
 .prezzo-riga .sotto b{color:var(--inchiostro);font-weight:600}
 .prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;line-height:1;white-space:nowrap}
@@ -976,7 +980,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    surgelato, 1+1. Ambra, che qui vuol dire «attenzione a questo». */
 .prezzo-riga .cond{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin:6px 0 0}
 .bollo.cond{background:var(--ambra-tenue);color:var(--ambra);font-size:11px;
-  padding:3px 9px;letter-spacing:.03em}
+  padding:3px 9px;letter-spacing:.03em;font-weight:600}
 .prezzo-riga.apribile{cursor:pointer}
 .prezzo-riga.apribile:active{border-color:var(--rosso)}
 .prezzo-riga .dove{margin:8px 0 0;font-size:12.5px;color:var(--tenue)}
@@ -1034,10 +1038,18 @@ a.dove.apri::after{content:none}
    era andata in colonna perché i due prezzi affiancati, con le loro scritte,
    rubavano metà riga al nome. Adesso stanno uno SOPRA l'altro e senza «€»:
    la colonna è stretta. Sopra il prezzo per unità, sotto quello della
-   confezione col suo peso. */
+   confezione col suo peso.
+   I PREZZI STANNO A METÀ DELLA SCHEDA, non attaccati alla prima riga del
+   nome (Manlio, 2026-09-23: «rispetto alla pillola finiscono una volta in
+   basso, una volta a metà, una volta in alto»). A sinistra le righe vanno da
+   una a cinque (sui suoi 13 prodotti: 108 schede da una, 154 da due, 76 da
+   tre in su), a destra sono sempre due: attaccati in alto, ballavano. Adesso
+   occupano tutta l'altezza della scheda, riga del marchio compresa, e ci
+   stanno in mezzo; per questo la riga del marchio sta solo a sinistra. */
 .prezzo-riga{grid-template-columns:minmax(0,1fr) auto}
-.prezzo-riga .val{grid-column:2;grid-row:2;align-self:start;text-align:right;
-  display:flex;flex-direction:column;align-items:flex-end;gap:4px;margin:4px 0 0;
+.prezzo-riga .coda{grid-column:1}
+.prezzo-riga .val{grid-column:2;grid-row:1 / 3;align-self:center;text-align:right;
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;margin:0;
   white-space:nowrap}
 .prezzo-riga .val .p1,.prezzo-riga .val .p2{display:block;margin:0;white-space:nowrap}
 .bollo.cond{white-space:nowrap}

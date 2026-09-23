@@ -3190,3 +3190,31 @@ si scrive solo la prima parte; e il primo taglio alla virgola avrebbe fatto
 di «1,5 l» un «1» — si taglia a «, » (virgola e spazio), non alla virgola.
 Sull'«€»: nei volantini veri c'è quasi sempre, piccolo; gliel'ho detto, ha
 scelto di toglierlo lo stesso dalle schede.
+
+## Il 6 no; nome meno nero e prezzi a metà della scheda — 2026-09-23 sera
+
+Punto 6 proposto (in quanti dei suoi prodotti ogni negozio è il meno caro,
+oggi e da domani; niente totale in euro, perché non sappiamo quanto compra e
+il prezzo fuori offerta il volantino lo stampa solo in un'offerta su tre).
+Scoperto facendo i conti: contare «quanti prodotti in offerta» premia chi ha
+il volantino più grosso — il Carrefour Iper li aveva tutti e 13, e da domani
+non era il meno caro in nessuno. Manlio: «no, io non aggiungerei niente».
+
+Poi due cose sue sulle schede:
+- «praticamente tutte le scritte sono in grassetto, in particolare quella
+  della descrizione»: il nome passa da 700 a 500, i bollini beige da 700 a
+  600. Il grassetto pieno resta ai prezzi, che devono risaltare.
+- «i prezzi sono allineati alla prima riga del prodotto, quindi rispetto
+  alla pillola finiscono una volta in basso, una a metà, una in alto».
+  Contate le righe a sinistra sulle 338 schede dei suoi 13 prodotti, a
+  390 px: 108 da una riga, 154 da due, 69 da tre, 5 da quattro, 2 da
+  cinque; a destra i prezzi sono sempre due righe. Mandate due prove (in
+  alto, a metà): ha scelto a metà. La colonna dei prezzi adesso prende
+  anche la riga del marchio (`grid-row:1/3`, `align-self:center`) e la riga
+  del marchio sta solo a sinistra. Effetto in più: le schede da una riga
+  sono più basse, perché i prezzi non pendono più sotto il nome.
+
+Per le schermate: il Chromium di queste sessioni non si fida del proxy e
+non scarica i caratteri da Google; si scaricano con curl e si danno alla
+pagina come file locali, se no le schermate escono con un carattere diverso
+(più largo e più nero) da quello che vede lui.

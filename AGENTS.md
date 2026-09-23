@@ -370,6 +370,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     prodotto**. Il 22 settembre la scheda era andata in colonna sotto i
     560 px perché i due prezzi AFFIANCATI rubavano metà riga al nome: in
     colonna stretta, uno sopra l'altro, il problema non c'è.
+  - **I prezzi stanno A METÀ DELLA SCHEDA** (2026-09-23 sera, scelta di
+    Manlio fra «in alto» e «a metà» viste in schermata): la colonna dei
+    prezzi prende tutta l'altezza della scheda, riga del marchio compresa,
+    e ci sta in mezzo; per questo la riga del marchio (`.coda`) sta solo
+    nella colonna di sinistra. Prima erano attaccati alla prima riga del
+    nome e ballavano: a sinistra le righe vanno da una a cinque, a destra
+    sono sempre due. **Il nome del prodotto è meno nero** (peso 500, non
+    700) e i bollini beige un filo meno (600): «praticamente tutte le
+    scritte sono in grassetto», e se tutto è in grassetto niente risalta.
+    Il grassetto pieno resta ai prezzi.
   - **Il foglietto rosso del volantino non c'è più** (stesso giorno: «è
     diventato completamente inutile, ed essendo rosso fallo sparire»): si
     tocca la scheda. `dove(o)` resta solo per scrivere la riga quando
@@ -695,10 +705,9 @@ nuova. Lo stato, in breve:
   negozio è il meno caro, oggi e da domani, senza totale in euro perché non
   sappiamo quanto compra né il prezzo fuori offerta), e Manlio: «no, io non
   aggiungerei niente». Non riproporlo. **Resta il 7 (grandi marche: elenco
-  o loghi tutti uguali)**, da proporre, non da fare. Prima del 7 Manlio ha
-  chiesto di parlare di due cose delle schede: il nome del prodotto meno
-  nero (tutto è in grassetto, quindi niente risalta) e i prezzi a destra
-  allineati in alto o a metà della scheda, non alla prima riga del nome.
+  o loghi tutti uguali)**, da proporre, non da fare. Prima del 7, fatti e
+  pubblicati (`sw.js` v90): nome del prodotto meno nero e prezzi a metà
+  della scheda.
 - **Anche fatto oggi**: toccando una scheda si apre la pagina del volantino
   sopra l'elenco con «Chiudi» in basso; sconto in percentuale; riga
   «Formato · fino al» tolta dalla vista; sezione «Personale».
