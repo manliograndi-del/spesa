@@ -529,6 +529,11 @@ NOVITA_PAGINA = [
          testo='Toccando «Grandi marche», «Personale» o «Cerca», la griglia dei tuoi '
                'prodotti scende dietro il menù; toccando «Prodotti» risale. In «Cerca» '
                'la tastiera arriva quando la griglia è già scesa.'),
+    dict(id='2026-09-24-inizio', quando='24 settembre',
+         titolo='Una pagina iniziale',
+         testo='Aprendo la pagina non ti trovi più davanti il primo prodotto con tutte le '
+               'sue offerte: c\'è una pagina iniziale che dice cosa fare. Tocca un prodotto '
+               'qui sotto per vedere le sue offerte; toccando il titolo «Spesa» torni lì.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -636,6 +641,7 @@ HTML = r'''<title>Spesa</title>
   /* La lente del tasto rosso, disegnata qui dentro: nessun carattere
      speciale, che sui telefoni diventa un quadratino. */
   --ingranaggio:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z'/%3E%3C/svg%3E");
+  --giu:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 4v15M5 12l7 7 7-7'/%3E%3C/svg%3E");
   --lente:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.4' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M16.5 16.5 21 21'/%3E%3C/svg%3E");
   color-scheme:light;
 }
@@ -1229,6 +1235,20 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   font-family:var(--f-prezzo);text-transform:uppercase;text-align:center;
   letter-spacing:.12em;font-size:15px;font-weight:600;line-height:1.25;
   overflow-wrap:anywhere}
+/* La pagina di benvenuto: in mezzo allo spazio libero fra il titolo e la
+   griglia dei prodotti, con la freccia che la indica. La freccia è grigia:
+   non si tocca (il rosso qui vuol dire «premi»). */
+.benvenuto{min-height:calc(100vh - 76px - var(--barra-alta,0px) - var(--menu-alto,70px));
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:10px 12px 6px}
+@supports (height:100dvh){
+  .benvenuto{min-height:calc(100dvh - 76px - var(--barra-alta,0px) - var(--menu-alto,70px))}
+}
+.bv-grande{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
+  font-size:22px;font-weight:600;line-height:1.2;margin:0 0 10px}
+.bv-testo{color:var(--tenue);font-size:15.5px;line-height:1.4;margin:0 0 8px;max-width:30em}
+.bv-freccia{display:block;width:34px;height:34px;margin-top:14px;background:var(--tenue);
+  -webkit-mask:var(--giu) center/contain no-repeat;mask:var(--giu) center/contain no-repeat}
 .sintesi{display:grid;gap:6px;margin:12px 0 0}
 .sint{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;text-align:left;
   border:0;border-radius:14px;padding:9px 13px;font:inherit;font-size:14.5px;cursor:pointer;
@@ -1801,7 +1821,13 @@ function salva() {
 
 
 let lista = leggiLista();
-let scelto = 0;
+/* ALL'APERTURA NESSUN PRODOTTO È SCELTO (Manlio, 2026-09-24: «quando si
+   arriva sul sito la home page è una pagina con in alto il nome di un
+   prodotto, poi una lista… la prima volta non va bene per niente, ma anche
+   riaprendola non mi piace che arrivi direttamente al Manzo con una lunga
+   lista sotto»; scelta la pagina iniziale semplice, «per adesso falla chiara
+   per chi arriva la prima volta»). -1 vuol dire: la pagina di benvenuto. */
+let scelto = -1;
 
 /* Le offerte gia in corso prima, quelle che devono ancora cominciare dopo.
    I volantini nuovi si leggono in anticipo — quello dell'Eurospin letto il
@@ -2994,6 +3020,20 @@ function dove(o) {
 }
 
 /* ---------- pagina ---------- */
+/* LA PAGINA DI BENVENUTO, quando nessun prodotto è scelto: all'apertura e
+   toccando il titolo «Spesa». Dice solo cosa fare, con la freccia verso i
+   prodotti in basso. Niente tasti dentro: si tocca la griglia. */
+function benvenuto() {
+  const d = document.createElement('div');
+  d.className = 'benvenuto';
+  d.innerHTML = '<p class="bv-grande">Tocca un prodotto qui sotto</p>'
+    + '<p class="bv-testo">e vedi le sue offerte in tutti i volantini, '
+    + 'dalla più conveniente in giù.</p>'
+    + '<p class="bv-testo">Con «Organizza i prodotti» scegli quali tenere.</p>'
+    + '<span class="bv-freccia" aria-hidden="true"></span>';
+  return d;
+}
+
 function disegna() {
   disegnaTasti();
   const out = document.getElementById('risultato');
@@ -3003,6 +3043,7 @@ function disegna() {
     return;
   }
   if (scelto >= lista.length) scelto = lista.length - 1;
+  if (scelto < 0) { out.appendChild(benvenuto()); return; }
 
   const v = lista[scelto];
   const off = offerteDi(v);
@@ -3056,7 +3097,14 @@ function disegna() {
 document.getElementById('cerca').oninput = disegnaScaffali;
 document.getElementById('chiudi-cassetto').onclick = () => apriCassetto(false);
 document.getElementById('chiudi-ricerca').onclick = () => apriRicerca(false);
-document.getElementById('vai-inizio').onclick = e => { e.preventDefault(); vaiInizio(); };
+/* Il titolo «Spesa» riporta alla pagina di benvenuto (dal 2026-09-24): è
+   l'inizio vero. «Prodotti» del menù invece riporta al prodotto che si
+   stava guardando. */
+document.getElementById('vai-inizio').onclick = e => {
+  e.preventDefault();
+  vaiInizio();
+  if (scelto >= 0) { scelto = -1; disegna(); }
+};
 document.getElementById('q').addEventListener('input', () => {
   if (marcaScelta) { marcaScelta = null; disegnaMarche(); }
   quantiMostrati = 40;

@@ -42,6 +42,9 @@ setTimeout(() => {
   if (!buio.hidden) male.push('la configurazione si apre da sola');
   if (d.querySelector('.barra').contains(buio)) male.push('LA FINESTRA STA DENTRO LA BARRA');
   d.getElementById('chiudi-novita').dispatchEvent(new w.Event('click'));
+  /* All'apertura non c'è un prodotto scelto (dal 2026-09-24): si accende il
+     primo, perché la prova guarda le sue offerte. */
+  d.querySelector('#tasti .tasto:not(.agg)').dispatchEvent(new w.Event('click'));
   ing.dispatchEvent(new w.Event('click'));
   if (buio.hidden) male.push('toccando l\'ingranaggio non si apre niente');
 

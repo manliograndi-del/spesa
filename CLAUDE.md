@@ -154,6 +154,19 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
   invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
   pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
+- **ALL'APERTURA C'È UNA PAGINA DI BENVENUTO, NON IL PRIMO PRODOTTO**
+  (2026-09-24, Manlio: «la prima volta non va bene per niente, ma anche
+  riaprendola non mi piace che arrivi direttamente al Manzo con una lunga
+  lista sotto»; fra una pagina «Oggi» con il meno caro di ogni prodotto e
+  una pagina semplice ha scelto, «per adesso», quella semplice, «chiara per
+  chi arriva la prima volta»). `scelto = -1` all'apertura: nessun prodotto
+  acceso, e in mezzo allo schermo «Tocca un prodotto qui sotto», una riga
+  su cosa si vede, una su «Organizza i prodotti» e una freccia grigia verso
+  la griglia (`benvenuto()` in `pagina.py`). **Il titolo «Spesa» riporta
+  lì**; «Prodotti» del menù riporta invece al prodotto che si guardava. La
+  pagina «Oggi» (una riga per prodotto col meno caro) resta un'idea sua per
+  dopo: non farla senza chiederglielo. Lo controllano `prova.js` e
+  `prova-intestazione.js`.
 - **LA GRIGLIA DEI PRODOTTI SALE E SCENDE** (2026-09-24 notte, Manlio:
   «un'animazioncina che fa uscire i nomi dei prodotti quando si schiaccia su
   Prodotti e la fa andare giù quando si schiaccia sulle altre voci»; visto
@@ -829,6 +842,13 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24 pomeriggio**: `sw.js` **v102**,
+  la pagina di benvenuto all'apertura (vedi la regola in cima). **Domanda
+  fatta a Manlio, in attesa**: chi apre la pagina per la prima volta vede
+  subito anche la finestra «Cosa c'è di nuovo» con TUTTE le novità dal 15
+  settembre, molte di cose che non ci sono più: toglierla per chi arriva
+  la prima volta? (È una regola sua del 2026-09-18: non cambiarla senza il
+  suo sì.)
 - **Pubblicato e verificato oggi (2026-09-24)**: `sw.js` **v101**. Trovato e
   letto per intero un volantino Lidl Frutta e Verdura nuovo (`lidlfv24`,
   24-30 settembre, 7 pagine): quasi tutte le sue offerte duplicavano quelle

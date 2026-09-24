@@ -3486,3 +3486,30 @@ una data di inizio futura (come si è sempre fatto con Eurospin, Lidl,
 Ipercoop...).
 
 Pubblicato: sito e link Claude verificati, `sw.js` v101.
+
+## 2026-09-24 — la pagina di benvenuto
+
+Manlio: «quando si arriva sul sito la home page è una pagina con in alto il
+nome di un prodotto, poi una lista… la prima volta non va bene per niente, ma
+anche riaprendola non mi piace che arrivi direttamente al Manzo». Proposte due
+strade: una pagina «Oggi» con una riga per prodotto (il meno caro di oggi,
+come nel Personale), oppure una pagina quasi vuota che dice cosa fare. Lui:
+«va bene, per adesso falla chiara per chi arriva la prima volta». Quindi la
+seconda: all'apertura `scelto = -1`, nessun prodotto acceso, e `benvenuto()`
+disegna in mezzo allo spazio libero «Tocca un prodotto qui sotto», due righe
+e una freccia grigia (non rossa: non si tocca). L'altezza è lo schermo meno il
+titolo (76 px), la griglia e il menù: così il piede della pagina resta sotto
+la griglia e non si vede la sua riga. Il titolo «Spesa» riporta al benvenuto.
+
+Mentre lavoravo, la Routine delle 7 aveva già pubblicato v101 (Lidl Frutta e
+Verdura, quattro volantini scaduti tolti) e corretto `prova-meno-caro.js` per
+lo stesso motivo per cui falliva anche a me: il 24 nessun volantino era «in
+arrivo». Il mio lavoro è stato rimesso sopra il suo (fast-forward a
+`origin/main`, poi le mie modifiche), la sua correzione tenuta, `sw.js` v102.
+**Prima di pubblicare, sempre `git fetch origin main`**: la Routine lavora
+sullo stesso `main`.
+
+Visto provando da utente nuovo: la finestra «Cosa c'è di nuovo» si apre da
+sola con tutte le novità dal 15 settembre, molte di cose che non esistono più
+(«+ altri prodotti», i due tasti in fondo). Chiesto a Manlio se toglierla per
+chi arriva la prima volta: è una regola sua, non l'ho cambiata da solo.
