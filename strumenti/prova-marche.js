@@ -58,7 +58,7 @@ setTimeout(() => {
   // il titolo riporta all'inizio
   d.getElementById('vai-inizio').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
   if (!d.getElementById('ricerca').hidden) male.push('toccando il titolo la ricerca resta aperta');
-  /* Dal 2026-09-24 (IN PROVA) il titolo porta alla mappa dell'aiuto: la
+  /* Dal 2026-09-24 il titolo porta alla mappa dell'aiuto: la
      griglia resta giù e nessun tasto del menù è acceso; «Prodotti» la fa
      salire. */
   if (!d.querySelector('#risultato .mappa-aiuto')) male.push('toccando il titolo non c\'è la mappa dell\'aiuto');

@@ -31,7 +31,7 @@ setTimeout(() => {
   dimmi(tasti.length > 0, `${tasti.length} bottoni dei prodotti`);
   /* All'apertura NON c'è un prodotto scelto (Manlio, 2026-09-24: «non mi
      piace che arrivi direttamente al Manzo con una lunga lista sotto»), e
-     dal 2026-09-24 (IN PROVA) c'è la mappa dell'aiuto: nessun bottone
+     dal 2026-09-24 c'è la mappa dell'aiuto: nessun bottone
      acceso, la griglia giù. Toccando «Prodotti» la griglia sale e c'è la
      pagina di benvenuto, che dice di toccare un prodotto. */
   const mappa = ris && ris.querySelector('.mappa-aiuto');

@@ -540,6 +540,14 @@ NOVITA_PAGINA = [
                'ditte: Coca-Cola, Nestlé, Procter & Gamble, Unilever e le altre. Toccandone '
                'una escono le offerte di tutti i suoi marchi: per la Coca-Cola anche Fanta, '
                'Sprite e Fuze Tea, per Procter & Gamble Dash, Pantene e Oral-B.'),
+    # «zz»: l'id deve venire DOPO «multinazionali» in ordine alfabetico, se no
+    # chi ha già visto quella non vede questa (si segna l'id più grande).
+    dict(id='2026-09-24-zz-mappa', quando='24 settembre',
+         titolo='«Come si usa», appena apri, e «Il mio carrello»',
+         testo='Aprendo la pagina, o toccando «Spesa» in alto, ci sono cinque fumetti '
+               'colorati che dicono a cosa serve ogni tasto, con la punta verso il tasto. '
+               'Tocca «Prodotti» e salgono i tuoi prodotti. Il tasto «Personale» adesso si '
+               'chiama «Il mio carrello»: dentro c\'è la tua lista della spesa, come prima.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -2200,7 +2208,7 @@ function disegnaTasti() {
   suo.appendChild(gm);
   /* «Personale», il quarto (Manlio, 2026-09-23): le sue parole e le loro
      offerte. Anche lui è una sezione: ritoccato non chiude. Dal 2026-09-24
-     (IN PROVA) si chiama «Il mio carrello» (Manlio: «il tasto Personale
+     si chiama «Il mio carrello» (Manlio: «il tasto Personale
      andrà cambiato con la scritta Il mio carrello»), su due righe come
      «Grandi marche». */
   const per = document.createElement('button');

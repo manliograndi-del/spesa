@@ -149,6 +149,53 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 
 ## Regole della pagina decise con lui
 
+- **ALL'APERTURA C'È LA MAPPA «COME SI USA»: CINQUE FUMETTI A COLORI CON
+  LA CODA A PUNTA VERSO I TASTI** (pubblicata il 2026-09-24 sera, `sw.js`
+  v105; Manlio, con due disegni a mano: «questa immagine di Help ci sia
+  aprendo il sito, e basta; che non si arrivi a una pagina con già dei
+  prodotti», poi «nuvolette più organiche», i colori, e «ok vai pubblica»).
+  All'apertura e toccando il titolo «Spesa» la griglia dei prodotti resta
+  giù, nessun tasto del menù è acceso, e ci sono «Come si usa» e cinque
+  fumetti (`FUMETTI`, `mappaAiuto()` in `pagina.py`). **I testi sono SUOI,
+  non cambiarli senza chiederglielo**: «In alto — L'ingranaggio sceglie i
+  tuoi supermercati, la N le novità»; «Prodotti — Scegli le categorie di
+  prodotti che ti interessano: appariranno liste di prodotti cliccabili per
+  vedere le immagini»; «Cerca — Ricerca a testo libero»; «Grandi marche —
+  Scegli per marca»; «Il mio carrello — Fai la tua lista della spesa».
+  Regole decise con lui:
+  - **a scaletta, un fumetto per riga** («una sopra e l'altra sotto»):
+    Prodotti a sinistra e Cerca a destra, con le code lungo i bordi; poi
+    Grandi marche e il carrello, stretti, fra le due code; il carrello più
+    in basso, a destra della coda di Grandi marche;
+  - **la coda esce da UN LATO del fumetto, mai dal mezzo** (`coda` in
+    `FUMETTI`), e **si assottiglia sempre** dall'attacco alla punta, come
+    una virgola: sono due curve che si chiudono nella punta (`palloncino()`).
+    Dalla parte del bordo continua la curva del pallone, dall'altra c'è lo
+    spigolo, come nel suo disegno. Niente freccia: la punta basta, e si
+    ferma 11 px sopra il tasto (più giù si perde nell'ombra del menù);
+  - **colori**: giallo, verde, azzurro, lilla, pesca (`.p-alto` … `.p-per`),
+    bordo della stessa tinta più scuro, scritta scura fissa `#27231F`:
+    uguali con ogni look. Mai rosso (vuol dire «premi»);
+  - **stanno tutti sopra il menù su ogni telefono**: `adattaMappa()` dà
+    alla mappa lo spazio fra il titolo e il menù e, se non ci stanno,
+    rimpicciolisce il testo (da 16 a 12,5 px), poi lo spazio fra i fumetti,
+    poi ancora il testo fino a 11,5. Provato da 360×640 a 412×915;
+  - il disegno (`#frecce-aiuto`) è fermo sullo schermo, SOTTO il testo, non
+    si tocca (`pointer-events:none`), si rifà quando la pagina scorre o
+    cambia misura, e sparisce appena si lascia la mappa;
+  - **«Prodotti» fa salire la griglia** e mostra la pagina di benvenuto
+    («Tocca un prodotto qui sotto», vedi la regola sotto); **«Cerca»,
+    «Grandi marche», «Il mio carrello» vanno alla loro sezione**, e tornando
+    con «Prodotti» la mappa non si rivede: si rivede solo toccando «Spesa».
+  La prova è `prova-mappa.js` (con un telefono finto, perché jsdom non
+  impagina); anche `prova.js`, `prova-intestazione.js`, `prova-marche.js`.
+- **IL TASTO «Personale» SI CHIAMA «Il mio carrello»** (2026-09-24 sera,
+  Manlio: «il tasto Personale andrà cambiato con la scritta Il mio
+  carrello»; fumetto: «Fai la tua lista della spesa»). Su due righe come
+  «Grandi marche» («Il mio» / «carrello»), anche nell'Aiuto. Dentro è la
+  stessa sezione di prima: dove qui sotto c'è scritto «Personale» vuol dire
+  questa. L'ordine del menù è **Prodotti, Grandi marche, Il mio carrello,
+  Cerca** (`prova-marche.js`, `prova-personale.js`).
 - **SOTTO LE OFFERTE NON C'È PIÙ L'ELENCO DELLE PAGINE** (2026-09-23 sera,
   Manlio: «togli anche l'elenco delle pagine sotto le offerte»): via «Altre
   pagine che lo nominano», «ci ho trovato: …», «Mostra le altre N pagine».
@@ -187,8 +234,10 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   chi arriva la prima volta»). `scelto = -1` all'apertura: nessun prodotto
   acceso, e in mezzo allo schermo «Tocca un prodotto qui sotto», una riga
   su cosa si vede, una su «Organizza i prodotti» e una freccia grigia verso
-  la griglia (`benvenuto()` in `pagina.py`). **Il titolo «Spesa» riporta
-  lì**; «Prodotti» del menù riporta invece al prodotto che si guardava. La
+  la griglia (`benvenuto()` in `pagina.py`). **Dal 2026-09-24 sera (v105)
+  all'apertura e dal titolo «Spesa» c'è la mappa «Come si usa» (regola in
+  cima), e la pagina di benvenuto viene dopo, toccando «Prodotti»**;
+  «Prodotti» del menù riporta invece al prodotto che si guardava. La
   pagina «Oggi» (una riga per prodotto col meno caro) resta un'idea sua per
   dopo: non farla senza chiederglielo. Lo controllano `prova.js` e
   `prova-intestazione.js`.
@@ -871,43 +920,10 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
-- **IN PROVA, NON PUBBLICATA (2026-09-24 sera): la mappa dell'aiuto
-  all'apertura.** Manlio, con un disegno a mano: «questa immagine di Help
-  ci sia aprendo il sito e basta; che non si arrivi a una pagina con già
-  dei prodotti… fermati prima di metterla nel sito, prima fammi delle prove
-  grafiche con già i testi». Poi «nuvolette più organiche» e un secondo
-  disegno (fumetto da fumetti con la coda a punta, a virgola), e i TESTI
-  SUOI, da non cambiare: «In alto — L'ingranaggio sceglie i tuoi
-  supermercati, la N le novità»; «Prodotti — Scegli le categorie di
-  prodotti che ti interessano: appariranno liste di prodotti cliccabili per
-  vedere le immagini»; «Grandi marche — Scegli per marca»; «Il mio carrello
-  — Fai la tua lista della spesa»; «Cerca — Ricerca a testo libero». I
-  fumetti sono A SCALETTA, uno per riga («le due in basso una sopra e
-  l'altra sotto, e lo stesso con le altre due»). **Il tasto «Personale» si
-  chiama «Il mio carrello»** (Manlio: «quando pubblichiamo, il tasto
-  Personale andrà cambiato con la scritta Il mio carrello»): già così nella
-  prova, anche nell'Aiuto. **Sta solo sul ramo di lavoro, NON su `main`**:
-  `index.html` e `sw.js` (v104) sono quelli pubblicati. Com'è: all'apertura
-  (e toccando «Spesa») la griglia resta giù, nessun tasto del menù è
-  acceso; «Come si usa» e cinque fumetti (`FUMETTI`, `mappaAiuto()`),
-  disegnati da `palloncino()` in `frecceAiuto()` con la coda a punta verso
-  i due pallini e i quattro tasti; `adattaMappa()` li fa stare tutti sopra
-  il menù (testo da 16 a 11,5 px). «Prodotti» fa salire la griglia (pagina
-  di benvenuto); dalle altre sezioni, tornando con «Prodotti», la mappa non
-  si rivede. Prove già aggiornate (`prova.js`, `prova-intestazione.js`,
-  `prova-marche.js`, `prova-personale.js`, nuova `prova-mappa.js`).
-  **Terzo giro (scelti i COLORI**, Manlio: «vanno bene i colori»): giallo,
-  verde, azzurro, lilla, pesca, adesso in `pagina.py` (`.p-alto` … `.p-per`,
-  scritta scura fissa `#27231F`, uguale con ogni look). **Le code escono da
-  UN LATO del fumetto, mai dal mezzo** (`coda: 'sx'/'dx'` in `FUMETTI`) e
-  **si assottigliano sempre**, dall'attacco alla punta: sono due curve che
-  si chiudono nella punta (prima si stringevano e poi si riallargavano, o
-  andavano dritte e si stringevano solo in fondo: «non va bene»). Dalla
-  parte del bordo la coda continua la curva del pallone, dall'altra c'è lo
-  spigolo, come nel suo disegno. Grandi marche e carrello più stretti, il
-  carrello più in basso. Schermate mandate: 34-390, 34-360, 34-412.
-  **Aspetta il suo sì**: poi novità in `NOVITA_PAGINA`, regola in cima a
-  questo file, `sw.js` v105 e pubblicazione completa.
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v105**, la
+  mappa «Come si usa» all'apertura coi cinque fumetti a colori e il tasto
+  «Il mio carrello» (vedi le due regole in cima). Novità
+  `2026-09-24-zz-mappa`. Provata prima in quattro giri di schermate.
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v104**, le 14 grandi
   ditte coi loro marchi in «Grandi marche» (vedi la regola in cima).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di

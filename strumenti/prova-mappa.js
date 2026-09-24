@@ -1,4 +1,4 @@
-/* LA MAPPA DELL'AIUTO ALL'APERTURA (2026-09-24, IN PROVA). Manlio, con un
+/* LA MAPPA DELL'AIUTO ALL'APERTURA (2026-09-24). Manlio, con un
    disegno fatto a mano: «questa immagine di Help ci sia aprendo il sito, e
    basta; che non si arrivi a una pagina con già dei prodotti». Fumetti con
    la freccia verso i due pallini in alto e verso i quattro tasti del menù.

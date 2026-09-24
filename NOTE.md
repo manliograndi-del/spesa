@@ -3636,3 +3636,8 @@ carrello più stretti, il carrello un poco più in basso. Fatto:
   dall'altra resta lo spigolo, come nel disegno;
 - i colori stanno in `pagina.py`, coi nomi delle classi scritti per intero in
   `FUMETTI` (`tinta`): costruiti a pezzi, `pulizia` li dava per non usati.
+
+Pubblicata il 2026-09-24 sera (Manlio: «ok vai pubblica»), `sw.js` v105,
+novità `2026-09-24-zz-mappa` («zz» perché l'id deve venire dopo
+`2026-09-24-multinazionali`: si segna il più grande). Con lei il tasto
+«Personale» diventa «Il mio carrello». Le regole stanno in cima a CLAUDE.md.
