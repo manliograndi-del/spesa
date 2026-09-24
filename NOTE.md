@@ -3661,3 +3661,18 @@ richieste verso altri siti (`origin !== self.location.origin`), quindi lo
 script di Umami e l'invio delle visite passano senza toccarlo. Il `pushState`
 del volantino sopra l'elenco usa lo stesso indirizzo: Umami non lo conta come
 una pagina nuova. Prova: `prova-visite.js`.
+
+## 2026-09-24 sera — Gli attacchi delle code (IN PROVA)
+
+Manlio ha cerchiato in rosso, su una schermata del link Claude, l'attacco fra
+fumetto e coda di tutti e cinque: «vorrei che fossero più organiche, che non
+ci fosse un salto nella loro direzione». Due cause: dalla parte del bordo la
+coda partiva in una direzione a metà fra quella del bordo e «giù» (l'avevo
+fatto perché, tutta sul bordo, le code lunghe si attorcigliavano: ma con la
+coda nuova, due curve che si chiudono nella punta, non succede più); e col
+fumetto giallo, che ha la coda in su, i due attacchi erano scambiati (la
+curva morbida dalla parte dello spigolo e viceversa), perché l'ordine dei
+punti del pallone si rovescia. Adesso: l'attacco esterno si sceglie dalla
+posizione (`fuori1`), e lì la coda parte con la stessa direzione con cui
+`liscia()` fa finire il bordo (`t1`, `t2` presi dal punto accanto, non da
+due punti più in là). Prova mandata, non pubblicata.

@@ -3305,16 +3305,22 @@ function palloncino(a, z, su, seme, f) {
   const L = Math.abs(punta[1] - B[1]);
   const c1 = [B[0], B[1] + s * L * .45], c2 = [punta[0], punta[1] - s * L * .45];
   const piu = (p, k) => [p[0] + hb[0] * k, p[1] + hb[1] * k];
-  /* Dalla parte del bordo la coda continua la curva del pallone, senza
-     spigolo; dall'altra parte lo spigolo resta, come nel disegno. */
+  /* Dalla parte del bordo la coda continua la curva del pallone SENZA
+     SALTI DI DIREZIONE (Manlio, 2026-09-24: «quelle congiunzioni… vorrei
+     che fossero più organiche, che non ci fosse un salto nella loro
+     direzione»): lì la coda parte esattamente nella direzione in cui arriva
+     il bordo del pallone, e poi piega dolcemente verso la punta. Dall'altra
+     parte lo spigolo resta, come nel suo disegno.
+     Quale dei due attacchi sta dalla parte del bordo lo dice la posizione,
+     non l'ordine: con la coda in su (i pallini) l'ordine si rovescia, e il
+     giallo aveva la curva dalla parte sbagliata. */
   const dir = (p, q) => { const l = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [(q[0] - p[0]) / l, (q[1] - p[1]) / l]; };
-  /* (la direzione è a metà fra quella del bordo e quella della coda: tutta
-     sul bordo, le code lunghe si attorcigliavano in fondo) */
-  const r = Math.min(L * .3, 30);
-  const t2 = dir(arco[arco.length - 3], j2), t1 = dir(j1, arco[2]);
-  const giu2 = dir([0, 0], [t2[0], t2[1] + s]), giu1 = dir([0, 0], [-t1[0], -t1[1] + s]);
-  const a2 = f.coda === 'dx' ? [j2[0] + giu2[0] * r, j2[1] + giu2[1] * r] : piu(c1, .6);
-  const a1 = f.coda === 'dx' ? piu(c1, -.6) : [j1[0] + giu1[0] * r, j1[1] + giu1[1] * r];
+  const fuori1 = f.coda === 'dx' ? j1[0] > j2[0] : j1[0] < j2[0];
+  const r = Math.min(L * .4, 34);
+  /* le direzioni esatte con cui liscia() fa finire e cominciare il bordo */
+  const t2 = dir(arco[arco.length - 2], j2), t1 = dir(j1, arco[1]);
+  const a2 = fuori1 ? piu(c1, .6) : [j2[0] + t2[0] * r, j2[1] + t2[1] * r];
+  const a1 = fuori1 ? [j1[0] - t1[0] * r, j1[1] - t1[1] * r] : piu(c1, -.6);
   const pt = p => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
   return 'M' + pt(j1) + liscia(arco)
     + ' C' + pt(a2) + ' ' + pt(piu(c2, .12)) + ' ' + pt(punta)
