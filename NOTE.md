@@ -3513,3 +3513,26 @@ Visto provando da utente nuovo: la finestra «Cosa c'è di nuovo» si apre da
 sola con tutte le novità dal 15 settembre, molte di cose che non esistono più
 («+ altri prodotti», i due tasti in fondo). Chiesto a Manlio se toglierla per
 chi arriva la prima volta: è una regola sua, non l'ho cambiata da solo.
+
+## 2026-09-24 — i marchi di tutte le grandi marche
+
+Manlio: «mettiti a cercare i loghi delle grandi marche che mancano, e
+sostituisci Ferrero, che quello non è il marchio». Aveva ragione: il Ferrero
+preso da worldvectorlogo il 22 erano tre stelle in un cerchio con «ferrero» in
+minuscolo nero; il marchio vero è la scritta marrone FERRERO, presa dal sito
+ufficiale. Trovati tutti e 14 i mancanti, ognuno guardato prima di metterlo;
+da dove viene ognuno sta in `strumenti/marchi/FONTI.txt`.
+
+Come ci si arriva quando i siti bloccano (la volta scorsa ci si era fermati):
+- Chromium di Playwright non si fidava del proxy (ERR_CERT_AUTHORITY_INVALID):
+  mancava il certificato nel suo archivio NSS. Installato `libnss3-tools` e
+  aggiunto con `certutil` (vedi FONTI.txt). Non si spegne nessun controllo:
+  si aggiunge il certificato del proxy, come per gli altri programmi.
+- Coi siti aperti in Chromium, i file del logo vanno scaricati DA DENTRO la
+  pagina (`fetch` nel contesto della pagina): chiesti da fuori, anche con gli
+  stessi cookie, danno 403 (Rana) o la pagina di blocco (Nestlé/Levissima).
+- Molti siti restano chiusi comunque (Saiwa, Novi, Granarolo, Omino Bianco,
+  La Molisana, Voiello). Lì: Wikipedia (le pagine si leggono, le API danno 429)
+  e le miniature di upload.wikimedia.org, andando piano; per Saiwa iconape.
+- Ogni marchio è portato su fondo bianco, rifilato e alto 96 px (i vecchi sono
+  64): la pagina cresce di circa 90 KB.

@@ -563,8 +563,12 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     che nessuna pillola resti vuota**;
   - come nella ricerca, **niente bollino verde** nei risultati.
   - **Le pillole hanno il MARCHIO VERO dove c'è** (chiesto il 2026-09-22):
-    32 su 46, uno per file in `strumenti/marchi/` (nome della marca in
-    minuscolo con i trattini, `.webp`), fonti in `marchi/FONTI.txt`. Come per
+    **46 su 46 dal 2026-09-24** (prima 32; Manlio: «cerca i loghi delle
+    grandi marche che mancano, e sostituisci Ferrero, che quello non è il
+    marchio» — era un logo con tre stelle, adesso è la scritta marrone
+    FERRERO del sito ufficiale), uno per file in `strumenti/marchi/` (nome della marca in
+    minuscolo con i trattini, `.webp`), fonti in `marchi/FONTI.txt`, con
+    scritto anche come si fa a scaricarli quando i siti bloccano. Come per
     i supermercati: fondo bianco fisso, nome nascosto dentro per chi non vede
     e per le prove, e se il file manca la pillola resta col nome scritto.
     **Ogni marchio è stato guardato prima di metterlo**: le ricerche automatiche
@@ -845,6 +849,8 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di
+  tutte e 46 le grandi marche (14 nuovi, Ferrero sostituito).
 - **Pubblicato e verificato il 2026-09-24 pomeriggio**: `sw.js` **v102**,
   la pagina di benvenuto all'apertura (vedi la regola in cima). **Domanda
   fatta a Manlio, in attesa**: chi apre la pagina per la prima volta vede

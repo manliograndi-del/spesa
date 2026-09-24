@@ -15,8 +15,34 @@ Dal sito della marca: rummo, balocco, loacker, melegatti, kinder, zuegg,
 Ritoccati: felce-azzurra e menabrea avevano la scritta bianca (fatta per
   fondi scuri) e su bianco sparivano: la scritta e' stata ricolorata scura.
 
-MANCANO (la pillola resta col nome scritto): De Cecco, Voiello, Garofalo,
-La Molisana, Rana, Saiwa, Colussi, Novi, Kimbo, Granarolo, Arborea,
-Parmacotto, Levissima, Omino Bianco. Wikimedia rispondeva «troppe richieste»,
-e i loro siti erano bloccati o vuoti. Per aggiungerne uno basta mettere qui
-<nome in minuscolo, trattini al posto degli spazi>.webp (o .png).
+AGGIUNTI IL 2026-09-24 (chiesti da Manlio: «cerca i loghi delle grandi marche
+che mancano, e sostituisci Ferrero, che quello non è il marchio»). Adesso ci
+sono tutte e 46. Ognuno guardato prima di metterlo, portato su fondo bianco,
+rifilato e alto 96 px:
+  ferrero      dal sito ufficiale ferrero.it (la scritta marrone FERRERO).
+               Quello di prima, preso da worldvectorlogo, erano tre stelle in un
+               cerchio con «ferrero» in nero: non è il marchio.
+  de-cecco     dal sito ufficiale dececco.com (il riquadro blu con la contadina).
+  rana         dal sito ufficiale giovannirana.it (SVG).
+  kimbo        dal sito ufficiale kimbo.it (SVG).
+  arborea      dal sito ufficiale arborea1956.com (il nuovo marchio blu).
+  colussi      dal sito ufficiale colussi.net: l'SVG era bianco (fatto per la
+               testata scura), ricolorato col blu Colussi #002f87 preso dal
+               marchio del Gruppo Colussi.
+  granarolo    da cdn.worldvectorlogo.com (granarolo-corporate-pos2): è lo
+               stesso che il sito granarolo.it mostra nel suo avviso dei cookie.
+  voiello      da Wikipedia inglese (Voiello_logo.png).
+  garofalo     da Wikipedia italiana (Logo_Pasta_Garofalo.png).
+  la-molisana  da Wikipedia italiana (Logo_PASTA_LA_MOLISANA.png).
+  novi         da Wikimedia Commons (Logo_Novi.png).
+  omino-bianco da Wikipedia italiana (OMINO_BIANCO_2026.png).
+  parmacotto   da Wikimedia Commons (PARMACOTTO_LOGO.png).
+  levissima    da Wikimedia Commons (Levissima_Logo.svg).
+  saiwa        da iconape.com (il quadrato rosso e blu): il sito saiwa.it
+               blocca i programmi.
+Come si fa, per la prossima volta: molti siti delle marche bloccano curl ma si
+aprono con Chromium (serve il certificato del proxy nel suo archivio NSS:
+certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ccr-agent-proxy -i
+/root/.ccr/agent-proxy-ca.crt). Wikimedia risponde «troppe richieste» alle API
+ma dà le miniature (…/thumb/<a>/<ab>/<File>/500px-<File>) se si va piano; <ab>
+sono i primi due caratteri dell'md5 del nome del file.
