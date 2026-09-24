@@ -178,3 +178,4 @@
 2026-09-24 10:44 UTC  pubblicato v106: conteggio delle visite con Umami solo sul sito; sito verificato byte per byte, e una visita di prova dal sito vero accettata da Umami (200)
 2026-09-24 11:00 UTC  pubblicato v107: attacchi delle code dei fumetti senza salti di direzione; sito verificato byte per byte, artifact aggiornato (13 prodotti)
 2026-09-24 11:58 UTC  pubblicato v108: il benvenuto è un fumetto verde trasparente col promemoria della foto del volantino; sito verificato byte per byte, link Claude versione 98
+2026-09-24 12:48 UTC  pubblicato v109: volantini sfogliabili dalla pagina Novità; Eurospin offerte Family solo con la carta (18), 8 offerte sfuggite aggiunte, frutta di pag. 12 dal 28/9; sito e novita.html verificati byte per byte, link Claude versione 99
