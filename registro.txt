@@ -174,3 +174,4 @@
 2026-09-24 07:59 UTC  pubblicato: sito (verificato, sw.js v102) e artifact (versione 93): pagina di benvenuto all'apertura.
 2026-09-24 08:35 UTC  pubblicato: sito (verificato, sw.js v103) e artifact (versione 94): marchi di tutte le 46 grandi marche.
 2026-09-24 09:01 UTC  pubblicato: sito (verificato, sw.js v104) e artifact (versione 95): 14 grandi ditte coi loro marchi.
+2026-09-24 10:25 UTC  pubblicato v105: mappa «Come si usa» all'apertura (cinque fumetti a colori coi testi di Manlio), «Personale» diventa «Il mio carrello»; sito verificato byte per byte, artifact aggiornato (13 prodotti)
