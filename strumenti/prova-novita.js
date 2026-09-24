@@ -111,7 +111,68 @@ setTimeout(() => {
       male.push('«' + nome(tr) + '» non è ancora letto e la tabella non lo dice');
   });
 
+  /* OGNI VOLANTINO SI SFOGLIA TOCCANDOLO (Manlio, 2026-09-24: «rendi
+     interattivo questo elenco, facendo aprire i volantini a un clic»). Si
+     controlla: chi vale (o arriva) ha il tasto, chi è finito no; le pagine
+     stanno sul sito di chi pubblica il volantino, non sul nostro (vincolo 2);
+     si apre sulla prima pagina, le frecce girano, «Chiudi» chiude. */
+  const vale = v => !(v.fino && v.fino < OGGI);
+  dati.filter(v => v.letto && vale(v)).forEach(v => {
+    if (!v.pagine || !v.pagine.length) male.push('«' + v.ins + ' — ' + v.nome + '» non ha pagine da sfogliare');
+    (v.pagine || []).forEach(u => {
+      if (!/^https:\/\//.test(u) || /manliograndi-del\.github\.io/.test(u))
+        male.push('una pagina di «' + v.ins + '» non sta sul sito di chi la pubblica: ' + u);
+    });
+  });
+  [...corso, ...arrivo].forEach(tr => {
+    if (tr.getAttribute('data-letto') === 'si' && !tr.querySelector('.apri-vol'))
+      male.push('«' + nome(tr) + '» non si può aprire');
+  });
+  finiti.forEach(tr => {
+    if (tr.querySelector('.apri-vol')) male.push('«' + nome(tr) + '» è finito ma si apre ancora');
+  });
+  const box = d.getElementById('sfoglia');
+  const primo = corso.find(tr => tr.querySelector('.apri-vol'));
+  if (!box) male.push('manca la finestra per sfogliare i volantini');
+  else if (primo) {
+    const ins = primo.querySelector('.chi b').textContent.trim();
+    const v = dati.find(x => x.ins === ins && x.letto && vale(x)
+      && (x.nome || '') === primo.querySelector('.chi .nome').textContent.trim());
+    primo.querySelector('.apri-vol').click();
+    const tit = () => d.getElementById('titolo-sfoglia').textContent;
+    const src = () => { const e = d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe'); return e ? e.getAttribute('src') : ''; };
+    if (box.hidden) male.push('toccando «' + ins + '» il volantino non si apre');
+    if (!v) male.push('la riga di «' + ins + '» non corrisponde a nessun volantino');
+    else {
+      const n = v.pagine.length;
+      if (tit().indexOf(ins) < 0 || tit().indexOf('pagina 1 di ' + n) < 0)
+        male.push('aperto «' + ins + '», in cima c\'è «' + tit() + '»');
+      if (src() !== v.pagine[0]) male.push('aperto «' + ins + '», non si vede la sua prima pagina');
+      if (!d.getElementById('indietro-sfoglia').disabled) male.push('sulla prima pagina si può andare indietro');
+      if (n > 1) {
+        d.getElementById('avanti-sfoglia').click();
+        if (tit().indexOf('pagina 2 di ' + n) < 0 || src() !== v.pagine[1])
+          male.push('la freccia avanti non porta alla pagina 2');
+        d.getElementById('indietro-sfoglia').click();
+        if (src() !== v.pagine[0]) male.push('la freccia indietro non torna alla pagina 1');
+      }
+    }
+    d.getElementById('chiudi-sfoglia').click();
+    if (!box.hidden) male.push('«Chiudi» non chiude il volantino');
+    if (d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe'))
+      male.push('chiuso il volantino, la pagina resta caricata sotto');
+  }
+  /* Il visore del Conad non è un'immagine: si apre in un riquadro. */
+  const conad = corso.concat(arrivo).find(tr => tr.querySelector('.apri-vol')
+    && dati.some(v => v.quadro && v.ins === tr.querySelector('.chi b').textContent.trim()));
+  if (conad) {
+    conad.click();
+    if (!d.querySelector('#foglio-sfoglia iframe')) male.push('il visore del Conad non si apre nel riquadro');
+    d.getElementById('chiudi-sfoglia').click();
+  }
+
   if (male.length) { male.forEach(x => console.error('  ✗ ' + x)); process.exit(1); }
+  console.log('  ogni volantino in corso o in arrivo si sfoglia toccandolo; «Chiudi» chiude');
   console.log('  volantini in tabella: ' + corso.length + ' in corso, '
               + arrivo.length + ' in arrivo, ' + finiti.length + ' appena finiti'
               + (daLeggere.length ? ' (' + daLeggere.length + ' ancora da leggere, segnati)' : ''));

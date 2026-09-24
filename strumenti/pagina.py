@@ -113,10 +113,11 @@ def prima(note):
 # scritta dettagli e ciò che fa apparire: molto spesso sono di troppo e sono
 # davvero dei dettagli»). La nota intera resta nei dati: «Cerca» cerca anche
 # lì dentro, ed è da lì che nascono i bollini e lo sconto.
-_TESSERA = re.compile(r"Lidl Plus|Buona Spesa Card|Carta Insieme|[Ss]olo titolari|"
+_TESSERA = re.compile(r"Lidl Plus|Buona Spesa Card|Carta Insieme|[Ss]olo titolari|Eurospin Family|"
                       r"EKOM UP|SpesAmica|\bsoci\b|CARTA BENNET|Fidelity Card|"
                       r"Perte Plus|\bcon APP\b|\bl'app\b|[Tt]essera")
-_BOLLO_TESSERA = {'Pam': 'Solo con app', 'Lidl': 'Con Lidl Plus', 'Ipercoop': 'Solo soci'}
+_BOLLO_TESSERA = {'Pam': 'Solo con app', 'Lidl': 'Con Lidl Plus', 'Ipercoop': 'Solo soci',
+                  'Eurospin': 'Con carta Family'}
 
 def condizioni(ins, cat, fmt, note):
     n = note or ''

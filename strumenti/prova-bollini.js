@@ -25,6 +25,12 @@ setTimeout(() => {
       male.push(`«${o.pro}» (${o.ins}): la nota dice tessera ma il bollino non c'è`);
     if (o.ins === 'Pam' && /Perte Plus/.test(n) && !b.includes('Solo con app'))
       male.push(`«${o.pro}»: Pam con app senza «Solo con app»`);
+    /* L'«Offerta Family» dell'Eurospin vale solo con la carta Eurospin
+       Family (Manlio, 2026-09-24: «offerta Family e il logo Eurospin Family
+       vogliono dire che si possono acquistare con lo sconto solo con la
+       carta»). */
+    if (o.ins === 'Eurospin' && /Eurospin Family/.test(n) && !b.includes('Con carta Family'))
+      male.push(`«${o.pro}»: offerta Family senza «Con carta Family»`);
     /* Il prezzo senza tessera è una pillola sua, con la sua unità se ce l'ha
        (Manlio, 2026-09-23: «se è davvero importante e breve, in un'altra
        pillola beige»). */

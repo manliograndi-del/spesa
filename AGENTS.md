@@ -116,6 +116,17 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   uscito il 3 settembre mentre il Bennet vecchio era ancora valido, e per sei
   giorni non l'ha visto nessuno. **A ogni giro guarda anche cosa è USCITO**, non
   solo cosa muore.
+- **EUROSPIN: «OFFERTA Family» e il logo «Eurospin Family» vogliono dire
+  SOLO CON LA CARTA** (Manlio, 2026-09-24: «vogliono dire che si possono
+  acquistare con lo sconto solo con la carta… in futuro ricordati»). Il
+  cartellino col prezzo ha la striscia «OFFERTA Family» e accanto c'è il
+  quadratino blu «Euro Spin Family». Nella nota si scrive **«Offerta Family:
+  solo con la carta Eurospin Family, senza tessera 2,49.»** (col prezzo
+  barrato): da lì nascono il bollino «Con carta Family» e la pillola «Senza
+  tessera 2,49 €». La pagina intera «OFFERTE Family · ALTRE OFFERTE» (quella
+  gialla e blu) è stata segnata tutta così per prudenza: i cartellini lì non
+  hanno la striscia, ma il titolo sì. **Da chiedere a Manlio** se è giusto.
+  Nel volantino 24 settembre-4 ottobre erano 18 righe e non le avevo viste.
 - Una pagina di quaderni, pubblicità o punti premio **si scarta**, e si scrive
   in `strumenti/scartate.py` col motivo, così non torna nell'elenco delle cose
   da fare. Regola sua: «una volta che l'hai vista, lasciala perdere».
@@ -568,6 +579,17 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   ancora letto stanno in **`VOLANTINI_ATTESI`** in `dati.py` e in tabella sono
   segnati «prezzi non ancora letti»: si tolgono di lì appena il volantino
   entra in `VOLANTINI`. La prova è `prova-novita.js`.
+  **Dal 2026-09-24 ogni volantino della tabella SI SFOGLIA** (Manlio: «nella
+  pagina novità c'è ancora l'elenco di tutti i volantini: potresti renderlo
+  interattivo, facendo aprire i volantini a un clic»): il nome del negozio è
+  un tasto (bordo rosso, col foglietto), ma si tocca tutta la riga; si apre
+  sopra la pagina, come nella pagina dei prezzi, con la prima pagina, le
+  frecce ‹ › ai lati del tastone rosso «Chiudi» (o si striscia col dito), e
+  «pagina 3 di 52» in cima. Le pagine sono sul sito di chi pubblica il
+  volantino (vincolo 2), gli indirizzi li mette `novita.py` (`pagine_di`,
+  il numero di pagine lo sa `indice.json`); il Conad si apre nel suo visore.
+  **Quelli finiti non si aprono**: i loro prezzi non valgono più. Solo sul
+  sito: il link Claude apre le Novità del sito.
 - **L'impaginazione è a schede, decisa il 2026-09-22 su una schermata che ha
   mandato lui**: «l'impaginazione è più bella così, con tutto messo in pillole
   e ordinato». In cima il marchio della pagina (quadratino rosso «S»), il
@@ -947,6 +969,20 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v109**.
+  1) Nella pagina Novità i volantini della tabella si sfogliano toccandoli
+  (vedi la regola «La pagina Novità comincia dai volantini»). 2) Eurospin:
+  segnate le 18 «Offerta Family» (solo con la carta, vedi «Come si leggono
+  i volantini»); rilette a occhio tutte le pagine alimentari, aggiunte 8
+  offerte sfuggite (coppa, burgheroni, carne in gelatina, fagioli e tonno,
+  trancino, burger di soia, cetrioli, rotolo con spinaci); arance, zucchine
+  e insalata mista di pagina 12 valgono solo dal 28 settembre (data sotto la
+  filigrana: letta 28, la più prudente). **Domande fatte a Manlio, in
+  attesa**: (a) le offerte dei soli weekend non ancora cominciati sono
+  nascoste (regola di inizio settembre, `nascosta()` in `pagina.py`): lui ha
+  cercato i gamberi indopacifici Eurospin (2-4 ottobre) e non li ha trovati.
+  Mostrarle prima, sbiadite col calendarietto come le altre offerte che
+  devono cominciare? (b) la pagina 14 Eurospin è davvero tutta «Family»?
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v108**, il
   benvenuto (dopo «Prodotti», a pagina nuova) è un fumetto verde un po'
   trasparente, con la coda verso la griglia e il promemoria «Tocca

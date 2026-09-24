@@ -3692,3 +3692,33 @@ col bersaglio largo la punta scende quasi dritta sotto l'attacco (`sotto`);
 si misura su dove arriverà (si toglie lo spostamento del `transform`).
 Provato in schermata (390 e 360 px), i fumetti della mappa identici a
 quelli pubblicati. Pubblicato (v108) dopo il suo «va bene, pubblica».
+
+## 2026-09-24 sera — I volantini si sfogliano dalle Novità; l'Eurospin «Family»
+
+Manlio: «nella pagina novità c'è ancora l'elenco di tutti i volantini:
+potresti renderlo interattivo, facendo aprire i volantini a un clic». Ogni
+riga della tabella (in corso e in arrivo) apre il volantino sopra la pagina,
+come la pagina del volantino nella pagina dei prezzi, ma sfogliabile: frecce
+ai lati di «Chiudi», strisciata col dito (non a pagina ingrandita), frecce
+della tastiera, «indietro» del telefono che chiude. Gli indirizzi delle
+pagine li scrive `novita.py` nella tabella (`pagine_di`), dallo schema con
+`{n}` o dall'elenco (Mercatò, Ekom); quante pagine lo dice `indice.json`.
+Controllato che prima e ultima pagina di tutti e dodici i volantini
+rispondano 200. Il Conad (visore, non immagine) si apre nel riquadro.
+
+Mentre lo facevo, due messaggi suoi sull'Eurospin:
+- «nell'ultima pagina non hai trovato i gamberi indopacifici»: c'erano,
+  giusti (2,49, 350 g, prima 3,99), ma valgono solo dal 2 al 4 ottobre, e le
+  offerte ristrette non ancora cominciate sono NASCOSTE (`nascosta()`),
+  regola di inizio settembre, prima che esistessero le schede sbiadite e il
+  calendarietto. Chiesto a lui se mostrarle prima.
+- «Offerta Family e il logo Eurospin Family vogliono dire che si possono
+  acquistare con lo sconto solo con la carta»: non l'avevo capito. Rilette a
+  occhio le pagine 1-15 e 22: 11 cartellini «OFFERTA Family» più la pagina
+  14 intera («OFFERTE Family · ALTRE OFFERTE», segnata per prudenza). Nuova
+  parola in `_TESSERA`, bollino «Con carta Family», prova in
+  `prova-bollini.js`. Rileggendo sono saltate fuori 8 offerte mai scritte
+  (alcune in categorie nate il 23, come Preparati) e tre righe di pagina 12
+  che valgono solo dal 28 settembre: sistemate. Lasciati fuori ammorbidente
+  e gel lavastoviglie Dexal: il volantino non stampa i lavaggi, e quelle
+  categorie si contano a lavaggio.

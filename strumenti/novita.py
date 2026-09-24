@@ -16,7 +16,12 @@ padrone**: è l'unica novità che cambia dove si va a fare la spesa. Sapere che 
 comparso un tonno non serve a niente; sapere che il tonno più conveniente
 adesso è un altro sì.
 """
-import datetime, glob, html, json, os
+import datetime, glob, html, json, os, re
+
+# Una pagina di volantino che è un'immagine si mostra così com'è; tutto il
+# resto (il visore del Conad) si apre in un riquadro. Come nella pagina dei
+# prezzi.
+E_IMMAGINE = re.compile(r'\.(?:jpe?g|png|webp|gif)(?:\?|$)|/thumbor/', re.I)
 
 QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORIA = os.path.join(QUI, 'storia')
@@ -175,6 +180,54 @@ table.tv tr.spento td,table.tv tr.spento .chi b{color:var(--tenue)}
 .nonletto{display:inline-block;margin-top:3px;font-size:11px;letter-spacing:.04em;
   text-transform:uppercase;font-weight:700;color:var(--ambra);
   background:var(--ambra-tenue);border-radius:5px;padding:2px 6px}
+/* OGNI VOLANTINO SI SFOGLIA TOCCANDOLO (Manlio, 2026-09-24: «rendi
+   interattivo questo elenco, facendo aprire i volantini a un clic»). Il nome
+   del negozio diventa un tasto (bordo rosso: qui il rosso vuol dire «premi»),
+   ma si può toccare tutta la riga. Quelli finiti no: i loro prezzi non
+   valgono più. */
+table.tv tr.apribile{cursor:pointer}
+table.tv .apri-vol{display:inline-flex;align-items:center;gap:6px;max-width:100%;
+  background:var(--carta);border:1.5px solid var(--rosso);color:var(--rosso);
+  border-radius:10px;padding:4px 10px 4px 8px;min-height:34px;margin:-3px 0 3px;
+  font-size:15px;line-height:1.15;text-align:left;cursor:pointer}
+table.tv .apri-vol b{color:inherit}
+table.tv .apri-vol svg{flex:none;width:17px;height:17px;fill:none;stroke:currentColor;
+  stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+table.tv tr.apribile:active .apri-vol,table.tv .apri-vol:active{background:var(--rosso);
+  color:var(--su-rosso)}
+
+/* ---- il volantino sfogliato, sopra la pagina ---- */
+/* Come la pagina del volantino nella pagina dei prezzi: fondo scuro, la
+   pagina in mezzo, il tastone rosso «Chiudi» in basso; in più le due frecce
+   ai lati per andare avanti e indietro (o si scorre col dito). L'immagine
+   NON è nostra: la pagina la chiede al sito di chi pubblica il volantino. */
+.sfoglia[hidden]{display:none}
+.sfoglia{position:fixed;inset:0;z-index:70;background:rgba(20,19,18,.94);
+  display:flex;flex-direction:column}
+.sfoglia .testa-vol{flex:none;display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding:10px 14px;color:#FFFFFF;font-size:14px}
+.sfoglia .testa-vol b{font-weight:700}
+.sfoglia .testa-vol a{color:#FFFFFF;font-weight:600;text-decoration:underline;
+  text-underline-offset:3px;white-space:nowrap}
+.sfoglia .foglio{flex:1;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;
+  padding:0 8px 96px}
+.sfoglia .foglio img{display:block;width:100%;height:auto;margin:0 auto;max-width:900px;
+  background:#FFFFFF;border-radius:6px;min-height:40vh}
+.sfoglia .foglio iframe{display:block;width:100%;height:100%;border:0;background:#FFFFFF;
+  border-radius:6px}
+.sfoglia .avviso-vol{color:#FFFFFF;text-align:center;margin:40px 16px;font-size:15px}
+.sfoglia .avviso-vol a{color:#FFFFFF;font-weight:700}
+.sfoglia .comandi{position:absolute;left:14px;right:14px;display:flex;gap:10px;
+  bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+.sfoglia .comandi button{min-height:58px;border:0;border-radius:14px;font-family:inherit;
+  font-weight:700;cursor:pointer;box-shadow:0 6px 24px rgba(0,0,0,.45)}
+.sfoglia .gira{flex:none;width:62px;background:#FFFFFF;color:#1B1B1A;display:flex;
+  align-items:center;justify-content:center;padding:0}
+.sfoglia .gira svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2.6;
+  stroke-linecap:round;stroke-linejoin:round}
+.sfoglia .gira:disabled{opacity:.3;cursor:default}
+.sfoglia .chiudi-vol{flex:1;background:var(--rosso);color:var(--su-rosso);font-size:19px;
+  letter-spacing:.02em}
 
 .giorno{margin-top:26px}
 .giorno > h2{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.02em;
@@ -246,7 +299,7 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--linea);
 <section class="tuttivol">
   <h2>Tutti i volantini</h2>
   <p class="dicoche">Quelli che sto leggendo adesso, quelli che arrivano e
-  quelli appena finiti.</p>
+  quelli appena finiti. Tocca un volantino per sfogliarlo.</p>
   <div id="tabvol"></div>
 </section>
 
@@ -254,6 +307,19 @@ footer{margin-top:34px;padding-top:14px;border-top:1px solid var(--linea);
 <div id="dentro"></div>
 
 <footer id="pie"></footer>
+</div>
+
+<!-- IL VOLANTINO SFOGLIATO, SOPRA LA PAGINA: si apre toccando un volantino
+     della tabella. -->
+<div class="sfoglia" id="sfoglia" hidden role="dialog" aria-modal="true" aria-labelledby="titolo-sfoglia">
+  <div class="testa-vol"><span id="titolo-sfoglia"></span>
+    <a id="fuori-sfoglia" target="_blank" rel="noopener noreferrer">Apri sul sito</a></div>
+  <div class="foglio" id="foglio-sfoglia"></div>
+  <div class="comandi">
+    <button type="button" class="gira" id="indietro-sfoglia" aria-label="Pagina prima"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"></path></svg></button>
+    <button type="button" class="chiudi-vol" id="chiudi-sfoglia">Chiudi</button>
+    <button type="button" class="gira" id="avanti-sfoglia" aria-label="Pagina dopo"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"></path></svg></button>
+  </div>
 </div>
 
 <script>
@@ -372,9 +438,21 @@ function righeTabella(elenco) {
     if (v.inizio) tr.setAttribute('data-inizio', v.inizio);
     if (v.fino) tr.setAttribute('data-fino', v.fino);
     tr.setAttribute('data-letto', v.letto ? 'si' : 'no');
-    tr.innerHTML = '<td class="chi"><b></b><span class="nome"></span></td>'
+    /* Si sfoglia se ha le pagine e se vale ancora (o deve cominciare): uno
+       finito ha prezzi che non valgono più, e aprirlo manderebbe in negozio
+       con un volantino scaduto in mano. */
+    const apribile = stato !== 'spento' && v.pagine && v.pagine.length > 0;
+    tr.innerHTML = '<td class="chi">'
+      + (apribile ? '<button type="button" class="apri-vol">' + FOGLIETTO + '<b></b></button>' : '<b></b>')
+      + '<span class="nome"></span></td>'
       + '<td class="date"></td><td class="quanto"><b></b><span></span></td>';
     tr.querySelector('.chi b').textContent = v.ins;
+    if (apribile) {
+      tr.classList.add('apribile');
+      tr.querySelector('.apri-vol').setAttribute('aria-label',
+        'Sfoglia il volantino ' + v.ins + (v.nome ? ', ' + v.nome : ''));
+      tr.onclick = () => apriVolantino(v);
+    }
     const nome = tr.querySelector('.chi .nome');
     nome.textContent = v.nome || '';
     if (!v.letto) {
@@ -441,6 +519,112 @@ function disegnaTabella() {
     .forEach(g => { if (g) box.appendChild(g); });
 }
 
+/* ---------- 2b. il volantino sfogliato, sopra la pagina ---------- */
+/* Il foglietto con l'orecchia piegata, lo stesso della pagina dei prezzi. */
+const FOGLIETTO = '<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">'
+  + '<path d="M3.2 1.8h5.6l3.4 3.4v9H3.2z"></path>'
+  + '<path d="M8.8 1.8v3.4h3.4"></path>'
+  + '<path d="M5.6 8.2h4.8M5.6 10.8h3.2"></path></svg>';
+/* Le pagine di nove insegne su dieci sono immagini sul sito di chi le
+   pubblica e si mostrano così come sono; il Conad ha un visore suo, che si
+   apre qui dentro (v.quadro). Se l'immagine non arriva resta scritto come
+   aprirla fuori. Il tasto «indietro» del telefono chiude, come «Chiudi». */
+let sfoglio = null;
+function mostraPagina() {
+  const v = sfoglio.v, i = sfoglio.i, url = v.pagine[i], tot = v.pagine.length;
+  const foglio = document.getElementById('foglio-sfoglia');
+  const tit = document.getElementById('titolo-sfoglia');
+  tit.innerHTML = '<b></b> · pagina <span></span>';
+  tit.querySelector('b').textContent = v.ins;
+  tit.querySelector('span').textContent = (i + 1) + ' di ' + tot;
+  document.getElementById('fuori-sfoglia').href = url;
+  document.getElementById('indietro-sfoglia').disabled = i === 0;
+  document.getElementById('avanti-sfoglia').disabled = i === tot - 1;
+  foglio.textContent = '';
+  const guasto = () => {
+    foglio.innerHTML = '<p class="avviso-vol">La pagina qui non si vede. <a target="_blank" rel="noopener noreferrer">Aprila sul sito</a></p>';
+    foglio.querySelector('a').href = url;
+  };
+  const dove = 'Pagina ' + (i + 1) + ' del volantino ' + v.ins;
+  if (v.quadro) {
+    const f = document.createElement('iframe');
+    f.title = dove;
+    f.referrerPolicy = 'no-referrer';
+    f.src = url;
+    foglio.appendChild(f);
+  } else {
+    const img = document.createElement('img');
+    img.alt = dove;
+    img.referrerPolicy = 'no-referrer';
+    img.onerror = guasto;
+    img.src = url;
+    foglio.appendChild(img);
+    /* La pagina dopo si chiede subito, così girando è già lì. */
+    if (i + 1 < tot) {
+      const dopo = new Image();
+      dopo.referrerPolicy = 'no-referrer';
+      dopo.src = v.pagine[i + 1];
+    }
+  }
+  foglio.scrollTop = 0;
+}
+function apriVolantino(v) {
+  sfoglio = { v: v, i: 0 };
+  mostraPagina();
+  document.getElementById('sfoglia').hidden = false;
+  document.documentElement.style.overflow = 'hidden';
+  if (!sfoglio.storia) {
+    sfoglio.storia = true;
+    try { history.pushState({ sfoglia: 1 }, '', location.href); } catch (e) {}
+  }
+  try { document.getElementById('chiudi-sfoglia').focus({ preventScroll: true }); } catch (e) {}
+}
+function giraPagina(passo) {
+  if (!sfoglio) return;
+  const i = sfoglio.i + passo;
+  if (i < 0 || i >= sfoglio.v.pagine.length) return;
+  sfoglio.i = i;
+  mostraPagina();
+}
+function chiudiVolantino(daIndietro) {
+  const box = document.getElementById('sfoglia');
+  if (box.hidden || !sfoglio) return;
+  box.hidden = true;
+  document.getElementById('foglio-sfoglia').textContent = '';
+  document.documentElement.style.overflow = '';
+  const storia = sfoglio.storia;
+  sfoglio = null;
+  if (storia && !daIndietro) { try { history.back(); } catch (e) {} }
+}
+document.getElementById('chiudi-sfoglia').onclick = () => chiudiVolantino(false);
+document.getElementById('indietro-sfoglia').onclick = () => giraPagina(-1);
+document.getElementById('avanti-sfoglia').onclick = () => giraPagina(1);
+addEventListener('popstate', () => { if (sfoglio) chiudiVolantino(true); });
+addEventListener('keydown', ev => {
+  if (!sfoglio) return;
+  if (ev.key === 'Escape') chiudiVolantino(false);
+  else if (ev.key === 'ArrowRight') giraPagina(1);
+  else if (ev.key === 'ArrowLeft') giraPagina(-1);
+});
+/* Col dito: una strisciata di lato gira la pagina. Non quando la pagina è
+   ingrandita (lì strisciare serve a spostarsi dentro l'immagine), né quando
+   la strisciata è più in su o in giù che di lato (è uno scorrimento). */
+(function () {
+  const foglio = document.getElementById('foglio-sfoglia');
+  let x0 = null, y0 = 0;
+  foglio.addEventListener('touchstart', ev => {
+    if (ev.touches.length !== 1) { x0 = null; return; }
+    x0 = ev.touches[0].clientX; y0 = ev.touches[0].clientY;
+  }, { passive: true });
+  foglio.addEventListener('touchend', ev => {
+    if (x0 === null || !ev.changedTouches.length) return;
+    const dx = ev.changedTouches[0].clientX - x0, dy = ev.changedTouches[0].clientY - y0;
+    x0 = null;
+    if (window.visualViewport && window.visualViewport.scale > 1.05) return;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) giraPagina(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
 /* ---------- 3. le novità dei prezzi, giorno per giorno ---------- */
 function disegna() {
   [1, 3, 7].forEach(n => document.getElementById('b-' + n)
@@ -496,6 +680,18 @@ def quando_corto(periodo):
     return periodo
 
 
+def pagine_di(v, quante):
+    """Gli indirizzi delle pagine di un volantino, dalla prima all'ultima.
+    Come `indirizzo()` di pagina.py: dove c'è l'elenco (Mercatò, Ekom, che
+    firmano ogni immagine) vince lui; se no si riempie lo schema col numero.
+    Senza né l'uno né l'altro il volantino non si sfoglia e la riga resta
+    scritta e basta."""
+    if v.pagine:
+        return list(v.pagine)
+    if not v.indirizzo or not quante:
+        return []
+    return [v.indirizzo.format(n=n) for n in range(1, quante + 1)]
+
 def aggiornamenti(d, periodi):
     """Cosa e cambiato NEI VOLANTINI in un giorno: arrivati, riletti, finiti.
 
@@ -539,6 +735,11 @@ def costruisci():
     from dati import VOLANTINI, VOLANTINI_ATTESI
     unita = {k: v[0] for k, v in UNITA.items()}
     oggi = datetime.date.today()
+    # Quante pagine ha ogni volantino: le sa l'indice delle parole, che ne ha
+    # una voce per pagina (anche per quelle scartate, che si sfogliano lo stesso).
+    npagine = {}
+    for r in json.load(open(os.path.join(QUI, 'indice.json'), encoding='utf-8')):
+        npagine[r['chiave']] = max(npagine.get(r['chiave'], 0), r['pagina'])
     periodi = {v.chiave: dict(ins=v.insegna, periodo=v.periodo) for v in VOLANTINI}
 
     giorni = []
@@ -568,8 +769,17 @@ def costruisci():
     # ci vanno quelli letti (che hanno i prezzi) E quelli che so in arrivo ma
     # non ho ancora letto: sapere che il buco fra un volantino e l'altro e gia
     # coperto vale quanto sapere i prezzi.
+    #
+    # Dal 2026-09-24 ogni volantino letto si SFOGLIA toccandolo (Manlio: «nella
+    # pagina novità c'è ancora l'elenco di tutti i volantini: potresti renderlo
+    # interattivo, facendo aprire i volantini a un clic»). Per questo la riga
+    # si porta dietro gli indirizzi delle sue pagine: sono quelli sul sito di
+    # chi pubblica il volantino, gli stessi della pagina dei prezzi (vincolo
+    # 2: le immagini non stanno sul nostro sito).
     tabella = [dict(ins=v.insegna, nome=nome_corto(v.periodo), periodo=v.periodo,
-                    inizio=v.inizio, fino=v.fino, letto=True, dove='')
+                    inizio=v.inizio, fino=v.fino, letto=True, dove='',
+                    pagine=pagine_di(v, npagine.get(v.chiave, 0)),
+                    quadro=bool(v.indirizzo) and not E_IMMAGINE.search(v.indirizzo or ''))
                for v in VOLANTINI]
     tabella += [dict(ins=a.insegna, nome=nome_corto(a.periodo), periodo=a.periodo,
                      inizio=a.inizio, fino=a.fino, letto=False, dove=a.dove)
