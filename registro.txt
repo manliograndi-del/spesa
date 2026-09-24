@@ -166,3 +166,4 @@
 2026-09-23 21:32 UTC  pubblicato: sito (verificato, sw.js v98) e artifact (versione 89): via l'elenco delle pagine.
 2026-09-23 22:03 UTC  pubblicato: sito (verificato, sw.js v99) e artifact (versione 90): banda rossa col nome, tasti a rettangolo arrotondato.
 2026-09-23 22:38 UTC  pubblicato: sito (verificato, sw.js v100) e artifact (versione 91): griglia che sale e scende, tastiera di Cerca a griglia scesa.
+2026-09-24 05:17 UTC  sveglia: clonato (sessione già presente, ramo main allineato)
