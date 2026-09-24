@@ -177,3 +177,4 @@
 2026-09-24 10:25 UTC  pubblicato v105: mappa «Come si usa» all'apertura (cinque fumetti a colori coi testi di Manlio), «Personale» diventa «Il mio carrello»; sito verificato byte per byte, artifact aggiornato (13 prodotti)
 2026-09-24 10:44 UTC  pubblicato v106: conteggio delle visite con Umami solo sul sito; sito verificato byte per byte, e una visita di prova dal sito vero accettata da Umami (200)
 2026-09-24 11:00 UTC  pubblicato v107: attacchi delle code dei fumetti senza salti di direzione; sito verificato byte per byte, artifact aggiornato (13 prodotti)
+2026-09-24 11:58 UTC  pubblicato v108: il benvenuto è un fumetto verde trasparente col promemoria della foto del volantino; sito verificato byte per byte, link Claude versione 98
