@@ -180,3 +180,4 @@
 2026-09-24 11:58 UTC  pubblicato v108: il benvenuto è un fumetto verde trasparente col promemoria della foto del volantino; sito verificato byte per byte, link Claude versione 98
 2026-09-24 12:48 UTC  pubblicato v109: volantini sfogliabili dalla pagina Novità; Eurospin offerte Family solo con la carta (18), 8 offerte sfuggite aggiunte, frutta di pag. 12 dal 28/9; sito e novita.html verificati byte per byte, link Claude versione 99
 2026-09-24 13:06 UTC  pubblicato v110: le offerte valide solo in una parte del volantino si vedono prima, sbiadite; sito verificato byte per byte, link Claude versione 100
+2026-09-24 19:08 UTC  CLAUDE.md riscritto corto (com'è il progetto oggi), il vecchio copiato identico in archivio/CLAUDE-fino-al-2026-09-24.md; AGENTS.md = CLAUDE.md. Niente di nuovo da riportare in «Stato e da fare»: l'ultima cosa del vecchio era la v110, già dentro
