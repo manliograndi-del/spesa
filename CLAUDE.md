@@ -868,6 +868,27 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **IN PROVA, NON PUBBLICATA (2026-09-24 sera): la mappa dell'aiuto
+  all'apertura.** Manlio, con un disegno a mano: «questa immagine di Help
+  ci sia aprendo il sito e basta; che non si arrivi a una pagina con già
+  dei prodotti… fermati prima di metterla nel sito, prima fammi delle prove
+  grafiche con già i testi»; poi, visti i fumetti squadrati: «nuvolette
+  più organiche» (un suo disegno: un pallone tondo che si stringe in una
+  coda lunga e finisce a freccia). **Sta solo sul ramo di lavoro, NON su
+  `main`**: `index.html` e `sw.js` (v104) sono quelli pubblicati. Com'è:
+  all'apertura (e toccando «Spesa») la griglia resta giù, nessun tasto del
+  menù è acceso, e ci sono «Come si usa» e cinque palloncini
+  (`FUMETTI`, `mappaAiuto()`, disegnati da `palloncino()` in
+  `frecceAiuto()`) con la coda a punta verso i due pallini in alto e i
+  quattro tasti del menù. «Prodotti» fa salire la griglia (pagina di
+  benvenuto); «Cerca», «Grandi marche», «Personale» vanno alla loro
+  sezione e tornando con «Prodotti» non si rivede la mappa. Le prove
+  (`prova.js`, `prova-intestazione.js`, `prova-marche.js`, e la nuova
+  `prova-mappa.js`) sono già aggiornate a questa versione. **Aspetta il sì
+  di Manlio sulle schermate** (mandate: 28-pall-390/412/360): se dice sì,
+  novità in `NOVITA_PAGINA`, regola in cima a questo file, `sw.js` v105 e
+  pubblicazione completa; se no, si torna alla pagina di benvenuto di v104
+  (è quella che c'è su `main`).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v104**, le 14 grandi
   ditte coi loro marchi in «Grandi marche» (vedi la regola in cima).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di

@@ -3562,3 +3562,37 @@ Bianco), «Moretti» (un tonno), «Dove» (è una parola italiana). Per le
 capsule compatibili la cura è generale: la frase «compatibili …» si toglie
 prima di ogni ricerca per marca — anche Lavazza, che prima le prendeva.
 Marchi scaricati come quelli del mattino (vedi `marchi/FONTI.txt`).
+
+## 2026-09-24 sera — La mappa dell'aiuto all'apertura (IN PROVA, non pubblicata)
+
+Manlio ha mandato un disegno a mano di un telefono: in alto a destra un
+riquadro con la freccia verso i due pallini, in basso fumetti con le frecce
+verso i tasti del menù. «Questa immagine di Help ci sia aprendo il sito e
+basta; che non si arrivi a una pagina con già dei prodotti. I testi mettili
+tu, però fermati prima di metterla nel sito: prima fammi delle prove
+grafiche con già i testi.»
+
+Prima prova: fumetti squadrati come le schede, frecce grigie curve disegnate
+sopra (SVG fermo sullo schermo). Messi su tre righe (il fumetto dei pallini
+accanto al titolo; Prodotti e Cerca ai lati; Grandi marche e Personale in
+mezzo, più in basso) perché le frecce non si incrocino: con i fumetti messi a
+posti fissi, sul telefono da 360×640 si sovrapponevano.
+
+Lui: «nuvolette più organiche», con un secondo disegno: un pallone tondo
+che si stringe in un collo e scende in una coda lunga che finisce a freccia.
+Fumetto e freccia sono diventati una forma sola (`palloncino()`): il pallone
+è una superellisse un po' storta (esponente 2,5, un'onda diversa per ognuno)
+che contiene il testo, il collo è una curva morbida per lato, la coda una S
+larga 10 px che si assottiglia, la punta aperta a triangolo. Grigio su
+fondino, come i fumetti: il rosso vuol dire «premi», e i palloncini non si
+toccano. Il disegno sta SOTTO il testo (z-index 0, la mappa 1).
+
+Cose trovate facendo la prova nuova `prova-mappa.js`: aprendo «Cerca» o
+«Personale» dalla mappa le frecce restavano sullo schermo, e tornando con
+«Prodotti» si ritrovava la mappa (il risultato non veniva ridisegnato).
+Sistemato in `apriRicerca`/`apriPersonale` (`daMappa`).
+
+Le code di Prodotti e Cerca puntano al lato esterno del loro tasto
+(`lato: 'sx' / 'dx'`), così scendono lungo i bordi e i palloncini di mezzo ne
+stanno lontani (42 px per parte). Sui telefoni bassi (sotto i 700 px) il
+testo è a 13 px, se no l'ultimo palloncino finiva sotto il menù.

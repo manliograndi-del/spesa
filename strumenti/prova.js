@@ -30,13 +30,18 @@ setTimeout(() => {
   dimmi(errori.length === 0, errori.length ? 'errori: ' + errori.join(' ;; ') : 'nessun errore');
   dimmi(tasti.length > 0, `${tasti.length} bottoni dei prodotti`);
   /* All'apertura NON c'è un prodotto scelto (Manlio, 2026-09-24: «non mi
-     piace che arrivi direttamente al Manzo con una lunga lista sotto»): c'è
-     la pagina di benvenuto, che dice di toccare un prodotto, e nessun
-     bottone acceso. */
+     piace che arrivi direttamente al Manzo con una lunga lista sotto»), e
+     dal 2026-09-24 (IN PROVA) c'è la mappa dell'aiuto: nessun bottone
+     acceso, la griglia giù. Toccando «Prodotti» la griglia sale e c'è la
+     pagina di benvenuto, che dice di toccare un prodotto. */
+  const mappa = ris && ris.querySelector('.mappa-aiuto');
+  dimmi(!!mappa && !ris.querySelector('.prezzo-riga') && !tasti.some(b => b.getAttribute('aria-pressed') === 'true'),
+        mappa ? 'all\'apertura la mappa dell\'aiuto, nessun prodotto acceso' : 'all\'apertura manca la mappa dell\'aiuto');
+  d.getElementById('vai-prodotti').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
   const bv = ris && ris.querySelector('.benvenuto');
   dimmi(!!bv && /Tocca un prodotto/.test(bv.textContent)
         && !ris.querySelector('.prezzo-riga') && !tasti.some(b => b.getAttribute('aria-pressed') === 'true'),
-        bv ? 'all\'apertura la pagina di benvenuto, nessun prodotto acceso' : 'all\'apertura manca la pagina di benvenuto');
+        bv ? 'toccando «Prodotti», la pagina di benvenuto' : 'toccando «Prodotti» manca la pagina di benvenuto');
 
   // clicco ogni bottone e pretendo prezzi, o una riga che dica che non ce ne
   // sono. L'elenco delle pagine sotto le offerte non c'è più dal 2026-09-23
@@ -52,10 +57,10 @@ setTimeout(() => {
           (pagine ? ', e l\'elenco delle pagine c\'è ancora' : '') +
           (errori.length ? ' — ' + errori.join(' ;; ') : ''));
   }
-  /* Il titolo «Spesa» riporta alla pagina di benvenuto. */
+  /* Il titolo «Spesa» riporta alla mappa dell'aiuto. */
   d.getElementById('vai-inizio').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
-  dimmi(!!ris.querySelector('.benvenuto') && !ris.querySelector('.prezzo-riga'),
-        'toccando il titolo si torna alla pagina di benvenuto');
+  dimmi(!!ris.querySelector('.mappa-aiuto') && !ris.querySelector('.prezzo-riga'),
+        'toccando il titolo si torna alla mappa dell\'aiuto');
   console.log(male ? `  ${male} cose non vanno\n` : '  tutto a posto\n');
   process.exit(male ? 1 : 0);
 }, 2500);

@@ -58,7 +58,15 @@ setTimeout(() => {
   // il titolo riporta all'inizio
   d.getElementById('vai-inizio').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
   if (!d.getElementById('ricerca').hidden) male.push('toccando il titolo la ricerca resta aperta');
-  if (d.querySelector('.barra').classList.contains('giu')) male.push('dopo il titolo le categorie non tornano');
+  /* Dal 2026-09-24 (IN PROVA) il titolo porta alla mappa dell'aiuto: la
+     griglia resta giù e nessun tasto del menù è acceso; «Prodotti» la fa
+     salire. */
+  if (!d.querySelector('#risultato .mappa-aiuto')) male.push('toccando il titolo non c\'è la mappa dell\'aiuto');
+  if (!d.querySelector('.barra').classList.contains('giu')) male.push('sulla mappa dell\'aiuto la griglia dei prodotti è su');
+  if ([...d.querySelectorAll('#riga-cerca button')].some(b => b.getAttribute('aria-pressed') === 'true'))
+    male.push('sulla mappa dell\'aiuto un tasto del menù è acceso');
+  d.getElementById('vai-prodotti').click();
+  if (d.querySelector('.barra').classList.contains('giu')) male.push('dopo il titolo e «Prodotti» le categorie non tornano');
   if (rosso2().getAttribute('aria-pressed') !== 'false' || gm2().getAttribute('aria-pressed') !== 'false')
     male.push('all\'inizio i due tasti non sono bianchi tutti e due');
   // i tre tasti sono sezioni: ritoccare quello acceso non chiude, «Prodotti» riporta all'inizio

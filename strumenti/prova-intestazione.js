@@ -46,9 +46,9 @@ setTimeout(() => {
 
   if (!prodotti().length) guai.push('la pagina è muta: nessun bottone dei prodotti');
   const r = d.getElementById('risultato');
-  /* All'apertura (dal 2026-09-24) c'è la pagina di benvenuto, senza banda;
+  /* All'apertura (dal 2026-09-24) c'è la mappa dell'aiuto, senza banda;
      la banda compare quando si tocca un prodotto. */
-  if (!r.querySelector('.benvenuto')) guai.push('all\'apertura non c\'è la pagina di benvenuto');
+  if (!r.querySelector('.mappa-aiuto')) guai.push('all\'apertura non c\'è la mappa dell\'aiuto');
   if (r.querySelector('.banda')) guai.push('all\'apertura c\'è già una banda col nome, ma nessun prodotto è scelto');
   d.querySelector('#tasti .tasto:not(.agg)').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true }));
   for (const [che, sel] of [['l\'intestazione col nome', '.capo'], ['la «i»', '.info'],
