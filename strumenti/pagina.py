@@ -3925,9 +3925,20 @@ open('out/spesa-da-sola.html', 'w', encoding='utf-8').write(
 # service worker, per potersi installare sul telefono e funzionare in negozio
 # senza segnale.
 # ---------------------------------------------------------------------------
+# IL CONTEGGIO DELLE VISITE (Manlio, 2026-09-24: «uno script di tracciamento
+# delle visite totalmente invisibile, che rispetti la privacy, niente cookie,
+# senza banner»; ha scelto Umami Cloud, piano gratuito, e si è registrato lui).
+# Solo sul SITO: sul link Claude gli script di altri siti non passano, e nella
+# copia da aprire a doppio clic non c'è niente da contare. data-domains fa
+# contare solo le visite vere a manliograndi-del.github.io: le prove, le
+# schermate e le copie aperte dal disco non mandano niente. L'id è quello del
+# sito nel conto Umami di Manlio (Websites → matita → Tracking code).
+UMAMI_ID = '47de14e6-6f92-4ce2-891f-6e37b37062aa'
 TESTA_SITO = ('<link rel="manifest" href="./manifest.webmanifest">\n'
               '<meta name="theme-color" content="#FFFFFF">\n'
-              '<meta name="apple-mobile-web-app-title" content="Spesa">\n')
+              '<meta name="apple-mobile-web-app-title" content="Spesa">\n'
+              '<script defer src="https://cloud.umami.is/script.js" data-website-id="'
+              + UMAMI_ID + '" data-domains="manliograndi-del.github.io"></script>\n')
 CODA_SITO = '''<script>
 /* Un service worker suo, in questa cartella. Serve a due cose: tenere la
    pagina disponibile senza rete (in negozio il segnale e pessimo) e togliere

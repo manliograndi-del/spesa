@@ -149,6 +149,21 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 
 ## Regole della pagina decise con lui
 
+- **IL SITO CONTA LE VISITE CON UMAMI** (2026-09-24 sera, `sw.js` v106;
+  Manlio: «uno script di tracciamento delle visite totalmente invisibile,
+  che rispetti la privacy, niente cookie, conforme al GDPR, senza banner»;
+  ha scelto lui Umami Cloud, piano gratuito, e si è registrato lui con
+  manlio.grandi@gmail.com). Lo script sta nella testa della pagina, in
+  `TESTA_SITO` in `pagina.py`, con l'id del suo sito in `UMAMI_ID`
+  (`47de14e6-6f92-4ce2-891f-6e37b37062aa`). **Solo sul sito**: sul link
+  Claude gli script di altri siti non passano, e nella copia da aprire a
+  doppio clic non c'è niente da contare. **`data-domains` lo fa contare
+  solo su manliograndi-del.github.io**: le prove, le schermate e le copie
+  aperte dal disco non mandano visite finte. `defer`: non rallenta
+  l'apertura. Il service worker lascia passare le richieste verso altri
+  siti, quindi non lo tocca. **Non incollarlo a mano in `index.html`**: la
+  pagina si rigenera e sparirebbe. La prova è `prova-visite.js`. Le visite
+  si guardano su cloud.umami.is col conto di Manlio (noi non ce l'abbiamo).
 - **ALL'APERTURA C'È LA MAPPA «COME SI USA»: CINQUE FUMETTI A COLORI CON
   LA CODA A PUNTA VERSO I TASTI** (pubblicata il 2026-09-24 sera, `sw.js`
   v105; Manlio, con due disegni a mano: «questa immagine di Help ci sia
@@ -920,6 +935,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v106**, il
+  conteggio delle visite con Umami, solo sul sito (vedi la regola in cima).
+  Il link Claude non è cambiato e non è stato ripubblicato.
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v105**, la
   mappa «Come si usa» all'apertura coi cinque fumetti a colori e il tasto
   «Il mio carrello» (vedi le due regole in cima). Novità

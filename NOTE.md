@@ -3641,3 +3641,23 @@ Pubblicata il 2026-09-24 sera (Manlio: «ok vai pubblica»), `sw.js` v105,
 novità `2026-09-24-zz-mappa` («zz» perché l'id deve venire dopo
 `2026-09-24-multinazionali`: si segna il più grande). Con lei il tasto
 «Personale» diventa «Il mio carrello». Le regole stanno in cima a CLAUDE.md.
+
+## 2026-09-24 sera — Il conteggio delle visite (Umami)
+
+Manlio voleva sapere quante visite ha il sito, con uno script «totalmente
+invisibile», senza cookie e senza banner: ha scelto Umami Cloud (gratuito) e
+si è registrato lui; io gli ho spiegato i passi e mi ha mandato la riga del
+«Tracking code». Nel suo conto il campo «Domain» era rimasto «github.io»
+(aveva scritto l'indirizzo intero): gli ho detto di correggerlo in
+manliograndi-del.github.io, ma per contare non serve, serve solo a
+riconoscere le visite che arrivano dal sito stesso.
+
+Scelte: lo script va in `TESTA_SITO` (quindi solo in `sito.html` e
+`index.html`), non nel link Claude né nella copia da disco; con `defer`; con
+`data-domains="manliograndi-del.github.io"`, così le nostre prove e le
+schermate non contano. Messo nel programma e non a mano in `index.html`,
+perché la pagina si rigenera a ogni giro. Il service worker ignora le
+richieste verso altri siti (`origin !== self.location.origin`), quindi lo
+script di Umami e l'invio delle visite passano senza toccarlo. Il `pushState`
+del volantino sopra l'elenco usa lo stesso indirizzo: Umami non lo conta come
+una pagina nuova. Prova: `prova-visite.js`.
