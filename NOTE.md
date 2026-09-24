@@ -3739,3 +3739,33 @@ cerca una ristretta futura con «Cerca» e pretende che sia sbiadita, col bollo
 dei giorni e col calendarietto. Il 24 settembre nei suoi 13 prodotti ne
 comparivano 11 (il «Doppio weekend» Eurospin, la pescheria Pam dall'1
 ottobre, il Lidl dal 28…).
+
+## 2026-09-24 notte — Le fonti ufficiali dei volantini, e cosa hanno rivelato
+
+Manlio: «la prima cosa da fare è trovare fonti dirette dei volantini, fatte
+dagli stessi supermercati». Cercate per le cinque insegne prese da
+anteprimavolantino (Lidl, Eurospin, MD, Bennet, Carrefour Iper) e per il
+Mercatò (kimbino). Tutte e sei hanno una fonte ufficiale leggibile; gli
+indirizzi sono nella tabella di CLAUDE.md. Il punto non è solo «di chi è il
+sito»: **quattro insegne su sei fanno volantini diversi per negozio o per
+zona**, e il sito di raccolta ne mostra uno a caso.
+
+- **Lidl**: due settimanali (NAZ e KA) con prezzi diversi; Torino ha KA, e
+  per fortuna era quella letta. L'API dà anche le parole di ogni pagina, che
+  l'OCR non sapeva leggere.
+- **Eurospin**: PDF per negozio, col testo dentro: uguale a quello letto, e
+  conferma il «dal 28 settembre» letto sotto la filigrana.
+- **MD**: edizioni per zona e tipo di negozio (con o senza macelleria al
+  banco). Quella letta non è di Torino: confronto pagina per pagina fatto a
+  immagini (differenza media a 90×120 px), pagine 3, 12, 13, 14, 20 diverse;
+  la 14 (gastronomia) a corso Sebastopoli non esiste proprio.
+- **Bennet**: il sito blocca i curl (Akamai) ma con Chromium si legge; i PDF
+  stanno su thron. Due volantini nuovi mai visti da anteprimavolantino.
+- **Carrefour Iper**: edizioni regionali. Quella letta era Lombardia (la
+  pagina finale coi negozi senza Torino, che il 7/9 ci aveva fatto dubitare,
+  era il sintomo giusto: l'edizione era sbagliata, non Torino esclusa). In
+  Piemonte «Grandi Marche» finisce il 25/9. Il successore è già online.
+- **Mercatò**: mymercato.it, PDF col testo; mancava una promo di 2 pagine.
+
+Niente è stato ancora cambiato nei dati né nella pagina: chiesto a Manlio se
+procedere e in quale MD va.
