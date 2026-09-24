@@ -172,3 +172,4 @@
 2026-09-24 05:40 UTC  passo7: pubblico - Lidl Frutta e Verdura nuovo (6 offerte nuove), sw.js v101
 2026-09-24 05:42 UTC  passo8: verificato online byte per byte, artifact ripubblicato (v92). Aggiornati CLAUDE.md, AGENTS.md, NOTE.md.
 2026-09-24 07:59 UTC  pubblicato: sito (verificato, sw.js v102) e artifact (versione 93): pagina di benvenuto all'apertura.
+2026-09-24 08:35 UTC  pubblicato: sito (verificato, sw.js v103) e artifact (versione 94): marchi di tutte le 46 grandi marche.
