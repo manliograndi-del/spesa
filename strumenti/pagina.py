@@ -1326,17 +1326,19 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
    lo spazio fra il titolo e il menù; le colonne sono scelte perché le frecce
    non si incrocino: Prodotti e Cerca in alto ai lati (le loro frecce scendono
    lungo i bordi), Grandi marche e Personale più in basso al centro. */
-.mappa-aiuto{display:flex;flex-direction:column;justify-content:space-evenly;gap:26px;
-  min-height:calc(100vh - 86px - var(--menu-alto,70px));padding:0 0 24px}
-@supports (height:100dvh){
-  .mappa-aiuto{min-height:calc(100dvh - 86px - var(--menu-alto,70px))}
-}
+/* L'altezza la mette adattaMappa(): dal titolo fino a poco sopra il menù,
+   lasciando in fondo il posto per la coda dell'ultimo fumetto. */
+.mappa-aiuto{display:flex;flex-direction:column;justify-content:space-evenly;gap:18px;padding:0 0 44px}
 .ma-riga{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-/* le code di Prodotti e Cerca scendono ai lati: i due palloncini di mezzo
-   ne stanno lontani (42 px per parte) */
-.ma-riga.r3{padding:0 42px;gap:22px}
-.ma-riga.r3 .fumetto{padding-left:12px;padding-right:12px}
-.ma-riga.r1 .fumetto{margin-top:22px}
+/* A scaletta, un fumetto per riga: Prodotti a sinistra, Cerca a destra
+   (le loro code scendono ai bordi), poi Grandi marche e il carrello fra le
+   due code, 46 px dentro per parte. Il carrello sta a destra della coda di
+   Grandi marche, che gli passa accanto. */
+.ma-riga.r2{justify-content:flex-start}
+.ma-riga.r3{justify-content:flex-end}
+.ma-riga.r4{justify-content:flex-start;padding-left:46px}
+.ma-riga.r5{justify-content:flex-end;padding-right:46px}
+.ma-riga.r1 .fumetto{margin-top:1.4em}
 .ma-titolo{flex:1;min-width:0}
 .ma-grande{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.05em;
   font-size:22px;font-weight:600;line-height:1.1;margin:0 0 4px}
@@ -1344,24 +1346,14 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 /* Il fumetto è solo il testo: la forma (pallone e coda) la disegna
    frecceAiuto() sotto, in #frecce-aiuto. L'imbottitura lascia il testo
    dentro il pallone, che è tondo e non arriva negli angoli. */
-.fumetto{padding:15px 17px 16px;font-size:14px;line-height:1.3;color:var(--inchiostro)}
+.fumetto{padding:1.05em 1.2em 1.1em;font-size:var(--fs,14px);line-height:1.3;color:var(--inchiostro)}
 .fumetto b{display:block;font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.05em;
-  font-size:14px;font-weight:600;margin-bottom:2px}
-/* Sui telefoni alti c'è spazio: fumetti un poco più grandi. */
-@media (min-height:760px){
-  .fumetto{font-size:15.5px;padding:17px 19px 18px}
-  .fumetto b{font-size:15px}
-}
-/* Sui telefoni bassi, un poco più piccoli: devono starci tutti sopra il menù. */
-@media (max-height:700px){
-  .fumetto{font-size:13px;line-height:1.25;padding:13px 15px 14px}
-  .fumetto b{font-size:13px}
-  .ma-riga.r1 .fumetto{margin-top:14px}
-  .mappa-aiuto{gap:22px;padding-bottom:12px}
-}
+  font-size:1em;font-weight:600;margin-bottom:2px}
 .f-alto{width:54%}
-.f-pro,.f-cer{width:46%}
-.f-gm,.f-per{flex:1;min-width:0}
+.f-pro{width:68%}
+.f-cer{width:54%}
+.f-gm{width:52%}
+.f-per{width:50%}
 .mappa-aiuto{position:relative;z-index:1}
 #frecce-aiuto{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
 #frecce-aiuto g path{fill:var(--pannello);stroke:var(--tenue);stroke-width:1.6;stroke-linejoin:round}
@@ -1642,10 +1634,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       <p>È l'ultimo tasto della griglia. Si apre il catalogo diviso per reparto,
       come il negozio. Tocca un prodotto per accenderlo, toccalo di nuovo per
       spegnerlo e toglierlo dalla lista, poi «Fatto». Se ti serve qualcosa che nel
-      catalogo non c'è, scrivilo in «Personale».</p>
+      catalogo non c'è, scrivilo in «Il mio carrello».</p>
     </div>
     <div class="voce">
-      <h3>Il menù in basso: «Prodotti», «Grandi marche», «Personale», «Cerca»</h3>
+      <h3>Il menù in basso: «Prodotti», «Grandi marche», «Il mio carrello», «Cerca»</h3>
       <p>Sono le parti della pagina, e restano sempre in fondo allo schermo anche
       quando scorri. Quello rosso è la parte in cui sei. <b>«Prodotti»</b> è la pagina
       con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
@@ -1653,7 +1645,7 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       nome di un negozio, e le offerte escono mentre scrivi. <b>«Grandi
       marche»</b>: tocchi una marca ed escono le sue offerte. Per le grandi ditte
       (Coca-Cola, Nestlé, Procter &amp; Gamble…) escono le offerte di tutti i loro
-      marchi: per la Coca-Cola anche Fanta, Sprite, Fuze Tea. <b>«Personale»</b>
+      marchi: per la Coca-Cola anche Fanta, Sprite, Fuze Tea. <b>«Il mio carrello»</b>
       è tua: scrivi un prodotto o una marca, tocchi «Aggiungi» e diventa una
       pillola; sotto trovi la sua offerta più conveniente, e col tasto tutte le
       altre. Lì dentro puoi anche scegliere in quali supermercati cercare. Le
@@ -2203,12 +2195,15 @@ function disegnaTasti() {
   };
   suo.appendChild(gm);
   /* «Personale», il quarto (Manlio, 2026-09-23): le sue parole e le loro
-     offerte. Anche lui è una sezione: ritoccato non chiude. */
+     offerte. Anche lui è una sezione: ritoccato non chiude. Dal 2026-09-24
+     (IN PROVA) si chiama «Il mio carrello» (Manlio: «il tasto Personale
+     andrà cambiato con la scritta Il mio carrello»), su due righe come
+     «Grandi marche». */
   const per = document.createElement('button');
   per.type = 'button';
   per.className = 'tasto agg sez';
   per.id = 'vai-personale';
-  per.textContent = 'Personale';
+  per.innerHTML = '<span class="riga-gm">Il mio</span> <span class="riga-gm">carrello</span>';
   per.setAttribute('aria-pressed', String(personaleAperto));
   per.onclick = () => { if (!personaleAperto) apriPersonale(true); suInCima(); };
   suo.appendChild(per);
@@ -3208,27 +3203,30 @@ function benvenuto() {
    quello che Manlio ha visto nelle prove prima di pubblicarla. */
 const FUMETTI = [
   { dove: 'pallini', cls: 'f-alto', t: 'In alto',
-    x: 'L\u2019ingranaggio sceglie i tuoi supermercati e i colori; la N apre le novità dei prezzi.' },
+    x: 'L\u2019ingranaggio sceglie i tuoi supermercati, la N le novità.' },
   { dove: '#vai-prodotti', cls: 'f-pro', lato: 'sx', t: 'Prodotti',
-    x: 'I tuoi prodotti: toccane uno e vedi le sue offerte, dalla più conveniente in giù.' },
-  { dove: '#riga-cerca .marchi', cls: 'f-gm', t: 'Grandi marche',
-    x: 'Tutte le offerte di una marca, o di una grande ditta.' },
-  { dove: '#vai-personale', cls: 'f-per', t: 'Personale',
-    x: 'Le cose che segui tu, con l\u2019offerta migliore di ognuna.' },
+    x: 'Scegli le categorie di prodotti che ti interessano: appariranno liste di prodotti cliccabili per vedere le immagini.' },
   { dove: '#riga-cerca .trova', cls: 'f-cer', lato: 'dx', t: 'Cerca',
-    x: 'Una singola offerta fra tutte, mentre scrivi.' },
+    x: 'Ricerca a testo libero.' },
+  { dove: '#riga-cerca .marchi', cls: 'f-gm', t: 'Grandi marche',
+    x: 'Scegli per marca.' },
+  { dove: '#vai-personale', cls: 'f-per', t: 'Il mio carrello',
+    x: 'Fai la tua lista della spesa.' },
 ];
 function mappaAiuto() {
   const d = document.createElement('div');
   d.className = 'mappa-aiuto';
-  /* Tre righe: il titolo col fumetto dei pallini; Prodotti e Cerca ai lati
-     (le loro frecce scendono lungo i bordi); Grandi marche e Personale al
-     centro. Così le frecce non si incrociano e i fumetti non si toccano
-     nemmeno sui telefoni piccoli. */
+  /* Un fumetto per riga, a scaletta (Manlio, 2026-09-24: «le due nuvolette
+     in basso una sopra e l'altra sotto, e lo stesso con le altre due»): in
+     cima il titolo col fumetto dei pallini; poi Prodotti a sinistra e Cerca
+     a destra, le cui code scendono lungo i bordi; poi Grandi marche e il
+     carrello, più stretti, fra le due code. La coda di Grandi marche passa
+     a sinistra del carrello: per questo il carrello sta a destra, sotto. */
   d.innerHTML = '<div class="ma-riga r1"><div class="ma-titolo"><p class="ma-grande">Come si usa</p>'
     + '<p class="ma-piccolo">Tocca «Spesa» per tornare qui.</p></div></div>'
-    + '<div class="ma-riga r2"></div><div class="ma-riga r3"></div>';
-  const righe = { 'f-alto': '.r1', 'f-pro': '.r2', 'f-cer': '.r2', 'f-gm': '.r3', 'f-per': '.r3' };
+    + '<div class="ma-riga r2"></div><div class="ma-riga r3"></div>'
+    + '<div class="ma-riga r4"></div><div class="ma-riga r5"></div>';
+  const righe = { 'f-alto': '.r1', 'f-pro': '.r2', 'f-cer': '.r3', 'f-gm': '.r4', 'f-per': '.r5' };
   FUMETTI.forEach((f, i) => {
     const b = document.createElement('div');
     b.className = 'fumetto ' + f.cls;
@@ -3272,8 +3270,8 @@ function palloncino(a, z, su, seme, lato) {
   /* La punta: al centro del tasto, o verso il suo lato esterno per i due
      tasti ai bordi (così le code passano fuori dai palloncini di mezzo). */
   const zx = lato === 'sx' ? z.left + z.width * .22 : lato === 'dx' ? z.right - z.width * .22 : (z.left + z.right) / 2;
-  const x0 = Math.min(Math.max(zx, a.left + a.width * .17), a.right - a.width * .17);
-  const nw = Math.min(21, a.width * .14);
+  const x0 = Math.min(Math.max(zx, a.left + a.width * .15), a.right - a.width * .15);
+  const nw = Math.min(15, a.width * .12);
   const bocca = [];
   pts.forEach((p, i) => { if (s * (p[1] - cy) > 0 && Math.abs(p[0] - x0) < nw) bocca.push(i); });
   if (bocca.length < 2) return '';
@@ -3284,44 +3282,61 @@ function palloncino(a, z, su, seme, lato) {
   const dir = (p, q) => { const l = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [(q[0] - p[0]) / l, (q[1] - p[1]) / l]; };
   const t1 = dir(arco[0], arco[1]), t2 = dir(arco[arco.length - 2], j2);
   const fondo = pts[bocca.reduce((m, i) => Math.abs(pts[i][0] - x0) < Math.abs(pts[m][0] - x0) ? i : m, bocca[0])];
-  /* La coda: una S da dove esce fino alla punta, sottile, che si assottiglia
-     ancora un po' verso la punta; la punta si ferma poco prima del tasto. */
-  const punta = [zx, su ? z.bottom + 5 : z.top - 5], lp = 16, lb = 12;
-  const b0 = [x0, fondo[1]], h = [zx, punta[1] - s * lp];
-  const L = Math.abs(h[1] - b0[1]);
-  const c1 = [x0, b0[1] + s * L * .5], c2 = [zx, h[1] - s * L * .5];
-  /* Il collo: la coda comincia a una ventina di pixel dal pallone, e fra i
-     due c'è una curva morbida per lato, come nel disegno. */
-  const t0 = Math.min(.45, 18 / Math.max(L, 1));
-  const K = 20, dx = [], sx = [];
+  /* LA CODA A VIRGOLA (secondo disegno di Manlio): larga dove esce dal
+     pallone, si assottiglia fino a una punta sola, che si ferma poco prima
+     del tasto. Niente freccia: la punta basta. */
+  const punta = [zx, su ? z.bottom + 5 : z.top - 11];
+  const b0 = [x0, fondo[1]];
+  const L = Math.abs(punta[1] - b0[1]);
+  const c1 = [x0, b0[1] + s * L * .45], c2 = [zx, punta[1] - s * L * .45];
+  /* la coda comincia un poco sotto il pallone e più stretta della sua bocca:
+     fra i due, una spalla morbida per lato, come nel disegno */
+  const t0 = Math.min(.3, 13 / Math.max(L, 1));
+  const larga = Math.hypot(j2[0] - j1[0], j2[1] - j1[1]) / 2 * .6;
+  const K = 28, dx = [], sx = [];
   let d0 = [0, s];
   for (let k = 0; k <= K; k++) {
     const t = t0 + (1 - t0) * k / K, u = 1 - t;
-    const P = [0, 1].map(q => u*u*u*b0[q] + 3*u*u*t*c1[q] + 3*u*t*t*c2[q] + t*t*t*h[q]);
-    const D = [0, 1].map(q => 3*u*u*(c1[q]-b0[q]) + 6*u*t*(c2[q]-c1[q]) + 3*t*t*(h[q]-c2[q]));
+    const P = [0, 1].map(q => u*u*u*b0[q] + 3*u*u*t*c1[q] + 3*u*t*t*c2[q] + t*t*t*punta[q]);
+    const D = [0, 1].map(q => 3*u*u*(c1[q]-b0[q]) + 6*u*t*(c2[q]-c1[q]) + 3*t*t*(punta[q]-c2[q]));
     const l = Math.hypot(D[0], D[1]) || 1, n = [-D[1] / l, D[0] / l];
     if (!k) d0 = [D[0] / l, D[1] / l];
-    const w = 5 - 1.6 * (k / K);
+    /* si stringe un po' più in fretta vicino al pallone, poi piano fino alla punta */
+    const w = larga * Math.pow((1 - t) / (1 - t0), 1.35);
     dx.push([P[0] + n[0] * w, P[1] + n[1] * w]);
     sx.push([P[0] - n[0] * w, P[1] - n[1] * w]);
   }
   /* Il primo lato della coda è quello che attacca dove finisce il pallone. */
   const vicino = e => Math.hypot(e[0][0] - j2[0], e[0][1] - j2[1]);
   const [e1, e2] = vicino(dx) < vicino(sx) ? [dx, sx] : [sx, dx];
-  const f = t => { const v = dir(h, t); return [h[0] + v[0] * lb, h[1] + v[1] * lb]; };
-  const a1 = f(e1[K]), a2 = f(e2[K]);
-  const q = n => n.toFixed(1);
-  const pt = p => q(p[0]) + ' ' + q(p[1]);
-  const curva = (p, cA, cB, r) => ' C' + pt(cA) + ' ' + pt(cB) + ' ' + pt(p);
+  const pt = p => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
+  const curva = (p, cA, cB) => ' C' + pt(cA) + ' ' + pt(cB) + ' ' + pt(p);
   const r1 = Math.hypot(e1[0][0] - j2[0], e1[0][1] - j2[1]) * .55;
   const r2 = Math.hypot(e2[0][0] - j1[0], e2[0][1] - j1[1]) * .55;
   return 'M' + pt(j1) + liscia(arco)
     + curva(e1[0], [j2[0] + t2[0] * r1, j2[1] + t2[1] * r1], [e1[0][0] - d0[0] * r1, e1[0][1] - d0[1] * r1])
     + liscia(e1)
-    + ' L' + pt(a1) + ' L' + pt(punta) + ' L' + pt(a2) + ' L' + pt(e2[K])
     + liscia(e2.slice().reverse())
     + curva(j1, [e2[0][0] - d0[0] * r2, e2[0][1] - d0[1] * r2], [j1[0] - t1[0] * r2, j1[1] - t1[1] * r2])
     + 'Z';
+}
+/* I FUMETTI DEVONO STARE TUTTI SOPRA IL MENÙ, su ogni telefono: la mappa
+   prende lo spazio fra il titolo e il menù, e se il testo non ci sta si
+   rimpicciolisce mezzo pixel alla volta (da 16 fino a 12). */
+function adattaMappa() {
+  const m = document.querySelector('.mappa-aiuto');
+  const menu = document.getElementById('riga-cerca').getBoundingClientRect();
+  if (!m || !menu.height) return;
+  const alta = Math.max(menu.top - m.getBoundingClientRect().top + window.scrollY - 8, 200);
+  m.style.minHeight = alta + 'px';
+  let fs = 16, spazio = 18;
+  const metti = () => { m.style.setProperty('--fs', fs + 'px'); m.style.gap = spazio + 'px'; };
+  const troppo = () => m.getBoundingClientRect().height > alta + .5;
+  metti();
+  while (fs > 12.5 && troppo()) { fs -= .5; metti(); }
+  /* sui telefoni più bassi si stringe anche lo spazio fra un fumetto e l'altro */
+  while (spazio > 6 && troppo()) { spazio -= 2; metti(); }
+  while (fs > 11.5 && troppo()) { fs -= .5; metti(); }
 }
 let svgAiuto = null;   // il disegno dei palloncini, quando c'è
 function frecceAiuto() {
@@ -3353,8 +3368,9 @@ function frecceAiuto() {
     g.appendChild(p);
   });
 }
-['scroll', 'resize'].forEach(ev => window.addEventListener(ev, () => { try { frecceAiuto(); } catch (e) {} }, { passive: true }));
-if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { try { frecceAiuto(); } catch (e) {} });
+window.addEventListener('scroll', () => { try { frecceAiuto(); } catch (e) {} }, { passive: true });
+['resize'].forEach(ev => window.addEventListener(ev, () => { try { adattaMappa(); frecceAiuto(); } catch (e) {} }, { passive: true }));
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { try { adattaMappa(); frecceAiuto(); } catch (e) {} });
 
 function disegna() {
   disegnaTasti();
@@ -3370,8 +3386,9 @@ function disegna() {
   if (scelto < 0) {
     out.appendChild(mappaVisibile() ? mappaAiuto() : benvenuto());
     /* dopo che la griglia ha preso il suo posto: le frecce si misurano sullo schermo */
+    adattaMappa();
     frecceAiuto();
-    setTimeout(() => { try { frecceAiuto(); } catch (e) {} }, 300);
+    setTimeout(() => { try { adattaMappa(); frecceAiuto(); } catch (e) {} }, 300);
     return;
   }
   frecceAiuto();

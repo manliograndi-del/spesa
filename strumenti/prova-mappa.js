@@ -62,7 +62,7 @@ setTimeout(() => {
   if (fumetti.length !== 5) male.push('i fumetti sono ' + fumetti.length + ', non cinque');
   fumetti.forEach(f => {
     const t = f.querySelector('b'), x = f.querySelector('span');
-    if (!t || !t.textContent.trim() || !x || x.textContent.trim().length < 20)
+    if (!t || !t.textContent.trim() || !x || x.textContent.trim().length < 10)
       male.push('un fumetto non dice niente: «' + f.textContent.trim() + '»');
     if (/\d+,\d\d|€/.test(f.textContent)) male.push('un fumetto ha dentro un prezzo: «' + f.textContent.trim() + '»');
   });

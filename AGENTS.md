@@ -875,23 +875,34 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
   all'apertura.** Manlio, con un disegno a mano: «questa immagine di Help
   ci sia aprendo il sito e basta; che non si arrivi a una pagina con già
   dei prodotti… fermati prima di metterla nel sito, prima fammi delle prove
-  grafiche con già i testi»; poi, visti i fumetti squadrati: «nuvolette
-  più organiche» (un suo disegno: un pallone tondo che si stringe in una
-  coda lunga e finisce a freccia). **Sta solo sul ramo di lavoro, NON su
-  `main`**: `index.html` e `sw.js` (v104) sono quelli pubblicati. Com'è:
-  all'apertura (e toccando «Spesa») la griglia resta giù, nessun tasto del
-  menù è acceso, e ci sono «Come si usa» e cinque palloncini
-  (`FUMETTI`, `mappaAiuto()`, disegnati da `palloncino()` in
-  `frecceAiuto()`) con la coda a punta verso i due pallini in alto e i
-  quattro tasti del menù. «Prodotti» fa salire la griglia (pagina di
-  benvenuto); «Cerca», «Grandi marche», «Personale» vanno alla loro
-  sezione e tornando con «Prodotti» non si rivede la mappa. Le prove
-  (`prova.js`, `prova-intestazione.js`, `prova-marche.js`, e la nuova
-  `prova-mappa.js`) sono già aggiornate a questa versione. **Aspetta il sì
-  di Manlio sulle schermate** (mandate: 28-pall-390/412/360): se dice sì,
-  novità in `NOVITA_PAGINA`, regola in cima a questo file, `sw.js` v105 e
-  pubblicazione completa; se no, si torna alla pagina di benvenuto di v104
-  (è quella che c'è su `main`).
+  grafiche con già i testi». Poi «nuvolette più organiche» e un secondo
+  disegno (fumetto da fumetti con la coda a punta, a virgola), e i TESTI
+  SUOI, da non cambiare: «In alto — L'ingranaggio sceglie i tuoi
+  supermercati, la N le novità»; «Prodotti — Scegli le categorie di
+  prodotti che ti interessano: appariranno liste di prodotti cliccabili per
+  vedere le immagini»; «Grandi marche — Scegli per marca»; «Il mio carrello
+  — Fai la tua lista della spesa»; «Cerca — Ricerca a testo libero». I
+  fumetti sono A SCALETTA, uno per riga («le due in basso una sopra e
+  l'altra sotto, e lo stesso con le altre due»). **Il tasto «Personale» si
+  chiama «Il mio carrello»** (Manlio: «quando pubblichiamo, il tasto
+  Personale andrà cambiato con la scritta Il mio carrello»): già così nella
+  prova, anche nell'Aiuto. **Sta solo sul ramo di lavoro, NON su `main`**:
+  `index.html` e `sw.js` (v104) sono quelli pubblicati. Com'è: all'apertura
+  (e toccando «Spesa») la griglia resta giù, nessun tasto del menù è
+  acceso; «Come si usa» e cinque fumetti (`FUMETTI`, `mappaAiuto()`),
+  disegnati da `palloncino()` in `frecceAiuto()` con la coda a punta verso
+  i due pallini e i quattro tasti; `adattaMappa()` li fa stare tutti sopra
+  il menù (testo da 16 a 11,5 px). «Prodotti» fa salire la griglia (pagina
+  di benvenuto); dalle altre sezioni, tornando con «Prodotti», la mappa non
+  si rivede. Prove già aggiornate (`prova.js`, `prova-intestazione.js`,
+  `prova-marche.js`, `prova-personale.js`, nuova `prova-mappa.js`).
+  **Mandate due varianti** (31-390 grigia, 31-390-col e 31-360-col a
+  colori: giallo, verde, azzurro, lilla, pesca; i colori sono solo nello
+  script delle schermate, `foto-mappa.js` nello scratchpad, non ancora in
+  `pagina.py`). **Aspetta la sua scelta**: poi novità in `NOVITA_PAGINA`,
+  regola in cima a questo file, `sw.js` v105 e pubblicazione completa. Se
+  sceglie i colori, il testo dei fumetti va fissato scuro (i look scuri
+  hanno `--inchiostro` chiaro).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v104**, le 14 grandi
   ditte coi loro marchi in «Grandi marche» (vedi la regola in cima).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di

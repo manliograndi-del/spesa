@@ -3596,3 +3596,26 @@ Le code di Prodotti e Cerca puntano al lato esterno del loro tasto
 (`lato: 'sx' / 'dx'`), così scendono lungo i bordi e i palloncini di mezzo ne
 stanno lontani (42 px per parte). Sui telefoni bassi (sotto i 700 px) il
 testo è a 13 px, se no l'ultimo palloncino finiva sotto il menù.
+
+Secondo giro (stessa sera). Manlio ha riscritto i testi, più brevi, e ha
+chiesto: la forma di un suo secondo disegno (un fumetto con la coda a punta,
+come una virgola), i fumetti «una sopra e l'altra sotto» invece che a
+coppie, una variante a colori, e il tasto «Personale» che diventa «Il mio
+carrello». Fatto così:
+- **A scaletta, un fumetto per riga**: Prodotti a sinistra e Cerca a destra
+  (code lungo i bordi), poi Grandi marche e il carrello fra le due code. Il
+  carrello sta a destra e sotto, perché la coda di Grandi marche gli passa
+  accanto a sinistra.
+- **La coda a virgola**: esce dal pallone con due spalle morbide, larga
+  poco più di una ventina di pixel, e si assottiglia fino a una punta sola,
+  11 px sopra il tasto (più giù si perde nell'ombra del menù). Niente
+  freccia. Le prime prove erano o troppo larghe (sembravano imbuti) o con
+  due «orecchie» dove la coda attaccava: la coda deve cominciare più stretta
+  della bocca del pallone.
+- **`adattaMappa()`**: la mappa va dal titolo a poco sopra il menù, e se i
+  fumetti non ci stanno il testo scende di mezzo pixel alla volta (da 16 a
+  12,5), poi si stringe lo spazio fra i fumetti, poi ancora il testo fino a
+  11,5. Con le media query fisse, a 360×780 i fumetti finivano sotto il menù.
+- **I colori** (giallo, verde, azzurro, lilla, pesca; mai rosso) per ora
+  stanno solo nello script delle schermate: si mettono in `pagina.py` se li
+  sceglie lui.

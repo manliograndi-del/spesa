@@ -74,7 +74,7 @@ setTimeout(() => {
   if (!pro()) male.push('manca il tasto «Prodotti»');
   else {
     const ordine = [...d.querySelectorAll('#riga-cerca button')].map(b => b.textContent);
-    if (ordine.join('|') !== 'Prodotti|Grandi marche|Personale|Cerca') male.push('i tre tasti sono ' + ordine.join(', '));
+    if (ordine.join('|') !== 'Prodotti|Grandi marche|Il mio carrello|Cerca') male.push('i tre tasti sono ' + ordine.join(', '));
     if (pro().getAttribute('aria-pressed') !== 'true') male.push('all\'inizio «Prodotti» non è acceso');
     gm2().click(); gm2().click();
     if (d.getElementById('ricerca').hidden) male.push('ritoccando Grandi marche la sezione si chiude');
