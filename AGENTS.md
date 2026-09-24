@@ -252,7 +252,16 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   chi arriva la prima volta»). `scelto = -1` all'apertura: nessun prodotto
   acceso, e in mezzo allo schermo «Tocca un prodotto qui sotto», una riga
   su cosa si vede, una su «Organizza i prodotti» e una freccia grigia verso
-  la griglia (`benvenuto()` in `pagina.py`). **Dal 2026-09-24 sera (v105)
+  la griglia (`benvenuto()` in `pagina.py`). **Dal 2026-09-24 sera (v108)
+  è un FUMETTO come quelli della mappa** (Manlio: «trasformare anche questo
+  in una nuvoletta, anche un po' trasparente… e si ricordi che facendo clic
+  sulle schede esce la foto del volantino»; vista la prova, «va bene,
+  pubblica»): verde come «Prodotti», trasparente (`.p-bv`, `fill-opacity`
+  .6), coda che esce da sinistra e scende quasi dritta alla griglia
+  (`FUMETTO_BV` in `frecceAiuto()`, `sotto`). Il testo: «Tocca un prodotto
+  qui sotto» / «Escono le sue offerte, dalla più conveniente.» / «Tocca
+  un'offerta per vedere la foto del volantino.» / «"Organizza i prodotti"
+  sceglie quali tenere.». La freccia grigia non c'è più. **Dal 2026-09-24 sera (v105)
   all'apertura e dal titolo «Spesa» c'è la mappa «Come si usa» (regola in
   cima), e la pagina di benvenuto viene dopo, toccando «Prodotti»**;
   «Prodotti» del menù riporta invece al prodotto che si guardava. La
@@ -938,25 +947,12 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
-- **IN PROVA, NON PUBBLICATA (2026-09-24 sera): il benvenuto diventa un
-  fumetto.** Manlio: «quando si clicca su Prodotti e la pagina è nuova
-  appare ancora un messaggio non in una nuvoletta ma semplice: potresti
-  trasformare anche questo in una nuvoletta, anche un po' trasparente, nella
-  quale si dicano le stesse cose in forma più concisa, e si ricordi che
-  facendo clic sulle varie schede esce la foto del volantino». Fatto in
-  `benvenuto()` (testo: «Tocca un prodotto qui sotto» / «Escono le sue
-  offerte, dalla più conveniente.» / «Tocca un'offerta per vedere la foto
-  del volantino.» / «"Organizza i prodotti" sceglie quali tenere.») e in
-  `frecceAiuto()` (`FUMETTO_BV`: verde come «Prodotti», `fill-opacity` .6,
-  coda che esce da sinistra e scende quasi dritta alla griglia, `sotto`).
-  La freccia grigia `.bv-freccia` e le classi `bv-*` sono tolte. Il disegno
-  si toglie e torna con la pagina (`frecceAiuto()` anche in `apriCassetto`,
-  `apriRicerca`, `apriPersonale`). I fumetti della mappa sono identici a
-  quelli pubblicati (schermata confrontata byte per byte). **Sta solo sul
-  ramo di lavoro: `index.html` e `sw.js` (v107) sono quelli pubblicati.**
-  Schermate mandate: 36-prima, 36-dopo-390, 36-dopo-360. **Aspetta il suo
-  sì**; poi `sw.js` v108, regola in cima e pubblicazione (le prove passano
-  già tutte).
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v108**, il
+  benvenuto (dopo «Prodotti», a pagina nuova) è un fumetto verde un po'
+  trasparente, con la coda verso la griglia e il promemoria «Tocca
+  un'offerta per vedere la foto del volantino» (Manlio: «va bene,
+  pubblica»). Vedi la regola «ALL'APERTURA C'È UNA PAGINA DI BENVENUTO».
+  Sito e link Claude.
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v107**, gli
   attacchi delle code dei fumetti senza salti di direzione (Manlio, vista la
   prova: «caspita sei stato bravissimo, vai pubblica»). Sito e link Claude.

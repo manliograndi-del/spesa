@@ -639,11 +639,12 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 @supports (height:100dvh){
   .benvenuto{min-height:calc(100dvh - 76px - var(--barra-alta,0px) - var(--menu-alto,70px))}
 }
-.bv-grande{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.06em;
-  font-size:22px;font-weight:600;line-height:1.2;margin:0 0 10px}
-.bv-testo{color:var(--tenue);font-size:15.5px;line-height:1.4;margin:0 0 8px;max-width:30em}
-.bv-freccia{display:block;width:34px;height:34px;margin-top:14px;background:var(--tenue);
-  -webkit-mask:var(--giu) center/contain no-repeat;mask:var(--giu) center/contain no-repeat}
+/* Dal 2026-09-24 il benvenuto è un fumetto (vedi benvenuto()): sta sopra il
+   suo disegno, il testo centrato, un po' più grande di quelli della mappa. */
+.benvenuto{position:relative;z-index:1}
+.fumetto.f-bv{--fs:15.5px;width:86%;max-width:360px;text-align:center}
+.fumetto.f-bv b{font-size:1.2em;margin-bottom:6px}
+.fumetto.f-bv span{display:block;margin-top:3px}
 /* LA MAPPA DELL'AIUTO (2026-09-24, dai disegni di Manlio): un fumetto a
    colori per ogni cosa da spiegare, con la coda a punta verso il suo tasto.
    L'altezza la mette adattaMappa(): dal titolo fino a poco sopra il menù,
@@ -684,6 +685,8 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 #frecce-aiuto .p-cer{fill:#DCEBFA;stroke:#3B7BBF}
 #frecce-aiuto .p-gm{fill:#ECE3F8;stroke:#7D5CC0}
 #frecce-aiuto .p-per{fill:#FFE4D2;stroke:#D27838}
+/* il fumetto di benvenuto: verde come «Prodotti», un po' trasparente */
+#frecce-aiuto .p-bv{fill:#DDF1E2;fill-opacity:.6;stroke:#3E9A5E;stroke-opacity:.8}
 .sintesi{display:grid;gap:6px;margin:12px 0 0}
 .sint{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;text-align:left;
   border:0;border-radius:14px;padding:9px 13px;font:inherit;font-size:14.5px;cursor:pointer;
@@ -1600,6 +1603,7 @@ function apriCassetto(si) {
      guardarsi i reparti. Chi vuole cercare la tocca. */
   if (si) disegnaScaffali();
   else document.getElementById('cerca').value = '';
+  frecceAiuto();
 }
 
 /* ---------- la sezione personale ---------- */
@@ -1676,6 +1680,7 @@ function apriPersonale(si) {
   disegnaMarche();
   if (daMappa) disegna();
   if (si) disegnaPersonale();
+  frecceAiuto();   // il fumetto di benvenuto sparisce o torna con la sua pagina
 }
 
 function disegnaPersonale() {
@@ -1850,6 +1855,7 @@ function apriRicerca(si, senzaFuoco) {
       try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     }
   }
+  frecceAiuto();   // come in apriPersonale
 }
 
 /* IL FUOCO SULLA CASELLA DI «CERCA» ARRIVA A GRIGLIA SCESA (Manlio,
@@ -2516,11 +2522,15 @@ function dove(o) {
 function benvenuto() {
   const d = document.createElement('div');
   d.className = 'benvenuto';
-  d.innerHTML = '<p class="bv-grande">Tocca un prodotto qui sotto</p>'
-    + '<p class="bv-testo">e vedi le sue offerte in tutti i volantini, '
-    + 'dalla più conveniente in giù.</p>'
-    + '<p class="bv-testo">Con «Organizza i prodotti» scegli quali tenere.</p>'
-    + '<span class="bv-freccia" aria-hidden="true"></span>';
+  /* UN FUMETTO COME QUELLI DELLA MAPPA, un po' trasparente, con la coda
+     verso i prodotti (Manlio, 2026-09-24: «trasformare anche questo in una
+     nuvoletta, dove si dicano le stesse cose in forma più concisa, e si
+     ricordi che toccando le schede esce la foto del volantino»). La forma
+     la disegna frecceAiuto(), come per la mappa. */
+  d.innerHTML = '<div class="fumetto f-bv"><b>Tocca un prodotto qui sotto</b>'
+    + '<span>Escono le sue offerte, dalla più conveniente.</span>'
+    + '<span>Tocca un\u2019offerta per vedere la foto del volantino.</span>'
+    + '<span>«Organizza i prodotti» sceglie quali tenere.</span></div>';
   return d;
 }
 
@@ -2597,12 +2607,16 @@ function palloncino(a, z, su, seme, f) {
   }
   /* La punta: al centro del tasto, o verso il suo lato esterno per i due
      tasti ai bordi (così le code passano fuori dai palloncini di mezzo). */
-  const zx = f.lato === 'sx' ? z.left + z.width * .22 : f.lato === 'dx' ? z.right - z.width * .22 : (z.left + z.right) / 2;
   /* LA CODA ESCE DA UN LATO, mai dal mezzo (Manlio: «non mi piacciono
      quelle che partono praticamente dal mezzo»): a un quarto del pallone,
      dalla parte scritta in FUMETTI. */
   const q = f.quota || .27;
   const x0 = f.coda === 'sx' ? a.left + a.width * q : a.right - a.width * q;
+  /* Col bersaglio largo (la griglia dei prodotti, per il fumetto di
+     benvenuto: «sotto») la punta scende quasi dritta, piegando appena verso
+     l'esterno come una virgola: puntata al centro, la coda si attorcigliava. */
+  const zx = f.sotto ? x0 + (f.coda === 'sx' ? -10 : 10)
+    : f.lato === 'sx' ? z.left + z.width * .22 : f.lato === 'dx' ? z.right - z.width * .22 : (z.left + z.right) / 2;
   const nw = Math.min(20, a.width * .15);
   const bocca = [];
   pts.forEach((p, i) => { if (s * (p[1] - cy) > 0 && Math.abs(p[0] - x0) < nw) bocca.push(i); });
@@ -2661,10 +2675,15 @@ function adattaMappa() {
   while (fs > 11.5 && troppo()) { fs -= .5; metti(); }
 }
 let svgAiuto = null;   // il disegno dei palloncini, quando c'è
+/* Il fumetto della pagina di benvenuto: la coda va alla griglia dei
+   prodotti, qui sotto. */
+const FUMETTO_BV = { dove: '.barra', tinta: 'p-bv', coda: 'sx', quota: .2, sotto: true };
 function frecceAiuto() {
   let svg = svgAiuto;
-  const vis = mappaVisibile() && document.querySelector('.mappa-aiuto');
-  if (!vis) { if (svg) svg.remove(); svgAiuto = null; return; }
+  const mappa = mappaVisibile() && document.querySelector('.mappa-aiuto');
+  const bv = !mappa && scelto < 0 && !ricercaAperta && !personaleAperto && !cassettoAperto
+    && document.querySelector('#risultato .benvenuto .fumetto');
+  if (!mappa && !bv) { if (svg) svg.remove(); svgAiuto = null; return; }
   if (!svg) {
     svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
     svg.id = 'frecce-aiuto';
@@ -2676,13 +2695,24 @@ function frecceAiuto() {
   const g = svg.querySelector('g');
   g.textContent = '';
   const r = el => el && el.getBoundingClientRect ? el.getBoundingClientRect() : null;
-  document.querySelectorAll('.mappa-aiuto .fumetto').forEach(b => {
-    const f = FUMETTI[+b.dataset.i];
+  const coppie = mappa
+    ? [...document.querySelectorAll('.mappa-aiuto .fumetto')].map(b => [b, FUMETTI[+b.dataset.i], +b.dataset.i + 1])
+    : [[bv, FUMETTO_BV, 7]];
+  coppie.forEach(([b, f, seme]) => {
     const bersaglio = f.dove === 'pallini' ? document.querySelector('header .pallini') : document.querySelector(f.dove);
-    const a = r(b), z = r(bersaglio);
+    const a = r(b);
+    let z = r(bersaglio);
     if (!a || !z || !a.width || !z.width) return;
+    /* La griglia dei prodotti, appena toccato «Prodotti», sta ancora salendo:
+       la coda punta a dove arriverà, non a dove è in quel momento. */
+    if (f.dove === '.barra') {
+      try {
+        const m = new DOMMatrix(getComputedStyle(bersaglio).transform);
+        z = { left: z.left, right: z.right, width: z.width, top: z.top - m.f, bottom: z.bottom - m.f };
+      } catch (e) {}
+    }
     const su = z.bottom <= a.top;   // il tasto sta sopra (i pallini) o sotto (il menù)
-    const d = palloncino(a, z, su, +b.dataset.i + 1, f);
+    const d = palloncino(a, z, su, seme, f);
     if (!d) return;
     const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     p.setAttribute('d', d);

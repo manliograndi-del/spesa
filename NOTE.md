@@ -3677,7 +3677,7 @@ posizione (`fuori1`), e lì la coda parte con la stessa direzione con cui
 `liscia()` fa finire il bordo (`t1`, `t2` presi dal punto accanto, non da
 due punti più in là). Pubblicata (v107) dopo il suo «vai pubblica».
 
-## 2026-09-24 sera — Il benvenuto in un fumetto (IN PROVA)
+## 2026-09-24 sera — Il benvenuto in un fumetto
 
 Manlio: il messaggio che appare toccando «Prodotti» (pagina di benvenuto) era
 ancora testo semplice con una freccia grigia; lo voleva in una nuvoletta come
@@ -3690,3 +3690,5 @@ tangente del pallone, quasi orizzontale sul fondo) si incrociava con l'altro:
 col bersaglio largo la punta scende quasi dritta sotto l'attacco (`sotto`);
 (2) appena toccato «Prodotti» la griglia sta ancora salendo, quindi la coda
 si misura su dove arriverà (si toglie lo spostamento del `transform`).
+Provato in schermata (390 e 360 px), i fumetti della mappa identici a
+quelli pubblicati. Pubblicato (v108) dopo il suo «va bene, pubblica».
