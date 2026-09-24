@@ -3448,3 +3448,41 @@ tastiera; se Manlio dice che in «Cerca» deve toccare la casella, è questo.
 **Risolto**: Manlio ha un Android, e sul suo telefono «funziona benissimo».
 Pubblicato: `sw.js` v100, novità `2026-09-24-griglia` (l'id col 24 perché in
 Italia era già passata mezzanotte).
+
+## Il primo giorno senza niente «in arrivo» — 2026-09-24
+
+Routine del mattino: trovato un volantino Lidl Frutta e Verdura nuovo
+(`lidlfv24`, 24-30 settembre, 7 pagine). Lette per intero: pagine 5 e 6 erano
+pubblicità (storytelling sulle zucchine, premio «Sicurezza Alimentare»),
+scartate. Delle offerte rimaste, **quasi tutte duplicavano identiche, stesso
+prezzo, quelle già lette nello stesso giorno nel Lidl generale (`lidl24`)**:
+Mele Gala IGP, Zucchine, Pomodori (sfusi e Pachino), Prugne, Zucca Hokkaido,
+Uva bianca, Uva Red Globe, Patate Iodì, Carote, Pere Carmen — persino le date
+ristrette (Zucca e Prugne solo dal 24 al 27) coincidevano riga per riga.
+`dati.py` si è fermato da solo («riga doppia») su ognuna: è così che si è
+scoperta la sovrapposizione, non guardando a occhio. Avocado e Fichi freschi
+erano «al pezzo» senza un peso: lasciati fuori, come già successo con
+`lidlfv17`. Sono entrate solo 6 righe davvero nuove.
+
+Tolti anche i quattro volantini scaduti (`bennet10`, `lidl17`, `lidlfv17`,
+`ekom08`): tutti già coperti senza buchi dai successori, letti da tempo.
+
+**La cosa da ricordare**: `prova-meno-caro.js` si è fermata su «nessuna
+offerta sbiadita». Non era un guasto — sei volantini nuovi (Eurospin, Lidl,
+Ipercoop, Pam×2, Conad) erano tutti partiti PROPRIO oggi, e nessuno era
+ancora «in arrivo»: per la prima volta nella vita del progetto, zero
+volantini avevano una data di inizio nel futuro. Le offerte «sbiadite» sono
+SOLO quelle di un volantino intero non ancora cominciato (`o.inizio >
+OGGI_ISO` a livello di volantino): un'offerta con una data sua più stretta
+dentro un volantino già attivo, se non ancora cominciata, è NASCOSTA del
+tutto (`ristretta && futuro`), non sbiadita — per questo lo scenario
+«sbiadite = 0» può essere verissimo e non un bug. La prova prima non lo
+sapeva distinguere e falliva sempre in questo caso. Corretta perché controlli
+via `DATI.offerte` (il blob dati già dentro la pagina) se esiste DAVVERO
+un'offerta di un volantino futuro non ristretta: solo allora pretende almeno
+una riga sbiadita. **Se ricapita zero volantini in arrivo, è normale**: torna
+a esserci un'offerta sbiadita appena si legge in anticipo un volantino con
+una data di inizio futura (come si è sempre fatto con Eurospin, Lidl,
+Ipercoop...).
+
+Pubblicato: sito e link Claude verificati, `sw.js` v101.

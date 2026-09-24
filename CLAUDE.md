@@ -827,12 +827,26 @@ Conad»): è il Conad «normale» più vicino, a 2,7 km (codice negozio 009843).
 Conad City (via Bardonecchia 5/c, 3,3 km) e i Superstore hanno volantini loro.
 Non gliel'ho chiesto: se va in un City, va cambiato.
 
-## PER RIPARTIRE (scritto il 2026-09-23 sera, prima di cambiare conversazione)
+## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
-Manlio ha chiesto di «fare le valigie» e ripartire in una conversazione
-nuova. Lo stato, in breve:
-
-- **Pubblicato e verificato**: sito e link Claude a `sw.js` **v100** (la griglia dei prodotti sale e scende col menù, la tastiera di «Cerca» arriva a griglia scesa; a v99: banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto; 2026-09-23 sera). Tutte le
+- **Pubblicato e verificato oggi (2026-09-24)**: `sw.js` **v101**. Trovato e
+  letto per intero un volantino Lidl Frutta e Verdura nuovo (`lidlfv24`,
+  24-30 settembre, 7 pagine): quasi tutte le sue offerte duplicavano quelle
+  già lette nel Lidl generale (`lidl24`), sono entrate solo 6 righe davvero
+  nuove (Mele Golden, Funghi Champignon, Aglio, Cavolo cappuccio, Rape rosse
+  precotte, Cavolo rosso). **Tolti i quattro volantini scaduti** (`bennet10`,
+  `lidl17`, `lidlfv17`, `ekom08`), già coperti senza buchi dai successori.
+  **Da sapere per chi riparte**: oggi, per la prima volta, NESSUN volantino
+  risultava «in arrivo» (sei erano partiti proprio il 24), e questo faceva
+  fallire `prova-meno-caro.js` (cercava sempre almeno un'offerta «sbiadita»
+  di un volantino non ancora cominciato). Non era un guasto — verificato col
+  codice — quindi la prova è stata corretta perché distingua «non c'è niente
+  da colorare sbiadito, il calendario è così» da «la classe non arriva
+  davvero» (quest'ultimo resta un errore vero). **Carrefour Iper
+  (`carriper15`) scade il 28/9 e il successore non è ancora uscito**: prima
+  ricerca fatta oggi, si riprova nei prossimi giorni (terza mattina di fila
+  senza trovarlo → scriverglielo).
+- **Pubblicato e verificato il 2026-09-23 sera**: `sw.js` **v100** (la griglia dei prodotti sale e scende col menù, la tastiera di «Cerca» arriva a griglia scesa; a v99: banda rossa col nome sopra le offerte, tasti a rettangolo arrotondato; prima, a v98: nome meno nero, prezzi a metà della scheda, grandi marche a riquadri, via il riquadro in fondo, marca in cima ai titoli, «Cerca» ultimo nel menù, prodotti in basso in una griglia, pillole della scheda tutte a 24 px, menù a pillole, «Organizza i prodotti» e niente intestazione sopra le offerte, niente elenco delle pagine sotto). Tutte le
   prove passano.
 - **Prezzi a destra pubblicati** (sì di Manlio: «va bene, pubblicala»):
   `sw.js` **v89**, novità `2026-09-23-zzzz-prezzi`.
@@ -875,7 +889,13 @@ nuova. Lo stato, in breve:
   risultati. Per le prove grafiche gli basta vedere 3-4 schermate
   (mandate con SendUserFile) prima di pubblicare.
 
-## Da fare adesso (aggiornato il 2026-09-23)
+## Da fare adesso (aggiornato il 2026-09-24)
+
+- **Carrefour Iper (`carriper15`) scade il 28 settembre**: il successore
+  non è ancora uscito online (prima ricerca il 24/9). Controllarlo ogni
+  mattina finché non esce; se arriva alla terza mattina di fila senza
+  trovarlo, scriverlo a Manlio.
+- **Domande sempre aperte da fargli**, vedi sotto «PER RIPARTIRE».
 
 - **Punto 5 fatto: il menù in basso** (2026-09-23, provato prima in quattro
   schermate e piaciuto a Manlio). Novità `2026-09-23-zzz-menu`. `sw.js` a
