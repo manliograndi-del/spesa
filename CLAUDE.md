@@ -182,8 +182,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   - **la coda esce da UN LATO del fumetto, mai dal mezzo** (`coda` in
     `FUMETTI`), e **si assottiglia sempre** dall'attacco alla punta, come
     una virgola: sono due curve che si chiudono nella punta (`palloncino()`).
-    Dalla parte del bordo continua la curva del pallone, dall'altra c'è lo
-    spigolo, come nel suo disegno. Niente freccia: la punta basta, e si
+    Dalla parte del bordo continua la curva del pallone **senza nessun
+    salto di direzione** (parte esattamente come arriva il bordo: Manlio,
+    v107, «vorrei che fossero più organiche»); quale sia la parte del bordo
+    lo dice la posizione, non l'ordine dei punti (con la coda in su si
+    rovescia). Dall'altra c'è lo spigolo, come nel suo disegno. Niente freccia: la punta basta, e si
     ferma 11 px sopra il tasto (più giù si perde nell'ombra del menù);
   - **colori**: giallo, verde, azzurro, lilla, pesca (`.p-alto` … `.p-per`),
     bordo della stessa tinta più scuro, scritta scura fissa `#27231F`:
@@ -932,21 +935,9 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
-- **IN PROVA, NON PUBBLICATA (2026-09-24 sera): gli attacchi delle code
-  dei fumetti senza salti di direzione.** Manlio, con una schermata cerchiata
-  in rosso: «non mi piacciono tanto quelle congiunzioni tra il fumetto e la
-  coda; vorrei che fossero più organiche, che non ci fosse un salto nella
-  loro direzione… non deve cambiare niente nel sito, fammi solo vedere una
-  prova». In `palloncino()` l'attacco dalla parte del bordo parte adesso
-  ESATTAMENTE nella direzione del bordo del pallone (prima era a metà fra
-  bordo e giù, e faceva un angolo); quale attacco è «dalla parte del bordo»
-  lo dice la posizione e non l'ordine (col giallo, coda in su, era
-  rovesciato). Lo spigolo dall'altra parte resta. **Sta solo sul ramo di
-  lavoro: `index.html` e `sw.js` (v106) sono quelli pubblicati.** Schermate
-  mandate: 35-dopo-390, 35-attacchi-prima-dopo, 35-dopo-412. **Aspetta il
-  suo sì**; se lo dà, basta rigenerare, `prova-mappa.js` e le prove,
-  `sw.js` v107 e pubblicare (lui: «se cambi solo quello non devi testare
-  tutto dalla base»; `prove.sh` comunque gira in pochi minuti).
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v107**, gli
+  attacchi delle code dei fumetti senza salti di direzione (Manlio, vista la
+  prova: «caspita sei stato bravissimo, vai pubblica»). Sito e link Claude.
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v106**, il
   conteggio delle visite con Umami, solo sul sito (vedi la regola in cima).
   Il link Claude non è cambiato e non è stato ripubblicato.

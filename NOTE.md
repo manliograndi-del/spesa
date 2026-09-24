@@ -3675,4 +3675,4 @@ curva morbida dalla parte dello spigolo e viceversa), perché l'ordine dei
 punti del pallone si rovescia. Adesso: l'attacco esterno si sceglie dalla
 posizione (`fuori1`), e lì la coda parte con la stessa direzione con cui
 `liscia()` fa finire il bordo (`t1`, `t2` presi dal punto accanto, non da
-due punti più in là). Prova mandata, non pubblicata.
+due punti più in là). Pubblicata (v107) dopo il suo «vai pubblica».
