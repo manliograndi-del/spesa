@@ -46,3 +46,18 @@ certutil -d sql:$HOME/.pki/nssdb -A -t "C,," -n ccr-agent-proxy -i
 /root/.ccr/agent-proxy-ca.crt). Wikimedia risponde «troppe richieste» alle API
 ma dà le miniature (…/thumb/<a>/<ab>/<File>/500px-<File>) se si va piano; <ab>
 sono i primi due caratteri dell'md5 del nome del file.
+
+LE QUATTORDICI GRANDI DITTE (aggiunte il 2026-09-24, Manlio: «le grandi marche
+sono quasi tutte italiane… Coca-Cola e i suoi marchi, i giganti del pulito
+come quelli di Dash, Nestlé»). Il riquadro ha il marchio della ditta; i marchi
+che produce stanno in MULTINAZIONALI dentro pagina.py.
+  Da cdn.worldvectorlogo.com: procter-gamble (procter-gamble-1), nestle,
+    unilever (unilever-2), mondelez (mondelez-international-1), henkel
+    (henkel-1, l'ovale rosso), lactalis (lactalis-1), heineken, carlsberg
+    (carlsberg-2), danone (danone-2), pepsico.
+    Scartati: una «Koka-Kola», una Carlsberg in arabo e una in cinese, il
+    «CP» di Colgate da solo (non si riconosce), il Reckitt Benckiser vecchio.
+  Da Wikimedia Commons (miniature): coca-cola (Coca-Cola_logo.svg), haleon
+    (Haleon.svg), colgate-palmolive (Colgate-Palmolive_(2025).svg, quello
+    in uso dall'agosto 2025).
+  Dal sito ufficiale reckitt.com: reckitt (la scritta rosa, dal 2021).

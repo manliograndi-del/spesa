@@ -3536,3 +3536,29 @@ Come ci si arriva quando i siti bloccano (la volta scorsa ci si era fermati):
   e le miniature di upload.wikimedia.org, andando piano; per Saiwa iconape.
 - Ogni marchio è portato su fondo bianco, rifilato e alto 96 px (i vecchi sono
   64): la pagina cresce di circa 90 KB.
+
+## 2026-09-24 — le grandi ditte, con tutti i loro marchi
+
+Manlio: «grazie per essere stato super italiano, ma le grandi marche sono
+quasi tutte italiane: ci sono la Coca-Cola e tutti i suoi marchi, Sprite
+eccetera, i giganti del pulito come quelli che fanno Dash, oppure Nestlé.
+Trovamene almeno dieci, e per ognuna, come fai per le categorie, non cercare
+solo il nome della ditta ma anche i marchi che produce». (E, dettato: nei
+volantini non ha senso inventarsi nomi generici: in offerta ci vanno le
+marche.)
+
+Fatto con 14 ditte, scelte fra quelle che hanno offerte nei volantini di oggi
+e di cui sono sicuro della proprietà dei marchi. Contate il 24 settembre:
+Mondelēz 15, Lactalis 14, Coca-Cola 12, Procter & Gamble 11, Unilever 11,
+Henkel 11, Nestlé 8, Heineken 6, Colgate-Palmolive 5, Carlsberg 4, Haleon 4,
+PepsiCo 3, Danone 1, Reckitt 1. Lasciate fuori per proprietà cambiata o in
+cambiamento: i gelati (The Magnum Ice Cream Company, da Unilever), Tropicana,
+Air Wick/Calgon, Kellogg's/Mars, Kimberly-Clark/Kenvue.
+
+Le parole sbagliate trovate contando, prima di pubblicare: «Nespresso» e
+«Dolce Gusto» (4 capsule «compatibili», di Kimbo, Conad, Starbucks,
+Eurospin), «Gourmet» (una pizza), «Maggi» (un vino), «Cornetto» (Mulino
+Bianco), «Moretti» (un tonno), «Dove» (è una parola italiana). Per le
+capsule compatibili la cura è generale: la frase «compatibili …» si toglie
+prima di ogni ricerca per marca — anche Lavazza, che prima le prendeva.
+Marchi scaricati come quelli del mattino (vedi `marchi/FONTI.txt`).

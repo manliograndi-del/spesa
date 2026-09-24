@@ -157,6 +157,28 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   Le parole delle pagine (`pagine`) non vanno più dentro la pagina: 2,8 MB
   invece di 3,4. `indice.json` resta, serve agli strumenti per trovare le
   pagine da leggere. Tolta `prova-pagine.js`, che provava l'elenco.
+- **IN «GRANDI MARCHE» CI SONO ANCHE 14 GRANDI DITTE, CON TUTTI I LORO
+  MARCHI** (2026-09-24, Manlio: «le grandi marche sono quasi tutte
+  italiane; ci sono la Coca-Cola e tutti i suoi marchi, Sprite eccetera, i
+  giganti del pulito come quelli che fanno Dash, oppure Nestlé… per ognuna
+  non cercare solo il nome della ditta ma anche i marchi che produce»).
+  Stanno in fondo alla griglia (60 riquadri, ci stanno ancora in una
+  schermata da 390×844): Coca-Cola, Procter & Gamble, Nestlé, Unilever,
+  Mondelēz, Henkel, Lactalis, Heineken, Carlsberg, Colgate-Palmolive,
+  Danone, PepsiCo, Haleon, Reckitt. I marchi di ognuna sono in
+  `MULTINAZIONALI` in `pagina.py`; la **Ferrero** ha avuto la stessa cosa
+  (Nutella, Kinder, Rocher…) ed è tornata accesa. **Solo marchi sicuri di
+  quella ditta OGGI**: i gelati Algida/Magnum non sono più Unilever (dicembre
+  2025), Tropicana non è più PepsiCo, Air Wick/Calgon non più Reckitt,
+  Kellogg's, Mars e Kimberly-Clark lasciati fuori per passaggi di proprietà
+  in corso. Tre accortezze: `=Dove` (maiuscole e solo nel nome: «dove» è una
+  parola), `Moretti@Birra` (c'è anche un tonno Moretti), e **le capsule
+  «compatibili Nespresso/Lavazza/Dolce Gusto» si tolgono da ogni ricerca
+  per marca** (non sono di quella marca: prima finivano anche sotto
+  Lavazza). Scrivendo in «Cerca» il nome di una ditta escono tutti i suoi
+  marchi. La prova è `prova-multinazionali.js`. Quando si aggiunge una
+  ditta, controllare le parole con offerte vere: «Maggi» trovava un vino
+  dei Fratelli Maggi, «Cornetto» quello del Mulino Bianco.
 - **ALL'APERTURA C'È UNA PAGINA DI BENVENUTO, NON IL PRIMO PRODOTTO**
   (2026-09-24, Manlio: «la prima volta non va bene per niente, ma anche
   riaprendola non mi piace che arrivi direttamente al Manzo con una lunga
@@ -849,6 +871,8 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24**: `sw.js` **v104**, le 14 grandi
+  ditte coi loro marchi in «Grandi marche» (vedi la regola in cima).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di
   tutte e 46 le grandi marche (14 nuovi, Ferrero sostituito).
 - **Pubblicato e verificato il 2026-09-24 pomeriggio**: `sw.js` **v102**,

@@ -534,6 +534,12 @@ NOVITA_PAGINA = [
          testo='Aprendo la pagina non ti trovi più davanti il primo prodotto con tutte le '
                'sue offerte: c\'è una pagina iniziale che dice cosa fare. Tocca un prodotto '
                'qui sotto per vedere le sue offerte; toccando il titolo «Spesa» torni lì.'),
+    dict(id='2026-09-24-multinazionali', quando='24 settembre',
+         titolo='Le grandi ditte, con tutti i loro marchi',
+         testo='In «Grandi marche» ci sono tutti i marchi, e in fondo quattordici grandi '
+               'ditte: Coca-Cola, Nestlé, Procter & Gamble, Unilever e le altre. Toccandone '
+               'una escono le offerte di tutti i suoi marchi: per la Coca-Cola anche Fanta, '
+               'Sprite e Fuze Tea, per Procter & Gamble Dash, Pantene e Oral-B.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -567,6 +573,71 @@ GRANDI_MARCHE = [
     # casa e igiene
     'Felce Azzurra', 'Omino Bianco']
 
+# LE MULTINAZIONALI, CON TUTTI I LORO MARCHI (Manlio, 2026-09-24: «le grandi
+# marche sono quasi tutte italiane; ci sono prodotti come la Coca-Cola e tutti
+# i suoi marchi, Sprite eccetera, giganti del pulito come quelli che fanno
+# Dash, oppure Nestlé… trovamene almeno dieci, e per ognuna, come fai per le
+# categorie, non cercare solo il nome della ditta ma anche i marchi che
+# produce»). Il riquadro ha il marchio della ditta; toccandolo escono le
+# offerte di TUTTI i marchi scritti qui (per la Coca-Cola anche Fanta, Sprite,
+# Fuze Tea…). Si cerca a parola intera, come per le altre marche.
+#
+# SOLO MARCHI DI CUI SONO SICURO CHE SIANO DI QUELLA DITTA OGGI: una marca
+# attribuita alla ditta sbagliata è una novità falsa. Lasciati fuori apposta:
+# i gelati Algida/Magnum/Carte d'Or (dal dicembre 2025 non sono più Unilever
+# ma The Magnum Ice Cream Company), Tropicana (non è più PepsiCo), Lipton Ice
+# Tea (una società a metà), Air Wick, Calgon e Woolite (Reckitt li ha venduti),
+# Kellogg's e Mars (passaggi di proprietà in corso), Kimberly-Clark (Scottex:
+# idem). Le multinazionali con pochi marchi nei volantini (Beiersdorf, Essity)
+# per ora no.
+#
+# Tre segni, perché alcuni nomi sono anche parole comuni o di altri:
+#   «=Dove»         maiuscole comprese e solo nel nome del prodotto: «dove» è
+#                   anche una parola italiana e sta in mille note;
+#   «Moretti@Birra» solo nella categoria Birra: esiste anche un tonno Moretti;
+#   niente «Nespresso», «Dolce Gusto», «Maggi», «Cornetto», «Gourmet»,
+#                   «Magnum»: trovavano capsule «compatibili Nespresso», un vino
+#                   dei Fratelli Maggi, il Cornetto del Mulino Bianco, una
+#                   pizza gourmet, le bottiglie formato magnum. (Le capsule
+#                   «compatibili …» sono tolte comunque da ogni ricerca per
+#                   marca: vedi cercaMarca nella pagina.)
+MULTINAZIONALI = {
+    'Coca-Cola': ['Coca-Cola', 'Coca Cola', 'Sprite', 'Fanta', 'Fuze Tea', 'Kinley', 'Powerade',
+                  'Lilia', 'Royal Bliss', 'Smartwater', 'Minute Maid'],
+    'Procter & Gamble': ['Dash', 'Ariel', 'Lenor', 'Febreze', 'Swiffer', 'Mastro Lindo', 'Viakal',
+                         'Fairy', 'Pampers', 'Pantene', 'Head & Shoulders', 'Herbal Essences',
+                         'Gillette', 'Oral-B', 'AZ', 'Tampax'],
+    'Nestlé': ['Nestlé', 'Nescafé', 'Nesquik', 'Buitoni', 'Perugina', 'KitKat', 'Kit Kat', 'Galak',
+               'Smarties', 'After Eight', 'Fitness', 'Cheerios', 'Purina', 'Friskies', 'Felix',
+               'Pro Plan', 'San Pellegrino', 'Sanpellegrino', 'Levissima', 'Acqua Panna',
+               'Recoaro', 'Nidina', 'Garden Gourmet', 'Thomy'],
+    'Unilever': ['Unilever', 'Knorr', 'Calvé', "Hellmann's", 'Coccolino', 'Omo', 'Surf', 'Svelto',
+                 'Cif', '=Dove', 'Axe', 'Rexona', 'Clear', 'Sunsilk', 'Mentadent', 'Vaseline'],
+    'Mondelēz': ['Mondelez', 'Milka', 'Oreo', 'Toblerone', "Côte d'Or", 'Philadelphia', 'Saiwa',
+                 'Tuc', 'Ritz', 'Cipster', 'Belvita', 'Lu', 'Mikado', 'Halls'],
+    'Henkel': ['Henkel', 'Dixan', 'Pril', 'Vernel', 'Perlana', 'Nelsen', 'Bref', 'Schwarzkopf',
+               'Syoss', 'Testanera', 'Somat'],
+    'Lactalis': ['Lactalis', 'Galbani', 'Parmalat', 'Président', 'President', 'Invernizzi',
+                 'Locatelli', 'Cademartori', 'Vallelata', 'Zymil', 'Santàl'],
+    'Heineken': ['Heineken', 'Moretti@Birra', 'Ichnusa', 'Dreher', 'Messina@Birra', 'Amstel',
+                 'Desperados', 'Affligem', 'Fischer@Birra'],
+    'Carlsberg': ['Carlsberg', 'Tuborg', 'Poretti', 'Kronenbourg', 'Grimbergen'],
+    'Colgate-Palmolive': ['Colgate', 'Palmolive', 'Ajax', 'Soflan', 'Fabuloso', 'Elmex', 'Meridol',
+                          'Protex', 'Sanex'],
+    'Danone': ['Danone', 'Activia', 'Actimel', 'Danette', 'Danacol', 'Alpro', 'Evian', 'Oikos',
+               'Vitasnella', 'Mellin', 'Aptamil'],
+    'PepsiCo': ['Pepsi', '7Up', 'Gatorade', "Lay's", 'Doritos', 'Cheetos', 'Ruffles', 'Quaker'],
+    'Haleon': ['Haleon', 'Sensodyne', 'Aquafresh', 'Parodontax', 'Polident', 'Corega', 'Centrum'],
+    'Reckitt': ['Reckitt', 'Finish', 'Vanish', 'Napisan', 'Dettol', 'Durex', 'Veet'],
+}
+# Anche la Ferrero, che è italiana: il suo nome sui prodotti non c'è quasi mai
+# (si chiamano Nutella, Kinder, Rocher…), e il riquadro restava spento.
+MARCHE_PAROLE = dict(MULTINAZIONALI, **{
+    'Ferrero': ['Ferrero', 'Nutella', 'Kinder', 'Rocher', 'Raffaello', 'Mon Chéri',
+                'Pocket Coffee', 'Tic Tac', 'Estathé', 'Grand Soleil'],
+})
+GRANDI_MARCHE = GRANDI_MARCHE + list(MULTINAZIONALI)
+
 # I MARCHI DELLE GRANDI MARCHE, uno per file in strumenti/marchi/ (chiesti il
 # 2026-09-22: «trova anche i marchi delle grandi marche e usali al posto dei
 # bottoni»). Come per i supermercati: per aggiungerne uno basta mettere il
@@ -598,6 +669,7 @@ DATI = json.dumps(dict(offerte=offerte, volantini=volantini,
                        # salvata da prima che li accorciassimo: vedi catalogo.py.
                        rinominate=RINOMINATE,
                        marche=GRANDI_MARCHE,
+                       marcheParole=MARCHE_PAROLE,
                        marchiMarche=_marchi_marche(),
                        reparti=[r for r, _ in REPARTI],
                        unita={k: v[0] for k, v in UNITA.items()},
@@ -1535,7 +1607,9 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
       con i tuoi prodotti. <b>«Cerca»</b> trova <b>una singola offerta</b> fra
       <b>tutte</b> quelle lette: scrivi un prodotto, una marca, un formato o il
       nome di un negozio, e le offerte escono mentre scrivi. <b>«Grandi
-      marche»</b>: tocchi una marca ed escono le sue offerte. <b>«Personale»</b>
+      marche»</b>: tocchi una marca ed escono le sue offerte. Per le grandi ditte
+      (Coca-Cola, Nestlé, Procter &amp; Gamble…) escono le offerte di tutti i loro
+      marchi: per la Coca-Cola anche Fanta, Sprite, Fuze Tea. <b>«Personale»</b>
       è tua: scrivi un prodotto o una marca, tocchi «Aggiungi» e diventa una
       pillola; sotto trovi la sua offerta più conveniente, e col tasto tutte le
       altre. Lì dentro puoi anche scegliere in quali supermercati cercare. Le
@@ -2497,18 +2571,46 @@ function disegnaMarche() {
   });
 }
 
+/* Le parole con cui si cerca una marca: la marca stessa, o per le
+   multinazionali (e la Ferrero) tutti i loro marchi. Vedi MARCHE_PAROLE in
+   pagina.py, anche per i due segni «=» (maiuscole comprese, solo nel nome) e
+   «@Categoria» (solo in quella categoria). */
+const proteggi = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function regoleMarca(m) {
+  return ((DATI.marcheParole || {})[m] || [m]).map(p => {
+    let cat = null;
+    const at = p.indexOf('@');
+    if (at > 0) { cat = p.slice(at + 1); p = p.slice(0, at); }
+    const esatta = p[0] === '=';
+    if (esatta) p = p.slice(1);
+    const w = proteggi(esatta ? p : norm(p));
+    return { cat, esatta,
+             re: new RegExp(esatta ? '(^|[^A-Za-z0-9])' + w + '($|[^A-Za-z0-9])'
+                                   : '(^|[^a-z0-9])' + w + '($|[^a-z0-9])') };
+  });
+}
 function cercaMarca(m) {
-  /* I nomi delle marche sono solo lettere, spazi e apostrofi: niente da
-     proteggere dentro l'espressione. */
-  const re = new RegExp('(^|[^a-z0-9])' + norm(m) + '($|[^a-z0-9])');
+  const regole = regoleMarca(m);
   return DATI.offerte
     .filter(o => !nascosta(o))
-    .filter(o => re.test(norm([o.pro, o.fmt, o.note].join(' '))))
+    .filter(o => {
+      /* Le capsule «compatibili Nespresso» (o Lavazza, o Dolce Gusto) NON sono
+         di quella marca: la frase si toglie prima di cercare. */
+      const testo = norm([o.pro, o.fmt, o.note].join(' | '))
+        .replace(/compatibil[ei][^,.;|]*/g, ' ');
+      return regole.some(r => (!r.cat || o.cat === r.cat)
+        && (r.esatta ? r.re.test(o.pro || '') : r.re.test(testo)));
+    })
     .sort((a, b) => a.unitario - b.unitario);
 }
 
 function cercaOfferte(testo) {
   if (marcaScelta && testo === marcaScelta) return cercaMarca(marcaScelta);
+  /* Chi scrive in «Cerca» il nome di una multinazionale («nestle»,
+     «coca cola») trova le offerte di tutti i suoi marchi, come dal riquadro. */
+  const gruppo = Object.keys(DATI.marcheParole || {}).find(g => norm(g) === norm(testo).trim()
+    || norm(g).replace(/[^a-z0-9]/g, '') === norm(testo).replace(/[^a-z0-9]/g, ''));
+  if (gruppo) return cercaMarca(gruppo);
   const parole = norm(testo).split(/\s+/).filter(x => x.length > 1);
   if (!parole.length && !filtroVol) return [];
   return DATI.offerte
