@@ -893,13 +893,18 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
   di benvenuto); dalle altre sezioni, tornando con «Prodotti», la mappa non
   si rivede. Prove già aggiornate (`prova.js`, `prova-intestazione.js`,
   `prova-marche.js`, `prova-personale.js`, nuova `prova-mappa.js`).
-  **Mandate due varianti** (31-390 grigia, 31-390-col e 31-360-col a
-  colori: giallo, verde, azzurro, lilla, pesca; i colori sono solo nello
-  script delle schermate, `foto-mappa.js` nello scratchpad, non ancora in
-  `pagina.py`). **Aspetta la sua scelta**: poi novità in `NOVITA_PAGINA`,
-  regola in cima a questo file, `sw.js` v105 e pubblicazione completa. Se
-  sceglie i colori, il testo dei fumetti va fissato scuro (i look scuri
-  hanno `--inchiostro` chiaro).
+  **Terzo giro (scelti i COLORI**, Manlio: «vanno bene i colori»): giallo,
+  verde, azzurro, lilla, pesca, adesso in `pagina.py` (`.p-alto` … `.p-per`,
+  scritta scura fissa `#27231F`, uguale con ogni look). **Le code escono da
+  UN LATO del fumetto, mai dal mezzo** (`coda: 'sx'/'dx'` in `FUMETTI`) e
+  **si assottigliano sempre**, dall'attacco alla punta: sono due curve che
+  si chiudono nella punta (prima si stringevano e poi si riallargavano, o
+  andavano dritte e si stringevano solo in fondo: «non va bene»). Dalla
+  parte del bordo la coda continua la curva del pallone, dall'altra c'è lo
+  spigolo, come nel suo disegno. Grandi marche e carrello più stretti, il
+  carrello più in basso. Schermate mandate: 34-390, 34-360, 34-412.
+  **Aspetta il suo sì**: poi novità in `NOVITA_PAGINA`, regola in cima a
+  questo file, `sw.js` v105 e pubblicazione completa.
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v104**, le 14 grandi
   ditte coi loro marchi in «Grandi marche» (vedi la regola in cima).
 - **Pubblicato e verificato il 2026-09-24**: `sw.js` **v103**, i marchi di

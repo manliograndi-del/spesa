@@ -3619,3 +3619,20 @@ carrello». Fatto così:
 - **I colori** (giallo, verde, azzurro, lilla, pesca; mai rosso) per ora
   stanno solo nello script delle schermate: si mettono in `pagina.py` se li
   sceglie lui.
+
+Terzo giro. Manlio: colori sì. Le code: «si rimpiccioliscono e poi si
+ingrandiscono un poco» (verde, azzurra, viola) e «partono dritte e poi si
+rimpiccioliscono solo alla fine» (gialla, arancione): non va bene. E «le code
+dovrebbero tutte partire da un lato», non dal mezzo; Grandi marche e il
+carrello più stretti, il carrello un poco più in basso. Fatto:
+- la coda non è più un contorno attorno a una linea di mezzo (che sui tratti
+  in diagonale sembrava allargarsi): sono **due curve che partono dai due
+  estremi dell'attacco e si chiudono nella punta**, e la larghezza scende
+  sempre;
+- l'attacco sta **a un quarto del pallone** dalla parte scritta in `FUMETTI`
+  (`coda`), un quinto per Prodotti e Cerca, che scendono lungo i bordi;
+- dalla parte del bordo la coda continua la curva del pallone (direzione a
+  metà fra bordo e giù: tutta sul bordo, le code lunghe si attorcigliavano),
+  dall'altra resta lo spigolo, come nel disegno;
+- i colori stanno in `pagina.py`, coi nomi delle classi scritti per intero in
+  `FUMETTI` (`tinta`): costruiti a pezzi, `pulizia` li dava per non usati.

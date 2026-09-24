@@ -1321,23 +1321,20 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 .bv-testo{color:var(--tenue);font-size:15.5px;line-height:1.4;margin:0 0 8px;max-width:30em}
 .bv-freccia{display:block;width:34px;height:34px;margin-top:14px;background:var(--tenue);
   -webkit-mask:var(--giu) center/contain no-repeat;mask:var(--giu) center/contain no-repeat}
-/* LA MAPPA DELL'AIUTO (2026-09-24, dal disegno di Manlio): fumetti su fondo
-   chiaro, frecce grigie verso i tasti. I fumetti stanno a posti fissi dentro
-   lo spazio fra il titolo e il menù; le colonne sono scelte perché le frecce
-   non si incrocino: Prodotti e Cerca in alto ai lati (le loro frecce scendono
-   lungo i bordi), Grandi marche e Personale più in basso al centro. */
-/* L'altezza la mette adattaMappa(): dal titolo fino a poco sopra il menù,
+/* LA MAPPA DELL'AIUTO (2026-09-24, dai disegni di Manlio): un fumetto a
+   colori per ogni cosa da spiegare, con la coda a punta verso il suo tasto.
+   L'altezza la mette adattaMappa(): dal titolo fino a poco sopra il menù,
    lasciando in fondo il posto per la coda dell'ultimo fumetto. */
-.mappa-aiuto{display:flex;flex-direction:column;justify-content:space-evenly;gap:18px;padding:0 0 44px}
+.mappa-aiuto{display:flex;flex-direction:column;justify-content:space-evenly;gap:18px;
+  padding:0 0 30px;position:relative;z-index:1}
 .ma-riga{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-/* A scaletta, un fumetto per riga: Prodotti a sinistra, Cerca a destra
-   (le loro code scendono ai bordi), poi Grandi marche e il carrello fra le
-   due code, 46 px dentro per parte. Il carrello sta a destra della coda di
-   Grandi marche, che gli passa accanto. */
-.ma-riga.r2{justify-content:flex-start}
+/* A scaletta, un fumetto per riga (Manlio: «una sopra e l'altra sotto»):
+   Prodotti a sinistra e Cerca a destra, con le code lungo i bordi; poi
+   Grandi marche e il carrello, stretti, fra le due code. La coda di Grandi
+   marche passa a sinistra del carrello, che sta più in basso. */
+.ma-riga.r2,.ma-riga.r4,.ma-riga.r5{justify-content:flex-start}
 .ma-riga.r3{justify-content:flex-end}
-.ma-riga.r4{justify-content:flex-start;padding-left:46px}
-.ma-riga.r5{justify-content:flex-end;padding-right:46px}
+.ma-riga.r5{margin-top:.7em}
 .ma-riga.r1 .fumetto{margin-top:1.4em}
 .ma-titolo{flex:1;min-width:0}
 .ma-grande{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.05em;
@@ -1345,18 +1342,25 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
 .ma-piccolo{color:var(--tenue);font-size:13.5px;line-height:1.3;margin:0}
 /* Il fumetto è solo il testo: la forma (pallone e coda) la disegna
    frecceAiuto() sotto, in #frecce-aiuto. L'imbottitura lascia il testo
-   dentro il pallone, che è tondo e non arriva negli angoli. */
-.fumetto{padding:1.05em 1.2em 1.1em;font-size:var(--fs,14px);line-height:1.3;color:var(--inchiostro)}
+   dentro il pallone, che è tondo e non arriva negli angoli. La scritta è
+   scura fissa: i fondi sono tinte chiare fisse, uguali con ogni look. */
+.fumetto{padding:1.05em 1.2em 1.1em;font-size:var(--fs,14px);line-height:1.3;color:#27231F}
 .fumetto b{display:block;font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.05em;
   font-size:1em;font-weight:600;margin-bottom:2px}
 .f-alto{width:54%}
 .f-pro{width:68%}
 .f-cer{width:54%}
-.f-gm{width:52%}
-.f-per{width:50%}
-.mappa-aiuto{position:relative;z-index:1}
+.f-gm{width:38%;margin-left:18%}
+.f-per{width:37%;margin-left:49%}
 #frecce-aiuto{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
-#frecce-aiuto g path{fill:var(--pannello);stroke:var(--tenue);stroke-width:1.6;stroke-linejoin:round}
+/* I colori (Manlio: «vanno bene i colori»): tinte chiare, bordo della stessa
+   tinta più scuro. Niente rosso: qui vuol dire «premi». */
+#frecce-aiuto g path{stroke-width:1.8;stroke-linejoin:round}
+#frecce-aiuto .p-alto{fill:#FFF1C2;stroke:#C79A1E}
+#frecce-aiuto .p-pro{fill:#DDF1E2;stroke:#3E9A5E}
+#frecce-aiuto .p-cer{fill:#DCEBFA;stroke:#3B7BBF}
+#frecce-aiuto .p-gm{fill:#ECE3F8;stroke:#7D5CC0}
+#frecce-aiuto .p-per{fill:#FFE4D2;stroke:#D27838}
 .sintesi{display:grid;gap:6px;margin:12px 0 0}
 .sint{display:flex;align-items:center;gap:6px;flex-wrap:wrap;width:100%;text-align:left;
   border:0;border-radius:14px;padding:9px 13px;font:inherit;font-size:14.5px;cursor:pointer;
@@ -3202,15 +3206,15 @@ function benvenuto() {
    schermo, rifatto a ogni misura (frecceAiuto). Il testo dei fumetti è
    quello che Manlio ha visto nelle prove prima di pubblicarla. */
 const FUMETTI = [
-  { dove: 'pallini', cls: 'f-alto', t: 'In alto',
+  { dove: 'pallini', cls: 'f-alto', tinta: 'p-alto', coda: 'dx', t: 'In alto',
     x: 'L\u2019ingranaggio sceglie i tuoi supermercati, la N le novità.' },
-  { dove: '#vai-prodotti', cls: 'f-pro', lato: 'sx', t: 'Prodotti',
+  { dove: '#vai-prodotti', cls: 'f-pro', tinta: 'p-pro', lato: 'sx', coda: 'sx', quota: .2, t: 'Prodotti',
     x: 'Scegli le categorie di prodotti che ti interessano: appariranno liste di prodotti cliccabili per vedere le immagini.' },
-  { dove: '#riga-cerca .trova', cls: 'f-cer', lato: 'dx', t: 'Cerca',
+  { dove: '#riga-cerca .trova', cls: 'f-cer', tinta: 'p-cer', lato: 'dx', coda: 'dx', quota: .2, t: 'Cerca',
     x: 'Ricerca a testo libero.' },
-  { dove: '#riga-cerca .marchi', cls: 'f-gm', t: 'Grandi marche',
+  { dove: '#riga-cerca .marchi', cls: 'f-gm', tinta: 'p-gm', coda: 'sx', t: 'Grandi marche',
     x: 'Scegli per marca.' },
-  { dove: '#vai-personale', cls: 'f-per', t: 'Il mio carrello',
+  { dove: '#vai-personale', cls: 'f-per', tinta: 'p-per', coda: 'sx', t: 'Il mio carrello',
     x: 'Fai la tua lista della spesa.' },
 ];
 function mappaAiuto() {
@@ -3255,7 +3259,7 @@ function liscia(pt) {
   }
   return d;
 }
-function palloncino(a, z, su, seme, lato) {
+function palloncino(a, z, su, seme, f) {
   const cx = (a.left + a.right) / 2, cy = (a.top + a.bottom) / 2;
   const rx = a.width / 2, ry = a.height / 2, s = su ? -1 : 1;
   /* Il pallone: tondo ma non un'ellisse (ci deve stare il testo), un po'
@@ -3269,9 +3273,13 @@ function palloncino(a, z, su, seme, lato) {
   }
   /* La punta: al centro del tasto, o verso il suo lato esterno per i due
      tasti ai bordi (così le code passano fuori dai palloncini di mezzo). */
-  const zx = lato === 'sx' ? z.left + z.width * .22 : lato === 'dx' ? z.right - z.width * .22 : (z.left + z.right) / 2;
-  const x0 = Math.min(Math.max(zx, a.left + a.width * .15), a.right - a.width * .15);
-  const nw = Math.min(15, a.width * .12);
+  const zx = f.lato === 'sx' ? z.left + z.width * .22 : f.lato === 'dx' ? z.right - z.width * .22 : (z.left + z.right) / 2;
+  /* LA CODA ESCE DA UN LATO, mai dal mezzo (Manlio: «non mi piacciono
+     quelle che partono praticamente dal mezzo»): a un quarto del pallone,
+     dalla parte scritta in FUMETTI. */
+  const q = f.quota || .27;
+  const x0 = f.coda === 'sx' ? a.left + a.width * q : a.right - a.width * q;
+  const nw = Math.min(20, a.width * .15);
   const bocca = [];
   pts.forEach((p, i) => { if (s * (p[1] - cy) > 0 && Math.abs(p[0] - x0) < nw) bocca.push(i); });
   if (bocca.length < 2) return '';
@@ -3279,46 +3287,30 @@ function palloncino(a, z, su, seme, lato) {
   const arco = [];
   for (let k = ultimo + 1; k <= primo - 1 + M; k++) arco.push(pts[k % M]);
   const j1 = arco[0], j2 = arco[arco.length - 1];
-  const dir = (p, q) => { const l = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [(q[0] - p[0]) / l, (q[1] - p[1]) / l]; };
-  const t1 = dir(arco[0], arco[1]), t2 = dir(arco[arco.length - 2], j2);
-  const fondo = pts[bocca.reduce((m, i) => Math.abs(pts[i][0] - x0) < Math.abs(pts[m][0] - x0) ? i : m, bocca[0])];
-  /* LA CODA A VIRGOLA (secondo disegno di Manlio): larga dove esce dal
-     pallone, si assottiglia fino a una punta sola, che si ferma poco prima
-     del tasto. Niente freccia: la punta basta. */
+  /* SI ASSOTTIGLIA SEMPRE, dall'attacco alla punta (Manlio: le code che si
+     stringevano e poi si allargavano, o che andavano dritte e si
+     stringevano solo in fondo, «non va bene»). I due lati sono due curve
+     che partono dagli estremi dell'attacco e si chiudono nella punta: la
+     larghezza scende piano piano, mai su. */
   const punta = [zx, su ? z.bottom + 5 : z.top - 11];
-  const b0 = [x0, fondo[1]];
-  const L = Math.abs(punta[1] - b0[1]);
-  const c1 = [x0, b0[1] + s * L * .45], c2 = [zx, punta[1] - s * L * .45];
-  /* la coda comincia un poco sotto il pallone e più stretta della sua bocca:
-     fra i due, una spalla morbida per lato, come nel disegno */
-  const t0 = Math.min(.3, 13 / Math.max(L, 1));
-  const larga = Math.hypot(j2[0] - j1[0], j2[1] - j1[1]) / 2 * .6;
-  const K = 28, dx = [], sx = [];
-  let d0 = [0, s];
-  for (let k = 0; k <= K; k++) {
-    const t = t0 + (1 - t0) * k / K, u = 1 - t;
-    const P = [0, 1].map(q => u*u*u*b0[q] + 3*u*u*t*c1[q] + 3*u*t*t*c2[q] + t*t*t*punta[q]);
-    const D = [0, 1].map(q => 3*u*u*(c1[q]-b0[q]) + 6*u*t*(c2[q]-c1[q]) + 3*t*t*(punta[q]-c2[q]));
-    const l = Math.hypot(D[0], D[1]) || 1, n = [-D[1] / l, D[0] / l];
-    if (!k) d0 = [D[0] / l, D[1] / l];
-    /* si stringe un po' più in fretta vicino al pallone, poi piano fino alla punta */
-    const w = larga * Math.pow((1 - t) / (1 - t0), 1.35);
-    dx.push([P[0] + n[0] * w, P[1] + n[1] * w]);
-    sx.push([P[0] - n[0] * w, P[1] - n[1] * w]);
-  }
-  /* Il primo lato della coda è quello che attacca dove finisce il pallone. */
-  const vicino = e => Math.hypot(e[0][0] - j2[0], e[0][1] - j2[1]);
-  const [e1, e2] = vicino(dx) < vicino(sx) ? [dx, sx] : [sx, dx];
+  const B = [(j1[0] + j2[0]) / 2, (j1[1] + j2[1]) / 2], hb = [(j2[0] - j1[0]) / 2, (j2[1] - j1[1]) / 2];
+  const L = Math.abs(punta[1] - B[1]);
+  const c1 = [B[0], B[1] + s * L * .45], c2 = [punta[0], punta[1] - s * L * .45];
+  const piu = (p, k) => [p[0] + hb[0] * k, p[1] + hb[1] * k];
+  /* Dalla parte del bordo la coda continua la curva del pallone, senza
+     spigolo; dall'altra parte lo spigolo resta, come nel disegno. */
+  const dir = (p, q) => { const l = Math.hypot(q[0] - p[0], q[1] - p[1]) || 1; return [(q[0] - p[0]) / l, (q[1] - p[1]) / l]; };
+  /* (la direzione è a metà fra quella del bordo e quella della coda: tutta
+     sul bordo, le code lunghe si attorcigliavano in fondo) */
+  const r = Math.min(L * .3, 30);
+  const t2 = dir(arco[arco.length - 3], j2), t1 = dir(j1, arco[2]);
+  const giu2 = dir([0, 0], [t2[0], t2[1] + s]), giu1 = dir([0, 0], [-t1[0], -t1[1] + s]);
+  const a2 = f.coda === 'dx' ? [j2[0] + giu2[0] * r, j2[1] + giu2[1] * r] : piu(c1, .6);
+  const a1 = f.coda === 'dx' ? piu(c1, -.6) : [j1[0] + giu1[0] * r, j1[1] + giu1[1] * r];
   const pt = p => p[0].toFixed(1) + ' ' + p[1].toFixed(1);
-  const curva = (p, cA, cB) => ' C' + pt(cA) + ' ' + pt(cB) + ' ' + pt(p);
-  const r1 = Math.hypot(e1[0][0] - j2[0], e1[0][1] - j2[1]) * .55;
-  const r2 = Math.hypot(e2[0][0] - j1[0], e2[0][1] - j1[1]) * .55;
   return 'M' + pt(j1) + liscia(arco)
-    + curva(e1[0], [j2[0] + t2[0] * r1, j2[1] + t2[1] * r1], [e1[0][0] - d0[0] * r1, e1[0][1] - d0[1] * r1])
-    + liscia(e1)
-    + liscia(e2.slice().reverse())
-    + curva(j1, [e2[0][0] - d0[0] * r2, e2[0][1] - d0[1] * r2], [j1[0] - t1[0] * r2, j1[1] - t1[1] * r2])
-    + 'Z';
+    + ' C' + pt(a2) + ' ' + pt(piu(c2, .12)) + ' ' + pt(punta)
+    + ' C' + pt(piu(c2, -.12)) + ' ' + pt(a1) + ' ' + pt(j1) + 'Z';
 }
 /* I FUMETTI DEVONO STARE TUTTI SOPRA IL MENÙ, su ogni telefono: la mappa
    prende lo spazio fra il titolo e il menù, e se il testo non ci sta si
@@ -3360,11 +3352,12 @@ function frecceAiuto() {
     const a = r(b), z = r(bersaglio);
     if (!a || !z || !a.width || !z.width) return;
     const su = z.bottom <= a.top;   // il tasto sta sopra (i pallini) o sotto (il menù)
-    const d = palloncino(a, z, su, +b.dataset.i + 1, f.lato);
+    const d = palloncino(a, z, su, +b.dataset.i + 1, f);
     if (!d) return;
     const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     p.setAttribute('d', d);
     p.setAttribute('data-verso', su ? 'su' : 'giu');
+    p.setAttribute('class', f.tinta);
     g.appendChild(p);
   });
 }
