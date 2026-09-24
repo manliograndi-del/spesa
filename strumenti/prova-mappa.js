@@ -93,13 +93,22 @@ setTimeout(() => {
   // «Prodotti»: via la mappa, su la griglia
   d.getElementById('vai-prodotti').click();
   if (ris.querySelector('.mappa-aiuto')) male.push('toccando «Prodotti» la mappa resta');
-  if (frecce()) male.push('toccando «Prodotti» le frecce restano');
+  /* Dal 2026-09-24 anche il benvenuto è un fumetto (Manlio: «trasformare
+     anche questo in una nuvoletta… e si ricordi che toccando le schede esce
+     la foto del volantino»): dopo «Prodotti» c'è UN palloncino, il suo. */
+  const vieBv = frecce() ? [...frecce().querySelectorAll('g path')] : [];
+  if (vieBv.length !== 1 || vieBv[0].getAttribute('class') !== 'p-bv')
+    male.push('toccando «Prodotti» i palloncini sono ' + vieBv.length + ', ne va uno (il benvenuto)');
+  const fBv = ris.querySelector('.benvenuto .fumetto');
+  if (!fBv) male.push('il benvenuto non è un fumetto');
+  else if (!/volantino/.test(fBv.textContent)) male.push('il fumetto del benvenuto non dice che toccando un\'offerta si vede il volantino');
   if (barra.classList.contains('giu')) male.push('toccando «Prodotti» la griglia non sale');
   if (d.getElementById('vai-prodotti').getAttribute('aria-pressed') !== 'true') male.push('toccando «Prodotti» non si accende');
   if (!ris.querySelector('.benvenuto')) male.push('toccando «Prodotti» non c\'è «Tocca un prodotto»');
 
   // il titolo la riporta, anche da un prodotto
   d.querySelector('#tasti .tasto:not(.agg)').click();
+  if (frecce()) male.push('toccato un prodotto, il fumetto del benvenuto resta disegnato');
   d.getElementById('vai-inizio').click();
   if (!ris.querySelector('.mappa-aiuto')) male.push('toccando il titolo da un prodotto la mappa non torna');
   if (!barra.classList.contains('giu')) male.push('tornata la mappa, la griglia resta su');

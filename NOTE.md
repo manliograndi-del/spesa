@@ -3676,3 +3676,17 @@ punti del pallone si rovescia. Adesso: l'attacco esterno si sceglie dalla
 posizione (`fuori1`), e lì la coda parte con la stessa direzione con cui
 `liscia()` fa finire il bordo (`t1`, `t2` presi dal punto accanto, non da
 due punti più in là). Pubblicata (v107) dopo il suo «vai pubblica».
+
+## 2026-09-24 sera — Il benvenuto in un fumetto (IN PROVA)
+
+Manlio: il messaggio che appare toccando «Prodotti» (pagina di benvenuto) era
+ancora testo semplice con una freccia grigia; lo voleva in una nuvoletta come
+quelle della mappa, un po' trasparente, più conciso, e col promemoria che
+toccando le schede si vede la foto del volantino. Il fumetto usa lo stesso
+`palloncino()`; la coda punta alla griglia dei prodotti (`.barra`). Due cose
+imparate: (1) puntata al centro della griglia, la coda partiva dal lato e
+attraversava mezzo schermo in diagonale, e il lato «morbido» (che segue la
+tangente del pallone, quasi orizzontale sul fondo) si incrociava con l'altro:
+col bersaglio largo la punta scende quasi dritta sotto l'attacco (`sotto`);
+(2) appena toccato «Prodotti» la griglia sta ancora salendo, quindi la coda
+si misura su dove arriverà (si toglie lo spostamento del `transform`).
