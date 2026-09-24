@@ -122,7 +122,8 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
   barrato): da lì nascono il bollino «Con carta Family» e la pillola «Senza
   tessera 2,49 €». La pagina intera «OFFERTE Family · ALTRE OFFERTE» (quella
   gialla e blu) è stata segnata tutta così per prudenza: i cartellini lì non
-  hanno la striscia, ma il titolo sì. **Da chiedere a Manlio** se è giusto.
+  hanno la striscia, ma il titolo sì. Manlio: «lasciale pure come le hai
+  messe per sicurezza». Si fa così anche coi volantini dopo.
   Nel volantino 24 settembre-4 ottobre erano 18 righe e non le avevo viste.
 - Una pagina di quaderni, pubblicità o punti premio **si scarta**, e si scrive
   in `strumenti/scartate.py` col motivo, così non torna nell'elenco delle cose
@@ -137,10 +138,11 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
 - **Righe doppie** (stessa insegna, stesso prodotto, stesso formato): rileggendo
   un volantino ne ho riscritte dieci, e la stessa offerta compariva due volte.
 - **Date ripetute dal volantino**: scrivere su una riga le stesse date del
-  volantino che la contiene la fa passare per «offerta ristretta», e una
-  ristretta non ancora cominciata **non si mostra affatto**. Mi ha reso
-  invisibili 22 righe senza che niente lo segnalasse. Le date sulla riga
-  servono solo al caso vero (la pagina «Weekend più uno» dell'MD).
+  volantino che la contiene la fa passare per «offerta ristretta». Fino al
+  2026-09-24 una ristretta non ancora cominciata **non si mostrava affatto**
+  (mi ha reso invisibili 22 righe senza che niente lo segnalasse); adesso si
+  vede sbiadita, ma col bollo rosso «solo dal … al …» sbagliato. Le date
+  sulla riga servono solo al caso vero (la pagina «Weekend più uno» dell'MD).
 - **Categorie fuori catalogo**: un prezzo in una categoria che non esiste
   verrebbe caricato e non mostrato a nessuno, in silenzio.
 - **Carne e pesce lavorati nella categoria del fresco** (dal 2026-09-23): il
@@ -763,6 +765,15 @@ errore tre volte, e Manlio se n'è accorto tutte e tre da fuori.
     grigio** (`--tenue` invece del rosso, chiesto il 2026-09-22: «si nota poco
     che non sono ancora attivi»). **Sbiadite, non nascoste**: un prezzo che
     parte lunedì serve saperlo, e sotto quel valore non si legge più.
+  - **Anche le offerte valide solo in una PARTE del volantino** (i weekend,
+    «solo dal 28 settembre») **si vedono prima di cominciare, sbiadite**,
+    col calendarietto di quando partono e il bollo rosso «solo dal … al …»
+    (Manlio, 2026-09-24, dopo aver cercato invano i gamberi del «Doppio
+    weekend» Eurospin: «voglio vedere le offerte sbiadite quando esistono
+    ma sono valide solo in un periodo del volantino»). Prima erano nascoste
+    finché non cominciavano (`nascosta()` in `pagina.py`, regola di inizio
+    settembre). Come le altre sbiadite, non sono mai «il meno caro» prima
+    del loro giorno. La prova è `prova-meno-caro.js`.
   - **Un riquadro separato in cima non c'è e non va rimesso**: c'era per
     mezz'ora il 2026-09-22 e diceva le stesse identiche cose della pastiglia,
     due volte di fila. Con le righe future sbiadite, la pastiglia si trova da
@@ -966,6 +977,13 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
 
 ## PER RIPARTIRE (scritto il 2026-09-24 mattina, Routine giornaliera)
 
+- **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v110**: le
+  offerte valide solo in una parte del volantino (weekend, «dal 28») si
+  vedono sbiadite prima di cominciare, invece di essere nascoste (Manlio:
+  «voglio vedere le offerte sbiadite quando esistono ma sono valide solo in
+  un periodo del volantino»). Le offerte Family della pagina 14 Eurospin
+  restano «solo con la carta» («lasciale pure come le hai messe per
+  sicurezza»). Sito e link Claude.
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v109**.
   1) Nella pagina Novità i volantini della tabella si sfogliano toccandoli
   (vedi la regola «La pagina Novità comincia dai volantini»). 2) Eurospin:
@@ -974,12 +992,8 @@ Non gliel'ho chiesto: se va in un City, va cambiato.
   offerte sfuggite (coppa, burgheroni, carne in gelatina, fagioli e tonno,
   trancino, burger di soia, cetrioli, rotolo con spinaci); arance, zucchine
   e insalata mista di pagina 12 valgono solo dal 28 settembre (data sotto la
-  filigrana: letta 28, la più prudente). **Domande fatte a Manlio, in
-  attesa**: (a) le offerte dei soli weekend non ancora cominciati sono
-  nascoste (regola di inizio settembre, `nascosta()` in `pagina.py`): lui ha
-  cercato i gamberi indopacifici Eurospin (2-4 ottobre) e non li ha trovati.
-  Mostrarle prima, sbiadite col calendarietto come le altre offerte che
-  devono cominciare? (b) la pagina 14 Eurospin è davvero tutta «Family»?
+  filigrana: letta 28, la più prudente). Le due domande fatte a Manlio
+  hanno avuto risposta: vedi v110 qui sopra.
 - **Pubblicato e verificato il 2026-09-24 sera**: `sw.js` **v108**, il
   benvenuto (dopo «Prodotti», a pagina nuova) è un fumetto verde un po'
   trasparente, con la coda verso la griglia e il promemoria «Tocca

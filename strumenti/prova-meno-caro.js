@@ -103,14 +103,39 @@ setTimeout(() => {
   });
 
   if (!conPastiglia) male.push('nessun prodotto ha la pastiglia del meno caro');
-  /* Sbiadita e' solo un'offerta il cui INTERO volantino non e' ancora
-     cominciato (una ristretta-e-futura dentro un volantino gia' attivo e'
-     nascosta del tutto, non sbiadita: vedi sopra). Se in questo momento
-     nessun volantino e' "in arrivo" - capita, tutti possono essere gia'
-     iniziati lo stesso giorno, come il 2026-09-24 - non c'e' proprio niente
-     da colorare sbiadito: non e' un guasto, e' il calendario. */
-  const cePendente = w.eval("DATI.offerte.some(o => o.inizio > OGGI_ISO && !o.ristretta)");
+  /* Sbiadita e' ogni offerta che non e' ancora cominciata: quelle di un
+     volantino in arrivo e, dal 2026-09-24, anche quelle valide solo in una
+     parte del volantino (Manlio: «voglio vedere le offerte sbiadite quando
+     esistono ma sono valide solo in un periodo del volantino»; prima erano
+     nascoste del tutto). Se in questo momento nei suoi prodotti non ce n'e'
+     nessuna - capita, tutti i volantini possono essere gia' iniziati lo
+     stesso giorno, come il 2026-09-24 - non c'e' niente da colorare
+     sbiadito: non e' un guasto, e' il calendario. */
+  const cePendente = w.eval("lista.some(v => offerteDi(v).some(futuro))");
   if (!sbiadite && cePendente) male.push('nessuna offerta sbiadita: la classe non arriva anche se un volantino è in arrivo');
+
+  /* Le offerte valide solo in una parte del volantino, prima che comincino:
+     si vedono, sbiadite, col bollo rosso dei loro giorni. Si prova con la
+     ricerca, che le trova in qualunque reparto. */
+  const strette = w.eval("DATI.offerte.filter(o => o.ristretta && futuro(o))");
+  if (strette.length) {
+    if (w.eval("DATI.offerte.some(o => o.ristretta && futuro(o) && nascosta(o) && !tolta(o.ins))"))
+      male.push('un\'offerta valida solo in una parte del volantino è ancora nascosta prima di cominciare');
+    const s = strette[0];
+    w.eval('apriRicerca(true)');
+    const q0 = d.getElementById('q');
+    q0.value = s.pro.split(/[,–]/)[0].trim();
+    q0.dispatchEvent(new w.Event('input'));
+    const sua = [...d.querySelectorAll('#trovati .prezzo-riga')]
+      .find(r => r.querySelector('.marchio').textContent.includes(s.ins) && r.textContent.includes(q0.value));
+    if (!sua) male.push('«' + s.pro + '» (' + s.ins + ', dal ' + s.inizio + ') non si trova prima che cominci');
+    else {
+      if (!sua.classList.contains('dopo')) male.push('«' + s.pro + '» non è ancora cominciata ma non è sbiadita');
+      if (!sua.querySelector('.bollo.stretta')) male.push('«' + s.pro + '» non dice in quali giorni vale');
+      if (!sua.querySelector('.angolo .parte')) male.push('«' + s.pro + '» non ha il calendarietto di quando parte');
+    }
+    w.eval('apriRicerca(false)');
+  }
 
   /* NEI RISULTATI DELLA RICERCA NO. */
   w.eval('apriRicerca(true)');

@@ -257,7 +257,8 @@ def titolo(pro, fmt, bolli):
 
 # Le date di un'offerta sono quelle del suo volantino, a meno che l'offerta ne
 # abbia di sue e più strette: allora comandano quelle, e la riga viene marcata
-# «ristretta» — la pagina la mostra soltanto nei giorni in cui vale davvero.
+# «ristretta» — la pagina le mette il bollo rosso «solo … al …» e, prima che
+# cominci, la mostra sbiadita (fino al 2026-09-24 la nascondeva).
 offerte = [dict(cat=o.cat, ins=o.ins, rep=o.rep, pro=o.pro, fmt=o.fmt, prezzo=o.prezzo,
                 unitario=round(o.prezzo / o.qta, 3), pag=o.pag, pdf=PDF[o.chiave],
                 url=indirizzo(o.chiave, o.pag),
@@ -2002,12 +2003,16 @@ function durata(o) {
   return '';
 }
 
-/* UN'OFFERTA CHE DURA MENO DEL SUO VOLANTINO SI VEDE SOLO NEI GIORNI IN CUI
-   VALE. Nel volantino MD dell'8-20 settembre c'e una pagina valida solo dal 18
-   al 21: mostrarla prima vorrebbe dire mandare Manlio in negozio a chiedere un
-   prezzo che non gli fanno. Un VOLANTINO INTERO non ancora cominciato invece
-   resta visibile con «vale dal»: quello e voluto, serve a sapere cosa arriva.
-   La differenza e che li e tutto il volantino, e si vede. */
+/* UN'OFFERTA CHE DURA MENO DEL SUO VOLANTINO SI VEDE ANCHE PRIMA, SBIADITA.
+   Fino al 2026-09-24 si nascondeva finché non cominciava (il «Weekend più
+   uno» dell'MD, 18-21 settembre: «mostrarla prima vorrebbe dire mandare
+   Manlio a chiedere un prezzo che non gli fanno»). Poi sono arrivate le
+   schede sbiadite col prezzo grigio e il calendarietto di quando parte, e
+   Manlio ha cercato i gamberi del «Doppio weekend» Eurospin (2-4 ottobre)
+   senza trovarli: «voglio vedere le offerte sbiadite quando esistono ma
+   sono valide solo in un periodo del volantino». Adesso sono trattate come
+   quelle di un volantino che deve cominciare: sbiadite, mai «il meno caro»
+   finché non valgono, e col bollo rosso «solo … al …» dei giorni giusti. */
 /* I SUPERMERCATI TOLTI (Manlio, 2026-09-22 notte: «ci dovrebbe essere anche
    un tasto per scegliere i supermercati: appare l'elenco completo e tu
    scegli quello che vuoi»). Si ricordano quelli TOLTI, non quelli tenuti:
@@ -2020,7 +2025,7 @@ let tolti = [];
 try { tolti = JSON.parse(localStorage.getItem(NEGOZI_TOLTI) || '[]') || []; } catch (e) { tolti = []; }
 if (!Array.isArray(tolti)) tolti = [];
 const tolta = ins => tolti.indexOf(ins) >= 0;
-const nascosta = o => tolta(o.ins) || scaduto(o) || (o.ristretta && futuro(o));
+const nascosta = o => tolta(o.ins) || scaduto(o);
 
 /* IN ORDINE DI PREZZO E BASTA, dal 2026-09-05.
    Prima le offerte dei volantini non ancora cominciati venivano spinte in

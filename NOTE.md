@@ -3722,3 +3722,20 @@ Mentre lo facevo, due messaggi suoi sull'Eurospin:
   che valgono solo dal 28 settembre: sistemate. Lasciati fuori ammorbidente
   e gel lavastoviglie Dexal: il volantino non stampa i lavaggi, e quelle
   categorie si contano a lavaggio.
+
+## 2026-09-24 sera — Le offerte dei weekend si vedono prima, sbiadite (v110)
+
+Risposta di Manlio alle due domande: «voglio vedere le offerte sbiadite
+quando esistono ma sono valide solo in un periodo del volantino; per quello
+che riguarda le offerte family lasciale pure come le hai messe per
+sicurezza». Tolto `(o.ristretta && futuro(o))` da `nascosta()`: la regola era
+di inizio settembre (il «Weekend più uno» dell'MD), quando un'offerta futura
+non aveva ancora niente che la distinguesse. Adesso ha la scheda sbiadita col
+prezzo grigio, il calendarietto e il bollo rosso «solo dal … al …», e non
+prende mai il verde prima del suo giorno (`menoCaroOggi` guarda `futuro`).
+In `prova-meno-caro.js` il controllo delle sbiadite adesso guarda le offerte
+dei suoi prodotti che devono cominciare (ristrette comprese), e uno nuovo
+cerca una ristretta futura con «Cerca» e pretende che sia sbiadita, col bollo
+dei giorni e col calendarietto. Il 24 settembre nei suoi 13 prodotti ne
+comparivano 11 (il «Doppio weekend» Eurospin, la pescheria Pam dall'1
+ottobre, il Lidl dal 28…).
