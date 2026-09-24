@@ -84,36 +84,9 @@ SCARTATE = {
    35: 'MD Viaggi: pacchetti vacanza, nessun prezzo di spesa alimentare',
    36: 'MD Viaggi: pacchetti vacanza (pagina 2), nessun prezzo di spesa alimentare',
  },
- # Guardate una per una il 2026-09-17, leggendo il volantino per intero (7 pagine).
- 'lidlfv17': {
-   6: 'pagina pubblicitaria sul premio "Sicurezza Alimentare Frutta e Verdura": nessun prezzo',
- },
  # Guardate una per una il 2026-09-16, leggendo il volantino per intero (20 pagine).
  'mercato17': {
    20: 'speciale casa calda (biancheria, tappeti, calze, felpe) ed elenco dei punti vendita: nessun prezzo di spesa',
- },
- 'bennet10': {
-   1:  'copertina: solo il titolo e le date, nessun prezzo',
-   2:  'sconto 50% su intere linee di marca (Müller, Divella, Fini, Rana, Wudy), senza prezzo di base',
-   3:  'sconto 50% su intere linee di marca (Buitoni, Magnum, 4 Salti in Padella, Curtiriso, Pomì/De Rica), senza prezzo di base',
-   4:  'sconto 50% su intere linee di marca (Garofalo, Morato, San Bernardo, San Benedetto, Tenuta Ca\' Vescovo), senza prezzo di base',
-   5:  'sconto 50% su intere linee di marca (Colgate, Neutro Roberts, Dash, Foxy, Duracell, Implux), senza prezzo di base',
-   6:  'sconto 40% su intere linee di marca (Gocciole, Lemon Soda, Settesoli, Sammontana, Amadori, Findus), senza prezzo di base',
-   7:  'sconto 40% su intere linee di marca (Pizzoli, Findus, Viva la Mamma, Galbani, KV Nordic, Yomo, Fruttolo), senza prezzo di base',
-   8:  'sconto 40% su intere linee di marca (Spuma di Sciampagna, Omino Bianco, Mareblu, Clemente, Mio, La Vangadizza), senza prezzo di base',
-   9:  'sconto 40% su intere linee di marca (Lines, pentole Moneta, Tempo, Fresh&Clean, cibo per animali Adoc, Frigoverre, Loctite, Selenia), senza prezzo di base',
-   10: 'sconto 30% su intere linee di marca (Orogel, Magnum, Frosta, Parmalat/Zymil/Chef, Parmareggio, Philadelphia), senza prezzo di base',
-   11: 'sconto 30% su intere linee di marca (Ferrari, Beretta, Bonduelle, Lavazza, Novi), senza prezzo di base',
-   12: 'sconto 30% su intere linee di marca (Coca Cola, Ichnusa, Raffo, Angelo Poretti, Capetta, Monster, Yoga, Loacker), senza prezzo di base',
-   13: 'sconto 30% su intere linee di marca (Garnier, Lines Specialist, Swiffer, Vileda, Diavolina, Ariasana), senza prezzo di base',
-   26: 'piante da vaso, fiori, cibo e lettiere per cani e gatti: nessuna categoria del catalogo',
-   27: 'abbigliamento, accappatoi, calze, ciabatte, scarpe',
-   28: 'scatole, candele, bicchieri, caraffe, contenitori, stendibiancheria, zerbini',
-   29: 'articoli di cartoleria e giochi per bambini',
-   32: 'pubblicita: l\'app Bennet',
-   33: 'pubblicita: bennetdrive, ordina online e ritira in negozio',
-   34: 'pubblicita: catalogo Bennet Club 2026',
-   35: 'quarta di copertina: elenco dei negozi dove vale la promozione, nessun prezzo',
  },
  # Guardate una per una il 2026-09-14, leggendo il volantino per intero (50/50 pagine).
  'carriper15': {
@@ -150,33 +123,6 @@ SCARTATE = {
    47: 'grandi elettrodomestici (lavatrice, frigorifero, microonde, friggitrice ad aria)',
    48: 'pubblicità: raccolta bollini bicchieri RCR Diamonds, nessun prezzo di spesa',
    49: 'raccolta bollini bicchieri RCR Diamonds: quanti bollini servono, nessun prezzo di spesa',
- },
- # Guardate una per una il 2026-09-15, leggendo il volantino per intero.
- 'lidl17': {
-   16: 'barrette e integratori proteici, porridge, budino e bevande sportive: nessuna categoria del catalogo li copre',
-   18: 'abbigliamento e scarpe sportive Crivit uomo/donna',
-   19: 't-shirt e leggings sportivi Crivit, bilancia pesapersone, fascia elastica',
-   20: 'aspirapolvere, copri piano cottura e contenitori salvafreschezza SilverCrest',
-   21: 'contenitori, portaoggetti e box W5',
-   22: 'organizer, stendibiancheria, ferro da stiro e bacinelle per la casa',
-   23: 'spazzole, tagliacapelli e asciugacapelli Cien Beauty',
-   24: 'idropulsore, bilancia, accessori manicure, orologi da bagno e tappeti',
-   25: 'accessori bagno Livarno: asse WC, set doccia, rubinetteria',
-   26: 'abbigliamento uomo Esmara: gilet e pantaloni cargo',
-   27: 'abbigliamento uomo Esmara: camicie, maglioni, jeans, clogs',
-   28: 'abbigliamento Jeep: felpe, t-shirt, calze, boxer',
-   29: 'utensili da giardino Parkside: tagliarami, soffiatore, tagliasiepi',
-   30: 'utensili da giardino Parkside: motosega, potatore, batterie',
-   31: 'cavalletto, scaffale, faro LED e forbici da giardinaggio Parkside',
-   32: 'specialità orientali Vitasia (mochi, gyoza, cotolette di pollo panko, zuppa di miso): nessuna categoria del catalogo le copre',
-   33: 'specialità orientali Vitasia (tofu, panko, olio di sesamo, zenzero, miso, ramen) e carta da cucina decorata',
-   34: 'sushi box, edamame, involtini, snack di alga nori, tè e gin: nessuna categoria del catalogo li copre',
-   35: 'fiori e piante da appartamento e da esterno',
- },
- # Guardate una per una il 2026-09-18, leggendo il volantino per intero.
- 'ekom08': {
-   1:  'copertina: solo il titolo «1+1», le date e la spiegazione dell\'offerta, nessun prezzo',
-   12: 'concorso a premi «Punta in alto: Up&Vinci» della carta fedeltà EKOM UP: come partecipare, nessun prezzo di spesa',
  },
  # Guardate una per una il 2026-09-19, leggendo il volantino per intero.
  'bennet1709': {
@@ -239,5 +185,10 @@ SCARTATE = {
    1:  'copertina: solo il titolo «I più ekonomici» e le date, nessun prezzo',
    12: 'concorso a premi "Punta in alto: Up&Vinci" della carta fedeltà EKOM UP: come partecipare, nessun prezzo di spesa',
    13: 'pubblicità app EKOM UP: offerte riservate e coupon, nessun prezzo di spesa qui (le offerte riservate vere stanno nella pagina dopo)',
+ },
+ # Guardate una per una il 2026-09-24, leggendo il volantino per intero (7 pagine).
+ 'lidlfv24': {
+   5: 'pubblicità storytelling sulle zucchine Cladi (raccolta, QR code), nessun prezzo',
+   6: 'pubblicità premio "Sicurezza Alimentare 2026" per la frutta e verdura, nessun prezzo',
  },
 }

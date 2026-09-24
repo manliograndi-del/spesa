@@ -70,8 +70,6 @@ PDF = {
 }
 
 VOLANTINI = [
- _v('bennet10',       'Bennet',         'dal 10 al 23 settembre',                       'Bennet — 10-23 settembre.pdf',                      '2026-09-23', _AV + '/2026/09/volantino-bennet-2026-09-10-p-{n:05d}.jpg'),
-
  # In arrivo: letti in anticipo, con la data d'inizio. Fino a quel giorno la
  # pagina li segna «dal ...» invece di farli passare per offerte di oggi.
  # eurospin10 (10-20 settembre) scaduto e tolto il 2026-09-23: copertura senza
@@ -79,10 +77,10 @@ VOLANTINI = [
  _v('eurospin24',     'Eurospin',       'dal 24 settembre al 4 ottobre',                'Eurospin — 24 settembre-4 ottobre.pdf',            '2026-10-04', _AV + '/2026/09/volantino-eurospin-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
  # md08 (8-20 settembre) scaduto e tolto il 2026-09-23: copertura passata a md22.
  _v('carriper15',     'Carrefour Iper', 'dal 15 al 28 settembre',                       'Carrefour Iper — 15-28 settembre.pdf',              '2026-09-28', _AV + '/2026/09/volantino-carrefour-iper-2026-09-15-p-{n:05d}.jpg', '2026-09-15'),
- _v('lidl17',         'Lidl',           'dal 17 al 23 settembre',                       'Lidl — 17-23 settembre.pdf',                        '2026-09-23', _AV + '/2026/09/volantino-lidl-2026-09-17-p-{n:05d}.jpg',       '2026-09-17'),
- _v('lidlfv17',       'Lidl',           'speciale Frutta e Verdura, dal 17 al 23 settembre', 'Lidl Frutta e Verdura — 17-23 settembre.pdf',      '2026-09-23', _AV + '/2026/09/volantino-lidl-frutta-e-verdura-2026-09-17-p-{n:05d}.jpg', '2026-09-17'),
+ # bennet10 (10-23 settembre), lidl17 e lidlfv17 (17-23 settembre) ed ekom08
+ # (8-21 settembre) scaduti e tolti il 2026-09-24: copertura senza buchi
+ # passata a bennet1709, lidl24/lidlfv24 ed ekom22.
  _v('mercato17',      'Mercatò',        'dal 17 al 30 settembre',                       'Mercatò — 17-30 settembre.pdf',                    '2026-09-30', None, '2026-09-17', PAGINE_MERCATO_17),
- _v('ekom08',         'Ekom',           '1+1, dall\'8 al 21 settembre',                 'Ekom 1+1 — 8-21 settembre.pdf',                     '2026-09-21', None, None, PAGINE_EKOM_08),
  _v('md22',           'MD',             "dal 22 settembre al 4 ottobre",                'MD — 22 settembre-4 ottobre.pdf',                  '2026-10-04', _AV + '/2026/09/volantino-md-2026-09-22-p-{n:02d}.jpg',       '2026-09-22'),
  # Trovato il 2026-09-18, letto per intero il 2026-09-19: un Bennet nuovo,
  # "Un mondo di bellezza", uscito mentre bennet10 (10-23) era ancora valido —
@@ -144,6 +142,11 @@ VOLANTINI = [
  # Il foglio «Perché conviene» (conad.it/.../vperch/PERCHECONVIENEPPN20PI.pdf)
  # ripete tre offerte di conad24 agli stessi prezzi (detersivo ACE, crudo
  # Assisi, olio Conad): non è un volantino a parte, guardato e lasciato fuori.
+ # Trovato il 2026-09-24: un nuovo speciale Lidl Frutta e Verdura, come
+ # lidlfv17 che scade lo stesso giorno. 7 pagine, stesso periodo di lidl24.
+ # ATTENZIONE: l'indirizzo delle immagini qui non ha la «e» fra frutta e
+ # verdura (lidlfv17 ce l'aveva): controllato a mano, funziona solo senza.
+ _v('lidlfv24',       'Lidl',           'speciale Frutta e Verdura, dal 24 al 30 settembre', 'Lidl Frutta e Verdura — 24-30 settembre.pdf',      '2026-09-30', _AV + '/2026/09/volantino-lidl-frutta-verdura-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -258,111 +261,6 @@ PRODOTTI = [
  # nelle pagine del banco fresco, pescheria, frutta e verdura, panetteria, e nella
  # sezione «prodotto acceleratore». La pagina Oktoberfest (20-21) vale fino al 4
  # ottobre, non fino al 23: date sue.
- ("Formaggio","Bennet","bennet10","Salumi","Taleggio DOP – Mauri","al kg",1,11.90,14,V,"Al banco."),
- ("Prosciutto","Bennet","bennet10","Salumi","Prosciutto crudo","al kg",1,15.90,14,V,"Al banco."),
- ("Formaggio","Bennet","bennet10","Salumi","Formaggio duro Grangusto","al kg",1,11.90,14,V,"Al banco."),
- ("Prosciutto","Bennet","bennet10","Salumi","Prosciutto cotto alta qualità Riccafetta – Raspini","al kg",1,15.90,14,V,"Al banco."),
- ("Formaggio","Bennet","bennet10","Salumi","Formaggio Scimudin","al kg",1,11.90,14,V,"Al banco."),
- ("Formaggio","Bennet","bennet10","Salumi","Mu' di Bruna","al kg",1,13.90,14,V,"Al banco."),
- ("Mortadella","Bennet","bennet10","Salumi","Mortadella al pistacchio con cotenna – Felsineo","al kg",1,13.90,14,V,"Al banco."),
- ("Pancetta","Bennet","bennet10","Salumi","Guanciale","al kg",1,14.90,14,V,"Al banco."),
- ("Salame","Bennet","bennet10","Salumi","Salame di Milano – Citterio","al kg",1,19.90,14,V,"Al banco."),
- ("Bresaola","Bennet","bennet10","Salumi","Bresaola Angus – Gardani","al kg",1,39.90,14,V,"Al banco."),
- ("Manzo","Bennet","bennet10","Macelleria","Roastbeef a fette di bovino adulto – Filiera Valore Bennet","al kg",1,20.89,15,V,""),
- ("Tacchino","Bennet","bennet10","Macelleria","Fesa di tacchino a fette","al kg",1,10.59,15,V,""),
- ("Suino","Bennet","bennet10","Macelleria","Cotolette e nodini di suino italiano – Filiera Valore Bennet","al kg",1,6.99,15,V,""),
- ("Vitello","Bennet","bennet10","Macelleria","Coscia a pezzi di vitello","al kg",1,17.99,15,V,""),
- ("Suino","Bennet","bennet10","Macelleria","Bistecche di suino","al kg",1,6.99,15,V,""),
- ("Vitello","Bennet","bennet10","Macelleria","Reale con osso di vitello","al kg",1,9.49,15,V,""),
- ("Manzo","Bennet","bennet10","Macelleria","Polpa per tonnato di bovino adulto","al kg",1,18.99,15,V,""),
- ("Preparati","Bennet","bennet10","Macelleria","Hamburger piemontese – Casa Vercelli","200 g",0.200,4.49,15,V,""),
- ("Pollo","Bennet","bennet10","Macelleria","Pollo busto – AIA","al kg",1,5.19,15,V,""),
- ("Preparati","Bennet","bennet10","Macelleria","Buona Domenica – Amadori","700 g",0.700,6.20,15,V,"Ripieno di verdure e formaggio."),
- ("Patate","Bennet","bennet10","Ortofrutta","Patate del Fucino IGP","kg 1,5",1.5,2.19,16,V,""),
- ("Verdura","Bennet","bennet10","Ortofrutta","Carote – Filiera Valore Bennet","kg 1",1,1.15,16,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Kiwi polpa gialla Sungold – Zespri","500 g",0.500,3.18,16,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Mele Sweetango – Melinda","kg 3",3,3.45,16,V,""),
- ("Verdura","Bennet","bennet10","Ortofrutta","Funghi champignon bianchi","500 g",0.500,1.95,16,V,""),
- ("Insalata","Bennet","bennet10","Ortofrutta","Insalata coleslaw – Ortoromi","200 g",0.200,0.95,16,V,""),
- ("Verdura","Bennet","bennet10","Ortofrutta","Radicchio rosso – Ortoromi","175 g",0.175,1.35,16,V,""),
- ("Pane","Bennet","bennet10","Panetteria","Focaccia mini alle olive","al kg",1,11.50,17,V,""),
- ("Pane","Bennet","bennet10","Panetteria","Focaccia mini classica","al kg",1,11.50,17,V,""),
- ("Pane","Bennet","bennet10","Panetteria","Pagnotta con lievito madre","al kg",1,4.70,17,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Orata","al kg",1,8.90,18,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Filetto di persico africano","al kg",1,15.90,18,V,""),
- ("Salmone","Bennet","bennet10","Pescheria","Scaloppa di salmone tagli pregiati – Selezione del pescatore","al kg",1,23.90,18,V,""),
- ("Tonno","Bennet","bennet10","Pescheria","Trancio di tonno a pinne gialle marinato decongelato","140 g",0.140,7.90,18,V,""),
- ("Gamberi","Bennet","bennet10","Pescheria","Code di gambero argentino congelate","kg 2",2,36.90,18,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Filetto di pesce spada decongelato marinato","al kg",1,20.90,18,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Polpo decongelato","al kg",1,19.90,18,V,""),
- ("Gamberi","Bennet","bennet10","Pescheria","Mazzancolle tropicali precotte 80/100","kg 1",1,9.90,18,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Branzino agli aromi","al kg",1,21.50,18,V,""),
- ("Pesce","Bennet","bennet10","Pescheria","Vongole veraci cotte al naturale","500 g",0.500,19.90,18,V,"Già cotte, non crude."),
- ("Pesce","Bennet","bennet10","Pescheria","Cozze cotte al naturale","800 g",0.800,6.90,18,V,"Già cotte, non crude."),
- ("Pesce","Bennet","bennet10","Pescheria","Vongole lupini cotte al naturale","500 g",0.500,6.90,18,V,"Già cotte, non crude."),
- ("Frutta","Bennet","bennet10","Ortofrutta","Uva bianca o rossa senza semi – Filiera Valore Bennet","750 g",0.750,2.65,19,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Uva da tavola nera Palieri","al kg",1,1.95,19,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Uva di Mazzarrone IGP","al kg",1,2.55,19,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Uva da tavola Pizzutella bianca","al kg",1,2.55,19,V,""),
- ("Frutta","Bennet","bennet10","Ortofrutta","Uva da tavola Red Globe","al kg",1,1.95,19,V,""),
- ("Suino","Bennet","bennet10","Macelleria","Carré di suino affumicato","250 g",0.250,3.59,20,V,"Affumicato. Offerta Oktoberfest, valida fino al 4 ottobre, non fino al 23 come il resto del volantino.",None,"2026-10-04"),
- ("Suino","Bennet","bennet10","Macelleria","Costine di suino affumicate","al kg",1,11.59,20,V,"Affumicate. Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande","Birra Weissbier – Kapuziner","500 ml",0.500,1.99,20,V,"Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande","Birra Weisoktoberfest 5,7° – Edinger","500 ml",0.500,1.29,20,V,"Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande",'Birra Oktoberfest – HB, con bicchiere',"1,5 litri (3 × 500 ml)",1.5,5.89,20,V,"Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande",'Birra – Hofbräu München',"500 ml",0.500,1.19,20,V,"Tipi vari. Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande","Birra Hell – Benediktiner","500 ml",0.500,1.19,21,V,"Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande","Birra Oktoberfest – Paulaner","500 ml",0.500,1.39,21,V,"Offerta Oktoberfest, valida fino al 4 ottobre. Sul volantino compare anche una seconda confezione a 1,49.",None,"2026-10-04"),
- ("Birra","Bennet","bennet10","Bevande",'Weissbier – Augustiner Bräu München, con bicchiere',"1,5 litri (3 × 500 ml)",1.5,9.89,21,V,"Offerta Oktoberfest, valida fino al 4 ottobre.",None,"2026-10-04"),
- ("Ricotta","Bennet","bennet10","Freschi","Ricotta fresca – Caseificio Pini","330 g",0.330,1.49,22,V,""),
- ("Mozzarella","Bennet","bennet10","Freschi","Mozzarella «Oggi Puoi» Benessere – Granarolo","300 g (3 × 100 g)",0.300,2.99,22,V,""),
- ("Formaggio","Bennet","bennet10","Freschi","Stracchino – Nonno Nanni","200 g",0.200,2.79,22,V,""),
- ("Uova","Bennet","bennet10","Freschi","Uova fresche da allevamento a terra medie – Le Naturelle","10 uova",10,2.93,22,V,""),
- ("Yogurt","Bennet","bennet10","Freschi","Muu Muu – Cameo","460 g (4 × 115 g)",0.460,2.68,22,V,""),
- ("Pasta","Bennet","bennet10","Freschi","Pasta per lasagne fresche all'uovo – Giovanni Rana","250 g",0.250,1.99,22,V,""),
- ("Verdure surgelate","Bennet","bennet10","Surgelati","Coccole surgelate – Bonduelle","300 g",0.300,2.47,22,V,"Tortini di verdure."),
- ("Patate","Bennet","bennet10","Surgelati","Patatine surgelate Kid Smile – McCain","650 g",0.650,2.95,22,V,"Surgelate."),
- ("Verdure surgelate","Bennet","bennet10","Surgelati","Minestrone tradizione con pasta – Findus","450 g",0.450,2.80,22,V,""),
- ("Panati","Bennet","bennet10","Surgelati","Mazzancolle tropicali in tempura surgelate – Oggi Pesce","200 g",0.200,3.99,22,V,"Impanate in tempura."),
- ("Sughi","Bennet","bennet10","Surgelati","Sugo surgelato spaghettata di mare – Esca","400 g",0.400,3.99,22,V,""),
- ("Tonno","Bennet","bennet10","Dispensa","Filetto di tonno rosa – Rizzoli","400 g",0.400,5.99,23,V,""),
- ("Pasta","Bennet","bennet10","Dispensa","Riccioli all'ortolana o maccheroncini tricolore – Di Bari","500 g",0.500,1.39,23,V,""),
- ("Biscotti","Bennet","bennet10","Colazione","Biscotti Mini Animals – Milka","99,5 g",0.0995,1.19,23,V,""),
- ("Biscotti","Bennet","bennet10","Colazione","Biscotti artigianali – Artebianca","250 g",0.250,1.74,23,V,""),
- ("Biscotti","Bennet","bennet10","Colazione","Biscotti rustici integrali – Cabrioni","650 g",0.650,1.98,23,V,""),
- ("Bibite","Bennet","bennet10","Bevande",'Original o Zero – Coca Cola',"3,3 litri (10 × 330 ml)",3.3,4.89,23,V,""),
- ("Vino","Bennet","bennet10","Bevande","Cannonau di Sardegna, Alghero Rosato o Vermentino DOC – Sella & Mosca","750 ml",0.750,3.98,23,V,""),
- ("Vino","Bennet","bennet10","Bevande","Spumante Brut Diamante – Bosio","750 ml",0.750,2.99,23,V,""),
- ("Birra","Bennet","bennet10","Bevande",'Birra classica o analcolica – Corona',"330 ml",0.330,1.19,23,V,""),
- ("Birra","Bennet","bennet10","Bevande",'Birra – Corona',"500 ml",0.500,1.49,23,V,""),
- ("Dentifricio","Bennet","bennet10","Igiene","Dentifricio – Parodontax","75 ml",0.075,2.99,24,V,"Tipi vari."),
- ("Dentifricio","Bennet","bennet10","Igiene","Dentifricio – Oral B","225 ml (3 × 75 ml)",0.225,4.89,24,V,""),
- ("Shampoo","Bennet","bennet10","Igiene","Shampoo – I Provenzali","250 ml",0.250,2.69,24,V,"Tipi vari."),
- ("Shampoo","Bennet","bennet10","Igiene","Balsamo – Elvive","250 ml",0.250,2.99,24,V,"Tipi vari."),
- ("Shampoo","Bennet","bennet10","Igiene","Shampoo o balsamo – Pantene Pro-V","500 ml",0.500,4.79,24,V,"Tipi vari."),
- ("Bagnoschiuma","Bennet","bennet10","Igiene","Bagnodoccia – Dermomed","650 ml",0.650,1.49,24,V,"Tipi vari."),
- ("Bagnoschiuma","Bennet","bennet10","Igiene","Docciaschiuma Advanced Care – Dove","225 ml",0.225,1.95,24,V,""),
- ("Bagnoschiuma","Bennet","bennet10","Igiene","Sapone liquido mani – Palmolive","600 ml (2 × 300 ml)",0.600,2.99,24,V,""),
- ("Lavatrice","Bennet","bennet10","Casa","Detersivo liquido per lavatrice – Ace","2 × 27 lavaggi",54,6.99,25,V,""),
- ("Lavatrice","Bennet","bennet10","Casa","Detersivo in polvere per lavatrice – Bio Presto","62 lavaggi",62,9.88,25,V,""),
- ("Ammorbidente","Bennet","bennet10","Casa","Ammorbidente concentrato – Coccolino","87 lavaggi",87,3.98,25,V,""),
- ("Lavastoviglie","Bennet","bennet10","Casa","Detersivo in caps per lavastoviglie – Finish","65 lavaggi",65,12.90,25,V,"Confezioni da 65, 70 o 77 lavaggi allo stesso prezzo: preso il numero più basso."),
- ("Burro","Bennet","bennet10","Freschi","Burro italiano – Beppino Occelli","125 g",0.125,3.59,30,V,""),
- ("Burro","Bennet","bennet10","Freschi","Metà metà burro e vegetale – Prealpi","250 g",0.250,2.98,30,V,""),
- ("Ricotta","Bennet","bennet10","Freschi","Ricottine «Oggi Puoi» – Granarolo","200 g (2 × 100 g)",0.200,1.69,30,V,""),
- ("Mozzarella","Bennet","bennet10","Freschi","Mozzarella in sfoglia – Bayernland","130 g",0.130,1.99,30,V,""),
- ("Formaggio","Bennet","bennet10","Freschi","Formaggio fuso pastorizzato – Tigre","140 g (6 spicchi)",0.140,2.99,30,V,""),
- ("Sughi","Bennet","bennet10","Dispensa","Pesto alla genovese «Che sugo!» – Biffi","140 g",0.140,2.98,30,V,""),
- ("Verdure surgelate","Bennet","bennet10","Surgelati","Carciofi trifolati surgelati – Pagnan","300 g",0.300,2.99,30,V,""),
- ("Gelato","Bennet","bennet10","Surgelati","Magnum bomboniera classic o almond – Algida","104 g",0.104,4.19,30,V,""),
- ("Gelato","Bennet","bennet10","Surgelati","Maxibon classic – Nestlé","384 g (conf. da 4)",0.384,5.49,30,V,""),
- ("Acqua","Bennet","bennet10","Bevande","Acqua minerale naturale – Lauretana","3 litri (6 × 500 ml)",3,2.45,30,V,""),
- ("Vino","Bennet","bennet10","Bevande","Valdobbiadene Prosecco Superiore DOCG – Casa Sant'Orsola","750 ml",0.750,9.49,30,V,""),
- ("Olio d'oliva","Bennet","bennet10","Dispensa","Olio extravergine di oliva DOP – Col di Fiore","750 ml",0.750,9.90,31,V,""),
- ("Riso","Bennet","bennet10","Dispensa","Riso Bomba Oro di Spagna – Vignola","500 g",0.500,5.99,31,V,""),
- ("Birra","Bennet","bennet10","Bevande","Birra Strong Ale o Extreme Ten – Ceres","500 ml",0.500,1.99,31,V,""),
- ("Bagnoschiuma","Bennet","bennet10","Igiene","Bagnoschiuma – Dove","700 ml",0.700,4.99,31,V,"Tipi vari."),
- ("Merendine","Bennet","bennet10","Colazione","Buondì – Bauli","276 g (conf. da 6)",0.276,2.19,31,V,"Farcito albicocca o ricoperto al cioccolato."),
  # ------------------------------- LIDL10 (10-16 settembre 2026) -------------------------------
  # Volantino intero di prezzi veri (non sconti percentuali). Alcune pagine hanno
  # date proprie diverse dal resto: «da giovedì a domenica» (10-13), il
@@ -428,62 +326,6 @@ PRODOTTI = [
  ("Birra","Carrefour Iper","carriper15","Bevande","Birra in lattina – Tuborg","500 ml",0.500,0.99,29,V,""),
  ("Vino","Carrefour Iper","carriper15","Bevande","Rosso o Bianco Terre Siciliane IGT – Corvo","750 ml",0.750,3.99,26,V,"−30%, prima 5,70. Solo con la tessera SpesAmica Payback."),
  # ------------------------------- LIDL 17-23 SETTEMBRE -------------------------------
- ("Preparati","Lidl","lidl17","Macelleria","Hamburger di bovino","400 g",0.400,4.29,1,V,"Prima 5,79. Allevato in Italia. Il volantino stampa 10,73 al kg."),
- ("Latte","Lidl","lidl17","Latteria","Latte parzialmente scremato UHT XXL","6 x 1 litro",6,4.69,1,V,"Formato convenienza XXL: il formato base costa 1,19 al litro, questo 0,78."),
- ("Uova","Lidl","lidl17","Latteria","Uova fresche medie – Maia","24 uova",24,4.99,1,V,"Da allevamento a terra. 1 uovo = 0,21€."),
- ("Pollo","Lidl","lidl17","Macelleria","Filetto di petto di pollo a fette","400 g",0.400,3.19,2,V,"Con Lidl Plus, prima 4,59. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
- ("Prosciutto","Lidl","lidl17","Salumi","Prosciutto crudo stagionato – Dal Salumiere","150 g",0.150,1.99,2,V,"Minimo 11 mesi di stagionatura. Prima 2,99. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
- ("Mozzarella","Lidl","lidl17","Latteria","Burrata – Italiamo","2x200 g",0.400,2.39,2,V,"1+1: un pezzo da solo costa 2,39, prima 4,78 la confezione doppia. Valido solo dal 17 al 20 settembre. È burrata, non mozzarella tonda.","2026-09-17","2026-09-20"),
- ("Bibite","Lidl","lidl17","Bevande","Coca-Cola","4x1,75 l",7,5.89,3,V,"Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
- ("Frutta","Lidl","lidl17","Ortofrutta","Uva bianca da tavola di Mazzarrone IGP","1 kg confezione",1,1.99,4,V,"Prima 2,79."),
- ("Verdura","Lidl","lidl17","Ortofrutta","Carote del Fucino IGP","800 g confezione",0.800,1.19,4,V,"Prima 1,59."),
- ("Frutta","Lidl","lidl17","Ortofrutta","Pesche","al kg",1,1.89,5,V,"Con Lidl Plus, prima 2,49. Valido solo dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
- ("Salsiccia","Lidl","lidl17","Macelleria","Salsiccia di tacchino con suino e pollo","450 g",0.450,2.29,6,V,"Prima 2,99."),
- ("Tacchino","Lidl","lidl17","Macelleria","Macinato di tacchino","400 g",0.400,2.99,6,V,"Prima 3,99."),
- ("Tacchino","Lidl","lidl17","Macelleria","Bocconcini di fesa di tacchino","400 g",0.400,3.59,6,V,"Prima 4,59."),
- ("Preparati","Lidl","lidl17","Macelleria","Kebab di pollo","350 g",0.350,2.99,6,V,"Con Lidl Plus, prima 3,99."),
- ("Preparati","Lidl","lidl17","Macelleria","Cotoletta di pollo con scamorza affumicata","200 g",0.200,2.19,7,V,""),
- ("Preparati","Lidl","lidl17","Macelleria","Panzerotti di pollo con provola e speck","220 g",0.220,2.29,7,V,""),
- ("Suino","Lidl","lidl17","Macelleria","Lonza di maiale, trancio intero","al kg",1,4.99,7,V,""),
- ("Pesce","Lidl","lidl17","Gastronomia","Tentacoli di polpo scottati – Gastronomia di Mare","250 g",0.250,7.99,7,V,"Già scottati, pronti. Prima 9,99."),
- ("Gamberi","Lidl","lidl17","Pesce","Mazzancolle XXL – Ocean Sea","300 g",0.300,4.79,8,V,"Sgusciate e scottate, surgelate. Formato XXL, 60 g in più rispetto al formato base."),
- ("Suino","Lidl","lidl17","Macelleria","Fettine di coppa di suino senza osso XXL","1 kg confezione",1,7.49,8,V,"Formato convenienza XXL."),
- ("Salmone","Lidl","lidl17","Pesce","Filetti di salmone con pelle XXL","8x125 g",1,17.49,8,V,"Formato convenienza XXL, nel banco pesce."),
- ("Pancetta","Lidl","lidl17","Salumi","Pancetta a cubetti XXL – Salumeo","2x120 g",0.240,2.19,8,V,"Formato XXL, 40 g in più rispetto al formato base."),
- ("Panati","Lidl","lidl17","Surgelati","Merluzzo d'Alaska panato XXL","500 g",0.500,4.49,8,V,"Panato, surgelato. Formato convenienza XXL."),
- ("Pane","Lidl","lidl17","Panetteria","Piadina Romagnola IGP alla Riminese XXL – Italiamo","720 g",0.720,1.69,9,V,"Formato XXL, 120 g in più rispetto al formato base."),
- ("Pasta","Lidl","lidl17","Dispensa","Pasta fresca all'uovo ripiena XXL – Nonna Mia","300 g",0.300,1.19,9,V,"Cappelletti al prosciutto crudo o tortelloni ricotta e spinaci. Formato XXL, 50 g in più."),
- ("Pasta","Lidl","lidl17","Dispensa","Gnocchi di patate XXL – Nonna Mia","600 g",0.600,1.39,9,V,"Formato XXL, 100 g in più."),
- ("Conserve","Lidl","lidl17","Dispensa","Cetriolini XXL – Freshona","360 g (sgocc.)",0.360,1.69,10,V,"All'aceto di vino. Formato XXL, sgocciolato."),
- ("Sughi","Lidl","lidl17","Dispensa","Pesto alla Genovese XXL – Baresa","290 g",0.290,1.49,10,V,"Formato convenienza XXL."),
- ("Olio di semi","Lidl","lidl17","Dispensa","Olio di semi vari XXL – Vita d'Or","5 litri",5,7.99,10,V,"Formato convenienza XXL."),
- ("Tonno","Lidl","lidl17","Dispensa","Tonno all'olio di semi di girasole XXL – Nixe","6x52 g (sgocc.)",0.312,3.69,10,V,"Formato convenienza XXL, sgocciolato."),
- ("Merendine","Lidl","lidl17","Colazione","Mini croissant XXL – Realforno","250 g",0.250,1.29,11,V,"Formato XXL, 50 g in più."),
- ("Creme","Lidl","lidl17","Colazione","Crema spalmabile alla nocciola XXL – Choco Nussa","1 kg",1,3.99,11,V,"Formato convenienza XXL."),
- ("Cioccolato","Lidl","lidl17","Colazione","Kinder Bueno","258 g",0.258,3.99,11,V,"Formato convenienza, con pezzi extra in omaggio."),
- ("Vino","Lidl","lidl17","Bevande","Pinot Grigio delle Venezie DOC – Giulio Pasotti","0,75 litri",0.750,2.39,12,V,"Vino bianco secco. Prima 2,99."),
- ("Vino","Lidl","lidl17","Bevande","Mures Nero di Troia Rosé Puglia IGP – Cantina di Ruvo di Puglia","0,75 litri",0.750,2.29,12,V,"Vino rosato. Prima 2,99."),
- ("Vino","Lidl","lidl17","Bevande","Prosecco DOC – Allini","0,75 litri",0.750,3.19,12,V,"Con Lidl Plus. Vino spumante extra dry. Prima 3,99."),
- ("Formaggio","Lidl","lidl17","Latteria","Emmental francese – Milbona","250 g",0.250,1.79,12,V,"Con Lidl Plus. Formaggio a pasta dura. Prima 2,35."),
- ("Prosciutto","Lidl","lidl17","Salumi","Prosciutto cotto alta qualità – Dal Salumiere","125 g",0.125,1.19,12,V,"Con Lidl Plus. Prima 1,55."),
- ("Bresaola","Lidl","lidl17","Salumi","Bresaola della Valtellina IGP, Punta d'Anca – Dal Salumiere","100 g",0.100,2.79,13,V,"Con Lidl Plus. Prima 3,49."),
- ("Affettati","Lidl","lidl17","Salumi","Petto di pollo cotto al forno – Dal Salumiere","120 g",0.120,1.89,13,V,"Solo carne italiana. È petto di pollo cotto (un salume), non carne fresca. Prima 2,49."),
- ("Pancetta","Lidl","lidl17","Salumi","Pancetta coppata – Dal Salumiere","90 g",0.090,1.69,13,V,"Con Lidl Plus. Prima 2,15."),
- ("Salame","Lidl","lidl17","Salumi","Ventricina piccante a fette – Dal Salumiere","100 g",0.100,1.11,13,V,"Prima 1,49."),
- ("Panati","Lidl","lidl17","Surgelati","Burger di merluzzo d'Alaska – Ocean Sea","210 g",0.210,1.79,13,V,"Con Lidl Plus. Prima 2,29."),
- ("Verdure surgelate","Lidl","lidl17","Surgelati","Pisellini Primavera – Findus","660 g",0.660,3.19,13,V,"Con Lidl Plus. Prima 4,19."),
- ("Mozzarella","Lidl","lidl17","Latteria","Mozzarella High Protein – Latteria","3x100 g",0.300,2.49,17,V,"Multipack."),
- ("Yogurt","Lidl","lidl17","Latteria","Kefir Shot – Milbona","600 g",0.600,1.99,17,V,"Bevanda a base di kefir con succo di frutta ai frutti misti o alla fragola."),
- ("Birra","Lidl","lidl17","Bevande","Birra analcolica – Finkbräu","4x0,5 l",2,1.47,14,V,"Con Lidl Plus. 3+1: un pezzo da solo costa 0,49. Prima 1,96 la confezione. Senza alcol."),
- ("Sughi","Lidl","lidl17","Dispensa","Gran Pesto alla Genovese – Star Tigullio","190 g",0.190,1.69,15,V,"Classico o senza aglio. Prima 2,19."),
- ("Birra","Lidl","lidl17","Bevande","Strong lager, birra doppio malto – Tennent's Super","0,355 litri",0.355,1.39,15,V,"9% Vol. Prima 1,79."),
- ("Gelato","Lidl","lidl17","Surgelati","Gelato variegato al triplo cioccolato – Bon Gelati","522 g",0.522,2.19,15,V,"Prima 2,89."),
- ("Gelato","Lidl","lidl17","Surgelati","Gelato variegato al tiramisù – Bon Gelati","515 g",0.515,2.19,15,V,"Prima 2,89."),
- ("Marmellata","Lidl","lidl17","Colazione","Confettura extra pesca – Maribel","425 g",0.425,1.19,15,V,"Con Lidl Plus. 50% di frutta. Prima 1,55."),
- ("Dentifricio","Lidl","lidl17","Igiene","Dentifricio Tripla protezione menta fresca – Aquafresh","125 ml",0.125,1.49,15,V,"Prima 1,99."),
- ("Frutta","Lidl","lidl17","Ortofrutta","Pere Williams","1 kg confezione",1,1.79,36,V,"Prima 2,49. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
- ("Patate","Lidl","lidl17","Ortofrutta",'Patate – Selenella',"1,5 kg rete",1.5,2.29,36,V,"Prima 2,99. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
- ("Verdura","Lidl","lidl17","Ortofrutta","Zucca Butternut","al kg",1,1.19,36,V,"Con Lidl Plus, prima 1,69. Valido solo dal 21 al 23 settembre, non per tutto il volantino.","2026-09-21","2026-09-23"),
 
  # Lidl, speciale Frutta e Verdura dal 17 al 23 settembre (7 pagine, letto per
  # intero). Tre prodotti della sua pagina «Il meglio del lunedì» (Pere Williams,
@@ -492,18 +334,21 @@ PRODOTTI = [
  # letti nel volantino Lidl generale 17-23: non riscritti qui, sennò dati.py
  # si ferma per riga doppia. Cetrioli lunghi, Mango e Fichi freschi sono al
  # pezzo, senza un peso: nessun prezzo per unità onesto da scrivere.
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Golden Alto Adige IGP, formato XXL","2,5 kg confezione",2.5,2.99,1,V,"500 g in più, formato base 2 kg a 2,99. Il volantino stampa 1,20 al kg, prima 1,50."),
- ("Verdura","Lidl","lidlfv17","Ortofrutta","Cavolo rosso","al kg",1,0.98,1,V,""),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Susine, formato XXL","1,25 kg confezione",1.25,1.79,1,V,"250 g in più, formato base 1 kg a 1,79. Il volantino stampa 1,43 al kg."),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Pere Carmen","1 kg confezione",1,1.99,2,V,"Con Lidl Plus, prima 2,49. Valido dal 17 al 20 settembre, non per tutto il volantino.","2026-09-17","2026-09-20"),
- ("Verdura","Lidl","lidlfv17","Ortofrutta","Aglio","200 g confezione",0.200,0.98,3,V,"Il volantino stampa 4,90 al kg."),
- ("Verdura","Lidl","lidlfv17","Ortofrutta","Cavolo cappuccio","al kg",1,0.98,3,V,""),
- ("Verdura","Lidl","lidlfv17","Ortofrutta","Rape rosse precotte","500 g confezione",0.500,0.98,3,V,"Precotte, non crude. Il volantino stampa 1,96 al kg."),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Golden","al kg",1,0.98,3,V,""),
- ("Verdura","Lidl","lidlfv17","Ortofrutta","Cetrioli snack","250 g confezione",0.250,1.15,5,V,"Con Lidl Plus, prima 1,49. Il volantino stampa 4,60 al kg."),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Uva scura senza semi","500 g confezione",0.500,1.39,5,V,"Con Lidl Plus, prima 1,79. Il volantino stampa 2,78 al kg."),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Mele Sweet Tango","900 g confezione",0.900,1.49,5,V,"Con Lidl Plus, prima 1,99. Il volantino stampa 1,66 al kg."),
- ("Frutta","Lidl","lidlfv17","Ortofrutta","Limoni","1 kg rete",1,1.89,5,V,"Con Lidl Plus, prima 2,49."),
+
+ # Lidl Frutta e Verdura nuovo, dal 24 al 30 settembre (lidlfv24), 7 pagine.
+ # Quasi tutte le offerte ripetono identiche, stesso prezzo, quelle già lette
+ # nel Lidl generale 24-30 (lidl24): Mele Gala IGP, Zucchine sfuse, Pomodori
+ # Grappolo sfusi, Pomodori ciliegino Pachino IGP, Prugne, Zucca Hokkaido,
+ # Uva bianca, Uva Red Globe, Patate Iodì, Carote, Pere Carmen — non
+ # riscritte qui, sennò dati.py si ferma per riga doppia. Avocado e Fichi
+ # freschi sono al pezzo, senza un peso: nessun prezzo per unità onesto.
+ # Restano solo sei offerte che nel Lidl generale non c'erano:
+ ("Frutta","Lidl","lidlfv24","Ortofrutta","Mele Golden","al kg",1,0.98,1,V,""),
+ ("Verdura","Lidl","lidlfv24","Ortofrutta","Funghi Champignon","500 g confezione",0.500,1.49,2,V,"−25%, prima 1,99. Il volantino stampa 2,98 al kg. Valido dal 24 al 27 settembre.","2026-09-24","2026-09-27"),
+ ("Verdura","Lidl","lidlfv24","Ortofrutta","Aglio","200 g confezione",0.200,0.98,3,V,"Il volantino stampa 4,90 al kg."),
+ ("Verdura","Lidl","lidlfv24","Ortofrutta","Cavolo cappuccio","al kg",1,0.98,3,V,""),
+ ("Verdura","Lidl","lidlfv24","Ortofrutta","Rape rosse precotte","500 g confezione",0.500,0.98,3,V,"Precotte, non crude. Il volantino stampa 1,96 al kg."),
+ ("Verdura","Lidl","lidlfv24","Ortofrutta","Cavolo rosso","al kg",1,0.98,3,V,""),
 
  # Mercatò, dal 17 al 30 settembre. Letto per intero, 20 pagine.
  ("Salmone affumicato","Mercatò","mercato17","Gastronomia","Salmone affumicato scozzese – Hendricks","100 g",0.100,3.89,1,V,"Il volantino stampa 38,90 al kg."),
@@ -755,171 +600,33 @@ PRODOTTI = [
  # a premi della carta fedelta, nessun prezzo).
 
  # --- pagina 2: 1+1 ---
- ("Merluzzo","Ekom","ekom08","Surgelati","Cuori di filetto di nasello – NÓS","2 × 300 g (1+1)",0.600,3.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 3,99, cioè 13,30 al kg. È nasello, non merluzzo. Surgelato."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Carote a fette – Orogel","2 × 450 g (1+1)",0.900,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 4,42 al kg."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Cavolfiori a rosette","2 × 450 g (1+1)",0.900,1.49,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,49, cioè 3,31 al kg."),
- ("Formaggio","Ekom","ekom08","Freschi","Fettine di Emmentaler svizzero – Tigre","2 × 140 g (1+1)",0.280,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 14,21 al kg."),
- ("Grana","Ekom","ekom08","Freschi","Grana Padano Riserva DOP grattugiato fresco – Ferrari","2 × 60 g (1+1)",0.120,1.79,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,79, cioè 29,83 al kg."),
- ("Yogurt","Ekom","ekom08","Freschi","Yogurt da bere alla frutta, zero grassi o intero – Alplí","2 × 500 g (1+1)",1.000,1.19,2,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 1,19, cioè 2,38 al kg."),
- ("Biscotti","Ekom","ekom08","Colazione","Zuppalatte o Oswego – Colussi","2 × 250 g (1+1)",0.500,1.49,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,49, cioè 5,96 al kg."),
- ("Pasta","Ekom","ekom08","Dispensa","Pasta di semola, diversi formati – Barilla","2 × 500 g (1+1)",1.000,0.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 0,99, cioè 1,98 al kg."),
- ("Riso","Ekom","ekom08","Dispensa","Riso Apri Scalda basmati, integrale o chicco lungo – Scotti","2 × 200 g (1+1)",0.400,1.99,2,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 1,99, cioè 9,95 al kg. È riso già cotto da scaldare, non riso crudo."),
 
  # --- pagina 3: 1+1 ---
- ("Olio d'oliva","Ekom","ekom08","Dispensa","Olio extra vergine di oliva classico – Coppini","2 × 1 litro (1+1)",2.000,9.99,3,V,"Offerta 1+1: due latte al prezzo di una. Una latta sola costa 9,99, cioè 9,99 al litro."),
- ("Acqua","Ekom","ekom08","Bevande","Acqua naturale – Sant'Anna","2 × 1,5 litri (1+1)",3.000,0.54,3,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 0,54, cioè 0,36 al litro."),
- ("Vino","Ekom","ekom08","Bevande","Arneis Langhe DOC","2 × 750 ml (1+1)",1.500,6.79,3,V,"Offerta 1+1: due bottiglie al prezzo di una. Una bottiglia sola costa 6,79, cioè 9,05 al litro."),
- ("Dentifricio","Ekom","ekom08","Cura persona","Dentifricio Maximum Cavity Protection – Colgate","2 × 100 ml (1+1)",0.200,2.99,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una sola costa 2,99, cioè 29,90 al litro."),
- ("Bagnoschiuma","Ekom","ekom08","Cura persona","Bagnodoccia crema nutriente o idratante – Spuma di Sciampagna","2 × 650 ml (1+1)",1.300,2.99,3,V,"Offerta 1+1: due flaconi al prezzo di uno. Un flacone solo costa 2,99, cioè 4,60 al litro."),
- ("Carta igienica","Ekom","ekom08","Cura casa","Carta igienica Ultra Comfort 3 veli, 4 rotoli – Tenderly","2 × 4 rotoli (1+1)",8,2.79,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 2,79, cioè 0,70 al rotolo."),
- ("Lavatrice","Ekom","ekom08","Cura casa","Detersivo universale 5 in 1 Active, 60 lavaggi – General","2 × 2,4 litri (1+1)",120,8.99,3,V,"Offerta 1+1: due flaconi al prezzo di uno. Un flacone solo costa 8,99, cioè 0,15 a lavaggio."),
- ("Lavatrice","Ekom","ekom08","Cura casa","Power Caps Total 4+1 classico o igiene, 27 lavaggi – Bio Presto","2 × 1,62 kg (1+1)",54,8.99,3,V,"Offerta 1+1: due confezioni al prezzo di una. Una confezione sola costa 8,99, cioè 0,33 a lavaggio."),
 
  # --- pagina 4: dispensa ---
- ("Biscotti","Ekom","ekom08","Colazione","Waferini al cacao o alla nocciola","400 g",0.400,1.39,4,V,"−20%, prima 1,85. Sono wafer."),
- ("Biscotti","Ekom","ekom08","Colazione","Baiocchi – Mulino Bianco","260 g",0.260,2.19,4,V,"−25%, prima 2,99."),
- ("Cioccolato","Ekom","ekom08","Colazione","Cioccolato al latte o fondente – Novi","100 g",0.100,1.49,4,V,"−20%, prima 1,89."),
- ("Creme","Ekom","ekom08","Colazione","Nutella – Ferrero","950 g",0.950,6.49,4,V,""),
- ("Pane","Ekom","ekom08","Panetteria","Pan Bauletto bianco – Mulino Bianco","400 g",0.400,0.89,4,V,"−20%, prima 1,12."),
- ("Pane","Ekom","ekom08","Panetteria","Pane carasau","250 g",0.250,1.99,4,V,""),
- ("Pane","Ekom","ekom08","Panetteria","Pane pita","450 g",0.450,1.59,4,V,""),
- ("Sughi","Ekom","ekom08","Dispensa","Ragù alla bolognese – Barilla","300 g",0.300,1.59,4,V,"−40%, prima 2,75."),
- ("Tonno","Ekom","ekom08","Dispensa","Tonno all'olio di oliva – Mareblu","420 g (70 g × 6)",0.420,4.99,4,V,"−25%, prima 6,99. Formato speciale da 6 lattine."),
 
  # --- pagina 5: bevande ---
- ("Bibite","Ekom","ekom08","Bevande","Coca Cola, Fanta o Sprite","500 ml",0.500,0.89,5,V,""),
- ("Bibite","Ekom","ekom08","Bevande","Estathé, diversi tipi","1,5 litri",1.500,1.59,5,V,"−20%, prima 1,99."),
- ("Bibite","Ekom","ekom08","Bevande","Energy drink – Red Bull","355 ml",0.355,1.59,5,V,"−25%, prima 2,19. È un energy drink, non un succo."),
- ("Birra","Ekom","ekom08","Bevande",'Birra – DAB',"660 ml",0.660,1.39,5,V,""),
- ("Birra","Ekom","ekom08","Bevande","Birra Super – Tennent's","355 ml",0.355,1.59,5,V,""),
- ("Birra","Ekom","ekom08","Bevande",'Birra originale – Raffo',"660 ml",0.660,1.29,5,V,"−20%, prima 1,69. La «lavorazione grezza» da 450 ml costa lo stesso prezzo, cioè 2,87 al litro."),
- ("Birra","Ekom","ekom08","Bevande","Birra 8.6 Original – Bavaria","500 ml",0.500,1.39,5,V,""),
- ("Birra","Ekom","ekom08","Bevande",'Birra 10% – Faxe',"500 ml",0.500,1.29,5,V,"È una birra al 10%: forte, non da tavola."),
- ("Birra","Ekom","ekom08","Bevande","Birra Weizen – Edelmeister","500 ml",0.500,0.79,5,V,"−20%, prima 0,99."),
- ("Birra","Ekom","ekom08","Bevande","Birra Red – Faxe","500 ml",0.500,1.19,5,V,""),
- ("Birra","Ekom","ekom08","Bevande",'Birra – Bud',"500 ml",0.500,0.99,5,V,"−25%, prima 1,39."),
- ("Vino","Ekom","ekom08","Bevande","Bardolino DOC – Laronchi Vini","750 ml",0.750,2.99,5,V,""),
- ("Vino","Ekom","ekom08","Bevande","Cortese Piemonte DOC","750 ml",0.750,2.89,5,V,"−25%, prima 3,89."),
- ("Vino","Ekom","ekom08","Bevande","Müller Thurgau","750 ml",0.750,1.99,5,V,"−33%, prima 2,99."),
 
  # --- pagina 6: speciale colazione ---
- ("Merendine","Ekom","ekom08","Colazione","Ciambella zuccherata","180 g (60 g × 3)",0.180,1.19,6,V,"−20%, prima 1,49."),
- ("Latte","Ekom","ekom08","Freschi","Latte UHT Piacere Leggero – Granarolo","1 litro",1,1.29,6,V,"−20%, prima 1,69."),
- ("Burro","Ekom","ekom08","Freschi","Burro in monoporzioni – Parmareggio","124,8 g (10,4 g × 12)",0.1248,1.29,6,V,"−25%, prima 1,79. Sono monoporzioni da colazione."),
- ("Pancetta","Ekom","ekom08","Salumi","Bacon pancetta tesa – ibis","100 g",0.100,1.99,6,V,"−20%, prima 2,49."),
- ("Uova","Ekom","ekom08","Freschi","6 uova fresche da galline allevate all'aperto","6 uova",6,1.99,6,V,""),
- ("Yogurt","Ekom","ekom08","Freschi","Yogurt cremoso intero bianco, banana o frutti di bosco – Latteria Brunico","500 g",0.500,0.99,6,V,""),
- ("Caffè","Ekom","ekom08","Colazione","Caffè macinato Crema e Gusto classico – Lavazza","500 g (250 g × 2)",0.500,7.99,6,V,"−20%, prima 9,99."),
- ("Caffè","Ekom","ekom08","Colazione","Caffè macinato Decaf – Lavazza","250 g",0.250,3.99,6,V,"−33%, prima 5,99. È decaffeinato."),
- ("Caffè","Ekom","ekom08","Colazione","50 capsule classico o intenso compatibili Nespresso – Segafredo","255 g",0.255,9.90,6,V,"−20%, prima 12,99. Sono capsule: al chilo costano sempre molto più del macinato."),
- ("Caffè","Ekom","ekom08","Colazione","36 capsule A Modo Mio passionale, qualità rossa o crema e gusto – Lavazza","270 g",0.270,9.89,6,V,"−35%, prima 15,39. Sono capsule: al chilo costano sempre molto più del macinato."),
- ("Tè","Ekom","ekom08","Colazione","Tè English Breakfast, Pure Green o Earl Grey, 40 filtri – Twinings","80 g",0.080,2.99,6,V,"−25%, prima 3,99."),
- ("Cereali","Ekom","ekom08","Colazione","Bran-Sticks","375 g",0.375,1.39,6,V,"−30%, prima 1,99."),
- ("Cereali","Ekom","ekom08","Colazione","Cornflakes","375 g",0.375,0.99,6,V,"−35%, prima 1,59."),
 
  # --- pagina 7: speciale colazione ---
- ("Biscotti","Ekom","ekom08","Colazione","Gocciolotti e altri tipi – Balocco","350 g",0.350,1.49,7,V,"−20%, prima 1,95."),
- ("Farina","Ekom","ekom08","Dispensa","Farina di avena – Vital Love","500 g",0.500,0.89,7,V,"−30%, prima 1,29. È farina di avena, non di grano."),
- ("Creme","Ekom","ekom08","Colazione","Crema al pistacchio o burro di arachidi, monoporzioni","80 g (20 g × 4)",0.080,1.19,7,V,"−20%, prima 1,49. Sono monoporzioni."),
- ("Marmellata","Ekom","ekom08","Colazione","Confettura di frutta, gusti assortiti – Santa Rosa","600 g",0.600,1.99,7,V,"−20%, prima 2,49."),
- ("Biscotti","Ekom","ekom08","Colazione","Kinderini – Kinder","250 g",0.250,2.99,7,V,""),
- ("Bibite","Ekom","ekom08","Bevande","Bevanda Refresh+Vita multivitamin o mango maracuja – Pfanner","2 litri",2.000,1.99,7,V,"−20%, prima 2,49."),
- ("Bibite","Ekom","ekom08","Bevande","Bevanda di frutta zero zuccheri aggiunti, frutti rossi o ACE – Pfanner","1 litro",1,0.99,7,V,"−20%, prima 1,29."),
 
  # --- pagina 8: frutta e verdura ---
- ("Verdura","Ekom","ekom08","Ortofrutta","Melanzane nere","al kg",1,1.59,8,V,""),
- ("Verdura","Ekom","ekom08","Ortofrutta","Pomodori Piccadilly","500 g",0.500,1.59,8,V,""),
- ("Verdura","Ekom","ekom08","Ortofrutta","Spinaci Pronto Cuoci – Kome Te","400 g",0.400,1.89,8,V,""),
- ("Frutta","Ekom","ekom08","Ortofrutta","Prugne Santa Clara","al kg",1,1.89,8,V,""),
- ("Frutta","Ekom","ekom08","Ortofrutta","Banane","al kg",1,1.19,8,V,""),
- ("Frutta","Ekom","ekom08","Ortofrutta","Uva bianca senza semi","500 g",0.500,1.85,8,V,""),
- ("Frutta","Ekom","ekom08","Ortofrutta","Uva Red Globe","750 g",0.750,1.99,8,V,""),
- ("Frutta","Ekom","ekom08","Ortofrutta","Mele Gala","al kg",1,1.49,8,V,""),
 
  # --- pagina 9: banco salumi, formaggi e macelleria ---
  # Il volantino avverte: valide SOLO nei punti vendita col banco servito.
- ("Prosciutto","Ekom","ekom08","Gastronomia","Prosciutto di Parma DOP, al banco","al kg",1,26.90,9,V,"Il volantino stampa 2,69 all'etto. Vale solo nei negozi col banco servito."),
- ("Bresaola","Ekom","ekom08","Gastronomia","Carpaccio di bresaola punta d'anca, al banco","al kg",1,26.90,9,V,"Il volantino stampa 2,69 all'etto. Vale solo nei negozi col banco servito."),
- ("Salame","Ekom","ekom08","Gastronomia","Salame Piacentino DOP, al banco","al kg",1,21.90,9,V,"Il volantino stampa 2,19 all'etto. Vale solo nei negozi col banco servito."),
- ("Prosciutto","Ekom","ekom08","Gastronomia","Prosciutto cotto alta qualità nazionale – Lenti, al banco","al kg",1,19.90,9,V,"Il volantino stampa 1,99 all'etto. Vale solo nei negozi col banco servito."),
- ("Formaggio","Ekom","ekom08","Gastronomia","Primo sale siciliano pepato, al banco","al kg",1,12.90,9,V,"Il volantino stampa 1,29 all'etto. Vale solo nei negozi col banco servito."),
- ("Formaggio","Ekom","ekom08","Gastronomia","Gorgonzola DOP dolce Gim – Invernizzi, al banco","al kg",1,13.90,9,V,"Il volantino stampa 1,39 all'etto. Vale solo nei negozi col banco servito."),
- ("Formaggio","Ekom","ekom08","Gastronomia","Caciotta, al banco","al kg",1,11.90,9,V,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."),
- ("Formaggio","Ekom","ekom08","Gastronomia","Maasdammer, al banco","al kg",1,8.90,9,V,"Il volantino stampa 0,89 all'etto. Vale solo nei negozi col banco servito."),
- ("Manzo","Ekom","ekom08","Macelleria","Spezzatino di bovino adulto","al kg",1,15.90,9,V,"Vale solo nei negozi col banco servito."),
- ("Manzo","Ekom","ekom08","Macelleria","Sottofiletto di bovino adulto","al kg",1,22.90,9,V,"Vale solo nei negozi col banco servito."),
- ("Suino","Ekom","ekom08","Macelleria","Coppa di suino con osso","al kg",1,6.90,9,V,"Vale solo nei negozi col banco servito."),
- ("Tacchino","Ekom","ekom08","Macelleria","Fesa di tacchino a fette","al kg",1,13.90,9,V,"Vale solo nei negozi col banco servito."),
- ("Pollo","Ekom","ekom08","Macelleria","Cosce di pollo, confezione risparmio","al kg",1,4.90,9,V,"Confezione risparmio da 600/800 g. Vale solo nei negozi col banco servito."),
 
  # --- pagina 10: freschi confezionati ---
- ("Burro","Ekom","ekom08","Freschi","Burro – Latteria Soresina","125 g",0.125,1.19,10,V,"−25%, prima 1,69."),
- ("Mozzarella","Ekom","ekom08","Freschi","Mozzarella fior di latte – Vallelata","300 g (100 g × 3)",0.300,2.49,10,V,""),
- ("Mozzarella","Ekom","ekom08","Freschi","Bocconcini ripieni con crema di latte – Vallelata","180 g",0.180,2.49,10,V,"Sono ripieni di crema di latte, non mozzarella semplice."),
- ("Mozzarella","Ekom","ekom08","Freschi","Mozzarella di bufala campana DOP","300 g (100 g × 3)",0.300,2.99,10,V,""),
- ("Formaggio","Ekom","ekom08","Freschi","Stracchino","320 g",0.320,1.99,10,V,""),
- ("Ricotta","Ekom","ekom08","Freschi","Ricotta fresca","450 g",0.450,1.19,10,V,""),
- ("Ricotta","Ekom","ekom08","Freschi","Ricottina light Santa Lucia – Galbani","180 g (90 g × 2)",0.180,1.19,10,V,"−20%, prima 1,49."),
- ("Formaggio","Ekom","ekom08","Freschi","Scamorza affumicata o bianca – Kome Te","90 g",0.090,1.69,10,V,"−30%, prima 2,49."),
- ("Formaggio","Ekom","ekom08","Freschi","Tomini classici – Pezzana","160 g (80 g × 2)",0.160,1.99,10,V,"−20%, prima 2,49."),
- ("Formaggio","Ekom","ekom08","Freschi","Brie","500 g",0.500,3.99,10,V,""),
- ("Formaggio","Ekom","ekom08","Freschi","Gorgonzola DOP","200 g",0.200,1.99,10,V,"−20%, prima 2,49."),
- ("Grana","Ekom","ekom08","Freschi","Parmigiano Reggiano DOP 16 mesi – Ferrari","150 g",0.150,3.99,10,V,"−20%, prima 4,99."),
 
  # --- pagina 11: freschi confezionati ---
- ("Formaggio","Ekom","ekom08","Freschi","Raspadura – Bella Lodi","100 g",0.100,1.99,11,V,"−20%, prima 2,49."),
- ("Grana","Ekom","ekom08","Freschi","Granbiraghi spicchio – Biraghi","500 g",0.500,6.99,11,V,"È Granbiraghi, non Grana Padano DOP."),
- ("Prosciutto","Ekom","ekom08","Salumi","Prosciutto di Parma DOP in vaschetta","80 g",0.080,2.69,11,V,"−20%, prima 3,49."),
- ("Prosciutto","Ekom","ekom08","Salumi","Prosciutto cotto di alta qualità – Rovagnati","180 g",0.180,2.39,11,V,"−20%, prima 2,99."),
- ("Würstel","Ekom","ekom08","Salumi","Würstel di puro suino","250 g",0.250,0.99,11,V,"Sono würstel, non carne fresca."),
- ("Salame","Ekom","ekom08","Salumi","Salame Felino IGP – Kome Te","80 g",0.080,2.79,11,V,"−20%, prima 3,49."),
- ("Salmone affumicato","Ekom","ekom08","Freschi","Salmone scozzese affumicato","80 g",0.080,3.99,11,V,"−20%, prima 4,99. È affumicato, non fresco."),
- ("Pane","Ekom","ekom08","Panetteria","Piadina romagnola IGP, 5 pezzi","600 g",0.600,1.49,11,V,""),
- ("Sughi","Ekom","ekom08","Freschi","Pesto di Prà – I Gran Pesti","130 g",0.130,2.49,11,V,"È pesto fresco da banco frigo."),
- ("Pasta","Ekom","ekom08","Freschi","Gnocchi tricolore","400 g",0.400,1.59,11,V,"−20%, prima 1,99. Sono gnocchi freschi, non pasta secca."),
 
  # --- pagina 13: solo con la carta EKOM UP ---
- ("Preparati","Ekom","ekom08","Surgelati","Cotolette di pollo – AIA","280 g",0.280,1.99,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99. Sono cotolette panate surgelate."),
- ("Patate","Ekom","ekom08","Surgelati","Patate grigliate al rosmarino","450 g",0.450,1.49,13,V,"Solo con la carta EKOM UP. Senza tessera 1,99. Sono surgelate e già grigliate, non patate crude."),
- ("Pane","Ekom","ekom08","Panetteria","Focaccia croccante genovese","250 g",0.250,1.99,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99."),
- ("Tonno","Ekom","ekom08","Dispensa","Filetti di tonno all'olio extra vergine di oliva – Maruzzella","130 g, sgocciolati 91 g",0.091,2.39,13,V,"Solo con la carta EKOM UP. Senza tessera 2,99. Il conto è sui 91 g sgocciolati, come stampa il volantino."),
- ("Bibite","Ekom","ekom08","Bevande","Fanta Original o Sprite classica","1,5 litri",1.500,1.32,13,V,"Solo con la carta EKOM UP. Senza tessera 1,89."),
- ("Birra","Ekom","ekom08","Bevande",'Birra non filtrata – Ichnusa',"500 ml",0.500,1.29,13,V,"Solo con la carta EKOM UP. Senza tessera 1,65."),
- ("Lavastoviglie","Ekom","ekom08","Cura casa","Gel Tutto in 1 limone e lime, 52 lavaggi – Pril","936 ml",52,5.49,13,V,"Solo con la carta EKOM UP. Senza tessera 7,99."),
- ("Asciugatutto","Ekom","ekom08","Cura casa","Asciugatutto 2 veli, 2 maxi rotoli – Bravo","2 maxi rotoli",2,4.99,13,V,"Solo con la carta EKOM UP. Senza tessera 6,99. Sono maxi rotoli: al rotolo costano più dei normali, ma durano di più."),
 
  # --- pagina 14: profumeria e detergenza ---
- ("Bagnoschiuma","Ekom","ekom08","Cura persona","Sapone mani e viso marsiglia o mandorle e karité – Spuma di Sciampagna","430 ml",0.430,1.79,14,V,"−25%, prima 2,49."),
- ("Shampoo","Ekom","ekom08","Cura persona","Shampoo Fructis – Garnier","700 ml",0.700,4.99,14,V,"−25%, prima 6,99."),
- ("Lavatrice","Ekom","ekom08","Cura casa","Detersivo in polvere classico, 48 misurini – Dixan","2,64 kg",48,8.99,14,V,"−30%, prima 12,90."),
- ("Ammorbidente","Ekom","ekom08","Cura casa","Ammorbidente concentrato fresca rugiada o petali di marsiglia, 65 lavaggi – Spuma di Sciampagna","1,3 litri",65,2.19,14,V,"−40%, prima 3,69."),
- ("Asciugatutto","Ekom","ekom08","Cura casa","Asciugatutto Tuttofare, 4 rotoli – Scottex","4 rotoli",4,4.59,14,V,"−30%, prima 6,79."),
 
  # --- pagina 15: surgelati ---
- ("Panati","Ekom","ekom08","Surgelati","10 bastoncini di pesce – Ocean Blu","300 g",0.300,1.59,15,V,"−20%, prima 1,99."),
- ("Calamari","Ekom","ekom08","Surgelati","Tubi di totano","700 g",0.700,3.99,15,V,"−40%, prima 6,99. È totano, non calamaro."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Funghi porcini di bosco cubettati – Asiago Food","300 g",0.300,3.49,15,V,"−20%, prima 4,49."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Cicoria foglia a foglia – Agrifood","750 g",0.750,1.59,15,V,"−20%, prima 1,99."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Minestrone Tradizione – Findus","700 g",0.700,2.39,15,V,"−20%, prima 2,99."),
- ("Verdure surgelate","Ekom","ekom08","Surgelati","Spinaci con mozzarella e formaggio","450 g",0.450,1.99,15,V,"−20%, prima 2,49. Non sono spinaci puri: dentro ci sono mozzarella e formaggio."),
- ("Gelato","Ekom","ekom08","Surgelati","Vaschetta gelato, gusti assortiti","1 kg",1,2.99,15,V,""),
- ("Gelato","Ekom","ekom08","Surgelati","Maxibon Classic – Nestlé","384 g",0.384,2.99,15,V,"−40%, prima 4,99."),
- ("Gelato","Ekom","ekom08","Surgelati","Gelato ricoperto","400 g",0.400,1.99,15,V,"−20%, prima 2,49."),
- ("Pizza","Ekom","ekom08","Surgelati","Pizza margherita La Numero Uno – Italpizza","410 g",0.410,2.39,15,V,"−20%, prima 2,99."),
 
  # --- pagina 16: piccoli formati ---
- ("Gelato","Ekom","ekom08","Surgelati","Vaschetta gelato, gusti assortiti – Kome Te","200 g",0.200,0.99,16,V,"−33%, prima 1,49."),
- ("Grana","Ekom","ekom08","Freschi","Gran Biraghi grattugiato – Biraghi","60 g",0.060,0.99,16,V,"−25%, prima 1,39. È Gran Biraghi, non Grana Padano DOP."),
- ("Formaggio","Ekom","ekom08","Freschi","Snack Biraghini – Biraghi","66,68 g (16,67 g × 4)",0.06668,1.39,16,V,"−20%, prima 1,79. Sono snack monoporzione."),
- ("Bresaola","Ekom","ekom08","Salumi","Sfilacci di bresaola","60 g",0.060,1.39,16,V,"−30%, prima 1,99."),
- ("Yogurt","Ekom","ekom08","Freschi","Yogurt alla fragola Super Mario – Danone","110 g",0.110,0.59,16,V,"−33%, prima 0,89."),
- ("Biscotti","Ekom","ekom08","Colazione","Canestrelli","125 g",0.125,0.79,16,V,"−20%, prima 0,99."),
- ("Biscotti","Ekom","ekom08","Colazione","Frollini Le Spighe, diversi tipi","300 g",0.300,0.89,16,V,""),
- ("Miele","Ekom","ekom08","Colazione","Miele millefiori monodose","80 g (20 g × 4)",0.080,0.99,16,V,"Sono monodose."),
- ("Riso","Ekom","ekom08","Dispensa","Riso Ribe – Scotti","500 g",0.500,0.99,16,V,"−35%, prima 1,59."),
- ("Olio d'oliva","Ekom","ekom08","Dispensa","Olio extra vergine di oliva monodose – Biffi","50 ml (10 ml × 5)",0.050,1.19,16,V,"−20%, prima 1,49. Sono monodose da 10 ml: al litro costano moltissimo, servono per il pranzo fuori casa."),
- ("Sughi","Ekom","ekom08","Dispensa","Pesto tartufo, calabrese o pomodori secchi e pistacchio – Saclà","90 g (45 g × 2)",0.090,1.49,16,V,"−25%, prima 1,99."),
- ("Pomodoro","Ekom","ekom08","Dispensa","Passata di pomodoro – Mutti","235 g",0.235,0.79,16,V,"−20%, prima 0,99."),
 
  # ----- Bennet «Un mondo di bellezza», 17-30 settembre (bennet1709), letto per intero il 2026-09-19 -----
  # Volantino a tema bellezza (uscito il 17/9 mentre bennet10 era ancora valido,

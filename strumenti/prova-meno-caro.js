@@ -103,7 +103,14 @@ setTimeout(() => {
   });
 
   if (!conPastiglia) male.push('nessun prodotto ha la pastiglia del meno caro');
-  if (!sbiadite) male.push('nessuna offerta sbiadita: o non ce ne sono da venire, o la classe non arriva');
+  /* Sbiadita e' solo un'offerta il cui INTERO volantino non e' ancora
+     cominciato (una ristretta-e-futura dentro un volantino gia' attivo e'
+     nascosta del tutto, non sbiadita: vedi sopra). Se in questo momento
+     nessun volantino e' "in arrivo" - capita, tutti possono essere gia'
+     iniziati lo stesso giorno, come il 2026-09-24 - non c'e' proprio niente
+     da colorare sbiadito: non e' un guasto, e' il calendario. */
+  const cePendente = w.eval("DATI.offerte.some(o => o.inizio > OGGI_ISO && !o.ristretta)");
+  if (!sbiadite && cePendente) male.push('nessuna offerta sbiadita: la classe non arriva anche se un volantino è in arrivo');
 
   /* NEI RISULTATI DELLA RICERCA NO. */
   w.eval('apriRicerca(true)');
