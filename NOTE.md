@@ -3769,3 +3769,27 @@ zona**, e il sito di raccolta ne mostra uno a caso.
 
 Niente è stato ancora cambiato nei dati né nella pagina: chiesto a Manlio se
 procedere e in quale MD va.
+
+## 2026-09-25 mattina — Anche Bennet ha edizioni regionali: lo stesso sintomo del 24/9
+
+Girando le insegne per la Routine, anteprimavolantino.it mostrava un Bennet
+nuovo, «14 Giorni Mai Visti» (24/9-7/10, 47 pagine). Letto quasi per intero
+(più di 200 righe) prima di arrivare all'ultima pagina: la retro-copertina
+elenca i punti vendita dove vale la promozione, ed è tutta Lombardia (Albano
+S. Alessandro, Antegnate, Brugherio, Cantù, Lecco, Cornaredo...), zero negozi
+in Piemonte. **Lo stesso identico sintomo del Carrefour Iper del 24/9** (la
+pagina finale coi negozi senza Torino): anteprimavolantino.it non è un'unica
+fonte per insegna, e nemmeno per Bennet raccoglie il volantino giusto per ogni
+zona — a volte pesca quello di un'altra regione. Confermato con un secondo
+controllo (trovavolantini.it, cercando il negozio «Torino Via San Paolo» per
+nome): a Torino il volantino attivo è ancora «Un mondo di bellezza»
+(bennet1709, 17-30/9, già letto), non «14 Giorni Mai Visti». Tutte le righe
+lette sono state buttate via: nessuna pubblicata.
+
+**La regola per la prossima volta**: prima di leggere un volantino trovato su
+anteprimavolantino.it (vale per qualunque insegna, non solo Bennet), controlla
+SUBITO l'ultima pagina (di solito la retro-copertina, con l'elenco dei punti
+vendita dove la promozione è valida) — non aspettare di aver letto tutto il
+resto. Se Torino non c'è, è la stessa storia del Carrefour Iper: l'edizione è
+sbagliata, si scarta senza rimpianti e si cerca quella giusta (fonte ufficiale
+del sito, o un secondo volantino nello stesso elenco).
