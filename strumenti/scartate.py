@@ -70,19 +70,22 @@ SCARTATE = {
  },
  # Guardate una per una il 2026-09-18, leggendo il volantino per intero (37 pagine).
  'md22': {
+   # Edizione di corso Sebastopoli (nord-atm-na-gastro, 36 pagine): non ha la
+   # pagina della gastronomia al banco, quindi dalla 14 in poi i numeri sono
+   # uno meno di quelli dell'edizione letta il 22/9 su anteprimavolantino.
    5: 'pagina "tutto a 1€" di bevande e dolci senza categoria del catalogo (avena drink, frutta da bere, cannucce, maionese, taralli, merende, barrette)',
    11: 'pagina ricetta pubblicitaria con GialloZafferano (cous cous alle melanzane): nessun prezzo',
-   23: 'speciale Cura Persona: salviette, detergenti, shampoo, creme, nessuna categoria del catalogo',
-   27: 'speciale Accessori Cucina: pentole e utensili, nessun prezzo di spesa alimentare',
-   28: 'speciale Accessori Cucina: pentole professionali e piastre, nessun prezzo di spesa alimentare',
-   29: 'speciale Accessori Cucina: batterie di pentole e bistecchiere, nessun prezzo di spesa alimentare',
-   30: 'speciale Casalingo: elettrodomestici (forno, asciugatrice, ferro da stiro), nessun prezzo di spesa alimentare',
-   31: 'speciale Casalingo: stendini, tappeti, ferro da stiro, nessun prezzo di spesa alimentare',
-   32: 'speciale Casalingo: arredo e decorazioni, nessun prezzo di spesa alimentare',
-   33: 'speciale Tessile: biancheria e abbigliamento, nessun prezzo di spesa alimentare',
-   34: 'speciale Urban E-Mobility: bici e monopattini elettrici, nessun prezzo di spesa alimentare',
-   35: 'MD Viaggi: pacchetti vacanza, nessun prezzo di spesa alimentare',
-   36: 'MD Viaggi: pacchetti vacanza (pagina 2), nessun prezzo di spesa alimentare',
+   22: 'speciale Cura Persona: salviette, detergenti, shampoo, creme, nessuna categoria del catalogo',
+   26: 'speciale Accessori Cucina: pentole e utensili, nessun prezzo di spesa alimentare',
+   27: 'speciale Accessori Cucina: pentole professionali e piastre, nessun prezzo di spesa alimentare',
+   28: 'speciale Accessori Cucina: batterie di pentole e bistecchiere, nessun prezzo di spesa alimentare',
+   29: 'speciale Casalingo: elettrodomestici (forno, asciugatrice, ferro da stiro), nessun prezzo di spesa alimentare',
+   30: 'speciale Casalingo: stendini, tappeti, ferro da stiro, nessun prezzo di spesa alimentare',
+   31: 'speciale Casalingo: arredo e decorazioni, nessun prezzo di spesa alimentare',
+   32: 'speciale Tessile: biancheria e abbigliamento, nessun prezzo di spesa alimentare',
+   33: 'speciale Urban E-Mobility: kart e moto elettriche per bambini, scooter subacqueo, nessun prezzo di spesa alimentare',
+   34: 'MD Viaggi: pacchetti vacanza, nessun prezzo di spesa alimentare',
+   35: 'MD Viaggi: pacchetti vacanza (pagina 2), nessun prezzo di spesa alimentare',
  },
  # Guardate una per una il 2026-09-16, leggendo il volantino per intero (20 pagine).
  'mercato17': {

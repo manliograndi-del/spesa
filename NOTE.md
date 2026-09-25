@@ -3793,3 +3793,40 @@ vendita dove la promozione è valida) — non aspettare di aver letto tutto il
 resto. Se Torino non c'è, è la stessa storia del Carrefour Iper: l'edizione è
 sbagliata, si scarta senza rimpianti e si cerca quella giusta (fonte ufficiale
 del sito, o un secondo volantino nello stesso elenco).
+
+## 2026-09-25 — Carrefour Iper e MD passati all'edizione di Torino (v111)
+
+Manlio ha detto «vai» alle correzioni trovate il 24/9 cercando le fonti
+ufficiali. Cosa è cambiato davvero, confrontando pagina per pagina le due
+edizioni (a occhio, come sempre):
+
+- **Carrefour Iper, edizione Piemonte.** Le pagine 22, 39, 41 e 46 erano
+  identiche byte per byte; la 14 ha le stesse offerte in un altro ordine. Le
+  differenze vere: pagina 15 (niente Salame Nostrano Bortolotti né Pancetta
+  Piacentina: al loro posto Salame Ungherese Raspini e Pancetta arrotolata; il
+  cotto 1956 Ferrarini diventa il Leonardo di Parmacotto allo stesso prezzo; il
+  Leerdammer costa uguale ma NON è in sconto; in più Provolone Auricchio,
+  Camoscio d'Oro e il Formaggio del Contadino, uno dei «meglio del Piemonte»),
+  pagina 17 (la mozzarella è Caseificio Pugliese a 1,99, non Bayernland a
+  1,79), 18 (yogurt Müller 2,39 invece di 2,29), 23-24 (più righe con la
+  tessera Payback, il Carnaroli è Carrefour 1 kg a 2,55 e non El Ris de Milan
+  2 kg, in più l'olio Desantis), 25 (acqua Valmora 1,59 invece di Boario 1,79),
+  26 (il Corvo ha un «prima» diverso). E soprattutto **finisce oggi, 25/9, non
+  il 28**: domani sarebbero rimasti tre giorni di prezzi che a Torino non ci
+  sono.
+- **MD di corso Sebastopoli.** L'edizione «nord-atm-na-gastro» è quella SENZA
+  la gastronomia al banco: la pagina 14 letta il 22/9 (cotto Parmacotto,
+  mortadella al pistacchio, speck, pecorino, brie, olive, carciofi) lì non
+  esiste, e dalla 15 in poi tutto scala di uno. Alla pagina 13 non c'è il
+  banco della macelleria: via vitello, reale di bovino e hamburger misto;
+  ci sono invece tagliata di filetto di suino, hamburger di equino e polpette
+  Aia. Pagina 12: zucchine invece del pomodoro a grappolo, patate in rete da
+  5 kg a 3,25 invece di 4 kg a 2,60 (stesso prezzo al kg). Pagina 19: la birra
+  Contessa IPA costa 1,69, la blanche 1,59. Le pagine si aprono ora dalle
+  immagini ufficiali MD, non più da anteprimavolantino.
+- **Bennet.** La Routine di stamattina aveva ragione: «14 giorni mai visti» è
+  solo Lombardia, anche sul sito ufficiale (l'ultima pagina elenca i negozi, e
+  sono tutti lombardi). Il sito bennet.com/flyer li mostra tutti senza dire per
+  quale negozio valgono: **l'elenco dei negozi in fondo al PDF è l'unica
+  prova**. «Offerte Extra» (8 pagine) invece dice «valida in tutti i Bennet» e
+  va letto.
