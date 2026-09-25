@@ -175,9 +175,16 @@ non ancora letti»). Da lì si tolgono appena entrano in `VOLANTINI`.
 | Pam | **corso Orbassano 212** (store 71, pv 2311), un «PAM Supermercati». **Non i «PAM Panorama»**: id vicini, prezzi diversi. Di solito due volantini per periodo, il principale e «Occasioni Extra» | elenco per negozio: POST `https://coeus.ppapi.it/api/v2_2/post/query?noCache=1&typeUuid=flyer` con `typeUuid=flyer&fields[0]=slug&fields[1]=name&limit=30&orders[publishedAt]=desc&relationshipQueries[flyer_store][$in][0]=71` (header Origin/Referer `https://www.pampanorama.it`). «con APP» = solo con l'app Pam Perte Plus, e il volantino non stampa il prezzo senza app. I nuovi si trovano prima provando gli id su `pam.volantinopiu.com/volantino<id>00pv2311.html` |
 | Conad | **via Cesana 78** (codice 009843), il Conad «normale» più vicino. I Conad City e i Superstore hanno volantini loro | la scheda del negozio `conad.it/ricerca-negozi/conad-via-cesana-78-10139-torino--009843` (si scarica con un curl normale), che contiene i PDF ufficiali; `scarica.py` li legge da solo. **Servono due indirizzi**: il PDF va in `PDF` dentro `dati.py` (per scaricare le pagine), il visore `volantini.conad.it/<nome>/<id>/{n}` va in `VOLANTINI` (per il collegamento: il PDF sul telefono si apre dall'inizio). Il numero del PDF avanza di uno a ogni volantino (`2026…20PCONADPIEMONTE` = 24/9-7/10). «Perché conviene» ripete il principale |
 
-Pam, Conad e Ipercoop sono stati scelti da me perché sono i più vicini, senza
-chiederlo a lui: se va in un altro negozio, va cambiato (vedi le domande
-aperte).
+I negozi di Pam (corso Orbassano), Conad (via Cesana), Ipercoop
+(Torino-Collegno) e MD (corso Sebastopoli) li ha confermati lui il 25/9 («sono
+davvero i miei negozi», «per ora va bene qualsiasi cosa»).
+
+**Dove vuole arrivare** (Manlio, 25/9): l'applicazione deve diventare **il più
+generica possibile per la città di Torino**. Quali supermercati tenere, e se
+mettere più volantini (più edizioni) per ciascuna insegna, lo deciderà lui più
+avanti: fino ad allora non si aggiungono né tolgono insegne o edizioni di
+testa propria, ma quando si sceglie come fare una cosa si preferisce la strada
+che funziona per tutta Torino, non solo per corso Siracusa.
 
 Regole comuni sulle fonti:
 - **La fonte risponde 200 anche per pagine che non esistono**, con
@@ -614,6 +621,12 @@ sono letti al 100%.
   su kimbino. Si passano alle fonti ufficiali al prossimo volantino di
   ciascuna (Lidl ha le immagini delle pagine, Eurospin solo il PDF: si apre
   con `#page=` come il Bennet).
+- **Il tasto «Aprilo alla pagina N» dei volantini solo PDF non funziona sul
+  suo telefono** (provato da lui il 25/9 con i Kinderini del Bennet: «non si
+  apre, ma non importa»). Probabile causa: Chrome per Android non ha un
+  lettore di PDF, scarica il file e ignora `#page=`. Una strada da provare
+  quando capita: mostrare la pagina dentro la finestra con pdf.js, se il sito
+  del PDF lo permette (CORS). Non è urgente.
 - **Il 25 ottobre**: la Routine va rimessa a `0 6 * * *`.
 - Aspettano lui: le correzioni a penna del catalogo; reinstallare l'icona dal
   nuovo indirizzo e mandare il link alla moglie (da verificare se l'ha già
@@ -624,17 +637,12 @@ sono letti al 100%.
    15 settembre, molte delle quali parlano di cose che non esistono più. La
    togliamo per chi arriva la prima volta? (È una sua regola: serve il suo sì.)
 2. Sul link Claude la pagina del volantino si vede, o compare «Aprila sul sito»?
-3. I suoi negozi sono davvero il Pam di corso Orbassano e il Conad di via
-   Cesana? Per l'Ipercoop va a Torino (edizione Torino-Collegno) o a Beinasco
-   (Le Fornaci, più vicino, edizione con id 28844 e qualche prezzo diverso)?
-4. Nel carrello, toccando una pillola preferisce andare in Cerca con quella
+3. Nel carrello, toccando una pillola preferisce andare in Cerca con quella
    parola?
-5. Banchi all'etto: accanto al prezzo all'etto c'è scritto «al pezzo», che non
+4. Banchi all'etto: accanto al prezzo all'etto c'è scritto «al pezzo», che non
    è giusto.
-6. Il 23/9 ha detto «i tasti sono rimasti tutti rossi» e io l'ho interpretato
+5. Il 23/9 ha detto «i tasti sono rimasti tutti rossi» e io l'ho interpretato
    come le pillole del carrello: se intendeva altro, va ricontrollato.
-7. In quale MD va? Il più vicino è corso Sebastopoli 227/A (300 m), poi via
-   Gorizia 148/A (700 m): hanno edizioni diverse del volantino.
 
 ## File del progetto
 
