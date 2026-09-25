@@ -140,7 +140,7 @@ setTimeout(() => {
       && (x.nome || '') === primo.querySelector('.chi .nome').textContent.trim());
     primo.querySelector('.apri-vol').click();
     const tit = () => d.getElementById('titolo-sfoglia').textContent;
-    const src = () => { const e = d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe'); return e ? e.getAttribute('src') : ''; };
+    const src = () => { const e = d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe, #foglio-sfoglia a.apri-pdf'); return e ? e.getAttribute(e.matches('a') ? 'href' : 'src') : ''; };
     if (box.hidden) male.push('toccando «' + ins + '» il volantino non si apre');
     if (!v) male.push('la riga di «' + ins + '» non corrisponde a nessun volantino');
     else {
@@ -159,8 +159,22 @@ setTimeout(() => {
     }
     d.getElementById('chiudi-sfoglia').click();
     if (!box.hidden) male.push('«Chiudi» non chiude il volantino');
-    if (d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe'))
+    if (d.querySelector('#foglio-sfoglia img, #foglio-sfoglia iframe, #foglio-sfoglia a.apri-pdf'))
       male.push('chiuso il volantino, la pagina resta caricata sotto');
+  }
+  /* Il volantino che c'è solo in PDF: al posto della pagina, il tasto che lo
+     apre fuori alla pagina giusta. */
+  const soloPdf = corso.concat(arrivo).find(tr => tr.querySelector('.apri-vol')
+    && dati.some(v => v.solopdf && v.ins === tr.querySelector('.chi b').textContent.trim()
+                      && (v.nome || '') === tr.querySelector('.chi .nome').textContent.trim()));
+  if (soloPdf) {
+    soloPdf.querySelector('.apri-vol').click();
+    d.getElementById('avanti-sfoglia').click();
+    const a = d.querySelector('#foglio-sfoglia a.apri-pdf');
+    if (!a) male.push('il volantino solo PDF si apre vuoto');
+    else if (!/#page=2$/.test(a.getAttribute('href')) || a.target !== '_blank')
+      male.push('il volantino solo PDF non si apre fuori alla pagina giusta');
+    d.getElementById('chiudi-sfoglia').click();
   }
   /* Il visore del Conad non è un'immagine: si apre in un riquadro. */
   const conad = corso.concat(arrivo).find(tr => tr.querySelector('.apri-vol')

@@ -22,6 +22,7 @@ import datetime, glob, html, json, os, re
 # resto (il visore del Conad) si apre in un riquadro. Come nella pagina dei
 # prezzi.
 E_IMMAGINE = re.compile(r'\.(?:jpe?g|png|webp|gif)(?:\?|$)|/thumbor/', re.I)
+E_PDF = re.compile(r'\.pdf(?:[?#]|$)|#page=\d', re.I)
 
 QUI = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STORIA = os.path.join(QUI, 'storia')
@@ -217,6 +218,8 @@ table.tv tr.apribile:active .apri-vol,table.tv .apri-vol:active{background:var(-
   border-radius:6px}
 .sfoglia .avviso-vol{color:#FFFFFF;text-align:center;margin:40px 16px;font-size:15px}
 .sfoglia .avviso-vol a{color:#FFFFFF;font-weight:700}
+.sfoglia .avviso-vol a.apri-pdf{display:inline-block;margin-top:14px;padding:13px 20px;
+  border-radius:14px;background:#FFFFFF;color:#1B1B1A;text-decoration:none;font-size:17px}
 .sfoglia .comandi{position:absolute;left:14px;right:14px;display:flex;gap:10px;
   bottom:calc(14px + env(safe-area-inset-bottom,0px))}
 .sfoglia .comandi button{min-height:58px;border:0;border-radius:14px;font-family:inherit;
@@ -546,7 +549,14 @@ function mostraPagina() {
     foglio.querySelector('a').href = url;
   };
   const dove = 'Pagina ' + (i + 1) + ' del volantino ' + v.ins;
-  if (v.quadro) {
+  if (v.solopdf) {
+    /* Solo PDF (il Bennet «Offerte Extra»): il telefono qui dentro non lo
+       mostra; si apre fuori, alla pagina che si sta guardando. */
+    foglio.innerHTML = '<p class="avviso-vol">Questo volantino c’è solo in PDF, che qui dentro il telefono non mostra.<br><a class="apri-pdf" target="_blank" rel="noopener noreferrer"></a></p>';
+    const a = foglio.querySelector('a');
+    a.href = url;
+    a.textContent = 'Aprilo alla pagina ' + (i + 1);
+  } else if (v.quadro) {
     const f = document.createElement('iframe');
     f.title = dove;
     f.referrerPolicy = 'no-referrer';
@@ -779,7 +789,9 @@ def costruisci():
     tabella = [dict(ins=v.insegna, nome=nome_corto(v.periodo), periodo=v.periodo,
                     inizio=v.inizio, fino=v.fino, letto=True, dove='',
                     pagine=pagine_di(v, npagine.get(v.chiave, 0)),
-                    quadro=bool(v.indirizzo) and not E_IMMAGINE.search(v.indirizzo or ''))
+                    quadro=bool(v.indirizzo) and not E_IMMAGINE.search(v.indirizzo or '')
+                           and not E_PDF.search(v.indirizzo or ''),
+                    solopdf=bool(E_PDF.search(v.indirizzo or '')))
                for v in VOLANTINI]
     tabella += [dict(ins=a.insegna, nome=nome_corto(a.periodo), periodo=a.periodo,
                      inizio=a.inizio, fino=a.fino, letto=False, dove=a.dove)

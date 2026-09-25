@@ -3830,3 +3830,32 @@ edizioni (a occhio, come sempre):
   quale negozio valgono: **l'elenco dei negozi in fondo al PDF è l'unica
   prova**. «Offerte Extra» (8 pagine) invece dice «valida in tutti i Bennet» e
   va letto.
+
+## 2026-09-25 — I volantini che mancavano (v112)
+
+Dopo Carrefour e MD (v111), il resto delle correzioni trovate cercando le
+fonti ufficiali:
+
+- **Bennet «Offerte Extra»** (24/9-4/10, 8 pagine, 51 righe). Sul sito Bennet
+  c'è solo il PDF, senza immagini delle pagine: né `thron` (la miniatura è
+  sempre la copertina, qualunque parametro si provi) né volantinopiu (dà
+  solo la pagina 1) né anteprimavolantino (403). Quindi il collegamento di
+  ogni riga è il PDF con `#page=N`. Dentro la pagina il telefono un PDF non lo
+  mostra (un riquadro con un PDF su Android resta bianco o scarica il file):
+  al posto dell'immagine compare «Questo volantino c’è solo in PDF» con un
+  tasto bianco «Aprilo alla pagina N» (non rosso: il rosso lì è «Chiudi»).
+  L'apostrofo è quello tipografico (’) apposta: in `novita.py` il modello è
+  una stringa Python normale, e `\'` diventava `'` spezzando lo script della
+  pagina Novità — l'ha trovato `prova-novita.js`.
+- **Mercatò «Promo L'Oréal»**: 2 pagine, solo due shampoo in catalogo, stesso
+  trattamento (solo PDF).
+- **Lidl**: le 2 pagine in più della versione ufficiale sono pubblicità (spesa
+  online, «Top Employer»). Niente da aggiungere.
+- **Carrefour Iper «50 prodotti al 50%»** (29/9-12/10, 48 pagine, 282 righe) e
+  tre speciali: Coca-Cola (già in corso, fino al 12/10), Unilever (gelati,
+  29/9-22/10), Aia (29/9-15/11; la pagina 2 vale solo dal 23/10). Letti dal
+  PDF ufficiale, che ha il testo dentro: il testo è servito a non sbagliare i
+  numeri, ma ogni pagina è stata guardata. Le 21 pagine non alimentari sono
+  in `scartate.py`. Il «96 ore scontate» dell'ultima pagina (1-4/10 e 8-11/10)
+  ha le date sulle righe. Fra il 26 e il 28 il Carrefour avrà solo lo
+  speciale Coca-Cola: il «Grandi Marche» in Piemonte finisce oggi.

@@ -69,6 +69,34 @@ SCARTATE = {
    47: 'pubblicità vini Tenute del Cerro: solo sconti del 30% senza il prezzo di partenza',
  },
  # Guardate una per una il 2026-09-18, leggendo il volantino per intero (37 pagine).
+ 'bennetextra24': {
+   6: 'pubblicità Gillette e King C. Gillette: rimborsi e concorsi, nessun prezzo',
+ },
+ 'mercatoreal17': {
+   2: 'creme viso, balsamo multiuso e trucco (Mixa, Maybelline, Revitalift): nessuna categoria del catalogo',
+ },
+ 'carriper29': {
+   7: 'offerte al 50% non alimentari: cuscino, padelle, lavavetri, panni, jeans, felpa, pantofole, Barbie',
+   26: 'raccolta bollini dei bicchieri RCR: nessun prezzo di spesa',
+   27: 'animali: snack e cibo per cani e gatti, nessuna categoria del catalogo',
+   32: 'mocio, scope, panni, secchi: nessuna categoria del catalogo',
+   33: 'sacchi, grucce, guanti, asse da stiro: nessuna categoria del catalogo',
+   36: 'auto, pellet, piatti e bicchieri di plastica, Halloween: nessun prezzo di spesa',
+   37: 'televisori, telefoni ed elettrodomestici',
+   38: 'pentole e lasagnere',
+   39: 'pentole e padelle',
+   40: 'tovaglie e tessile per la casa',
+   41: 'tessile per la casa',
+   42: 'smartphone e televisori',
+   43: 'abbigliamento',
+   44: 'abbigliamento uomo',
+   45: 'abbigliamento',
+   46: 'piatti, ciotole, tazze: «svuota tutto» della casa',
+   47: 'abbigliamento e intimo',
+ },
+ 'carrcoca15': {
+   1: 'concorso «Vinci premi iconici Coca-Cola»: nessun prezzo',
+ },
  'md22': {
    # Edizione di corso Sebastopoli (nord-atm-na-gastro, 36 pagine): non ha la
    # pagina della gastronomia al banco, quindi dalla 14 in poi i numeri sono

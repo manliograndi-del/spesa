@@ -56,7 +56,11 @@ setTimeout(() => {
       if (!r.classList.contains('apribile')) { male.push('una scheda non si apre toccandola'); return; }
       r.querySelector('.nome').click();
       if (sopra.hidden) { male.push('toccando la scheda il volantino non si apre'); return; }
-      const f = sopra.querySelector('#foglio-vol img, #foglio-vol iframe');
+      /* Il volantino che c'è solo in PDF (Bennet «Offerte Extra») non si
+         mostra qui dentro: al suo posto il tasto che lo apre alla pagina. */
+      const f = sopra.querySelector('#foglio-vol img, #foglio-vol iframe, #foglio-vol a.apri-pdf');
+      if (f && f.matches('a.apri-pdf') && (!/#page=\d/.test(f.href) || f.target !== '_blank'))
+        male.push('il PDF non si apre fuori alla pagina giusta');
       if (!f) male.push('il volantino si apre vuoto');
       if (!/pagina \d+/.test(d.getElementById('titolo-vol').textContent))
         male.push('in cima non dice che pagina è');

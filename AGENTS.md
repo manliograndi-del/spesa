@@ -167,9 +167,9 @@ non ancora letti»). Da lì si tolgono appena entrano in `VOLANTINI`.
 | Lidl | **ogni negozio ha il suo volantino**. I 15 Lidl di Torino (il più vicino: **via Monfalcone 92**, IT00516, 600 m) hanno la versione **«KA»** più lo speciale **«Fresca e conveniente»**; la versione «NAZ» ha prezzi diversi (ali di pollo 1,69 invece di 1,45) | **ufficiale (trovata il 24/9, da usare)**: `https://endpoints.leaflets.schwarz/v4/overview?client_locale=lidl/it-IT` elenca tutti i volantini con i negozi (`regions`: `store` = IT00xxx, `offer_region`); il dettaglio è `…/v4/flyer?flyer_identifier=<slug>&client=lidl`: date, PDF, **immagini delle pagine** (`imgproxy.leaflets.schwarz`) e **le parole di ogni pagina** (`keyWords`). Il 24/9 la «KA» aveva 54 pagine, anteprimavolantino 52. I negozi: `https://live.api.schwarz/odj/stores-api/v2/myapi/stores-frontend/stores?country_code=IT&limit=250&offset=…` con l'header `x-apikey` scritto nella pagina del sito Lidl (`/s/storesearch-frontend/…/base.js`). Finora: anteprimavolantino.it (la versione giusta, KA) |
 | Eurospin | **ogni negozio ha il suo volantino**. Il più vicino: **via Rio de Janeiro 25** (codice 100029, alias `torino-7`, 1,7 km) | **ufficiale (trovata il 24/9, da usare)**: il visore `digitalflyer.eurospin.it`. Token: POST `/oauth/token` (`grant_type=client_credentials`, `scope=read write`) con l'utente/password scritti nel codice della pagina (`apiAuthorizationCode`); poi `/api/eurospin/eurospin-italia/stores/torino-7/promotions` → `…/promotions/<alias>/contents-light?typeCode=FLY` → il **PDF** `https://digitalflyer.eurospin.it/files/<uniqueId>/<name>`, **col testo dentro** (prezzi compresi). Il 24/9: uguale a quello letto (22 pagine). Finora: anteprimavolantino.it |
 | MD | **ogni negozio ha l'edizione della sua zona, e a Torino ce ne sono quattro**: «nord-atm-na-gastro» (**corso Sebastopoli 227/A**, id 1147, **300 m**), «nord-atm-gastro» (via Gorizia 148/A, 700 m), «nord-macel-gastro» e «nord-macel-na-gastro» (quelle con la macelleria al banco). **Quella letta da anteprimavolantino il 18/9 non è nessuna delle quattro**: macelleria, una pagina intera di gastronomia, frittelle, pomodori/patate e una birra non sono quelli di corso Sebastopoli | **ufficiale (trovata il 24/9, da usare)**: POST `https://www.mdspa.it/punti_vendita_admin/get_pv.php` con `pv=<id>` → `zonanome`; il PDF è `https://www.mdspa.it/cdn/upload/presente/volantini/<zonanome>/volantino.pdf` (senza testo: si legge a occhio). I negozi vicini: `…/punti_vendita_admin/listnew.php?latitudine=…&longitudine=…&luogocercare=Torino`. **Dal 25/9 `md22` è l'edizione di corso Sebastopoli** (36 pagine): il PDF sta in `PDF` di `dati.py` e le pagine si aprono dalle immagini ufficiali `volantino.mdspa.it/volantino/<numero>/md-volantino-page-{n}.jpg` (il numero, 3557 per il 22/9, sta nella pagina `volantino.mdspa.it/nord_atm_nogas.html`, che è la stessa edizione) |
-| Bennet | **non tutti i volantini Bennet sono nazionali**: «14 Giorni Mai Visti» (24/9-7/10) è SOLO LOMBARDIA (retro-copertina: Albano S. Alessandro, Antegnate, Brugherio, Cantù, Lecco… zero Piemonte), scoperto e scartato il 25/9. A Torino: **via San Paolo** (0009) e via G. Bruno (0113), volantino attivo confermato «Un mondo di bellezza» (bennet1709, 17-30/9, già letto) | **ufficiale (trovata il 24/9, non ancora usata)**: `www.bennet.com/flyer`, **solo con un browser vero** (a un curl risponde «Access Denied»; anche il selettore negozio `bennet.com/storefinder/...` ha dato 403 il 25/9). I volantini sono PDF col testo dentro su `bennet-cdn.thron.com/delivery/public/document/bennet/<id>/c82oyu/WEB/volantino`; lo stesso volantino c'è anche su `nativa.bennet.volantinopiu.com/volantino<id>00.html`. **trovavolantini.it** cercato per nome negozio («Torino Via San Paolo») ha confermato il volantino giusto il 25/9. Finora: anteprimavolantino.it — **controllare SEMPRE l'ultima pagina (elenco punti vendita) prima di leggere un volantino Bennet trovato lì**: pesca anche edizioni di altre regioni |
-| Carrefour Iper | **i negozi di Torino** (corso Montecucco 108, corso Turati 75, Grugliasco via Crea 10…) **hanno l'edizione PIEMONTE**. Quella letta il 15/9 da anteprimavolantino era l'edizione **LOMBARDIA** («Il meglio della Lombardia»): una decina di pagine con prodotti o prezzi diversi, e **in Piemonte «Grandi Marche» finisce il 25/9, non il 28** | **ufficiale (trovata il 24/9, da usare)**: `https://www.carrefour.it/volantino/<negozio>/<codice>` (il codice sta in `UrlVolantini` di `…/StoreLocator-GetAll`) elenca i volantini con le date; le pagine: `…/Volantini-Pages?storeId=I001&editionId=<id>&endDate=…` → immagini `gdodig-car.youroperator.it/volantini/iper_…/…_02_PIEMONTE/mobile/…_<n>_sliderzoom.jpg`. La stessa pagina ha anche **l'elenco delle offerte scritto** (prodotto e prezzo). Il 24/9 era già uscito il successore: **«50 prodotti al 50%» dal 29/9 al 12/10**, più «Speciale Coca-Cola», «Speciale Aia», «Speciale Unilever» e «Punti Sprint Payback». **Dal 25/9 `carriper15` è l'edizione Piemonte** e le sue pagine si aprono dalle immagini ufficiali |
-| Mercatò | **via Filadelfia 232, Mercatò semplice** (confermato da lui). Il più vicino è un Mercatò Local, che ha un volantino diverso | **ufficiale (trovata il 24/9, da usare)**: la pagina del negozio `https://www.mymercato.it/punti-vendita/piemonte/mercato-torino-via-filadelfia` contiene l'elenco `flyers` (titolo, date, PDF su `cdn.dimar.it/volantini/<id>/<id>_volantino.pdf`, col testo dentro). Il 24/9: «Al costo conviene sempre» (17-30/9, 20 pagine, uguale a quello letto) e **«Promo L'Oréal» (17-30/9, 2 pagine) che mancava**. Finora: kimbino.it, indirizzi firmati in `strumenti/pagine_mercato.py` |
+| Bennet | **non tutti i volantini Bennet sono nazionali**: «14 Giorni Mai Visti» (24/9-7/10) è SOLO LOMBARDIA (retro-copertina: Albano S. Alessandro, Antegnate, Brugherio, Cantù, Lecco… zero Piemonte), scoperto e scartato il 25/9. A Torino: **via San Paolo** (0009) e via G. Bruno (0113), volantino attivo confermato «Un mondo di bellezza» (bennet1709, 17-30/9, già letto) | **ufficiale (trovata il 24/9, non ancora usata)**: `www.bennet.com/flyer`, **solo con un browser vero** (a un curl risponde «Access Denied»; anche il selettore negozio `bennet.com/storefinder/...` ha dato 403 il 25/9). I volantini sono PDF col testo dentro su `bennet-cdn.thron.com/delivery/public/document/bennet/<id>/c82oyu/WEB/volantino`; lo stesso volantino c'è anche su `nativa.bennet.volantinopiu.com/volantino<id>00.html`. **trovavolantini.it** cercato per nome negozio («Torino Via San Paolo») ha confermato il volantino giusto il 25/9. Finora: anteprimavolantino.it — **controllare SEMPRE l'ultima pagina (elenco punti vendita) prima di leggere un volantino Bennet trovato lì**: pesca anche edizioni di altre regioni. Anche **bennet.com/flyer mostra i volantini di tutte le regioni senza dire dove valgono**: la prova è solo l'elenco dei negozi in fondo al PDF. «Offerte Extra» (`bennetextra24`, «valida in tutti i Bennet») è letto dal PDF ufficiale, che il `…/document/…/volantino` rimanda a `bennet-cdn.thron.com/static/<nome>.pdf`: quell'indirizzo, con `#page={n}`, è anche il collegamento delle righe (non ci sono immagini delle pagine) |
+| Carrefour Iper | **i negozi di Torino** (corso Montecucco 108, corso Turati 75, Grugliasco via Crea 10…) **hanno l'edizione PIEMONTE**. Quella letta il 15/9 da anteprimavolantino era l'edizione **LOMBARDIA** («Il meglio della Lombardia»): una decina di pagine con prodotti o prezzi diversi, e **in Piemonte «Grandi Marche» finisce il 25/9, non il 28** | **ufficiale (trovata il 24/9, da usare)**: `https://www.carrefour.it/volantino/<negozio>/<codice>` (il codice sta in `UrlVolantini` di `…/StoreLocator-GetAll`) elenca i volantini con le date; le pagine: `…/Volantini-Pages?storeId=I001&editionId=<id>&endDate=…` → immagini `gdodig-car.youroperator.it/volantini/iper_…/…_02_PIEMONTE/mobile/…_<n>_sliderzoom.jpg`. La stessa pagina ha anche **l'elenco delle offerte scritto** (prodotto e prezzo). Il 24/9 era già uscito il successore: **«50 prodotti al 50%» dal 29/9 al 12/10**, più «Speciale Coca-Cola», «Speciale Aia», «Speciale Unilever» e «Punti Sprint Payback». **Dal 25/9 `carriper15` è l'edizione Piemonte** e le sue pagine si aprono dalle immagini ufficiali. **Il PDF di ogni edizione, col testo dentro**: `gdodig-car.youroperator.it/api/v1/geteditions/dwnpdfedition.php?id_edizione=<editionId>` (così sono stati letti `carriper29` e gli speciali). Gli speciali (Coca-Cola, Unilever, Aia) hanno una sola edizione per tutti, anche se la cartella si chiama LOMBARDIA |
+| Mercatò | **via Filadelfia 232, Mercatò semplice** (confermato da lui). Il più vicino è un Mercatò Local, che ha un volantino diverso | **ufficiale (trovata il 24/9, da usare)**: la pagina del negozio `https://www.mymercato.it/punti-vendita/piemonte/mercato-torino-via-filadelfia` contiene l'elenco `flyers` (titolo, date, PDF su `cdn.dimar.it/volantini/<id>/<id>_volantino.pdf`, col testo dentro). Il 24/9: «Al costo conviene sempre» (17-30/9, 20 pagine, uguale a quello letto) e «Promo L'Oréal» (17-30/9, 2 pagine), letta il 25/9 (`mercatoreal17`: collegamento al PDF con `#page={n}`). Il volantino principale finora: kimbino.it, indirizzi firmati in `strumenti/pagine_mercato.py` |
 | Ekom | il volantino è uguale in tutta Torino (diversa solo la Toscana). **A volte esce su carta prima che online** | **il sito ufficiale** `ekomdiscount.it/volantini` (l'ha segnalato Manlio), non kimbino. La pagina vuole un browser vero, ma l'API si legge con un curl normale: `ekomdiscount.it/ebsn/api/leaflet/search?parent_leaflet_type_id=1` → `{baseLocation}{n}.png`, n da 0. Indirizzi in `strumenti/pagine_ekom.py`, da rifare a ogni volantino |
 | Ipercoop (Nova Coop) | Nova Coop stampa **14 edizioni**, una per zona, con qualche prezzo diverso. La nostra è **«TORINO - COLLEGNO»**, scritta sul frontespizio (id 28831 per il 24/9). L'elenco completo è nel commento di `VOLANTINI` | volantinopiu. **Il nuovo esiste prima che l'elenco del negozio lo mostri**: si provano gli id uno per uno su `ipercoop.volantinopiu.com/volantino<id>00pv24.html` (`<title>` e date). `promoipercoop.it` è il sito sbagliato |
 | Pam | **corso Orbassano 212** (store 71, pv 2311), un «PAM Supermercati». **Non i «PAM Panorama»**: id vicini, prezzi diversi. Di solito due volantini per periodo, il principale e «Occasioni Extra» | elenco per negozio: POST `https://coeus.ppapi.it/api/v2_2/post/query?noCache=1&typeUuid=flyer` con `typeUuid=flyer&fields[0]=slug&fields[1]=name&limit=30&orders[publishedAt]=desc&relationshipQueries[flyer_store][$in][0]=71` (header Origin/Referer `https://www.pampanorama.it`). «con APP» = solo con l'app Pam Perte Plus, e il volantino non stampa il prezzo senza app. I nuovi si trovano prima provando gli id su `pam.volantinopiu.com/volantino<id>00pv2311.html` |
@@ -452,8 +452,12 @@ scritta del menù scende a 13 px. Il tasto Cerca è `.tasto.trova`.
   pagina e «Apri sul sito»; in basso il tasto rosso **«Chiudi»** (58 px,
   sempre in vista). Chiudono anche il tasto indietro del telefono
   (`pushState`/`popstate`) ed Esc. L'immagine viene dal sito di chi pubblica
-  (vincolo 2); per il Conad c'è il suo visore in un riquadro. Se l'immagine non
-  arriva compare «Aprila sul sito». Il foglietto rosso non si vede più; `dove(o)`
+  (vincolo 2); per il Conad c'è il suo visore in un riquadro. I volantini che
+  esistono solo in PDF (Bennet «Offerte Extra», Mercatò «Promo L'Oréal»:
+  indirizzo `….pdf#page={n}`) non si vedono qui dentro: compare «Questo
+  volantino c’è solo in PDF…» col tasto bianco «Aprilo alla pagina N», che
+  apre il PDF fuori alla pagina giusta. Se l'immagine non arriva compare
+  «Aprila sul sito». Il foglietto rosso non si vede più; `dove(o)`
   serve solo quando manca l'indirizzo della pagina, e il collegamento vero
   tiene `target=_blank`.
 
@@ -557,7 +561,8 @@ che fare con `prefers-color-scheme` (vincolo 4).
   diario dei prezzi. **Ogni volantino si sfoglia toccando la sua riga**: si
   apre sopra la pagina con le frecce ‹ ›, lo scorrimento col dito, il tasto
   «Chiudi» e «pagina 3 di 52». Gli indirizzi li fornisce `pagine_di`, il numero
-  di pagine `indice.json`, e il Conad usa il suo visore. Quelli finiti non si
+  di pagine `indice.json`, il Conad usa il suo visore e i volantini solo PDF
+  (`solopdf`) mostrano il tasto «Aprilo alla pagina N». Quelli finiti non si
   aprono. Funziona solo sul sito.
 - **In fondo alla pagina c'è solo il piede**: la data dei volantini e «i
   marchi restano di chi li ha». L'elenco dei volantini non si rimette senza
@@ -586,32 +591,29 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-25)
 
-**Pubblicato:** `sw.js` **v111**, link Claude (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v112**, link Claude (la versione la dice il registro).
 
-**Scadenze**: `carriper15` il 25/9 (edizione Piemonte); `lidl24`, `lidlfv24`, `mercato17` e
-`bennet1709` il 30/9; `md22` ed `eurospin24` il 4/10; `ekom22` il 5/10;
-`ipercoop24`, `pam24`, `pamextra24` e `conad24` il 7/10. `VOLANTINI_ATTESI` è
-vuoto. Offerte valide solo per una parte del periodo, già segnate riga per
+**Scadenze**: `carriper15` il 25/9 (edizione Piemonte); `lidl24`, `lidlfv24`,
+`mercato17`, `mercatoreal17` e `bennet1709` il 30/9; `md22`, `eurospin24` e
+`bennetextra24` il 4/10; `ekom22` il 5/10; `ipercoop24`, `pam24`,
+`pamextra24` e `conad24` il 7/10; `carriper29` e `carrcoca15` il 12/10;
+`carrunilever29` il 22/10; `carraia29` il 15/11. Dal 26 al 28/9 il Carrefour
+Iper ha solo lo speciale Coca-Cola. `VOLANTINI_ATTESI` è vuoto. Offerte valide solo per una parte del periodo, già segnate riga per
 riga: `lidl24` (24-27 o 28-30), il «Doppio weekend» di `eurospin24` (25-27/9 e
 2-4/10) e la sua frutta di pagina 12 (dal 28), il «Weekend più Uno» di `md22`
 (2-5/10), la pescheria di `pam24` (24-30/9 e 1-7/10), il latte Coop di
-`ipercoop24` (28/9-4/10). Tutti i volantini con prezzi sono letti al 100%.
+`ipercoop24` (28/9-4/10), il «96 ore scontate» di `carriper29` (1-4/10 e
+8-11/10), la pagina 2 di `carraia29` (dal 23/10). Tutti i volantini con prezzi
+sono letti al 100%.
 
-**Da fare** (trovato il 24/9 cercando le fonti ufficiali: vedi la tabella
-«Insegne, negozi e fonti»; Manlio ha detto «vai»)
-- **Carrefour Iper**: leggere il successore «50 prodotti al 50%» (29/9-12/10,
-  editionId 56980) e gli speciali (Unilever 56993, Coca-Cola 56949, Aia
-  56972), dall'edizione Piemonte.
-- **Bennet**: leggere «Offerte Extra» (24/9-4/10, 8 pagine, PDF
-  `b327ad2e-f5ec-4b05-a597-11fb5ce6ff9a`: «valida in tutti i Bennet», esclusi
-  Albano, Biella, Gavardo, Ivrea, Milano viale Corsica, Verbania e Vercelli).
-  «14 giorni mai visti» è solo Lombardia: non si legge.
-- **Mercatò**: leggere la «Promo L'Oréal» (2 pagine). **Lidl**: guardare le 2
-  pagine in più della versione ufficiale.
-- Poi far scaricare `scarica.py` dalle fonti ufficiali e far aprire da lì le
-  pagine sopra l'elenco. Per le insegne che hanno solo il PDF (Eurospin, MD,
-  Bennet, Mercatò) serve un modo di aprire la pagina giusta: il PDF sul
-  telefono si apre dall'inizio.
+**Da fare**
+- Le fonti ufficiali sono in uso per Carrefour Iper, MD, Bennet «Offerte
+  Extra» e Mercatò «Promo L'Oréal». Restano su anteprimavolantino: Lidl
+  (stessa edizione, le 2 pagine in più della versione ufficiale sono
+  pubblicità), Eurospin e Bennet «Un mondo di bellezza»; Mercatò principale
+  su kimbino. Si passano alle fonti ufficiali al prossimo volantino di
+  ciascuna (Lidl ha le immagini delle pagine, Eurospin solo il PDF: si apre
+  con `#page=` come il Bennet).
 - **Il 25 ottobre**: la Routine va rimessa a `0 6 * * *`.
 - Aspettano lui: le correzioni a penna del catalogo; reinstallare l'icona dal
   nuovo indirizzo e mandare il link alla moglie (da verificare se l'ha già

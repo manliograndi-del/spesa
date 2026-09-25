@@ -1302,6 +1302,10 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   border-radius:6px}
 .vol-sopra .avviso-vol{color:#FFFFFF;text-align:center;margin:40px 16px;font-size:15px}
 .vol-sopra .avviso-vol a{color:#FFFFFF;font-weight:700}
+/* Il volantino che c'è solo in PDF: il tasto per aprirlo fuori, alla pagina
+   giusta, è grande e bianco (non rosso: il rosso qui sotto è «Chiudi»). */
+.vol-sopra .avviso-vol a.apri-pdf{display:inline-block;margin-top:14px;padding:13px 20px;
+  border-radius:14px;background:#FFFFFF;color:#1B1B1A;text-decoration:none;font-size:17px}
 .vol-sopra .chiudi-vol{position:absolute;left:14px;right:14px;
   bottom:calc(14px + env(safe-area-inset-bottom,0px));min-height:58px;border:0;
   border-radius:14px;background:var(--rosso);color:var(--su-rosso);font-family:inherit;
@@ -3772,6 +3776,11 @@ document.getElementById('buio').onclick = ev => { if (ev.target.id === 'buio') c
    fuori. Il tasto «indietro» del telefono chiude, come «Chiudi»: si mette una
    voce nella cronologia apposta. */
 const E_IMMAGINE = /\.(?:jpe?g|png|webp|gif)(?:\?|$)|\/thumbor\//i;
+/* Il Bennet «Offerte Extra» (2026-09-25) esiste solo in PDF, sul sito Bennet:
+   niente immagini delle pagine. Dentro la pagina il telefono un PDF non lo
+   mostra, quindi si dice che è un PDF e lo si apre fuori, alla pagina giusta
+   (#page=). */
+const E_PDF = /\.pdf(?:[?#]|$)|#page=\d/i;
 let volAperto = false;
 function apriPaginaVol(o) {
   const box = document.getElementById('vol-sopra');
@@ -3785,7 +3794,12 @@ function apriPaginaVol(o) {
     foglio.innerHTML = '<p class="avviso-vol">La pagina qui non si vede. <a target="_blank" rel="noopener noreferrer">Aprila sul sito</a></p>';
     foglio.querySelector('a').href = o.url;
   };
-  if (E_IMMAGINE.test(o.url)) {
+  if (E_PDF.test(o.url)) {
+    foglio.innerHTML = '<p class="avviso-vol">Questo volantino c’è solo in PDF, che qui dentro il telefono non mostra.<br><a class="apri-pdf" target="_blank" rel="noopener noreferrer"></a></p>';
+    const a = foglio.querySelector('a');
+    a.href = o.url;
+    a.textContent = 'Aprilo alla pagina ' + o.pag;
+  } else if (E_IMMAGINE.test(o.url)) {
     const img = document.createElement('img');
     img.alt = 'Pagina ' + o.pag + ' del volantino ' + o.ins;
     img.referrerPolicy = 'no-referrer';
