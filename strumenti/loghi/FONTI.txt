@@ -77,3 +77,7 @@ AGGIUNTO IL 2026-09-26
   penny.svg     la scritta PENNY col punto giallo, presa dal visore ufficiale
                 del volantino sul sito penny.it (PennyM.svg), con sotto il
                 rettangolo rosso dell'insegna, perché la scritta è bianca.
+  aldi.svg      Wikimedia Commons, File:Aldi_Süd_2017_logo.svg, pubblico dominio
+                (solo testo e forme semplici) — ALDI SÜD. Tolta la scritta
+                «SÜD» sotto ALDI e abbassato un poco ALDI, perché in Italia il
+                marchio è così (si vede sulla copertina del volantino).

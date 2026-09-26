@@ -158,8 +158,8 @@ prompt non dicono la stessa cosa, vale questo file.**
 
 ## Insegne, negozi e fonti
 
-Sono **undici**, più Aldi ed Esselunga, chieste da Manlio il 26/9 insieme a
-Penny e ancora in lettura. L'elenco vero è `VOLANTINI` in `dati.py`, e i
+Sono **dodici**, più Esselunga, chiesta da Manlio il 26/9 insieme a Penny e
+Aldi e ancora in lettura. L'elenco vero è `VOLANTINI` in `dati.py`, e i
 volantini annunciati ma non ancora letti stanno in `VOLANTINI_ATTESI` (in
 tabella «prezzi non ancora letti»). Da lì si tolgono appena entrano in
 `VOLANTINI`.
@@ -177,7 +177,7 @@ tabella «prezzi non ancora letti»). Da lì si tolgono appena entrano in
 | Pam | **corso Orbassano 212** (store 71, pv 2311), un «PAM Supermercati». **Non i «PAM Panorama»**: id vicini, prezzi diversi. Di solito due volantini per periodo, il principale e «Occasioni Extra» | elenco per negozio: POST `https://coeus.ppapi.it/api/v2_2/post/query?noCache=1&typeUuid=flyer` con `typeUuid=flyer&fields[0]=slug&fields[1]=name&limit=30&orders[publishedAt]=desc&relationshipQueries[flyer_store][$in][0]=71` (header Origin/Referer `https://www.pampanorama.it`). «con APP» = solo con l'app Pam Perte Plus, e il volantino non stampa il prezzo senza app. I nuovi si trovano prima provando gli id su `pam.volantinopiu.com/volantino<id>00pv2311.html` |
 | Conad | **via Cesana 78** (codice 009843), il Conad «normale» più vicino. I Conad City e i Superstore hanno volantini loro | la scheda del negozio `conad.it/ricerca-negozi/conad-via-cesana-78-10139-torino--009843` (si scarica con un curl normale), che contiene i PDF ufficiali; `scarica.py` li legge da solo. **Servono due indirizzi**: il PDF va in `PDF` dentro `dati.py` (per scaricare le pagine), il visore `volantini.conad.it/<nome>/<id>/{n}` va in `VOLANTINI` (per il collegamento: il PDF sul telefono si apre dall'inizio). Il numero del PDF avanza di uno a ogni volantino (`2026…20PCONADPIEMONTE` = 24/9-7/10). «Perché conviene» ripete il principale |
 | Penny | **ogni negozio ha il suo volantino, ma a Torino cambia solo la pagina 5** (pane in alcuni, gastronomia in altri). Il nostro: **corso Corsica 7** (volantino 1693379, 1,9 km) | **ufficiale**: il visore Shopfully del sito penny.it. L'elenco per zona: `https://d3k4i39zecu9l5.cloudfront.net/v1/it_it/5b50951b-b644-4f17-9904-335fac1f50fd/flyers?lat=…&lng=…` con l'header `x-api-key: eeb8526b-4f6e-48f3-8c86-d60e8c9a6d88` (scritto nel codice del visore); il PDF, col testo dentro, è `lastPubblication.pdf_url`. **Il visore si apre sempre dalla prima pagina**, quindi le pagine si vedono da anteprimavolantino (`_PAGINE_PENNY_24` in `dati.py`), tranne la 5, che apre il PDF ufficiale. «Solo con PENNYCard» = tessera |
-| Aldi | (in lettura) un volantino a settimana, da lunedì a domenica, uguale in tutta Italia | **ufficiale**: `volantino.aldi.it` (Publitas) rimanda al volantino in corso; `/<nome>/spreads.json` dà le pagine (`images.at1600`, da mettere dopo `https://view.publitas.com`) e `/<nome>/data.json` il PDF. aldi.it risponde 403 a un curl. Gli indirizzi stanno in `strumenti/pagine_aldi.py`. «Dal nostro assortimento» = prezzo fisso, non un'offerta |
+| Aldi | un volantino a settimana, da lunedì a domenica, uguale in tutta Italia. Accanto alle offerte stampa i prezzi fissi «dal nostro assortimento» (nella nota: «Prezzo fisso Aldi») e i «Quantità limitata» del bazar; dalla pagina 24 in poi è tutto non alimentare. Le pagine hanno dei riquadri vuoti, vuoti anche nel testo ufficiale | **ufficiale**: `volantino.aldi.it` (Publitas) rimanda al volantino in corso; `/<nome>/spreads.json` dà le pagine (`images.at1600`, da mettere dopo `https://view.publitas.com`) e `/<nome>/data.json` il PDF. aldi.it risponde 403 a un curl. Gli indirizzi stanno in `strumenti/pagine_aldi.py`. «Dal nostro assortimento» = prezzo fisso, non un'offerta |
 | Esselunga | (in lettura) «Grandi Marche fino al 50%» e «Sapori d'Autunno», 24/9-7/10 | esselunga.it vuole un negozio scelto e da qui risponde a fatica (502, pagine vuote): per ora anteprimavolantino (`volantino-esselunga-2026-09-24-p-{nn}`, 27 pagine; `volantino-esselunga-autunno-2026-09-24-p-{nnnnn}`, 20 pagine) |
 
 I negozi di Pam (corso Orbassano), Conad (via Cesana), Ipercoop
@@ -538,7 +538,7 @@ prezzi, meno caro, ricerca, grandi marche.
 
 ### I marchi dei supermercati
 Stanno in `strumenti/loghi/`, un file per insegna in minuscolo e senza accenti
-(`lidl.svg`, `pam.webp`…). Ci sono tutte e undici; le fonti sono in
+(`lidl.svg`, `pam.webp`…). Ci sono tutte e dodici; le fonti sono in
 `loghi/FONTI.txt`. Basta mettere o togliere il file: `loghi.py` lo trova da
 solo, e se manca compare il nome scritto nei colori dell'insegna. Un PNG o WEBP
 diventa un'immagine dentro la pagina; se è a tinte piatte, `python3 -m vettore
@@ -603,34 +603,33 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v114**, link Claude versione 104 (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v115**, link Claude versione 105 (la versione la dice il registro).
 
 **Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
-`bennet1709` il 30/9; `md22`, `eurospin24` e `bennetextra24` il 4/10;
+`bennet1709` il 30/9; `md22`, `eurospin24`, `bennetextra24` e `aldi28`
+(che comincia il 28/9) il 4/10;
 `ekom22` il 5/10; `ipercoop24`, `pam24`, `pamextra24`, `conad24` e `penny24` il 7/10;
 `carriper29` e `carrcoca15` il 12/10; `carrunilever29` il 22/10; `carraia29`
 il 15/11. **Il Carrefour Iper «15-25 settembre» è scaduto ed è stato
 tolto il 26/9**: dal 26 al 28/9 il Carrefour Iper ha solo lo speciale
 Coca-Cola (`carrcoca15`), poi dal 29/9 arriva `carriper29» già caricato.
-In `VOLANTINI_ATTESI` ci sono Aldi (28/9-4/10) ed Esselunga (i due
-volantini 24/9-7/10), in lettura. Offerte valide solo per una parte del periodo, già segnate riga per
+In `VOLANTINI_ATTESI` c'è Esselunga (i due volantini 24/9-7/10), in
+lettura. Offerte valide solo per una parte del periodo, già segnate riga per
 riga: `lidl24` (24-27 o 28-30), il «Doppio weekend» di `eurospin24` (25-27/9 e
 2-4/10) e la sua frutta di pagina 12 (dal 28), il «Weekend più Uno» di `md22`
 (2-5/10), la pescheria di `pam24` (24-30/9 e 1-7/10), il latte Coop di
 `ipercoop24` (28/9-4/10), il «96 ore scontate» di `carriper29` (1-4/10 e
 8-11/10), la pagina 2 di `carraia29` (dal 23/10), il venerdì-sabato 25-26/9 e
-quello del 2-3/10 di `penny24`. Tutti i volantini con prezzi
+quello del 2-3/10 di `penny24`, il weekend 2-4/10 di `aldi28`. Tutti i volantini con prezzi
 sono letti al 100%. Controllate il 26/9 tutte e dieci le insegne sulle fonti
 ufficiali per volantini nuovi non ancora in `VOLANTINI`: niente trovato.
 
 **Da fare**
-- **Finire Aldi ed Esselunga** (chieste il 26/9). Aldi: `aldi28`, 34 pagine,
-  già scaricate e passate all'OCR; per metterla si toglie da
-  `VOLANTINI_ATTESI` e si riapre la riga `aldi28` in `VOLANTINI` (è lì,
-  commentata). Esselunga: `esselunga24` (27 pagine) ed `esselungaaut24` (20),
-  scaricate e passate all'OCR, stesse righe commentate. Mancano anche i loro
-  marchi in `strumenti/loghi/` e il bollino della carta Fìdaty in
-  `_BOLLO_TESSERA`.
+- **Finire Esselunga** (chiesta il 26/9): `esselunga24` (27 pagine) ed
+  `esselungaaut24` (20), scaricate e passate all'OCR; per metterla si toglie
+  da `VOLANTINI_ATTESI` e si riaprono le sue righe in `VOLANTINI` (sono lì,
+  commentate). Mancano anche il marchio in `strumenti/loghi/` e il bollino
+  della carta Fìdaty in `_BOLLO_TESSERA`.
 - Le fonti ufficiali sono in uso per Carrefour Iper, MD, Bennet «Offerte
   Extra» e Mercatò «Promo L'Oréal». Restano su anteprimavolantino: Lidl
   (stessa edizione, le 2 pagine in più della versione ufficiale sono

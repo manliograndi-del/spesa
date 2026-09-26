@@ -3920,3 +3920,18 @@ nota il prezzo senza tessera.
 **Aldi** (volantino.aldi.it, Publitas) ha pagine e PDF ufficiali ben fatti;
 aldi.it invece risponde 403. **Esselunga** vuole un negozio scelto e da qui il
 sito risponde male (502, pagine vuote): per ora anteprimavolantino.
+
+## 2026-09-26 — Aldi (v115)
+
+Letto per intero dal sito ufficiale (volantino.aldi.it): 109 offerte, dal 28/9
+al 4/10. Tre cose da sapere per i prossimi.
+- Aldi stampa nello stesso volantino le offerte a tempo, i prezzi fissi «dal
+  nostro assortimento» (sono prezzi di sempre: nella nota c'è «Prezzo fisso
+  Aldi», così non passano per sconti) e il bazar «Quantità limitata» «da
+  lunedì» o «da giovedì». Dalla pagina 24 in poi è tutto non alimentare
+  (vestiti, casa, auto, bicicletta): guardate una per una e scartate.
+- Due pagine (8 e 10) hanno un grande riquadro vuoto sotto «fino al −…%».
+  Non è un'immagine che non arriva: anche il testo ufficiale della pagina
+  (`spreads.json`) lì non ha niente.
+- Il marchio su Wikimedia è quello di ALDI SÜD; in Italia sotto ALDI non c'è
+  «SÜD», quindi la scritta è stata tolta dal disegno.

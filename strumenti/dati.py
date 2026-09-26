@@ -179,7 +179,7 @@ VOLANTINI = [
  # ALDI: volantino.aldi.it (Publitas), il sito ufficiale. Le pagine una per una
  # stanno in pagine_aldi.py. Il volantino della settimana 21-27/9 non è letto:
  # quando Manlio ha chiesto Aldi mancava un giorno alla fine.
- #_v('aldi28',         'Aldi',           'dal 28 settembre al 4 ottobre',                'Aldi — 28 settembre-4 ottobre.pdf',                '2026-10-04', None, '2026-09-28', PAGINE_ALDI_28),
+ _v('aldi28',         'Aldi',           'dal 28 settembre al 4 ottobre',                'Aldi — 28 settembre-4 ottobre.pdf',                '2026-10-04', None, '2026-09-28', PAGINE_ALDI_28),
  # ESSELUNGA: il sito ufficiale (esselunga.it) vuole un negozio scelto e da qui
  # risponde a fatica; per ora anteprimavolantino.it, come le altre all'inizio.
  #_v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', _AV + '/2026/09/volantino-esselunga-2026-09-24-p-{n:02d}.jpg', '2026-09-24'),
@@ -200,10 +200,9 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
-    # Aldi ed Esselunga, chiesti il 2026-09-26: trovati e in lettura. Quando un
-    # volantino è letto si toglie di qui e si riapre la sua riga in VOLANTINI.
-    Atteso('Aldi', 'dal 28 settembre al 4 ottobre', '2026-09-28', '2026-10-04',
-           'volantino.aldi.it, in lettura'),
+    # Esselunga, chiesta il 2026-09-26 con Penny e Aldi: trovata e in lettura.
+    # Quando un volantino è letto si toglie di qui e si riapre la sua riga in
+    # VOLANTINI.
     Atteso('Esselunga', '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', '2026-09-24', '2026-10-07',
            'in lettura'),
     Atteso('Esselunga', "«Sapori d'Autunno», dal 24 settembre al 7 ottobre", '2026-09-24', '2026-10-07',
@@ -2242,6 +2241,137 @@ PRODOTTI = [
  ("Suino","Penny","penny24","Macelleria","Costine di suino","al kg",1,4.99,20,V,"Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
  ("Tonno","Penny","penny24","Dispensa","Tonno in olio d'oliva – Gran Mare","160 g",0.16,1.19,20,V,"−25%, prima 1,59. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
  ("Bagnoschiuma","Penny","penny24","Cura persona","Bagnoschiuma, fragranze assortite – Felce Azzurra","650 ml",0.65,1.75,20,V,"−29%, prima 2,49. Miglior prezzo dell'anno. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ # ----- Aldi, 28 settembre-4 ottobre (aldi28), uguale in tutta Italia, letto per intero il 2026-09-26 dal sito ufficiale volantino.aldi.it -----
+ # p2: indice del volantino, nessun prezzo
+ # p3: pubblicità, nessun prezzo
+ # p4: lo skyr bianco è lo stesso della p1; albume d'uovo (500 g) senza prezzo per uovo; tofu e burro di arachidi senza categoria
+ # p5: il pane proteico è lo stesso della p1; mousse e budino proteici, barrette proteiche senza categoria
+ # p6: pinoli sgusciati senza categoria
+ # p7: barrette al muesli e panni per le pulizie senza categoria
+ # p8: il riquadro verde in mezzo alla pagina è vuoto anche nel testo ufficiale
+ # p10: il riquadro scuro in mezzo alla pagina è vuoto
+ # p12: il caffè Splendid è lo stesso della p1
+ # p13: il mix di frutta secca con cioccolato Ventura senza categoria
+ # p14: la candeggina Ace senza categoria
+ # p15: il lardo stagionato Gourmet senza categoria
+ # p16: la panna Chef e il cous cous Bia senza categoria
+ # p17: fave snack Di Nunzio e Doritos senza categoria
+ # p18: chips di mela, pop corn, gallette di riso glassate e zucchero filato senza categoria
+ # p19: profumatore per bucato, sgrassatori, spray e salviette Napisan senza categoria
+ # p20: olio di cocco, spezie, creme vegane e purea di mele senza categoria; il tè Westminster (20 bustine) senza peso scritto
+ # p21: pasta e fagioli o zuppa toscana Good Choice (zuppa pronta) e Pringles senza categoria
+ # p22: lo sgrassatore Chanteclair senza categoria
+ # p23: hummus Wonnemeyer e mix di frutta a guscio senza categoria
+ # p24: abbigliamento (giacche), non alimentare
+ ("Yogurt","Aldi","aldi28","Freschi","Skyr bianco – Milsani","500 g",0.5,1.99,1,V,""),
+ ("Pane","Aldi","aldi28","Panetteria","Pane proteico – Happy Harvest","250 g",0.25,1.59,1,V,""),
+ ("Frutta","Aldi","aldi28","Ortofrutta","Mele Golden – I Colori del Sapore","al kg",1,0.99,1,V,"−50%, prima 1,99 al kg. Coltivate in Italia."),
+ ("Preparati","Aldi","aldi28","Macelleria","Rollè di suino ripieno – Il Podere","700 g",0.7,3.99,1,V,"−38%, prima 6,49."),
+ ("Caffè","Aldi","aldi28","Colazione","Caffè classico – Splendid, conf. 4 pezzi","900 g (4 × 225 g)",0.9,8.99,1,V,""),
+ ("Yogurt","Aldi","aldi28","Freschi","Skyr alla frutta, gusti vari – Milsani","150 g",0.15,0.89,4,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Yogurt","Aldi","aldi28","Freschi","Yogurt greco 0% di grassi caffè, pesca o vaniglia – Lyttos, conf. 3 pezzi","450 g (3 × 150 g)",0.45,2.79,4,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Biscotti","Aldi","aldi28","Colazione","Biscotto proteico vegano gocce di cioccolato o doppio cioccolato – Multinorm","80 g",0.08,1.99,4,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Yogurt","Aldi","aldi28","Freschi","Granola Protein Snack, gusti vari – Milsani","185 g",0.185,1.35,5,V,"Yogurt proteico con granola. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Preparati","Aldi","aldi28","Macelleria","Polpette di suino – Il Podere","320 g",0.32,3.59,6,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Yogurt","Aldi","aldi28","Freschi","Kefir – Milsani","500 g",0.5,0.85,6,V,"È kefir da bere. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Conserve","Aldi","aldi28","Freschi","Insalata di mare – Almare Seafood","200 g",0.2,2.49,6,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Verdura","Aldi","aldi28","Freschi","Tris di verdure o spinaci cotti – Good Choice","200 g (spinaci)",0.2,1.89,6,V,"Verdure già cotte in vaschetta. Stesso prezzo per il tris da 220 g: qui il conto è sugli spinaci, il formato più piccolo. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Pane","Aldi","aldi28","Panetteria","Pane ai 4 cereali affettato – La Cesta","500 g",0.5,1.65,6,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Pane","Aldi","aldi28","Panetteria","Piadina integrale – La Cesta","300 g",0.3,0.89,6,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Pane","Aldi","aldi28","Dispensa","Taralli classici – La Cesta","500 g",0.5,1.59,6,V,"Sono taralli. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Cioccolato","Aldi","aldi28","Colazione","Cioccolato al latte con nocciole intere – Choceur","100 g",0.1,1.35,6,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Biscotti","Aldi","aldi28","Colazione","Biscotti ai cereali – Buon'Ora","250 g",0.25,0.89,7,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Verdure surgelate","Aldi","aldi28","Surgelati","Bastoncini di verdure – Primana","300 g",0.3,1.39,7,V,"Surgelati, impanati. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Patate","Aldi","aldi28","Surgelati","Patatine fritte – All Seasons","2,5 kg",2.5,3.35,7,V,"Surgelate. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Vino","Aldi","aldi28","Bevande","Blanc de Blancs – Costellore","750 ml",0.75,2.69,7,V,"Spumante. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Shampoo","Aldi","aldi28","Cura persona","Shampoo, varianti diverse – Lacura","500 ml",0.5,1.99,7,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Carta igienica","Aldi","aldi28","Cura casa","Carta igienica 3 veli – Kokett","10 rotoli",10,3.49,7,V,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."),
+ ("Verdura","Aldi","aldi28","Ortofrutta","Poker di funghi tagliati – I Colori del Sapore","300 g",0.3,1.49,8,V,"−40%, prima 2,49. Coltivati in Italia."),
+ ("Frutta","Aldi","aldi28","Ortofrutta","Susine October Sun – I Colori del Sapore","al kg",1,1.99,8,V,"−33%, prima 2,99 al kg. Coltivate in Italia."),
+ ("Verdura","Aldi","aldi28","Ortofrutta","Carote – I Colori del Sapore","1 kg",1,0.79,9,V,"−33%, prima 1,19. Coltivate in Italia."),
+ ("Patate","Aldi","aldi28","Ortofrutta","Patate gialle della Sila IGP – Regione che vai","1,5 kg",1.5,1.99,9,V,"−33%, prima 2,99. Coltivate in Italia."),
+ ("Frutta","Aldi","aldi28","Ortofrutta","Uva bianca senza semi – I Colori del Sapore","500 g",0.5,0.99,9,V,"−44%, prima 1,79. Coltivata in Italia."),
+ ("Pollo","Aldi","aldi28","Macelleria","Fusi di pollo – Il Podere","850 g",0.85,2.99,10,V,"−28%, prima 4,19. Carne italiana."),
+ ("Preparati","Aldi","aldi28","Macelleria","Polpette di tacchino, pollo e suino XXL – Il Podere","360 g",0.36,2.49,10,V,"Confezione grande: quella normale costa 1,89 per 240 g. Quantità limitata. Carne italiana."),
+ ("Pollo","Aldi","aldi28","Macelleria","Pollo in parti – Il Podere","al kg",1,3.99,10,V,"Quantità limitata. Carne italiana."),
+ ("Preparati","Aldi","aldi28","Macelleria","Cotolette di pollo XXL – Il Podere","800 g",0.8,2.99,11,V,"Confezione grande: quella normale costa 1,99 per 440 g. Quantità limitata. Carne italiana."),
+ ("Suino","Aldi","aldi28","Macelleria","Braciole di lombo di suino – Il Podere","700 g",0.7,3.99,11,V,"−14%, prima 4,69. Carne italiana."),
+ ("Manzo","Aldi","aldi28","Macelleria","Roastbeef di bovino – Il Podere","300 g",0.3,5.49,11,V,"−15%, prima 6,49. È carne cruda da cuocere."),
+ ("Preparati","Aldi","aldi28","Macelleria","Hamburger di equino – Il Podere","200 g (2 × 100 g)",0.2,2.19,11,V,"−20%, prima 2,75."),
+ ("Pesce","Aldi","aldi28","Pescheria","Trancio di pesce spada – Fiorital","170 g",0.17,3.49,11,V,"−22%, prima 4,49. Nel banco frigo."),
+ ("Yogurt","Aldi","aldi28","Freschi","Yogurt alla frutta – Yomo, conf. 8 pezzi","1 kg (8 × 125 g)",1,2.59,12,V,"Quantità limitata."),
+ ("Latte","Aldi","aldi28","Freschi","Latte parzialmente scremato – Parmalat","1 l",1,0.89,12,V,"Quantità limitata."),
+ ("Caffè","Aldi","aldi28","Colazione","Caffè Granaroma in grani – Caffè Vergnano 1882","1 kg",1,14.99,12,V,"Quantità limitata."),
+ ("Pane","Aldi","aldi28","Panetteria","Cuor di Pane – Mulino Bianco","325 g",0.325,1.89,12,V,"Pane in cassetta. Quantità limitata."),
+ ("Cereali","Aldi","aldi28","Colazione","Extra Granola frutta e frutta secca – Kellogg's","375 g",0.375,2.79,12,V,"Quantità limitata."),
+ ("Cereali","Aldi","aldi28","Colazione","Fiocchi di avena integrali bio – Fiorentini","350 g",0.35,0.99,13,V,"Quantità limitata."),
+ ("Biscotti","Aldi","aldi28","Colazione","Biscotti riso e cornflakes o frutta – Gran Cereale","230 g",0.23,1.39,13,V,"Stesso prezzo per riso e cornflakes da 250 g: il conto è sulla frutta da 230 g, la confezione più piccola. Quantità limitata."),
+ ("Merendine","Aldi","aldi28","Colazione","Millefoglie snack nocciola o pistacchio – Matilde Vicenzi","125 g",0.125,1.19,13,V,"Quantità limitata."),
+ ("Merendine","Aldi","aldi28","Colazione","Brioss latte e cacao – Kinder","280 g",0.28,2.49,13,V,"Quantità limitata."),
+ ("Merendine","Aldi","aldi28","Colazione","Tartelle Cuor di Mela – Mulino Bianco","288 g",0.288,1.99,13,V,"Quantità limitata."),
+ ("Merendine","Aldi","aldi28","Panetteria","Mini Tresor – Pan del Dì","20 g",0.02,0.39,13,V,"Dal reparto panetteria. Quantità limitata."),
+ ("Prosciutto","Aldi","aldi28","Salumi","Speck delle Alpi, confezione doppia – Il Tagliere del Re","200 g (2 × 100 g)",0.2,2.99,14,V,"Quantità limitata."),
+ ("Mortadella","Aldi","aldi28","Salumi","Mortadella Bologna IGP con pistacchio, confezione doppia – Regione che vai","300 g (2 × 150 g)",0.3,2.69,14,V,"Confezione doppia: quella normale costa 1,55 per 150 g. Quantità limitata."),
+ ("Affettati","Aldi","aldi28","Salumi","Petto di pollo 10+, confezione doppia – Amadori","200 g (2 × 100 g)",0.2,2.99,14,V,"Petto di pollo cotto al forno, a fette. Quantità limitata."),
+ ("Pane","Aldi","aldi28","Panetteria","Grissini Rubatà – Derby","450 g",0.45,1.99,14,V,"Quantità limitata."),
+ ("Biscotti","Aldi","aldi28","Colazione","Pastefrolle – Balocco","1 kg",1,2.69,14,V,"Quantità limitata."),
+ ("Asciugatutto","Aldi","aldi28","Cura casa","Asciugatutto Double Booster – Buffalo","2 rotoli (2 × 300 strappi)",2,3.99,14,V,"Quantità limitata."),
+ ("Lavastoviglie","Aldi","aldi28","Cura casa","Tabs lavastoviglie All in One Extra – Pril","76 pezzi",76,9.79,14,V,"Quantità limitata."),
+ ("Lavatrice","Aldi","aldi28","Cura casa","Detersivo lavatrice liquido muschio bianco, 60 lavaggi – Omino Bianco","2,4 litri",60,4.79,14,V,"Quantità limitata."),
+ ("Mozzarella","Aldi","aldi28","Freschi","Trecce di mozzarella – Regione che vai","200 g (2 × 100 g)",0.2,1.69,15,V,"Prezzo calcolato sul peso sgocciolato. Latte italiano. Quantità limitata."),
+ ("Formaggio","Aldi","aldi28","Freschi","Formaggio italiano grattugiato – Granarolo","90 g",0.09,1.19,15,V,"Quantità limitata."),
+ ("Formaggio","Aldi","aldi28","Freschi","Spicchio Gran Biraghi – Biraghi","700 g",0.7,8.49,15,V,"Quantità limitata."),
+ ("Formaggio","Aldi","aldi28","Freschi","Mini Crunchy – Leerdammer","150 g",0.15,1.99,15,V,"Quantità limitata."),
+ ("Ricotta","Aldi","aldi28","Freschi","Ricottina al limone – Regione che vai","180 g",0.18,1.99,15,V,"Ricotta al limone, non semplice. Nel banco frigo. Quantità limitata."),
+ ("Prosciutto","Aldi","aldi28","Salumi","Prosciutto cotto Alta Qualità – Negroni","120 g",0.12,1.99,15,V,"Quantità limitata."),
+ ("Salame","Aldi","aldi28","Salumi","Luganega stagionata – Salumificio Val Rendena","80 g",0.08,2.29,15,V,"Quantità limitata."),
+ ("Salmone affumicato","Aldi","aldi28","Salumi","Salmone norvegese affumicato a fetta lunga – Gourmet","100 g",0.1,3.99,15,V,"Quantità limitata."),
+ ("Conserve","Aldi","aldi28","Freschi","Filetti di alici «le dolci» o «le marinate» – Mangiar Bene Rizzoli","60 g",0.06,2.79,16,V,"Stesso prezzo per «le dolci» da 70 g: il conto è sulle marinate da 60 g, la confezione più piccola. Nel banco frigo. Quantità limitata."),
+ ("Conserve","Aldi","aldi28","Dispensa","Filetti di sgombro all'olio, al naturale o piccanti – Delicius","125 g, sgocciolato 90 g",0.09,1.89,16,V,"Prezzo calcolato sul peso sgocciolato. Quantità limitata."),
+ ("Tonno","Aldi","aldi28","Dispensa","Tonno in olio d'oliva pescato a canna, conf. 4 pezzi – Rio Mare","320 g (4 × 80 g)",0.32,5.39,16,V,"Una lattina gratis: 4 al prezzo di 3. Peso non sgocciolato. Quantità limitata."),
+ ("Riso","Aldi","aldi28","Dispensa","Risotto alla milanese o ai funghi porcini – Knorr","175 g",0.175,1.39,16,V,"È un preparato per risotto. Quantità limitata."),
+ ("Sughi","Aldi","aldi28","Dispensa","Pesto, gusti vari – Tigullio","185 g",0.185,1.89,16,V,"Quantità limitata."),
+ ("Legumi","Aldi","aldi28","Dispensa","Lenticchie – Valfrutta","570 g, sgocciolato 380 g",0.38,1.29,16,V,"Prezzo calcolato sul peso sgocciolato. Quantità limitata."),
+ ("Conserve","Aldi","aldi28","Dispensa","Cetrioli a fette per sandwich o per burger – American","670 g, sgocciolato 360 g",0.36,1.69,16,V,"Prezzo calcolato sul peso sgocciolato. Quantità limitata."),
+ ("Legumi","Aldi","aldi28","Dispensa","Edamame già pronti, cotti al vapore – Le Gusto","250 g",0.25,1.69,17,V,"Quantità limitata."),
+ ("Legumi","Aldi","aldi28","Dispensa","Ceci in confezione mini – King's Crown","390 g (3 × 130 g)",0.39,1.19,17,V,"Prezzo calcolato sul peso sgocciolato. Quantità limitata."),
+ ("Pane","Aldi","aldi28","Panetteria","Grissini rustici – La Cesta","300 g",0.3,1.19,17,V,"Quantità limitata."),
+ ("Pane","Aldi","aldi28","Dispensa","Cracker Semplicissimi riso nero e semi di lino – Doria","245 g",0.245,1.69,17,V,"Quantità limitata."),
+ ("Pane","Aldi","aldi28","Dispensa","Gallette Veggie Mix – Fiorentini","120 g",0.12,1.49,17,V,"Gallette di riso con verdure. Quantità limitata."),
+ ("Pane","Aldi","aldi28","Dispensa","Cracker Protein-G – Galbusera","200 g",0.2,1.99,17,V,"Quantità limitata."),
+ ("Pane","Aldi","aldi28","Dispensa","Crostini gusto mediterraneo – Panealba","100 g",0.1,0.79,17,V,"Quantità limitata."),
+ ("Merendine","Aldi","aldi28","Colazione","Pandorì ripieno al latte – Bauli","178 g",0.178,1.99,18,V,"Quantità limitata."),
+ ("Cioccolato","Aldi","aldi28","Colazione","Classico – Twix","500 g",0.5,4.49,18,V,"Barrette di cioccolato. Quantità limitata."),
+ ("Pizza","Aldi","aldi28","Surgelati","Pizza Margherita «La Bomba» con cornicione ripieno – Italpizza","440 g",0.44,2.99,18,V,"Surgelata. Quantità limitata."),
+ ("Merluzzo","Aldi","aldi28","Surgelati","Bistecca di merluzzo grigliata al rosmarino e al limone – Frosta","250 g",0.25,3.59,18,V,"Surgelata, già grigliata. Quantità limitata."),
+ ("Bibite","Aldi","aldi28","Bevande","Monster Energy, gusti vari","500 ml",0.5,1.09,18,V,"Quantità limitata."),
+ ("Bibite","Aldi","aldi28","Bevande","Aloe Vera drink al mango – Rio d'Oro","500 ml",0.5,0.99,19,V,"Quantità limitata."),
+ ("Bibite","Aldi","aldi28","Bevande","Original Taste – Coca-Cola","1,75 l",1.75,1.49,19,V,"Quantità limitata."),
+ ("Birra","Aldi","aldi28","Bevande","Birra Super 9% vol. – Tennent's","440 ml",0.44,1.49,19,V,"Quantità limitata."),
+ ("Birra","Aldi","aldi28","Bevande","Gran Riserva bianca, doppio malto o rossa – Peroni","330 ml",0.33,0.99,19,V,"Quantità limitata."),
+ ("Bibite","Aldi","aldi28","Bevande","Bevanda alla frutta Zero ace, multifrutti o arancia rossa, conf. 2 pezzi – Derby Blue","600 ml (2 × 300 ml)",0.6,1.00,19,V,"Quantità limitata."),
+ ("Formaggio","Aldi","aldi28","Freschi","Gouda bio a fette – Gut Bio","200 g",0.2,2.29,20,V,"Quantità limitata."),
+ ("Formaggio","Aldi","aldi28","Freschi","Feta bio DOP – Bio Natura","200 g",0.2,2.49,20,V,"Quantità limitata."),
+ ("Legumi","Aldi","aldi28","Dispensa","Ceci o fagioli rossi bio","350 g, sgocciolato 220 g",0.22,0.99,20,V,"Prezzo calcolato sul peso sgocciolato; i ceci sgocciolati pesano un po' di più, qui il conto è sul peso più basso. Quantità limitata."),
+ ("Ricotta","Aldi","aldi28","Freschi","Mascarpone – Bonlà","250 g",0.25,1.29,21,V,"−21%, prima 1,65. Latte italiano."),
+ ("Formaggio","Aldi","aldi28","Freschi","Scamorza affumicata – Milsani","300 g",0.3,1.99,21,V,"−13%, prima 2,29."),
+ ("Grana","Aldi","aldi28","Freschi","Grana Padano DOP a cubetti, stagionato 9 mesi – Primis","300 g",0.3,3.99,21,V,"−14%, prima 4,69."),
+ ("Bresaola","Aldi","aldi28","Salumi","Bresaola punta d'anca – Il Tagliere del Re","80 g",0.08,1.99,21,V,"−24%, prima 2,65."),
+ ("Prosciutto","Aldi","aldi28","Salumi","Prosciutto crudo, stagionatura minima 11 mesi – Il Tagliere del Re","150 g",0.15,1.99,21,V,"−27%, prima 2,75."),
+ ("Riso","Aldi","aldi28","Dispensa","Riso Arborio – I Colori del Sapore","1 kg",1,1.79,21,V,"−28%, prima 2,49. Riso italiano."),
+ ("Olio d'oliva","Aldi","aldi28","Dispensa","Olio extravergine di oliva Classico – Monini","1 l",1,5.99,21,V,"−31%, prima 8,79."),
+ ("Merendine","Aldi","aldi28","Colazione","Croissant alla crema – Buon'Ora","500 g",0.5,1.79,22,V,"−18%, prima 2,19."),
+ ("Merendine","Aldi","aldi28","Colazione","Fiesta – Ferrero","360 g",0.36,2.99,22,V,"−18%, prima 3,69."),
+ ("Merendine","Aldi","aldi28","Colazione","Nutella B-ready – Ferrero","132 g",0.132,1.99,22,V,"−20%, prima 2,49."),
+ ("Biscotti","Aldi","aldi28","Colazione","Biscotti Pan di Stelle – Mulino Bianco","700 g",0.7,2.99,22,V,"−25%, prima 3,99."),
+ ("Marmellata","Aldi","aldi28","Colazione","Confettura Zero zuccheri aggiunti fragole e fragoline di bosco – Zuegg","220 g",0.22,1.99,22,V,"−20%, prima 2,49."),
+ ("Acqua","Aldi","aldi28","Bevande","Acqua naturale Ecogreen – San Benedetto","1,5 l",1.5,0.29,22,V,"−36%, prima 0,46."),
+ ("Birra","Aldi","aldi28","Bevande","Birra Strong 7,2% vol. – Bergkönig","500 ml",0.5,0.69,22,V,"−18%, prima 0,85."),
+ ("Vino","Aldi","aldi28","Bevande","Bonarda dell'Oltrepò Pavese DOC – Denovo","750 ml",0.75,1.79,22,V,"−25%, prima 2,39. Vino del mese."),
+ ("Pollo","Aldi","aldi28","Macelleria","Sottilissime di pollo – Il Podere","250 g",0.25,2.19,23,V,"−31%, prima 3,19. Solo da venerdì 2 a domenica 4 ottobre. Carne italiana.","2026-10-02","2026-10-04"),
+ ("Formaggio","Aldi","aldi28","Freschi","Pecorino Romano DOP – Regione che vai","200 g",0.2,2.59,23,V,"−25%, prima 3,49. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
+ ("Conserve","Aldi","aldi28","Dispensa","Carciofi alla paesana in olio di semi di girasole – Cucina","285 g",0.285,0.99,23,V,"−36%, prima 1,55. Peso non sgocciolato. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
+ ("Calamari","Aldi","aldi28","Surgelati","Seppioline indopacifiche pulite – Blu Mares","450 g",0.45,3.99,23,V,"−33%, prima 5,99. Surgelate, peso netto senza glassatura. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
 ]
 
 # LE OFFERTE CON DATE LORO.
