@@ -441,7 +441,11 @@ scritta del menù scende a 13 px. Il tasto Cerca è `.tasto.trova`.
 - **Il titolo** (`titolo()`): sopra, in maiuscoletto scuro, la **marca**; poi il
   nome (peso 500, non grassetto); poi in grigio le aggiunte, che se sono corte
   non vanno a capo a metà. Non si ripete quello che la scheda dice già (al
-  banco, 3+1, il peso). Nella pagina vanno `marca`, `nome` e `agg`; **`pro`
+  banco, 3+1, il peso). **Le marche proprie dei discount non si scrivono**
+  (Milbona, Sol&Mar, Il Podere, La Fattoria, Sapor di Cascina…: l'elenco è
+  `MARCHE_PROPRIE` in `pagina.py`, per insegna; nel dubbio una marca resta).
+  Le marche proprie dei supermercati (Esselunga, Conad, Coop…) e quelle
+  dell'Ekom restano: non le ha chieste. Nella pagina vanno `marca`, `nome` e `agg`; **`pro`
   resta intero** perché Cerca e Grandi marche cercano lì.
 - **Bollini delle condizioni** (`condizioni()`): Con tessera, Al banco,
   Surgelato (non nelle categorie surgelate), 1+1, Più ne prendi, Non in tutti
@@ -607,7 +611,7 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v118**, link Claude versione 108 (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v119**, link Claude versione 109 (la versione la dice il registro).
 
 **Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
 `bennet1709` il 30/9; `md22`, `eurospin24`, `bennetextra24` e `aldi28`

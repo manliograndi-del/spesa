@@ -24,7 +24,7 @@ setTimeout(() => {
   const offerte = w.eval('DATI.offerte');
   let conMarca = 0, perse = 0;
   offerte.forEach(o => {
-    const scritte = [o.marca || '', o.nome || o.pro].concat(o.agg || []).join(' ');
+    const scritte = [o.marca || o.propria || '', o.nome || o.pro].concat(o.agg || []).join(' ');
     const dati = new Set(parole(o.pro));
     const inventate = parole(scritte).filter(p => !dati.has(p));
     if (inventate.length) male.push('«' + o.pro + '»: la scheda scrive parole che non ci sono (' + inventate.join(', ') + ')');
@@ -33,8 +33,8 @@ setTimeout(() => {
     const giaDette = new Set(parole([o.fmt].concat(o.bolli || []).join(' ') + ' al banco'));
     const davvero = mancano.filter(p => !giaDette.has(p));
     if (davvero.length) { perse++; male.push('«' + o.pro + '»: la scheda perde ' + davvero.join(', ')); }
-    if (/ – /.test(o.pro) && !o.marca) male.push('«' + o.pro + '»: ha la marca dopo il trattino ma non la mostra');
-    if (o.marca) conMarca++;
+    if (/ – /.test(o.pro) && !o.marca && !o.propria) male.push('«' + o.pro + '»: ha la marca dopo il trattino ma non la mostra');
+    if (o.marca || o.propria) conMarca++;
     if (/ – /.test(o.nome || '') || / – /.test(o.marca || '')) male.push('«' + o.pro + '»: il trattino resta nel titolo');
   });
   if (conMarca < offerte.length / 2) male.push('solo ' + conMarca + ' offerte su ' + offerte.length + ' hanno la marca');

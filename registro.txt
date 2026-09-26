@@ -197,3 +197,4 @@
 2026-09-26 11:30 UTC  Esselunga aggiunta: esselunga24 «Grandi Marche» (132 offerte) ed esselungaaut24 «Sapori d'Autunno» (84), edizione di Torino (Zona3, corso Traiano) letta al 100% dal visore ufficiale; quella di anteprimavolantino era lombarda. Marchio dal sito Esselunga. sw.js v116, link Claude versione 106.
 2026-09-26 12:15 UTC  I supermercati da togliere o rimettere anche in fondo a «Organizza i prodotti» (restano anche nell'ingranaggio); novità nella finestra «Cosa c'è di nuovo». sw.js v117, link Claude versione 107.
 2026-09-26 16:35 UTC  Esselunga: la pagina del volantino si apriva sempre alla prima (Manlio: «si è aperto alla prima pagina»). Il visore vuole #6, non #page/6. sw.js v118, link Claude versione 108.
+2026-09-26 16:55 UTC  v119: tolte dalle schede le marche proprie dei discount (Lidl, Eurospin, MD, Aldi, Penny: 213 offerte), chieste da Manlio; restano nei dati per Cerca. Link Claude versione 109.

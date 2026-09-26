@@ -3961,3 +3961,15 @@ che valga anche a Torino lo dice l'elenco ufficiale delle offerte del negozio
 Il collegamento delle righe è il visore ufficiale con `#page/n`, dentro un
 riquadro come il Conad. Da qui non ha mai finito di caricarsi (i suoi file
 arrivano con 502): va provato sul telefono.
+
+## Le marche proprie dei discount (26/9)
+
+Manlio: «i discount hanno delle marche proprie, come Milbona per il latte di
+Lidl… questi nomi non hanno molto senso: toglili tutti». Sulla scheda la marca
+di Lidl, Eurospin, MD, Aldi e Penny sparisce quando è una loro linea
+(`MARCHE_PROPRIE` in `pagina.py`, 213 offerte). Nei dati resta (`pro` intero),
+così Cerca trova ancora «Milbona». Una marca vera venduta da un discount
+(Mulino Bianco da Lidl) resta. Nel dubbio si è lasciata: Bontà Viva (c'è anche
+al Bennet), Derio, Graziola, Pan del Dì, Panealba. L'Ekom non ha marche
+proprie riconoscibili; i supermercati (Esselunga Top, Conad…) non li ha
+chiesti.
