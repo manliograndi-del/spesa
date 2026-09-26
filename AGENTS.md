@@ -377,6 +377,10 @@ scritta del menù scende a 13 px. Il tasto Cerca è `.tasto.trova`.
 - **Un prodotto si toglie spegnendolo nel catalogo.** Non c'è una casella per
   nomi nuovi. I prodotti scritti a mano in passato stanno in cima, sotto «I
   tuoi, fuori catalogo». Le cose strane si mettono in «Il mio carrello».
+- **In fondo al catalogo, prima di «Fatto», ci sono i supermercati**
+  (`#negozi-cat`), gli stessi della Configurazione: `disegnaNegozi()` li
+  disegna in tutti e due i posti e toccarne uno lo toglie ovunque. Nella
+  Configurazione restano.
 - Le voci aggiunte il 23/9 (Würstel, Preparati, Affettati, Salmone
   affumicato, Collutorio) non sono nella lista di Manlio: se gli servono le
   accende lui dal catalogo. Il catalogo ha 71 voci.
@@ -603,7 +607,7 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v116**, link Claude versione 106 (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v117**, link Claude versione 107 (la versione la dice il registro).
 
 **Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
 `bennet1709` il 30/9; `md22`, `eurospin24`, `bennetextra24` e `aldi28`

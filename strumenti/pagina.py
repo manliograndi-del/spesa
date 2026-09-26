@@ -551,6 +551,11 @@ NOVITA_PAGINA = [
                'colorati che dicono a cosa serve ogni tasto, con la punta verso il tasto. '
                'Tocca «Prodotti» e salgono i tuoi prodotti. Il tasto «Personale» adesso si '
                'chiama «Il mio carrello»: dentro c\'è la tua lista della spesa, come prima.'),
+    dict(id='2026-09-26-supermercati', quando='26 settembre',
+         titolo='Penny, Aldi ed Esselunga, e i supermercati anche fra i prodotti',
+         testo='Ci sono tre supermercati in più: Penny, Aldi ed Esselunga. In fondo a '
+               '«Organizza i prodotti» adesso ci sono anche i supermercati, gli stessi '
+               'dell\'ingranaggio: tocca quelli che non ti interessano per toglierli.'),
 ]
 
 # LE QUARANTA GRANDI MARCHE (erano venti; «pensandoci bene sono almeno 40»). Chiesto da Manlio il 2026-09-22: «un tasto GRANDI
@@ -1522,6 +1527,12 @@ footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--linea);
   <input class="cerca" id="cerca" type="text" placeholder="Cerca un prodotto…"
          autocomplete="off" aria-label="Cerca un prodotto nel catalogo">
   <div id="scaffali"></div>
+  <!-- I supermercati anche qui in fondo (Manlio, 2026-09-26: «copialo anche
+       alla fine della schermata in cui si scelgono i prodotti»). Sono gli
+       stessi della Configurazione: toccarne uno qui lo toglie anche là. -->
+  <h3 class="reparto">Supermercati</h3>
+  <div class="negozi" id="negozi-cat" role="group" aria-label="Supermercati da tenere"></div>
+  <p class="avviso-negozi" id="avviso-negozi-cat" role="status"></p>
   <button type="button" class="chiudi" id="chiudi-cassetto">Fatto</button>
 </div>
 
@@ -2296,7 +2307,7 @@ function apriCassetto(si) {
   /* Niente focus sulla casella: aprendo il cassetto faceva saltare su la
      tastiera del telefono, che copre mezzo schermo proprio mentre uno vuole
      guardarsi i reparti. Chi vuole cercare la tocca. */
-  if (si) disegnaScaffali();
+  if (si) { disegnaScaffali(); disegnaNegozi(); }
   else document.getElementById('cerca').value = '';
   frecceAiuto();
 }
@@ -3861,9 +3872,13 @@ function apriConfig(si) {
 }
 
 function disegnaNegozi() {
-  const box = document.getElementById('negozi');
+  disegnaNegoziIn('negozi', 'avviso-negozi');
+  disegnaNegoziIn('negozi-cat', 'avviso-negozi-cat');
+}
+function disegnaNegoziIn(idBox, idAvviso) {
+  const box = document.getElementById(idBox);
   box.textContent = '';
-  document.getElementById('avviso-negozi').textContent = '';
+  document.getElementById(idAvviso).textContent = '';
   const insegne = [];
   DATI.volantini.forEach(v => { if (insegne.indexOf(v.ins) < 0) insegne.push(v.ins); });
   insegne.forEach(ins => {
@@ -3875,7 +3890,7 @@ function disegnaNegozi() {
     b.onclick = () => {
       if (!tolta(ins) && insegne.filter(x => !tolta(x)).length <= 1) {
         /* Tolti tutti, la pagina resterebbe senza un prezzo: meglio dirlo. */
-        document.getElementById('avviso-negozi').textContent =
+        document.getElementById(idAvviso).textContent =
           'Almeno un supermercato deve restare.';
         return;
       }
