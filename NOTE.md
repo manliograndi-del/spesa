@@ -3859,3 +3859,32 @@ fonti ufficiali:
   in `scartate.py`. Il «96 ore scontate» dell'ultima pagina (1-4/10 e 8-11/10)
   ha le date sulle righe. Fra il 26 e il 28 il Carrefour avrà solo lo
   speciale Coca-Cola: il «Grandi Marche» in Piemonte finisce oggi.
+
+## 2026-09-26 — Routine ordinaria: via il Carrefour scaduto, niente di nuovo (v113)
+
+`pulisci` segnalava solo `carriper15`, scaduto il 25/9: il sostituto
+(`carriper29`) era già in `dati.py` dal 25/9, quindi qui è stata solo
+pulizia (tolta la riga in `VOLANTINI`, le 45 righe di `PRODOTTI` e il blocco
+in `scartate.py`), senza bisogno di leggere niente di nuovo.
+
+Controllate tutte e dieci le insegne sulle fonti ufficiali per volantini che
+si sovrappongono a quelli in corso, non solo quelli in scadenza (la regola
+del Bennet «Dolce Buongiorno»): niente di nuovo.
+- **Lidl, Eurospin, MD**: le pagine dell'insegna su anteprimavolantino non
+  mostrano niente che inizi dopo l'attuale.
+- **Bennet**: «14 Giorni Mai Visti» c'è ancora nell'elenco, ma è quello già
+  scoperto e scartato il 25/9 (solo Lombardia): non riguardato, come da
+  regola («una volta che l'hai vista, lasciala perdere»).
+- **Ekom, Pam**: le API ufficiali danno esattamente i volantini già in
+  `dati.py` (`ekom22`; `pam24` e `pamextra24` per gli id 28807 e 28849).
+- **Ipercoop**: provando gli id vicini a 28831 (quello in uso) su
+  `volantinopiu.com`, dal 28831 al 28843 il sito risponde sempre con lo
+  stesso contenuto (stessa dimensione byte): sembra un blocco riservato
+  all'edizione attuale, non volantini diversi. Dal 28845 in su risponde
+  vuoto. Nessuna prova di un id assegnato a un volantino successivo.
+- **Conad**: la scheda del negozio di via Cesana mostra solo `conad24` più
+  «Perché conviene».
+- **Mercatò**: la pagina del negozio ora punta il PDF di «Al costo conviene
+  sempre» a un id diverso (3344 invece del vecchio), ma stesse date
+  (17-30/9): è una sostituzione dello stesso file, non un volantino nuovo.
+  Non serve rileggerlo.

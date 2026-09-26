@@ -596,22 +596,25 @@ l'elenco dei volantini in fondo e quello delle pagine sotto le offerte, la «i»
 accanto al prodotto (con «Elimina» e «Cambia nome»), i sinonimi modificabili,
 il contatore dei negozi, la riga «letto a occhio dal volantino».
 
-## Stato e da fare (aggiornato il 2026-09-25)
+## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v112**, link Claude (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v113**, link Claude versione 103 (la versione la dice il registro).
 
-**Scadenze**: `carriper15` il 25/9 (edizione Piemonte); `lidl24`, `lidlfv24`,
-`mercato17`, `mercatoreal17` e `bennet1709` il 30/9; `md22`, `eurospin24` e
-`bennetextra24` il 4/10; `ekom22` il 5/10; `ipercoop24`, `pam24`,
-`pamextra24` e `conad24` il 7/10; `carriper29` e `carrcoca15` il 12/10;
-`carrunilever29` il 22/10; `carraia29` il 15/11. Dal 26 al 28/9 il Carrefour
-Iper ha solo lo speciale Coca-Cola. `VOLANTINI_ATTESI` è vuoto. Offerte valide solo per una parte del periodo, già segnate riga per
+**Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
+`bennet1709` il 30/9; `md22`, `eurospin24` e `bennetextra24` il 4/10;
+`ekom22` il 5/10; `ipercoop24`, `pam24`, `pamextra24` e `conad24` il 7/10;
+`carriper29` e `carrcoca15` il 12/10; `carrunilever29` il 22/10; `carraia29`
+il 15/11. **Il Carrefour Iper «15-25 settembre» è scaduto ed è stato
+tolto il 26/9**: dal 26 al 28/9 il Carrefour Iper ha solo lo speciale
+Coca-Cola (`carrcoca15`), poi dal 29/9 arriva `carriper29» già caricato.
+`VOLANTINI_ATTESI` è vuoto. Offerte valide solo per una parte del periodo, già segnate riga per
 riga: `lidl24` (24-27 o 28-30), il «Doppio weekend» di `eurospin24` (25-27/9 e
 2-4/10) e la sua frutta di pagina 12 (dal 28), il «Weekend più Uno» di `md22`
 (2-5/10), la pescheria di `pam24` (24-30/9 e 1-7/10), il latte Coop di
 `ipercoop24` (28/9-4/10), il «96 ore scontate» di `carriper29` (1-4/10 e
 8-11/10), la pagina 2 di `carraia29` (dal 23/10). Tutti i volantini con prezzi
-sono letti al 100%.
+sono letti al 100%. Controllate il 26/9 tutte e dieci le insegne sulle fonti
+ufficiali per volantini nuovi non ancora in `VOLANTINI`: niente trovato.
 
 **Da fare**
 - Le fonti ufficiali sono in uso per Carrefour Iper, MD, Bennet «Offerte

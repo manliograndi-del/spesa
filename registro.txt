@@ -189,3 +189,4 @@
 2026-09-25 10:30 UTC  Manlio conferma i negozi (Pam corso Orbassano, Conad via Cesana, Ipercoop Torino-Collegno, MD corso Sebastopoli); vuole l'app il più generica possibile per Torino, insegne ed edizioni le sceglierà più avanti. Il tasto «Aprilo alla pagina N» dei volantini solo PDF sul suo telefono non apre niente: segnato in Da fare, non urgente
 2026-09-26 05:13 UTC  sveglia: clonato
 2026-09-26 05:25 UTC  pubblicato v113: via il Carrefour Iper 15-25 settembre, scaduto
+2026-09-26 05:26 UTC  controllate le dieci insegne: niente di nuovo, aggiornati CLAUDE.md/AGENTS.md/NOTE.md
