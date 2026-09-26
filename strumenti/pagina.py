@@ -880,7 +880,7 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
   font-family:var(--f-testo)}
 .cerca:focus{outline:none;border-color:var(--rosso)}
 .reparto{font-family:var(--f-prezzo);text-transform:uppercase;letter-spacing:.08em;
-  font-size:11.5px;font-weight:600;color:var(--tenue);margin:16px 0 8px}
+  font-size:11.5px;font-weight:700;color:var(--inchiostro);margin:16px 0 8px}
 .reparto:first-child{margin-top:14px}
 .chiudi{width:100%;margin-top:16px;background:var(--inchiostro);color:var(--carta);border:0;
   border-radius:14px;padding:13px;font-size:15px;font-weight:600;cursor:pointer;min-height:48px}
@@ -1115,7 +1115,10 @@ h1{font-family:var(--f-prezzo);font-weight:700;font-size:27px;letter-spacing:.01
    il marchio del negozio, il nome, il formato, la nota, e a destra i due
    prezzi (quello della confezione e quello per unità). Chiesto da Manlio il
    2026-09-22 con una schermata alla mano. */
-.fascia{font-size:13.5px;color:var(--tenue);margin:14px 0 0}
+/* I nomi delle categorie nei risultati (Cerca, Grandi marche) nel colore del
+   testo, non nel grigio tenue: Manlio, 2026-09-26, «appaiono in una tonalità
+   piuttosto sfumata con poco contrasto». */
+.fascia{font-size:14.5px;font-weight:600;color:var(--inchiostro);margin:14px 0 0}
 /* Piu compatte dal 2026-09-22, sempre su sua richiesta: stessa roba, meno
    aria intorno, cosi in uno schermo ci stanno piu offerte. */
 .prezzo-riga{display:grid;grid-template-columns:1fr auto;gap:2px 14px;
@@ -1288,6 +1291,9 @@ a.dove.apri::after{content:none}
 .parte .cal .num{font-size:11px}
 .prezzo-riga .bollo{display:inline-flex;align-items:center;height:24px;padding-top:0;
   padding-bottom:0;box-sizing:border-box}
+/* Se su un telefono stretto il bollino va comunque a capo, cresce invece di
+   lasciar uscire la scritta. */
+.prezzo-riga .bollo.stretta{height:auto;min-height:24px;padding-top:3px;padding-bottom:3px}
 
 /* ---- «Mostra le altre» e le righe «non ci sono offerte» ---- */
 .altre{width:100%;margin-top:12px;background:var(--pannello);border:1.5px solid var(--linea);
@@ -2031,6 +2037,15 @@ function soloGiorno(iso) {
   const p = iso.split('-');
   return Number(p[2]) + ' ' + MESI[Number(p[1]) - 1];
 }
+/* «dal 28 al 30 settembre», non «dal 28 settembre al 30 settembre»: la
+   versione lunga andava a capo e usciva dal bollino rosso. */
+function periodoStretto(o) {
+  let dal = giorno(o.inizio);
+  if (o.inizio && o.fino && o.inizio.slice(0, 7) === o.fino.slice(0, 7))
+    dal = dal.replace(/ [^ ]+$/, '');
+  return dal + ' al ' + soloGiorno(o.fino);
+}
+
 function giorno(iso) {
   if (!iso) return '';
   const n = Number(iso.split('-')[2]);
@@ -3083,7 +3098,7 @@ function rigaPrezzo(o, meno) {
   if (meno) coda.insertAdjacentHTML('beforeend',
     '<span class="bollo meno">il meno caro valido oggi</span>');
   if (o.ristretta) coda.insertAdjacentHTML('beforeend',
-    '<span class="bollo stretta">solo ' + giorno(o.inizio) + ' al ' + soloGiorno(o.fino) + '</span>');
+    '<span class="bollo stretta">solo ' + periodoStretto(o) + '</span>');
   if (o.dubbio) coda.insertAdjacentHTML('beforeend', '<span class="bollo dubbio">da controllare</span>');
 
   /* IL TITOLO: la marca sopra, poi il nome, poi le aggiunte in grigio

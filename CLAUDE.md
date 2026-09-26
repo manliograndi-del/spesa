@@ -485,7 +485,8 @@ scritta del menù scende a 13 px. Il tasto Cerca è `.tasto.trova`.
 Cerca fra **tutte** le offerte lette (marca, formato, insegna, note), non nel
 catalogo. I risultati escono mentre si scrive. La pagina contiene solo la
 casella: niente categorie, niente scritte sotto, niente «Fatto» (è nascosto
-perché lo usano le prove). **Nei risultati non c'è il verde.** Il pannello sta
+perché lo usano le prove). Nei risultati (anche di Grandi marche) il nome di
+ogni categoria (`.fascia`) è nel colore del testo, non nel grigio tenue. **Nei risultati non c'è il verde.** Il pannello sta
 **fuori dalla `.barra`**: se le cresce dentro qualcosa, il telefono si blocca a
 ogni scorrimento. Due pannelli non stanno aperti insieme. La casella prende il
 fuoco (e si apre la tastiera) **solo quando la griglia è scesa**
@@ -563,7 +564,9 @@ Il tasto è «Colori della pagina» e la finestra si chiama «Scegli il look».
 Manlio): non si scrivono a mano, e per aggiungerne basta aggiungere palette.
 Verde e ambra non cambiano mai; segue la palette solo l'accento (il rosso).
 **Nessun look può essere illeggibile**: `verifica()` controlla il contrasto WCAG
-di sette coppie di colori e ferma la generazione. La pagina parte senza look
+di sette coppie di colori e ferma la generazione. **Sulle pagine chiare
+l'accento regge 7:1 come il testo** (`ACCENTO_CHIARO`): la tinta della palette,
+scurita; a 4.5 i tasti accesi sembravano sbiaditi. La pagina parte senza look
 («Originale»). I 12 look scuri vengono da palette scure e non hanno niente a
 che fare con `prefers-color-scheme` (vincolo 4).
 
@@ -611,7 +614,7 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v119**, link Claude versione 109 (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v120**, link Claude versione 110 (la versione la dice il registro).
 
 **Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
 `bennet1709` il 30/9; `md22`, `eurospin24`, `bennetextra24` e `aldi28`

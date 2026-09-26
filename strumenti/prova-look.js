@@ -65,6 +65,12 @@ setTimeout(() => {
         male.push('«' + l.nome + '»: ' + nome + ' è ' + c.toFixed(1) + ':1, ne serve ' + minimo);
       if (c / minimo < peggiore.c) peggiore = { c: c / minimo, chi: l.nome + ' — ' + nome };
     });
+    /* Sulle pagine chiare l'accento regge 7:1 come il testo (Manlio,
+       2026-09-26: «poco contrasto… un colore più scuro nelle combinazioni
+       chiare»). */
+    if (!l.notte && contrasto(l.v.rosso, l.v.carta) < 6.99)
+      male.push('«' + l.nome + '»: l\'accento su una pagina chiara è sbiadito ('
+        + contrasto(l.v.rosso, l.v.carta).toFixed(1) + ':1, ne serve 7)');
     if (!Array.isArray(l.base) || l.base.length < 3)
       male.push('«' + l.nome + '» non ha le sue tinte da mostrare');
   });

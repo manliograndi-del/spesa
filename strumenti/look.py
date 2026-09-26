@@ -98,6 +98,9 @@ def _tinta(carta, tinta, sopra, quanto=0.16):
     return fondo
 
 
+ACCENTO_CHIARO = 7.0     # contrasto dell'accento sulle pagine chiare
+
+
 def _look(palette):
     """Le quattro (o più) tinte di una palette diventano i colori della pagina."""
     colori = list(palette['colori'])
@@ -119,7 +122,13 @@ def _look(palette):
     # si riconosce di più della palette.
     candidati = [c for c in colori if c not in (chiaro, scuro)] or colori
     accento = max(candidati, key=lambda c: (_saturazione(c), -abs(luce(c) - 0.35)))
-    accento = _porta_a(accento, carta, 4.5, 'bianco' if notte else 'nero')
+    # Sulle pagine chiare l'accento si scurisce fino a 7:1, come il testo, non
+    # solo fino a 4.5: Manlio, 2026-09-26, sul tasto acceso e sui prodotti
+    # evidenziati, «una tonalità piuttosto sfumata con poco contrasto, forse
+    # sarebbe meglio un colore più scuro almeno nelle combinazioni chiare».
+    # La tinta resta quella della palette, solo più scura.
+    accento = _porta_a(accento, carta, 4.5 if notte else ACCENTO_CHIARO,
+                       'bianco' if notte else 'nero')
 
     su_accento = '#FFFFFF' if contrasto('#FFFFFF', accento) >= contrasto('#111111', accento) else '#111111'
 
@@ -214,6 +223,8 @@ def verifica(look=None):
             if c < minimo - 0.01:
                 guai.append('%s (%s): %s è %.1f:1, ne serve %.1f' %
                             (l['nome'], l['id'], nome, c, minimo))
+        if not l['notte'] and contrasto(l['v']['rosso'], l['v']['carta']) < ACCENTO_CHIARO - 0.01:
+            guai.append('%s (%s): l\'accento su una pagina chiara è troppo sbiadito' % (l['nome'], l['id']))
     if guai:
         raise SystemExit('LOOK CHE NON SI LEGGONO:\n  ' + '\n  '.join(guai))
     return True
