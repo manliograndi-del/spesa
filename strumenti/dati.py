@@ -84,7 +84,6 @@ VOLANTINI = [
  # buchi passata a eurospin24 dal giorno stesso in cui e scaduto.
  _v('eurospin24',     'Eurospin',       'dal 24 settembre al 4 ottobre',                'Eurospin — 24 settembre-4 ottobre.pdf',            '2026-10-04', _AV + '/2026/09/volantino-eurospin-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
  # md08 (8-20 settembre) scaduto e tolto il 2026-09-23: copertura passata a md22.
- _v('carriper15',     'Carrefour Iper', 'dal 15 al 25 settembre',                       'Carrefour Iper — 15-25 settembre.pdf',              '2026-09-25', 'https://gdodig-car.youroperator.it/volantini/iper_21_SCOGRAN/21_SCOGRAN_02_PIEMONTE/mobile/21_SCOGRAN_02_PIEMONTE_{n}_sliderzoom.jpg', '2026-09-15'),
  _v('carriper29',     'Carrefour Iper', '«50 prodotti al 50%», dal 29 settembre al 12 ottobre', 'Carrefour Iper — 29 settembre-12 ottobre.pdf', '2026-10-12', 'https://gdodig-car.youroperator.it/volantini/iper_22_50x50/22_50x50_02_PIEMONTE/mobile/22_50x50_02_PIEMONTE_{n}_sliderzoom.jpg', '2026-09-29'),
  _v('carrcoca15',     'Carrefour Iper', '«Speciale Coca-Cola», dal 15 settembre al 12 ottobre', 'Carrefour Iper — Speciale Coca-Cola.pdf', '2026-10-12', 'https://gdodig-car.youroperator.it/volantini/iper_COCA_COLA/COCA_COLA_01_LOMBARDIA/mobile/COCA_COLA_01_LOMBARDIA_{n}_sliderzoom.jpg', '2026-09-15'),
  _v('carrunilever29', 'Carrefour Iper', '«Speciale Unilever», dal 29 settembre al 22 ottobre', 'Carrefour Iper — Speciale Unilever.pdf', '2026-10-22', 'https://gdodig-car.youroperator.it/volantini/iper_UNILEVER/UNILEVER_01_LOMBARDIA/mobile/UNILEVER_01_LOMBARDIA_{n}_sliderzoom.jpg', '2026-09-29'),
@@ -288,61 +287,6 @@ PRODOTTI = [
  # Pagina «Doppio Weekend di follia»: due finestre corte con date proprie
  # (11-13 e 18-20 settembre), diverse dal resto del volantino (10-20).
 
- # ---- Carrefour Iper, 15-28 settembre: letto per intero, 50/50 pagine ----
- # È in gran parte «Grandi Marche», sconti percentuali su intere linee senza
- # prezzo di base (pagine 1-11): scartate, vedi scartate.py. I prezzi veri
- # stanno nelle pagine di carne, pesce, salumi, formaggi, ortofrutta e in
- # alcune pagine di alimentari confezionati e bevande.
- ("Manzo","Carrefour Iper","carriper15","Macelleria","Carpaccio di bovino adulto","al kg",1,19.99,12,V,"−29%, prima 28,49."),
- ("Preparati","Carrefour Iper","carriper15","Macelleria","Hamburger di bovino adulto","al kg",1,12.99,12,V,"−20%, prima 16,29."),
- ("Vitello","Carrefour Iper","carriper15","Macelleria","Macinata di vitello","al kg",1,13.99,12,V,""),
- ("Vitello","Carrefour Iper","carriper15","Macelleria","Spezzatino di vitello, confezione risparmio","al kg",1,15.99,12,V,"−20%, prima 19,99."),
- ("Suino","Carrefour Iper","carriper15","Macelleria","Lonza di suino a fette, confezione risparmio","al kg",1,6.49,12,V,"−48%, prima 12,49. Comprando il taglio intero costa 5,49 al kg."),
- ("Preparati","Carrefour Iper","carriper15","Macelleria","Hamburger misti di suino, conf. 6 pezzi","600 g",0.600,5.99,12,V,"−25%, prima 7,99."),
- ("Pollo","Carrefour Iper","carriper15","Macelleria","Petto di pollo a fette – Aia","al kg",1,9.89,12,V,"−32%, prima 14,76."),
- ("Pollo","Carrefour Iper","carriper15","Macelleria","Fusi e sovracosce di pollo, conf. 6 pezzi","al kg",1,4.99,12,V,"−28%, prima 6,99. Comprando 2 kg o più costa 3,99 al kg."),
- ("Salmone","Carrefour Iper","carriper15","Pescheria","Trancio di salmone allevato in Norvegia","al kg",1,16.90,13,V,"−22%, prima 21,90. Senza uso di antibiotici."),
- ("Pesce","Carrefour Iper","carriper15","Pescheria","Branzino","al kg",1,8.49,13,V,"−43%, prima 14,90. Comprando 3 kg o più costa 7,99 al kg."),
- ("Gamberi","Carrefour Iper","carriper15","Pescheria","Mazzancolle tropicali cotte","al kg",1,10.90,13,V,"−26%, prima 14,90. Già cotte. Comprando 2 kg o più costa 8,90 al kg."),
- ("Calamari","Carrefour Iper","carriper15","Pescheria","Tentacolo di totano gigante, decongelato","al kg",1,8.90,13,V,"−25%, prima 11,90."),
- ("Merluzzo","Carrefour Iper","carriper15","Surgelati","5 filetti di merluzzo d'Alaska – Frosta","340 g",0.340,3.99,19,V,"−43%, prima 7,00. Surgelato. Solo con la tessera SpesAmica Payback."),
- ("Pancetta","Carrefour Iper","carriper15","Salumi","Pancetta arrotolata","al kg",1,16.90,15,V,"−21%, prima 2,15 all'etto."),
- ("Mortadella","Carrefour Iper","carriper15","Salumi","Mortadella Bologna IGP – Bonomia","al kg",1,11.90,15,V,"−25%, prima 15,90 al kg. Comprando 3 etti o più costa 10,90 al kg."),
- ("Prosciutto","Carrefour Iper","carriper15","Salumi","Prosciutto Cotto Alta Qualità Nazionale Leonardo – Parmacotto","al kg",1,19.90,15,V,"−20%, prima 2,49 all'etto."),
- ("Prosciutto","Carrefour Iper","carriper15","Salumi","Prosciutto Crudo – Fattorie del Gennargentu","al kg",1,21.99,16,V,"−30%, prima 3,19 all'etto."),
- ("Salame","Carrefour Iper","carriper15","Salumi","Salame Ungherese – Raspini","al kg",1,14.90,15,V,"−30%, prima 2,15 all'etto."),
- ("Salsiccia","Carrefour Iper","carriper15","Salumi","Salsiccia di Fonni – Fattorie del Gennargentu","al kg",1,13.93,16,V,"−30%, prima 1,99 all'etto. Solo con la tessera SpesAmica Payback."),
- ("Bresaola","Carrefour Iper","carriper15","Salumi","Bresaola della Valtellina IGP – Beretta","70 g",0.070,2.99,17,V,"−33%, prima 4,47. Solo con la tessera SpesAmica Payback."),
- ("Grana","Carrefour Iper","carriper15","Freschi","Grana Padano DOP grattugiato – Latteria Soresina","100 g",0.100,1.29,17,V,"−43%, prima 2,27. Solo con la tessera SpesAmica Payback."),
- ("Grana","Carrefour Iper","carriper15","Salumi","Parmigiano Reggiano DOP stagionato 22 mesi, confezione famiglia","al kg",1,18.90,15,V,"Comprando 2 kg o più costa 17,90 al kg."),
- ("Formaggio","Carrefour Iper","carriper15","Salumi","Gorgonzola DOP – Terre d'Italia","al kg",1,12.70,15,V,"−20%, prima 1,59 all'etto."),
- ("Formaggio","Carrefour Iper","carriper15","Salumi","Leerdammer","al kg",1,13.50,15,V,""),
-("Formaggio","Carrefour Iper","carriper15","Salumi","Provolone Piccante – Auricchio","al kg",1,16.90,15,V,"−21%, prima 21,50 al kg. Comprando 5 etti o più costa 14,90 al kg."),
-("Formaggio","Carrefour Iper","carriper15","Salumi","Camoscio d'Oro","al kg",1,14.90,15,V,"−23%, prima 1,95 all'etto."),
-("Formaggio","Carrefour Iper","carriper15","Salumi","Formaggio del Contadino – Pama","al kg",1,11.34,15,V,"−40%, prima 1,89 all'etto."),
- ("Mozzarella","Carrefour Iper","carriper15","Freschi","Mozzarella Fior di Latte – Caseificio Pugliese, conf. 3 pezzi","300 g (3 × 100 g)",0.300,1.99,17,V,"−46%, prima 3,75."),
- ("Uova","Carrefour Iper","carriper15","Freschi","Uova da allevamento a terra – Le Naturelle, conf. 10 pezzi","10 uova",10,2.49,18,V,"−36%, prima 3,95."),
- ("Olio d'oliva","Carrefour Iper","carriper15","Dispensa","Olio extravergine di oliva – Ulisse Clemente","1 litro",1,4.59,23,V,"−45%, prima 8,35. Solo con la tessera SpesAmica Payback."),
-("Olio d'oliva","Carrefour Iper","carriper15","Dispensa","Olio extravergine di oliva 100% italiano – Desantis","1 litro",1,5.79,23,V,"−49%, prima 11,36. Solo con la tessera SpesAmica Payback."),
- ("Tonno","Carrefour Iper","carriper15","Dispensa","Tonno all'olio di oliva – As do Mar, conf. 8 pezzi","560 g (8 × 70 g)",0.560,6.99,23,V,"−43%, prima 12,27. Solo con la tessera SpesAmica Payback."),
- ("Tonno","Carrefour Iper","carriper15","Dispensa","Tonno naturale zero olio – Nostromo, conf. 6 pezzi","336 g (6 × 65 g)",0.336,3.99,23,V,"−50%, prima 7,99. È al naturale, non all'olio. Solo con la tessera SpesAmica Payback."),
- ("Biscotti","Carrefour Iper","carriper15","Colazione",'Biscotti Oro – Saiwa',"1 kg",1,2.29,22,V,"Comprando 3 pezzi o più costa 1,99 al pezzo."),
- ("Marmellata","Carrefour Iper","carriper15","Dispensa","Confetture Bio – Rigoni di Asiago","330 g",0.330,3.39,22,V,"−36%, prima 5,30. Solo con la tessera SpesAmica Payback."),
- ("Miele","Carrefour Iper","carriper15","Dispensa","Miele dosatore – Millefiori","400 g",0.400,2.69,22,V,"−21%, prima 3,41. Solo con la tessera SpesAmica Payback."),
- ("Cioccolato","Carrefour Iper","carriper15","Colazione","Tavoletta fondente −30% di zuccheri – Novi","100 g",0.100,2.29,21,V,"−22%, prima 2,94."),
- ("Cioccolato","Carrefour Iper","carriper15","Colazione","Tavolette nocciolato – Milka","95 g",0.095,1.29,50,V,"«96 ore scontate», valido solo dal 24 al 27 settembre, non per tutto il volantino. −40%, prima 2,15.","2026-09-24","2026-09-27"),
- ("Yogurt","Carrefour Iper","carriper15","Freschi","Yogurt bianco magro – Müller, conf. 8 pezzi","1 kg (8 × 125 g)",1,2.39,18,V,"−27%, prima 3,29."),
- ("Latte","Carrefour Iper","carriper15","Freschi","Latte UHT parzialmente scremato – Polenghi","1 litro",1,0.69,18,V,"−45%, prima 1,26."),
- ("Caffè","Carrefour Iper","carriper15","Colazione","Macinato Granaroma – Vergnano, conf. 4 pezzi","1 kg (4 × 250 g)",1,13.59,21,V,"−32%, prima 19,99. Solo con la tessera SpesAmica Payback."),
- ("Gelato","Carrefour Iper","carriper15","Surgelati","Carte D'Or Classic – Algida","500 g",0.500,2.99,20,V,"−40%, prima 4,99. Solo con la tessera SpesAmica Payback."),
- ("Frutta","Carrefour Iper","carriper15","Ortofrutta","Mele Golden sfuse","al kg",1,0.89,14,V,"−50%, prima 1,79. Comprando 3 kg o più costa 0,79 al kg."),
- ("Verdura","Carrefour Iper","carriper15","Ortofrutta","Pomodoro Datterino","500 g",0.500,1.99,14,V,"−25%, prima 2,66."),
- ("Patate","Carrefour Iper","carriper15","Ortofrutta","Patate al selenio, rete 1,5 kg","al kg",1,1.79,14,V,"−20%, prima 2,24 al kg."),
- ("Pomodoro","Carrefour Iper","carriper15","Dispensa","Passata Vellutata – Delverde","690 g",0.690,0.89,24,V,"−40%, prima 1,49. Solo con la tessera SpesAmica Payback."),
- ("Riso","Carrefour Iper","carriper15","Dispensa","Riso Carnaroli – Carrefour Classic","1 kg",1,2.55,24,V,"−20%, prima 3,19. Solo con la tessera SpesAmica Payback."),
- ("Acqua","Carrefour Iper","carriper15","Bevande","Acqua naturale o frizzante – Valmora, conf. 6 pezzi","9 litri (6 × 1,5 l)",9,1.59,25,V,"−40%, prima 2,70. Solo con la tessera SpesAmica Payback."),
- ("Birra","Carrefour Iper","carriper15","Bevande","Birra in lattina – Tuborg","500 ml",0.500,0.99,29,V,""),
- ("Vino","Carrefour Iper","carriper15","Bevande","Rosso o Bianco Terre Siciliane IGT – Corvo","750 ml",0.750,3.99,26,V,"−28%, prima 5,55. Solo con la tessera SpesAmica Payback."),
  # ----- Carrefour Iper «50 prodotti al 50%», 29 settembre-12 ottobre (carriper29), edizione PIEMONTE, letto per intero il 2026-09-25 dal PDF ufficiale -----
  # Pagine senza categoria o non alimentari: 7, 26, 27, 32, 33, 36-47. Le righe senza categoria sono scritte in fondo a ogni pagina.
  # p3: Sofficette Citterio e Pizza Bella Napoli sono le stesse di p1
