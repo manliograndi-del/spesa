@@ -3888,3 +3888,35 @@ del Bennet «Dolce Buongiorno»): niente di nuovo.
   sempre» a un id diverso (3344 invece del vecchio), ma stesse date
   (17-30/9): è una sostituzione dello stesso file, non un volantino nuovo.
   Non serve rileggerlo.
+
+## 2026-09-26 — Penny (v114); Aldi ed Esselunga in lettura
+
+Manlio: «adesso tocca mettere anche i supermercati Penny, Esselunga e Aldi».
+Si pubblica Penny da solo, appena letto, per non fargli aspettare anche gli
+altri due; Aldi ed Esselunga stanno intanto in `VOLANTINI_ATTESI`, così nella
+tabella delle Novità compaiono già, come «prezzi non ancora letti».
+
+**Penny.** Il sito penny.it mostra il volantino con un visore di Shopfully.
+Il visore chiede l'elenco dei volantini a una API con una chiave scritta nel
+suo codice (trovata guardando le richieste con Playwright): ogni negozio ha
+un volantino suo, ma confrontando i PDF di tre negozi di Torino cambia solo
+la pagina 5 (in alcuni il banco pane, in altri la gastronomia con la
+rosticceria). Il nostro è quello di corso Corsica 7. Letto tutto dal PDF
+ufficiale: 144 offerte, scartate la pagina degli animali e il «Fuori tutto»
+(solo percentuali, non alimentari). Tolto il tuorlo d'uovo: le Uova si
+contano a uovo, e un tuorlo in brick non ha un prezzo a uovo onesto.
+
+Il collegamento alle pagine. Il visore ha un indirizzo con il numero di
+pagina (`/flyer/<id>/<n>`), ma lo ignora: si apre sempre dall'inizio, con un
+avviso in inglese sopra. Il vecchio percorso `/flyer-pages/` mostra solo
+«questa versione dell'app non ti permette di vedere le nuove offerte». Le
+immagini delle pagine non sono pubbliche (403). Quindi le pagine vengono da
+anteprimavolantino.it, come per Lidl ed Eurospin, che però ha l'edizione con
+la gastronomia a pagina 5: per quella sola pagina si apre il PDF ufficiale.
+
+«Solo con PENNYCard» è la tessera Penny: bollino «Con PENNY Card», e nella
+nota il prezzo senza tessera.
+
+**Aldi** (volantino.aldi.it, Publitas) ha pagine e PDF ufficiali ben fatti;
+aldi.it invece risponde 403. **Esselunga** vuole un negozio scelto e da qui il
+sito risponde male (502, pagine vuote): per ora anteprimavolantino.

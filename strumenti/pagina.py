@@ -117,7 +117,7 @@ _TESSERA = re.compile(r"Lidl Plus|Buona Spesa Card|Carta Insieme|[Ss]olo titolar
                       r"EKOM UP|SpesAmica|\bsoci\b|CARTA BENNET|Fidelity Card|"
                       r"Perte Plus|\bcon APP\b|\bl'app\b|[Tt]essera")
 _BOLLO_TESSERA = {'Pam': 'Solo con app', 'Lidl': 'Con Lidl Plus', 'Ipercoop': 'Solo soci',
-                  'Eurospin': 'Con carta Family'}
+                  'Eurospin': 'Con carta Family', 'Penny': 'Con PENNY Card'}
 
 def condizioni(ins, cat, fmt, note):
     n = note or ''
@@ -2985,6 +2985,9 @@ const MARCHI = {
   'Carrefour Iper': ['#004E9F', '#FFFFFF'],
   'Pam':            ['#00843D', '#FFFFFF'],
   'Conad':          ['#E30613', '#FFFFFF'],
+  'Penny':          ['#CD1414', '#FFFFFF'],
+  'Aldi':           ['#00005F', '#FFFFFF'],
+  'Esselunga':      ['#0063AF', '#FFFFFF'],
 };
 function marchio(ins) {
   const e = document.createElement('b');

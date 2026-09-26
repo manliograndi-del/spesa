@@ -27,6 +27,7 @@ D = 'DA CONTROLLARE (riassunto online)'
 from catalogo import UNITA, NOMI
 from pagine_mercato import PAGINE_MERCATO, PAGINE_MERCATO_17
 from pagine_ekom import PAGINE_EKOM_08, PAGINE_EKOM_22
+from pagine_aldi import PAGINE_ALDI_28
 
 # I volantini sono namedtuple e non tuple nude di proposito: il 2026-09-05 e
 # servito aggiungere un campo (l'inizio) e gli otto punti che le spacchettavano
@@ -74,8 +75,16 @@ PDF = {
  # Lo stesso PDF, con #page=, è anche il collegamento di ogni riga.
  # Mercatò «Promo L'Oréal» (via Filadelfia 232): solo PDF, come il Bennet.
  'mercatoreal17': 'https://cdn.dimar.it/volantini/3315/3315_volantino.pdf',
+ # Penny di corso Corsica 7: il PDF del volantino (Shopfully), per scarica.py.
+ 'penny24': 'https://it-it-media-publications.shopfully.cloud/publications/requests/1693379_6aa9076d-fc64-4c84-8ca2-00ba43be90da_2026-09-15-10-53-01.pdf',
  'bennetextra24': 'https://bennet-cdn.thron.com/static/CR7BHE_PROMO_19-Vege26055-TuttiPdV_149GNT.pdf',
 }
+
+# Penny, pagine una per una: quelle di anteprimavolantino.it, tranne la 5, che
+# è l'unica diversa da negozio a negozio. La loro ha la gastronomia al posto
+# del pane del nostro negozio, quindi per la 5 si apre il PDF ufficiale.
+_PAGINE_PENNY_24 = [_AV + '/2026/09/volantino-penny-2026-09-24-p-{:05d}.jpg'.format(n) for n in range(1, 21)]
+_PAGINE_PENNY_24[4] = PDF['penny24'] + '#page=5'
 
 VOLANTINI = [
  # In arrivo: letti in anticipo, con la data d'inizio. Fino a quel giorno la
@@ -160,6 +169,21 @@ VOLANTINI = [
  # ATTENZIONE: l'indirizzo delle immagini qui non ha la «e» fra frutta e
  # verdura (lidlfv17 ce l'aveva): controllato a mano, funziona solo senza.
  _v('lidlfv24',       'Lidl',           'speciale Frutta e Verdura, dal 24 al 30 settembre', 'Lidl Frutta e Verdura — 24-30 settembre.pdf',      '2026-09-30', _AV + '/2026/09/volantino-lidl-frutta-verdura-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
+ # ----- tre insegne nuove, chieste da Manlio il 2026-09-26 («mettere anche i
+ # supermercati Penny, Esselunga e Aldi») -----
+ # PENNY: ogni negozio ha il suo volantino, ma a Torino cambia solo la pagina 5.
+ # Il nostro è quello del Penny di corso Corsica 7 (1,9 km), letto dal PDF
+ # ufficiale (in PDF qui sopra). Le pagine si vedono da anteprimavolantino.it:
+ # il visore ufficiale (Shopfully) si apre sempre dalla prima pagina.
+ _v('penny24',        'Penny',          'dal 24 settembre al 7 ottobre',                'Penny — 24 settembre-7 ottobre.pdf',               '2026-10-07', None, '2026-09-24', _PAGINE_PENNY_24),
+ # ALDI: volantino.aldi.it (Publitas), il sito ufficiale. Le pagine una per una
+ # stanno in pagine_aldi.py. Il volantino della settimana 21-27/9 non è letto:
+ # quando Manlio ha chiesto Aldi mancava un giorno alla fine.
+ #_v('aldi28',         'Aldi',           'dal 28 settembre al 4 ottobre',                'Aldi — 28 settembre-4 ottobre.pdf',                '2026-10-04', None, '2026-09-28', PAGINE_ALDI_28),
+ # ESSELUNGA: il sito ufficiale (esselunga.it) vuole un negozio scelto e da qui
+ # risponde a fatica; per ora anteprimavolantino.it, come le altre all'inizio.
+ #_v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', _AV + '/2026/09/volantino-esselunga-2026-09-24-p-{n:02d}.jpg', '2026-09-24'),
+ #_v('esselungaaut24', 'Esselunga',      '«Sapori d\'Autunno», dal 24 settembre al 7 ottobre', 'Esselunga Sapori d\'Autunno — 24 settembre-7 ottobre.pdf', '2026-10-07', _AV + '/2026/09/volantino-esselunga-autunno-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -176,9 +200,14 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
-    # Vuota: l'Ipercoop che stava qui e' stato letto il 2026-09-22 ed e'
-    # passato in VOLANTINI come `ipercoop24`. Si rimette qui dentro un
-    # volantino solo quando SO che sta per uscire e non l'ho ancora letto.
+    # Aldi ed Esselunga, chiesti il 2026-09-26: trovati e in lettura. Quando un
+    # volantino è letto si toglie di qui e si riapre la sua riga in VOLANTINI.
+    Atteso('Aldi', 'dal 28 settembre al 4 ottobre', '2026-09-28', '2026-10-04',
+           'volantino.aldi.it, in lettura'),
+    Atteso('Esselunga', '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', '2026-09-24', '2026-10-07',
+           'in lettura'),
+    Atteso('Esselunga', "«Sapori d'Autunno», dal 24 settembre al 7 ottobre", '2026-09-24', '2026-10-07',
+           'in lettura'),
 ]
 
 for _a in VOLANTINI_ATTESI:
@@ -2056,6 +2085,163 @@ PRODOTTI = [
  ("Panati","Conad","conad24","Surgelati",'Burger – Findus, vari tipi (per esempio di salmone con limone e aneto), 2 pezzi',"170 g",0.170,3.49,24,V,"Solo con la Carta Insieme Conad. Sconto del 30%: senza tessera 4,99, cioè 29,36 al kg. Il volantino stampa 20,53 al kg."),
  # pagina 24: le vellutate Cremosa Findus non hanno una categoria nel catalogo. In fondo l'elenco dei
  # negozi in cui vale: per Torino c'è anche via Cesana 78, il nostro.
+ # ----- Penny, 24 settembre-7 ottobre (penny24), Penny di corso Corsica 7, letto per intero il 2026-09-26 dal PDF ufficiale -----
+ # p1: capsule Borbone Decisa 70+10 senza peso; p2: maionese Kraft senza categoria
+ # p3: patatine San Carlo e Doritos senza categoria; p4: piante e fiori
+ # p9: Danette Twix e tiramisù senza categoria; punti extra senza prezzo
+ # p11: tovaglioli Penny (500 pezzi) senza categoria; p12: ketchup Calvè e snack di mais senza categoria
+ # p13: formaggini in Spalmabili; sciroppo d'acero Bio, bevanda avena/mandorla Alpro senza categoria
+ # p14: tortina Sacher (solo nei negozi con la pasticceria) senza categoria
+ # p15: birra rossa Moretti e Corona (solo punti extra, prezzo non leggibile) fuori
+ # p16: candeggina, pavimenti, sgrassatore, WC Net, profumatore, detersivo piatti: nessuna categoria
+ # p8: il tuorlo d'uovo in bottiglia (250 g) non ha un prezzo per uovo onesto: fuori
+ # p17: deodorante Nivea e fazzoletti Penny senza categoria; concorso
+ # p18: cibo per animali, nessuna categoria
+ # p19: «Fuori tutto» non alimentare, solo percentuali; p20: capsule Lavazza Suerte senza peso
+ ("Frutta","Penny","penny24","Ortofrutta","Uva bianca","al kg",1,1.99,1,V,"Coltivata in Italia."),
+ ("Frutta","Penny","penny24","Ortofrutta","Arance Navel","al kg",1,1.69,1,V,""),
+ ("Prosciutto","Penny","penny24","Salumi","Prosciutto cotto Alta Qualità a fette – Rovagnati","110 g",0.11,1.99,1,V,"−33%, prima 2,99. Solo con la PENNY Card, senza tessera 2,99."),
+ ("Pomodoro","Penny","penny24","Dispensa","Polpa di pomodoro, 3 pezzi – Mutti","1,8 kg (3 × 600 g)",1.8,3.50,1,V,"−41%, prima 5,97. Vale solo comprandone 3 (più ne prendi): una sola costa 1,99."),
+ ("Carta igienica","Penny","penny24","Cura casa","Carta igienica Rotoloni – Regina","8 rotoli",8,5.45,1,V,"Miglior prezzo dell'anno. Quantità limitata."),
+ ("Acqua","Penny","penny24","Bevande","Acqua effervescente naturale – Lete, conf. 6 pezzi","9 litri (6 × 1,5 l)",9,1.98,1,V,"−29%, prima 2,82."),
+ ("Affettati","Penny","penny24","Salumi","Petto di pollo arrosto Aequilibrium a fette – Aia","145 g",0.145,1.99,2,V,"Quantità limitata."),
+ ("Bresaola","Penny","penny24","Salumi","Bresaola a fette – Citterio","160 g (2 × 80 g)",0.16,5.99,2,V,"Quantità limitata."),
+ ("Pasta","Penny","penny24","Freschi","Lasagne zucchine e provola o zucca e salsiccia – Rana","350 g",0.35,3.29,2,V,"È un piatto pronto. Quantità limitata."),
+ ("Legumi","Penny","penny24","Dispensa","Piselli finissimi – Bonduelle, conf. 3 pezzi","420 g (3 × 140 g)",0.42,1.99,2,V,"−33%, prima 2,99."),
+ ("Sughi","Penny","penny24","Dispensa","Gran Ragù classico o extra gusto – Star, conf. 2 pezzi","360 g (2 × 180 g)",0.36,2.29,2,V,"−17%, prima 2,79."),
+ ("Sughi","Penny","penny24","Dispensa","Sugo al basilico – Barilla","400 g",0.4,1.75,2,V,"−20%, prima 2,19."),
+ ("Riso","Penny","penny24","Dispensa","Risotti chicchi grossi – Scotti","1 kg",1,1.89,2,V,"Quantità limitata."),
+ ("Biscotti","Penny","penny24","Colazione","Gocciole – Pavesi","500 g",0.5,2.29,3,V,"−23%, prima 2,99."),
+ ("Birra","Penny","penny24","Bevande","Birra Super – Tennent's, conf. 12 pezzi","4,26 litri (12 × 35,5 cl)",4.26,15.99,3,V,"Quantità limitata."),
+ ("Birra","Penny","penny24","Bevande","Birra in lattina – Peroni","50 cl",0.5,0.79,3,V,"Quantità limitata."),
+ ("Bibite","Penny","penny24","Bevande","Fanta","1,5 litri",1.5,1.19,3,V,"−25%, prima 1,59."),
+ ("Panati","Penny","penny24","Surgelati","Bastoncini, 16 pezzi – Findus","400 g",0.4,3.49,3,V,"−27%, prima 4,79."),
+ ("Asciugatutto","Penny","penny24","Cura casa","Asciugoni – Regina","6 rotoli",6,5.99,3,V,"Quantità limitata."),
+ ("Verdure surgelate","Penny","penny24","Surgelati","Minestrone Tradizione – Findus","700 g",0.7,1.99,3,V,"−28%, prima 2,79. Solo con la PENNY Card, senza tessera 2,79."),
+ ("Ammorbidente","Penny","penny24","Cura casa","Ammorbidente XXL gelsomino, 86 lavaggi – Fabuloso","86 lavaggi",86,2.99,3,V,"Quantità limitata."),
+ ("Lavatrice","Penny","penny24","Cura casa","Detersivo capi delicati XXL, 54+4 lavaggi – Perlana","58 lavaggi",58,7.99,3,V,"Quantità limitata."),
+ ("Frutta","Penny","penny24","Ortofrutta","Mele Golden – Natura è","al kg",1,1.49,4,V,"Coltivate in Italia."),
+ ("Frutta","Penny","penny24","Ortofrutta","Mango","380 g",0.38,1.29,4,V,""),
+ ("Verdura","Penny","penny24","Ortofrutta","Pomodoro ciliegino – Natura è","500 g",0.5,1.99,4,V,""),
+ ("Verdura","Penny","penny24","Ortofrutta","Broccoli","500 g",0.5,1.99,4,V,""),
+ ("Verdura","Penny","penny24","Ortofrutta","Cavolfiore","al kg",1,1.99,4,V,""),
+ ("Verdura","Penny","penny24","Ortofrutta","Spinaci – Natura è","500 g",0.5,1.49,4,V,"Spinaci freschi in busta, coltivati in Italia."),
+ ("Insalata","Penny","penny24","Ortofrutta","Cuori di iceberg","200 g",0.2,0.79,4,V,""),
+ ("Frutta","Penny","penny24","Ortofrutta","Noci","al kg",1,3.99,4,V,"Frutta secca."),
+ ("Manzo","Penny","penny24","Macelleria","Bistecca di reale di Angus irlandese","200 g",0.2,3.99,5,V,"−20%, prima 4,99. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Salsiccia","Penny","penny24","Macelleria","Salsiccia toscana – Sapor di Cascina","450 g",0.45,2.99,5,V,"−21%, prima 3,79. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Suino","Penny","penny24","Macelleria","Braciole di suino – Sapor di Cascina","al kg",1,6.49,5,V,"−18%, prima 7,99 al kg. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Pollo","Penny","penny24","Macelleria","Fettine sottili di petto di pollo – La Filiera in Tavola","al kg",1,9.99,5,V,"−16%, prima 11,99 al kg. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Preparati","Penny","penny24","Macelleria","Hamburger di pollo – Sapor di Cascina, conf. 4 pezzi","400 g (4 × 100 g)",0.4,2.99,5,V,"−18%, prima 3,69. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Preparati","Penny","penny24","Macelleria","Spinacina Grancroccante – Aia","300 g",0.3,3.59,5,V,"Cotoletta impanata con spinaci. Quantità limitata. Vale solo nei negozi che hanno il prodotto: per la limitata area vendita non tutti ce l'hanno."),
+ ("Pane","Penny","penny24","Panetteria","Panino stella","70 g",0.07,0.20,5,V,"−20%, prima 0,25. Vale solo nei negozi con il reparto pane."),
+ ("Pane","Penny","penny24","Panetteria","Focaccina classica o con olive","200 g",0.2,1.29,5,V,"−23%, prima 1,69. Vale solo nei negozi con il reparto pane."),
+ ("Pane","Penny","penny24","Panetteria","Bretzel","95 g",0.095,0.39,5,V,"−20%, prima 0,49. Vale solo nei negozi con il reparto pane."),
+ ("Merendine","Penny","penny24","Panetteria","Croissant vuoto","57 g",0.057,0.49,5,V,"−16%, prima 0,59. Vale solo nei negozi con il reparto pane."),
+ ("Pancetta","Penny","penny24","Salumi","Francobolli di guanciale – Sapor di Cascina","100 g",0.1,1.59,6,V,"−20%, prima 1,99."),
+ ("Prosciutto","Penny","penny24","Salumi","Prosciutto cotto scelto, trancio","400 g",0.4,2.69,6,V,"−18%, prima 3,29."),
+ ("Salame","Penny","penny24","Salumi","Ventricina a fette – Le Specialità Cuor di Terra","120 g",0.12,1.99,6,V,"−16%, prima 2,39."),
+ ("Salame","Penny","penny24","Salumi","Salame Milano, campagnolo o ungherese a fette – Sapor di Cascina","150 g",0.15,1.39,6,V,""),
+ ("Würstel","Penny","penny24","Salumi","Würstel Servelade – Sapor di Cascina, conf. 8 pezzi","800 g",0.8,3.99,6,V,"−16%, prima 4,79."),
+ ("Formaggio","Penny","penny24","Freschi","Cremosissimo – Bergader","300 g",0.3,2.99,6,V,"−16%, prima 3,59."),
+ ("Ricotta","Penny","penny24","Freschi","Ricotta – Sapor di Cascina","250 g",0.25,0.59,6,V,"−21%, prima 0,75."),
+ ("Pancetta","Penny","penny24","Salumi","Pancetta nazionale al pepe nero – Le Specialità Cuor di Terra","100 g",0.1,2.19,6,V,"−21%, prima 2,79. Solo con la PENNY Card, senza tessera 2,79."),
+ ("Mozzarella","Penny","penny24","Freschi","Ciliegine di mozzarella – Sapor di Cascina","150 g",0.15,1.19,7,V,"Prima 1,39."),
+ ("Formaggio","Penny","penny24","Freschi","Provola dolce o scamorza affumicata a fette – ValBontà","140 g",0.14,1.15,7,V,"−17%, prima 1,39."),
+ ("Grana","Penny","penny24","Freschi","Grana Padano DOP stagionato 16 mesi – ValBontà","al kg",1,14.79,7,V,"−15%, prima 1,75 all'etto."),
+ ("Formaggio","Penny","penny24","Freschi","Gorgonzola dolce DOP – ValBontà","300 g",0.3,2.25,7,V,"−16%, prima 2,69."),
+ ("Formaggio","Penny","penny24","Freschi","Leerdammer Original","250 g",0.25,2.89,7,V,"Quantità limitata."),
+ ("Mozzarella","Penny","penny24","Freschi","Mozzarella Santa Lucia – Galbani, conf. 3 pezzi","300 g (3 × 100 g)",0.3,2.49,7,V,"−21%, prima 3,19. Solo con la PENNY Card, senza tessera 3,19."),
+ ("Formaggio","Penny","penny24","Freschi","Pecorino sardo maturo DOP – Le Specialità Cuor di Terra","250 g",0.25,3.69,7,V,"−15%, prima 4,35."),
+ ("Formaggio","Penny","penny24","Freschi","Formaggio grattugiato Gran Biraghi – Biraghi","200 g",0.2,3.49,7,V,"È formaggio grattugiato, non Grana né Parmigiano. Quantità limitata."),
+ ("Salmone affumicato","Penny","penny24","Freschi","Salmone norvegese affumicato a fette – Gran Mare","150 g",0.15,3.39,8,V,"−15%, prima 3,99."),
+ ("Conserve","Penny","penny24","Freschi","Insalata di mare con verdure – Momenti di Mare","350 g",0.35,2.89,8,V,"−17%, prima 3,49."),
+ ("Pesce","Penny","penny24","Freschi","Bocconcini di polpo – Momenti di Mare","130 g",0.13,3.39,8,V,"−17%, prima 3,99. Polpo pronto in vaschetta."),
+ ("Pane","Penny","penny24","Freschi","Piadina Romagnola IGP alla riminese – Le Specialità Cuor di Terra","360 g",0.36,0.99,8,V,"−16%, prima 1,19."),
+ ("Pasta","Penny","penny24","Freschi","Cappelletti alla carne – Fior di Pasta","250 g",0.25,0.99,8,V,"−16%, prima 1,19."),
+ ("Pasta","Penny","penny24","Freschi","Ravioli maremmani con ricotta e spinaci – Le Specialità Cuor di Terra","250 g",0.25,1.49,8,V,"−16%, prima 1,79."),
+ ("Yogurt","Penny","penny24","Freschi","Yogurt intero alla frutta, gusti assortiti – Sapor di Cascina, conf. 8 pezzi","1 kg (8 × 125 g)",1,2.29,8,V,"−16%, prima 2,75."),
+ ("Yogurt","Penny","penny24","Freschi","Yogurt, gusti assortiti – Activia, conf. 4 pezzi","500 g (4 × 125 g)",0.5,2.29,9,V,"Quantità limitata."),
+ ("Yogurt","Penny","penny24","Freschi","Kefir al mirtillo – Activia","280 g",0.28,0.99,9,V,"È kefir da bere. Quantità limitata."),
+ ("Yogurt","Penny","penny24","Freschi","Yogurt Mix, gusti assortiti – Müller","150 g",0.15,0.99,9,V,"−16%, prima 1,19. Solo con la PENNY Card, senza tessera 1,19."),
+ ("Merendine","Penny","penny24","Freschi","Kinder Paradiso, conf. 4 pezzi","116 g (4 × 29 g)",0.116,2.29,9,V,"Quantità limitata."),
+ ("Verdure surgelate","Penny","penny24","Surgelati","Cuori di carciofo a spicchi – Ortomio","300 g",0.3,1.39,10,V,"−22%, prima 1,79."),
+ ("Panati","Penny","penny24","Surgelati","Merluzzo gratinato rosmarino e limone – Frosta","360 g",0.36,3.69,10,V,"Quantità limitata."),
+ ("Tonno","Penny","penny24","Surgelati","Filetto di tonno pinne gialle – Gran Mare","250 g",0.25,2.99,10,V,"−21%, prima 3,79. Surgelato."),
+ ("Calamari","Penny","penny24","Surgelati","Anelli e ciuffi di calamari indopacifici","400 g",0.4,3.49,10,V,"−20%, prima 4,39. Surgelati."),
+ ("Verdure surgelate","Penny","penny24","Surgelati","Cimette di rapa – Ortomio","450 g",0.45,2.39,10,V,"−20%, prima 2,99."),
+ ("Patate","Penny","penny24","Surgelati","Crocchette di patate XXL – Penny","1 kg",1,1.99,10,V,"−23%, prima 2,59. Sono crocchette surgelate, non patate fresche."),
+ ("Preparati","Penny","penny24","Surgelati","Sticks di pollo croccanti – Gli Allegri Sapori","300 g",0.3,2.39,10,V,"−20%, prima 2,99. Surgelati."),
+ ("Pasta","Penny","penny24","Surgelati","Gnocchi alla sorrentina – Gli Allegri Sapori","550 g",0.55,1.59,10,V,"−20%, prima 1,99. Piatto pronto surgelato."),
+ ("Gelato","Penny","penny24","Surgelati","Stecchi cacao – Le Gelizie, conf. 8 pezzi","440 g",0.44,2.49,10,V,"−21%, prima 3,19. Solo con la PENNY Card, senza tessera 3,19."),
+ ("Gelato","Penny","penny24","Surgelati","Cucciolone – Algida, conf. 6 pezzi","480 g",0.48,3.99,10,V,"−20%, prima 4,99."),
+ ("Pizza","Penny","penny24","Surgelati","Pizza bufala Numero Uno – Italpizza","435 g",0.435,3.69,10,V,"Surgelata. Quantità limitata."),
+ ("Tonno","Penny","penny24","Dispensa","Tonno al naturale – Gran Mare, conf. 3 pezzi","240 g (3 × 80 g)",0.24,1.59,11,V,"−20%, prima 1,99. È al naturale, non all'olio. Solo con la PENNY Card, senza tessera 1,99."),
+ ("Pomodoro","Penny","penny24","Dispensa","Passata di pomodoro – Pomì","1 kg",1,0.89,11,V,"Prima 0,99."),
+ ("Pasta","Penny","penny24","Dispensa","Spaghettoni quadrati, mezzi rigatoni o pennoni rigati – De Cecco","500 g",0.5,0.79,11,V,"Quantità limitata."),
+ ("Pizza","Penny","penny24","Surgelati","Pizza 26x38 Margherita – Italpizza","485 g",0.485,2.69,11,V,"−29%, prima 3,79. Surgelata."),
+ ("Bibite","Penny","penny24","Bevande","Lattine, conf. 6 pezzi – Coca-Cola","1,98 litri (6 × 33 cl)",1.98,3.49,11,V,"Quantità limitata."),
+ ("Vino","Penny","penny24","Bevande","Spumante Ribolla Gialla, 3 bottiglie","2,25 litri (3 × 75 cl, 2+1)",2.25,7.78,11,V,"Vale solo comprandone 3 (2+1 gratis): una sola costa 3,89."),
+ ("Latte","Penny","penny24","Freschi","Latte alta digeribilità senza lattosio – Zymil","1 litro",1,1.49,11,V,"−21%, prima 1,89."),
+ ("Lavatrice","Penny","penny24","Cura casa","Detersivo liquido lavatrice muschio bianco, 3 × 46 lavaggi (138) – Chanteclair","138 lavaggi",138,9.79,11,V,"Quantità limitata."),
+ ("Olio d'oliva","Penny","penny24","Dispensa","Olio L'Extra vergine d'oliva – Costa d'Oro","1 litro",1,4.99,12,V,"Quantità limitata."),
+ ("Tonno","Penny","penny24","Dispensa","Tonno leggero con un filo d'olio – Welless, conf. 6 pezzi","360 g (6 × 60 g)",0.36,4.49,12,V,"Quantità limitata."),
+ ("Conserve","Penny","penny24","Dispensa","Filetti di salmone all'olio di oliva o al naturale – Gran Mare","150 g",0.15,2.49,12,V,"−21%, prima 3,19. Salmone in scatola."),
+ ("Olio d'oliva","Penny","penny24","Dispensa","Olio extravergine di oliva classico premi&spremi – Monini","450 ml",0.45,3.99,12,V,"Quantità limitata."),
+ ("Riso","Penny","penny24","Dispensa","Riso Carnaroli – Penny","1 kg",1,2.29,12,V,"−23%, prima 2,99. Solo con la PENNY Card, senza tessera 2,99."),
+ ("Conserve","Penny","penny24","Dispensa","Cetriolini all'aceto di vino – Ortomio","300 g",0.3,1.39,12,V,"−17%, prima 1,69."),
+ ("Preparati","Penny","penny24","Dispensa","Stinco di suino – Gli Allegri Sapori","650 g",0.65,3.49,12,V,"−15%, prima 3,89. Già cotto."),
+ ("Pomodoro","Penny","penny24","Dispensa","Salsa di pomodoro ciliegino – Le Specialità Cuor di Terra","330 g",0.33,0.79,12,V,"−20%, prima 0,99. Solo con la PENNY Card, senza tessera 0,99."),
+ ("Sughi","Penny","penny24","Dispensa","Sugo all'amatriciana o al tonno – Fior di Pasta","400 g",0.4,1.19,12,V,"−20%, prima 1,49. Solo con la PENNY Card, senza tessera 1,49."),
+ ("Spalmabili","Penny","penny24","Freschi","Formaggini Crema Bel Paese – Galbani","175 g",0.175,1.19,13,V,"Prima 1,39."),
+ ("Pane","Penny","penny24","Colazione","Fette biscottate integrali – Mulino Bianco","630 g",0.63,2.19,13,V,"Prima 2,49. Sono fette biscottate."),
+ ("Cereali","Penny","penny24","Colazione","Granola con crusca, mandorle e semi – Welless","350 g",0.35,1.59,13,V,"−20%, prima 1,99."),
+ ("Merendine","Penny","penny24","Colazione","Kinder Pan e Cioc, conf. 10 pezzi","290 g",0.29,2.45,13,V,"−15%, prima 2,89."),
+ ("Merendine","Penny","penny24","Colazione","Nastrine – Mulino Bianco, conf. 6 pezzi","240 g",0.24,1.99,13,V,"Quantità limitata."),
+ ("Caffè","Penny","penny24","Colazione","Caffè Crema e Gusto Forte – Lavazza, conf. 4 pezzi","1 kg (4 × 250 g)",1,12.49,13,V,"Quantità limitata."),
+ ("Biscotti","Penny","penny24","Colazione","Ringo feat Gocciole – Pavesi, conf. 6 pezzi","165 g",0.165,2.29,13,V,"Quantità limitata."),
+ ("Biscotti","Penny","penny24","Colazione","Pavesini","200 g",0.2,1.99,13,V,"Prima 2,29."),
+ ("Merendine","Penny","penny24","Colazione","Pan di Stelle – Mulino Bianco, conf. 8 pezzi","280 g",0.28,2.29,13,V,"Sono le merendine, non i biscotti. Quantità limitata."),
+ ("Merendine","Penny","penny24","Colazione","Fisarmoniche al cioccolato – Mulino Bianco, conf. 8 pezzi","264 g",0.264,2.19,13,V,"Quantità limitata."),
+ ("Cioccolato","Penny","penny24","Colazione","Tavoletta di cioccolato al latte o fondente – Novi","100 g",0.1,1.49,14,V,"−21%, prima 1,89."),
+ ("Cioccolato","Penny","penny24","Colazione","M&M's peanut","250 g",0.25,2.69,14,V,"−16%, prima 3,09."),
+ ("Cioccolato","Penny","penny24","Colazione","Minis, conf. 20 pezzi","400 g",0.4,3.79,14,V,"Mini barrette assortite (Twix, Bounty, Mars, Snickers). Quantità limitata."),
+ ("Cioccolato","Penny","penny24","Colazione","Kit Kat Mini, conf. 18 pezzi","301 g",0.301,3.79,14,V,"−15%, prima 4,49."),
+ ("Cioccolato","Penny","penny24","Colazione","Tavoletta di cioccolato, gusti assortiti – Ritter Sport","100 g",0.1,1.99,14,V,"−20%, prima 2,49."),
+ ("Cioccolato","Penny","penny24","Colazione","Tavoletta di cioccolato mandorlata – Milka","100 g",0.1,1.59,14,V,"Quantità limitata."),
+ ("Cioccolato","Penny","penny24","Colazione","Tavoletta di cioccolato Perù 75% cacao – Le Specialità Cuor di Terra","100 g",0.1,1.59,14,V,"−23%, prima 2,09."),
+ ("Cioccolato","Penny","penny24","Colazione","Tavoletta di cioccolato, gusti assortiti – Chocolà","200 g",0.2,2.39,14,V,"−20%, prima 2,99."),
+ ("Cioccolato","Penny","penny24","Colazione","Riso soffiato al cioccolato – Nippon","200 g",0.2,1.39,14,V,"−22%, prima 1,79."),
+ ("Creme","Penny","penny24","Colazione","Nutella","750 g",0.75,5.99,14,V,"Quantità limitata."),
+ ("Bibite","Penny","penny24","Bevande","Estathé limone e pesca, conf. 3 pezzi","600 ml (3 × 200 ml)",0.6,1.69,15,V,"Prima 1,89."),
+ ("Bibite","Penny","penny24","Bevande","Cola – Funny Drink","1,5 litri",1.5,0.65,15,V,"−17%, prima 0,79."),
+ ("Vino","Penny","penny24","Bevande","Prosecco Millesimato Asolo DOCG","75 cl",0.75,4.39,15,V,"−20%, prima 5,49."),
+ ("Birra","Penny","penny24","Bevande","Birra Strong Ale – Ceres","35,5 cl",0.355,1.49,15,V,"−16%, prima 1,79."),
+ ("Birra","Penny","penny24","Bevande","Birra Hell – Franziskaner","50 cl",0.5,1.25,15,V,"−16%, prima 1,49."),
+ ("Vino","Penny","penny24","Bevande","Salice Salentino DOC","75 cl",0.75,1.99,15,V,"−20%, prima 2,49. Solo con la PENNY Card, senza tessera 2,49."),
+ ("Vino","Penny","penny24","Bevande","Lambrusco Reggiano amabile frizzante DOC","75 cl",0.75,1.69,15,V,"−15%, prima 1,99."),
+ ("Vino","Penny","penny24","Bevande","Chardonnay bianco","75 cl",0.75,1.69,15,V,"−15%, prima 1,99."),
+ ("Birra","Penny","penny24","Bevande","Birra – Moretti","50 cl",0.5,0.85,15,V,"Prima 0,95."),
+ ("Lavatrice","Penny","penny24","Cura casa","Detersivo lavatrice liquido classico o salvacolore, 60 lavaggi – Dash","60 lavaggi",60,11.99,16,V,"Quantità limitata."),
+ ("Lavatrice","Penny","penny24","Cura casa","Detersivo lavatrice in polvere, 71 lavaggi – Dash","71 lavaggi",71,14.99,16,V,"Quantità limitata."),
+ ("Lavastoviglie","Penny","penny24","Cura casa","Powerball Quantum, 56 tabs – Finish","56 tabs",56,9.90,16,V,"Quantità limitata."),
+ ("Lavastoviglie","Penny","penny24","Cura casa","Ultimate Gel, conf. 3 pezzi, 90 lavaggi – Finish","90 lavaggi",90,10.90,16,V,"Quantità limitata."),
+ ("Asciugatutto","Penny","penny24","Cura casa","Bobina multiuso 2 veli, 400 strappi – Penny","1 rotolo",1,1.79,16,V,"−21%, prima 2,29."),
+ ("Shampoo","Penny","penny24","Cura persona","Shampoo o balsamo, fragranze assortite – Elvive","250 ml",0.25,2.99,17,V,"Prima 3,99."),
+ ("Bagnoschiuma","Penny","penny24","Cura persona","Bagnoschiuma XXL pelli sensibili – Palmolive","1 litro",1,2.99,17,V,"Quantità limitata."),
+ ("Dentifricio","Penny","penny24","Cura persona","Dentifricio White Now – Mentadent, conf. 2 pezzi","150 ml (2 × 75 ml)",0.15,3.99,17,V,"Nella stessa offerta anche 2+2 spazzolini. Quantità limitata."),
+ ("Frutta","Penny","penny24","Ortofrutta","Limoni","1 kg",1,1.99,20,V,"Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Formaggio","Penny","penny24","Freschi","Formaggio Gran Biraghi latte italiano – Biraghi","700 g",0.7,8.49,20,V,"−15%, prima 9,99. Formaggio duro tipo grana, non Grana Padano. Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Olio di semi","Penny","penny24","Dispensa","Olio per friggere – Friol","2 litri",2,4.49,20,V,"−25%, prima 5,99. Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Salsiccia","Penny","penny24","Macelleria","Salsiccia di pollo, tacchino e suino – Sapor di Cascina","450 g",0.45,1.99,20,V,"−33%, prima 2,99. Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Acqua","Penny","penny24","Bevande","Acqua naturale – Sant'Anna, conf. 6 pezzi","12 litri (6 × 2 l)",12,2.34,20,V,"−40%, prima 3,90. Solo con la PENNY Card, senza tessera 3,90. Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Bagnoschiuma","Penny","penny24","Cura persona","Detergente intimo, fragranze assortite – Chilly","300 ml",0.3,3.49,20,V,"−28%, prima 4,89. Solo venerdì 25 e sabato 26 settembre.","2026-09-25","2026-09-26"),
+ ("Frutta","Penny","penny24","Ortofrutta","Castagne","al kg",1,4.99,20,V,"Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ ("Patate","Penny","penny24","Ortofrutta","Patate gialle, rete","4 kg",4,3.96,20,V,"Coltivate in Italia. Il volantino stampa 0,99 al kg. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ ("Prosciutto","Penny","penny24","Salumi","Prosciutto crudo light – Welless","80 g",0.08,1.49,20,V,"−28%, prima 2,09. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ ("Suino","Penny","penny24","Macelleria","Costine di suino","al kg",1,4.99,20,V,"Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ ("Tonno","Penny","penny24","Dispensa","Tonno in olio d'oliva – Gran Mare","160 g",0.16,1.19,20,V,"−25%, prima 1,59. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
+ ("Bagnoschiuma","Penny","penny24","Cura persona","Bagnoschiuma, fragranze assortite – Felce Azzurra","650 ml",0.65,1.75,20,V,"−29%, prima 2,49. Miglior prezzo dell'anno. Solo venerdì 2 e sabato 3 ottobre.","2026-10-02","2026-10-03"),
 ]
 
 # LE OFFERTE CON DATE LORO.

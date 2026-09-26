@@ -186,4 +186,8 @@ SCARTATE = {
    5: 'pubblicità storytelling sulle zucchine Cladi (raccolta, QR code), nessun prezzo',
    6: 'pubblicità premio "Sicurezza Alimentare 2026" per la frutta e verdura, nessun prezzo',
  },
+ 'penny24': {
+   18: 'animali: cibo e snack per cani e gatti, nessuna categoria del catalogo',
+   19: '«Fuori tutto»: solo sconti fino al 50% su articoli non alimentari, nessun prezzo',
+ },
 }

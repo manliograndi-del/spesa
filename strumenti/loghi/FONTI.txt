@@ -72,3 +72,8 @@ RIFATTO IL 2026-09-23: ekom.svg
   immagine ed era una scritta rossa inclinata, che non è il marchio Ekom.
   Ridisegnato con `python3 -m vettore <immagine> ekom` (una tinta: le parti
   bianche restano trasparenti, e sulla pastiglia bianca si leggono uguali).
+
+AGGIUNTO IL 2026-09-26
+  penny.svg     la scritta PENNY col punto giallo, presa dal visore ufficiale
+                del volantino sul sito penny.it (PennyM.svg), con sotto il
+                rettangolo rosso dell'insegna, perché la scritta è bianca.
