@@ -191,3 +191,4 @@
 2026-09-26 05:25 UTC  pubblicato v113: via il Carrefour Iper 15-25 settembre, scaduto
 2026-09-26 05:26 UTC  controllate le dieci insegne: niente di nuovo, aggiornati CLAUDE.md/AGENTS.md/NOTE.md
 2026-09-26 07:37 UTC  prova di misura con una Routine copia di quella vera (Sonnet 5, stesso ambiente): lettura di un volantino già letto, 07:07-07:19 UTC (circa 11 minuti), 2,61 dollari; token: output 52 mila, cache letta 7,1 milioni, cache scritta 166 mila, input 112. Nessun commit. Routine di prova cancellata. Per confronto il giro normale del 26/9 mattina: circa 14 minuti, 3,34 dollari
+2026-09-26 08:38 UTC  seconda prova di misura (Routine copia di quella vera, Sonnet 5): più volantini letti di fila, 07:57-08:26 UTC (29 minuti), 13,85 dollari; token letti per la prima volta 1,29 milioni (input 342 + cache scritta 1.293.336), riletti dalla memoria 39,0 milioni, scritti 86.823. Nessun commit. Routine di prova cancellata
