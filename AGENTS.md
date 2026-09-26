@@ -313,6 +313,10 @@ solo quello che ha gli angoli arrotondati: le bande squadrate non si toccano.
   - «Prodotti» fa salire la griglia e porta al benvenuto. Cerca, Grandi marche
     e Il mio carrello vanno alla loro sezione. Dopo non si rivede la mappa,
     tranne toccando «Spesa».
+  - **Toccare un fumetto fa quello che fa il suo tasto** (molti toccavano i
+    fumetti invece dei tasti); «In alto» apre l'ingranaggio. Il testo dei
+    fumetti (anche del benvenuto) **non si seleziona** (`user-select:none`).
+    La prova è in `prova.js`.
 - **Il benvenuto** (`benvenuto()`, `scelto = -1`, nessun prodotto acceso) è un
   fumetto verde un po' trasparente (`.p-bv`, `fill-opacity` .6, `FUMETTO_BV`
   in `frecceAiuto()`) con la coda che scende alla griglia. Testo: «Tocca un
@@ -614,7 +618,7 @@ il contatore dei negozi, la riga «letto a occhio dal volantino».
 
 ## Stato e da fare (aggiornato il 2026-09-26)
 
-**Pubblicato:** `sw.js` **v120**, link Claude versione 110 (la versione la dice il registro).
+**Pubblicato:** `sw.js` **v121**, link Claude versione 111 (la versione la dice il registro).
 
 **Scadenze**: `lidl24`, `lidlfv24`, `mercato17`, `mercatoreal17` e
 `bennet1709` il 30/9; `md22`, `eurospin24`, `bennetextra24` e `aldi28`

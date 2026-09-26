@@ -199,3 +199,4 @@
 2026-09-26 16:35 UTC  Esselunga: la pagina del volantino si apriva sempre alla prima (Manlio: «si è aperto alla prima pagina»). Il visore vuole #6, non #page/6. sw.js v118, link Claude versione 108.
 2026-09-26 16:55 UTC  v119: tolte dalle schede le marche proprie dei discount (Lidl, Eurospin, MD, Aldi, Penny: 213 offerte), chieste da Manlio; restano nei dati per Cerca. Link Claude versione 109.
 2026-09-26 17:10 UTC  v120: nei look chiari l'accento (tasti accesi, prodotto scelto, banda) si scurisce fino a 7:1; nomi delle categorie nei risultati nel colore del testo; il bollino «solo dal 28 al 30 settembre» non esce più dal riquadro. Chiesto da Manlio. Link Claude versione 110.
+2026-09-26 17:25 UTC  v121: toccare un fumetto della mappa «Come si usa» fa quello che fa il suo tasto («In alto» apre l'ingranaggio); il testo dei fumetti non si seleziona più. Chiesto da Manlio. Link Claude versione 111.

@@ -61,6 +61,36 @@ setTimeout(() => {
   d.getElementById('vai-inizio').dispatchEvent(new dom.window.MouseEvent('click', { bubbles: true, cancelable: true }));
   dimmi(!!ris.querySelector('.mappa-aiuto') && !ris.querySelector('.prezzo-riga'),
         'toccando il titolo si torna alla mappa dell\'aiuto');
+  /* TOCCARE UN FUMETTO DELLA MAPPA FA QUELLO CHE FA IL SUO TASTO (Manlio,
+     2026-09-26). Per ognuno: dalla mappa si tocca il tasto e si guarda cosa
+     succede; si torna alla mappa, si tocca il fumetto, deve succedere lo
+     stesso. */
+  const w = dom.window;
+  const clic = el => el.dispatchEvent(new w.MouseEvent('click', { bubbles: true, cancelable: true }));
+  const stato = () => [
+    [...d.querySelectorAll('.buio')].filter(x => !x.hidden).map(x => x.id).join(','),
+    [...d.querySelectorAll('#riga-cerca .tasto')].map(x => x.className + (x.getAttribute('aria-pressed') || '')).join('|'),
+    ris.firstElementChild ? ris.firstElementChild.className : '',
+    !!ris.querySelector('.mappa-aiuto'),
+  ].join(' ~ ');
+  const allaMappa = () => { try { w.eval('apriConfig(false)'); } catch (e) {} clic(d.getElementById('vai-inizio')); };
+  const TASTI_FUMETTI = { 'f-alto': '#apri-config', 'f-pro': '#vai-prodotti', 'f-cer': '#riga-cerca .trova',
+                          'f-gm': '#riga-cerca .marchi', 'f-per': '#vai-personale' };
+  Object.entries(TASTI_FUMETTI).forEach(([cls, sel]) => {
+    allaMappa();
+    const partenza = stato();
+    const tasto = d.querySelector(sel);
+    if (tasto) clic(tasto);
+    const col_tasto = stato();
+    allaMappa();
+    const f = ris.querySelector('.mappa-aiuto .fumetto.' + cls);
+    if (f) clic(f);
+    const col_fumetto = stato();
+    dimmi(!!tasto && !!f && col_fumetto === col_tasto && col_tasto !== partenza,
+          `il fumetto «${f ? f.querySelector('b').textContent : cls}» fa quello che fa il suo tasto`
+          + (col_fumetto === col_tasto ? '' : ` (tasto: ${col_tasto} / fumetto: ${col_fumetto})`));
+  });
+  allaMappa();
   console.log(male ? `  ${male} cose non vanno\n` : '  tutto a posto\n');
   process.exit(male ? 1 : 0);
 }, 2500);
