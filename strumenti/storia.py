@@ -224,8 +224,23 @@ def racconta(d, prima_giorno):
               f"{c['pro']} ({c['ins']}), {c['unitario']:.2f} {c['unita']}")
 
 
+def _archivio_prezzi():
+    """L'archivio dei prezzi (prezzi.py) si rifà a ogni giro, qualunque strada
+    prenda il diario qui sotto: così il giro delle 7 lo pubblica insieme a
+    storia/ senza che nessuno debba ricordarselo. Se qualcosa va storto si
+    dice e si va avanti: il diario e la pagina vengono prima."""
+    try:
+        import prezzi
+        prezzi.aggiorna()
+    except Exception as e:
+        print(f'  archivio dei prezzi non aggiornato: {e}')
+
+
 if __name__ == '__main__':
     solo_guardare = '--guarda' in sys.argv
+    if not solo_guardare:
+        import atexit
+        atexit.register(_archivio_prezzi)
     os.makedirs(DOVE, exist_ok=True)
     adesso = fotografia()
     prima = json.load(open(FOTO, encoding='utf-8')) if os.path.exists(FOTO) else {}

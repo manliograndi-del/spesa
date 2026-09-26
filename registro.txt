@@ -201,3 +201,4 @@
 2026-09-26 17:10 UTC  v120: nei look chiari l'accento (tasti accesi, prodotto scelto, banda) si scurisce fino a 7:1; nomi delle categorie nei risultati nel colore del testo; il bollino «solo dal 28 al 30 settembre» non esce più dal riquadro. Chiesto da Manlio. Link Claude versione 110.
 2026-09-26 17:25 UTC  v121: toccare un fumetto della mappa «Come si usa» fa quello che fa il suo tasto («In alto» apre l'ingranaggio); il testo dei fumetti non si seleziona più. Chiesto da Manlio. Link Claude versione 111.
 2026-09-26 17:31 UTC  Routine: nelle istruzioni le insegne da controllare sono tredici (aggiunte Penny, Aldi, Esselunga, con le fonti in breve). Nient'altro cambiato, come chiesto da Manlio.
+2026-09-26 18:12 UTC  Archivio dei prezzi: storia/prezzi.csv (3609 offerte dal 4/9) e la pagina storia/prezzi.html, settimana per settimana il più basso di ogni categoria. Si rifà da solo con storia. L'app non cambia. Chiesto da Manlio.

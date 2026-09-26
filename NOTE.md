@@ -3973,3 +3973,22 @@ così Cerca trova ancora «Milbona». Una marca vera venduta da un discount
 al Bennet), Derio, Graziola, Pan del Dì, Panealba. L'Ekom non ha marche
 proprie riconoscibili; i supermercati (Esselunga Top, Conad…) non li ha
 chiesti.
+
+## L'archivio dei prezzi (26/9)
+
+Manlio voleva sapere, settimana per settimana, il prezzo più basso di ogni
+cosa. Non serviva leggere niente: ogni commit ha la sua copia di `dati.py`, e
+i volantini scaduti restano nei commit di prima. `storia.py` sapeva già
+rifare la fotografia di un commit, ma solo dal 22/9: prima `catalogo.py` non
+aveva `RINOMINATE` e il suo `import` falliva. `prezzi.py` legge da ogni commit
+solo `VOLANTINI`, `UNITA` e `PRODOTTI`, che hanno la stessa forma dal primo
+giorno, e i nomi li sistema con il catalogo di oggi. Rileggere tutti i 49
+commit costa 5 secondi; di solito legge solo quelli nuovi.
+
+Limiti noti. Le settimane prima del 4 settembre non ci sono (si sapeva solo
+dei volantini ancora in corso quel giorno). Due volantini vecchi potrebbero
+essere di un'altra zona: il Carrefour Iper del 4-13/9 (`carriper04`, da
+anteprimavolantino, che per il Carrefour pescava l'edizione lombarda) e l'MD
+dell'8-20/9 (`md08`); non si possono più controllare e sono rimasti. I
+tovaglioli Eurospin del 10/9 erano contati come rotoli di asciugatutto (0,01 €
+«al rotolo»): tolti in `RIGHE_SBAGLIATE`.

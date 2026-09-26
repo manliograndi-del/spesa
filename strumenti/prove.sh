@@ -50,5 +50,8 @@ node "$S/prova-arrivi.js" out/sito.html
 
 echo "########## la lista salvata di prima"
 node "$S/prova-maiuscole.js" out/sito.html
+
+echo "########## la pagina dei prezzi più bassi (storia/prezzi.html)"
+node "$S/prova-prezzi.js" "$S/../storia/prezzi.html"
 echo
 echo "tutte le prove passate."

@@ -100,6 +100,7 @@ non basta.
     bash <progetto>/strumenti/prove.sh   # TUTTE le prove
     python3 -m pulizia out/sito.html     # codice rimasto in giro
     python3 -m registro "testo"          # una riga in registro.txt
+    python3 -m prezzi [--tutto]          # l'archivio dei prezzi (lo fa già storia)
 
 Poi `cp out/sito.html index.html`, `cp out/novita.html novita.html`,
 `cp out/catalogo.pdf catalogo.pdf`, alzi `sw.js`, fai commit e push su `main`,
@@ -138,9 +139,36 @@ scritto due volte (`.p2` mai uguale al prezzo grande) · `prova-sconto.js` ·
 `prova-aiuto.js` (l'Aiuto nomina i tasti) · `prova-novita.js` la pagina Novità
 · `prova-novita-pagina.js` (in «Cosa c'è di nuovo» nessun prezzo) ·
 `prova-collegamenti.js` (classi `dove apri`, `target=_blank`) ·
-`prova-volantini.js` · `prova-visite.js` · `prova-storia.py`. Le prove
+`prova-volantini.js` · `prova-visite.js` · `prova-storia.py` ·
+`prova-prezzi.js` (la pagina dei prezzi più bassi). Le prove
 riconoscono il negozio da `.marchio` (non più da `.sotto b`) e i bottoni che
 non sono prodotti dalla classe `agg`.
+
+## L'archivio dei prezzi (fuori dalla Spesa)
+
+Chiesto da Manlio il 26/9: «un database di tutti i prodotti per avere
+settimana per settimana i prezzi più bassi», **fuori dalla pagina**. Sta in
+`https://manliograndi-del.github.io/spesa/storia/prezzi.html` e **l'app non lo
+collega**.
+- `strumenti/prezzi.py` rilegge `dati.py` in ogni commit (con `git archive`),
+  più la cartella di adesso; di ogni volantino vale **l'ultima copia** in cui
+  compare (quella corretta). Non si legge nessun volantino in più.
+- Scrive tre file in `storia/`: `prezzi.csv` (una riga per offerta: l'archivio
+  vero), `prezzi.json` (ultimo commit letto e il giorno in cui è comparso ogni
+  volantino) e `prezzi.html` (la pagina). **L'archivio cresce e basta**: un
+  volantino che git non ha più resta nel CSV.
+- **Si rifà da solo alla fine di `python3 -m storia`** (`atexit`, e se sbaglia
+  lo dice e non ferma niente): il giro delle 7 aggiunge già `storia/` al
+  commit, quindi la Routine non è cambiata.
+- La pagina: una categoria del catalogo alla volta, le settimane da lunedì a
+  domenica dalla più recente, per ognuna l'offerta più bassa per unità fra
+  quelle valide almeno un giorno, più le altre quattro. **Parte dalla
+  settimana del 4 settembre e si ferma a quella in corso** (prima e dopo il
+  «più basso» sarebbe finto). Marche proprie dei discount nascoste come
+  nell'app; «Con tessera o app» quando serve.
+- Le categorie vecchie passano da `RINOMINATE`, e la carne e il pesce lavorati
+  di prima del 23/9 vanno nelle loro categorie. Volantini di un'altra zona:
+  `ESCLUSI`; righe sbagliate già scadute: `RIGHE_SBAGLIATE` (lì, non in git).
 
 ## La Routine giornaliera
 
@@ -447,7 +475,7 @@ scritta del menù scende a 13 px. Il tasto Cerca è `.tasto.trova`.
   non vanno a capo a metà. Non si ripete quello che la scheda dice già (al
   banco, 3+1, il peso). **Le marche proprie dei discount non si scrivono**
   (Milbona, Sol&Mar, Il Podere, La Fattoria, Sapor di Cascina…: l'elenco è
-  `MARCHE_PROPRIE` in `pagina.py`, per insegna; nel dubbio una marca resta).
+  `MARCHE_PROPRIE` in `marche_proprie.py`, per insegna; nel dubbio una marca resta).
   Le marche proprie dei supermercati (Esselunga, Conad, Coop…) e quelle
   dell'Ekom restano: non le ha chieste. Nella pagina vanno `marca`, `nome` e `agg`; **`pro`
   resta intero** perché Cerca e Grandi marche cercano lì.
@@ -674,10 +702,12 @@ ufficiali per volantini nuovi non ancora in `VOLANTINI`: niente trovato.
 
 - `index.html`, `novita.html`, `catalogo.pdf`: generati. `sw.js`: la cache.
 - `indice.json`: le parole di ogni pagina di ogni volantino (serve agli
-  strumenti). `storia/`: il diario, un file al giorno.
+  strumenti). `storia/`: il diario, un file al giorno, e l'archivio dei
+  prezzi (`prezzi.csv`, `prezzi.json`, `prezzi.html`).
 - `strumenti/`: `dati.py` (`VOLANTINI`, `PDF`, `VOLANTINI_ATTESI` e i prezzi in `PRODOTTI`), `catalogo.py`, `pagina.py`,
   `storia.py`, `novita.py`, `scarica.py`, `indice.py`, `lette.py`,
   `scartate.py`, `pulisci.py`, `stampa.py`, `look.py` + `palette.json`,
+  `prezzi.py` (l'archivio dei prezzi), `marche_proprie.py`,
   `loghi/`, `marchi/`, `vettore.py`, `registro.py`, `prove.sh` + `prova-*.js`.
 - `registro.txt`: una riga per ogni cosa fatta. `NOTE.md`: il perché.
   `archivio/`: le versioni vecchie di questo file.
