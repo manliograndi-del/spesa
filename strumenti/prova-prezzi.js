@@ -40,6 +40,20 @@ setTimeout(() => {
       if (prezzi.some(p => !(p > 0))) male.push(c + ': un prezzo che non è un numero');
       if (prezzi.some(p => p < prezzi[0])) male.push(c + ': il primo non è il più basso');
     });
+    /* Il grafico: un punto per settimana, la linea se sono almeno due, e il
+       valore scritto è quello della settimana mostrata sotto (all'inizio
+       l'ultima, cioè questa). */
+    const punti = d.querySelectorAll('#grafico svg circle').length;
+    if (punti !== lunedi.length) male.push(c + ': ' + punti + ' punti per ' + lunedi.length + ' settimane');
+    if (lunedi.length > 1 && !d.querySelector('#grafico svg polyline')) male.push(c + ': manca la linea');
+    const scritto = d.querySelector('#grafico .valore');
+    const sotto = d.querySelector('#scelta .prezzo b');
+    if (!scritto || !sotto || scritto.textContent !== sotto.textContent)
+      male.push(c + ': il valore sul grafico non è quello della settimana sotto');
+    const primaSett = d.querySelector('#scelta .quando span');
+    const ultima = d.querySelector('#elenco .settimana .quando span');
+    if (!primaSett || !ultima || primaSett.textContent !== ultima.textContent)
+      male.push(c + ': all\'inizio il grafico non mostra la settimana più recente');
     /* Le marche proprie dei discount non si scrivono, come nella Spesa. */
     d.querySelectorAll('#elenco .marca').forEach(m => {
       if (Object.values(D.proprie).some(l => l.includes(m.textContent)))

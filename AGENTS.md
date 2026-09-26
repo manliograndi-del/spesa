@@ -160,9 +160,13 @@ collega**.
 - **Si rifà da solo alla fine di `python3 -m storia`** (`atexit`, e se sbaglia
   lo dice e non ferma niente): il giro delle 7 aggiunge già `storia/` al
   commit, quindi la Routine non è cambiata.
-- La pagina: una categoria del catalogo alla volta, le settimane da lunedì a
-  domenica dalla più recente, per ognuna l'offerta più bassa per unità fra
-  quelle valide almeno un giorno, più le altre quattro. **Parte dalla
+- La pagina: una categoria del catalogo alla volta. In cima **il grafico**
+  (chiesto da lui): una linea sola, il più basso per unità di ogni settimana
+  (da lunedì a domenica, fra le offerte valide almeno un giorno), dalla più
+  vecchia a sinistra a questa a destra, col valore scritto solo sul punto
+  scelto. Toccando il grafico si sceglie la settimana e sotto compare la sua
+  offerta, con le altre quattro; tutte le settimane stanno in «Tutte le
+  settimane, una per una». **Parte dalla
   settimana del 4 settembre e si ferma a quella in corso** (prima e dopo il
   «più basso» sarebbe finto). Marche proprie dei discount nascoste come
   nell'app; «Con tessera o app» quando serve.

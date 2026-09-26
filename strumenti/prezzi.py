@@ -346,6 +346,20 @@ details{margin-top:8px}
 summary{cursor:pointer;color:var(--tenue);font-size:14px}
 .altre .riga{border-top:1px solid var(--linea);padding-top:6px}
 .altre .prezzo b{font-size:19px}
+/* Il grafico: una linea sola, il più basso di ogni settimana. Toccandolo si
+   sceglie la settimana, e sotto compare la sua offerta. */
+.grafico{margin-top:18px}
+.grafico h2{font-size:15px;font-weight:600;margin:0}
+.aiuto-g{color:var(--tenue);font-size:13px;margin:2px 0 6px}
+#grafico{touch-action:pan-y;-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+#grafico svg{display:block;width:100%;height:auto;overflow:visible;cursor:pointer}
+#grafico svg:focus{outline:none}
+#grafico svg:focus-visible{outline:2px solid var(--inchiostro);outline-offset:4px;border-radius:8px}
+#grafico .asse{font-family:var(--f-testo);font-size:12px;fill:#6E6C66}
+#grafico .valore{font-family:var(--f-prezzo);font-size:17px;font-weight:600;fill:#1B1B1A}
+#scelta .settimana{margin-top:6px}
+.tutte{margin-top:18px}
+.tutte > summary{font-weight:600;color:var(--inchiostro);font-size:15px}
 .piede{color:var(--tenue);font-size:13px;margin-top:24px}
 .piede a{color:var(--inchiostro)}
 </style>
@@ -356,7 +370,13 @@ summary{cursor:pointer;color:var(--tenue);font-size:14px}
 <p class="sotto" id="sotto"></p>
 <label for="cat">Categoria</label>
 <select id="cat"></select>
-<div id="elenco"></div>
+<section class="grafico">
+<h2 id="titolo-g"></h2>
+<p class="aiuto-g" id="aiuto-g"></p>
+<div id="grafico"></div>
+</section>
+<div id="scelta"></div>
+<details class="tutte"><summary>Tutte le settimane, una per una</summary><div id="elenco"></div></details>
 <p class="piede">Sono solo i prezzi in offerta dei volantini, non quelli normali dello scaffale,
 dei supermercati della Spesa. Per ogni settimana, da lunedì a domenica, c’è l’offerta che costava
 meno per unità fra quelle valide almeno un giorno di quella settimana.
@@ -416,13 +436,9 @@ function riga(o, u, lun) {
   return d;
 }
 
-function mostra(cat) {
-  const box = document.getElementById('elenco');
-  box.textContent = '';
-  const c = D.dati[cat];
-  if (!c) return;
-  const oggi = giorno(D.oggi);
-  c.s.forEach(s => {
+/* Una settimana: il suo più basso e, sotto, le altre. */
+function blocco(s, c) {
+    const oggi = giorno(D.oggi);
     const lun = giorno(s.w), dom = piu(lun, 6);
     const art = document.createElement('section');
     const ora = oggi >= lun && oggi <= dom;
@@ -440,8 +456,116 @@ function mostra(cat) {
       s.o.slice(1).forEach(o => det.querySelector('.altre').appendChild(riga(o, c.u, lun)));
       art.appendChild(det);
     }
-    box.appendChild(art);
+    return art;
+}
+
+/* ---- il grafico ----
+   Una linea sola (Manlio, 2026-09-26: «grafici settimana per settimana del
+   prezzo attuale e di com'era le settimane prima»): il più basso per unità di
+   ogni settimana, dalla più vecchia a sinistra a questa a destra. Una scala
+   sola, e il valore scritto solo sul punto scelto (all'inizio l'ultimo). */
+const SERIE = '#2a78d6';
+const NS = 'http://www.w3.org/2000/svg';
+const corto = d => d.getDate() + ' ' + MESI[d.getMonth()].slice(0, 3);
+let scelta = -1;
+
+function el(nome, attr, padre) {
+  const e = document.createElementNS(NS, nome);
+  for (const k in attr) e.setAttribute(k, attr[k]);
+  if (padre) padre.appendChild(e);
+  return e;
+}
+
+/* Tre o quattro righe di griglia a numeri tondi, con un po' d'aria sopra e
+   sotto la linea. */
+function tacche(lo, hi) {
+  if (hi - lo < 0.01) { const m = hi || 1; lo = m * 0.85; hi = m * 1.15; }
+  const aria = (hi - lo) * 0.15;
+  lo = Math.max(0, lo - aria); hi += aria;
+  const grezzo = (hi - lo) / 3, p = Math.pow(10, Math.floor(Math.log10(grezzo)));
+  const passo = [1, 2, 2.5, 5, 10].map(k => k * p).find(v => v >= grezzo);
+  const t = [];
+  for (let v = Math.floor(lo / passo) * passo; v < hi + passo - 1e-9; v += passo) t.push(+v.toFixed(6));
+  const dec = passo >= 1 ? 0 : (Math.abs(passo * 10 - Math.round(passo * 10)) < 1e-9 ? 1 : 2);
+  return { t, dec };
+}
+
+function grafico(c, da) {
+  const box = document.getElementById('grafico');
+  box.textContent = '';
+  const pts = c.s.slice().reverse();
+  const ys = pts.map(s => s.o[0][4]);
+  const W = Math.max(280, box.clientWidth || 340), H = 200;
+  const m = { l: 44, r: 52, t: 24, b: 28 };
+  const { t, dec } = tacche(Math.min(...ys), Math.max(...ys));
+  const y0 = t[0], y1 = t[t.length - 1];
+  const X = i => pts.length === 1 ? (m.l + W - m.r) / 2 : m.l + i * (W - m.l - m.r) / (pts.length - 1);
+  const Y = v => m.t + (y1 - v) / (y1 - y0) * (H - m.t - m.b);
+  const svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, width: W, height: H, role: 'img', tabindex: 0,
+    'aria-label': 'Il più basso di ogni settimana, ' + (UNITA[c.u] || c.u) + ': '
+      + pts.map((s, i) => corto(giorno(s.w)) + ' ' + eur(ys[i])).join('; ') }, box);
+  t.forEach(v => {
+    el('line', { x1: m.l, x2: W - m.r + 8, y1: Y(v), y2: Y(v), stroke: '#E5E3DD', 'stroke-width': 1 }, svg);
+    el('text', { x: m.l - 8, y: Y(v) + 4, 'text-anchor': 'end', class: 'asse' }, svg)
+      .textContent = v.toFixed(dec).replace('.', ',');
   });
+  /* Le date sotto: tutte se ci stanno, se no una ogni tanto, e l'ultima sempre. */
+  const ogni = Math.max(1, Math.ceil(pts.length / Math.max(1, Math.floor((W - m.l - m.r) / 56 + 1))));
+  pts.forEach((s, i) => {
+    if ((pts.length - 1 - i) % ogni) return;
+    el('text', { x: X(i), y: H - 6, 'text-anchor': 'middle', class: 'asse' }, svg)
+      .textContent = corto(giorno(s.w));
+  });
+  const croce = el('line', { y1: m.t - 8, y2: H - m.b, stroke: '#CFCCC4', 'stroke-width': 1 }, svg);
+  if (pts.length > 1)
+    el('polyline', { points: pts.map((s, i) => X(i) + ',' + Y(ys[i])).join(' '), fill: 'none',
+      stroke: SERIE, 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, svg);
+  const punti = pts.map((s, i) => el('circle', { cx: X(i), cy: Y(ys[i]), r: 4.5, fill: SERIE,
+    stroke: '#FFFFFF', 'stroke-width': 2 }, svg));
+  const val = el('text', { class: 'valore' }, svg);
+  const segna = i => {
+    scelta = i;
+    croce.setAttribute('x1', X(i)); croce.setAttribute('x2', X(i));
+    punti.forEach((p, j) => p.setAttribute('r', j === i ? 7 : 4.5));
+    const destra = X(i) + 12 + 44 <= W;
+    val.setAttribute('x', destra ? X(i) + 12 : X(i) - 12);
+    val.setAttribute('text-anchor', destra ? 'start' : 'end');
+    val.setAttribute('y', Math.max(16, Y(ys[i]) - 10));
+    val.textContent = eur(ys[i]);
+    const box2 = document.getElementById('scelta');
+    box2.textContent = '';
+    box2.appendChild(blocco(pts[i], c));
+  };
+  /* Si tocca dove si vuole: vale la settimana più vicina al dito. */
+  const vicino = ev => {
+    const r = svg.getBoundingClientRect();
+    const x = (ev.clientX - r.left) * W / (r.width || W);
+    let meglio = 0;
+    pts.forEach((s, i) => { if (Math.abs(X(i) - x) < Math.abs(X(meglio) - x)) meglio = i; });
+    return meglio;
+  };
+  svg.addEventListener('pointerdown', ev => segna(vicino(ev)));
+  svg.addEventListener('pointermove', ev => {
+    if (ev.pointerType === 'mouse' || ev.buttons) { const i = vicino(ev); if (i !== scelta) segna(i); }
+  });
+  svg.addEventListener('keydown', ev => {
+    if (ev.key === 'ArrowLeft' && scelta > 0) { segna(scelta - 1); ev.preventDefault(); }
+    if (ev.key === 'ArrowRight' && scelta < pts.length - 1) { segna(scelta + 1); ev.preventDefault(); }
+  });
+  segna(da >= 0 && da < pts.length ? da : pts.length - 1);
+}
+
+function mostra(cat, da) {
+  const c = D.dati[cat];
+  const box = document.getElementById('elenco');
+  box.textContent = '';
+  if (!c) return;
+  document.getElementById('titolo-g').textContent = 'Il più basso di ogni settimana, ' + (UNITA[c.u] || c.u);
+  document.getElementById('aiuto-g').textContent = c.s.length > 1
+    ? 'Tocca il grafico per vedere l\u2019offerta di quella settimana.'
+    : 'Per ora c\u2019è una settimana sola: ogni lunedì se ne aggiunge una.';
+  grafico(c, da);
+  c.s.forEach(s => box.appendChild(blocco(s, c)));
 }
 
 const sel = document.getElementById('cat');
@@ -454,12 +578,18 @@ D.reparti.forEach(([rep, nomi]) => {
 let prima = '';
 try { prima = localStorage.getItem('spesa.prezzi.cat') || ''; } catch (e) {}
 if (D.dati[prima]) sel.value = prima;
-sel.onchange = () => { try { localStorage.setItem('spesa.prezzi.cat', sel.value); } catch (e) {} mostra(sel.value); };
+sel.onchange = () => { try { localStorage.setItem('spesa.prezzi.cat', sel.value); } catch (e) {} mostra(sel.value, -1); };
+/* Se il telefono si gira il grafico si rifà, sulla stessa settimana. */
+let largo = 0;
+addEventListener('resize', () => {
+  const w = document.getElementById('grafico').clientWidth;
+  if (w && w !== largo) { largo = w; grafico(D.dati[sel.value], scelta); }
+});
 const ini = giorno(D.inizio);
 document.getElementById('sotto').textContent = D.offerte.toLocaleString('it-IT') + ' offerte dal '
   + ini.getDate() + ' ' + MESI[ini.getMonth()] + ' ' + ini.getFullYear() + '. Aggiornato il '
   + giorno(D.oggi).getDate() + ' ' + MESI[giorno(D.oggi).getMonth()] + '.';
-mostra(sel.value);
+mostra(sel.value, -1);
 </script>
 </body>
 </html>
