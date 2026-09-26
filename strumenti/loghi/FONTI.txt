@@ -81,3 +81,5 @@ AGGIUNTO IL 2026-09-26
                 (solo testo e forme semplici) — ALDI SÜD. Tolta la scritta
                 «SÜD» sotto ALDI e abbassato un poco ALDI, perché in Italia il
                 marchio è così (si vede sulla copertina del volantino).
+  esselunga.svg la scritta ESSELUNGA blu come la pubblica il sito ufficiale
+                (esselunga.it/media/icons/LOGO ESSE.svg).

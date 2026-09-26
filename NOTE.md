@@ -3935,3 +3935,29 @@ al 4/10. Tre cose da sapere per i prossimi.
   (`spreads.json`) lì non ha niente.
 - Il marchio su Wikimedia è quello di ALDI SÜD; in Italia sotto ALDI non c'è
   «SÜD», quindi la scritta è stata tolta dal disegno.
+
+## 2026-09-26 — Esselunga (v116): l'edizione giusta è quella di Torino
+
+Per Esselunga avevo scaricato i due volantini da anteprimavolantino, come per
+le altre insegne all'inizio, e li avevo letti quasi tutti. All'ultima pagina
+del «Grandi Marche» c'era l'elenco dei negozi: solo Lombardia, Parma,
+Piacenza e Tortona. Era l'edizione lombarda, la stessa trappola del Carrefour
+e del Bennet.
+
+Il sito esselunga.it risponde male da qui (502 a intermittenza), ma
+insistendo si arriva: scelto il negozio di corso Traiano, i link «sfoglia»
+portano al visore FlippingBook della «Zona3». Le immagini delle pagine
+(`page-html5-substrates`) su molte pagine sono senza scritte: il testo sta in
+un SVG a parte (`page-vectorlayers`), e le pagine si leggono sovrapponendo i
+due con Playwright. Rispetto alla Lombardia cambiano sei cose nel «Grandi
+Marche» (Skyr 0,66 invece di 0,69, il Mix Müller, il caffè Illy 4,89, Langhe
+Bianco o Albarossa al posto del Custoza, i finocchi al posto del cavolfiore,
+la Toma del Biellese al posto del Branzi) e c'è una pagina in più (Amadori e
+Coccolino) al posto dell'elenco dei negozi. Il catalogo «Sapori d'Autunno» è
+lo stesso ovunque, ma la sua ultima pagina elenca comunque i negozi lombardi:
+che valga anche a Torino lo dice l'elenco ufficiale delle offerte del negozio
+(`digital-grid`, 212 offerte per corso Traiano, prezzi uguali a quelli letti).
+
+Il collegamento delle righe è il visore ufficiale con `#page/n`, dentro un
+riquadro come il Conad. Da qui non ha mai finito di caricarsi (i suoi file
+arrivano con 502): va provato sul telefono.

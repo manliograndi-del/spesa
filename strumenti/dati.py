@@ -180,10 +180,13 @@ VOLANTINI = [
  # stanno in pagine_aldi.py. Il volantino della settimana 21-27/9 non è letto:
  # quando Manlio ha chiesto Aldi mancava un giorno alla fine.
  _v('aldi28',         'Aldi',           'dal 28 settembre al 4 ottobre',                'Aldi — 28 settembre-4 ottobre.pdf',                '2026-10-04', None, '2026-09-28', PAGINE_ALDI_28),
- # ESSELUNGA: il sito ufficiale (esselunga.it) vuole un negozio scelto e da qui
- # risponde a fatica; per ora anteprimavolantino.it, come le altre all'inizio.
- #_v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', _AV + '/2026/09/volantino-esselunga-2026-09-24-p-{n:02d}.jpg', '2026-09-24'),
- #_v('esselungaaut24', 'Esselunga',      '«Sapori d\'Autunno», dal 24 settembre al 7 ottobre', 'Esselunga Sapori d\'Autunno — 24 settembre-7 ottobre.pdf', '2026-10-07', _AV + '/2026/09/volantino-esselunga-autunno-2026-09-24-p-{n:05d}.jpg', '2026-09-24'),
+ # ESSELUNGA: ogni zona ha la sua edizione. Quella di anteprimavolantino.it era
+ # la LOMBARDA (l'ultima pagina elencava solo negozi lombardi, Parma e Piacenza).
+ # Torino è la «Zona3»: la dà il sito ufficiale scegliendo il negozio di corso
+ # Traiano (TRA). Il collegamento è il visore ufficiale, che si apre alla pagina
+ # giusta (#page/n) e sta dentro un riquadro, come il Conad.
+ _v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-g5P9Ct3w/Zona3-SS-Vol1/index.html#page/{n}', '2026-09-24'),
+ _v('esselungaaut24', 'Esselunga',      '«Sapori d\'Autunno», dal 24 settembre al 7 ottobre', 'Esselunga Sapori d\'Autunno — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-H6q2Dv4E/Zona3-SS-Vol1/index.html#page/{n}', '2026-09-24'),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
@@ -200,13 +203,9 @@ VOLANTINI = [
 Atteso = _nt('Atteso', 'insegna periodo inizio fino dove')
 
 VOLANTINI_ATTESI = [
-    # Esselunga, chiesta il 2026-09-26 con Penny e Aldi: trovata e in lettura.
-    # Quando un volantino è letto si toglie di qui e si riapre la sua riga in
-    # VOLANTINI.
-    Atteso('Esselunga', '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', '2026-09-24', '2026-10-07',
-           'in lettura'),
-    Atteso('Esselunga', "«Sapori d'Autunno», dal 24 settembre al 7 ottobre", '2026-09-24', '2026-10-07',
-           'in lettura'),
+    # Vuota: Penny, Aldi ed Esselunga, chiesti il 2026-09-26, sono stati letti
+    # lo stesso giorno. Si rimette qui dentro un volantino solo quando SO che
+    # sta per uscire e non l'ho ancora letto.
 ]
 
 for _a in VOLANTINI_ATTESI:
@@ -2372,6 +2371,254 @@ PRODOTTI = [
  ("Formaggio","Aldi","aldi28","Freschi","Pecorino Romano DOP – Regione che vai","200 g",0.2,2.59,23,V,"−25%, prima 3,49. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
  ("Conserve","Aldi","aldi28","Dispensa","Carciofi alla paesana in olio di semi di girasole – Cucina","285 g",0.285,0.99,23,V,"−36%, prima 1,55. Peso non sgocciolato. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
  ("Calamari","Aldi","aldi28","Surgelati","Seppioline indopacifiche pulite – Blu Mares","450 g",0.45,3.99,23,V,"−33%, prima 5,99. Surgelate, peso netto senza glassatura. Solo da venerdì 2 a domenica 4 ottobre.","2026-10-02","2026-10-04"),
+ # ----- Esselunga «Grandi Marche fino al 50%», 24 settembre-7 ottobre (esselunga24), edizione di Torino (Zona3, corso Traiano), letto per intero il 2026-09-26 dal visore ufficiale -----
+ # p1: copertina, nessun prezzo
+ # p2: mini burger vegetali Kioene senza categoria
+ # p3: bevanda vegetale Alpro, latte e cacao Nesquik, base per torte Cameo senza categoria
+ # p5: maionese e ketchup Heinz senza categoria
+ # p6: caramelle Sperlari e Fonzies senza categoria; le cialde Illy (40) e le capsule L'Or (50) senza peso scritto
+ # p7: noci Alfano, mandorle Ventura e carta forno Cuki senza categoria
+ # p10: candeggina Ace, sgrassatore Chanteclair, Viakal, Ambi Pur, Swiffer e tegame senza categoria
+ # p11: elettrodomestici, telefoni, televisori, pile, fazzoletti, salviette e pannolini senza categoria
+ # p12: deodorante, salviette struccanti, assorbenti, salvaslip, rasoi e barrette proteiche senza categoria
+ # p13: cibo e accessori per animali, nessuna categoria del catalogo
+ # p14: il sushi mix senza categoria
+ # p17: crostata ai lamponi e cannoli siciliani (dolci freschi) senza categoria
+ # p18: raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo
+ # p19: raccolta punti Fragola «Amici di scuola», continua: solo punti, nessun prezzo
+ # p20: raccolta punti Fragola «Amici di scuola», continua: solo punti, nessun prezzo
+ # p21: raccolta punti Fragola «Amici di scuola», continua: solo punti, nessun prezzo
+ # p22: raccolta punti Fragola «Amici di scuola», continua: solo punti, nessun prezzo
+ # p23: raccolta punti Fragola «Amici di scuola», continua: solo punti, nessun prezzo
+ # p25: Vanish e additivo disinfettante Napisan senza categoria
+ # p26: pannolini Pampers, WC gel Ace, assorbenti Lines e Tampax senza categoria
+ # p27: detergenti Svelto, Lysoform e Cif senza categoria
+ ("Pasta","Esselunga","esselunga24","Freschi","Sfogliavelo pasta fresca ripiena – Giovanni Rana","250 g",0.25,1.84,2,V,"−50%, prima 3,69. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,69."),
+ ("Affettati","Esselunga","esselunga24","Salumi","Petto di tacchino arrosto Pavo – Ferrarini","130 g",0.13,3.99,2,V,"Prezzi corti."),
+ ("Preparati","Esselunga","esselunga24","Salumi","Stinco cotto al forno – Senfter","650 g",0.65,3.29,2,V,"−40%, prima 5,49. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,49."),
+ ("Prosciutto","Esselunga","esselunga24","Salumi","Prosciutto cotto di alta qualità a fette, confezione 2 × 100 g – Parmacotto","200 g",0.2,3.99,2,V,"Prezzo speciale."),
+ ("Salame","Esselunga","esselunga24","Salumi","Salame Galbanetto – Galbani","210 g",0.21,3.89,2,V,"−30%, prima 5,57. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,57."),
+ ("Formaggio","Esselunga","esselunga24","Freschi","Primosale Linea – Osella","190 g",0.19,1.79,2,V,"Prezzi corti."),
+ ("Grana","Esselunga","esselunga24","Freschi","Grana Padano grattugiato – Ambrosi","100 g",0.1,1.29,2,V,"Prezzo speciale."),
+ ("Grana","Esselunga","esselunga24","Freschi","Parmigiano Reggiano DOP stagionato 24 mesi, trancio","al kg",1,15.99,2,V,"Prezzo speciale."),
+ ("Mozzarella","Esselunga","esselunga24","Freschi","Mozzarella Santa Lucia, confezione 4 × 125 g – Galbani","500 g",0.5,2.99,2,V,"−50%, prima 5,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,99."),
+ ("Latte","Esselunga","esselunga24","Freschi","Latte parzialmente scremato a lunga conservazione – Arborea","1 l",1,0.85,3,V,"Prezzi corti. Latte italiano."),
+ ("Latte","Esselunga","esselunga24","Freschi","Latte Zymil senza lattosio a lunga conservazione – Parmalat","1 l",1,1.59,3,V,"Prezzi corti."),
+ ("Yogurt","Esselunga","esselunga24","Freschi","Skyr – Danone","150 g",0.15,0.66,3,V,"−50%, prima 1,32. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,32."),
+ ("Salmone affumicato","Esselunga","esselunga24","Freschi","Salmone norvegese affumicato a fette – Royal Atlantic","150 g",0.15,3.99,3,V,"−50%, prima 7,98. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 7,98."),
+ ("Yogurt","Esselunga","esselunga24","Freschi","Yogurt Zero% grassi gusti frutta, confezione 8 × 125 g – Müller","1 kg",1,2.49,3,V,"Prezzi corti."),
+ ("Merendine","Esselunga","esselunga24","Freschi","Snack Nesquik latte o cacao, 5 × 26 g – Nestlé","130 g",0.13,0.99,3,V,"−30%, prima 1,42. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,42."),
+ ("Yogurt","Esselunga","esselunga24","Freschi","Yogurt Mix stelle e wafer al cioccolato, 4 × 150 g – Müller","600 g",0.6,1.94,3,V,"−50%, prima 3,89. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,89."),
+ ("Pizza","Esselunga","esselunga24","Surgelati","Pizza Bella Napoli margherita, 2 × 325 g – Buitoni","650 g",0.65,2.74,4,V,"Surgelata. −50%, prima 5,49. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,49."),
+ ("Merluzzo","Esselunga","esselunga24","Surgelati","6 Fiori di nasello – Findus","300 g",0.3,5.29,4,V,"Surgelati. Prezzi corti."),
+ ("Sughi","Esselunga","esselunga24","Surgelati","Sugo pronto allo scoglio – Esca","450 g",0.45,2.99,4,V,"Surgelato. −40%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Preparati","Esselunga","esselunga24","Surgelati","Chicken Nuggets – Findus","250 g",0.25,2.39,4,V,"Surgelati. −40%, prima 3,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,99."),
+ ("Panati","Esselunga","esselunga24","Surgelati","Filetti di merluzzo gratinati – Findus","380 g",0.38,2.64,4,V,"Surgelati. −50%, prima 5,29. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,29."),
+ ("Patate","Esselunga","esselunga24","Surgelati","Patatine We Love Croccanti – Pizzoli","750 g",0.75,1.49,4,V,"Surgelate. Prezzi corti."),
+ ("Verdure surgelate","Esselunga","esselunga24","Surgelati","Carciofi mezzi TantoCuore – Orogel","300 g",0.3,2.69,4,V,"−40%, prima 4,49. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,49."),
+ ("Verdure surgelate","Esselunga","esselunga24","Surgelati","Spinaci Millefoglie – Bonduelle","750 g",0.75,1.64,4,V,"−50%, prima 3,29. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,29."),
+ ("Verdure surgelate","Esselunga","esselunga24","Surgelati","Minestrone Tradizione Leggero – Findus","700 g",0.7,1.84,4,V,"−50%, prima 3,69. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,69."),
+ ("Gelato","Esselunga","esselunga24","Surgelati","Gelato Carte d'Or affogato, triplo cioccolato, cioccolato o amarena spagnola – Algida","500 g",0.5,2.99,4,V,"−40%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Gelato","Esselunga","esselunga24","Surgelati","Coppa del Nonno, 6 gelati – Motta","390 g",0.39,3.49,4,V,"−30%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Pasta","Esselunga","esselunga24","Dispensa","Pasta di semola – Barilla","2 × 1 kg (1+1)",2,1.85,5,V,"1+1 gratis: una sola costa 1,85."),
+ ("Pasta","Esselunga","esselunga24","Dispensa","Pasta integrale bio – Rummo","500 g",0.5,0.99,5,V,"−50%, prima 1,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,99."),
+ ("Riso","Esselunga","esselunga24","Dispensa","Riso Arborio, confezione 2 × 1 kg – Scotti","2 kg",2,3.99,5,V,"Prezzo speciale."),
+ ("Pomodoro","Esselunga","esselunga24","Dispensa","Passata di pomodoro – Mutti","700 g",0.7,0.99,5,V,"−50%, prima 1,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,99."),
+ ("Sughi","Esselunga","esselunga24","Dispensa","Gran Ragù classico o Extra Gusto, 2 × 180 g – Star","360 g",0.36,2.29,5,V,"Prezzi corti."),
+ ("Tonno","Esselunga","esselunga24","Dispensa","Filetti di tonno all'olio di oliva o extravergine – Rio Mare","180 g",0.18,3.99,5,V,"−50%, prima 7,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 7,99."),
+ ("Tonno","Esselunga","esselunga24","Dispensa","Tranci di tonno all'olio di oliva o extravergine biologico – Callipo","300 g",0.3,4.49,5,V,"−50%, prima 8,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 8,99."),
+ ("Tonno","Esselunga","esselunga24","Dispensa","Tonno all'olio di oliva pescato a canna, confezione 6 × 120 g – Rio Mare","720 g",0.72,7.99,5,V,"−50%, prima 15,98. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 15,98."),
+ ("Conserve","Esselunga","esselunga24","Dispensa","Sottoli – Polli","185 g",0.185,1.69,5,V,"Prezzi corti."),
+ ("Conserve","Esselunga","esselunga24","Dispensa","Filetti di alici in olio di oliva – Delicius","150 g",0.15,5.19,5,V,"−40%, prima 8,65. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 8,65."),
+ ("Olio d'oliva","Esselunga","esselunga24","Dispensa","Olio extravergine di oliva – Farchioni","1 l",1,4.99,6,V,"−40%, prima 8,32. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 8,32."),
+ ("Olio d'oliva","Esselunga","esselunga24","Dispensa","Olio extravergine di oliva 100% italiano – De Cecco","1 l",1,6.99,6,V,"−40%, prima 11,65. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 11,65."),
+ ("Pane","Esselunga","esselunga24","Dispensa","Cracker salati o non salati in superficie – Mulino Bianco","500 g",0.5,1.35,6,V,"Prezzi corti."),
+ ("Pane","Esselunga","esselunga24","Dispensa","Taralli tradizionali, 8 × 40 g – Giovanni Matera","320 g",0.32,1.49,6,V,"−50%, prima 2,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,99."),
+ ("Cioccolato","Esselunga","esselunga24","Colazione","Tavoletta fondente mandorle e arancia o rum uvetta e nocciole – Ritter Sport","100 g",0.1,1.59,6,V,"Prezzi corti."),
+ ("Cioccolato","Esselunga","esselunga24","Colazione","Tavoletta Raffaello o Rocher – Ferrero","90 g",0.09,1.99,6,V,"Prezzi corti."),
+ ("Caffè","Esselunga","esselunga24","Colazione","Caffè macinato per moka Classico – Illy","185 g",0.185,4.89,6,V,"Prezzi corti."),
+ ("Creme","Esselunga","esselunga24","Colazione","Crema Pan di Stelle – Barilla","380 g",0.38,1.99,7,V,"−50%, prima 3,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,99."),
+ ("Cereali","Esselunga","esselunga24","Colazione","Coco Pops palline o barchette – Kellogg's","400 g",0.4,2.48,7,V,"−40%, prima 4,14. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,14."),
+ ("Merendine","Esselunga","esselunga24","Colazione","Kinder Pan e Cioc, 10 merendine – Ferrero","290 g",0.29,2.49,7,V,"Prezzi corti."),
+ ("Pane","Esselunga","esselunga24","Colazione","Fette biscottate dorate o integrali – Mulino Bianco","630 g",0.63,1.69,7,V,"−30%, prima 2,42. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,42."),
+ ("Marmellata","Esselunga","esselunga24","Colazione","Confettura di albicocche, arancia dolce o fragola – Zuegg","320 g",0.32,1.69,7,V,"Prezzi corti."),
+ ("Merendine","Esselunga","esselunga24","Colazione","Plumcake classico, 10 pezzi – Mulino Bianco","330 g",0.33,1.39,7,V,"−30%, prima 1,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,99."),
+ ("Biscotti","Esselunga","esselunga24","Colazione","Gocciole – Pavesi","1 kg",1,2.98,7,V,"−40%, prima 4,97. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,97."),
+ ("Acqua","Esselunga","esselunga24","Bevande","Acqua minerale naturale o frizzante, 6 × 1 l – Sant'Anna","6 litri",6,1.76,8,V,"−40%, prima 2,94. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,94."),
+ ("Acqua","Esselunga","esselunga24","Bevande","Acqua minerale naturale, 6 × 1,5 l – Vitasnella","9 litri",9,1.74,8,V,"Prezzi corti."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Skipper arancia rossa o ananas – Zuegg","1 l",1,1.29,8,V,"−30%, prima 1,85. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,85."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Aperitivo analcolico, 4 × 20 cl – Sanbittèr","800 ml",0.8,3.89,8,V,"Prezzi corti."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Original o Zero, 4 × 1,5 l – Coca-Cola","6 litri",6,5.29,8,V,"−30%, prima 7,56. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 7,56."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Tè al limone o alla pesca – S. Bernardo","1,5 l",1.5,0.77,8,V,"−40%, prima 1,29. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,29."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra – Heineken","660 ml",0.66,0.99,8,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra, 6 × 33 cl – Beck's","1,98 litri",1.98,3.29,8,V,"−50%, prima 6,59. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,59."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra Extra, 6 × 33 cl – Corona","1,98 litri",1.98,5.99,8,V,"−30%, prima 8,56. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 8,56."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra – Bud","500 ml",0.5,0.99,8,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselunga24","Bevande","Müller Thurgau Durello – Cantina di Soave","750 ml",0.75,2.85,9,V,"−50%, prima 5,70. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,70."),
+ ("Vino","Esselunga","esselunga24","Bevande","Langhe Bianco o Albarossa – Enzo Bartoli","750 ml",0.75,3.99,9,V,"−40%, prima 6,65. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,65."),
+ ("Vino","Esselunga","esselunga24","Bevande","Prosecco – Maschio","750 ml",0.75,4.19,9,V,"−40%, prima 6,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,99."),
+ ("Vino","Esselunga","esselunga24","Bevande","Bardolino Chiaretto – Guerrieri Rizzardi","750 ml",0.75,3.95,9,V,"−40%, prima 6,59. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,59."),
+ ("Vino","Esselunga","esselunga24","Bevande","Alcamo o Nero d'Avola – Rapitalà","750 ml",0.75,3.98,9,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselunga24","Bevande","Lambrusco – Giuseppe Verdi","750 ml",0.75,2.99,9,V,"−40%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Vino","Esselunga","esselunga24","Bevande","Vermentino di Gallura DOCG o Carignano del Sulcis – Sella&Mosca","750 ml",0.75,5.35,9,V,"−50%, prima 10,70. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 10,70."),
+ ("Vino","Esselunga","esselunga24","Bevande","Shiraz o Chardonnay – Yellow Tail","750 ml",0.75,4.65,9,V,"−40%, prima 7,75. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 7,75."),
+ ("Vino","Esselunga","esselunga24","Bevande","Barbera d'Asti Superiore DOCG – Govone","750 ml",0.75,3.19,9,V,"−50%, prima 6,39. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,39."),
+ ("Vino","Esselunga","esselunga24","Bevande","Chianti DOCG – Piccini","750 ml",0.75,2.80,9,V,"−50%, prima 5,60. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 5,60."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice in polvere, 71 lavaggi – Dash","71 lavaggi",71,14.99,10,V,"Prezzo speciale."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice liquido classico o color, 3 × 23 lavaggi – Dash","69 lavaggi",69,12.99,10,V,"Prezzo speciale."),
+ ("Lavastoviglie","Esselunga","esselunga24","Cura casa","Gel Ultimate 4 × 30 lavaggi o tabs Quantum Ultimate o Ultimate Plus – Finish","65 lavaggi",65,13.99,10,V,"Prezzo speciale, a confezione. Le confezioni sono da 120, 77, 70 o 65 lavaggi allo stesso prezzo: il conto è sulla più piccola."),
+ ("Asciugatutto","Esselunga","esselunga24","Cura casa","Carta casa Quanto Basta – Scottex","6 rotoli",6,5.59,10,V,"−50%, prima 11,19. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 11,19."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice muschio bianco o Marsiglia, 38 lavaggi – Chanteclair","38 lavaggi",38,3.49,10,V,"−30%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Carta igienica","Esselunga","esselunga24","Cura casa","Carta igienica Mega, 12 maxi rotoli – Foxy","12 rotoli",12,6.99,11,V,"−40%, prima 11,65. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 11,65."),
+ ("Shampoo","Esselunga","esselunga24","Cura persona","Fructis shampoo 250 ml o balsamo 200 ml – Garnier","200 ml",0.2,1.99,12,V,"Prezzi corti. Stesso prezzo per lo shampoo da 250 ml: il conto è sul balsamo da 200 ml, il formato più piccolo."),
+ ("Dentifricio","Esselunga","esselunga24","Cura persona","Dentifricio Max, bipacco 2 × 100 ml – Colgate","200 ml",0.2,3.99,12,V,"Prezzo speciale."),
+ ("Dentifricio","Esselunga","esselunga24","Cura persona","Dentifricio Sensitive 2 × 100 ml o Protection Complete 2 × 75 ml – Elmex","150 ml (2 × 75 ml)",0.15,7.69,12,V,"Prezzo speciale. Stesso prezzo per il Sensitive da 2 × 100 ml: il conto è sul formato più piccolo."),
+ ("Bagnoschiuma","Esselunga","esselunga24","Cura persona","Bagnodoccia – Dove","700 ml",0.7,2.32,12,V,"−50%, prima 4,65. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,65."),
+ ("Pesce","Esselunga","esselunga24","Pescheria","Branzino già pulito","al kg",1,9.80,14,V,"−40%, prima 16,34 al kg."),
+ ("Pesce","Esselunga","esselunga24","Pescheria","Filetto di sogliola oceanica","al kg",1,24.85,14,V,"−30%, prima 35,50 al kg."),
+ ("Gamberi","Esselunga","esselunga24","Pescheria","Code di mazzancolle tropicali sgusciate e cotte","al kg",1,27.60,14,V,"−30%, prima 39,43 al kg."),
+ ("Salmone","Esselunga","esselunga24","Pescheria","Filetto di salmone","al kg",1,20.89,14,V,"−30%, prima 29,85 al kg."),
+ ("Preparati","Esselunga","esselunga24","Pescheria","Polpettone di salmone ai broccoli – Esselunga","500 g",0.5,6.66,14,V,"−50%, prima 13,32."),
+ ("Pesce","Esselunga","esselunga24","Pescheria","Bis di frutti di mare, cozze e lupini","800 g",0.8,7.90,14,V,""),
+ ("Panati","Esselunga","esselunga24","Pescheria","Fishburger di salmone, 4 pezzi","240 g",0.24,3.99,14,V,""),
+ ("Manzo","Esselunga","esselunga24","Macelleria","Polpa trita scelta di scottona – Naturama","400 g",0.4,5.19,15,V,"−40%, prima 8,65."),
+ ("Vitello","Esselunga","esselunga24","Macelleria","Fettine sottili di vitello","al kg",1,19.10,15,V,"−40%, prima 31,84 al kg."),
+ ("Suino","Esselunga","esselunga24","Macelleria","Coppa di suino disossata per arrosto","al kg",1,5.99,15,V,"−40%, prima 9,99 al kg."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Chicken burger o hamburger con tacchino, 4 × 100 g – Aia","400 g",0.4,3.99,15,V,"Prezzo speciale."),
+ ("Pollo","Esselunga","esselunga24","Macelleria","Tenerelle di pollo","al kg",1,9.35,15,V,"−40%, prima 15,59 al kg. Fettine di pollo già condite con le erbe."),
+ ("Pollo","Esselunga","esselunga24","Macelleria","Straccetti di pollo – Naturama","al kg",1,11.89,15,V,"−30%, prima 16,99 al kg."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Hamburger di bovino adulto e suino, 2 × 100 g – Esselunga","200 g",0.2,2.59,15,V,""),
+ ("Manzo","Esselunga","esselunga24","Macelleria","Scaloppe di bovino adulto","al kg",1,12.50,15,V,""),
+ ("Frutta","Esselunga","esselunga24","Ortofrutta","Uva Italia","al kg",1,1.78,16,V,"−40%, prima 2,98 al kg."),
+ ("Verdura","Esselunga","esselunga24","Ortofrutta","Finocchi","al kg",1,1.38,16,V,"−30%, prima 1,98 al kg."),
+ ("Frutta","Esselunga","esselunga24","Ortofrutta","Mele Samboa","al kg",1,1.78,16,V,"−30%, prima 2,55 al kg."),
+ ("Insalata","Esselunga","esselunga24","Ortofrutta","Insalate residuo zero da agricoltura verticale – Naturama","70 g",0.07,0.98,16,V,"−30%, prima 1,40."),
+ ("Pasta","Esselunga","esselunga24","Gastronomia","Lasagne ai carciofi – Cucina Esselunga","500 g",0.5,5.59,16,V,"−30%, prima 7,99. È un piatto pronto."),
+ ("Prosciutto","Esselunga","esselunga24","Gastronomia","Prosciutto cotto alta qualità – Ferrarini","al kg",1,19.90,16,V,"Prezzi corti. Reparto gastronomia, a peso."),
+ ("Formaggio","Esselunga","esselunga24","Gastronomia","Toma del Biellese","al kg",1,12.59,16,V,"−30%, prima 17,99 al kg. Reparto gastronomia, a peso."),
+ ("Grana","Esselunga","esselunga24","Gastronomia","Grana Padano DOP Riserva oltre 20 mesi","al kg",1,14.39,16,V,"−40%, prima 23,99 al kg. Reparto gastronomia, a peso."),
+ ("Pizza","Esselunga","esselunga24","Panetteria","Pizza Napoli","al kg",1,6.85,17,V,"−30%, prima 9,79 al kg. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Pasta","Esselunga","esselunga24","Panetteria","Gnocchi spinaci e cavolfiore","400 g",0.4,3.19,17,V,"Prezzo speciale. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Pane","Esselunga","esselunga24","Panetteria","Piadina fresca con olio extravergine di oliva, 4 piadine – Esselunga","520 g",0.52,1.79,17,V,"−40%, prima 2,99. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Merendine","Esselunga","esselunga24","Panetteria","Sfogliatina all'albicocca","85 g",0.085,0.99,17,V,"Prezzo speciale. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Merendine","Esselunga","esselunga24","Panetteria","Ciambelline mignon","al kg",1,8.39,17,V,"−30%, prima 11,99 al kg. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Pane","Esselunga","esselunga24","Panetteria","American Sandwich di grano tenero a fette – Morato","825 g",0.825,1.99,17,V,"Prezzi corti."),
+ ("Pane","Esselunga","esselunga24","Panetteria","Pane morbido ai 3 farri a fette – Esselunga Equilibrio","400 g",0.4,1.25,17,V,"−30%, prima 1,79."),
+ ("Pizza","Esselunga","esselunga24","Surgelati","Pizza Creazione margherita o salame – Buitoni","390 g",0.39,2.99,24,V,"Surgelata. −30%, prima 4,28. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,28. Stesso prezzo per la salame da 430 g: il conto è sulla margherita da 390 g."),
+ ("Pizza","Esselunga","esselunga24","Surgelati","Pizza Bella Napoli margherita – Buitoni","365 g",0.365,1.99,24,V,"Surgelata. Prezzi corti."),
+ ("Pizza","Esselunga","esselunga24","Surgelati","Pizza Bella Napoli tonno e cipolla o prosciutto e funghi – Buitoni","375 g",0.375,1.99,24,V,"Surgelata. Prezzi corti. Stesso prezzo per tonno e cipolla da 410 g: il conto è su prosciutto e funghi da 375 g."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra, 3 × 33 cl – Bud","990 ml",0.99,2.39,24,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra – San Miguel","1 l",1,1.69,24,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra – Stella Artois","660 ml",0.66,0.99,24,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselunga24","Bevande","Birra Hell – Franziskaner","500 ml",0.5,0.99,24,V,"Prezzi corti."),
+ ("Acqua","Esselunga","esselunga24","Bevande","Acqua minerale naturale o frizzante, 6 × 50 cl – Levissima","3 litri",3,1.47,25,V,"−40%, prima 2,46. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,46."),
+ ("Acqua","Esselunga","esselunga24","Bevande","Acqua minerale frizzante, 6 × 1,5 l – Levissima","9 litri",9,2.23,25,V,"−40%, prima 3,72. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,72."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Limonata o Limonata Zero in lattina – San Pellegrino","330 ml",0.33,0.54,25,V,"Prezzi corti."),
+ ("Bibite","Esselunga","esselunga24","Bevande","Cocktail o Chinò – San Pellegrino","1 l",1,0.99,25,V,"−30%, prima 1,42. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,42."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice classico o color, 23 lavaggi – Napisan","23 lavaggi",23,2.79,25,V,"Prezzi corti."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice, 24 o 38 lavaggi – Ace","2 × 24 lavaggi (1+1)",48,6.99,26,V,"1+1 gratis: una sola costa 6,99. Stesso prezzo per quello da 38 lavaggi: il conto è su quello da 24."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Cotoletta classica o ortaiola con spinaci, 3 pezzi – Amadori","330 g",0.33,3.59,27,V,"−40%, prima 5,99."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Le Birbe – Amadori","500 g",0.5,5.27,27,V,"−40%, prima 8,79. Bocconcini di pollo impanati."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Cotoletta sottile – Amadori","300 g",0.3,2.87,27,V,"−40%, prima 4,79."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Polpettine – Amadori","240 g",0.24,2.99,27,V,"−40%, prima 4,99."),
+ ("Preparati","Esselunga","esselunga24","Macelleria","Polpettone classico – Amadori","700 g",0.7,6.99,27,V,"Prezzi corti."),
+ ("Pollo","Esselunga","esselunga24","Macelleria","Petto di pollo 10+ a fette – Amadori","al kg",1,9.90,27,V,"Prezzo speciale."),
+ ("Lavatrice","Esselunga","esselunga24","Cura casa","Detersivo lavatrice, 2 × 37 lavaggi – Coccolino","74 lavaggi",74,8.99,27,V,"Prezzo speciale."),
+ ("Ammorbidente","Esselunga","esselunga24","Cura casa","Ammorbidente, 90 lavaggi – Coccolino","90 lavaggi",90,3.79,27,V,"−50%, prima 7,59. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 7,59."),
+ # ----- Esselunga «Sapori d'Autunno», 24 settembre-7 ottobre (esselungaaut24), edizione di Torino (Zona3), letto per intero il 2026-09-26 dal visore ufficiale -----
+ # p1: copertina, nessun prezzo
+ # p3: hummus di ceci e tris di canederli senza categoria
+ # p5: lo zafferano Zaffy senza categoria
+ # p7: i funghi porcini secchi Codena senza categoria
+ # p9: il lardo d'Arnad DOP senza categoria
+ # p11: aceto balsamico, aceto di mele e castagne bio senza categoria
+ # p13: lo spumante analcolico Virgola Zero senza categoria (non è vino)
+ # p16: la torta fresca pere e cioccolato senza categoria
+ # p17: marrons glacés senza categoria; il tè Twinings (22 filtri) senza peso scritto
+ ("Pasta","Esselunga","esselungaaut24","Gastronomia","Gramigna con salsiccia – Cucina Esselunga","al kg",1,9.09,2,V,"È un piatto pronto, al banco gastronomia. −30%, prima 12,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 12,99 al kg."),
+ ("Riso","Esselunga","esselungaaut24","Gastronomia","Risotto ai funghi porcini – Cucina Esselunga","al kg",1,9.09,2,V,"È un piatto pronto, al banco gastronomia. −30%, prima 12,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 12,99 al kg."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Valpolicella Ripasso – Bertani","750 ml",0.75,11.90,2,V,"Prezzi corti."),
+ ("Pasta","Esselunga","esselungaaut24","Gastronomia","Cannelloni di carne – Cucina Esselunga","al kg",1,10.49,3,V,"È un piatto pronto, al banco gastronomia. −30%, prima 14,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 14,99 al kg."),
+ ("Pasta","Esselunga","esselungaaut24","Gastronomia","Tagliatelle con ragù alla bolognese – Cucina Esselunga","al kg",1,9.79,3,V,"È un piatto pronto, al banco gastronomia. −30%, prima 13,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 13,99 al kg."),
+ ("Pasta","Esselunga","esselungaaut24","Panetteria","Tortelli con brasato al Barolo","250 g",0.25,3.99,3,V,"Pasta fresca ripiena. Prezzo speciale. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Pane","Esselunga","esselungaaut24","Dispensa","Crostini classici per zuppe e insalate – Esselunga","200 g",0.2,1.49,3,V,"Prezzi corti."),
+ ("Pasta","Esselunga","esselungaaut24","Freschi","Maltagliati cacio e pepe – Pastai","250 g",0.25,2.09,3,V,"Pasta fresca ripiena. −30%, prima 2,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,99."),
+ ("Pizza","Esselunga","esselungaaut24","Panetteria","Pizza speck e scamorza","al kg",1,8.39,3,V,"−30%, prima 11,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 11,99 al kg. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Verdura","Esselunga","esselungaaut24","Ortofrutta","Misto funghi – Spadella","300 g",0.3,1.98,4,V,"−30%, prima 2,84. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,84."),
+ ("Verdura","Esselunga","esselungaaut24","Ortofrutta","Zucca moscata di Provenza","al kg",1,0.98,4,V,""),
+ ("Pasta","Esselunga","esselungaaut24","Freschi","Tagliatelle fresche sfoglia classica – Esselunga Top","250 g",0.25,0.99,4,V,"Prezzi corti."),
+ ("Pasta","Esselunga","esselungaaut24","Dispensa","Pasta all'uovo Emiliane fettuccine, tagliatelle o pappardelle – Barilla","250 g",0.25,0.99,5,V,"Prezzi corti."),
+ ("Sughi","Esselunga","esselungaaut24","Dispensa","Pesto di pomodoro – Mutti","180 g",0.18,1.89,5,V,"Prezzi corti."),
+ ("Verdure surgelate","Esselunga","esselungaaut24","Surgelati","Misto funghi con porcini – Cucina Sartor","1 kg",1,3.49,5,V,"−30%, prima 4,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 4,99."),
+ ("Verdure surgelate","Esselunga","esselungaaut24","Surgelati","Zucca a cubetti – Esselunga","750 g",0.75,1.56,5,V,"−20%, prima 2,24. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,24."),
+ ("Conserve","Esselunga","esselungaaut24","Dispensa","Giardiniera in agrodolce – Mastrototaro Food","310 g",0.31,4.49,5,V,"Peso non sgocciolato. −30%, prima 6,42. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 6,42."),
+ ("Verdure surgelate","Esselunga","esselungaaut24","Surgelati","Vellutata di zucca e carote o passato di verdure – Esselunga","600 g",0.6,1.67,5,V,"−20%, prima 2,39. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,39."),
+ ("Sughi","Esselunga","esselungaaut24","Freschi","Ragù alla bolognese – Esselunga Top","200 g",0.2,2.39,5,V,"−20%, prima 2,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,99."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Blanche de Namur","750 ml",0.75,2.99,6,V,"Prezzi corti."),
+ ("Frutta","Esselunga","esselungaaut24","Ortofrutta","Melagrana","400 g",0.4,0.98,6,V,""),
+ ("Preparati","Esselunga","esselungaaut24","Pescheria","Arrosto di salmone pronto da cuocere – Esselunga","400 g",0.4,10.80,6,V,"−20%, prima 13,50. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 13,50."),
+ ("Preparati","Esselunga","esselungaaut24","Pescheria","Polpettone di tonno a pinne gialle in crosta con scamorza e olive – Esselunga","450 g",0.45,7.99,7,V,"−40%, prima 13,32. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 13,32."),
+ ("Tonno","Esselunga","esselungaaut24","Dispensa","Filetti di tonno – Esselunga Top","680 g",0.68,19.92,7,V,"Peso non sgocciolato. −20%, prima 24,90. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 24,90."),
+ ("Patate","Esselunga","esselungaaut24","Ortofrutta","Patate viola – Pizzoli","800 g",0.8,1.38,7,V,"Prezzi corti."),
+ ("Legumi","Esselunga","esselungaaut24","Dispensa","Lenticchie di Altamura IGP biologiche – Terre di Altamura","400 g",0.4,1.99,7,V,"Prezzi corti."),
+ ("Preparati","Esselunga","esselungaaut24","Macelleria","Rolatine di pollo","al kg",1,10.39,7,V,"−40%, prima 17,33 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 17,33 al kg."),
+ ("Preparati","Esselunga","esselungaaut24","Macelleria","Saltimbocca di vitello","al kg",1,18.89,7,V,"−30%, prima 26,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 26,99 al kg."),
+ ("Suino","Esselunga","esselungaaut24","Macelleria","Lonza disossata di suino","al kg",1,8.39,7,V,"−30%, prima 11,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 11,99 al kg."),
+ ("Formaggio","Esselunga","esselungaaut24","Gastronomia","Asiago fresco DOP prodotto della montagna","al kg",1,12.90,8,V,"Prezzo speciale. Al banco gastronomia."),
+ ("Formaggio","Esselunga","esselungaaut24","Gastronomia","Brie","al kg",1,11.90,8,V,"Prezzo speciale. Al banco gastronomia."),
+ ("Prosciutto","Esselunga","esselungaaut24","Gastronomia","Prosciutto crudo nazionale stagionato 18 mesi – Ruliano","al kg",1,29.90,8,V,"Prezzo speciale. Al banco gastronomia."),
+ ("Pancetta","Esselunga","esselungaaut24","Gastronomia","Pancetta affumicata – Recla","al kg",1,18.90,9,V,"Prezzi corti. Al banco gastronomia."),
+ ("Salame","Esselunga","esselungaaut24","Gastronomia","Salame Cremona IGP – Santini","al kg",1,21.90,9,V,"Prezzi corti. Al banco gastronomia."),
+ ("Mortadella","Esselunga","esselungaaut24","Salumi","Mortadella classica a fette – Rovagnati","80 g",0.08,2.19,9,V,"Prezzi corti."),
+ ("Salame","Esselunga","esselungaaut24","Salumi","Salame rustico a fette – Citterio","70 g",0.07,2.19,9,V,"Prezzi corti."),
+ ("Salame","Esselunga","esselungaaut24","Salumi","Salame Felino IGP a fette – Terre Ducali","90 g",0.09,3.29,9,V,"Prezzi corti."),
+ ("Prosciutto","Esselunga","esselungaaut24","Salumi","Prosciutto crudo stagionato 18 mesi a fette – All Food","50 g",0.05,2.58,9,V,"−30%, prima 3,69. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 3,69."),
+ ("Grana","Esselunga","esselungaaut24","Freschi","Parmigiano Reggiano DOP stagionato oltre 40 mesi – Parmareggio","250 g",0.25,6.99,10,V,"Prezzi corti."),
+ ("Formaggio","Esselunga","esselungaaut24","Gastronomia","Valtellina Casera DOP stagionato","al kg",1,14.69,10,V,"−30%, prima 20,99 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 20,99 al kg. Al banco gastronomia."),
+ ("Formaggio","Esselunga","esselungaaut24","Gastronomia","Pecorino sardo DOP dolce","al kg",1,15.90,10,V,"Prezzi corti. Al banco gastronomia."),
+ ("Formaggio","Esselunga","esselungaaut24","Freschi","Caprice des Dieux","200 g",0.2,2.69,10,V,"Prezzi corti."),
+ ("Formaggio","Esselunga","esselungaaut24","Freschi","Gorgonzola piccante DOP – Igor","200 g",0.2,2.29,10,V,"Prezzi corti."),
+ ("Formaggio","Esselunga","esselungaaut24","Freschi","Duetto gorgonzola e mascarpone – Mauri","200 g",0.2,2.29,10,V,"Prezzi corti."),
+ ("Olio d'oliva","Esselunga","esselungaaut24","Dispensa","Olio extravergine di oliva non filtrato – Venturino","1 l",1,9.69,11,V,"Prezzi corti."),
+ ("Olio d'oliva","Esselunga","esselungaaut24","Dispensa","Olio extravergine di oliva – San Giuliano","1 l",1,8.99,11,V,"−30%, prima 12,85. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 12,85."),
+ ("Olio d'oliva","Esselunga","esselungaaut24","Dispensa","Olio extravergine di oliva – Villa Antica","750 ml",0.75,4.99,11,V,"−50%, prima 9,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 9,99."),
+ ("Olio d'oliva","Esselunga","esselungaaut24","Dispensa","Olio extravergine di oliva biologico – Buonamici","750 ml",0.75,6.99,11,V,"−50%, prima 13,99. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 13,99."),
+ ("Miele","Esselunga","esselungaaut24","Colazione","Miele di Manuka","225 g",0.225,9.99,11,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Crémant Réserve – Paul Mas","750 ml",0.75,5.90,12,V,"−40%, prima 9,84. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 9,84."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Verdicchio dei Castelli di Jesi – Pievalta","750 ml",0.75,6.89,12,V,"−30%, prima 9,85. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 9,85."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Bolgheri Rosso – Campo al Mare","750 ml",0.75,17.90,12,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Prosecco – Mionetto","750 ml",0.75,5.04,13,V,"−40%, prima 8,40. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 8,40."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Moscato Giallo – Cavit","750 ml",0.75,3.49,13,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Orvieto Classico Dieci Gradi – Cantine Monrubio","750 ml",0.75,2.95,13,V,"Prezzo speciale."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Lacryma Christi bianco o rosso – Feudi di San Gregorio","750 ml",0.75,6.90,13,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Regaleali bianco o Nero d'Avola – Tasca d'Almerita","750 ml",0.75,6.89,13,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Chianti Classico Riserva DOCG – Cecchi","750 ml",0.75,9.90,13,V,"Prezzi corti."),
+ ("Vino","Esselunga","esselungaaut24","Bevande","Rosso di Montefalco – Arnaldo Caprai","750 ml",0.75,9.90,13,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Winter – Leffe","750 ml",0.75,2.99,14,V,"Prezzo speciale."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Blonde – La Chouffe","750 ml",0.75,3.69,14,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Helles – Erdinger","500 ml",0.5,1.05,14,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Weissbier – Paulaner","500 ml",0.5,1.09,14,V,"Prezzi corti."),
+ ("Pane","Esselunga","esselungaaut24","Panetteria","Brezel","al kg",1,9.99,14,V,"−30%, prima 12,49 al kg. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 12,49 al kg. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Oktoberfest Bier – Paulaner","500 ml",0.5,1.29,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Kronen – Forst","330 ml",0.33,0.99,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Super – Tennent's","440 ml",0.44,1.49,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Premium – Forst","500 ml",0.5,0.99,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Pilsner in lattina, 3 × 33 cl – Forst","990 ml",0.99,1.99,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Blanche, Double Ambrée o Blonde – Grimbergen","330 ml",0.33,1.39,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Strong – Ceres","500 ml",0.5,1.79,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","IPA – Complot","330 ml",0.33,1.59,15,V,"Prezzi corti."),
+ ("Birra","Esselunga","esselungaaut24","Bevande","Helles – Augustiner","500 ml",0.5,2.09,15,V,"Prezzi corti."),
+ ("Biscotti","Esselunga","esselungaaut24","Colazione","Choco Wafer o Choco Wafer White – Milka","180 g",0.18,1.95,16,V,"Prezzi corti."),
+ ("Merendine","Esselunga","esselungaaut24","Colazione","Millefoglie classiche o glassate – Matilde Vicenzi","125 g",0.125,1.03,16,V,"−20%, prima 1,29. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 1,29."),
+ ("Biscotti","Esselunga","esselungaaut24","Colazione","Danish Butter Cookies","454 g",0.454,3.59,16,V,"Prezzi corti."),
+ ("Biscotti","Esselunga","esselungaaut24","Colazione","Biscotti Hermann Collection – Bahlsen","161 g",0.161,3.39,16,V,"Prezzi corti."),
+ ("Merendine","Esselunga","esselungaaut24","Panetteria","Muffin alla mela, 2 pezzi – Esselunga","150 g",0.15,1.59,16,V,"−30%, prima 2,28. Sconto Fìdaty: solo con la carta Fìdaty, senza tessera 2,28. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Merendine","Esselunga","esselungaaut24","Panetteria","Cinnamon roll","100 g",0.1,0.97,16,V,"Prezzo speciale. Vale solo nei negozi che hanno il reparto pane e dolci."),
+ ("Bibite","Esselunga","esselungaaut24","Bevande","Spremuta di mela – Melchiori","3 l",3,4.99,17,V,"È succo di mela. Prezzi corti."),
+ ("Tè","Esselunga","esselungaaut24","Colazione","Tisane della Buonanotte, 12 filtri – Regina di Fiori","36 g",0.036,6.99,17,V,"Prezzi corti. Il peso non è scritto: viene dal prezzo all'etto stampato (19,42)."),
+ ("Biscotti","Esselunga","esselungaaut24","Colazione","Delizie – Sapori","126 g",0.126,2.89,17,V,"Prezzi corti."),
+ ("Conserve","Esselunga","esselungaaut24","Dispensa","Pesche italiane sciroppate – Valfrutta","380 g",0.38,1.99,17,V,"Peso non sgocciolato. Prezzi corti."),
+ ("Cioccolato","Esselunga","esselungaaut24","Colazione","Gianduiotto 135 g, Napolitain 75% 100 g o Cremino 130 g – Esselunga Top","100 g",0.1,4.99,17,V,"Prezzi corti. Stesso prezzo per tutti e tre: il conto è sul Napolitain da 100 g, la confezione più piccola."),
 ]
 
 # LE OFFERTE CON DATE LORO.

@@ -205,4 +205,20 @@ SCARTATE = {
    33: 'non alimentare: ciclismo, abbigliamento sportivo, avvitatore',
    34: 'non alimentare: retro di copertina: zaino e avviatore per auto',
  },
+ 'esselunga24': {
+   1: 'copertina, nessun prezzo',
+   13: 'animali: cibo, lettiera e tappetini per cani e gatti, nessuna categoria del catalogo',
+   18: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+   19: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+   20: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+   21: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+   22: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+   23: 'raccolta punti Fragola «Amici di scuola»: solo punti, nessun prezzo',
+ },
+ 'esselungaaut24': {
+   1: 'copertina, nessun prezzo',
+   18: 'non alimentare: padella, tovaglia',
+   19: 'non alimentare: pentole, tagliere, grattugia, moka',
+   20: 'liquori con «sconto più facile» in euro, senza prezzo; elenco dei negozi',
+ },
 }
