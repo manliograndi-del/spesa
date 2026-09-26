@@ -184,9 +184,9 @@ VOLANTINI = [
  # la LOMBARDA (l'ultima pagina elencava solo negozi lombardi, Parma e Piacenza).
  # Torino è la «Zona3»: la dà il sito ufficiale scegliendo il negozio di corso
  # Traiano (TRA). Il collegamento è il visore ufficiale, che si apre alla pagina
- # giusta (#page/n) e sta dentro un riquadro, come il Conad.
- _v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-g5P9Ct3w/Zona3-SS-Vol1/index.html#page/{n}', '2026-09-24'),
- _v('esselungaaut24', 'Esselunga',      '«Sapori d\'Autunno», dal 24 settembre al 7 ottobre', 'Esselunga Sapori d\'Autunno — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-H6q2Dv4E/Zona3-SS-Vol1/index.html#page/{n}', '2026-09-24'),
+ # giusta (#n: il visore legge il numero subito dopo il cancelletto; «#page/n» lo apre alla prima) e sta dentro un riquadro, come il Conad.
+ _v('esselunga24',    'Esselunga',      '«Grandi Marche fino al 50%», dal 24 settembre al 7 ottobre', 'Esselunga — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-g5P9Ct3w/Zona3-SS-Vol1/index.html#{n}', '2026-09-24'),
+ _v('esselungaaut24', 'Esselunga',      '«Sapori d\'Autunno», dal 24 settembre al 7 ottobre', 'Esselunga Sapori d\'Autunno — 24 settembre-7 ottobre.pdf', '2026-10-07', 'https://www.esselunga.it/cdn/volantini/promozioni-H6q2Dv4E/Zona3-SS-Vol1/index.html#{n}', '2026-09-24'),
 ]
 
 # VOLANTINI CHE SO ESSERE IN ARRIVO, ma che non ho ancora letto.
