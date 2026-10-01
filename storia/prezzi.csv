@@ -1844,108 +1844,110 @@ md08,MD,Würstel,Würstel di pollo e tacchino – La Fattoria,1 kg,1,al kg,2.29,
 lidl17,Lidl,Frutta,Pere Williams,1 kg confezione,1,al kg,1.79,1.790,2026-09-21,2026-09-23,"Prima 2,49. Valido solo dal 21 al 23 settembre, non per tutto il volantino."
 lidl17,Lidl,Patate,Patate – Selenella,"1,5 kg rete",1.5,al kg,2.29,1.527,2026-09-21,2026-09-23,"Prima 2,99. Valido solo dal 21 al 23 settembre, non per tutto il volantino."
 lidl17,Lidl,Verdura,Zucca Butternut,al kg,1,al kg,1.19,1.190,2026-09-21,2026-09-23,"Con Lidl Plus, prima 1,69. Valido solo dal 21 al 23 settembre, non per tutto il volantino."
-ekom22,Ekom,Acqua,"Acqua – Alpi Cozie, frizzante o naturale, 12x500 ml",6 litri,6,al litro,1.89,0.315,2026-09-22,2026-10-05,
-ekom22,Ekom,Ammorbidente,"Ammorbidente profumato, 40 lavaggi – Solbat","2 litri, 40 lavaggi",2,a lavaggio,1.29,0.645,2026-09-22,2026-10-05,"Prima 1,79."
-ekom22,Ekom,Asciugatutto,"Asciugatutto 2 veli, 6 rotoli – Bravo",6 rotoli,6,al rotolo,2.79,0.465,2026-09-22,2026-10-05,"Prima 3,99."
-ekom22,Ekom,Asciugatutto,"Asciugatutto monorotolo decorato 3 veli, 300 strappi – Lalynea",1 rotolo,1,al rotolo,2.39,2.390,2026-09-22,2026-10-05,"Prima 2,99."
-ekom22,Ekom,Bibite,"Best Hydration, arancia/limone/frutti di bosco – Sant'Anna",330 ml,0.33,al litro,0.69,2.091,2026-09-22,2026-10-05,"Prima 0,99."
-ekom22,Ekom,Bibite,"Bevanda alla frutta A+C+E, gusti assortiti","1,5 litri",1.5,al litro,1.39,0.927,2026-09-22,2026-10-05,
-ekom22,Ekom,Bibite,"Classica – Coca Cola, 6x330 ml","1,98 litri",1.98,al litro,3.99,2.015,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,99."
-ekom22,Ekom,Bibite,"Powerade, diversi tipi",500 ml,0.5,al litro,1.09,2.180,2026-09-22,2026-10-05,
-ekom22,Ekom,Bibite,"Sport Drink, limone o arancio",500 ml,0.5,al litro,0.59,1.180,2026-09-22,2026-10-05,"Prima 0,79."
-ekom22,Ekom,Birra,Birra Classic,500 ml,0.5,al litro,0.53,1.060,2026-09-22,2026-10-05,"Prima 0,69."
-ekom22,Ekom,Birra,Birra Extra Stout,500 ml,0.5,al litro,0.99,1.980,2026-09-22,2026-10-05,"Prima 1,39."
+ekom22,Ekom,Acqua,"Acqua Alpi Cozie, frizzante o naturale, 12 × 500 ml",6 litri,6,al litro,1.89,0.315,2026-09-22,2026-10-05,
+ekom22,Ekom,Ammorbidente,"Ammorbidente profumato, 40 lavaggi – Solbat","2 l, 40 lavaggi",40,a lavaggio,1.29,0.032,2026-09-22,2026-10-05,"−28%, prima 1,79."
+ekom22,Ekom,Asciugatutto,"Asciugatutto monorotolo decorato, 300 strappi – Lalynea",1 rotolo,1,al rotolo,2.39,2.390,2026-09-22,2026-10-05,"−20%, prima 2,99."
+ekom22,Ekom,Asciugatutto,Asciugatutto – Bravo,6 rotoli,6,al rotolo,2.79,0.465,2026-09-22,2026-10-05,"−30%, prima 3,99."
+ekom22,Ekom,Bagnoschiuma,Doccia shampoo – Luxury,500 ml,0.5,al litro,0.85,1.700,2026-09-22,2026-10-05,"−32%, prima 1,25."
+ekom22,Ekom,Bibite,Bevanda alla frutta – Fruity,"1,5 litri",1.5,al litro,1.39,0.927,2026-09-22,2026-10-05,
+ekom22,Ekom,Bibite,"Coca Cola classica, 6 × 330 ml","1,98 l",1.98,al litro,3.99,2.015,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,99."
+ekom22,Ekom,Bibite,Powerade,500 ml,0.5,al litro,1.09,2.180,2026-09-22,2026-10-05,
+ekom22,Ekom,Bibite,Sport drink limone o arancio,500 ml,0.5,al litro,0.59,1.180,2026-09-22,2026-10-05,"−25%, prima 0,79."
+ekom22,Ekom,Birra,Birra Classic,500 ml,0.5,al litro,0.53,1.060,2026-09-22,2026-10-05,"−23%, prima 0,69."
+ekom22,Ekom,Birra,Birra Extra Stout – D'Stout,500 ml,0.5,al litro,0.99,1.980,2026-09-22,2026-10-05,"−29%, prima 1,39."
 ekom22,Ekom,Birra,Birra Nastro Azzurro – Peroni,500 ml,0.5,al litro,0.99,1.980,2026-09-22,2026-10-05,Solo con la carta EKOM UP.
-ekom22,Ekom,Biscotti,Biscotti Buongrano – Mulino Bianco,350 g,0.35,al kg,1.59,4.543,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Biscotti,"Biscotti – Cabrioni, diversi tipi",650 g,0.65,al kg,1.79,2.754,2026-09-22,2026-10-05,
+ekom22,Ekom,Biscotti,Biscotti Buongrano – Mulino Bianco,350 g,0.35,al kg,1.59,4.543,2026-09-22,2026-10-05,"−20%, prima 1,99."
+ekom22,Ekom,Biscotti,Biscotti Primi Amori – Cabrioni,650 g,0.65,al kg,1.79,2.754,2026-09-22,2026-10-05,
 ekom22,Ekom,Bresaola,"Bresaola punta d'anca IGP – Rigamonti, al banco",al kg,1,al kg,34.90,34.900,2026-09-22,2026-10-05,"Il volantino stampa 3,49 all'etto. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Burro,Burro,500 g,0.5,al kg,2.99,5.980,2026-09-22,2026-10-05,"Prima 4,49."
-ekom22,Ekom,Caffè,Caffè macinato Aroma Oro,250 g,0.25,al kg,2.99,11.960,2026-09-22,2026-10-05,
-ekom22,Ekom,Caffè,"Espresso Bar, 100 capsule",550 g,0.55,al kg,12.69,23.073,2026-09-22,2026-10-05,"Prima 16,99."
-ekom22,Ekom,Calamari,Tentacoli di totano gigante,500 g,0.5,al kg,2.99,5.980,2026-09-22,2026-10-05,"Prima 3,99."
-ekom22,Ekom,Carta igienica,"Carta igienica 2 veli, 4 maxi rotoli (=8) – Dayly",4 rotoli maxi,8,al rotolo,1.19,0.149,2026-09-22,2026-10-05,"Prima 1,49. 4 rotoli maxi valgono come 8 normali."
-ekom22,Ekom,Carta igienica,"Carta igienica That's Amore, 8 rotoli 4 veli – Lalynea",8 rotoli,8,al rotolo,1.99,0.249,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 2,99."
-ekom22,Ekom,Cereali,High Protein Müesli – Cameo,300 g,0.3,al kg,2.89,9.633,2026-09-22,2026-10-05,"Prima 3,69."
-ekom22,Ekom,Cioccolato,"Barrette di cioccolato al latte, 16 pezzi",200 g,0.2,al kg,1.99,9.950,2026-09-22,2026-10-05,"Prima 2,49."
-ekom22,Ekom,Conserve,Filetti di salmone all'olio vegetale,150 g,0.15,al kg,2.49,16.600,2026-09-22,2026-10-05,"È in scatola, non fresco."
-ekom22,Ekom,Conserve,Olive olivolì nere toste – Saclà,100 g,0.1,al kg,0.79,7.900,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 0,99."
-ekom22,Ekom,Creme,"Fior di Nocciola, crema cacao e nocciola bicolore",400 g,0.4,al kg,1.59,3.975,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Creme,"Peanut Butter, 100% arachidi – Fiorentini",350 g,0.35,al kg,2.79,7.971,2026-09-22,2026-10-05,"Prima 3,49. È burro di arachidi, non crema al cioccolato."
-ekom22,Ekom,Formaggio,"Caciottina Bosco Gerolo, al banco",al kg,1,al kg,9.90,9.900,2026-09-22,2026-10-05,"Il volantino stampa 0,99 all'etto. Vale solo nei negozi col banco servito."
+ekom22,Ekom,Burro,Burro,500 g,0.5,al kg,2.99,5.980,2026-09-22,2026-10-05,"−33%, prima 4,49."
+ekom22,Ekom,Caffè,Caffè macinato – Aroma Oro,250 g,0.25,al kg,2.99,11.960,2026-09-22,2026-10-05,
+ekom22,Ekom,Caffè,"Espresso Bar, 100 capsule",550 g,0.55,al kg,12.69,23.073,2026-09-22,2026-10-05,"−25%, prima 16,99. Sono capsule."
+ekom22,Ekom,Calamari,Tentacoli di totano gigante,500 g,0.5,al kg,2.99,5.980,2026-09-22,2026-10-05,"−25%, prima 3,99. Surgelato."
+ekom22,Ekom,Carta igienica,"Carta igienica 2 veli, 4 maxi rotoli (=8) – Dayly",4 rotoli maxi,8,al rotolo,1.19,0.149,2026-09-22,2026-10-05,"−20%, prima 1,49. 4 rotoli maxi valgono come 8 normali."
+ekom22,Ekom,Carta igienica,"Carta igienica That's Amore, 4 veli – Lalynea",8 rotoli,8,al rotolo,1.99,0.249,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 2,99."
+ekom22,Ekom,Cereali,High protein müesli – Cameo,300 g,0.3,al kg,2.89,9.633,2026-09-22,2026-10-05,"−22%, prima 3,69."
+ekom22,Ekom,Cioccolato,"Barrette di cioccolato al latte, 16 pezzi",200 g,0.2,al kg,1.99,9.950,2026-09-22,2026-10-05,"−20%, prima 2,49."
+ekom22,Ekom,Conserve,Carne lessata in gelatina,140 g,0.14,al kg,1.29,9.214,2026-09-22,2026-10-05,È carne in scatola.
+ekom22,Ekom,Conserve,Filetti di salmone all'olio vegetale – Capri,150 g,0.15,al kg,2.49,16.600,2026-09-22,2026-10-05,"È in scatola, non fresco."
+ekom22,Ekom,Creme,"Fior di nocciola, crema cacao e nocciola bicolore",400 g,0.4,al kg,1.59,3.975,2026-09-22,2026-10-05,"−20%, prima 1,99."
+ekom22,Ekom,Formaggio,"Caciottina Bosco Gerolo – Cascina, al banco",al kg,1,al kg,9.90,9.900,2026-09-22,2026-10-05,"Il volantino stampa 0,99 all'etto. Vale solo nei negozi col banco servito."
 ekom22,Ekom,Formaggio,Camembert francese,250 g,0.25,al kg,2.49,9.960,2026-09-22,2026-10-05,
-ekom22,Ekom,Formaggio,Caprino di latte di capra,80 g,0.08,al kg,0.99,12.375,2026-09-22,2026-10-05,"Prima 1,29."
+ekom22,Ekom,Formaggio,Caprino di latte di capra,80 g,0.08,al kg,0.99,12.375,2026-09-22,2026-10-05,"−23%, prima 1,29."
 ekom22,Ekom,Formaggio,"Certosa – Galbani, al banco",al kg,1,al kg,11.90,11.900,2026-09-22,2026-10-05,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Formaggio,Feta greca DOP a cubetti,150 g,0.15,al kg,2.49,16.600,2026-09-22,2026-10-05,
-ekom22,Ekom,Formaggio,"Fette di formaggio – Bon Fette, 20 pezzi",400 g,0.4,al kg,1.99,4.975,2026-09-22,2026-10-05,
-ekom22,Ekom,Formaggio,Formaggio Telemea de Vacca – Bayernland,800 g,0.8,al kg,5.99,7.487,2026-09-22,2026-10-05,
-ekom22,Ekom,Formaggio,Formaggio grattugiato mix,100 g,0.1,al kg,0.79,7.900,2026-09-22,2026-10-05,"Prima 0,99."
-ekom22,Ekom,Formaggio,Gorgonzola dolce DOP,400 g,0.4,al kg,3.49,8.725,2026-09-22,2026-10-05,
+ekom22,Ekom,Formaggio,Feta greca DOP a cubetti – Pavlakis,150 g,0.15,al kg,2.49,16.600,2026-09-22,2026-10-05,
+ekom22,Ekom,Formaggio,Formaggio grattugiato mix – Antichi Formaggi,100 g,0.1,al kg,0.79,7.900,2026-09-22,2026-10-05,"−20%, prima 0,99."
+ekom22,Ekom,Formaggio,Formaggio telemea di vacca – Bayernland,800 g,0.8,al kg,5.99,7.487,2026-09-22,2026-10-05,
+ekom22,Ekom,Formaggio,Gorgonzola DOP dolce,400 g,0.4,al kg,3.49,8.725,2026-09-22,2026-10-05,
 ekom22,Ekom,Formaggio,"Gorgonzola dolce DOP, al banco",al kg,1,al kg,11.90,11.900,2026-09-22,2026-10-05,"Il volantino stampa 1,19 all'etto. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Formaggio,Luna di Primosale,200 g,0.2,al kg,1.49,7.450,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Formaggio,Stracchino senza lattosio,150 g,0.15,al kg,1.49,9.933,2026-09-22,2026-10-05,"Prima 1,89."
+ekom22,Ekom,Formaggio,Luna di primosale,200 g,0.2,al kg,1.49,7.450,2026-09-22,2026-10-05,"−25%, prima 1,99."
+ekom22,Ekom,Formaggio,Mascarpone,500 g,0.5,al kg,2.79,5.580,2026-09-22,2026-10-05,"−20%, prima 3,49."
+ekom22,Ekom,Formaggio,Stracchino senza lattosio – Il Borgo,150 g,0.15,al kg,1.49,9.933,2026-09-22,2026-10-05,"−12%, prima 1,69."
 ekom22,Ekom,Frutta,Mele Golden,al kg,1,al kg,1.49,1.490,2026-09-22,2026-10-05,
 ekom22,Ekom,Frutta,Uva Italia,750 g,0.75,al kg,2.59,3.453,2026-09-22,2026-10-05,
-ekom22,Ekom,Frutta,Uva Pizzutella,750 g,0.75,al kg,2.99,3.987,2026-09-22,2026-10-05,
 ekom22,Ekom,Frutta,Uva nera,750 g,0.75,al kg,1.99,2.653,2026-09-22,2026-10-05,
-ekom22,Ekom,Gelato,"Gelato Mochi Maka Flavor, cocco/vaniglia/mango",180 g,0.18,al kg,3.49,19.389,2026-09-22,2026-10-05,
-ekom22,Ekom,Gelato,Gelato stecco Mini King,280 g,0.28,al kg,2.79,9.964,2026-09-22,2026-10-05,"Prima 3,49."
-ekom22,Ekom,Gelato,"Vaschetta gelato, gusti assortiti – Kome Te",400 g,0.4,al kg,1.49,3.725,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Lavastoviglie,"Gel Lavastoviglie Tutto in 1, 57 lavaggi – Scala","750 ml, 57 lavaggi",57,a lavaggio,0.99,0.017,2026-09-22,2026-10-05,"Prima 1,29."
-ekom22,Ekom,Lavastoviglie,"Pastiglie lavastoviglie Tutto in 1 Extra, 36 lavaggi – Pril",36 lavaggi,36,a lavaggio,5.59,0.155,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 7,99."
-ekom22,Ekom,Lavatrice,"Detersivo capi sportivi, 18 lavaggi – Chanteclair","900 ml, 18 lavaggi",18,a lavaggio,2.19,0.122,2026-09-22,2026-10-05,"Prima 2,99."
-ekom22,Ekom,Manzo,Arrosto di bovino adulto,al kg,1,al kg,19.90,19.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Manzo,Costata di bovino adulto,al kg,1,al kg,18.90,18.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Manzo,Polpa magra di bovino adulto,al kg,1,al kg,16.90,16.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Merendine,"Croissant cioccolato, albicocca o crema",400 g,0.4,al kg,1.89,4.725,2026-09-22,2026-10-05,
-ekom22,Ekom,Merluzzo,Filetti di merluzzo d'Alaska,400 g,0.4,al kg,1.99,4.975,2026-09-22,2026-10-05,"Prima 2,99."
-ekom22,Ekom,Mortadella,Mortadella intera,150 g,0.15,al kg,1.19,7.933,2026-09-22,2026-10-05,"Prima 1,49."
-ekom22,Ekom,Mozzarella,Mozzarella,100 g,0.1,al kg,0.69,6.900,2026-09-22,2026-10-05,"Prima 0,89."
-ekom22,Ekom,Mozzarella,Mozzarella julienne,200 g,0.2,al kg,1.59,7.950,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Mozzarella,"Mozzarelle fior di latte ciliegine, 8x25 g",200 g,0.2,al kg,1.69,8.450,2026-09-22,2026-10-05,"Prima 2,19."
-ekom22,Ekom,Olio di semi,Olio di semi di girasole – Dante,1 litro,1,al litro,2.19,2.190,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 2,79."
-ekom22,Ekom,Panati,Filetti di platessa impanati,300 g,0.3,al kg,2.99,9.967,2026-09-22,2026-10-05,"Prima 3,99. Sono impanate."
-ekom22,Ekom,Pane,"Baguette precotta, 2 pezzi",300 g,0.3,al kg,0.79,2.633,2026-09-22,2026-10-05,"Prima 0,99."
-ekom22,Ekom,Pane,Cracker Fiori d'Acqua – Mulino Bianco,250 g,0.25,al kg,1.25,5.000,2026-09-22,2026-10-05,"Prima 1,79."
-ekom22,Ekom,Pasta,"Pasta fresca ripiena, diversi tipi – MammAmore",500 g,0.5,al kg,1.19,2.380,2026-09-22,2026-10-05,"Prima 1,69. Sono tortelloni freschi, non pasta secca."
-ekom22,Ekom,Pasta,"Pasta fresca, orecchiette o trofie",1 kg,1,al kg,1.69,1.690,2026-09-22,2026-10-05,"Sono fresche, non pasta secca."
-ekom22,Ekom,Patate,Patate stick prefritte,1 kg,1,al kg,1.49,1.490,2026-09-22,2026-10-05,"Prima 1,99."
-ekom22,Ekom,Patate,Patate – Selenella,"1,5 kg rete",1.5,al kg,2.49,1.660,2026-09-22,2026-10-05,
-ekom22,Ekom,Pizza,Pizza Kebab,420 g,0.42,al kg,2.99,7.119,2026-09-22,2026-10-05,"Prima 3,99."
-ekom22,Ekom,Pollo,Fuselli di pollo,al kg,1,al kg,4.90,4.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Pomodoro,Passata di pomodoro – Pomì,750 g,0.75,al kg,0.99,1.320,2026-09-22,2026-10-05,"Prima 1,49."
-ekom22,Ekom,Preparati,Fette di cotechino senza glutine,150 g (3 fette),0.15,al kg,1.49,9.933,2026-09-22,2026-10-05,"Prima 1,99. È cotechino, salume cotto di maiale, non salsiccia fresca."
-ekom22,Ekom,Preparati,Polpettine di carne bovina – Amica Natura,500 g,0.5,al kg,3.99,7.980,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,99."
-ekom22,Ekom,Preparati,Rustichelle di pollo BBQ,al kg,1,al kg,13.90,13.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Prosciutto,"Prosciutto cotto alta qualità – Riccafetta, al banco",al kg,1,al kg,15.90,15.900,2026-09-22,2026-10-05,"Il volantino stampa 1,59 all'etto, prima 1,99. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Prosciutto,Prosciutto cotto – Salumi Belletti,100 g,0.1,al kg,1.29,12.900,2026-09-22,2026-10-05,
+ekom22,Ekom,Frutta,Uva pizzutella,750 g,0.75,al kg,2.99,3.987,2026-09-22,2026-10-05,
+ekom22,Ekom,Gelato,"Gelato mochi Maka Flavor, cocco, vaniglia o mango",180 g,0.18,al kg,3.49,19.389,2026-09-22,2026-10-05,
+ekom22,Ekom,Gelato,Gelato stecco Mini King,280 g,0.28,al kg,2.79,9.964,2026-09-22,2026-10-05,"−20%, prima 3,49."
+ekom22,Ekom,Gelato,Vaschetta gelato – Kome Te,400 g,0.4,al kg,1.49,3.725,2026-09-22,2026-10-05,"−25%, prima 1,99."
+ekom22,Ekom,Lavastoviglie,"Gel lavastoviglie Tutto in 1, 57 lavaggi – Scala","750 ml, 57 lavaggi",57,a lavaggio,2.99,0.052,2026-09-22,2026-10-05,
+ekom22,Ekom,Lavastoviglie,"Pastiglie lavastoviglie Tutto in 1 Extra, 36 tabs – Pril",36 tabs,36,a lavaggio,5.59,0.155,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 7,99."
+ekom22,Ekom,Lavatrice,"Detersivo capi sportivi, 18 lavaggi – Chante Clair","900 ml, 18 lavaggi",18,a lavaggio,2.19,0.122,2026-09-22,2026-10-05,"−27%, prima 2,99."
+ekom22,Ekom,Lavatrice,Detersivo per bucato Marsiglia – Mitiko,"1,85 l, 40 lavaggi",40,a lavaggio,1.19,0.030,2026-09-22,2026-10-05,"−39%, prima 1,95."
+ekom22,Ekom,Manzo,Arrosto di bovino adulto,al kg,1,al kg,19.90,19.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Manzo,Costata di bovino adulto,al kg,1,al kg,18.90,18.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Manzo,Polpa magra di bovino adulto,al kg,1,al kg,16.90,16.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Merendine,"Croissant cioccolato, albicocca o crema – Midi",400 g,0.4,al kg,1.89,4.725,2026-09-22,2026-10-05,
+ekom22,Ekom,Merendine,"La crostata Casalinga, gusti assortiti",300 g,0.3,al kg,1.39,4.633,2026-09-22,2026-10-05,
+ekom22,Ekom,Merluzzo,Filetti di merluzzo d'Alaska,400 g,0.4,al kg,1.99,4.975,2026-09-22,2026-10-05,"−33%, prima 2,99. Surgelato."
+ekom22,Ekom,Mortadella,Mortadella intera – Tutto Gusto,150 g,0.15,al kg,1.19,7.933,2026-09-22,2026-10-05,"−20%, prima 1,49."
+ekom22,Ekom,Mozzarella,Mozzarella,100 g,0.1,al kg,0.69,6.900,2026-09-22,2026-10-05,"−22%, prima 0,89."
+ekom22,Ekom,Mozzarella,Mozzarella julienne – Montenlock,200 g,0.2,al kg,1.59,7.950,2026-09-22,2026-10-05,"−20%, prima 1,99."
+ekom22,Ekom,Mozzarella,"Mozzarelle fior di latte ciliegine, 8 × 25 g",200 g,0.2,al kg,1.69,8.450,2026-09-22,2026-10-05,"−23%, prima 2,19."
+ekom22,Ekom,Olio d'oliva,Olio extra vergine di oliva – Antica Oliviera,1 l,1,al litro,4.79,4.790,2026-09-22,2026-10-05,"−20%, prima 5,99."
+ekom22,Ekom,Olio di semi,Olio di semi di girasole – Dante,1 l,1,al litro,2.19,2.190,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 2,79."
+ekom22,Ekom,Panati,Filetti di platessa impanati,300 g,0.3,al kg,2.99,9.967,2026-09-22,2026-10-05,"−25%, prima 3,99. Surgelato."
+ekom22,Ekom,Pane,"Baguette precotta, 2 pezzi – Jaus",300 g,0.3,al kg,0.79,2.633,2026-09-22,2026-10-05,"−20%, prima 0,99."
+ekom22,Ekom,Pane,Cracker Fiori d'Acqua – Mulino Bianco,250 g,0.25,al kg,1.25,5.000,2026-09-22,2026-10-05,"−30%, prima 1,79."
+ekom22,Ekom,Pasta,Pasta di semola – Reggia,1 kg,1,al kg,0.79,0.790,2026-09-22,2026-10-05,
+ekom22,Ekom,Pasta,Pasta fresca orecchiette e trofie – Soave,1 kg,1,al kg,1.69,1.690,2026-09-22,2026-10-05,
+ekom22,Ekom,Pasta,Pasta fresca ripiena – Davena,500 g,0.5,al kg,1.19,2.380,2026-09-22,2026-10-05,"−30%, prima 1,69."
+ekom22,Ekom,Patate,Patate Selenella,"1,5 kg rete",1.5,al kg,2.49,1.660,2026-09-22,2026-10-05,
+ekom22,Ekom,Patate,Patate stick prefritte – Golden River,1 kg,1,al kg,1.49,1.490,2026-09-22,2026-10-05,"−25%, prima 1,99. Surgelato."
+ekom22,Ekom,Pizza,Pizza kebab,420 g,0.42,al kg,2.99,7.119,2026-09-22,2026-10-05,"−25%, prima 3,99."
+ekom22,Ekom,Pollo,Fuselli di pollo,al kg,1,al kg,4.90,4.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Pomodoro,Passata di pomodoro – Pomì,750 g,0.75,al kg,0.99,1.320,2026-09-22,2026-10-05,"−34%, prima 1,49."
+ekom22,Ekom,Preparati,Polpettine di carne bovina – Amica Natura,500 g,0.5,al kg,3.99,7.980,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,99. Surgelato."
+ekom22,Ekom,Preparati,Rustichelle di pollo BBQ,al kg,1,al kg,13.90,13.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Prosciutto,"Prosciutto cotto alta qualità Riccafetta – Raspini, al banco",al kg,1,al kg,15.90,15.900,2026-09-22,2026-10-05,"Il volantino stampa 1,59 all'etto, prima 1,99. Vale solo nei negozi col banco servito."
+ekom22,Ekom,Prosciutto,Prosciutto cotto – Belletti,100 g,0.1,al kg,1.29,12.900,2026-09-22,2026-10-05,
+ekom22,Ekom,Prosciutto,Prosciutto crudo – Belletti,80 g,0.08,al kg,1.29,16.125,2026-09-22,2026-10-05,
 ekom22,Ekom,Prosciutto,"Prosciutto crudo, al banco",al kg,1,al kg,16.90,16.900,2026-09-22,2026-10-05,"Il volantino stampa 1,69 all'etto. Vale solo nei negozi col banco servito."
 ekom22,Ekom,Prosciutto,"Speck Alto Adige IGP, al banco",al kg,1,al kg,19.90,19.900,2026-09-22,2026-10-05,"Il volantino stampa 1,99 all'etto. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Ricotta,Mascarpone,500 g,0.5,al kg,2.79,5.580,2026-09-22,2026-10-05,"Prima 3,49."
 ekom22,Ekom,Ricotta,"Ricotta – Vallelata, al banco",al kg,1,al kg,6.90,6.900,2026-09-22,2026-10-05,"Il volantino stampa 0,69 all'etto. Vale solo nei negozi col banco servito."
-ekom22,Ekom,Riso,Riso Arborio,1 kg,1,al kg,1.99,1.990,2026-09-22,2026-10-05,"Prima 2,79."
+ekom22,Ekom,Riso,Riso Arborio – Bontà di Riso,1 kg,1,al kg,1.99,1.990,2026-09-22,2026-10-05,"−29%, prima 2,79."
 ekom22,Ekom,Salmone affumicato,Salmone affumicato,200 g,0.2,al kg,5.49,27.450,2026-09-22,2026-10-05,
-ekom22,Ekom,Shampoo,"Doccia Shampoo Luxury, diversi tipi",500 ml,0.5,al litro,0.85,1.700,2026-09-22,2026-10-05,"Prima 1,25. È un 2 in 1 doccia e shampoo."
+ekom22,Ekom,Salsiccia,"Fette di cotechino senza glutine, 3 × 50 g – Salumeria Modenese",150 g,0.15,al kg,1.49,9.933,2026-09-22,2026-10-05,"−25%, prima 1,99."
 ekom22,Ekom,Spalmabili,Classico – Philadelphia,220 g,0.22,al kg,2.19,9.955,2026-09-22,2026-10-05,Solo con la carta EKOM UP.
-ekom22,Ekom,Sughi,Sugo alle vongole – Appetais,300 g,0.3,al kg,2.39,7.967,2026-09-22,2026-10-05,"Prima 2,99."
-ekom22,Ekom,Suino,"Lonza di suino a tranci, confezione risparmio",al kg,1,al kg,7.90,7.900,2026-09-22,2026-10-05,Vale solo nei negozi col banco servito.
-ekom22,Ekom,Tonno,Filetti di tonno all'olio di semi di girasole,180 g,0.18,al kg,2.39,13.278,2026-09-22,2026-10-05,"Prima 2,99."
-ekom22,Ekom,Tonno,"Tonno all'olio di oliva, 6x120 g – Rio Mare",720 g,0.72,al kg,8.99,12.486,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 11,99."
-ekom22,Ekom,Tonno,"Trancetti di tonno in olio di girasole, formato scorta 12x80 g – Moretti",960 g,0.96,al kg,5.99,6.240,2026-09-22,2026-10-05,"Prima 8,99."
-ekom22,Ekom,Tè,"Tè verde freddo, diversi gusti, 16 filtri – Everton",40 g,0.04,al kg,1.99,49.750,2026-09-22,2026-10-05,"Prima 2,49."
-ekom22,Ekom,Uova,"10 uova piccole ""S""",10 uova,10,all'uovo,2.19,0.219,2026-09-22,2026-10-05,
+ekom22,Ekom,Spalmabili,Peanut butter – Fiorentini,350 g,0.35,al kg,2.79,7.971,2026-09-22,2026-10-05,"−20%, prima 3,49."
+ekom22,Ekom,Suino,Lonza di suino a tranci,al kg,1,al kg,7.90,7.900,2026-09-22,2026-10-05,Al banco. Vale solo nei punti vendita col banco servito.
+ekom22,Ekom,Tonno,Filetti di tonno all'olio di girasole – Calata di Mare,180 g,0.18,al kg,2.39,13.278,2026-09-22,2026-10-05,"−20%, prima 2,99."
+ekom22,Ekom,Tonno,"Tonno all'olio di oliva, 6 × 120 g – Rio Mare",720 g,0.72,al kg,8.99,12.486,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 11,99."
+ekom22,Ekom,Tonno,"Trancetti di tonno in olio di girasole, formato scorta 12 × 80 g – Moretti",960 g,0.96,al kg,5.99,6.240,2026-09-22,2026-10-05,"−33%, prima 8,99."
+ekom22,Ekom,Tè,"Tè verde freddo, 16 filtri – Everton",40 g,0.04,al kg,1.99,49.750,2026-09-22,2026-10-05,"−20%, prima 2,49."
+ekom22,Ekom,Uova,10 uova piccole «S»,10 uova,10,all'uovo,2.19,0.219,2026-09-22,2026-10-05,
 ekom22,Ekom,Verdura,Pomodori a grappolo,al kg,1,al kg,1.99,1.990,2026-09-22,2026-10-05,
-ekom22,Ekom,Verdure surgelate,Contorno broccoli e patate,450 g,0.45,al kg,1.99,4.422,2026-09-22,2026-10-05,"Prima 2,49."
-ekom22,Ekom,Verdure surgelate,Minestrone,450 g,0.45,al kg,0.79,1.756,2026-09-22,2026-10-05,"Prima 0,99."
-ekom22,Ekom,Verdure surgelate,Spinaci in cubi,1 kg,1,al kg,1.49,1.490,2026-09-22,2026-10-05,"Prima 1,99."
+ekom22,Ekom,Verdure surgelate,Contorni broccoli e patate – Darta,450 g,0.45,al kg,1.99,4.422,2026-09-22,2026-10-05,"−20%, prima 2,49."
+ekom22,Ekom,Verdure surgelate,Minestrone – Darta,450 g,0.45,al kg,0.79,1.756,2026-09-22,2026-10-05,"−20%, prima 0,99."
+ekom22,Ekom,Verdure surgelate,Spinaci in cubi – Darta,1 kg,1,al kg,1.49,1.490,2026-09-22,2026-10-05,"−25%, prima 1,99."
 ekom22,Ekom,Vino,Bonarda dell'Oltrepò Pavese DOC – Fratelli Maggi,750 ml,0.75,al litro,1.99,2.653,2026-09-22,2026-10-05,
-ekom22,Ekom,Vino,Cabernet Sauvignon,750 ml,0.75,al litro,1.99,2.653,2026-09-22,2026-10-05,"Prima 2,69."
-ekom22,Ekom,Vino,Müller Thurgau delle Venezie IGT,750 ml,0.75,al litro,2.89,3.853,2026-09-22,2026-10-05,"Prima 3,89."
-ekom22,Ekom,Vino,Nebbiolo delle Langhe DOC,750 ml,0.75,al litro,4.25,5.667,2026-09-22,2026-10-05,"Prima 5,69."
-ekom22,Ekom,Vino,Pinot Nero IGT,750 ml,0.75,al litro,2.39,3.187,2026-09-22,2026-10-05,"Prima 3,29."
-ekom22,Ekom,Vino,"Vino DOC Capetta, Monferrato Chiaretto o Cortese dell'Alto Monferrato",750 ml,0.75,al litro,2.99,3.987,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,69."
-ekom22,Ekom,Würstel,Würstel Griglia&Famiglia,1 kg,1,al kg,2.59,2.590,2026-09-22,2026-10-05,"Sono würstel, non carne fresca."
-ekom22,Ekom,Yogurt,Yogurt cremoso bianco&nocciole e cioccolato,150 g,0.15,al kg,0.59,3.933,2026-09-22,2026-10-05,"Prima 0,79."
-ekom22,Ekom,Yogurt,"Yogurt greco, magro, magro senza lattosio o intero",150 g,0.15,al kg,0.79,5.267,2026-09-22,2026-10-05,"Prima 0,99."
+ekom22,Ekom,Vino,Cabernet Sauvignon,750 ml,0.75,al litro,1.99,2.653,2026-09-22,2026-10-05,"−26%, prima 2,69."
+ekom22,Ekom,Vino,Müller Thurgau delle Venezie IGT,750 ml,0.75,al litro,2.89,3.853,2026-09-22,2026-10-05,"−26%, prima 3,89."
+ekom22,Ekom,Vino,Nebbiolo delle Langhe DOC,750 ml,0.75,al litro,4.25,5.667,2026-09-22,2026-10-05,"−25%, prima 5,69."
+ekom22,Ekom,Vino,Pinot Nero IGT,750 ml,0.75,al litro,2.39,3.187,2026-09-22,2026-10-05,"−27%, prima 3,29."
+ekom22,Ekom,Vino,Vino DOC Monferrato Chiaretto – Capetta,750 ml,0.75,al litro,2.99,3.987,2026-09-22,2026-10-05,"Solo con la carta EKOM UP. Senza tessera 4,69."
+ekom22,Ekom,Würstel,Würstel,1 kg,1,al kg,2.59,2.590,2026-09-22,2026-10-05,
+ekom22,Ekom,Yogurt,"Yogurt cremoso bianco, nocciola o cioccolato",150 g,0.15,al kg,0.59,3.933,2026-09-22,2026-10-05,"−25%, prima 0,79."
+ekom22,Ekom,Yogurt,"Yogurt greco magro, magro senza lattosio o intero",150 g,0.15,al kg,0.79,5.267,2026-09-22,2026-10-05,"−20%, prima 0,99."
 md22,MD,Affettati,Petto di tacchino arrosto nazionale selezione – La Fattoria,100 g,0.1,al kg,1.99,19.900,2026-09-22,2026-10-04,"Prima 2,49."
 md22,MD,Asciugatutto,Carta casa 1 rotolo 160 strappi – Flou,1 rotolo,1,al rotolo,1.00,1.000,2026-09-22,2026-10-04,"Prima 1,39."
 md22,MD,Asciugatutto,Carta casa asciugatutto 4 rotoli 2 veli – Scala,4 rotoli,4,al rotolo,1.00,0.250,2026-09-22,2026-10-04,"Prima 1,29."
@@ -4265,6 +4267,102 @@ penny24,Penny,Patate,"Patate gialle, rete",4 kg,4,al kg,3.96,0.990,2026-10-02,20
 penny24,Penny,Prosciutto,Prosciutto crudo light – Welless,80 g,0.08,al kg,1.49,18.625,2026-10-02,2026-10-03,"−28%, prima 2,09. Solo venerdì 2 e sabato 3 ottobre."
 penny24,Penny,Suino,Costine di suino,al kg,1,al kg,4.99,4.990,2026-10-02,2026-10-03,Solo venerdì 2 e sabato 3 ottobre.
 penny24,Penny,Tonno,Tonno in olio d'oliva – Gran Mare,160 g,0.16,al kg,1.19,7.437,2026-10-02,2026-10-03,"−25%, prima 1,59. Solo venerdì 2 e sabato 3 ottobre."
+aldi05,Aldi,Acqua,Acqua minerale naturale EcoGreen – San Benedetto,12 l (24 × 500 ml),12,al litro,3.99,0.333,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Affettati,Petto di tacchino al forno – Il Tagliere del Re,140 g,0.14,al kg,1.29,9.214,2026-10-05,2026-10-11,"−17%, prima 1,55."
+aldi05,Aldi,Asciugatutto,Asciugatutto 2 veli – Kokett,1 rotolo (400 strappi),1,al rotolo,1.79,1.790,2026-10-05,2026-10-11,"−10%, prima 1,99."
+aldi05,Aldi,Bibite,Bevanda alla frutta gusti vari – Rio d'Oro,"1,5 l",1.5,al litro,1.35,0.900,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Bibite,"Bevanda energetica regular o senza zuccheri, conf. 6 pezzi – Flying Power","1,5 l (6 × 250 ml)",1.5,al litro,2.49,1.660,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Bibite,Fanta,500 ml,0.5,al litro,0.75,1.500,2026-10-05,2026-10-11,"−29%, prima 1,05."
+aldi05,Aldi,Bibite,Succo di mela – Applesnack,3 l,3,al litro,4.99,1.663,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Bibite,Succoso arancia e arancia rossa – San Benedetto,"1,5 l",1.5,al litro,1.29,0.860,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Birra,Birra aromatizzata alla tequila – Desperados,330 ml,0.33,al litro,1.09,3.303,2026-10-05,2026-10-11,"−34%, prima 1,65."
+aldi05,Aldi,Birra,Birra – Peroni,"3,96 l (12 × 330 ml)",3.96,al litro,6.79,1.715,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Biscotti,Biscotti Atene – Doria,1 kg,1,al kg,2.99,2.990,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Biscotti,Biscotti – Oreo,308 g (2 × 154 g),0.308,al kg,1.99,6.461,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Biscotti,Biscotti – Plasmon,"1,2 kg",1.2,al kg,6.99,5.825,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Biscotti,Frollini all'uovo – Buon'ora,700 g,0.7,al kg,1.59,2.271,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Biscotti,Girotondi – Mulino Bianco,800 g,0.8,al kg,2.99,3.738,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Biscotti,Ringo vaniglia – Pavesi,330 g,0.33,al kg,1.99,6.030,2026-10-05,2026-10-11,"−33%, prima 2,95."
+aldi05,Aldi,Bresaola,Bresaola della Valtellina IGP doppia confezione – Regione che vai,160 g (2 × 80 g),0.16,al kg,4.99,31.188,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Burro,Burro italiano XXL – Bonlà,500 g,0.5,al kg,2.69,5.380,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Caffè,Caffè espresso classico in grani – Barissimo,1 kg,1,al kg,9.99,9.990,2026-10-05,2026-10-11,"−13%, prima 11,49."
+aldi05,Aldi,Cereali,Müsli gusti vari – Golden Bridge,750 g,0.75,al kg,3.29,4.387,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Cioccolato,Cioccolato al latte con granella di nocciole – Riquet,100 g,0.1,al kg,0.79,7.900,2026-10-05,2026-10-11,"−20%, prima 0,99."
+aldi05,Aldi,Conserve,Carciofi tagliati in olio di semi di girasole – Cucina,530 g,0.53,al kg,1.99,3.755,2026-10-05,2026-10-11,Peso non sgocciolato. Quantità limitata.
+aldi05,Aldi,Conserve,Filetti di alici in olio di semi di girasole – Almare Seafood,700 g,0.7,al kg,8.99,12.843,2026-10-05,2026-10-11,Peso non sgocciolato. Quantità limitata.
+aldi05,Aldi,Conserve,Filetti di alici marinate – Almare Seafood,300 g,0.3,al kg,3.25,10.833,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo. Alici marinate in vaschetta."
+aldi05,Aldi,Conserve,Olive verdi giganti denocciolate in salamoia – Cucina,340 g sgocciolato,0.34,al kg,2.29,6.735,2026-10-05,2026-10-11,Prezzo calcolato sul peso sgocciolato (680 g con la salamoia). Quantità limitata.
+aldi05,Aldi,Formaggio,Brie – Cremerie de France,500 g,0.5,al kg,3.99,7.980,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Formaggio,Cheddar burger – Sottilette,370 g,0.37,al kg,3.49,9.432,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Formaggio,Ciliegie di scamorza affumicate – Bonlà,200 g,0.2,al kg,1.99,9.950,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Formaggio,Edamer a fette – Milsani,400 g,0.4,al kg,2.99,7.475,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Formaggio,Fontal – Milsani,400 g,0.4,al kg,2.49,6.225,2026-10-05,2026-10-11,"−22%, prima 3,19."
+aldi05,Aldi,Formaggio,Gorgonzola DOP dolce – Regione che vai,300 g,0.3,al kg,2.39,7.967,2026-10-05,2026-10-11,"−11%, prima 2,69."
+aldi05,Aldi,Formaggio,Stracchino cremoso – Bonlà,250 g,0.25,al kg,1.89,7.560,2026-10-05,2026-10-11,"−17%, prima 2,29."
+aldi05,Aldi,Frutta,Castagne,al kg,1,al kg,3.49,3.490,2026-10-05,2026-10-11,"−42%, prima 5,99."
+aldi05,Aldi,Frutta,Mango,360 g,0.36,al kg,0.99,2.750,2026-10-05,2026-10-11,"−34%, prima 1,49."
+aldi05,Aldi,Frutta,Melagrana – I Colori del Sapore,al kg,1,al kg,1.99,1.990,2026-10-05,2026-10-11,"−33%, prima 2,99."
+aldi05,Aldi,Frutta,Mele Gala – I Colori del Sapore,800 g,0.8,al kg,1.29,1.613,2026-10-05,2026-10-11,"−35%, prima 1,99."
+aldi05,Aldi,Frutta,Mele Sweetango,900 g,0.9,al kg,1.19,1.322,2026-10-05,2026-10-11,"−40%, prima 1,99."
+aldi05,Aldi,Frutta,Mirtilli,160 g,0.16,al kg,2.99,18.688,2026-10-05,2026-10-11,
+aldi05,Aldi,Frutta,Pere Williams rosse,al kg,1,al kg,1.49,1.490,2026-10-05,2026-10-11,"−50%, prima 2,99."
+aldi05,Aldi,Frutta,Uva bianca senza semi – Regione che vai,400 g,0.4,al kg,1.59,3.975,2026-10-05,2026-10-11,"−20%, prima 1,99."
+aldi05,Aldi,Grana,Gran Biraghi grattugiato – Biraghi,250 g,0.25,al kg,3.79,15.160,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Grana,Grana Padano DOP – Primis,250 g,0.25,al kg,4.69,18.760,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Insalata,Insalata sfiziosa – I Colori del Sapore,200 g,0.2,al kg,0.69,3.450,2026-10-05,2026-10-11,"−30%, prima 0,99."
+aldi05,Aldi,Latte,Latte parzialmente scremato XXL – Milsani,6 l (6 × 1 l),6,al litro,3.89,0.648,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Lavastoviglie,Tabs classico – Svelto,80 tabs,80,a lavaggio,5.99,0.075,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Legumi,Fagioli alla Bud Spencer – Bud Power,400 g,0.4,al kg,1.99,4.975,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Manzo,Battuta di fassone piemontese – Regione che vai,120 g,0.12,al kg,2.79,23.250,2026-10-05,2026-10-11,"−22%, prima 3,59."
+aldi05,Aldi,Manzo,Macinato di bovino XXL – Il Podere,800 g,0.8,al kg,7.99,9.987,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Brownies – American,240 g,0.24,al kg,1.89,7.875,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Croissant moro – Bauli,250 g,0.25,al kg,1.79,7.160,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Flauti al latte – Mulino Bianco,280 g,0.28,al kg,1.99,7.107,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Girella K-Pop – Bauli,210 g,0.21,al kg,2.79,13.286,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Happy Hippo – Kinder,"103,5 g",0.1035,al kg,2.69,25.990,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Merendine,Mini waffles classici o cioccolato – Finest Bakery,155 g,0.155,al kg,2.49,16.065,2026-10-05,2026-10-11,Stesso prezzo per i due gusti (200 g o 155 g): qui il conto è sul più piccolo. Quantità limitata.
+aldi05,Aldi,Merendine,Snack al latte con cioccolato – Milsani,180 g (6 × 30 g),0.18,al kg,1.49,8.278,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Miele,Miele millefiori – Grandessa,500 g,0.5,al kg,3.79,7.580,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Mozzarella,Mozzarella grattugiata XXL – Milsani,500 g,0.5,al kg,3.69,7.380,2026-10-05,2026-10-11,Mozzarella grattugiata per pizza. Quantità limitata.
+aldi05,Aldi,Pancetta,Pancetta a cubetti affumicata – Il Tagliere del Re,400 g (4 × 100 g),0.4,al kg,3.29,8.225,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pane,Bagel brioche – American,300 g,0.3,al kg,1.99,6.633,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pane,Pan brioche per hot dog – BBQ,270 g,0.27,al kg,1.99,7.370,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pane,Pane bauletto bianco – La Cesta,400 g,0.4,al kg,0.79,1.975,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Pane,Panini morbidi per burger mini – BBQ,200 g,0.2,al kg,1.79,8.950,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pane,Piadina romagnola IGP alla riminese – Regione che vai,360 g,0.36,al kg,0.99,2.750,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Pane,Puccia – La Cesta,500 g,0.5,al kg,1.99,3.980,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pane,Tortilla wrap – Goldähren,744 g,0.744,al kg,2.49,3.347,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pasta,Cous cous – Le Gusto,1 kg,1,al kg,1.49,1.490,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Pasta,Farfalle – De Cecco,1 kg,1,al kg,1.79,1.790,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pasta,Tortellini superfini prosciutto crudo o carne – Cucina,400 g,0.4,al kg,1.59,3.975,2026-10-05,2026-10-11,"−14%, prima 1,85. Pasta fresca ripiena."
+aldi05,Aldi,Patate,Patate Selenella,"1,5 kg",1.5,al kg,1.99,1.327,2026-10-05,2026-10-11,"−33%, prima 2,99."
+aldi05,Aldi,Patate,Patate alfabeto – All Seasons,750 g,0.75,al kg,2.49,3.320,2026-10-05,2026-10-11,Surgelate. Quantità limitata.
+aldi05,Aldi,Pizza,Pizza 26x38 – Italpizza,485 g,0.485,al kg,2.79,5.753,2026-10-05,2026-10-11,"−26%, prima 3,79. Surgelata."
+aldi05,Aldi,Pollo,Petto di pollo a fette – Il Podere,400 g,0.4,al kg,2.99,7.475,2026-10-05,2026-10-11,"−25%, prima 3,99."
+aldi05,Aldi,Pollo,Sovracosce di pollo – Il Podere,950 g,0.95,al kg,2.99,3.147,2026-10-05,2026-10-11,"−30%, prima 4,29."
+aldi05,Aldi,Pomodoro,Polpa di pomodoro finissima – Cirio,"1,6 kg (4 × 400 g)",1.6,al kg,2.49,1.556,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Pomodoro,Pomodori pelati interi – Cucina,800 g,0.8,al kg,0.89,1.113,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Preparati,Chicken nuggets – Primana,"1,5 kg",1.5,al kg,8.99,5.993,2026-10-05,2026-10-11,Surgelati. Quantità limitata.
+aldi05,Aldi,Preparati,Cotoletta sottile – Amadori,600 g,0.6,al kg,3.79,6.317,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Preparati,Hamburger di chianina – Il Podere,200 g,0.2,al kg,2.99,14.950,2026-10-05,2026-10-11,"−19%, prima 3,69."
+aldi05,Aldi,Preparati,Spiedini sottili di pollo – Il Podere,240 g,0.24,al kg,2.55,10.625,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Prosciutto,Prosciutto cotto alta qualità tripack – Citterio,300 g (3 × 100 g),0.3,al kg,3.99,13.300,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Prosciutto,Speck light – Il Tagliere del Re,90 g,0.09,al kg,1.95,21.667,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Salame,Salame Milano doppia confezione – Il Tagliere del Re,300 g (2 × 150 g),0.3,al kg,2.49,8.300,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Salmone,Filetti di salmone XXL – Golden Seafood,500 g,0.5,al kg,8.99,17.980,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Salmone affumicato,Salmone Norvegese affumicato – Almare Seafood,200 g,0.2,al kg,3.99,19.950,2026-10-05,2026-10-11,"−18%, prima 4,89."
+aldi05,Aldi,Salsiccia,Salsiccia luganega – Il Podere,300 g,0.3,al kg,2.25,7.500,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Spalmabili,Burro di arachidi 100% – Fiorentini,500 g,0.5,al kg,2.99,5.980,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Sughi,Pesto alla genovese – Cucina,340 g,0.34,al kg,1.69,4.971,2026-10-05,2026-10-11,"Il volantino mette la «confezione standard» a 1,15 € per 190 g. Quantità limitata."
+aldi05,Aldi,Sughi,Ragù alla bolognese – Barilla,300 g,0.3,al kg,1.79,5.967,2026-10-05,2026-10-11,"−35%, prima 2,75."
+aldi05,Aldi,Suino,Costine – Il Podere,700 g,0.7,al kg,3.99,5.700,2026-10-05,2026-10-11,"−18%, prima 4,89."
+aldi05,Aldi,Suino,Filetto di suino – Il Podere,al kg,1,al kg,7.49,7.490,2026-10-05,2026-10-11,"−25%, prima 9,99."
+aldi05,Aldi,Tonno,Tonno in olio di oliva – Mareblu,180 g (3 × 60 g),0.18,al kg,2.19,12.167,2026-10-05,2026-10-11,"−22%, prima 2,79. Peso non sgocciolato."
+aldi05,Aldi,Tonno,Trancetti di tonno all'olio di oliva – Almare Seafood,300 g,0.3,al kg,2.99,9.967,2026-10-05,2026-10-11,"Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo. Il volantino non dice se il peso è sgocciolato."
+aldi05,Aldi,Uova,Uova medie 15 pezzi (5 in più) – I Colori del Sapore,15 uova,15,all'uovo,3.09,0.206,2026-10-05,2026-10-11,Quantità limitata.
+aldi05,Aldi,Verdure surgelate,Broccoli – I Colori del Sapore,600 g,0.6,al kg,1.25,2.083,2026-10-05,2026-10-11,"Surgelati. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
+aldi05,Aldi,Vino,Bonarda dell'Oltrepò Pavese DOC – Denovo,750 ml,0.75,al litro,1.79,2.387,2026-10-05,2026-10-11,"−25%, prima 2,39. Vino del mese."
+aldi05,Aldi,Yogurt,Fragola 12 bottigliette (4 in più) – Actimel,"1,2 kg (12 × 100 g)",1.2,al kg,3.79,3.158,2026-10-05,2026-10-11,Yogurt da bere. Quantità limitata.
 lidl01,Lidl,Biscotti,Biscotti al cacao Neo ricoperti di cioccolato – McEnnedy,252 g confezione,0.252,al kg,2.99,11.865,2026-10-05,2026-10-07,"Il volantino stampa 11,87 al kg. Valido dal 5 al 7 ottobre."
 lidl01,Lidl,Biscotti,Cookies ripieni con crema di nocciole o al cacao – McEnnedy,175 g confezione,0.175,al kg,1.69,9.657,2026-10-05,2026-10-07,"Il volantino stampa 9,66 al kg. Valido dal 5 al 7 ottobre."
 lidl01,Lidl,Conserve,Cetrioli a fette in agrodolce – McEnnedy,360 g sgocciolato,0.36,al kg,1.69,4.694,2026-10-05,2026-10-07,"Peso sgocciolato. Il volantino stampa 4,69 al kg. Valido dal 5 al 7 ottobre."
@@ -4291,11 +4389,270 @@ lidl01,Lidl,Würstel,Würstel di maiale affumicati per hot dog – McEnnedy,300 
 carriper29,Carrefour,Pasta,Casoncelli alla carne,1 kg,1,al kg,7.90,7.900,2026-10-08,2026-10-11,"−20%, prima 9,90. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
 carriper29,Carrefour,Pollo,"Fusi o sovracosce di pollo, confezione risparmio",al kg,1,al kg,4.49,4.490,2026-10-08,2026-10-11,"−35%, prima 6,99 al kg. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
 carriper29,Carrefour,Vino,Barbera Piemonte DOC Il Poggio dei Vigneti,750 ml,0.75,al litro,1.99,2.653,2026-10-08,2026-10-11,"−60%, prima 4,99. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
+conadbis21,Conad,Acqua,Acqua minerale Levissima,"1,5 l",1.5,al litro,0.39,0.260,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 0,56, cioè 0,37 al litro. Vale anche: Superstore."
+conadbis21,Conad,Acqua,Acqua minerale Vera,"9 l (18 × 500 ml, 1+1)",9,al litro,2.79,0.310,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,79, cioè 0,62 al litro. Vale anche: Superstore."
+conadbis21,Conad,Acqua,Acqua minerale naturale – Rocchetta,3 l (6 × 500 ml),3,al litro,1.86,0.620,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,10, cioè 0,70 al litro. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Affettati,Affettati fresca salumeria – Fratelli Beretta,100 g,0.1,al kg,2.50,25.000,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,95, cioè 29,50 al kg. Solo fino a domenica 18 ottobre. Vale anche: City."
+conadbis21,Conad,Affettati,Petto di tacchino al forno – Gardani,all'etto,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Asciugatutto,Asciugatutto – Tuscany,"4 rotoli (2 × 2 rotoli, 1+1)",4,al rotolo,3.19,0.797,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,19, cioè 1,59 al rotolo. Vale anche: Superstore."
+conadbis21,Conad,Bagnoschiuma,Bagnodoccia – Dove,"1,4 l (2 × 700 ml, 1+1)",1.4,al litro,4.99,3.564,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 4,99, cioè 7,13 al litro. Vale anche: Superstore."
+conadbis21,Conad,Bibite,Bibite zero – San Benedetto,"1,5 l (2 × 750 ml, 1+1)",1.5,al litro,0.79,0.527,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 0,79, cioè 1,05 al litro. Vale anche: Superstore."
+conadbis21,Conad,Bibite,Coca Cola,"3 l (2 × 1,5 l)",3,al litro,3.45,1.150,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,19, cioè 1,40 al litro. Vale anche: Superstore."
+conadbis21,Conad,Bibite,Santhè – Sant'Anna,"3 l (2 × 1,5 l, 1+1)",3,al litro,1.29,0.430,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,29, cioè 0,86 al litro. Vale anche: Superstore, City."
+conadbis21,Conad,Birra,Birra 0.0 – Heineken,330 ml,0.33,al litro,0.99,3.000,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 1,10, cioè 3,33 al litro. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Birra,Birra Beck's,600 ml,0.6,al litro,1.25,2.083,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,49, cioè 2,48 al litro. Vale anche: Superstore, City."
+conadbis21,Conad,Birra,Birra Moretti,990 ml (3 × 330 ml),0.99,al litro,2.25,2.273,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,77, cioè 2,80 al litro. Vale anche: Superstore."
+conadbis21,Conad,Birra,Birra lager – Bavaria,"1 l (2 × 500 ml, 1+1)",1,al litro,1.49,1.490,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,49, cioè 2,98 al litro. Vale anche: Superstore."
+conadbis21,Conad,Birra,Birra – Heineken,400 ml,0.4,al litro,0.89,2.225,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 0,99, cioè 2,47 al litro. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadbis21,Conad,Biscotti,Biscotto salute – Monviso,"800 g (2 × 400 g, 1+1)",0.8,al kg,3.99,4.987,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,99, cioè 9,97 al kg. Vale anche: Superstore."
+conadbis21,Conad,Biscotti,Frollino Gran Dispensa – Colussi,"1,13 kg (2 × 565 g, 1+1)",1.13,al kg,3.99,3.531,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,99, cioè 7,06 al kg. Vale anche: Superstore."
+conadbis21,Conad,Biscotti,Gocciole Chocolate – Pavesi,500 g,0.5,al kg,2.29,4.580,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,99, cioè 5,98 al kg. Vale anche: Superstore."
+conadbis21,Conad,Biscotti,Pick Up! – Bahlsen,112 g,0.112,al kg,1.49,13.304,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,99, cioè 17,77 al kg. Vale anche: Superstore."
+conadbis21,Conad,Bresaola,Bresaola della Valtellina IGP – Sapori&Dintorni Conad,100 g,0.1,al kg,4.50,45.000,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Caffè,Caffè crema e gusto – Lavazza,"1 kg (4 × 250 g, 1+1)",1,al kg,10.90,10.900,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 10,90, cioè 21,80 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Caffè,Orzo italiano macinato – Verso Natura Conad,500 g,0.5,al kg,1.10,2.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,49, cioè 2,98 al kg. Vale anche: Superstore."
+conadbis21,Conad,Calamari,Seppia fresca pulita,al kg,1,al kg,17.90,17.900,2026-10-08,2026-10-21,Solo nei punti vendita che lo hanno. Vale anche: Superstore.
+conadbis21,Conad,Carta igienica,Carta igienica Mega – Foxy,4 rotoli,4,al rotolo,2.99,0.748,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 3,69, cioè 0,92 al rotolo. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Carta igienica,Carta igienica kilometrica – Tenderly,"8 rotoli (2 × 4 rotoli, 1+1)",8,al rotolo,3.99,0.499,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,99, cioè 1,00 al rotolo. Vale anche: Superstore, City."
+conadbis21,Conad,Cereali,Cereali Coco Pops – Kellogg's,"660 g (2 × 330 g, 1+1)",0.66,al kg,3.69,5.591,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,69, cioè 11,18 al kg. Vale anche: Superstore."
+conadbis21,Conad,Cioccolato,Cioccolato Milka,87 g,0.087,al kg,1.45,16.667,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,05, cioè 23,56 al kg. Vale anche: Superstore."
+conadbis21,Conad,Cioccolato,Kit Kat,99 g,0.099,al kg,1.89,19.091,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Conserve,Filetti di alici del mar Cantabrico – Sapori&Idee Conad,60 g,0.06,al kg,3.29,54.833,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Conserve,Misto funghi alla boscaiola – Conad,285 g,0.285,al kg,2.39,8.386,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Conserve,Olive verdi bio snocciolate – Saclà,"180 g (2 × 90 g, 1+1)",0.18,al kg,3.75,20.833,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,75, cioè 41,67 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Dentifricio,Dentifricio P. White System – Mentadent,"150 ml (2 × 75 ml, 1+1)",0.15,al litro,2.49,16.600,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,49, cioè 33,20 al litro. Vale anche: Superstore, City."
+conadbis21,Conad,Formaggio,Certosa – Galbani,"330 g (2 × 165 g, 1+1)",0.33,al kg,2.29,6.939,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,29, cioè 13,88 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Formaggio,Fontal nazionale – Conad,all'etto,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Formaggio,Gorgonzola DOP al cucchiaio – Arrigoni,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadbis21,Conad,Formaggio,Gorgonzola DOP dolce – Conad,200 g,0.2,al kg,2.19,10.950,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Formaggio,Primo sale senza lattosio Alimentum – Conad,200 g,0.2,al kg,1.99,9.950,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Formaggio,Provolone piccante – Auricchio,all'etto,0.1,al kg,1.89,18.900,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Formaggio,Tomini – Sapori&Dintorni Conad,180 g (2 × 90 g),0.18,al kg,1.99,11.056,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Frutta,Mele Gala – Conad Percorso Qualità,al kg,1,al kg,1.47,1.470,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Frutta,Pere Williams – Conad Percorso Qualità,al kg,1,al kg,2.47,2.470,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Frutta,Susine Angeleno – Conad Percorso Qualità,al kg,1,al kg,1.57,1.570,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Frutta,Uva Italia di Puglia IGP – Sapori&Dintorni Conad,al kg,1,al kg,2.37,2.370,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Grana,Grana Padano DOP – Conad,250 g,0.25,al kg,4.29,17.160,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Insalata,Insalata iceberg Le Tenere – Bonduelle,200 g,0.2,al kg,1.37,6.850,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Latte,Latte UHT parzialmente scremato – Arborea,500 ml,0.5,al litro,0.69,1.380,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 0,89, cioè 1,78 al litro. Vale anche: Superstore."
+conadbis21,Conad,Latte,Latte UHT parzialmente scremato – Latte Trento,6 l (6 × 1 l),6,al litro,5.98,0.997,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Latte,Latte italiano biologico – Verso Natura Conad,1 l,1,al litro,1.64,1.640,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Manzo,Fettine di coscia di bovino adulto – Conad Percorso Qualità,al kg,1,al kg,19.79,19.790,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Manzo,Polpa di coscia di bovino adulto – Conad Percorso Qualità,al kg,1,al kg,18.19,18.190,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Merendine,Croissant – Conad,360 g,0.36,al kg,2.49,6.917,2026-10-08,2026-10-21,Surgelato. Vale anche: Superstore.
+conadbis21,Conad,Merendine,Fisarmoniche cioccolato – Mulino Bianco Barilla,"592 g (2 × 296 g, 1+1)",0.592,al kg,3.15,5.321,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,15, cioè 10,64 al kg. Vale anche: Superstore."
+conadbis21,Conad,Merendine,I Pasticcini – Conad,100 g,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,46, cioè 14,60 al kg. Vale anche: Superstore."
+conadbis21,Conad,Merendine,Kinder Délice – Kinder,390 g,0.39,al kg,2.99,7.667,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,59, cioè 9,21 al kg. Vale anche: Superstore."
+conadbis21,Conad,Merendine,Tartelle cuor di mela – Mulino Bianco Barilla,288 g,0.288,al kg,2.40,8.333,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,83, cioè 9,83 al kg. Vale anche: City."
+conadbis21,Conad,Merendine,Tortina – Loacker,63 g,0.063,al kg,2.33,36.984,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,75, cioè 43,65 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Merluzzo,Cuori di filetto di nasello – Conad,300 g,0.3,al kg,3.49,11.633,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,99, cioè 13,30 al kg. Surgelato. Vale anche: Superstore, City."
+conadbis21,Conad,Merluzzo,Filetto di merluzzo d'Alaska gratinato – Conad,400 g,0.4,al kg,3.49,8.725,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,99, cioè 9,97 al kg. Surgelato. Vale anche: Superstore."
+conadbis21,Conad,Mortadella,Mortadella in cotenna – Sapori&Dintorni Conad,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Mozzarella,Burrata pugliese – Sapori&Dintorni Conad,150 g,0.15,al kg,2.19,14.600,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Mozzarella,Mozzarella Deliziosa – Nodino,"400 g (2 × 200 g, 1+1)",0.4,al kg,3.30,8.250,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,30, cioè 16,50 al kg. Vale anche: Superstore."
+conadbis21,Conad,Mozzarella,Mozzarella di bufala campana – Sapori&Dintorni Conad,200 g,0.2,al kg,2.69,13.450,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Mozzarella,Mozzarella fresca fior di latte – Vallelata,125 g,0.125,al kg,1.05,8.400,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,50, cioè 12,00 al kg. Vale anche: Superstore."
+conadbis21,Conad,Mozzarella,Mozzarella latte italiano – Conad,375 g (3 × 125 g),0.375,al kg,2.49,6.640,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Mozzarella,Stracciatella – Sapori&Dintorni Conad,250 g,0.25,al kg,2.89,11.560,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Olio d'oliva,Olio extra vergine di oliva – Pietro Coricelli,"2 l (2 × 1 l, 1+1)",2,al litro,9.90,4.950,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 9,90, cioè 9,90 al litro. Vale anche: Superstore."
+conadbis21,Conad,Olio di semi,Prodotto per friggere Fri Max – Sagra,2 l,2,al litro,4.29,2.145,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 6,39, cioè 3,19 al litro. Vale anche: Superstore."
+conadbis21,Conad,Pancetta,Cotto in cubetti – Negroni,120 g,0.12,al kg,1.85,15.417,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,19, cioè 18,25 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadbis21,Conad,Pancetta,Lardo di Colonnata IGP – Sapori&Dintorni Conad,all'etto,0.1,al kg,2.30,23.000,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Pancetta,Pancetta in cubetti – Negroni,"320 g (4 × 80 g, 1+1)",0.32,al kg,3.49,10.906,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,49, cioè 21,81 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pane,American sandwich – Morato,"1,1 kg (2 × 550 g, 1+1)",1.1,al kg,1.90,1.727,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,90, cioè 3,45 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pane,Pancarrè – Mulino Bianco Barilla,430 g,0.43,al kg,0.85,1.977,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,15, cioè 2,67 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pane,Pane Cuor di Lino – Mulino Bianco Barilla,400 g,0.4,al kg,2.20,5.500,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,59, cioè 6,47 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Pane,Panpiuma – Artebianca,"800 g (2 × 400 g, 1+1)",0.8,al kg,2.40,3.000,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,40, cioè 6,00 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pane,Piadina la Sfogliata – Casa della Piada C.R.M.,"450 g (2 × 225 g, 1+1)",0.45,al kg,1.98,4.400,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,98, cioè 8,80 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pane,Tigelle – Mulino Bianco Barilla,210 g,0.21,al kg,1.49,7.095,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,18, cioè 10,38 al kg. Vale anche: City."
+conadbis21,Conad,Pasta,Lasagne – Giovanni Rana,"700 g (2 × 350 g, 1+1)",0.7,al kg,5.49,7.843,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 5,49, cioè 15,69 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pasta,Pasta all'uovo – Luciana Mosconi,"500 g (2 × 250 g, 1+1)",0.5,al kg,1.98,3.960,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,98, cioè 7,92 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pasta,Pasta di semola di Gragnano IGP – Sapori&Dintorni Conad,500 g,0.5,al kg,1.10,2.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,59, cioè 3,18 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pasta,Pasta di semola il Pastaio – Maffei,"500 g (2 × 250 g, 1+1)",0.5,al kg,1.10,2.200,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,10, cioè 4,40 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pasta,Pasta di semola – Voiello,"1 kg (2 × 500 g, 1+1)",1,al kg,1.38,1.380,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,38, cioè 2,76 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Pasta,Pasta fresca ripiena – Antica Bottega Fini,"500 g (2 × 250 g, 1+1)",0.5,al kg,3.39,6.780,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,39, cioè 13,56 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pasta,Pasta fresca ripiena – Sapori&Dintorni Conad,250 g,0.25,al kg,2.65,10.600,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Pasta,Pasta integrale – De Cecco,"1 kg (2 × 500 g, 1+1)",1,al kg,1.72,1.720,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,72, cioè 3,44 al kg. Vale anche: Superstore."
+conadbis21,Conad,Patate,Barchette Patasnella senza glutine – Pizzoli,600 g,0.6,al kg,2.20,3.667,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,59, cioè 4,32 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Patate,Patata della Sila IGP – Sapori&Dintorni Conad,al kg,1,al kg,1.45,1.450,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Patate,Patate Forno Country – McCain,"1,3 kg (2 × 650 g, 1+1)",1.3,al kg,3.19,2.454,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,19, cioè 4,91 al kg. Surgelato. Vale anche: Superstore."
+conadbis21,Conad,Patate,Patate Kid Smile – McCain,650 g,0.65,al kg,2.50,3.846,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,95, cioè 4,54 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadbis21,Conad,Pesce,Branzino,al kg,1,al kg,13.90,13.900,2026-10-08,2026-10-21,Solo nei punti vendita che lo hanno. Vale anche: Superstore.
+conadbis21,Conad,Pesce,Filetto di tonno decongelato,al kg,1,al kg,26.90,26.900,2026-10-08,2026-10-21,Solo nei punti vendita che lo hanno. Vale anche: Superstore.
+conadbis21,Conad,Pizza,Pizza Regina classica – Cameo,620 g,0.62,al kg,3.89,6.274,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 4,58, cioè 7,39 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadbis21,Conad,Pizza,Pizze 26x38 – Italpizza,535 g,0.535,al kg,3.69,6.897,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,29, cioè 8,02 al kg. Surgelato."
+conadbis21,Conad,Pollo,Petto di pollo a fette – Aia,al kg,1,al kg,9.89,9.890,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Pollo,Sovracosce fusi di pollo – Aia,al kg,1,al kg,5.64,5.640,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Pomodoro,Passata di pomodoro extrafine il Delicato – Petti,"1,4 kg (2 × 700 g, 1+1)",1.4,al kg,1.99,1.421,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,99, cioè 2,84 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pomodoro,Polpa di pomodoro – Mutti,"840 g (4 × 210 g, 1+1)",0.84,al kg,1.99,2.369,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,99, cioè 4,74 al kg. Vale anche: Superstore."
+conadbis21,Conad,Pomodoro,Polpa pronta – De Rica,"1,2 kg (3 × 400 g)",1.2,al kg,2.67,2.225,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 3,15, cioè 2,62 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadbis21,Conad,Preparati,Smash burger di bovino adulto – Conad Percorso Qualità,180 g (2 × 90 g),0.18,al kg,3.49,19.389,2026-10-08,2026-10-21,"−30%, prima 4,99. Vale anche: Superstore."
+conadbis21,Conad,Preparati,Spinaci di pollo – Aia,200 g,0.2,al kg,3.19,15.950,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 3,69, cioè 18,45 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Prosciutto,Prosciutto cotto di alta qualità i Firmati – Rovagnati,"200 g (2 × 100 g, 1+1)",0.2,al kg,3.50,17.500,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,50, cioè 35,00 al kg. Vale anche: Superstore."
+conadbis21,Conad,Prosciutto,Prosciutto cotto di alta qualità – Sapori&Dintorni Conad,all'etto,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadbis21,Conad,Prosciutto,Prosciutto cotto – Elle Ferrarini,all'etto,0.1,al kg,1.69,16.900,2026-10-08,2026-10-21,Al banco. Vale anche: Superstore.
+conadbis21,Conad,Prosciutto,Prosciutto di San Daniele DOP – Sapori&Dintorni Conad,all'etto,0.1,al kg,2.99,29.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadbis21,Conad,Ricotta,Ricotta fresca – Vallelata,200 g (2 × 100 g),0.2,al kg,1.19,5.950,2026-10-08,2026-10-21,
+conadbis21,Conad,Ricotta,Ricotta – Caseificio Valcolatte,250 g,0.25,al kg,1.29,5.160,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,55, cioè 6,20 al kg. Vale anche: City."
+conadbis21,Conad,Riso,Riso basmati – Scotti,500 g,0.5,al kg,2.45,4.900,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,89, cioè 5,78 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore, City."
+conadbis21,Conad,Riso,Risotti chicchi grossi riso – Scotti,"2 kg (2 × 1 kg, 1+1)",2,al kg,3.98,1.990,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,98, cioè 3,98 al kg. Vale anche: Superstore."
+conadbis21,Conad,Salmone,Carpaccio di salmone Sockeye – Sapori&Idee Conad,100 g,0.1,al kg,7.50,75.000,2026-10-08,2026-10-21,Solo nei punti vendita che lo hanno. Vale anche: City.
+conadbis21,Conad,Salmone affumicato,Salmone Sockeye selvaggio dell'Alaska affumicato – Sapori&Idee Conad,100 g,0.1,al kg,6.49,64.900,2026-10-08,2026-10-21,
+conadbis21,Conad,Shampoo,Ultra Dolce shampoo 250 ml / balsamo 200 ml – Garnier,"400 ml (2 × 200 ml, 1+1)",0.4,al litro,2.99,7.475,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,99, cioè 14,95 al litro. Vale anche: Superstore, City."
+conadbis21,Conad,Spalmabili,Nutella – Ferrero,950 g,0.95,al kg,6.45,6.789,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 7,44, cioè 7,83 al kg. Vale anche: Superstore."
+conadbis21,Conad,Sughi,Pesto sugo fresco – Giovanni Rana,140 g,0.14,al kg,1.83,13.071,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,62, cioè 18,71 al kg. Vale anche: Superstore."
+conadbis21,Conad,Sughi,Ragù – Conad,360 g (2 × 180 g),0.36,al kg,1.65,4.583,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,85, cioè 5,14 al kg. Vale anche: Superstore."
+conadbis21,Conad,Sughi,Sugo – Le Conserve della Nonna,"380 g (2 × 190 g, 1+1)",0.38,al kg,2.18,5.737,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,18, cioè 11,47 al kg. Vale anche: Superstore."
+conadbis21,Conad,Suino,Lonza a fette di suino – Conad Percorso Qualità,al kg,1,al kg,7.69,7.690,2026-10-08,2026-10-21,"−30%, prima 10,99. Vale anche: Superstore, City."
+conadbis21,Conad,Tonno,Filetti di tonno al naturale – Consorcio,"246 g (2 × 123 g, 1+1)",0.246,al kg,7.99,32.480,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 7,99, cioè 64,96 al kg. Peso non sgocciolato. Vale anche: Superstore."
+conadbis21,Conad,Tonno,Tonno all'olio di oliva – Nostromo,"560 g (8 × 70 g, 1+1)",0.56,al kg,5.99,10.696,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 5,99, cioè 21,39 al kg. Peso non sgocciolato. Vale anche: Superstore."
+conadbis21,Conad,Tonno,Tonno pescato a canna – Conad,280 g,0.28,al kg,3.79,13.536,2026-10-08,2026-10-21,"Peso non sgocciolato. Vale anche: Superstore, City."
+conadbis21,Conad,Verdura,Funghi champignon – Conad Percorso Qualità,500 g,0.5,al kg,1.97,3.940,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadbis21,Conad,Verdura,Zucca Delica Hokkaido,al kg,1,al kg,1.27,1.270,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Verdure surgelate,Minestrone Leggerezza – Orogel,"1,5 kg (2 × 750 g, 1+1)",1.5,al kg,3.18,2.120,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,18, cioè 4,24 al kg. Vale anche: Superstore."
+conadbis21,Conad,Verdure surgelate,Misto funghi – Conad,"600 g (2 × 300 g, 1+1)",0.6,al kg,2.38,3.967,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,38, cioè 7,93 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Verdure surgelate,Virtù di zuppa Il Benessere – Orogel,"1 kg (2 × 500 g, 1+1)",1,al kg,3.19,3.190,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,19, cioè 6,38 al kg. Vale anche: Superstore."
+conadbis21,Conad,Vino,Barbera d'Alba DOC Superiore – Miniato,750 ml,0.75,al litro,5.90,7.867,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Vino,Grignolino Piemonte DOC / Barbera Piemonte DOC / Dolcetto Monferrato DOC – Corte Dorata,"1,5 l (2 × 750 ml, 1+1)",1.5,al litro,4.99,3.327,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 4,99, cioè 6,65 al litro. Vale anche: Superstore, City."
+conadbis21,Conad,Vino,Vino – Conad,1 l,1,al litro,1.29,1.290,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Yogurt,Yogurt greco TruBlend – Fage,"300 g (2 × 150 g, 1+1)",0.3,al kg,1.77,5.900,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,77, cioè 11,80 al kg. Vale anche: Superstore."
+conadbis21,Conad,Yogurt,Yogurt kefir da bere – Conad Piacersi,600 g (6 × 100 g),0.6,al kg,1.99,3.317,2026-10-08,2026-10-21,Vale anche: Superstore.
+conadbis21,Conad,Yogurt,Yogurt – Activia Danone,"1 kg (8 × 125 g, 1+1)",1,al kg,2.88,2.880,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,88, cioè 5,76 al kg. Vale anche: Superstore, City."
+conadbis21,Conad,Yogurt,Yomino fragola banana – Yomo,320 g (4 × 80 g),0.32,al kg,2.20,6.875,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,45, cioè 7,66 al kg. Solo fino a domenica 18 ottobre. Vale anche: Superstore."
+conadcitybis21,Conad,Acqua,Acqua oligominerale naturale – Vitasnella,"1,5 l",1.5,al litro,0.37,0.247,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 0,48, cioè 0,32 al litro."
+conadcitybis21,Conad,Ammorbidente,Ammorbidente concentrato 45 lavaggi – Coccolino,45 lavaggi,45,a lavaggio,3.39,0.075,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,89, cioè 0,11 a lavaggio."
+conadcitybis21,Conad,Birra,Birra – Nastro Azzurro Peroni,"1,32 l (4 × 330 ml, 1+1)",1.32,al litro,2.25,1.705,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,25, cioè 3,41 al litro."
+conadcitybis21,Conad,Biscotti,Biscotti Ringo vaniglia/cacao – Pavesi,"330 g (2 × 165 g, 1+1)",0.33,al kg,1.69,5.121,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,69, cioè 10,24 al kg."
+conadcitybis21,Conad,Biscotti,Biscotti vari tipi – Mulino Bianco Barilla,330 g,0.33,al kg,1.99,6.030,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,47, cioè 7,48 al kg."
+conadcitybis21,Conad,Biscotti,Frollini senza glutine – Conad Alimentum,400 g,0.4,al kg,2.95,7.375,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,69, cioè 9,22 al kg."
+conadcitybis21,Conad,Caffè,Caffè Qualità Espresso Bar in grani – Conad,1 kg,1,al kg,13.90,13.900,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 15,90, cioè 15,90 al kg."
+conadcitybis21,Conad,Cereali,Cereali – Nesquik,"750 g (2 × 375 g, 1+1)",0.75,al kg,3.30,4.400,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,30, cioè 8,80 al kg."
+conadcitybis21,Conad,Collutorio,Collutorio protezione completa – Conad Essentiae,500 ml,0.5,al litro,1.69,3.380,2026-10-08,2026-10-21,
+conadcitybis21,Conad,Conserve,Filetti di alici all'olio di oliva – Conad,150 g,0.15,al kg,3.85,25.667,2026-10-08,2026-10-21,
+conadcitybis21,Conad,Gamberi,Spiedini di mazzancolle tropicali – Sapori&Idee Conad,145 g,0.145,al kg,4.50,31.034,2026-10-08,2026-10-21,
+conadcitybis21,Conad,Gelato,Maxibon classic – Nestlé,"768 g (2 × 384 g, 1+1)",0.768,al kg,4.78,6.224,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 4,78, cioè 12,45 al kg. Surgelato."
+conadcitybis21,Conad,Gelato,Viennetta vaniglia – Algida,320 g,0.32,al kg,3.64,11.375,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 4,29, cioè 13,41 al kg. Solo fino a domenica 18 ottobre."
+conadcitybis21,Conad,Marmellata,"Marmellata, confettura extra – Conad",330 g,0.33,al kg,1.49,4.515,2026-10-08,2026-10-21,
+conadcitybis21,Conad,Mortadella,Mortadella Bologna IGP – Conad,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,Al banco.
+conadcitybis21,Conad,Mozzarella,Bocconcini di mozzarella fior di latte – Vallelata,"400 g (2 × 200 g, 1+1)",0.4,al kg,3.00,7.500,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,00, cioè 15,00 al kg."
+conadcitybis21,Conad,Olio d'oliva,Olio extra vergine di oliva Il Frantolio – Carapelli,"2 l (2 × 1 l, 1+1)",2,al litro,9.98,4.990,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 9,98, cioè 9,98 al litro."
+conadcitybis21,Conad,Pane,Pane proteico/semi e noci integrale – Conad Piacersi,"1 kg (2 × 500 g, 1+1)",1,al kg,2.59,2.590,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 2,59, cioè 5,18 al kg."
+conadcitybis21,Conad,Pasta,Pasta all'uovo – Sapori&Idee Conad,250 g,0.25,al kg,1.25,5.000,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,84, cioè 7,36 al kg."
+conadcitybis21,Conad,Pesce,Trancio di tonno decongelato – Aquolina,200 g,0.2,al kg,5.30,26.500,2026-10-08,2026-10-21,
+conadcitybis21,Conad,Pomodoro,Passata di pomodoro – Mutti,"1,4 kg (2 × 700 g, 1+1)",1.4,al kg,1.90,1.357,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,90, cioè 2,71 al kg."
+conadcitybis21,Conad,Riso,Riso Blond risotti – Gallo,"2 kg (2 × 1 kg, 1+1)",2,al kg,3.60,1.800,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,60, cioè 3,60 al kg."
+conadcitybis21,Conad,Spalmabili,Crema Pan di Stelle – Pan di Stelle,"760 g (2 × 380 g, 1+1)",0.76,al kg,4.20,5.526,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 4,20, cioè 11,05 al kg."
+conadcitybis21,Conad,Sughi,Pesto al tonno – Rio Mare,130 g,0.13,al kg,2.45,18.846,2026-10-08,2026-10-18,"Solo con la Carta Insieme Conad. Senza tessera 2,89, cioè 22,23 al kg. Solo fino a domenica 18 ottobre."
+conadcitybis21,Conad,Tonno,Filetti di tonno all'olio di oliva – Callipo,"348 g (2 × 174 g, 1+1)",0.348,al kg,7.98,22.931,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 7,98, cioè 45,86 al kg. Peso non sgocciolato."
+conadcitybis21,Conad,Verdure surgelate,Minestrone tradizione – Findus,1 kg,1,al kg,2.99,2.990,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,99, cioè 3,99 al kg."
+conadcitybis21,Conad,Vino,Vino Castellino rosso/bianco in brick,1 l,1,al litro,1.89,1.890,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,20, cioè 2,20 al litro."
+conadcitybis21,Conad,Würstel,Il würstel Wudy classico senza glutine – Aia,"600 g (2 × 300 g, 1+1)",0.6,al kg,1.75,2.917,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 1,75, cioè 5,83 al kg."
+conadloc08,Conad,Acqua,"Acqua Lauretana minerale naturale, frizzante","1,5 l",1.5,al litro,0.48,0.320,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 0,55, cioè 0,37 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Burro,Burro 1889 – Le Fattorie Fiandino,200 g,0.2,al kg,2.39,11.950,2026-10-08,2026-10-21,"−20%, prima 2,99. Vale anche: Superstore, City."
+conadloc08,Conad,Cioccolato,Cioccolatini Cuneesi – Oliva,200 g,0.2,al kg,2.98,14.900,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,45, cioè 17,25 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Cioccolato,Cioccolatini Sebaste vari tipi,180 g,0.18,al kg,3.75,20.833,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,50, cioè 25,00 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Caciotta Pezzana dolce latte,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Formaggio Blu di Cuneo – Caseificio Rabbia,all'etto,0.1,al kg,1.37,13.700,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Formaggio alla birra Menabrea Sbirro – Caseificio Botalla,all'etto,0.1,al kg,1.95,19.500,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Formaggio primosale – Caseificio Longo,all'etto,0.1,al kg,0.79,7.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Gorgonzola DOP dolce – Igor,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Robiola Bosina – Caseificio dell'Alta Langa,all'etto,0.1,al kg,1.75,17.500,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,"Scamorza affumicata, bianca – Caseificio Pugliese",all'etto,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Formaggio,Toma Trifulò al tartufo – Caseificio Fiandino,all'etto,0.1,al kg,2.19,21.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Frutta,Mele renette – I Nostri Ori,al kg,1,al kg,2.27,2.270,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Frutta,Susine angeleno,al kg,1,al kg,1.78,1.780,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Grana,Formaggio grattugiato Piemontino – Valgrana,100 g,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Latte,Latte Bio parzialmente scremato – Biomu,1 l,1,al litro,1.39,1.390,2026-10-08,2026-10-21,"−30%, prima 1,99. Vale anche: Superstore, City."
+conadloc08,Conad,Marmellata,Composta di frutta biologica – Tesori di Langa,210 g,0.21,al kg,2.95,14.048,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,79, cioè 18,05 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Merendine,Crostata – De Mori,450 g,0.45,al kg,4.98,11.067,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Mozzarella,Mozzarella Fior di latte – Tapporosso Centrale del Latte di Torino,100 g,0.1,al kg,0.90,9.000,2026-10-08,2026-10-21,"−30%, prima 1,29. Vale anche: Superstore, City."
+conadloc08,Conad,Pancetta,Lardo di Cavour – Salumificio Cavour,all'etto,0.1,al kg,1.45,14.500,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Pane,Fette biscottate rustiche – Cradel,350 g,0.35,al kg,1.90,5.429,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,29, cioè 6,54 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Pane,Grissini Rubatà ristorante – Derby,600 g,0.6,al kg,2.25,3.750,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,85, cioè 4,75 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Pane,Grissini torinesi stirati vari tipi – Derby,250 g,0.25,al kg,1.00,4.000,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,39, cioè 5,56 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Pasta,"Pasta all'uovo tagliatelle, tagliolini Fatti Bene – Fontaneto",250 g,0.25,al kg,1.38,5.520,2026-10-08,2026-10-21,"−30%, prima 1,98. Vale anche: Superstore, City."
+conadloc08,Conad,Pasta,Pasta all'uovo vari tipi – L'Antica Madia,250 g,0.25,al kg,1.75,7.000,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,15, cioè 8,60 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Pasta,Ravioli di carne – Pastificio F.lli Bianco,350 g,0.35,al kg,3.42,9.771,2026-10-08,2026-10-21,"−30%, prima 4,89. Vale anche: Superstore, City."
+conadloc08,Conad,Pollo,Tenerezze di pollo – ORA,400 g,0.4,al kg,3.99,9.975,2026-10-08,2026-10-21,"−20%, prima 4,99. Vale anche: Superstore, City."
+conadloc08,Conad,Prosciutto,Prosciutto cotto Riccafetta – Raspini,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Prosciutto,Prosciutto crudo – Raspini,100 g,0.1,al kg,2.57,25.700,2026-10-08,2026-10-21,"−40%, prima 4,29. Vale anche: Superstore, City."
+conadloc08,Conad,Riso,Riso Carnaroli – Vignola,1 kg,1,al kg,2.79,2.790,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,49, cioè 4,49 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Riso,Riso Roma – Il Buon Riso,500 g,0.5,al kg,1.69,3.380,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,60, cioè 5,20 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Salame,Salame cotto – Brizio,all'etto,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Salame,"Salamini subalpini piccanti, classici – Barberis",all'etto,0.1,al kg,2.39,23.900,2026-10-08,2026-10-21,"−20%, prima 2,99. Al banco. Vale anche: Superstore, City."
+conadloc08,Conad,Salsiccia,Cotechino di suino – I Nostri Ori,al kg,1,al kg,10.89,10.890,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Salsiccia,Salsiccia di Bra – I Nostri Ori,300 g,0.3,al kg,5.99,19.967,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Salsiccia,Salsiccia di suino – I Nostri Ori,al kg,1,al kg,9.59,9.590,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Sughi,"Ragù, sugo – Cascina San Cassiano",190 g,0.19,al kg,3.69,19.421,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,20, cioè 22,11 al kg. Vale anche: Superstore, City."
+conadloc08,Conad,Verdura,Cipolle – I Nostri Ori,800 g,0.8,al kg,1.27,1.587,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Verdura,Zucca – I Nostri Ori,al kg,1,al kg,1.87,1.870,2026-10-08,2026-10-21,"Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barbaresco DOCG Ròca della Selva – Pensiero Fontanafredda,750 ml,0.75,al litro,19.90,26.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 23,90, cioè 31,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barbera d'Alba DOC superiore – Massimo Rattalino,750 ml,0.75,al litro,6.40,8.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 7,80, cioè 10,40 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barbera d'Alba DOC superiore – Produttori di Govone,750 ml,0.75,al litro,6.90,9.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 8,90, cioè 11,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barbera d'Alba DOC – Heredis,750 ml,0.75,al litro,6.40,8.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 7,90, cioè 10,53 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barbera d'Asti DOCG I Filari – Barbanera,750 ml,0.75,al litro,3.70,4.933,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 5,90, cioè 7,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Barolo DOCG Novem – Massimo Rattalino,750 ml,0.75,al litro,16.90,22.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 20,90, cioè 27,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Cortese Piemonte DOC Dieci+1 – TerreDaVino,750 ml,0.75,al litro,2.95,3.933,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,90, cioè 6,53 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Dolcetto d'Alba DOC Tres – Massimo Rattalino,750 ml,0.75,al litro,6.20,8.267,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 7,60, cioè 10,13 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Langhe DOC Arneis – Manfredi,750 ml,0.75,al litro,4.90,6.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 6,20, cioè 8,27 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Langhe Nebbiolo DOC Octo – Massimo Rattalino,750 ml,0.75,al litro,6.90,9.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 8,40, cioè 11,20 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Monferrato DOC Chiaretto I Filari – Barbanera,750 ml,0.75,al litro,3.90,5.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 5,90, cioè 7,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Nebbiolo Langhe DOC – Heredis,750 ml,0.75,al litro,6.40,8.533,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 7,90, cioè 10,53 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Rosso Piemonte DOC – Pepici,750 ml,0.75,al litro,3.90,5.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 5,90, cioè 7,87 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vino,Spumante Alta Langa DOCG Mistras pas dosé – TerreDaVino,750 ml,0.75,al litro,15.90,21.200,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 19,90, cioè 26,53 al litro. Vale anche: Superstore, City."
+conadloc08,Conad,Vitello,Brasato di vitello alla piemontese – Belmonte,all'etto,0.1,al kg,2.89,28.900,2026-10-08,2026-10-21,"Al banco. Vale anche: Superstore, City."
+conadsupbis21,Conad,Affettati,Affettati Aequilibrium – Aia,130 g,0.13,al kg,1.88,14.462,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,69, cioè 20,69 al kg."
+conadsupbis21,Conad,Ammorbidente,Ammorbidente concentrato – Conad,80 lavaggi,80,a lavaggio,3.09,0.039,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Ammorbidente,Ammorbidente concentrato – Fabuloso,"90 lavaggi (2 × 45 lavaggi, 1+1)",90,a lavaggio,3.59,0.040,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 3,59, cioè 0,08 a lavaggio."
+conadsupbis21,Conad,Bibite,Bevanda alla frutta Bravo – Rauch,2 l,2,al litro,1.99,0.995,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,59, cioè 1,29 al litro. Vale anche: City."
+conadsupbis21,Conad,Bibite,Bevanda alla frutta – Skipper Zuegg,600 ml (3 × 200 ml),0.6,al litro,1.49,2.483,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 1,59, cioè 2,65 al litro."
+conadsupbis21,Conad,Burro,Burro classico/leggermente salato – Lurpak,200 g,0.2,al kg,2.98,14.900,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,90, cioè 19,50 al kg. Vale anche: City."
+conadsupbis21,Conad,Carta igienica,Carta igienica extra soffice – Conad,4 rotoli,4,al rotolo,2.49,0.623,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Creme,Crema leggera per cucinare – Conad Piacersi,375 ml (3 × 125 ml),0.375,al kg,1.69,4.507,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Dentifricio,Dentifricio Essentiae – Conad,225 ml (3 × 75 ml),0.225,al litro,2.59,11.511,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,57, cioè 15,87 al litro."
+conadsupbis21,Conad,Formaggio,Toma Biellese – Caseificio Pier Luigi Rosso,all'etto,0.1,al kg,1.35,13.500,2026-10-08,2026-10-21,Al banco. Vale anche: City.
+conadsupbis21,Conad,Formaggio,Toma dell'Alta Langa – Caseificio dell'Alta Langa,all'etto,0.1,al kg,1.69,16.900,2026-10-08,2026-10-21,Al banco. Vale anche: City.
+conadsupbis21,Conad,Gelato,Cucciolone – Algida,480 g,0.48,al kg,3.99,8.312,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,49, cioè 9,35 al kg. Surgelato."
+conadsupbis21,Conad,Gelato,Gelato Magnum – Algida,300 g,0.3,al kg,3.99,13.300,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,95, cioè 16,50 al kg. Surgelato."
+conadsupbis21,Conad,Gelato,Gelato variegato – Saporiidee Conad,300 g,0.3,al kg,2.99,9.967,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,89, cioè 12,97 al kg. Surgelato."
+conadsupbis21,Conad,Latte,Latte UHT Accadi senza lattosio – Granarolo,1 l,1,al litro,1.29,1.290,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Lavatrice,Detersivo liquido per lavatrice – Conad,40 lavaggi,40,a lavaggio,3.99,0.100,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Lavatrice,Detersivo liquido per lavatrice – Omino Bianco,"70 lavaggi (2 × 35 lavaggi, 1+1)",70,a lavaggio,6.19,0.088,2026-10-08,2026-10-21,"Offerta 1+1: il secondo pezzo è gratis. Solo per gli iscritti al Club Famiglia (Carta Insieme Conad). Una confezione sola costa 6,19, cioè 0,18 a lavaggio."
+conadsupbis21,Conad,Lavatrice,Detersivo per lavatrice – Dixan,82 lavaggi,82,a lavaggio,13.98,0.170,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 23,30, cioè 0,28 a lavaggio."
+conadsupbis21,Conad,Legumi,Piselli finissimi – La Valle degli Orti,450 g,0.45,al kg,1.67,3.711,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,79, cioè 6,20 al kg. Surgelato."
+conadsupbis21,Conad,Merendine,Croissant – Bauli,250 g,0.25,al kg,1.89,7.560,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,79, cioè 11,16 al kg."
+conadsupbis21,Conad,Olio d'oliva,Olio extra vergine di oliva – Conad,1 l,1,al litro,6.99,6.990,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 8,90, cioè 8,90 al litro."
+conadsupbis21,Conad,Pizza,Linea pizze 26x38 – Italpizza,560 g,0.56,al kg,3.69,6.589,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,29, cioè 7,66 al kg. Surgelato."
+conadsupbis21,Conad,Salmone,Carpaccio di salmone – Saporiidee Conad,100 g,0.1,al kg,7.50,75.000,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Salmone affumicato,Salmone Sockeye affumicato – Saporiidee Conad,100 g,0.1,al kg,6.49,64.900,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Shampoo,Linea capelli Palette shampoo – Syoss,440 ml,0.44,al litro,3.99,9.068,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 5,49, cioè 12,48 al litro."
+conadsupbis21,Conad,Spalmabili,Formaggio spalmabile senza lattosio – Conad Piacersi,175 g,0.175,al kg,1.49,8.514,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Sughi,Pesto – Polli,180 g (2 × 90 g),0.18,al kg,2.15,11.944,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 2,79, cioè 15,50 al kg."
+conadsupbis21,Conad,Tè,Tè classico – Lipton,65 g,0.065,al kg,2.39,36.769,2026-10-08,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 3,29, cioè 50,62 al kg."
+conadsupbis21,Conad,Vino,Orvieto DOC Classico – Tiniere,750 ml,0.75,al litro,2.99,3.987,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Würstel,Würstel di suino Wüberone – Wüber,750 g (3 × 250 g),0.75,al kg,1.59,2.120,2026-10-08,2026-10-21,
+conadsupbis21,Conad,Yogurt,Yogurt intero – Yomo,250 g (2 × 125 g),0.25,al kg,0.99,3.960,2026-10-08,2026-10-21,
 lidlhw01,Lidl,Asciugatutto,Carta da cucina 3 veli tema Halloween – Kartika,2 rotoli,2,al rotolo,1.99,0.995,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Biscotti,Pipistrelli con crema al latte – Migliorati,200 g,0.2,al kg,2.99,14.950,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Biscotti,Zucchette con crema alla nocciola – Migliorati,200 g,0.2,al kg,2.99,14.950,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Carta igienica,Carta igienica tema Halloween – Kartika,4 rotoli,4,al rotolo,1.99,0.497,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Merendine,Donut di Halloween,54 g,0.054,al kg,0.59,10.926,2026-10-08,2026-10-31,"Il volantino stampa 10,93 al kg. Non in tutti i negozi: la nota della pagina dice che le offerte della panetteria valgono solo dove c'è il servizio panetteria."
+aldi05,Aldi,Formaggio,Caciotta – Milsani,500 g,0.5,al kg,2.99,5.980,2026-10-09,2026-10-11,"−25%, prima 3,99. Solo da venerdì 9 a domenica 11 ottobre."
+aldi05,Aldi,Riso,Riso Roma – I Colori del Sapore,1 kg,1,al kg,1.49,1.490,2026-10-09,2026-10-11,"−35%, prima 2,29. Solo da venerdì 9 a domenica 11 ottobre."
+aldi05,Aldi,Salmone,Filetti di salmone selvaggio MSC – Golden Seafood,250 g,0.25,al kg,2.19,8.760,2026-10-09,2026-10-11,"−37%, prima 3,49. Surgelato. Solo da venerdì 9 a domenica 11 ottobre."
+aldi05,Aldi,Salsiccia,Bocconcini di salsiccia – Il Podere,250 g,0.25,al kg,1.59,6.360,2026-10-09,2026-10-11,"−26%, prima 2,15. Solo da venerdì 9 a domenica 11 ottobre."
+aldi05,Aldi,Vino,Prosecco Valdobbiadene DOCG,750 ml,0.75,al litro,3.99,5.320,2026-10-09,2026-10-11,"−27%, prima 5,49. Solo da venerdì 9 a domenica 11 ottobre."
+conadcitybis21,Conad,Formaggio,Toma Erbì alle erbe – Le Fattorie Fiandino,all'etto,0.1,al kg,1.79,17.900,2026-10-15,2026-10-21,Al banco. Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Frutta,Mele Minneiska Sweetango – Val Venosta,900 g,0.9,al kg,1.87,2.078,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Legumi,Piselli novelli – Findus,1 kg,1,al kg,3.98,3.980,2026-10-15,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 4,75, cioè 4,75 al kg. Surgelato. Solo da giovedì 15 a mercoledì 21 ottobre."
+conadcitybis21,Conad,Manzo,Macinato scelto di Scottona – Sapori&Idee Conad,300 g,0.3,al kg,4.99,16.633,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Mozzarella,Mozzarella per pizza Santa Lucia – Galbani,400 g,0.4,al kg,2.99,7.475,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Pancetta,Il guanciale stick – Fratelli Beretta,120 g (2 × 60 g),0.12,al kg,1.69,14.083,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Pasta,Pasta fresca ripiena Sfogliavelo – Giovanni Rana,250 g,0.25,al kg,1.99,7.960,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Pizza,Pizza Bella Napoli Margherita – Buitoni,650 g,0.65,al kg,3.98,6.123,2026-10-15,2026-10-21,"Solo con la Carta Insieme Conad. Senza tessera 5,29, cioè 8,14 al kg. Surgelato. Solo da giovedì 15 a mercoledì 21 ottobre."
+conadcitybis21,Conad,Ricotta,Ricotta Santa Lucia – Galbani,250 g,0.25,al kg,0.95,3.800,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Salame,Salame Piemonte IGP – Raspini,all'etto,0.1,al kg,1.99,19.900,2026-10-15,2026-10-21,Al banco. Solo da giovedì 15 a mercoledì 21 ottobre.
+conadcitybis21,Conad,Suino,Fettine di coppa senza osso di suino – Conad Percorso Qualità,al kg,1,al kg,7.89,7.890,2026-10-15,2026-10-21,Solo da giovedì 15 a mercoledì 21 ottobre.
 lidlhw01,Lidl,Cioccolato,Figure cave di cioccolato Halloween – Kinder,90 g,0.09,al kg,3.99,44.333,2026-10-15,2026-10-31,
 lidlhw01,Lidl,Gelato,"Coni gelato di Halloween, 4 pezzi, in diversi gusti",300 g (4 × 75 g),0.3,al kg,2.69,8.967,2026-10-15,2026-10-31,Confezioni da 4 × 75 g o 4 × 78 g allo stesso prezzo: qui il conto è sul formato più piccolo.
 lidlhw01,Lidl,Merendine,"Krapfen di Halloween, 4 pezzi",368 g (4 × 92 g),0.368,al kg,3.49,9.484,2026-10-15,2026-10-31,
