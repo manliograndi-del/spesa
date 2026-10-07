@@ -4363,6 +4363,49 @@ aldi05,Aldi,Uova,Uova medie 15 pezzi (5 in più) – I Colori del Sapore,15 uova
 aldi05,Aldi,Verdure surgelate,Broccoli – I Colori del Sapore,600 g,0.6,al kg,1.25,2.083,2026-10-05,2026-10-11,"Surgelati. Prezzo fisso Aldi («dal nostro assortimento»), non un'offerta a tempo."
 aldi05,Aldi,Vino,Bonarda dell'Oltrepò Pavese DOC – Denovo,750 ml,0.75,al litro,1.79,2.387,2026-10-05,2026-10-11,"−25%, prima 2,39. Vino del mese."
 aldi05,Aldi,Yogurt,Fragola 12 bottigliette (4 in più) – Actimel,"1,2 kg (12 × 100 g)",1.2,al kg,3.79,3.158,2026-10-05,2026-10-11,Yogurt da bere. Quantità limitata.
+bennetextra05,Bennet,Acqua,Acqua minerale – Ferrarelle,"6 × 1,5 L",9,al litro,2.25,0.250,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,00."
+bennetextra05,Bennet,Acqua,Acqua naturale Ecogreen – San Benedetto,6 × 2 L,12,al litro,2.70,0.225,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,60."
+bennetextra05,Bennet,Acqua,Acqua naturale o frizzante – Sant'Anna,12 × 500 ml,6,al litro,2.99,0.498,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Asciugatutto,Carta cucina asciugoni – Regina,2 rotoli,2,al rotolo,2.35,1.175,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,62."
+bennetextra05,Bennet,Bagnoschiuma,Detergente intimo – Neutromed,300 ml,0.3,al litro,2.15,7.167,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,32."
+bennetextra05,Bennet,Bibite,Bevanda senza zuccheri aggiunti – Santàl,1 L,1,al litro,1.49,1.490,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennetextra05,Bennet,Bibite,Fanta o Sprite,"1,5 L",1.5,al litro,1.48,0.987,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,85."
+bennetextra05,Bennet,Bibite,Sanfruit Zero – Sant'Anna,330 ml,0.33,al litro,0.60,1.818,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,20."
+bennetextra05,Bennet,Birra,Birra Nastro Azzurro – Peroni,620 ml,0.62,al litro,1.09,1.758,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,66."
+bennetextra05,Bennet,Birra,Birra grezza non filtrata – Raffo,450 ml,0.45,al litro,1.28,2.844,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,79."
+bennetextra05,Bennet,Birra,Birra lavorazione grezza – Raffo,3 × 330 ml,0.99,al litro,2.99,3.020,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Birra,Birra originale – Raffo,660 ml,0.66,al litro,1.19,1.803,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,59."
+bennetextra05,Bennet,Birra,Birra originale – Raffo,3 × 330 ml,0.99,al litro,2.19,2.212,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,97."
+bennetextra05,Bennet,Birra,Birra – Beck's,3 × 330 ml,0.99,al litro,2.19,2.212,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,54."
+bennetextra05,Bennet,Biscotti,Wafer classic con vaniglia – Loacker,225 g,0.225,al kg,3.18,14.133,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,79."
+bennetextra05,Bennet,Caffè,Caffè macinato per moka qualità Oro – Lavazza,2 × 250 g,0.5,al kg,11.99,23.980,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 14,99."
+bennetextra05,Bennet,Carta igienica,Carta igienica Mega – Foxy,4 rotoli,4,al rotolo,2.79,0.698,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Cereali,Barrette Special K – Kellogg's,8 barrette 172 g,0.172,al kg,2.99,17.384,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,48."
+bennetextra05,Bennet,Latte,Latte alta digeribilità senza lattosio – Zymil,1 L,1,al litro,1.59,1.590,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennetextra05,Bennet,Lavatrice,Detersivo liquido per lavatrice – Ace,"2,7 L",2.7,a lavaggio,6.99,2.589,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 9,99."
+bennetextra05,Bennet,Legumi,Piselli finissimi – Bonduelle,3 × 160 g,0.48,al kg,1.99,4.146,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,98."
+bennetextra05,Bennet,Olio d'oliva,Olio extra vergine di oliva classico – Desantis,1 L,1,al litro,5.98,5.980,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 8,55."
+bennetextra05,Bennet,Panati,10 bastoncini al limone – Capitan Findus,250 g,0.25,al kg,2.99,11.960,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,16."
+bennetextra05,Bennet,Panati,8 bastoncini di salmone – Capitan Findus,200 g,0.2,al kg,4.19,20.950,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 5,24."
+bennetextra05,Bennet,Pancetta,Pancetta a cubetti dolce o affumicata – Negroni,2 × 100 g,0.2,al kg,2.79,13.950,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Pane,Grissini Fagolosi classici – Grissinbon,250 g,0.25,al kg,1.99,7.960,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,38."
+bennetextra05,Bennet,Pasta,Pasta di semola trafilata al bronzo – Voiello,500 g,0.5,al kg,0.89,1.780,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,49."
+bennetextra05,Bennet,Pasta,Pasta fresca ripiena Antica Bottega – Fini,250 g,0.25,al kg,2.27,9.080,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,79."
+bennetextra05,Bennet,Preparati,Burger di merluzzo o nasello – Capitan Findus,170 g,0.17,al kg,2.99,17.588,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99. Surgelato."
+bennetextra05,Bennet,Preparati,Burger di salmone – Capitan Findus,170 g,0.17,al kg,3.96,23.294,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 5,29. Surgelato."
+bennetextra05,Bennet,Riso,Riso per risotti – Gallo,1 kg,1,al kg,2.19,2.190,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,48."
+bennetextra05,Bennet,Sughi,Pesto alla genovese Che Sugo! – Biffi,140 g,0.14,al kg,1.99,14.214,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,98."
+bennetextra05,Bennet,Sughi,Sughi o ragù – Barilla,300 g,0.3,al kg,2.20,7.333,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,75."
+bennetextra05,Bennet,Tonno,Tonno all'olio di oliva – Nostromo,3 × 70 g,0.21,al kg,2.79,13.286,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Tonno,Tonno leggero all'olio extra vergine di oliva – Rio Mare,4 × 60 g,0.24,al kg,5.99,24.958,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 7,49."
+bennetextra05,Bennet,Verdure surgelate,Broccoli Primavera – Findus,500 g,0.5,al kg,2.48,4.960,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,99."
+bennetextra05,Bennet,Verdure surgelate,Cime di rapa – Findus,600 g,0.6,al kg,2.48,4.133,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,99."
+bennetextra05,Bennet,Verdure surgelate,Ciuffetti di spinaci Primavera – Findus,800 g,0.8,al kg,2.99,3.738,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Verdure surgelate,Fagiolini Primavera – Findus,600 g,0.6,al kg,2.99,4.983,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennetextra05,Bennet,Verdure surgelate,I contorni di 4 salti in padella – Findus,450 g,0.45,al kg,3.99,8.867,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,99."
+bennetextra05,Bennet,Verdure surgelate,I primi di 4 salti in padella – Findus,550 g,0.55,al kg,3.59,6.527,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,28."
+bennetextra05,Bennet,Verdure surgelate,Pisellini Primavera – Findus,700 g,0.7,al kg,3.99,5.700,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,99."
+bennetextra05,Bennet,Yogurt,Yogurt da bere – Danacol,8 × 100 g,0.8,al kg,4.79,5.987,2026-10-05,2026-10-14,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 5,99."
 lidl01,Lidl,Biscotti,Biscotti al cacao Neo ricoperti di cioccolato – McEnnedy,252 g confezione,0.252,al kg,2.99,11.865,2026-10-05,2026-10-07,"Il volantino stampa 11,87 al kg. Valido dal 5 al 7 ottobre."
 lidl01,Lidl,Biscotti,Cookies ripieni con crema di nocciole o al cacao – McEnnedy,175 g confezione,0.175,al kg,1.69,9.657,2026-10-05,2026-10-07,"Il volantino stampa 9,66 al kg. Valido dal 5 al 7 ottobre."
 lidl01,Lidl,Conserve,Cetrioli a fette in agrodolce – McEnnedy,360 g sgocciolato,0.36,al kg,1.69,4.694,2026-10-05,2026-10-07,"Peso sgocciolato. Il volantino stampa 4,69 al kg. Valido dal 5 al 7 ottobre."
@@ -4621,6 +4664,176 @@ md06,MD,Vino,Ribolla gialla spumante brut – Colle Bacco,75 cl,0.75,al litro,2.
 md06,MD,Würstel,"Würstel di pollo, suino e tacchino senza pelle – La Fattoria",250 g,0.25,al kg,0.65,2.600,2026-10-06,2026-10-18,"−18%, prima 0,79."
 md06,MD,Würstel,Würstel servelade puro suino – La Fattoria,200 g,0.2,al kg,0.99,4.950,2026-10-06,2026-10-18,"Solo con la MD Buona Spesa Card, senza tessera 1,39."
 md06,MD,Yogurt,Yogurt magro vellutato con pezzi di frutta – Vivo Meglio,125 g x8,1,al kg,1.79,1.790,2026-10-06,2026-10-18,"−32%, prima 2,65."
+bennet08,Bennet,Acqua,Acqua effervescente naturale – Ferrarelle,6 × 500 ml (3 L),3,al litro,1.39,0.463,2026-10-08,2026-10-21,"−30%, prima 1,99."
+bennet08,Bennet,Acqua,Acqua minerale naturale – Eva,12 × 500 ml (6 L),6,al litro,1.98,0.330,2026-10-08,2026-10-21,"−40%, prima 3,30."
+bennet08,Bennet,Acqua,Acqua naturale – Acqua Panna,"6 × 1,5 L",9,al litro,2.00,0.222,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,00."
+bennet08,Bennet,Acqua,Acqua naturale – Sant'Anna,"6 × 1,5 L",9,al litro,1.59,0.177,2026-10-08,2026-10-17,"−55%, prima 3,54. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Affettati,Petto di tacchino o pollo o prosciutto cotto – Bennet Vivisì,100 g,0.1,al kg,1.69,16.900,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennet08,Bennet,Ammorbidente,Ammorbidente concentrato Blu Mare – Mon Amour,"1,8 L (72 lavaggi)",72,a lavaggio,2.79,0.039,2026-10-08,2026-10-17,"−44%, prima 4,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Ammorbidente,Ammorbidente concentrato – Deox,900 ml (45 lavaggi),45,a lavaggio,1.89,0.042,2026-10-08,2026-10-21,"−30%, prima 2,70."
+bennet08,Bennet,Asciugatutto,Asciugatutto in carta riciclata – Bennet Eco,3 maxi rotoli,3,al rotolo,1.99,0.663,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,49."
+bennet08,Bennet,Asciugatutto,Carta cucina asciugoni – Regina,6 rotoli,6,al rotolo,5.49,0.915,2026-10-08,2026-10-17,"−45%, prima 9,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Bagnoschiuma,Bagnodoccia – Felce Azzurra,"2 × 650 ml (L 1,3)",1.3,al litro,3.99,3.069,2026-10-08,2026-10-21,"−40%, prima 6,65."
+bennet08,Bennet,Bagnoschiuma,Detergente intimo – Venus,500 ml,0.5,al litro,1.99,3.980,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennet08,Bennet,Bibite,Bevanda alla frutta linea zero – Derby Blue,1 L,1,al litro,1.18,1.180,2026-10-08,2026-10-21,"−30%, prima 1,69."
+bennet08,Bennet,Bibite,Bevanda isotonica – Powerade,500 ml,0.5,al litro,0.89,1.780,2026-10-08,2026-10-21,"−25%, prima 1,19."
+bennet08,Bennet,Bibite,Energy drink – Red Bull,250 ml,0.25,al litro,1.08,4.320,2026-10-08,2026-10-21,"−26%, prima 1,45."
+bennet08,Bennet,Bibite,Original o Zero – Coca-Cola,"4 × 1,5 L",6,al litro,3.99,0.665,2026-10-08,2026-10-17,"−50%, prima 7,98. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Bibite,Succo e polpa di frutta gusti vari – Bennet Bio,3 × 200 ml (600 ml),0.6,al litro,1.59,2.650,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennet08,Bennet,Birra,Birra doppio malto La Bière du Demon,330 ml,0.33,al litro,1.99,6.030,2026-10-08,2026-10-21,"−25%, prima 2,66."
+bennet08,Bennet,Birra,Birra e gassosa – Panachè,"10 × 250 ml (2,5 L)",2.5,al litro,4.95,1.980,2026-10-08,2026-10-21,"−32%, prima 7,29."
+bennet08,Bennet,Birra,Birra lager Hell – Erdinger,500 ml,0.5,al litro,0.99,1.980,2026-10-08,2026-10-21,"−33%, prima 1,48."
+bennet08,Bennet,Birra,Birra lager o zero alcol – Moretti,3 × 330 ml,0.99,al litro,1.99,2.010,2026-10-08,2026-10-21,"−33%, prima 2,98."
+bennet08,Bennet,Birra,Birra premium – Bavaria,330 ml,0.33,al litro,0.55,1.667,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 0,93."
+bennet08,Bennet,Birra,Birra – Beck's,600 ml,0.6,al litro,0.89,1.483,2026-10-08,2026-10-17,"−44%, prima 1,59. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Biscotti,Biscotti Nic Nac – Colussi,650 g,0.65,al kg,1.95,3.000,2026-10-08,2026-10-21,"−30%, prima 2,79."
+bennet08,Bennet,Biscotti,Biscotti digestive – Paterson's,400 g,0.4,al kg,1.99,4.975,2026-10-08,2026-10-21,"−33%, prima 2,98."
+bennet08,Bennet,Biscotti,Biscotti integrali biologici – Bennet Bio,300 g,0.3,al kg,1.35,4.500,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,69."
+bennet08,Bennet,Biscotti,Biscotti – Pan di Stelle,1 kg,1,al kg,3.29,3.290,2026-10-08,2026-10-17,"−40%, prima 5,49. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Biscotti,Waferini – Cabrioni,400 g,0.4,al kg,1.50,3.750,2026-10-08,2026-10-21,"−33%, prima 2,25."
+bennet08,Bennet,Bresaola,Bresaola punta d'anca – Bennet Bio,70 g,0.07,al kg,3.99,57.000,2026-10-08,2026-10-21,"−20%, prima 4,99."
+bennet08,Bennet,Burro,Burro biologico – Bennet Bio,125 g,0.125,al kg,1.59,12.720,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennet08,Bennet,Burro,Burro casereccio – Santangiolina,250 g,0.25,al kg,1.79,7.160,2026-10-08,2026-10-17,"−49%, prima 3,49. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Caffè,Caffè macinato per moka – Lavazza,4 × 250 g (1 kg),1,al kg,9.49,9.490,2026-10-08,2026-10-17,"−47%, prima 17,98. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Calamari,Seppia pulita,al kg,1,al kg,19.90,19.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Carta igienica,Carta igienica Supreme – Nicky,4 rotoli,4,al rotolo,1.99,0.497,2026-10-08,2026-10-21,"−50%, prima 3,99."
+bennet08,Bennet,Carta igienica,Carta igienica in carta riciclata – Bennet Eco,4 maxi rotoli,4,al rotolo,2.08,0.520,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,98."
+bennet08,Bennet,Carta igienica,Carta igienica rotoloni – Regina,12 rotoli,12,al rotolo,6.99,0.583,2026-10-08,2026-10-17,"−43%, prima 12,28. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Cereali,Cereali integrali palline Nesquik – Nestlé,625 g,0.625,al kg,2.99,4.784,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,99."
+bennet08,Bennet,Cereali,Corn flakes – Bennet Bio,220 g,0.22,al kg,1.39,6.318,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennet08,Bennet,Cereali,Granola avena integrale biologica – Bennet Bio,400 g,0.4,al kg,2.60,6.500,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,25."
+bennet08,Bennet,Collutorio,Collutorio – Pasta del Capitano,400 ml,0.4,al litro,1.48,3.700,2026-10-08,2026-10-21,"−44%, prima 2,65."
+bennet08,Bennet,Conserve,Alici tese in olio d'oliva – Zarotti,300 g,0.3,al kg,6.98,23.267,2026-10-08,2026-10-21,"−35%, prima 10,75."
+bennet08,Bennet,Conserve,Filetti di sgombro – Rio Mare,120 g,0.12,al kg,2.49,20.750,2026-10-08,2026-10-21,"−25%, prima 3,32."
+bennet08,Bennet,Creme,Crema 100% mandorle pelate bio – Euro Company,175 g,0.175,al kg,4.79,27.371,2026-10-08,2026-10-21,"−20%, prima 5,99."
+bennet08,Bennet,Creme,Nutella – Ferrero,950 g,0.95,al kg,6.49,6.832,2026-10-08,2026-10-17,"−13%, prima 7,49. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Dentifricio,Dentifricio – Colgate,3 × 75 ml (225 ml),0.225,al litro,3.99,17.733,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 7,99."
+bennet08,Bennet,Farina,Farina bio precotta per polenta Taragna istantanea – Molino Filippini,500 g,0.5,al kg,1.64,3.280,2026-10-08,2026-10-21,"−25%, prima 2,19."
+bennet08,Bennet,Formaggio,Brenta Selezione Oro – Latterie Vicentine,al kg,1,al kg,14.90,14.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Fontal nazionale – Stella Alpina,al kg,1,al kg,11.90,11.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Formaggio Piave DOP mezzano,al kg,1,al kg,13.90,13.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Formaggio spalmabile – Philadelphia,250 g,0.25,al kg,1.99,7.960,2026-10-08,2026-10-17,"−46%, prima 3,69. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Formaggio,Gorgonzola DOP dolce Quattrorose – Santi,200 g,0.2,al kg,2.49,12.450,2026-10-08,2026-10-21,"−37%, prima 3,96."
+bennet08,Bennet,Formaggio,Original maxi fette – Leerdammer,260 g,0.26,al kg,3.49,13.423,2026-10-08,2026-10-21,"−50%, prima 6,98."
+bennet08,Bennet,Formaggio,Primosale senza lattosio – Bennet Vivisì,200 g,0.2,al kg,1.99,9.950,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,49."
+bennet08,Bennet,Formaggio,Robiola – Osella,al kg,1,al kg,14.90,14.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Scamorza bianca o affumicata,al kg,1,al kg,13.90,13.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Stracchino biologico – Bennet Bio,100 g,0.1,al kg,1.19,11.900,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,49."
+bennet08,Bennet,Formaggio,Stracchino – Pettinicchio,170 g,0.17,al kg,1.49,8.765,2026-10-08,2026-10-21,"−50%, prima 2,98."
+bennet08,Bennet,Formaggio,Toma al peperoncino,al kg,1,al kg,13.90,13.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Toma biellese,al kg,1,al kg,12.90,12.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Formaggio,Toma del Marchesato,al kg,1,al kg,10.90,10.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Frutta,Kiwi polpa gialla Sungold – Zespri,500 g,0.5,al kg,3.15,6.300,2026-10-08,2026-10-21,
+bennet08,Bennet,Frutta,Le noci per la ricerca – Fondazione Umberto Veronesi,500 g,0.5,al kg,3.98,7.960,2026-10-08,2026-10-21,
+bennet08,Bennet,Frutta,Mele Gala,al kg,1,al kg,1.59,1.590,2026-10-08,2026-10-21,
+bennet08,Bennet,Frutta,Pere Williams rosse,al kg,1,al kg,1.98,1.980,2026-10-08,2026-10-21,
+bennet08,Bennet,Gamberi,Gamberi argentini 20/30 – Bontà dal Mare,700 g,0.7,al kg,8.90,12.714,2026-10-08,2026-10-17,"−40%, prima 14,90. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Surgelato. Quantità limitata."
+bennet08,Bennet,Gelato,Cornetto mini classico – Algida,6 pz 288 g,0.288,al kg,3.96,13.750,2026-10-08,2026-10-21,"−25%, prima 5,29."
+bennet08,Bennet,Grana,Grana Padano DOP grattugiato – Gran Soresina,100 g,0.1,al kg,1.49,14.900,2026-10-08,2026-10-17,"−50%, prima 2,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Grana,Grana Padano DOP stagionatura 9 mesi – Granterre Agriform,700 g,0.7,al kg,9.90,14.143,2026-10-08,2026-10-17,"−41%, prima 16,90. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Grana,Parmigiano Reggiano DOP biologico grattugiato – Bennet Bio,50 g,0.05,al kg,1.19,23.800,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,49."
+bennet08,Bennet,Grana,Trentingrana stagionatura 24 mesi,al kg,1,al kg,16.90,16.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Insalata,Insalata Arcobaleno – Bennet,500 g,0.5,al kg,1.95,3.900,2026-10-08,2026-10-21,
+bennet08,Bennet,Insalata,Insalata Songino – Bennet,125 g,0.125,al kg,1.55,12.400,2026-10-08,2026-10-21,
+bennet08,Bennet,Latte,Latte UHT Bontà Leggera – Granarolo,1 L,1,al litro,0.79,0.790,2026-10-08,2026-10-17,"−56%, prima 1,78. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Lavastoviglie,Pastiglie lavastoviglie Ultimate limone – Finish,53 pz,53,a lavaggio,8.69,0.164,2026-10-08,2026-10-17,"−39%, prima 14,34. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Lavatrice,Detersivo in capsule – Dixan,50 capsule,50,a lavaggio,8.99,0.180,2026-10-08,2026-10-17,"−40%, prima 14,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Lavatrice,Detersivo in polvere per lavatrice – Dixan,"4,5 kg (82 lavaggi)",82,a lavaggio,11.90,0.145,2026-10-08,2026-10-17,"−54%, prima 25,88. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Lavatrice,Detersivo liquido per lavatrice – Dash,"3 × 25 lavaggi (L 3,375)",75,a lavaggio,10.90,0.145,2026-10-08,2026-10-17,"−54%, prima 23,70. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Lavatrice,Detersivo liquido per lavatrice – Dual Power,"1,8 L (45 lavaggi)",45,a lavaggio,2.95,0.066,2026-10-08,2026-10-21,"−34%, prima 4,48."
+bennet08,Bennet,Legumi,"Borlotti, cannellini o ceci – Valfrutta",360 g,0.36,al kg,0.89,2.472,2026-10-08,2026-10-21,"−30%, prima 1,28."
+bennet08,Bennet,Manzo,Scaloppe di bovino adulto,al kg,1,al kg,12.99,12.990,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Merendine,Brioss – Kinder,10 pz 270 g,0.27,al kg,2.19,8.111,2026-10-08,2026-10-17,"−24%, prima 2,89. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Merendine,Buondì – Bauli,6 pz 198 g,0.198,al kg,1.29,6.515,2026-10-08,2026-10-21,"−28%, prima 1,80."
+bennet08,Bennet,Merendine,Merenda Pinguì – Kinder,8 pz 240 g,0.24,al kg,2.99,12.458,2026-10-08,2026-10-21,"−25%, prima 3,99."
+bennet08,Bennet,Merluzzo,Cuore di baccalà ammollato – Ittix,200 g,0.2,al kg,9.90,49.500,2026-10-08,2026-10-21,
+bennet08,Bennet,Merluzzo,Cuori di filetto di merluzzo – Bennet,4 pz 400 g,0.4,al kg,3.99,9.975,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 5,97. Surgelato."
+bennet08,Bennet,Merluzzo,Filetti di merluzzo – Frosta,340 g,0.34,al kg,3.99,11.735,2026-10-08,2026-10-17,"−43%, prima 6,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Surgelato. Quantità limitata."
+bennet08,Bennet,Miele,Miele millefiori – Bennet Bio,350 g,0.35,al kg,3.99,11.400,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,99."
+bennet08,Bennet,Mortadella,Mortadella modella,al kg,1,al kg,12.90,12.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Mozzarella,Mozzarella di bufala campana DOP Selezione Gourmet – Bennet,250 g,0.25,al kg,2.99,11.960,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,99."
+bennet08,Bennet,Olio d'oliva,Olio extra vergine di oliva fruttato intenso – Piesse,1 L,1,al litro,4.50,4.500,2026-10-08,2026-10-21,"−40%, prima 7,50."
+bennet08,Bennet,Olio di semi,Olio di girasole fritto libero – Zucchi,1 L,1,al litro,2.29,2.290,2026-10-08,2026-10-21,"−40%, prima 3,82."
+bennet08,Bennet,Panati,Bastoncini di merluzzo – Findus,18 pz 450 g,0.45,al kg,3.79,8.422,2026-10-08,2026-10-17,"−37%, prima 5,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Pancetta,Pancetta arrotolata,al kg,1,al kg,15.90,15.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Pancetta,Pancetta dolce o affumicata a cubetti – Fratelli Beretta,4 × 75 g (300 g),0.3,al kg,3.98,13.267,2026-10-08,2026-10-21,"−30%, prima 5,69."
+bennet08,Bennet,Pane,Focaccia gustosa,al kg,1,al kg,9.80,9.800,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Pane,Pane integrale biologico Pan Bauletto – Bennet Bio,400 g,0.4,al kg,1.20,3.000,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,50."
+bennet08,Bennet,Pane,Panini morbidi al latte Nuvolatte – Morato,480 g,0.48,al kg,1.99,4.146,2026-10-08,2026-10-21,"−33%, prima 2,98."
+bennet08,Bennet,Pane,Piadina biologica – Bennet Bio,3 pz 300 g,0.3,al kg,1.59,5.300,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,99."
+bennet08,Bennet,Pasta,Agnolotti allo stufato di manzo,al kg,1,al kg,15.20,15.200,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Pasta,Gnocchi biologici – Bennet Bio,400 g,0.4,al kg,1.98,4.950,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,58."
+bennet08,Bennet,Pasta,Gnocchi di patate – Bertoncello,1 kg,1,al kg,2.99,2.990,2026-10-08,2026-10-21,"−25%, prima 3,99."
+bennet08,Bennet,Pasta,Pasta con grano saraceno – Moro,375 g,0.375,al kg,1.49,3.973,2026-10-08,2026-10-21,"−25%, prima 1,99."
+bennet08,Bennet,Pasta,Pasta di farro dicocco bio – Sgambaro,500 g,0.5,al kg,2.39,4.780,2026-10-08,2026-10-21,"−20%, prima 2,99."
+bennet08,Bennet,Pasta,Pasta fresca all'uovo – Bennet,250 g,0.25,al kg,0.96,3.840,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,49."
+bennet08,Bennet,Pasta,Pasta fresca ripiena Sfogliagrezza – Giovanni Rana,250 g,0.25,al kg,1.99,7.960,2026-10-08,2026-10-17,"−48%, prima 3,85. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Pasta,Pasta fresca ripiena – Nonna Rina,250 g,0.25,al kg,1.98,7.920,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,49."
+bennet08,Bennet,Pasta,Pasta trafilata al bronzo – La Molisana,1 kg,1,al kg,1.29,1.290,2026-10-08,2026-10-17,"−55%, prima 2,88. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Pasta,Pastina all'uovo formati vari – Bennet,250 g,0.25,al kg,0.68,2.720,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 0,85."
+bennet08,Bennet,Pasta,Ravioli ricotta e spinaci con sugo al pomodoro – Bennet,550 g,0.55,al kg,2.79,5.073,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,49. Surgelato."
+bennet08,Bennet,Pasta,Spaghetti di semola formati vari – Pastificio Felicetti,750 g,0.75,al kg,1.19,1.587,2026-10-08,2026-10-21,"−28%, prima 1,66."
+bennet08,Bennet,Patate,Patate Chef Gourmet – McCain,500 g,0.5,al kg,2.79,5.580,2026-10-08,2026-10-21,"−20%, prima 3,49. Surgelato."
+bennet08,Bennet,Pesce,Orata 600/800 – Cromaris,al kg,1,al kg,10.90,10.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Pesce,Polpo decongelato,al kg,1,al kg,19.90,19.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Pizza,Pizza Regina alta margherita – Cameo,375 g,0.375,al kg,1.99,5.307,2026-10-08,2026-10-17,"−50%, prima 3,95. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Pomodoro,Passata di pomodoro calabrese bio Belvedere – Portaro,660 g,0.66,al kg,1.48,2.242,2026-10-08,2026-10-21,"−20%, prima 1,86."
+bennet08,Bennet,Pomodoro,Passata di pomodoro – Mutti,560 g,0.56,al kg,0.79,1.411,2026-10-08,2026-10-17,"−56%, prima 1,80. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Preparati,Hamburger di bovino tipi vari,2 pz 200 g,0.2,al kg,3.19,15.950,2026-10-08,2026-10-21,"−20%, prima 3,99. Surgelato."
+bennet08,Bennet,Prosciutto,Prosciutto cotto alta qualità Gran Biscotto – Rovagnati,al kg,1,al kg,21.90,21.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Prosciutto,Prosciutto cotto biologico – Bennet Bio,80 g,0.08,al kg,2.99,37.375,2026-10-08,2026-10-21,"−25%, prima 3,99."
+bennet08,Bennet,Prosciutto,Prosciutto cotto o crudo alta qualità – Parmacotto,2 × 100 g,0.2,al kg,3.78,18.900,2026-10-08,2026-10-17,"−42%, prima 6,50. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Prosciutto,Prosciutto crudo,al kg,1,al kg,15.90,15.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Prosciutto,Prosciutto crudo biologico – Bennet Bio,70 g,0.07,al kg,3.58,51.143,2026-10-08,2026-10-21,"−20%, prima 4,48."
+bennet08,Bennet,Ricotta,Ricottine Le Gustose – Caseificio Valcolatte,2 × 90 g,0.18,al kg,1.19,6.611,2026-10-08,2026-10-21,"−25%, prima 1,59."
+bennet08,Bennet,Ricotta,Ricottine fresche biologiche – Bennet Bio,2 × 100 g,0.2,al kg,1.39,6.950,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,79."
+bennet08,Bennet,Riso,Riso Arborio Oltrepò – Scotti,1 kg,1,al kg,1.99,1.990,2026-10-08,2026-10-17,"−50%, prima 3,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Salmone,Scaloppa di salmone Tagli pregiati selezione del pescatore,al kg,1,al kg,23.90,23.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Salmone,Trancio di salmone,al kg,1,al kg,17.90,17.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Shampoo,Shampoo Hair Food – Garnier Fructis,350 ml,0.35,al litro,3.49,9.971,2026-10-08,2026-10-21,"−30%, prima 4,99."
+bennet08,Bennet,Shampoo,Shampoo – Pantene,625 ml,0.625,al litro,4.39,7.024,2026-10-08,2026-10-17,"−48%, prima 8,49. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Sughi,Pesto – Tigullio,190 g,0.19,al kg,1.49,7.842,2026-10-08,2026-10-17,"−46%, prima 2,77. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Sughi,Sugo alle vongole con pomodoro – Bennet,400 g,0.4,al kg,3.99,9.975,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 4,99. Surgelato."
+bennet08,Bennet,Sughi,Sugo arrabbiata e datterini peperoncino jalapeño – Cirio,190 g,0.19,al kg,0.98,5.158,2026-10-08,2026-10-21,"−38%, prima 1,59."
+bennet08,Bennet,Sughi,Sugo con Parmigiano Reggiano sugo fresco – Giovanni Rana,150 g,0.15,al kg,2.17,14.467,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,63."
+bennet08,Bennet,Suino,Coppa piacentina DOP,al kg,1,al kg,24.90,24.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Suino,Porchetta toscana di suino – Salumeria Monte San Savino,al kg,1,al kg,17.90,17.900,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Tacchino,Tacchino arrosto biologico – Bennet Bio,80 g,0.08,al kg,3.99,49.875,2026-10-08,2026-10-21,"−20%, prima 4,99."
+bennet08,Bennet,Tonno,Filetti di tonno – Rio Mare,180 g,0.18,al kg,3.99,22.167,2026-10-08,2026-10-21,"−40%, prima 6,65."
+bennet08,Bennet,Tonno,Tonno all'olio di oliva – Rio Mare,"14 × 80 g (1,12 kg)",1.12,al kg,13.39,11.955,2026-10-08,2026-10-17,"−45%, prima 24,35. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Tonno,Tonno filo d'olio – Rio Mare,4 × 65 g (260 g),0.26,al kg,5.49,21.115,2026-10-08,2026-10-21,"−20%, prima 6,87."
+bennet08,Bennet,Uova,Uova fresche medie da allevamento a terra – Ovonovo,10 pz,10,all'uovo,1.89,0.189,2026-10-08,2026-10-17,"−53%, prima 3,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Verdura,Fagiolini verdi,500 g,0.5,al kg,1.85,3.700,2026-10-08,2026-10-21,
+bennet08,Bennet,Verdura,Funghi champignon bianchi residuo zero,500 g,0.5,al kg,1.89,3.780,2026-10-08,2026-10-21,
+bennet08,Bennet,Verdura,Spinaci o erbette Filiera Valore – Bennet,400 g,0.4,al kg,1.85,4.625,2026-10-08,2026-10-21,
+bennet08,Bennet,Verdure surgelate,"I contorni ortolano zucchine, patate, carote – Frosta",400 g,0.4,al kg,2.47,6.175,2026-10-08,2026-10-21,"−38%, prima 3,99."
+bennet08,Bennet,Verdure surgelate,Minestrone verdure e legumi – Bennet,600 g,0.6,al kg,2.39,3.983,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,99."
+bennet08,Bennet,Verdure surgelate,Piselli fini – Bennet,1 kg,1,al kg,2.87,2.870,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 3,69."
+bennet08,Bennet,Verdure surgelate,Piselli finissimi – Frosta,850 g,0.85,al kg,2.79,3.282,2026-10-08,2026-10-17,"−50%, prima 5,59. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Verdure surgelate,Spinaci millefoglie – Bonduelle,600 g,0.6,al kg,1.99,3.317,2026-10-08,2026-10-21,"−33%, prima 2,98."
+bennet08,Bennet,Verdure surgelate,Verdurì zucca e carote – Orogel,600 g,0.6,al kg,2.49,4.150,2026-10-08,2026-10-21,"−24%, prima 3,28."
+bennet08,Bennet,Vino,Barbera d'Asti DOCG – Duchessa Lia,750 ml,0.75,al litro,4.49,5.987,2026-10-08,2026-10-21,"−25%, prima 5,99."
+bennet08,Bennet,Vino,Cannonau di Sardegna DOC Desigio – Pedres,750 ml,0.75,al litro,4.48,5.973,2026-10-08,2026-10-21,"−34%, prima 6,79."
+bennet08,Bennet,Vino,Dolcetto Langhe DOC – Cantina Clavesana,750 ml,0.75,al litro,2.49,3.320,2026-10-08,2026-10-17,"−45%, prima 4,54. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Vino,Langhe DOC Chardonnay Serbato – Batasiolo,750 ml,0.75,al litro,4.99,6.653,2026-10-08,2026-10-21,"−33%, prima 7,46."
+bennet08,Bennet,Vino,Müller Thurgau Trentino DOC – Cavit,750 ml,0.75,al litro,3.95,5.267,2026-10-08,2026-10-21,"−30%, prima 5,65."
+bennet08,Bennet,Vino,Nebbiolo DOC Monferrato – Produttori di Govone,750 ml,0.75,al litro,4.48,5.973,2026-10-08,2026-10-21,"−35%, prima 6,90."
+bennet08,Bennet,Vino,Nebbiolo d'Alba DOC – Duchessa Lia,750 ml,0.75,al litro,4.99,6.653,2026-10-08,2026-10-17,"−44%, prima 8,95. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Vino,Passerina IGT – Casalfarneto,750 ml,0.75,al litro,3.98,5.307,2026-10-08,2026-10-21,"−30%, prima 5,69."
+bennet08,Bennet,Vino,Pinot grigio delle Venezie DOC – Cadis,750 ml,0.75,al litro,2.99,3.987,2026-10-08,2026-10-21,"−40%, prima 4,99."
+bennet08,Bennet,Vino,Primitivo Puglia IGP bio Notte Rossa,750 ml,0.75,al litro,5.59,7.453,2026-10-08,2026-10-21,"−30%, prima 7,99."
+bennet08,Bennet,Vino,Prosecco DOC extra dry – Ca' di Rajo,750 ml,0.75,al litro,3.49,4.653,2026-10-08,2026-10-17,"−48%, prima 6,70. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Vino,Prosecco superiore DOCG – Brocca dei Dori,750 ml,0.75,al litro,4.49,5.987,2026-10-08,2026-10-21,"−25%, prima 5,99."
+bennet08,Bennet,Vino,Rosé IGT Trevenezie Coordinate – Piera1899,750 ml,0.75,al litro,5.49,7.320,2026-10-08,2026-10-21,"−30%, prima 7,85."
+bennet08,Bennet,Vino,Sangiovese di Romagna DOC – Terre Cevico,750 ml,0.75,al litro,2.98,3.973,2026-10-08,2026-10-21,"−35%, prima 4,59."
+bennet08,Bennet,Vino,Valdobbiadene Prosecco Superiore DOCG Brut Millesimato – La Gioiosa,750 ml,0.75,al litro,5.49,7.320,2026-10-08,2026-10-21,"−35%, prima 8,45."
+bennet08,Bennet,Vitello,Spezzatino di vitello,al kg,1,al kg,13.99,13.990,2026-10-08,2026-10-21,Al banco.
+bennet08,Bennet,Würstel,Würstel Servelade original Südtirol – Recla,200 g,0.2,al kg,1.99,9.950,2026-10-08,2026-10-21,"−23%, prima 2,59."
+bennet08,Bennet,Yogurt,Kefir Bio bianco naturale – Milk,480 g,0.48,al kg,1.39,2.896,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,79."
+bennet08,Bennet,Yogurt,Kefir cremoso biologico – Almaverde,150 g,0.15,al kg,0.99,6.600,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,29."
+bennet08,Bennet,Yogurt,Yogurt bianco intero – Bennet Bio,500 g,0.5,al kg,1.99,3.980,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 2,49."
+bennet08,Bennet,Yogurt,Yogurt gusti vari – Yomo,8 × 125 g,1,al kg,2.19,2.190,2026-10-08,2026-10-17,"−56%, prima 4,99. Vale solo dall'8 al 17 ottobre, non per tutto il volantino. Quantità limitata."
+bennet08,Bennet,Yogurt,Yogurt intero biologico gusti vari – Bennet Bio,125 g,0.125,al kg,0.99,7.920,2026-10-08,2026-10-21,"SOLO CON LA CARTA BENNET CLUB. Senza tessera 1,29."
 carriper29,Carrefour,Pasta,Casoncelli alla carne,1 kg,1,al kg,7.90,7.900,2026-10-08,2026-10-11,"−20%, prima 9,90. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
 carriper29,Carrefour,Pollo,"Fusi o sovracosce di pollo, confezione risparmio",al kg,1,al kg,4.49,4.490,2026-10-08,2026-10-11,"−35%, prima 6,99 al kg. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
 carriper29,Carrefour,Vino,Barbera Piemonte DOC Il Poggio dei Vigneti,750 ml,0.75,al litro,1.99,2.653,2026-10-08,2026-10-11,"−60%, prima 4,99. Vale solo dall'8 all'11 ottobre. Vale anche: Market."
@@ -4972,6 +5185,102 @@ eurospin08,Eurospin,Yogurt,Yogurt bianco intero – Amo Essere senza lattosio,50
 eurospin08,Eurospin,Yogurt,Yogurt da bere gusti assortiti,500 g,0.5,al kg,0.79,1.580,2026-10-08,2026-10-18,"Offerta Family: solo con la carta Eurospin Family, senza tessera 0,95. Prima 0,95. È da bere, non un vasetto."
 eurospin08,Eurospin,Yogurt,"Yogurt magro alla frutta – Amo Essere senza lattosio, 8 × 125 g",1 kg,1,al kg,2.85,2.850,2026-10-08,2026-10-18,
 eurospin08,Eurospin,Yogurt,"Yogurt magro con pezzi di frutta 0,1% di grassi, 8 × 125 g",1 kg,1,al kg,1.89,1.890,2026-10-08,2026-10-18,"Prima 2,39."
+ipercoop08,Ipercoop,Affettati,Manzo cotto,all'etto,0.1,al kg,1.74,17.400,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 2,49 all'etto."
+ipercoop08,Ipercoop,Affettati,Tacchino ripieno al forno,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Bresaola,Bresaola punta d'anca – Gran Zebrù,all'etto,0.1,al kg,3.49,34.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Asiago D.O.P. – Pennanera,all'etto,0.1,al kg,1.09,10.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Camembert – Paysan Breton,250 g,0.25,al kg,2.19,8.760,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Caprice des Dieux,200 g,0.2,al kg,2.69,13.450,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Formaggio,Caprino semistagionato,all'etto,0.1,al kg,2.09,20.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Feta barricata D.O.P. – Hotos,180 g,0.18,al kg,2.69,14.944,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Fontal – Trentin,300 g,0.3,al kg,3.14,10.467,2026-10-08,2026-10-21,"−30%, prima 4,49."
+ipercoop08,Ipercoop,Formaggio,Gorgonzola D.O.P. dolce – Castel Regio,200 g,0.2,al kg,2.29,11.450,2026-10-08,2026-10-21,"−21%, prima 2,89."
+ipercoop08,Ipercoop,Formaggio,Il Canestrato al pistacchio – Le Delizie,all'etto,0.1,al kg,2.29,22.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Leerdammer,350 g,0.35,al kg,3.99,11.400,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Pecorino Giunco – Amatrice,all'etto,0.1,al kg,1.89,18.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Pecorino Molarotto Nero – Sardaformaggi,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 1,99 all'etto."
+ipercoop08,Ipercoop,Formaggio,Provolone Valpadana D.O.P. piccante – Cheestà,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,"−21%, prima 1,89."
+ipercoop08,Ipercoop,Formaggio,Raclette – Entremont,400 g,0.4,al kg,4.89,12.225,2026-10-08,2026-10-21,"−30%, prima 6,99."
+ipercoop08,Ipercoop,Formaggio,Stracchino – Nonno Nanni,250 g,0.25,al kg,2.59,10.360,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Formaggio,Taleggio D.O.P.,all'etto,0.1,al kg,1.18,11.800,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 1,69 all'etto."
+ipercoop08,Ipercoop,Formaggio,Toma Erbì – Fiandino,all'etto,0.1,al kg,1.59,15.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Formaggio,Tomino al latte di bufala – Pezzana,160 g,0.16,al kg,4.19,26.188,2026-10-08,2026-10-21,"−30%, prima 5,99."
+ipercoop08,Ipercoop,Grana,Parmigiano Reggiano D.O.P. 30 mesi,all'etto,0.1,al kg,2.49,24.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Mortadella,Mortadella Favola con pistacchio,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Mozzarella,Bocconcini di bufala D.O.P. – Il Parco,5 x 50 g,0.25,al kg,3.35,13.400,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 4,79."
+ipercoop08,Ipercoop,Mozzarella,Figliata di bufala – Mandara,150 g,0.15,al kg,2.49,16.600,2026-10-08,2026-10-21,"−31%, prima 3,59."
+ipercoop08,Ipercoop,Mozzarella,Mozzarella Gioia del Colle D.O.P. – Gioiella,250 g,0.25,al kg,2.99,11.960,2026-10-08,2026-10-21,"−25%, prima 3,99."
+ipercoop08,Ipercoop,Mozzarella,Mozzarella di bufala D.O.P. – Garofalo,3 x 100 g,0.3,al kg,3.39,11.300,2026-10-08,2026-10-21,"−31%, prima 4,89."
+ipercoop08,Ipercoop,Pancetta,Pancetta bacon tesa,all'etto,0.1,al kg,1.00,10.000,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 1,45 all'etto."
+ipercoop08,Ipercoop,Prosciutto,Prosciutto San Daniele D.O.P.,all'etto,0.1,al kg,2.49,24.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Prosciutto,Prosciutto Valtellinese fiocco,all'etto,0.1,al kg,2.09,20.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Prosciutto,Prosciutto cotto alta qualità nazionale – Cuore Oro,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Salame,Salame Felino I.G.P.,all'etto,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Suino,Coppa di Parma I.G.P.,all'etto,0.1,al kg,1.85,18.500,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 2,49 all'etto."
+ipercoop08,Ipercoop,Suino,Costine di suino marinate – Tulip,550 g,0.55,al kg,7.69,13.982,2026-10-08,2026-10-21,"−30%, prima 10,99."
+ipercoop08,Ipercoop,Suino,Porchetta di maiale Rosetta,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Aglianico del Vulture D.O.P. – Fantini,750 ml,0.75,al litro,5.24,6.987,2026-10-08,2026-10-21,"−30%, prima 7,49."
+ipercoop08,Ipercoop,Vino,Amarone Classico Costasera D.O.C.G. – Masi,750 ml,0.75,al litro,31.90,42.533,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Barbaresco D.O.C.G. – Giacosa,750 ml,0.75,al litro,12.77,17.027,2026-10-08,2026-10-21,"−40%, prima 21,29."
+ipercoop08,Ipercoop,Vino,Barbera d'Asti D.O.C.G. – Poggio Mandrina,750 ml,0.75,al litro,3.79,5.053,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 6,35."
+ipercoop08,Ipercoop,Vino,Bonarda Oltrepò Pavese D.O.C. – Torrevilla,750 ml,0.75,al litro,3.59,4.787,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 5,99."
+ipercoop08,Ipercoop,Vino,Cannonau di Sardegna Rosato Nudo – Cantina Siddura,750 ml,0.75,al litro,13.93,18.573,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 19,90."
+ipercoop08,Ipercoop,Vino,Cerasuolo d'Abruzzo D.O.C. – Villa Gemma Masciarelli,750 ml,0.75,al litro,14.49,19.320,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Champagne Brut Rosé – Veuve Clicquot,750 ml,0.75,al litro,51.90,69.200,2026-10-08,2026-10-21,"−20%, prima 64,90."
+ipercoop08,Ipercoop,Vino,Champagne Rosé Impérial – Moët & Chandon,750 ml,0.75,al litro,47.90,63.867,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Chardonnay Venezia Giulia I.G.T. – Volpe Pasini,750 ml,0.75,al litro,8.29,11.053,2026-10-08,2026-10-21,"−30%, prima 11,90."
+ipercoop08,Ipercoop,Vino,Chianti Rosato D.O.C.G. – Fattorie Petriolo,750 ml,0.75,al litro,5.90,7.867,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 7,90."
+ipercoop08,Ipercoop,Vino,Chianti Rufina Riserva D.O.C.G. – Nipozzano Frescobaldi,750 ml,0.75,al litro,9.82,13.093,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 13,10."
+ipercoop08,Ipercoop,Vino,Ciliegiolo Maremma Toscana D.O.C. – Vignaioli del Morellino di Scansano,750 ml,0.75,al litro,4.49,5.987,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Vino,Cirò Rosso D.O.C. Classico – Ippolito,750 ml,0.75,al litro,3.96,5.280,2026-10-08,2026-10-21,"−25%, prima 5,29."
+ipercoop08,Ipercoop,Vino,Cumaro Rosso D.O.C. – Umani Ronchi,750 ml,0.75,al litro,18.90,25.200,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Dolcetto d'Alba D.O.C. – Fontanafredda,750 ml,0.75,al litro,5.49,7.320,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Vino,Etna Rosato D.O.C. Sicilia – Illustrata Madaudo,750 ml,0.75,al litro,6.29,8.387,2026-10-08,2026-10-21,"−30%, prima 8,99."
+ipercoop08,Ipercoop,Vino,Falanghina Campania I.G.T. – Alois,750 ml,0.75,al litro,4.79,6.387,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Vino,Fior d'Arancio secco D.O.C.G. – Cantina Colli Euganei,750 ml,0.75,al litro,4.19,5.587,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 6,99."
+ipercoop08,Ipercoop,Vino,Greco di Tufo D.O.C.G. – Feudi di San Gregorio,750 ml,0.75,al litro,7.99,10.653,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Gutturnio rosso D.O.C. – Viti&Vini,2 × 750 ml (1+1),1.5,al litro,4.99,3.327,2026-10-08,2026-10-21,"Una bottiglia sola costa 4,99."
+ipercoop08,Ipercoop,Vino,Lagrein Dunkel Alto Adige D.O.C. – Walch,750 ml,0.75,al litro,8.79,11.720,2026-10-08,2026-10-21,"−20%, prima 10,99."
+ipercoop08,Ipercoop,Vino,Lagrein Rosato Trentino D.O.C. – Mezzacorona,750 ml,0.75,al litro,3.49,4.653,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 4,99."
+ipercoop08,Ipercoop,Vino,Lambrusco Giuseppe Verdi I.G.T. – Cantine Ceci,750 ml,0.75,al litro,4.89,6.520,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 6,99."
+ipercoop08,Ipercoop,Vino,Langhe Arneis D.O.C. – Rocca delle Vergini Teo Costa,750 ml,0.75,al litro,7.63,10.173,2026-10-08,2026-10-21,"−30%, prima 10,90."
+ipercoop08,Ipercoop,Vino,Lugana D.O.C. – Villa Borghetti Pasqua,750 ml,0.75,al litro,6.64,8.853,2026-10-08,2026-10-21,"−30%, prima 9,49."
+ipercoop08,Ipercoop,Vino,Montepulciano d'Abruzzo D.O.C. – Fantini,750 ml,0.75,al litro,4.39,5.853,2026-10-08,2026-10-21,"−26%, prima 5,90."
+ipercoop08,Ipercoop,Vino,Morellino di Scansano D.O.C.G. – La Mora Cecchi,750 ml,0.75,al litro,5.49,7.320,2026-10-08,2026-10-21,"−25%, prima 7,32."
+ipercoop08,Ipercoop,Vino,Moscato Giallo Dolomiti I.G.T. – Pfefferer,750 ml,0.75,al litro,9.20,12.267,2026-10-08,2026-10-21,"−20%, prima 11,50."
+ipercoop08,Ipercoop,Vino,Nebbiolo D.O.C. – Marchesi di Barolo,750 ml,0.75,al litro,10.49,13.987,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Vino,Negroamaro Rosso Salento I.G.P. – San Patrime,750 ml,0.75,al litro,3.43,4.573,2026-10-08,2026-10-21,"−30%, prima 4,90."
+ipercoop08,Ipercoop,Vino,Nero d'Avola D.O.C. – Settesoli,750 ml,0.75,al litro,3.29,4.387,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Palazzo della Torre Vino Rosso I.G.T. – Allegrini,750 ml,0.75,al litro,13.50,18.000,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 16,90."
+ipercoop08,Ipercoop,Vino,Pecorino I.G.T. Terre Chieti – Umani Ronchi,750 ml,0.75,al litro,5.59,7.453,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 7,99."
+ipercoop08,Ipercoop,Vino,Pigato D.O.C. Riviera Ligure di Ponente – Donne della Torre Sartori di Pigato,750 ml,0.75,al litro,8.79,11.720,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 10,99."
+ipercoop08,Ipercoop,Vino,Pignoletto Modena D.O.C. frizzante – Tenuta Villa Cialdini Chiarli,750 ml,0.75,al litro,3.59,4.787,2026-10-08,2026-10-21,"−40%, prima 5,99."
+ipercoop08,Ipercoop,Vino,Pinot Grigio Friuli Colli Orientali D.O.C. – Ca' del Gallo,750 ml,0.75,al litro,4.83,6.440,2026-10-08,2026-10-21,"−30%, prima 6,90."
+ipercoop08,Ipercoop,Vino,Pinot Nero Metodo Classico – Tenuta di Caseo 470,750 ml,0.75,al litro,17.15,22.867,2026-10-08,2026-10-21,"−25%, prima 22,90."
+ipercoop08,Ipercoop,Vino,Pinot Nero Trentino D.O.C. – Claps Albino Armani,750 ml,0.75,al litro,6.64,8.853,2026-10-08,2026-10-21,"−30%, prima 9,49."
+ipercoop08,Ipercoop,Vino,Plumbago Sicilia D.O.C. Bio – Planeta,750 ml,0.75,al litro,8.90,11.867,2026-10-08,2026-10-21,Solo per i soci Coop.
+ipercoop08,Ipercoop,Vino,Primitivo Salento I.G.P. – Notte Rossa,750 ml,0.75,al litro,3.79,5.053,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Ribolla Gialla Venezia Giulia I.G.T. – Il Pompiere Schiopetto,750 ml,0.75,al litro,11.58,15.440,2026-10-08,2026-10-21,"−25%, prima 15,45."
+ipercoop08,Ipercoop,Vino,Ribolla Gialla frizzante I.G.T. – Tenimenti Civa,750 ml,0.75,al litro,3.59,4.787,2026-10-08,2026-10-21,"−40%, prima 5,99."
+ipercoop08,Ipercoop,Vino,Rosso Piceno D.O.C. Superiore – Brecciarolo Velenosi,750 ml,0.75,al litro,6.29,8.387,2026-10-08,2026-10-21,"−30%, prima 8,99."
+ipercoop08,Ipercoop,Vino,Rosso Toscana I.G.T. – Villa Antinori,750 ml,0.75,al litro,11.39,15.187,2026-10-08,2026-10-21,"−25%, prima 15,19."
+ipercoop08,Ipercoop,Vino,Rosso di Montepulciano D.O.C. – Corte Podere Casanova,750 ml,0.75,al litro,6.74,8.987,2026-10-08,2026-10-21,"−25%, prima 8,99."
+ipercoop08,Ipercoop,Vino,Rosso di Seta I.G.P. Bombino – Cantina di Ruvo di Puglia,750 ml,0.75,al litro,5.59,7.453,2026-10-08,2026-10-21,"−30%, prima 7,99."
+ipercoop08,Ipercoop,Vino,Rosso di Valtellina D.O.C. – Triacca,750 ml,0.75,al litro,6.39,8.520,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 7,99."
+ipercoop08,Ipercoop,Vino,Ruchè di Castagnole Monferrato D.O.C.G. – Bersano,750 ml,0.75,al litro,4.83,6.440,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 6,90."
+ipercoop08,Ipercoop,Vino,Sauvignon Südtirol D.O.C. – K. Martini,750 ml,0.75,al litro,8.90,11.867,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 11,90."
+ipercoop08,Ipercoop,Vino,Sfursat D.O.C.G. Valtellina – Negri,750 ml,0.75,al litro,22.32,29.760,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 27,90."
+ipercoop08,Ipercoop,Vino,Spumante Prosecco Asolo D.O.C.G. Extra Dry – La Gioiosa,750 ml,0.75,al litro,5.79,7.720,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Timorasso D.O.C. Colli Tortonesi – Fiorella Bertino,750 ml,0.75,al litro,7.99,10.653,2026-10-08,2026-10-21,"−31%, prima 11,50."
+ipercoop08,Ipercoop,Vino,Titulus Verdicchio dei Castelli di Jesi D.O.C. Classico – Fazi Battaglia,750 ml,0.75,al litro,4.54,6.053,2026-10-08,2026-10-21,"−30%, prima 6,49."
+ipercoop08,Ipercoop,Vino,Valpolicella D.O.C. Superiore – Cantine di Verona,750 ml,0.75,al litro,4.54,6.053,2026-10-08,2026-10-21,"−30%, prima 6,49."
+ipercoop08,Ipercoop,Vino,Valpolicella Ripasso D.O.C. – Bertani,750 ml,0.75,al litro,8.90,11.867,2026-10-08,2026-10-21,
+ipercoop08,Ipercoop,Vino,Vermentino Colli di Luni – Cantina Lunae,750 ml,0.75,al litro,9.49,12.653,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 11,90."
+ipercoop08,Ipercoop,Vino,Vermentino di Sardegna D.O.C. – Terre Bianche Sella&Mosca,750 ml,0.75,al litro,4.49,5.987,2026-10-08,2026-10-21,"−25%, prima 5,99."
+ipercoop08,Ipercoop,Vino,Vino Boca D.O.C. – Cantina Zanetta,750 ml,0.75,al litro,13.49,17.987,2026-10-08,2026-10-21,"−20%, prima 16,90."
+ipercoop08,Ipercoop,Vino,Vulcanico Falanghina Basilicata I.G.T. – Paternoster,750 ml,0.75,al litro,8.99,11.987,2026-10-08,2026-10-21,"Solo per i soci Coop. Senza tessera 11,99."
+ipercoop08,Ipercoop,Vino,Zibibbo Terre Siciliane I.G.T. – Cardilla,750 ml,0.75,al litro,3.47,4.627,2026-10-08,2026-10-21,"−40%, prima 5,79."
+ipercoop08,Ipercoop,Würstel,Würstel Wudy classico – Aia,2 x 300 g,0.6,al kg,1.99,3.317,2026-10-08,2026-10-21,
 lidl08,Lidl,Acqua,Acqua minerale naturale – Sant'Anna,"6 x 0,5 l",3,al litro,1.19,0.397,2026-10-08,2026-10-14,"−32%, prima 1,74."
 lidl08,Lidl,Affettati,Petto di tacchino cotto al forno – Dal Salumiere,140 g,0.14,al kg,1.19,8.500,2026-10-08,2026-10-14,"−23%, prima 1,55."
 lidl08,Lidl,Bibite,Orange – Fanta,"1,5 l",1.5,al litro,1.19,0.793,2026-10-08,2026-10-14,"−25%, prima 1,59."
@@ -5045,6 +5354,367 @@ lidlhw01,Lidl,Biscotti,Pipistrelli con crema al latte – Migliorati,200 g,0.2,a
 lidlhw01,Lidl,Biscotti,Zucchette con crema alla nocciola – Migliorati,200 g,0.2,al kg,2.99,14.950,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Carta igienica,Carta igienica tema Halloween – Kartika,4 rotoli,4,al rotolo,1.99,0.497,2026-10-08,2026-10-31,
 lidlhw01,Lidl,Merendine,Donut di Halloween,54 g,0.054,al kg,0.59,10.926,2026-10-08,2026-10-31,"Il volantino stampa 10,93 al kg. Non in tutti i negozi: la nota della pagina dice che le offerte della panetteria valgono solo dove c'è il servizio panetteria."
+pam08,Pam,Acqua,Acqua naturale – Eva,"6 × 1,5 lt",9,al litro,1.80,0.200,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Acqua,Acqua naturale – Pam,6 × 50 cl,3,al litro,0.97,0.323,2026-10-08,2026-10-21,
+pam08,Pam,Affettati,Arrosto di tacchino,all'etto,0.1,al kg,2.99,29.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Asciugatutto,Asciugatutto Maxi – Arkalia,2 rotoli 2 veli,2,al rotolo,1.59,0.795,2026-10-08,2026-10-21,
+pam08,Pam,Bagnoschiuma,Bagnodoccia – Felce Azzurra,650 ml,0.65,al litro,1.99,3.062,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Bagnoschiuma,Detergente intimo – Neutro Roberts,200 ml,0.2,al litro,1.79,8.950,2026-10-08,2026-10-21,
+pam08,Pam,Bibite,"Lattine Coca Cola, Fanta o Sprite",6 × 33 cl,1.98,al litro,3.99,2.015,2026-10-08,2026-10-21,
+pam08,Pam,Bibite,Succo nettare – Yoga,1 lt,1,al litro,1.29,1.290,2026-10-08,2026-10-21,
+pam08,Pam,Birra,Birra grezza – Raffo,45 cl,0.45,al litro,1.29,2.867,2026-10-08,2026-10-21,
+pam08,Pam,Birra,Birra – Moretti,6 × 66 cl,3.96,al litro,5.99,1.513,2026-10-08,2026-10-21,
+pam08,Pam,Biscotti,Biscotti Gocciolotti – Balocco,700 g,0.7,al kg,1.99,2.843,2026-10-08,2026-10-21,
+pam08,Pam,Biscotti,Biscotti Ringo vaniglia o cacao – Ringo,330 g,0.33,al kg,2.39,7.242,2026-10-08,2026-10-21,
+pam08,Pam,Biscotti,"Biscotti macine, galletti o tarallucci – Mulino Bianco",350 g,0.35,al kg,1.19,3.400,2026-10-08,2026-10-21,
+pam08,Pam,Biscotti,Chocowafer – Lindt,135 g,0.135,al kg,4.99,36.963,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Biscotti,"Frollini uova, riso latte, integrali, zuccherati o panna – Pam",700 g,0.7,al kg,1.89,2.700,2026-10-08,2026-10-21,
+pam08,Pam,Biscotti,Nutella Biscuits – Ferrero,304 g,0.304,al kg,2.99,9.836,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Bresaola,Carpaccio di bresaola,all'etto,0.1,al kg,2.99,29.900,2026-10-08,2026-10-21,"−17%, prima 3,60. Al banco."
+pam08,Pam,Caffè,Caffè in capsule Barista classico compatibili Nespresso – Splendid,30 capsule 156 g,0.156,al kg,6.99,44.808,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Caffè,Caffè macinato crema e gusto classico – Lavazza,2 × 250 g,0.5,al kg,6.99,13.980,2026-10-08,2026-10-21,
+pam08,Pam,Caffè,Cialde caffè espresso intenso – Pam,50 cialde 360 g,0.36,al kg,6.89,19.139,2026-10-08,2026-10-21,
+pam08,Pam,Carta igienica,Carta igienica Rotoloni – Regina,4 rotoloni,4,al rotolo,3.29,0.823,2026-10-08,2026-10-21,
+pam08,Pam,Cereali,Fiocchi di avena bio – Pam,350 g,0.35,al kg,1.69,4.829,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Barrette di cioccolato Milkinis – Milka,87 g,0.087,al kg,1.29,14.828,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Cioccolatini assortiti – Witor's,200 g,0.2,al kg,3.19,15.950,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Gianduiotti o cremini classici – Tesori dell'Arca,130 g,0.13,al kg,2.49,19.154,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Gocce di cioccolato fondente – Pam,250 g,0.25,al kg,3.95,15.800,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Tavoletta di cioccolato al latte con granella di pistacchio – Tesori dell'Arca,100 g,0.1,al kg,1.89,18.900,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Tavoletta di cioccolato al latte o fondente – Pam,100 g,0.1,al kg,0.95,9.500,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Tavoletta di cioccolato con granella di nocciola – Pam,100 g,0.1,al kg,1.19,11.900,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,"Tavoletta di cioccolato fondente extra 78%, 85%, 90% o 99% – Tesori dell'Arca",100 g,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Tavoletta di cioccolato fondente extra monorigine uganda 74% o repubblica dominicana 70% – Tesori dell'Arca,100 g,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,"Tavolette di cioccolato Raffaello, Pocket Coffee o Ferrero Rocher",90 g,0.09,al kg,1.99,22.111,2026-10-08,2026-10-21,
+pam08,Pam,Cioccolato,Tavolette di cioccolato Special Nuts – Ritter Sport,100 g,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Cioccolato,Tavolette di cioccolato Tasting Experience – Vanini,75 g,0.075,al kg,1.99,26.533,2026-10-08,2026-10-21,
+pam08,Pam,Creme,Crema spalmabile 45% nocciole classica o fondente – Novi,200 g,0.2,al kg,4.49,22.450,2026-10-08,2026-10-21,
+pam08,Pam,Dentifricio,Dentifricio classico – Biorepair,75 ml,0.075,al litro,3.49,46.533,2026-10-08,2026-10-21,
+pam08,Pam,Formaggio,Asiago pressato DOP,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Formaggio,Gorgonzola dolce DOP selezione,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Formaggio,Philadelphia light,210 g,0.21,al kg,1.99,9.476,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Formaggio,Stracchino – Nonno Nanni,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Formaggio,Stracchino – Vallelata,180 g,0.18,al kg,1.99,11.056,2026-10-08,2026-10-21,
+pam08,Pam,Frutta,Avocado verde – Pam,250 g,0.25,al kg,0.99,3.960,2026-10-08,2026-10-21,
+pam08,Pam,Frutta,Banane – Chiquita,al kg,1,al kg,1.69,1.690,2026-10-08,2026-10-21,
+pam08,Pam,Frutta,Mele Golden sacco,al kg,1,al kg,0.99,0.990,2026-10-08,2026-10-21,
+pam08,Pam,Frutta,Noci in guscio – Pam,1 kg,1,al kg,4.99,4.990,2026-10-08,2026-10-21,
+pam08,Pam,Frutta,Pere Williams bianche,500 g,0.5,al kg,0.99,1.980,2026-10-08,2026-10-21,
+pam08,Pam,Gamberi,Mazzancolle tropicali intere decongelate,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-14,"Vale solo dall'8 al 14 ottobre, non per tutto il volantino."
+pam08,Pam,Gelato,Gelato affogato – Carte d'Or,500 g,0.5,al kg,3.99,7.980,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Grana,Grana Padano DOP grattugiato – Pam,200 g,0.2,al kg,2.99,14.950,2026-10-08,2026-10-21,
+pam08,Pam,Grana,Piemontino Valgrana,all'etto,0.1,al kg,1.19,11.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Latte,Latte parzialmente scremato UHT – Bayernland,1 lt,1,al litro,0.79,0.790,2026-10-08,2026-10-21,
+pam08,Pam,Lavatrice,Detersivo lavatrice – Puro Amore,2025 ml 45 lavaggi,45,a lavaggio,2.99,0.066,2026-10-08,2026-10-21,
+pam08,Pam,Manzo,Macinato scelto di bovino adulto,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,
+pam08,Pam,Merendine,Merende Buondì farcite – Bauli,258/276 g,0.258,al kg,1.39,5.388,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Merendine,Merende Fiesta – Ferrero,360 g,0.36,al kg,2.99,8.306,2026-10-08,2026-10-21,
+pam08,Pam,Merluzzo,5 filetti di merluzzo d'Alaska – Frosta,340 g,0.34,al kg,5.49,16.147,2026-10-08,2026-10-21,Surgelato.
+pam08,Pam,Mortadella,Mortadella Bologna IGP,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Mozzarella,Mozzarella di latte di bufala – Tesori dell'Arca,3 × 100 g,0.3,al kg,2.99,9.967,2026-10-08,2026-10-21,
+pam08,Pam,Olio d'oliva,Olio extra vergine di oliva Terre Antiche – Dante,75 cl,0.75,al litro,3.79,5.053,2026-10-08,2026-10-21,"−45%, prima 6,89."
+pam08,Pam,Panati,Filetti di merluzzo gratinati – Findus,380 g,0.38,al kg,3.29,8.658,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Pancetta,"Salumi a cubetti pancetta dolce o affumicata, stick di guanciale o petali di speck – Negroni",100/160 g,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Pane,Pane Pan Piuma assortito – Artebianca,400 g,0.4,al kg,1.79,4.475,2026-10-08,2026-10-21,
+pam08,Pam,Pane,Pane bianco a fette – Pam,400 g,0.4,al kg,0.69,1.725,2026-10-08,2026-10-21,
+pam08,Pam,Pane,Piadina romagnola IGP alla riminese – Tesori dell'Arca,360 g,0.36,al kg,1.49,4.139,2026-10-08,2026-10-21,
+pam08,Pam,Pasta,Gnocchi freschi di patate bio – Pam,400 g,0.4,al kg,1.99,4.975,2026-10-08,2026-10-21,
+pam08,Pam,Pasta,Pasta di semola formati classici – Voiello,500 g,0.5,al kg,0.85,1.700,2026-10-08,2026-10-21,
+pam08,Pam,Pasta,Pasta di semola – Pam,500 g,0.5,al kg,0.49,0.980,2026-10-08,2026-10-21,
+pam08,Pam,Pasta,Pasta fresca all'uovo Sfogliagrezza – Giovanni Rana,250 g,0.25,al kg,1.29,5.160,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Pasta,Pasta fresca di semola – Pam,500 g,0.5,al kg,0.95,1.900,2026-10-08,2026-10-21,
+pam08,Pam,Pasta,Pasta fresca ripiena – Pam,250 g,0.25,al kg,1.29,5.160,2026-10-08,2026-10-21,
+pam08,Pam,Patate,Patate tutti gli usi – Pam,al kg,1,al kg,0.99,0.990,2026-10-08,2026-10-21,
+pam08,Pam,Pesce,Filetto di persico,all'etto,0.1,al kg,1.59,15.900,2026-10-08,2026-10-14,"Vale solo dall'8 al 14 ottobre, non per tutto il volantino."
+pam08,Pam,Pesce,Polpo decongelato,all'etto,0.1,al kg,1.99,19.900,2026-10-08,2026-10-14,"Vale solo dall'8 al 14 ottobre, non per tutto il volantino."
+pam08,Pam,Pesce,Tentacoli di polpo cotti,200 g,0.2,al kg,9.90,49.500,2026-10-08,2026-10-14,"Vale solo dall'8 al 14 ottobre, non per tutto il volantino."
+pam08,Pam,Pizza,Pizza 26x38 – Italpizza,535/570/585 g,0.535,al kg,2.99,5.589,2026-10-08,2026-10-21,
+pam08,Pam,Pollo,Ali Durango assortite – Aia,400 g,0.4,al kg,4.79,11.975,2026-10-08,2026-10-21,
+pam08,Pam,Pollo,Petto di pollo intero – Pam,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,
+pam08,Pam,Pomodoro,Passata di pomodoro rustica con basilico – Tesori dell'Arca,680 g,0.68,al kg,0.89,1.309,2026-10-08,2026-10-21,
+pam08,Pam,Preparati,Cotoletta di pollo e spinaci – Valserena,735 g,0.735,al kg,3.99,5.429,2026-10-08,2026-10-21,
+pam08,Pam,Preparati,Hamburger di puro bovino adulto – Pam,200 g,0.2,al kg,3.40,17.000,2026-10-08,2026-10-21,
+pam08,Pam,Prosciutto,Prosciutto cotto alta qualità – Ferrarini,all'etto,0.1,al kg,2.09,20.900,2026-10-08,2026-10-21,"−19%, prima 2,59. Al banco."
+pam08,Pam,Prosciutto,Prosciutto crudo stagionato,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,Al banco.
+pam08,Pam,Prosciutto,Prosciutto crudo – Pam,100 g,0.1,al kg,2.59,25.900,2026-10-08,2026-10-21,
+pam08,Pam,Prosciutto,Salumi affettati prosciutto crudo o cotto – Stella Negroni,90/110 g,0.09,al kg,1.99,22.111,2026-10-08,2026-10-21,
+pam08,Pam,Ricotta,Ricotta Santa Lucia – Galbani,250 g,0.25,al kg,0.99,3.960,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Riso,Riso basmati – Pam,1 kg,1,al kg,1.99,1.990,2026-10-08,2026-10-21,
+pam08,Pam,Salmone,Salmone selvaggio d'Alaska – Tesori dell'Arca,100 g,0.1,al kg,4.90,49.000,2026-10-08,2026-10-21,
+pam08,Pam,Salsiccia,Salsiccia luganega di suino – Pam,360 g,0.36,al kg,4.59,12.750,2026-10-08,2026-10-21,
+pam08,Pam,Shampoo,Shampoo o balsamo – Pantene,200/250 ml,0.2,al litro,2.59,12.950,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Sughi,Sughi cacio e pepe o salmone – Biffi,150 g,0.15,al kg,1.99,13.267,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Suino,Braciole di suino,all'etto,0.1,al kg,0.64,6.400,2026-10-08,2026-10-21,"−20%, prima 0,80."
+pam08,Pam,Tonno,Filetti di tonno all'olio di oliva – Rio Mare,250 g,0.25,al kg,4.99,19.960,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Tonno,Tonno all'olio di oliva – As do Mar,9 × 70 g,0.63,al kg,6.99,11.095,2026-10-08,2026-10-21,"−50%, prima 13,99."
+pam08,Pam,Uova,Uova medie fresche – Pam,10 uova,10,all'uovo,2.49,0.249,2026-10-08,2026-10-21,
+pam08,Pam,Verdure surgelate,Contorno misto – Pam,450 g,0.45,al kg,2.49,5.533,2026-10-08,2026-10-21,
+pam08,Pam,Verdure surgelate,Minestrone – Pam,1 kg,1,al kg,2.15,2.150,2026-10-08,2026-10-21,
+pam08,Pam,Verdure surgelate,Piselli finissimi – Frosta,850 g,0.85,al kg,2.99,3.518,2026-10-08,2026-10-21,
+pam08,Pam,Verdure surgelate,Tris grigliato – Orogel,250 g,0.25,al kg,1.89,7.560,2026-10-08,2026-10-21,
+pam08,Pam,Vino,"Chardonnay, Pinot Grigio Collio DOC, Ribolla Gialla o Sauvignon – Gotis Furlanis",75 cl,0.75,al litro,3.99,5.320,2026-10-08,2026-10-21,
+pam08,Pam,Vino,"Grillo, Inzolia o Nero d'Avola Sicilia IGT – Trinacria",75 cl,0.75,al litro,1.99,2.653,2026-10-08,2026-10-21,
+pam08,Pam,Vino,Morellino di Scansano DOCG – Cantina Produttori del Morellino di Scansano,75 cl,0.75,al litro,3.99,5.320,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pam08,Pam,Vino,"Vermentino di Sardegna DOC, Cannonau di Sardegna DOC o Alghero rosato DOC – Terre Bianche Sella e Mosca",75 cl,0.75,al litro,3.99,5.320,2026-10-08,2026-10-21,
+pam08,Pam,Würstel,Würstel Wudy classico pollo e tacchino o extrasuino – Aia,220/300 g,0.22,al kg,0.99,4.500,2026-10-08,2026-10-21,
+pam08,Pam,Yogurt,Crema di yogurt bianco intero o magro – Müller,500 g,0.5,al kg,1.19,2.380,2026-10-08,2026-10-21,
+pam08,Pam,Yogurt,Yogurt Activia – Danone,4 × 125 g,0.5,al kg,2.19,4.380,2026-10-08,2026-10-21,
+pam08,Pam,Yogurt,Yogurt intero o senza zuccheri aggiunti – Yomo,2 × 125 g,0.25,al kg,0.89,3.560,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Affettati,Bipack petto di tacchino/pollo Aequilibrium – Aia,2 x 100 g,0.2,al kg,3.49,17.450,2026-10-08,2026-10-21,"−30%, prima 4,99."
+pamextra08,Pam,Ammorbidente,Ammorbidente concentrato XXL – Puro Amore,1806 ml 86 lavaggi,86,a lavaggio,3.69,0.043,2026-10-08,2026-10-21,
+pamextra08,Pam,Ammorbidente,Ammorbidente concentrato – Chanteclair,57 lavaggi,57,a lavaggio,2.49,0.044,2026-10-08,2026-10-21,
+pamextra08,Pam,Asciugatutto,Carta cucina decorata Mega – Foxy,2 maxi rotoli,2,al rotolo,2.49,1.245,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bagnoschiuma,Bagnoschiuma – Neutro Roberts,600 ml,0.6,al litro,2.69,4.483,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bagnoschiuma,Detergente intimo delicato – Intima+,500 ml,0.5,al litro,3.29,6.580,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bagnoschiuma,Docciaschiuma After Sport – Adidas,250 ml,0.25,al litro,1.99,7.960,2026-10-08,2026-10-21,
+pamextra08,Pam,Bagnoschiuma,Sapone liquido – Neutro Roberts,200 ml,0.2,al litro,1.69,8.450,2026-10-08,2026-10-21,
+pamextra08,Pam,Bibite,Acqua tonica – Pam,1 l,1,al litro,0.79,0.790,2026-10-08,2026-10-21,
+pamextra08,Pam,Bibite,Bevanda alla frutta senza zuccheri – Skipper Zuegg,1 l,1,al litro,1.55,1.550,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bibite,Bevanda energetica – Monster,50 cl,0.5,al litro,1.29,2.580,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bibite,Bibite Zero – San Benedetto,75 cl,0.75,al litro,0.55,0.733,2026-10-08,2026-10-21,
+pamextra08,Pam,Bibite,Lemonsoda – Bibita,1 l,1,al litro,0.99,0.990,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bibite,Succo Bravo – Rauch,1 l,0.5,al litro,1.29,2.580,2026-10-08,2026-10-21,
+pamextra08,Pam,Bibite,Succo Bravo – Rauch,1/2 l,0.5,al litro,1.99,3.980,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Bibite,Succo alla pera senza zuccheri – +A-,20 cl x 3,0.6,al litro,1.15,1.917,2026-10-08,2026-10-21,
+pamextra08,Pam,Bibite,Zero – Yoga,50 cl,0.5,al litro,0.59,1.180,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Birra,Birra 1664 Blanc – Kronenbourg,33 cl,0.33,al litro,1.19,3.606,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra Anima Sarda – Ichnusa,33 cl x 3,0.99,al litro,2.59,2.616,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra Draught – Guinness,33 cl,0.33,al litro,1.39,4.212,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Birra,Birra Nastro Azzurro in lattina – Peroni,50 cl,0.5,al litro,1.19,2.380,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra Nastro Azzurro – Peroni,33 cl x 3,0.99,al litro,2.59,2.616,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,"Birra Strong Ale 7,7 – Ceres",33 cl x 3,0.99,al litro,4.99,5.040,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra Super – Tennent's,"35,5 cl",0.355,al litro,1.59,4.479,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra blanche/blonde/double ambrée – Grimbergen,33 cl,0.33,al litro,1.59,4.818,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra lager/dark – Kozel,50 cl,0.5,al litro,1.29,2.580,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Birra,Birra non filtrata – Ichnusa,50 cl,0.5,al litro,1.39,2.780,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra non filtrata – Ichnusa,33 cl x 3,0.99,al litro,3.39,3.424,2026-10-08,2026-10-21,
+pamextra08,Pam,Birra,Birra – Stella Artois,66 cl,0.66,al litro,1.39,2.106,2026-10-08,2026-10-21,
+pamextra08,Pam,Biscotti,Baiocchi pistacchio/classici – Mulino Bianco,240/260 g,0.24,al kg,2.39,9.958,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Biscotti,Biscotti Gocciole – Finger,120 g,0.12,al kg,1.99,16.583,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Biscotti,Biscotti Il Granturchese – Colussi,400 g,0.4,al kg,1.99,4.975,2026-10-08,2026-10-21,
+pamextra08,Pam,Biscotti,Biscotti Magretti con gocce di cioccolato – Galbusera,260 g,0.26,al kg,1.79,6.885,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Biscotti,Biscotti Messino/Choco Leibniz – Bahlsen,125 g,0.125,al kg,1.69,13.520,2026-10-08,2026-10-21,
+pamextra08,Pam,Biscotti,Biscotti Zeropiù – Balocco,210/230 g,0.21,al kg,1.89,9.000,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Biscotti,Biscotti assortiti,240 g,0.24,al kg,2.59,10.792,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Biscotti,Biscotti del Lagaccio – Panarello,250 g,0.25,al kg,2.39,9.560,2026-10-08,2026-10-21,
+pamextra08,Pam,Biscotti,Cantuccini con mandorle – Il Borgo del Biscotto,250 g,0.25,al kg,1.79,7.160,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Biscotti,Mini Roll Wafer – Lago,125 g,0.125,al kg,1.39,11.120,2026-10-08,2026-10-21,
+pamextra08,Pam,Biscotti,Wafer napolitaner/cremkakao – Loacker,45 g x 5,0.225,al kg,2.99,13.289,2026-10-08,2026-10-21,
+pamextra08,Pam,Burro,Burro – Parmareggio,100 g,0.1,al kg,1.19,11.900,2026-10-08,2026-10-21,
+pamextra08,Pam,Caffè,Caffè in capsule Nespresso Napoli/Cremoso – Vergnano,250 g,0.25,al kg,11.90,47.600,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Caffè,Caffè in capsule Nespresso – Illy,57 g,0.057,al kg,4.29,75.263,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Caffè,Caffè in capsule – Bialetti,112 g,0.112,al kg,5.59,49.911,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Caffè,Caffè macinato Aroma Italiano – Kimbo,2 x 250 g,0.5,al kg,7.99,15.980,2026-10-08,2026-10-21,
+pamextra08,Pam,Caffè,Caffè macinato Cremoso – Pellini,250 g,0.25,al kg,4.49,17.960,2026-10-08,2026-10-21,
+pamextra08,Pam,Carta igienica,Carta igienica Seta decorata e profumata – Foxy,4 + 2 rotoli,6,al rotolo,2.89,0.482,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Carta igienica,Carta igienica – Arkalia,2 veli 12 pezzi,12,al rotolo,2.99,0.249,2026-10-08,2026-10-21,
+pamextra08,Pam,Cereali,Cereali Choco Krave – Kellogg's,410 g,0.41,al kg,2.99,7.293,2026-10-08,2026-10-21,
+pamextra08,Pam,Cereali,Cereali Cruesli – Quaker,375 g,0.375,al kg,2.79,7.440,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Cereali,Petali di mais – Pam,120 g,0.12,al kg,0.69,5.750,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Collutorio,Collutorio Total Care Denti&Gengive – Listerine,500 ml,0.5,al litro,3.59,7.180,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Conserve,Carne Simmenthal,70 g x 3,0.21,al kg,2.99,14.238,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Conserve,Filetti di alici in olio di oliva – Rizzoli,40 g,0.04,al kg,1.39,34.750,2026-10-08,2026-10-21,
+pamextra08,Pam,Conserve,Olive taggiasche denocciolate – Collegrande,175 g,0.175,al kg,2.60,14.857,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Dentifricio,Dentifricio classico – Colgate,75 ml,0.075,al litro,1.89,25.200,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Formaggio,Caciocavallo Silano DOP,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Formaggio,Caprino di latte vaccino – Tesori dell'Arca,120 g,0.12,al kg,1.49,12.417,2026-10-08,2026-10-21,
+pamextra08,Pam,Formaggio,Fiocchi di latte – Jocca,175 g,0.175,al kg,1.79,10.229,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Formaggio,Formaggio grattugiato Gran Mix classico – Ferrari,100 g,0.1,al kg,1.69,16.900,2026-10-08,2026-10-21,
+pamextra08,Pam,Formaggio,Formaggio misto – Casaro,all'etto,0.1,al kg,1.29,12.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Formaggio,Galbanino – Galbani,270 g,0.27,al kg,2.99,11.074,2026-10-08,2026-10-21,
+pamextra08,Pam,Formaggio,Pecorino romano DOP,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Formaggio,Provolone piccante – Auricchio,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Formaggio,Sottilette light,200 g,0.2,al kg,1.89,9.450,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Formaggio,Stracchino cremoso 100% latte italiano – Tesori dell'Arca,165 g,0.165,al kg,1.59,9.636,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Formaggio,Taleggio DOP,all'etto,0.1,al kg,0.99,9.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Gamberi,Gamberetti boreali – Tesori dell'Arca,225 g,0.225,al kg,7.50,33.333,2026-10-08,2026-10-21,
+pamextra08,Pam,Gelato,6 coni gelato – Pam,420 g,0.42,al kg,2.69,6.405,2026-10-08,2026-10-21,
+pamextra08,Pam,Gelato,Snack gelato panna e gocce di cioccolato – Pam,6 pezzi 288 g,0.288,al kg,2.79,9.688,2026-10-08,2026-10-21,
+pamextra08,Pam,Grana,Parmigiano Reggiano DOP di montagna grattugiato – Ferrari,60 g,0.06,al kg,1.69,28.167,2026-10-08,2026-10-21,
+pamextra08,Pam,Latte,Latte UHT alta digeribilità senza lattosio – Candia,25 cl x 6,1.5,al litro,3.39,2.260,2026-10-08,2026-10-21,
+pamextra08,Pam,Latte,Latte UHT parzialmente scremato – Parmalat Bontà e Linea,1 l,1,al litro,1.39,1.390,2026-10-08,2026-10-21,
+pamextra08,Pam,Lavastoviglie,Detersivo lavastoviglie tabs – Fairy,49/45/40 pezzi,40,a lavaggio,9.99,0.250,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Lavastoviglie,Gel lavastoviglie – Dual Power,1 l 50 lavaggi,50,a lavaggio,3.99,0.080,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Lavatrice,Detersivo liquido lavatrice – Bio Presto,35 lavaggi,35,a lavaggio,4.49,0.128,2026-10-08,2026-10-21,
+pamextra08,Pam,Lavatrice,Detersivo liquido lavatrice – Omino Bianco,1760 ml 44 lavaggi,44,a lavaggio,4.49,0.102,2026-10-08,2026-10-21,
+pamextra08,Pam,Merendine,Fetta al latte – Kinder,140 g x 5,0.7,al kg,1.99,2.843,2026-10-08,2026-10-21,
+pamextra08,Pam,Merendine,Girella all'uvetta,110 g,0.11,al kg,0.99,9.000,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Merendine,La Merendina dal cuore tenero – Bulgari,120 g,0.12,al kg,1.29,10.750,2026-10-08,2026-10-21,
+pamextra08,Pam,Merendine,Merende Pandorì – Bauli,150 g,0.15,al kg,1.69,11.267,2026-10-08,2026-10-21,
+pamextra08,Pam,Mortadella,Mortadella a trancio – Pam,500 g,0.5,al kg,3.49,6.980,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Mozzarella,Mozzarella Tris – Santa Lucia Galbani,125 g x 3,0.375,al kg,2.99,7.973,2026-10-08,2026-10-21,
+pamextra08,Pam,Olio d'oliva,Olio extravergine di oliva bio 100% italiano – Clemente,75 cl,0.75,al litro,5.79,7.720,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Panati,Bocconcini di merluzzo d'Alaska 14 – Frosta,280 g,0.28,al kg,3.99,14.250,2026-10-08,2026-10-21,
+pamextra08,Pam,Panati,Filetti di merluzzo alla mugnaia 2 – Frosta,220 g,0.22,al kg,3.79,17.227,2026-10-08,2026-10-21,
+pamextra08,Pam,Panati,Fishbar – Findus,240/245/250/270 g,0.24,al kg,4.99,20.792,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Pancetta,Pancetta coppata – Grancoppata,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Pancetta,Pancetta dolce/affumicata in cubetti – Negroni,80 g x 2,0.16,al kg,1.99,12.438,2026-10-08,2026-10-21,
+pamextra08,Pam,Pane,Piadina integrale bio – Riccione Piadina,375 g,0.375,al kg,3.29,8.773,2026-10-08,2026-10-21,
+pamextra08,Pam,Pasta,Chicche di patate – Bontà di una volta,500 g,0.5,al kg,1.99,3.980,2026-10-08,2026-10-21,
+pamextra08,Pam,Pasta,Pasta all'uovo – Tesori dell'Arca,250 g,0.25,al kg,1.39,5.560,2026-10-08,2026-10-21,
+pamextra08,Pam,Pasta,Pasta ripiena Duetto – Giovanni Rana,250 g,0.25,al kg,2.99,11.960,2026-10-08,2026-10-21,
+pamextra08,Pam,Pesce,Cozze intere cotte – Cilene,500 g,0.5,al kg,2.79,5.580,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus. Surgelato.
+pamextra08,Pam,Pesce,Tris cozze vongole e gamberi sgusciati – Iberia,250 g,0.25,al kg,3.99,15.960,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus. Surgelato.
+pamextra08,Pam,Pesce,Vongole del Pacifico cotte al naturale – Pam,500 g,0.5,al kg,2.49,4.980,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus. Surgelato.
+pamextra08,Pam,Pomodoro,Polpa di pomodoro – Mutti,2 x 400 g,0.8,al kg,1.65,2.062,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Preparati,2 hamburger Mega Maxi con semi di sesamo – Roberto,250 g,0.25,al kg,1.29,5.160,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Preparati,Cotoletta di lonza di maiale,all'etto,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Al banco.
+pamextra08,Pam,Preparati,Cotoletta di pollo – Pam,300 g,0.3,al kg,2.39,7.967,2026-10-08,2026-10-21,Surgelato.
+pamextra08,Pam,Preparati,Filetti di pollo Semplicemente panati – Aia,280 g,0.28,al kg,4.99,17.821,2026-10-08,2026-10-21,
+pamextra08,Pam,Preparati,Hamburger di tacchino – Aia,200 g,0.2,al kg,2.25,11.250,2026-10-08,2026-10-21,
+pamextra08,Pam,Preparati,Polpette di pesce merluzzo 12 – Frosta,240 g,0.24,al kg,4.49,18.708,2026-10-08,2026-10-21,Surgelato.
+pamextra08,Pam,Prosciutto,Bipack prosciutto cotto Sofficette – Citterio,2 x 100 g,0.2,al kg,3.49,17.450,2026-10-08,2026-10-21,"−30%, prima 4,98."
+pamextra08,Pam,Prosciutto,Pizza diavola/prosciutto e funghi L'Antica Pizzeria da Michele,419/426 g,0.419,al kg,4.29,10.239,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus. Surgelato.
+pamextra08,Pam,Prosciutto,Prosciutto Parma DOP Taglio Fresco – Citterio,80 g,0.08,al kg,3.69,46.125,2026-10-08,2026-10-21,
+pamextra08,Pam,Prosciutto,Prosciutto cotto/crudo – Stella Negroni,90/100 g,0.09,al kg,1.99,22.111,2026-10-08,2026-10-21,
+pamextra08,Pam,Prosciutto,Speck Alto Adige IGP – Senfter,100 g,0.1,al kg,2.49,24.900,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Prosciutto,Speck Selection fette,all'etto,0.1,al kg,2.99,29.900,2026-10-08,2026-10-21,"−40%, prima 4,99. Al banco."
+pamextra08,Pam,Riso,Risotti Blond – Gallo,1 kg,1,al kg,1.99,1.990,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Salame,Salame ungherese,all'etto,0.1,al kg,1.79,17.900,2026-10-08,2026-10-21,"−22%, prima 2,29. Al banco."
+pamextra08,Pam,Salmone affumicato,Filetto di salmone norvegese affumicato – The Icelander,100 g,0.1,al kg,4.89,48.900,2026-10-08,2026-10-21,
+pamextra08,Pam,Salmone affumicato,Salmone norvegese affumicato – KV Nordic,100 g,0.1,al kg,4.99,49.900,2026-10-08,2026-10-21,
+pamextra08,Pam,Shampoo,Shampoo o balsamo – Antica Erboristeria,250/225 ml,0.225,al litro,2.19,9.733,2026-10-08,2026-10-21,
+pamextra08,Pam,Sughi,Cuor di sugo al ragù bolognese – Giovanni Rana,280 g,0.28,al kg,2.99,10.679,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Sughi,Pesto con/senza aglio – Biffi,190 g,0.19,al kg,1.99,10.474,2026-10-08,2026-10-21,
+pamextra08,Pam,Sughi,Pesto genovese – Il Pesto di Prà,90 g,0.09,al kg,2.49,27.667,2026-10-08,2026-10-21,
+pamextra08,Pam,Sughi,Sughi base carne – Barilla,300 g,0.3,al kg,1.89,6.300,2026-10-08,2026-10-21,
+pamextra08,Pam,Sughi,Sughi – Tesori dell'Arca,180 g,0.18,al kg,2.99,16.611,2026-10-08,2026-10-21,
+pamextra08,Pam,Tonno,Filetti di tonno in olio di oliva – Rizzoli,400 g,0.4,al kg,6.99,17.475,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Tonno,Filetti di tonno pinne gialle – Pam,250 g,0.25,al kg,4.29,17.160,2026-10-08,2026-10-21,Surgelato.
+pamextra08,Pam,Tonno,Tonno leggero all'olio extra vergine – Rio Mare,60 g x 4,0.24,al kg,4.99,20.792,2026-10-08,2026-10-21,
+pamextra08,Pam,Tè,Tè Yellow Label – Lipton,50 filtri (75 g),0.075,al kg,2.99,39.867,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Cicoria catalogna cubello – Orogel,600 g,0.6,al kg,2.69,4.483,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Fagiolini verdi bio – Pam,450 g,0.45,al kg,1.99,4.422,2026-10-08,2026-10-21,
+pamextra08,Pam,Verdure surgelate,Friarielli Gusto Ricco – Orogel,400 g,0.4,al kg,2.69,6.725,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Funghi porcini a fette – Tesori dell'Arca,100 g,0.1,al kg,2.29,22.900,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Piselli I Finissimi – Frosta,850 g,0.85,al kg,2.99,3.518,2026-10-08,2026-10-21,
+pamextra08,Pam,Verdure surgelate,Pisellini Primavera – Findus,700 g,0.7,al kg,4.99,7.129,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Punte di asparagi – Pam,300 g,0.3,al kg,4.19,13.967,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Sofficini – Findus,250 g,0.25,al kg,2.19,8.760,2026-10-08,2026-10-21,
+pamextra08,Pam,Verdure surgelate,Spinaci cremosi con mozzarella e formaggio – Pam,450 g,0.45,al kg,2.69,5.978,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Zucchine a rondelle – Pam,450 g,0.45,al kg,1.39,3.089,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Zucchine grigliate a fette – Pam,450 g,0.45,al kg,2.89,6.422,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Verdure surgelate,Zuppa rustica – Pam,600 g,0.6,al kg,2.49,4.150,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Vino,Merlot Veneto IGT – Colle dei Cipressi,75 cl,0.75,al litro,1.79,2.387,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Vino,Primitivo biologico – Cantina Tollo,75 cl,0.75,al litro,4.99,6.653,2026-10-08,2026-10-21,
+pamextra08,Pam,Vino,Rosso Puglia IGT – Appassimento,75 cl,0.75,al litro,4.90,6.533,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Vino,Spumante metodo classico Alta Langa DOCG – Ca dei Plin,75 cl,0.75,al litro,13.90,18.533,2026-10-08,2026-10-21,
+pamextra08,Pam,Würstel,Oktoberfest würstel – Pramstahler,6 pezzi 360 g,0.36,al kg,3.49,9.694,2026-10-08,2026-10-21,"−30%, prima 4,99."
+pamextra08,Pam,Würstel,Würstel Altotesini servelade/classico senza pelle – Tesori dell'Arca,200/250 g,0.2,al kg,2.79,13.950,2026-10-08,2026-10-21,Solo con l'app Pam Perte Plus.
+pamextra08,Pam,Würstel,Würstel Wudy classico – Aia,300 g,0.3,al kg,0.99,3.300,2026-10-08,2026-10-21,
+pamextra08,Pam,Würstel,Würstel Wudy extragusto – Aia,220 g,0.22,al kg,0.99,4.500,2026-10-08,2026-10-21,
+pamextra08,Pam,Würstel,Würstel di pollo e tacchino – Pam,100 g,0.1,al kg,0.39,3.900,2026-10-08,2026-10-21,
+pamextra08,Pam,Yogurt,Yogurt Mix 4 – Müller,600 g,0.6,al kg,2.89,4.817,2026-10-08,2026-10-21,
+penny08,Penny,Acqua,Acqua frizzante – Sant'Anna,"6 x 1,5 l",9,al litro,1.77,0.197,2026-10-08,2026-10-21,"−50%, prima 3,54."
+penny08,Penny,Acqua,Acqua naturale – San Benedetto,6 x 1 l,6,al litro,1.98,0.330,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Asciugatutto,Maxi bobina asciugatutto – Penny,1 rotolo,1,al rotolo,3.29,3.290,2026-10-08,2026-10-21,"−15%, prima 3,89."
+penny08,Penny,Bagnoschiuma,Bagnoschiuma – Vidal,750 ml,0.75,al litro,2.09,2.787,2026-10-08,2026-10-21,"−27%, prima 2,85."
+penny08,Penny,Bagnoschiuma,Detergente intimo delicatezza – Neutromed,300 ml,0.3,al litro,1.99,6.633,2026-10-08,2026-10-21,"−33%, prima 2,97."
+penny08,Penny,Bagnoschiuma,Sapone mani – Today,500 ml,0.5,al litro,0.85,1.700,2026-10-08,2026-10-21,"−32%, prima 1,25."
+penny08,Penny,Bibite,Coca-Cola,2 x 2 l,4,al litro,3.69,0.922,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Bibite,Energy drink – Monster,500 ml,0.5,al litro,1.39,2.780,2026-10-08,2026-10-21,"−7%, prima 1,49."
+penny08,Penny,Bibite,"Santhé pesca, limone – Sant'Anna","1,5 l",1.5,al litro,0.85,0.567,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Bibite,"Tonica, limone – Schweppes",1 l,1,al litro,0.99,0.990,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 1,29."
+penny08,Penny,Birra,Birra Bavaria Premium,500 ml,0.5,al litro,0.79,1.580,2026-10-08,2026-10-21,"−20%, prima 0,99."
+penny08,Penny,Birra,Birra Beck's,"35,5 cl",0.355,al litro,0.89,2.507,2026-10-08,2026-10-21,"−10%, prima 0,99."
+penny08,Penny,Birra,Birra Ceres Strong Ale,50 cl,0.5,al litro,1.49,2.980,2026-10-08,2026-10-21,"−17%, prima 1,79."
+penny08,Penny,Birra,Birra Corona Extra,6 x 33 cl,1.98,al litro,5.99,3.025,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Birra,Birra Raffo grezza,45 cl,0.45,al litro,1.39,3.089,2026-10-08,2026-10-21,"−18%, prima 1,69."
+penny08,Penny,Biscotti,Baiocchi – Mulino Bianco,168 g,0.168,al kg,1.39,8.274,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Biscotti,Frollini 4 cereali senza zuccheri – Welless,300 g,0.3,al kg,1.39,4.633,2026-10-08,2026-10-21,"−30%, prima 1,99."
+penny08,Penny,Biscotti,"Frollino con corn flakes, fiocchi di avena e cioccolato – La Buona Pasticceria",600 g,0.6,al kg,1.99,3.317,2026-10-08,2026-10-21,"−20%, prima 2,49."
+penny08,Penny,Biscotti,Oreo Spooky,154 g,0.154,al kg,1.99,12.922,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Bresaola,Carpaccio di bresaola – Le Freschette,100 g,0.1,al kg,2.99,29.900,2026-10-08,2026-10-21,"−13%, prima 3,45."
+penny08,Penny,Burro,Burro – Valbontà,125 g,0.125,al kg,0.99,7.920,2026-10-08,2026-10-21,"−17%, prima 1,19."
+penny08,Penny,Carta igienica,Carta igienica profumata – Penny,6 rotoli,6,al rotolo,2.49,0.415,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 3,29."
+penny08,Penny,Cereali,Kellogg's Extra cioccolato e nocciole – Kellogg's,375 g,0.375,al kg,2.99,7.973,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 3,59."
+penny08,Penny,Cioccolato,Tavoletta di cioccolato – Novi,100 g,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,"−23%, prima 2,59."
+penny08,Penny,Conserve,Filetti di alici – Gran Mare,200 g,0.2,al kg,2.95,14.750,2026-10-08,2026-10-21,"−20%, prima 3,69."
+penny08,Penny,Conserve,Olive verdi denocciolate in salamoia – Ortomio,490 g,0.49,al kg,2.89,5.898,2026-10-08,2026-10-21,"−17%, prima 3,49."
+penny08,Penny,Creme,Crema dark cacao magro e nocciole – Welless,200 g,0.2,al kg,2.49,12.450,2026-10-08,2026-10-21,"−17%, prima 2,99."
+penny08,Penny,Dentifricio,Dentifricio – Colgate,3 x 75 ml,0.225,al litro,4.29,19.067,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Dentifricio,Dentifricio – Today,125 ml,0.125,al litro,0.79,6.320,2026-10-08,2026-10-21,"−20%, prima 0,99."
+penny08,Penny,Farina,Semola rimacinata di grano duro – Penny,1 kg,1,al kg,0.79,0.790,2026-10-08,2026-10-21,"−11%, prima 0,89."
+penny08,Penny,Formaggio,Dolcelatte DOP – Galbani,150 g,0.15,al kg,1.99,13.267,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Formaggio,Emmentaler svizzero – Le Specialità Cuor di Terra,200 g,0.2,al kg,2.79,13.950,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 3,49."
+penny08,Penny,Formaggio,Fontal – Sapor di Cascina,400 g,0.4,al kg,2.69,6.725,2026-10-08,2026-10-21,"−16%, prima 3,19."
+penny08,Penny,Formaggio,Formaggio grattugiato – Gran Biraghi,120 g,0.12,al kg,1.99,16.583,2026-10-08,2026-10-21,"−17%, prima 2,39."
+penny08,Penny,Formaggio,Philadelphia,220 g,0.22,al kg,1.99,9.045,2026-10-08,2026-10-21,"−17%, prima 2,39."
+penny08,Penny,Formaggio,Provola in acqua affumicata – Le Specialità Cuor di Terra,250 g,0.25,al kg,2.09,8.360,2026-10-08,2026-10-21,"−16%, prima 2,49."
+penny08,Penny,Formaggio,Sottilette senza lattosio,200 g,0.2,al kg,2.69,13.450,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Frutta,Arance,al kg,1,al kg,1.49,1.490,2026-10-08,2026-10-21,
+penny08,Penny,Frutta,Castagne,rete 1 kg,1,al kg,3.99,3.990,2026-10-08,2026-10-21,
+penny08,Penny,Frutta,Clementine,al kg,1,al kg,1.59,1.590,2026-10-08,2026-10-21,
+penny08,Penny,Frutta,"Mele Golden, Gala",al kg,1,al kg,0.99,0.990,2026-10-08,2026-10-21,
+penny08,Penny,Frutta,Uva bianca senza semi,500 g,0.5,al kg,1.49,2.980,2026-10-08,2026-10-21,
+penny08,Penny,Gelato,"Tartufo al cacao, bianco – La Buona Pasticceria",2 pz 180 g,0.18,al kg,0.99,5.500,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 1,69."
+penny08,Penny,Insalata,"Insalata mista, insalata ricca Natura è",350 g,0.35,al kg,0.99,2.829,2026-10-08,2026-10-21,
+penny08,Penny,Latte,Latte intero – Sapor di Cascina,1 l,1,al litro,0.75,0.750,2026-10-08,2026-10-21,"−16%, prima 0,89."
+penny08,Penny,Lavastoviglie,Finish Ultimate gel,30 lavaggi,30,a lavaggio,4.99,0.166,2026-10-08,2026-10-21,"−17%, prima 5,99."
+penny08,Penny,Lavatrice,Detersivo liquido lavatrice – Omino Bianco,3 x 44 lavaggi,132,a lavaggio,9.99,0.076,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Legumi,"Fagioli borlotti, cannellini, ceci – My Bio",240 g/230 g,0.23,al kg,0.99,4.304,2026-10-08,2026-10-21,"−34%, prima 1,49."
+penny08,Penny,Merendine,Kinder Bueno – Kinder,5 pz 215 g,0.215,al kg,3.49,16.233,2026-10-08,2026-10-21,"−13%, prima 3,99."
+penny08,Penny,Merendine,Kinder Cereali – Kinder,9 pz 211 g,0.211,al kg,3.49,16.540,2026-10-08,2026-10-21,"−13%, prima 3,99."
+penny08,Penny,Merendine,Kinder Pinguì,4 pz 120 g,0.12,al kg,2.19,18.250,2026-10-08,2026-10-21,"−15%, prima 2,59."
+penny08,Penny,Merendine,Plumcake classico – Mulino Bianco,330 g,0.33,al kg,1.59,4.818,2026-10-08,2026-10-21,"−20%, prima 1,99."
+penny08,Penny,Mortadella,Mortadella Bologna IGP con pistacchi – Sapor di Cascina,350 g,0.35,al kg,2.95,8.429,2026-10-08,2026-10-21,"−15%, prima 3,49."
+penny08,Penny,Mortadella,Mortadella Suprema – Fiorucci,100 g,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Mozzarella,Mozzarella – Valbontà,4 x 125 g,0.5,al kg,2.99,5.980,2026-10-08,2026-10-21,"−12%, prima 3,39."
+penny08,Penny,Olio d'oliva,Olio extra vergine di oliva classico – Desantis,1 l,1,al litro,4.79,4.790,2026-10-08,2026-10-21,"−40%, prima 7,99."
+penny08,Penny,Panati,Bastoncini di merluzzo panato – Gli Allegri Sapori,450 g,0.45,al kg,2.99,6.644,2026-10-08,2026-10-21,"−14%, prima 3,49."
+penny08,Penny,Pane,Pan bauletto bianco – Mulino Bianco,400 g,0.4,al kg,0.95,2.375,2026-10-08,2026-10-21,"−13%, prima 1,09."
+penny08,Penny,Pane,Panini al latte – Al Buon Forno,400 g,0.4,al kg,1.59,3.975,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 1,89."
+penny08,Penny,Pane,Panino soffice al latte,6 pz 150 g,0.15,al kg,1.00,6.667,2026-10-08,2026-10-21,"−12%, prima 1,14. Vale solo nei negozi con il reparto."
+penny08,Penny,Pane,Pinsa,230 g,0.23,al kg,1.39,6.043,2026-10-08,2026-10-21,"−18%, prima 1,69."
+penny08,Penny,Pane,Sfilatino olive,80 g,0.08,al kg,0.35,4.375,2026-10-08,2026-10-21,"−22%, prima 0,45. Vale solo nei negozi con il reparto."
+penny08,Penny,Pasta,"Gnocchi ripieni speck e brie, mozzarella e pomodoro – Fior di Pasta",400 g,0.4,al kg,1.49,3.725,2026-10-08,2026-10-21,"−17%, prima 1,79."
+penny08,Penny,Pasta,Ravioli alla zucca – Le Specialità Cuor di Terra,250 g,0.25,al kg,1.99,7.960,2026-10-08,2026-10-21,"−13%, prima 2,29."
+penny08,Penny,Pasta,Ravioli con porcini e taleggio DOP,200 g,0.2,al kg,2.19,10.950,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Pasta,"Spaghetti, penne rigate – Barilla",1 kg,1,al kg,0.99,0.990,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Pasta,Tortelli di patate – Le Specialità Cuor di Terra,250 g,0.25,al kg,1.55,6.200,2026-10-08,2026-10-21,"−16%, prima 1,85."
+penny08,Penny,Pasta,Tortelloni ricotta e spinaci – Fior di Pasta,250 g,0.25,al kg,0.89,3.560,2026-10-08,2026-10-21,"−25%, prima 1,19."
+penny08,Penny,Patate,"Patate novelle gialle, rosse",al kg,1,al kg,1.19,1.190,2026-10-08,2026-10-21,
+penny08,Penny,Pesce,Filetti di scorfano,400 g,0.4,al kg,4.39,10.975,2026-10-08,2026-10-21,"−19%, prima 5,39. Surgelato."
+penny08,Penny,Pizza,Pizza Maxialta margherita – Italpizza,430 g,0.43,al kg,3.29,7.651,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Pollo,Ali di pollo – La Filiera in Tavola,al kg,1,al kg,3.99,3.990,2026-10-08,2026-10-21,"−18%, prima 4,85. Vale solo nei negozi con il reparto."
+penny08,Penny,Pollo,Tagliata di petto di pollo – La Filiera in Tavola,400 g,0.4,al kg,3.49,8.725,2026-10-08,2026-10-21,"−24%, prima 4,59. Vale solo nei negozi con il reparto."
+penny08,Penny,Pomodoro,Passata di pomodoro – Divella,680 g,0.68,al kg,0.89,1.309,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 1,15."
+penny08,Penny,Pomodoro,Salsa di pomodoro datterino – Le Specialità Cuor di Terra,360 g,0.36,al kg,0.89,2.472,2026-10-08,2026-10-21,"−18%, prima 1,09."
+penny08,Penny,Preparati,Cotoletta con spinaci Ortaiola – Amadori,3 pz 300 g,0.3,al kg,1.99,6.633,2026-10-08,2026-10-21,Surgelato. Quantità limitata.
+penny08,Penny,Preparati,Hamburger di carne bovina – Gli Allegri Sapori,10 pz 750 g,0.75,al kg,5.49,7.320,2026-10-08,2026-10-21,"−15%, prima 6,49. Surgelato."
+penny08,Penny,Preparati,Maxiburger piemontese – Voglia di Griglia,200 g,0.2,al kg,2.99,14.950,2026-10-08,2026-10-21,"−25%, prima 3,99. Vale solo nei negozi con il reparto."
+penny08,Penny,Prosciutto,Prosciutto cotto Snello – Rovagnati,110 g,0.11,al kg,1.99,18.091,2026-10-08,2026-10-21,"−31%, prima 2,89."
+penny08,Penny,Prosciutto,Prosciutto cotto alle erbe – Le Freschette,120 g,0.12,al kg,1.79,14.917,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 2,29."
+penny08,Penny,Prosciutto,Prosciutto crudo – Sapor di Cascina,100 g,0.1,al kg,1.49,14.900,2026-10-08,2026-10-21,"−17%, prima 1,79."
+penny08,Penny,Ricotta,Ricottina – Valbontà,2 x 100 g,0.2,al kg,0.79,3.950,2026-10-08,2026-10-21,"−11%, prima 0,89."
+penny08,Penny,Riso,Riso originario – Penny,1 kg,1,al kg,1.59,1.590,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 1,99."
+penny08,Penny,Salame,Salame Citterino,60 g,0.06,al kg,1.49,24.833,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Salame,Salame magro – Welless,100 g,0.1,al kg,1.99,19.900,2026-10-08,2026-10-21,"−13%, prima 2,29."
+penny08,Penny,Salmone affumicato,Salmone scozzese affumicato – Gran Mare,100 g,0.1,al kg,3.39,33.900,2026-10-08,2026-10-21,"−15%, prima 3,99."
+penny08,Penny,Salsiccia,Salsiccia verzino – Voglia di Griglia,600 g,0.6,al kg,3.99,6.650,2026-10-08,2026-10-21,"−20%, prima 4,99. Vale solo nei negozi con il reparto."
+penny08,Penny,Shampoo,Shampoo XXL – Sunsilk,810 ml,0.81,al litro,4.99,6.160,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Suino,Arista di suino a fette – Sapor di Cascina,350 g,0.35,al kg,2.89,8.257,2026-10-08,2026-10-21,"−14%, prima 3,35. Vale solo nei negozi con il reparto."
+penny08,Penny,Tonno,Tonno al naturale – Gran Mare,112 g,0.112,al kg,0.95,8.482,2026-10-08,2026-10-21,"−20%, prima 1,19."
+penny08,Penny,Tonno,Tonno all'olio di oliva – Mareblu,3 x 70 g,0.21,al kg,2.99,14.238,2026-10-08,2026-10-21,"−12%, prima 3,39."
+penny08,Penny,Tonno,Tonno all'olio di semi di girasole – Gran Mare,6 x 80 g,0.48,al kg,3.69,7.688,2026-10-08,2026-10-21,"−16%, prima 4,39."
+penny08,Penny,Verdura,Carote,1 kg,1,al kg,0.99,0.990,2026-10-08,2026-10-21,
+penny08,Penny,Verdura,"Peperoni rossi, gialli",al kg,1,al kg,1.99,1.990,2026-10-08,2026-10-21,
+penny08,Penny,Verdura,Zucchine,al kg,1,al kg,1.99,1.990,2026-10-08,2026-10-21,
+penny08,Penny,Verdure surgelate,Cavolfiori a rosette – Ortomio,600 g,0.6,al kg,1.29,2.150,2026-10-08,2026-10-21,"−24%, prima 1,69."
+penny08,Penny,Verdure surgelate,Minestrone con 15 verdure – Ortomio,1 kg,1,al kg,1.49,1.490,2026-10-08,2026-10-21,"−24%, prima 1,95."
+penny08,Penny,Verdure surgelate,Pisellini primavera – Findus,660 g,0.66,al kg,3.29,4.985,2026-10-08,2026-10-21,"−21%, prima 4,19."
+penny08,Penny,Vino,Chianti Colli Fiorentini DOCG,75 cl,0.75,al litro,3.19,4.253,2026-10-08,2026-10-21,"−29%, prima 4,49."
+penny08,Penny,Vino,Morellino di Scansano DOCG,75 cl,0.75,al litro,3.89,5.187,2026-10-08,2026-10-21,"−11%, prima 4,39."
+penny08,Penny,Vino,Rosato Toscana IGT,75 cl,0.75,al litro,2.39,3.187,2026-10-08,2026-10-21,"Solo con la PENNYCard. Senza tessera 2,99."
+penny08,Penny,Vino,Spumante prosecco Millesimato DOC,75 cl,0.75,al litro,3.49,4.653,2026-10-08,2026-10-21,"−26%, prima 4,69."
+penny08,Penny,Vino,Verduzzo bianco frizzante IGT,75 cl,0.75,al litro,1.66,2.213,2026-10-08,2026-10-21,"−17%, prima 1,99."
+penny08,Penny,Würstel,Würstel di suino – Sapor di Cascina,3 pz 250 g,0.25,al kg,0.83,3.320,2026-10-08,2026-10-21,"−40%, prima 1,39."
+penny08,Penny,Yogurt,Kefir naturale – Activia,345 g,0.345,al kg,1.49,4.319,2026-10-08,2026-10-21,"−17%, prima 1,79."
+penny08,Penny,Yogurt,Skyr bianco – Danone,480 g,0.48,al kg,2.49,5.188,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Yogurt,Yogurt Mix – Sapor di Cascina,150 g,0.15,al kg,0.59,3.933,2026-10-08,2026-10-21,"−21%, prima 0,75."
+penny08,Penny,Yogurt,Yogurt alla frutta magro – Sapor di Cascina,8 x 125 g,1,al kg,2.29,2.290,2026-10-08,2026-10-21,"−14%, prima 2,65."
+penny08,Penny,Yogurt,Yogurt cremoso – Müller,8 x 125 g,1,al kg,3.29,3.290,2026-10-08,2026-10-21,Quantità limitata.
+penny08,Penny,Yogurt,Yogurt da bere intero – Sapor di Cascina,500 g,0.5,al kg,0.85,1.700,2026-10-08,2026-10-21,"−14%, prima 0,99."
 aldi05,Aldi,Formaggio,Caciotta – Milsani,500 g,0.5,al kg,2.99,5.980,2026-10-09,2026-10-11,"−25%, prima 3,99. Solo da venerdì 9 a domenica 11 ottobre."
 aldi05,Aldi,Riso,Riso Roma – I Colori del Sapore,1 kg,1,al kg,1.49,1.490,2026-10-09,2026-10-11,"−35%, prima 2,29. Solo da venerdì 9 a domenica 11 ottobre."
 aldi05,Aldi,Salmone,Filetti di salmone selvaggio MSC – Golden Seafood,250 g,0.25,al kg,2.19,8.760,2026-10-09,2026-10-11,"−37%, prima 3,49. Surgelato. Solo da venerdì 9 a domenica 11 ottobre."
@@ -5055,6 +5725,11 @@ eurospin08,Eurospin,Insalata,Insalata mista,500 g,0.5,al kg,0.99,1.980,2026-10-0
 eurospin08,Eurospin,Preparati,Spiedini di suino,1 kg,1,al kg,7.99,7.990,2026-10-09,2026-10-11,"«Doppio weekend», valido solo da venerdì 9 a domenica 11 ottobre."
 eurospin08,Eurospin,Prosciutto,Prosciutto cotto alta qualità,150 g,0.15,al kg,1.39,9.267,2026-10-09,2026-10-11,"Prima 1,89. «Doppio weekend», valido solo da venerdì 9 a domenica 11 ottobre."
 eurospin08,Eurospin,Tonno,"Tonno pinna gialla all'olio extra vergine di oliva, 3 × 60 g",180 g,0.18,al kg,1.99,11.056,2026-10-09,2026-10-11,"Prima 2,99. «Doppio weekend», valido solo da venerdì 9 a domenica 11 ottobre."
+penny08,Penny,Affettati,Petto di tacchino al forno – Le Freschette,140 g,0.14,al kg,1.29,9.214,2026-10-09,2026-10-10,"−32%, prima 1,89. Vale solo dal 9 al 10 ottobre, non per tutto il volantino."
+penny08,Penny,Bibite,"Pepsi classica, senza zucchero",33 cl,0.33,al litro,0.39,1.182,2026-10-09,2026-10-10,"−25%, prima 0,52. Vale solo dal 9 al 10 ottobre, non per tutto il volantino."
+penny08,Penny,Frutta,Limoni,1 kg,1,al kg,1.99,1.990,2026-10-09,2026-10-10,"Vale solo dal 9 al 10 ottobre, non per tutto il volantino."
+penny08,Penny,Frutta,Noci in guscio,1 kg,1,al kg,3.99,3.990,2026-10-09,2026-10-10,"Vale solo dal 9 al 10 ottobre, non per tutto il volantino."
+penny08,Penny,Pollo,Fusi di pollo – La Filiera in Tavola,al kg,1,al kg,3.29,3.290,2026-10-09,2026-10-10,"−40%, prima 5,49. Vale solo dal 9 al 10 ottobre, non per tutto il volantino."
 aldi12,Aldi,Acqua,Acqua naturale – Levissima,"1,5 l",1.5,al litro,0.29,0.193,2026-10-12,2026-10-18,"−41%, prima 0,49."
 aldi12,Aldi,Affettati,Fesa di tacchino a fette – Il Podere,400 g,0.4,al kg,3.49,8.725,2026-10-12,2026-10-18,−21%. ?|prima illeggibile.
 aldi12,Aldi,Affettati,Petto di pollo al forno – Il Tagliere del Re,140 g,0.14,al kg,1.79,12.786,2026-10-12,2026-10-18,
@@ -5172,6 +5847,10 @@ lidlhw01,Lidl,Patate,Figure di patate di Halloween,450 g,0.45,al kg,1.49,3.311,2
 lidlhw01,Lidl,Pizza,"Mini pizze farcite di Halloween, 12 pezzi",360 g,0.36,al kg,3.39,9.417,2026-10-15,2026-10-31,Surgelate.
 lidlhw01,Lidl,Pizza,Pizza con zucca e pancetta di Halloween,390 g,0.39,al kg,2.79,7.154,2026-10-15,2026-10-31,Surgelata.
 lidlhw01,Lidl,Preparati,Nuggets di petto di pollo di Halloween,400 g,0.4,al kg,3.49,8.725,2026-10-15,2026-10-31,Surgelati.
+pam08,Pam,Calamari,Calamari,all'etto,0.1,al kg,1.99,19.900,2026-10-15,2026-10-21,"Vale solo dal 15 al 21 ottobre, non per tutto il volantino."
+pam08,Pam,Gamberi,Code gambero – Tesori dell'Arca,200 g,0.2,al kg,8.90,44.500,2026-10-15,2026-10-21,"Vale solo dal 15 al 21 ottobre, non per tutto il volantino."
+pam08,Pam,Pesce,Orata – Tesori dell'Arca,all'etto,0.1,al kg,1.39,13.900,2026-10-15,2026-10-21,"Vale solo dal 15 al 21 ottobre, non per tutto il volantino."
+pam08,Pam,Pesce,Sgombro,all'etto,0.1,al kg,0.99,9.900,2026-10-15,2026-10-21,"Vale solo dal 15 al 21 ottobre, non per tutto il volantino."
 aldi12,Aldi,Miele,Miele millefiori – Grandessa,500 g,0.5,al kg,2.49,4.980,2026-10-16,2026-10-18,"−34%, prima 3,79."
 aldi12,Aldi,Mortadella,Mortadella Bologna IGP – Regione che vai,150 g,0.15,al kg,1.19,7.933,2026-10-16,2026-10-18,"−23%, prima 1,55."
 aldi12,Aldi,Pancetta,Pancetta a cubetti dolce/affumicata – Il Tagliere del Re,2 x 100 g,0.2,al kg,1.49,7.450,2026-10-16,2026-10-18,"−25%, prima 1,99."
@@ -5187,6 +5866,12 @@ md06,MD,Bibite,Tè al limone deteinato – Viviland,"1,5 l",1.5,al litro,0.69,0.
 md06,MD,Frutta,Mela Sweetango,al kg,1,al kg,1.29,1.290,2026-10-16,2026-10-19,bauletto kg.
 md06,MD,Merendine,10 merendine Ciock – La Dolce,280 g,0.28,al kg,0.99,3.536,2026-10-16,2026-10-19,"−17%, prima 1,19."
 md06,MD,Preparati,Cotoletta suprema – Fileni,260 g,0.26,al kg,2.99,11.500,2026-10-16,2026-10-19,"−41%, prima 5,09."
+penny08,Penny,Frutta,Banane,al kg,1,al kg,0.89,0.890,2026-10-16,2026-10-17,"Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
+penny08,Penny,Frutta,Cachi,al kg,1,al kg,2.49,2.490,2026-10-16,2026-10-17,"Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
+penny08,Penny,Lavatrice,Detersivo liquido lavatrice muschio bianco – Chanteclair,46 lavaggi,46,a lavaggio,3.59,0.078,2026-10-16,2026-10-17,"−40%, prima 5,99. Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
+penny08,Penny,Manzo,Bocconcini di scottona,al kg,1,al kg,10.99,10.990,2026-10-16,2026-10-17,"−21%, prima 13,99. Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
+penny08,Penny,Merendine,Kinder Brioss – Kinder,10 pz 270 g,0.27,al kg,2.25,8.333,2026-10-16,2026-10-17,"−22%, prima 2,89. Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
+penny08,Penny,Verdura,Pomodoro Piccadilly,500 g,0.5,al kg,1.99,3.980,2026-10-16,2026-10-17,"Vale solo dal 16 al 17 ottobre, non per tutto il volantino."
 lidlhw01,Lidl,Pasta,"Fantasmini, pasta fresca ripiena alla zucca",250 g,0.25,al kg,1.49,5.960,2026-10-22,2026-10-31,
 lidlhw01,Lidl,Pasta,Gnocchi a forma di pipistrello con carota nera,400 g,0.4,al kg,1.69,4.225,2026-10-22,2026-10-31,
 lidlhw01,Lidl,Pasta,Gnocchi di patata a forma di fantasmini alla zucca,500 g,0.5,al kg,1.79,3.580,2026-10-22,2026-10-31,
