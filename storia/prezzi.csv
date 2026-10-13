@@ -6105,6 +6105,15 @@ aldi12,Aldi,Vino,Primitivo di Manduria DOC – Vivelia,750 ml,0.75,al litro,3.99
 aldi12,Aldi,Zucchero,Zucchero di canna – Happy Harvest,500 g,0.5,al kg,0.99,1.980,2026-10-12,2026-10-18,"−17%, prima 1,19."
 eurospin08,Eurospin,Patate,Patate gialle,2 kg,2,al kg,0.99,0.495,2026-10-12,2026-10-18,Vale solo dal 12 al 18 ottobre.
 eurospin08,Eurospin,Verdura,Cavolfiori,al kg,1,al kg,1.49,1.490,2026-10-12,2026-10-18,Vale solo dal 12 al 18 ottobre.
+eurospin12,Eurospin,Frutta,Cachi,al kg,1,al kg,1.99,1.990,2026-10-12,2026-10-18,"Vendute in confezione da 2 kg a 3,98."
+eurospin12,Eurospin,Frutta,Mele Red Delicious,al kg,1,al kg,1.49,1.490,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Frutta,Pere William's bianche,al kg,1,al kg,1.99,1.990,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Frutta,Susine Stanley,al kg,1,al kg,1.49,1.490,2026-10-12,2026-10-18,"Vendute in confezione da 2 kg a 2,98."
+eurospin12,Eurospin,Frutta,Uva Red Globe,al kg,1,al kg,1.99,1.990,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Frutta,Uva nera Palieri,al kg,1,al kg,1.99,1.990,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Verdura,Broccoletti,500 g,0.5,al kg,1.69,3.380,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Verdura,Cetrioli,al kg,1,al kg,1.49,1.490,2026-10-12,2026-10-18,
+eurospin12,Eurospin,Verdura,Zucca tonda Delica,al kg,1,al kg,1.29,1.290,2026-10-12,2026-10-18,
 lidl08,Lidl,Biscotti,Biscotti Integrali – Lazzaroni,300 g,0.3,al kg,1.49,4.967,2026-10-12,2026-10-14,
 lidl08,Lidl,Biscotti,Biscotti al burro con cioccolato al latte – Favorina,200 g,0.2,al kg,1.99,9.950,2026-10-12,2026-10-14,
 lidl08,Lidl,Biscotti,Biscotti al burro con decorazione di zucchero – Favorina,300 g,0.3,al kg,2.79,9.300,2026-10-12,2026-10-14,
@@ -6532,6 +6541,10 @@ carriper13,Carrefour,Yogurt,Yogurt Bianco Intero – Centrale del Latte di Torin
 carriper13,Carrefour,Yogurt,Yogurt Intero – Polenghi,2 × 125 g,0.25,al kg,0.59,2.360,2026-10-13,2026-10-22,"−25%, prima 0,79."
 carriper13,Carrefour,Yogurt,Yogurt Mix – Müller,150 g,0.15,al kg,0.69,4.600,2026-10-13,2026-10-22,"−44%, prima 1,25."
 carriper13,Carrefour,Yogurt,Yogurt – Yomo,8 × 125 g,1,al kg,2.39,2.390,2026-10-13,2026-10-22,"−44%, prima 4,28. Solo con la tessera SpesAmica Payback."
+carrlemon13,Carrefour,Bibite,Lattina Spritz – Lemonsoda,330 ml,0.33,al litro,0.80,2.424,2026-10-13,2026-10-22,"−20%, prima 1,00. Solo con la tessera SpesAmica Payback. Senza tessera 1,00."
+carrlemon13,Carrefour,Bibite,Linea PET gusti assortiti – Lemonsoda,1 l,1,al litro,0.99,0.990,2026-10-13,2026-10-22,Prodotto in Italia.
+carrlemon13,Carrefour,Bibite,Linea lattine gusti assortiti – Lemonsoda,330 ml,0.33,al litro,0.55,1.667,2026-10-13,2026-10-22,"−20%, prima 0,69. Solo con la tessera SpesAmica Payback. Senza tessera 0,69."
+carrlemon13,Carrefour,Bibite,Linea lattine multipack gusti assortiti – Lemonsoda,4 × 330 ml,1.32,al litro,2.19,1.659,2026-10-13,2026-10-22,Prodotto in Italia.
 carrmkt13,Carrefour,Acqua,Naturale – Levissima,6 × 2 l,12,al litro,2.99,0.249,2026-10-13,2026-10-22,"−50%, prima 5,99. Solo con la tessera SpesAmica Payback."
 carrmkt13,Carrefour,Affettati,Arrosto di tacchino,all'etto,0.1,al kg,1.69,16.900,2026-10-13,2026-10-22,Al banco.
 carrmkt13,Carrefour,Affettati,Arrosto di tacchino bipack – Amadori,200 g,0.2,al kg,2.99,14.950,2026-10-13,2026-10-22,"−46%, prima 5,55. Solo con la tessera SpesAmica Payback."
@@ -6671,6 +6684,42 @@ carrmkt13,Carrefour,Vitello,Cotolette e nodini di vitello,al kg,1,al kg,17.99,17
 carrmkt13,Carrefour,Yogurt,Fruttolo Maxi – Fruttolo,4 × 100 g,0.4,al kg,1.59,3.975,2026-10-13,2026-10-22,"−35%, prima 2,46. Solo con la tessera SpesAmica Payback."
 carrmkt13,Carrefour,Yogurt,Müller Mix – Müller,150 g,0.15,al kg,0.69,4.600,2026-10-13,2026-10-22,"−45%, prima 1,26. Solo con la tessera SpesAmica Payback."
 carrmkt13,Carrefour,Yogurt,Yogurt intero gusti assortiti – Polenghi,2 × 125 g,0.25,al kg,0.59,2.360,2026-10-13,2026-10-22,"−25%, prima 0,79. Con 4 pezzi o più 0,49 al pezzo."
+carrmktpunti13,Carrefour,Pasta,Pasta Fresca Ripiena – Garofalo,230 g,0.23,al kg,2.99,13.000,2026-10-13,2026-10-22,"−23%, prima 3,89. Solo con la tessera SpesAmica Payback. Senza tessera 3,89."
+carrmktpunti13,Carrefour,Pizza,AirFryer Pizza Margherita – Buitoni,185 g,0.185,al kg,1.79,9.676,2026-10-13,2026-10-22,"−28%, prima 2,49. Solo con la tessera SpesAmica Payback. Senza tessera 2,49."
+carrmktpunti13,Carrefour,Shampoo,Shampoo o Balsamo – Gliss,250 ml,0.25,al litro,1.99,7.960,2026-10-13,2026-10-22,"−33%, prima 2,98. Solo con la tessera SpesAmica Payback. Senza tessera 2,98."
+carrmktpunti13,Carrefour,Spalmabili,Formaggini Spicchio – Tigre,140 g,0.14,al kg,1.79,12.786,2026-10-13,2026-10-22,
+carrmktpunti13,Carrefour,Sughi,Pesto di Pistacchi – Valentini,90 g,0.09,al kg,2.15,23.889,2026-10-13,2026-10-22,"−20%, prima 2,69. Solo con la tessera SpesAmica Payback. Senza tessera 2,69."
+carrmktpunti13,Carrefour,Sughi,Sugo Bolognese – Valentini,140 g,0.14,al kg,1.99,14.214,2026-10-13,2026-10-22,"−20%, prima 2,49. Solo con la tessera SpesAmica Payback. Senza tessera 2,49."
+carrmktpunti13,Carrefour,Sughi,Sugo Carbonara – Valentini,140 g,0.14,al kg,1.99,14.214,2026-10-13,2026-10-22,"−33%, prima 2,99. Solo con la tessera SpesAmica Payback. Senza tessera 2,99."
+carrmktpunti13,Carrefour,Tè,Infusi – Lipton,34 g,0.034,al kg,2.19,64.412,2026-10-13,2026-10-22,
+carrmktpunti13,Carrefour,Tè,Te Bio – Cupper,34 g,0.034,al kg,1.99,58.529,2026-10-13,2026-10-22,"−33%, prima 2,98. Solo con la tessera SpesAmica Payback. Senza tessera 2,98."
+carrmktpunti13,Carrefour,Tè,The Lipton Yellow Label – Lipton,25 filtri 38 g,0.038,al kg,1.89,49.737,2026-10-13,2026-10-22,
+carrmktpunti13,Carrefour,Tè,The Yellow Lipton Deteinato – Lipton,25 filtri 38 g,0.038,al kg,2.49,65.526,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Birra,"Blonde, Blanche o Double – Grimbergen",33 cl,0.33,al litro,1.59,4.818,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Biscotti,Notes senza glutine – Schär,81 g,0.081,al kg,2.99,36.914,2026-10-13,2026-10-22,"−25%, prima 3,99. Solo con la tessera SpesAmica Payback. Senza tessera 3,99."
+carrpunti13,Carrefour,Caffè,Capsule compatibili Nespresso – Illy,57 g,0.057,al kg,3.49,61.228,2026-10-13,2026-10-22,"−23%, prima 4,54. Solo con la tessera SpesAmica Payback. Senza tessera 4,54."
+carrpunti13,Carrefour,Caffè,Espresso grani in barattolo – Illy,250 g,0.25,al kg,6.29,25.160,2026-10-13,2026-10-22,"−20%, prima 7,87. Solo con la tessera SpesAmica Payback. Senza tessera 7,87."
+carrpunti13,Carrefour,Caffè,Macinato Espresso – Illy,250 g,0.25,al kg,6.29,25.160,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Cereali,Barrette Fitness Protein Cacao – Nestlé,80 g,0.08,al kg,1.99,24.875,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Cereali,Fitness Protein cacao – Nestlé,310 g,0.31,al kg,2.99,9.645,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Conserve,Filetti di Tonno – Rio Mare,250 g,0.25,al kg,4.99,19.960,2026-10-13,2026-10-22,"−39%, prima 8,19. Solo con la tessera SpesAmica Payback. Senza tessera 8,19."
+carrpunti13,Carrefour,Conserve,Tonno Leggero – Rio Mare,4 × 60 g,0.24,al kg,5.29,22.042,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Conserve,Tonno all'Olio di Oliva in Canna – Rio Mare,4 × 80 g (3+1),0.32,al kg,4.99,15.594,2026-10-13,2026-10-22,"−20%, prima 6,24. Solo con la tessera SpesAmica Payback. Senza tessera 6,24. Il volantino stampa 3x80 g + 1 gratis."
+carrpunti13,Carrefour,Formaggio,Fette Extrasottili – Leerdammer,80 g,0.08,al kg,1.29,16.125,2026-10-13,2026-10-22,"−26%, prima 1,75. Solo con la tessera SpesAmica Payback. Senza tessera 1,75."
+carrpunti13,Carrefour,Formaggio,Fette Leggero – Leerdammer,150 g,0.15,al kg,1.85,12.333,2026-10-13,2026-10-22,"−25%, prima 2,47. Solo con la tessera SpesAmica Payback. Senza tessera 2,47."
+carrpunti13,Carrefour,Formaggio,Fette Original – Leerdammer,200 g,0.2,al kg,2.49,12.450,2026-10-13,2026-10-22,"−26%, prima 3,37. Solo con la tessera SpesAmica Payback. Senza tessera 3,37."
+carrpunti13,Carrefour,Formaggio,Mini Crunchy – Leerdammer,150 g,0.15,al kg,2.29,15.267,2026-10-13,2026-10-22,"−23%, prima 2,98. Solo con la tessera SpesAmica Payback. Senza tessera 2,98."
+carrpunti13,Carrefour,Grana,Parmigiano Reggiano Grattugiato Fresco – Parmareggio,60 g,0.06,al kg,1.39,23.167,2026-10-13,2026-10-22,"−28%, prima 1,94. Solo con la tessera SpesAmica Payback. Senza tessera 1,94."
+carrpunti13,Carrefour,Grana,Parmigiano Reggiano Snack – Parmareggio,100 g,0.1,al kg,2.09,20.900,2026-10-13,2026-10-22,"−25%, prima 2,79. Solo con la tessera SpesAmica Payback. Senza tessera 2,79."
+carrpunti13,Carrefour,Latte,Latte Barista Zymil – Parmalat,1 l,1,al litro,1.89,1.890,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Latte,Latte Barista – Parmalat,1 l,1,al litro,1.69,1.690,2026-10-13,2026-10-22,
+carrpunti13,Carrefour,Lavastoviglie,Platinum Plus Yellow – Fairy,19 lavaggi,19,a lavaggio,5.49,0.289,2026-10-13,2026-10-22,"−26%, prima 7,42. Solo con la tessera SpesAmica Payback. Senza tessera 7,42."
+carrpunti13,Carrefour,Marmellata,Confetture – Zuegg,700 g,0.7,al kg,2.59,3.700,2026-10-13,2026-10-22,"−20%, prima 3,24. Solo con la tessera SpesAmica Payback. Senza tessera 3,24."
+carrpunti13,Carrefour,Pane,Tramezzino senza glutine – Schär,200 g,0.2,al kg,3.99,19.950,2026-10-13,2026-10-22,"−20%, prima 4,99. Solo con la tessera SpesAmica Payback. Senza tessera 4,99."
+carrpunti13,Carrefour,Verdure surgelate,Aperisfizi – Orogel,300 g,0.3,al kg,2.99,9.967,2026-10-13,2026-10-22,"−25%, prima 3,99. Solo con la tessera SpesAmica Payback. Senza tessera 3,99."
+carrpunti13,Carrefour,Verdure surgelate,Le Erbe Aromatiche Cipolla Rossa – Orogel,100 g,0.1,al kg,1.19,11.900,2026-10-13,2026-10-22,"−40%, prima 1,99. Solo con la tessera SpesAmica Payback. Senza tessera 1,99."
+carrpunti13,Carrefour,Verdure surgelate,Melanzane Fritte – Orogel,250 g,0.25,al kg,1.99,7.960,2026-10-13,2026-10-22,"−28%, prima 2,77. Solo con la tessera SpesAmica Payback. Senza tessera 2,77."
+carrpunti13,Carrefour,Verdure surgelate,Mix Aromi Mediterranei – Orogel,50 g,0.05,al kg,1.09,21.800,2026-10-13,2026-10-22,"−22%, prima 1,40. Solo con la tessera SpesAmica Payback. Senza tessera 1,40."
 carriper13,Carrefour,Formaggio,Formaggio Latteria,all'etto,0.1,al kg,1.09,10.900,2026-10-15,2026-10-18,"−21%, prima 1,39. Vale solo dal 15 al 18 ottobre, non per tutto il volantino."
 carriper13,Carrefour,Frutta,Mele Golden,al kg,1,al kg,0.99,0.990,2026-10-15,2026-10-18 Vale anche: Market.,"−30%, prima 1,42. Sacchetto da 2 kg a 1,98. Vale solo dal 15 al 18 ottobre, non per tutto il volantino."
 carriper13,Carrefour,Merendine,Muffin – Mr.Day,300 g,0.3,al kg,1.49,4.967,2026-10-15,2026-10-18,"−50%, prima 2,98. Vale solo dal 15 al 18 ottobre, non per tutto il volantino."
