@@ -7343,10 +7343,300 @@ bennet22,Bennet,Yogurt,Yogurt A-yo – Arborea,8 × 125 g,1,al kg,1.99,1.990,202
 bennet22,Bennet,Yogurt,Yogurt Mix – Müller,120 g,0.12,al kg,0.87,7.250,2026-10-22,2026-11-04,"−30%, prima 1,25."
 bennet22,Bennet,Yogurt,Yogurt alla greca senza lattosio – Zymil,150 g,0.15,al kg,1.49,9.933,2026-10-22,2026-11-04,Prodotto acceleratore.
 bennet22,Bennet,Yogurt,Yogurt da bere LC1 – Nestlé,8 × 90 g,0.72,al kg,2.59,3.597,2026-10-22,2026-11-04,"−35%, prima 3,99."
+ipercoop22,Ipercoop,Acqua,Acqua naturale – Vera,1.5 l,1.5,al litro,0.31,0.207,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Affettati,Petto di tacchino al forno,all'etto,0.1,al kg,1.79,17.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Ammorbidente,Ammorbidente concentrato – Vernel,78 lavaggi,78,a lavaggio,2.89,0.037,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Asciugatutto,Asciugoni – Regina,6 rotoli,6,al rotolo,5.79,0.965,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Bagnoschiuma,Bagnodoccia varie profumazioni – Neutromed,2 × 600 ml (1+1),1.2,al litro,3.19,2.658,2026-10-22,2026-11-04,"1+1 gratis. Una confezione sola costa 3,19."
+ipercoop22,Ipercoop,Bagnoschiuma,Bagnodoccia – Borotalco,500 ml,0.5,al litro,2.99,5.980,2026-10-22,2026-11-04,"−40% soci, prima 4,99. Solo per i soci Coop. Senza tessera 4,99."
+ipercoop22,Ipercoop,Bibite,Bevanda a base di frutta – Yoga,1 l,1,al litro,1.19,1.190,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Bibite,Coca Cola original o zero,1.5 l,1.5,al litro,1.49,0.993,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Bibite,"Coca Cola, Fanta o Sprite gusti vari",6 × 330 ml,1.98,al litro,3.69,1.864,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Bibite,Succoso Zero gusti vari – San Benedetto,400 ml,0.4,al litro,0.68,1.700,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 1,14, 3 pezzi 1,53."
+ipercoop22,Ipercoop,Bibite,Thè limone o pesca – San Benedetto,1.5 l,1.5,al litro,0.85,0.567,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Birra,Birra 0.0% alcool lattina – Heineken,330 ml,0.33,al litro,0.79,2.394,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Birra,Birra 0.0% alcool – Heineken,6 × 330 ml,0.99,al litro,2.49,2.515,2026-10-22,2026-11-04,"Il volantino stampa 6 × 330 ml ma il prezzo al litro stampato (2,52) vale per 0,99 l."
+ipercoop22,Ipercoop,Birra,Birra lattina – Heineken,330 ml,0.33,al litro,0.79,2.394,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Birra,Birra – Heineken,6 × 330 ml,1.98,al litro,3.99,2.015,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Birra,Birra – Tuborg,660 ml,0.66,al litro,0.85,1.288,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Birra,Leffe tipi vari,330 ml,0.33,al litro,1.45,4.394,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Birra,Leffe tipi vari,750 ml,0.75,al litro,3.39,4.520,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Biscotti,Biscotti Mikado – Saiwa,70 g,0.07,al kg,1.35,19.286,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Biscotti,"Biscotti classici Macine, Galletti, Tarallucci o Rigoli – Mulino Bianco",800 g,0.8,al kg,2.19,2.737,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Biscotti,Biscotti di frolla Halloween,200 g,0.2,al kg,2.99,14.950,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Biscotti,Biscotti – Plasmon,1.2 kg,1.2,al kg,6.99,5.825,2026-10-22,2026-11-04,"−40%, prima 11,65. Solo per i soci Coop. Senza tessera 11,65."
+ipercoop22,Ipercoop,Biscotti,Frollini Il Granturchese cioccolato o integrale – Colussi,340 g,0.34,al kg,1.99,5.853,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Biscotti,Frollini latte e avena o gocce di cioccolato – Colussi,288 g,0.288,al kg,1.49,5.174,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Biscotti,Il Granturchese – Colussi,400 g,0.4,al kg,1.39,3.475,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Biscotti,Krumiri classici o con gocce di cioccolato – Bistefani,290 g,0.29,al kg,1.19,4.103,2026-10-22,2026-11-04,"−50%, prima 2,39."
+ipercoop22,Ipercoop,Biscotti,Nutella Biscuits,304 g,0.304,al kg,2.79,9.178,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Biscotti,Oswego o Zuppalatte – Colussi,250 g,0.25,al kg,0.89,3.560,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Bresaola,Bresaola affumicata – Panzeri,80 g,0.08,al kg,2.89,36.125,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Caffè,Caffè Dolce Gusto napoli o intenso – Kimbo,30 capsule 210 g,0.21,al kg,6.49,30.905,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Caffè,Caffè aroma italiano – Kimbo,3 × 250 g,0.75,al kg,10.90,14.533,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Caffè,Caffè compatibili Nespresso ristretto o forza – L'Or,50 capsule 260 g,0.26,al kg,11.90,45.769,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Carta igienica,Rotoloni – Regina,12 rotoli,12,al rotolo,7.49,0.624,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cereali,Barrette Oaties – Kellogg's,160 g,0.16,al kg,1.89,11.812,2026-10-22,2026-11-04,Miele e avena o cioccolato.
+ipercoop22,Ipercoop,Cereali,Cereali Fitness – Nestlé,375 g,0.375,al kg,1.99,5.307,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cereali,Krave – Kellogg's,410 g,0.41,al kg,2.79,6.805,2026-10-22,2026-11-04,"Gusti assortiti, da 375 g; esempio 410 g."
+ipercoop22,Ipercoop,Cereali,Oaties – Kellogg's,360 g,0.36,al kg,1.99,5.528,2026-10-22,2026-11-04,Original o cioccolato.
+ipercoop22,Ipercoop,Cioccolato,Angelo di cioccolato al latte – Bauli,100 g,0.1,al kg,3.69,36.900,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Borsetta Halloween – La Suissa,130 g,0.13,al kg,3.99,30.692,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Cioccolatini Il Boero – Witor's,200 g,0.2,al kg,3.29,16.450,2026-10-22,2026-11-04,"Il volantino indica da 175 g, esempio 200 g (16,45 al kg)."
+ipercoop22,Ipercoop,Cioccolato,Cioccolatini Lindor – Lindt,112 g,0.112,al kg,3.99,35.625,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Confetti al cioccolato con arachidi – M&M's,330 g,0.33,al kg,3.29,9.970,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Gianduiotto fondente – Oliva,150 g,0.15,al kg,2.49,16.600,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,KitKat mini – Nestlé,200 g,0.2,al kg,2.99,14.950,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Sagome Halloween – Dolfin,80 g,0.08,al kg,2.49,31.125,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Snack Gamme Bleue – Lindt,38 g,0.038,al kg,1.29,33.947,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Tavoletta Excellence – Lindt,100 g,0.1,al kg,2.99,29.900,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Tavoletta Gran Blocco fondente 50% – Perugina,150 g,0.15,al kg,2.29,15.267,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Tavoletta Sport – Ritter,100 g,0.1,al kg,1.49,14.900,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Tavoletta fondente nero 72% – Novi,100 g,0.1,al kg,1.99,19.900,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Tavoletta nocciola e noci pecan – Ferrero Rocher,90 g,0.09,al kg,1.99,22.111,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Tavoletta nocciolato gianduia – Novi,130 g,0.13,al kg,2.89,22.231,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Tavoletta – KitKat Nestlé,99 g,0.099,al kg,1.89,19.091,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Cioccolato,Torroncini Zanzibar – Sperlari,117 g,0.117,al kg,2.69,22.991,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Cioccolato,Twix,"3 pezzi, 150 g",0.15,al kg,1.69,11.267,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Collutorio,Listerine,600 ml,0.6,al litro,3.79,6.317,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Conserve,Filetti di alici del mare Adriatico in olio di oliva vaso vetro – Rizzoli,145 g,0.145,al kg,3.99,27.517,2026-10-22,2026-11-04,"−20%, prima 4,99."
+ipercoop22,Ipercoop,Conserve,Linea sottoli o sottaceti – Novella,710 g,0.71,al kg,2.99,4.211,2026-10-22,2026-11-04,"−50%, prima 5,99."
+ipercoop22,Ipercoop,Creme,Nutella,750 g,0.75,al kg,5.49,7.320,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Dentifricio,Dentifricio tipi vari – Oral-B,3 × 75 ml,0.225,al litro,2.95,13.111,2026-10-22,2026-11-04,"−50%, prima 5,91."
+ipercoop22,Ipercoop,Dentifricio,Mentadent,3 × 75 ml,0.225,al litro,4.41,19.600,2026-10-22,2026-11-04,"−40%, prima 7,35."
+ipercoop22,Ipercoop,Farina,Polenta classica – Valsugana,2 × 375 g,0.75,al kg,2.99,3.987,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Formaggio,Brie Crémière – de France,200 g,0.2,al kg,2.29,11.450,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Formaggio,Brie – Le Roitelet,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Formaggio,Formaggio Latte Fieno Contadino – Latteria Tre Cime,all'etto,0.1,al kg,1.49,14.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Formaggio,Formaggio Latte Fieno Montagna San Candido – Latteria Tre Cime,all'etto,0.1,al kg,1.39,13.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Formaggio,Formaggio Stanga alle erbe – Latteria Tre Cime,all'etto,0.1,al kg,1.30,13.000,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Formaggio,Formaggio – Il Piccolo,all'etto,0.1,al kg,1.35,13.500,2026-10-22,2026-11-04,"−20%, prima 1,69. Al banco."
+ipercoop22,Ipercoop,Formaggio,Gorgonzola D.O.P. dolce – Arrigoni,all'etto,0.1,al kg,1.09,10.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Formaggio,GranMix Fila e Gusta mozzarella e scamorza – Ferrari,135 g,0.135,al kg,1.59,11.778,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Formaggio,GranMix grattugiato – Ferrari,100 g,0.1,al kg,1.39,13.900,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Formaggio,Pecorino di Pienza fresco – Putzulu,all'etto,0.1,al kg,1.60,16.000,2026-10-22,2026-11-04,"−30%, prima 2,29. Solo per i soci Coop. Senza tessera 2,29 all'etto. Al banco."
+ipercoop22,Ipercoop,Formaggio,Pecorino grattugiato – Ferrari,100 g,0.1,al kg,1.39,13.900,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Formaggio,Sottilette classiche – Kraft,400 g,0.4,al kg,2.69,6.725,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Formaggio,Stracchino gusto di una volta – Granarolo,160 g,0.16,al kg,1.79,11.188,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Formaggio,Stracchino senza lattosio – Nonno Nanni,165 g,0.165,al kg,2.99,18.121,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 4,78, 3 pezzi 5,37."
+ipercoop22,Ipercoop,Frutta,Cachi a polpa soda,al kg,1,al kg,2.58,2.580,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Frutta,Castagne,750 g,0.75,al kg,2.99,3.987,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Frutta,Datteri Deglet con nocciolo La Nostra Terra – Noberasco,350 g,0.35,al kg,3.98,11.371,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 6,36, 3 pezzi 8,34."
+ipercoop22,Ipercoop,Frutta,Mandarini senza semi Tang Gold,al kg,1,al kg,2.68,2.680,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Frutta,Mandorle pelate o sgusciate – Coop,500 g,0.5,al kg,5.98,11.960,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Frutta,Mele Golden D.O.P. – Melinda,3 kg,3,al kg,3.78,1.260,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Frutta,Mele Golden DOP – Melinda,3 kg,3,al kg,3.78,1.260,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Gamberi,Gamberone argentino decongelato,al kg,1,al kg,14.92,14.920,2026-10-22,2026-11-04,"−25% soci, prima 19,90. Solo per i soci Coop. Senza tessera 19,90."
+ipercoop22,Ipercoop,Grana,Grana Padano D.O.P. stagionatura 16 mesi – Cheestà,all'etto,0.1,al kg,1.50,15.000,2026-10-22,2026-11-04,"−20%, prima 1,89. Al banco."
+ipercoop22,Ipercoop,Grana,Parmigiano Reggiano D.O.P. oltre 22 mesi,al kg,1,al kg,20.90,20.900,2026-10-22,2026-11-04,"−30%, prima 29,90. Peso circa 400 g."
+ipercoop22,Ipercoop,Latte,Latte UHT parzialmente scremato – Granarolo,4 × 1 l,4,al litro,4.29,1.073,2026-10-22,2026-11-04,"−30%, prima 6,15."
+ipercoop22,Ipercoop,Lavastoviglie,Ultimate 70 capsule – Finish,70 pezzi,70,a lavaggio,13.45,0.192,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Lavatrice,Detersivo concentrato Discs – Dixan,60 pezzi,60,a lavaggio,12.49,0.208,2026-10-22,2026-11-04,"−40%, prima 20,82."
+ipercoop22,Ipercoop,Lavatrice,Detersivo in polvere bianco splendente – Sole,90 misurini,90,a lavaggio,10.90,0.121,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Lavatrice,Detersivo in polvere – Dixan,82 misurini,82,a lavaggio,14.90,0.182,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Lavatrice,Detersivo liquido – Ace,3 × 27 lavaggi,81,a lavaggio,8.90,0.110,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Lavatrice,Detersivo liquido – Dixan,3 × 22 lavaggi,66,a lavaggio,10.45,0.158,2026-10-22,2026-11-04,"−50%, prima 20,90."
+ipercoop22,Ipercoop,Legumi,Lenticchia dell'Umbria – Colfiorito,400 g,0.4,al kg,2.98,7.450,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Manzo,Macinato scelto di bovino adulto,al kg,1,al kg,9.90,9.900,2026-10-22,2026-11-04,"−20% soci, prima 12,38. Solo per i soci Coop. Senza tessera 12,38."
+ipercoop22,Ipercoop,Marmellata,Confetture Fiordifrutta gusti assortiti – Rigoni,330 g,0.33,al kg,3.49,10.576,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Donuts Nutella,2 × 60 g,0.12,al kg,2.39,19.917,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Fiesta – Ferrero,360 g,0.36,al kg,2.99,8.306,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Kinder Bueno,"5 pezzi, 215 g",0.215,al kg,2.99,13.907,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Mini croissant,150 g,0.15,al kg,2.99,19.933,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Muffin Nutella,86 g,0.086,al kg,1.29,15.000,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Merendine,Nastrine – Mulino Bianco,240 g,0.24,al kg,1.49,6.208,2026-10-22,2026-11-04,"−40%, prima 2,49. Solo per i soci Coop. Senza tessera 2,49."
+ipercoop22,Ipercoop,Merendine,Torte in festa – Balocco,400 g,0.4,al kg,2.99,7.475,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Mozzarella,Mozzarella Latte Fieno Bio – Brimi,300 g,0.3,al kg,2.79,9.300,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Mozzarella,Mozzarella di bufala Campana D.O.P. – Mandara,3 × 100 g,0.3,al kg,3.29,10.967,2026-10-22,2026-11-04,"−40%, prima 5,49."
+ipercoop22,Ipercoop,Mozzarella,Mozzarella fior di latte,250 g,0.25,al kg,2.70,10.800,2026-10-22,2026-11-04,"−30%, prima 3,89."
+ipercoop22,Ipercoop,Mozzarella,Mozzarella – Nonno Nanni,3 × 125 g,0.375,al kg,4.35,11.600,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 6,96, 3 pezzi 7,83."
+ipercoop22,Ipercoop,Mozzarella,Mozzarella – Vallelata,3 × 125 g,0.375,al kg,3.15,8.400,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Olio d'oliva,Olio di oliva – Cirio,1 l,1,al litro,4.99,4.990,2026-10-22,2026-11-04,"−50%, prima 9,99."
+ipercoop22,Ipercoop,Olio d'oliva,Olio extra vergine di oliva Come da Tradizione – Azienda Olearia del Chianti,2 × 1 l (1+1),2,al litro,11.90,5.950,2026-10-22,2026-11-04,"1+1 gratis. Una confezione sola costa 11,90."
+ipercoop22,Ipercoop,Olio di semi,Olio di semi per friggere – Friol,1 l,1,al litro,2.29,2.290,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Panati,Bastoncini di merluzzo – Frosta,450 g,0.45,al kg,3.66,8.133,2026-10-22,2026-11-04,"−40%, prima 6,10. Solo per i soci Coop. Senza tessera 6,10. Surgelato."
+ipercoop22,Ipercoop,Panati,Bocconcini di merluzzo – Frosta,280 g,0.28,al kg,2.69,9.607,2026-10-22,2026-11-04,"−40%, prima 4,49. Solo per i soci Coop. Senza tessera 4,49. Surgelato."
+ipercoop22,Ipercoop,Pancetta,Bacon affumicato – Tulip,150 g,0.15,al kg,1.88,12.533,2026-10-22,2026-11-04,"−30%, prima 2,69."
+ipercoop22,Ipercoop,Pane,Baguette semola,250 g,0.25,al kg,0.79,3.160,2026-10-22,2026-11-04,"Peso minimo garantito. Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 1,26, 3 pezzi 1,41."
+ipercoop22,Ipercoop,Pane,Crackers riso su riso – Galbusera,380 g,0.38,al kg,1.89,4.974,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Pane,Filone di segale – Panem,400 g,0.4,al kg,1.91,4.775,2026-10-22,2026-11-04,"−20%, prima 2,39."
+ipercoop22,Ipercoop,Pane,Gran Bauletto Rustico – Mulino Bianco,500 g,0.5,al kg,1.79,3.580,2026-10-22,2026-11-04,"−30%, prima 2,56."
+ipercoop22,Ipercoop,Pane,La Nostra Piada – Frescopiada,360 g,0.36,al kg,1.99,5.528,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Pane,Piadina sfogliata extrasottile – Casa della Piada,2 × 390 g (1+1),0.78,al kg,2.39,3.064,2026-10-22,2026-11-04,"1+1 gratis. Una confezione sola costa 2,39."
+ipercoop22,Ipercoop,Pasta,Pasta di avena o di legumi senza glutine – Felicia,250 g,0.25,al kg,1.99,7.960,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Pasta,Pasta di semola – De Cecco,2 × 500 g (1+1),1,al kg,1.56,1.560,2026-10-22,2026-11-04,"1+1 gratis. Una confezione sola costa 1,56."
+ipercoop22,Ipercoop,Patate,Patate selenella,1.5 kg,1.5,al kg,2.38,1.587,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Patate,Patatine Barchetta PataSnella – Pizzoli,600 g,0.6,al kg,1.99,3.317,2026-10-22,2026-11-04,Surgelato. Solo per i soci Coop.
+ipercoop22,Ipercoop,Patate,Patatine Una tira l'altra PataSnella – Pizzoli,600 g,0.6,al kg,1.99,3.317,2026-10-22,2026-11-04,Surgelato. Solo per i soci Coop.
+ipercoop22,Ipercoop,Patate,Patatine doppio strato – Mario Pizzoli,500 g,0.5,al kg,1.99,3.980,2026-10-22,2026-11-04,Surgelato. Solo per i soci Coop.
+ipercoop22,Ipercoop,Pesce,Cozze – Nieddittas,al kg,1,al kg,5.90,5.900,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Pesce,Filetti di nasello – Frosta,300 g,0.3,al kg,4.19,13.967,2026-10-22,2026-11-04,Solo per i soci Coop. Surgelato.
+ipercoop22,Ipercoop,Pesce,Tranci di pesce spada – Coop Gli Spesotti,500 g,0.5,al kg,5.90,11.800,2026-10-22,2026-11-04,Surgelato.
+ipercoop22,Ipercoop,Pizza,Pizza 26x38 gusti vari – Italpizza,470 g,0.47,al kg,3.00,6.383,2026-10-22,2026-11-04,Il volantino mostra anche il formato da 485 g; conto sul più piccolo.
+ipercoop22,Ipercoop,Pollo,Sottilissime di petto di pollo – Aia,al kg,1,al kg,13.44,13.440,2026-10-22,2026-11-04,"−25%, prima 17,92."
+ipercoop22,Ipercoop,Pollo,Tagliata di petto di pollo – SQ,400 g,0.4,al kg,3.98,9.950,2026-10-22,2026-11-04,"−20% soci, prima 4,98. Solo per i soci Coop. Senza tessera 4,98."
+ipercoop22,Ipercoop,Pomodoro,Passata Lampomodoro – Conserve della Nonna,4 × 700 g,2.8,al kg,3.89,1.389,2026-10-22,2026-11-04,"−50%, prima 7,79."
+ipercoop22,Ipercoop,Pomodoro,Pelati – Cirio,4 × 400 g,1.6,al kg,2.95,1.844,2026-10-22,2026-11-04,"−40%, prima 4,92. Solo per i soci Coop. Senza tessera 4,92."
+ipercoop22,Ipercoop,Pomodoro,Polpa finissima di pomodoro – Mutti,3 × 210 g,0.63,al kg,1.95,3.095,2026-10-22,2026-11-04,"−40%, prima 3,25."
+ipercoop22,Ipercoop,Preparati,Arrosticini di pollo – Origine Coop,440 g,0.44,al kg,5.48,12.455,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 8,76, 3 pezzi 11,49."
+ipercoop22,Ipercoop,Preparati,Bastoncini di pollo – Martini,500 g,0.5,al kg,3.59,7.180,2026-10-22,2026-11-04,"−40% soci, prima 5,99. Solo per i soci Coop. Senza tessera 4,79."
+ipercoop22,Ipercoop,Prosciutto,Prosciutto cotto alta qualità – Parmacotto,2 × 100 g,0.2,al kg,2.95,14.750,2026-10-22,2026-11-04,"−50%, prima 5,90."
+ipercoop22,Ipercoop,Prosciutto,Prosciutto cotto alta qualità – Riccafetta Raspini,all'etto,0.1,al kg,1.39,13.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Prosciutto,Prosciutto di Parma D.O.P. stagionatura 18 mesi,all'etto,0.1,al kg,2.49,24.900,2026-10-22,2026-11-04,Al banco.
+ipercoop22,Ipercoop,Ricotta,Ricotta – Vallelata,250 g,0.25,al kg,1.39,5.560,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Riso,Riso Carnaroli – Scotti,1 kg,1,al kg,1.99,1.990,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Salame,Salame – Citterio,al kg,1,al kg,17.70,17.700,2026-10-22,2026-11-04,"−40%, prima 29,50. Solo per i soci Coop. Senza tessera 29,50 al kg. Peso circa 250 g."
+ipercoop22,Ipercoop,Salame,Salame – Il Golfetta,all'etto,0.1,al kg,1.80,18.000,2026-10-22,2026-11-04,"−30%, prima 2,59. Solo per i soci Coop. Senza tessera 2,59 all'etto. Al banco."
+ipercoop22,Ipercoop,Salmone,Filetto di salmone norvegese allevato fresco – Origine Coop,250 g,0.25,al kg,5.90,23.600,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Salmone affumicato,Salmone norvegese affumicato Fjordisalmone – Riunione,200 g,0.2,al kg,6.90,34.500,2026-10-22,2026-11-04,"−30%, prima 9,87. Solo per i soci Coop. Senza tessera 9,87."
+ipercoop22,Ipercoop,Salsiccia,Salsiccia paesana luganega carne al fuoco – Aia,500 g,0.5,al kg,6.29,12.580,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Shampoo,Olioshampoo – Restivoil,150 ml,0.15,al litro,6.68,44.533,2026-10-22,2026-11-04,"−30%, prima 9,55."
+ipercoop22,Ipercoop,Shampoo,Shampoo o balsamo – Sunsilk,2 × 250 ml,0.5,al litro,3.39,6.780,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Spalmabili,Formaggio fresco – Philadelphia,2 × 80 g,0.16,al kg,1.79,11.188,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Suino,Fettine di lonza,al kg,1,al kg,7.98,7.980,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Tacchino,Rollè bis tacchino e pollo – Amadori,al kg,1,al kg,13.15,13.150,2026-10-22,2026-11-04,"−30% soci, prima 18,79. Solo per i soci Coop. Senza tessera 18,79."
+ipercoop22,Ipercoop,Tonno,Filetti di tonno in olio di oliva vaso vetro – Consorcio,295 g,0.295,al kg,5.99,20.305,2026-10-22,2026-11-04,"−50%, prima 11,99."
+ipercoop22,Ipercoop,Tonno,Tonno al naturale – Coop Gli Spesotti,160 g (sgocc. 112 g),0.112,al kg,1.29,11.518,2026-10-22,2026-11-04,"Peso sgocciolato 112 g, confezione 160 g."
+ipercoop22,Ipercoop,Tonno,Tonno yellowfin in olio di oliva – Rio Mare,12 × 65 g,0.78,al kg,11.99,15.372,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Verdura,Broccoletti,500 g,0.5,al kg,1.48,2.960,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Verdura,Contornissimi al vapore – Bonduelle,300 g,0.3,al kg,2.98,9.933,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Verdura,Funghi champignon affettati,300 g,0.3,al kg,2.08,6.933,2026-10-22,2026-11-04,"−30% soci, prima 2,98. Solo per i soci Coop. Senza tessera 2,38."
+ipercoop22,Ipercoop,Verdura,Verdure cotte – Fior Fiore Coop,2 × 150 g,0.3,al kg,2.28,7.600,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Verdure surgelate,Minestroni Tradizione 5 minuti – Findus,600 g,0.6,al kg,2.49,4.150,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Verdure surgelate,Pisellini primavera – Findus,700 g,0.7,al kg,3.49,4.986,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Verdure surgelate,Spinaci o bieta erbetta Cubello foglia più – Orogel,900 g,0.9,al kg,2.29,2.544,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Vino,Barbera d'Asti D.O.C.G. – La Cacciatora,1.5 l,1.5,al litro,4.99,3.327,2026-10-22,2026-11-04,"−40%, prima 8,32. Solo per i soci Coop. Senza tessera 8,32."
+ipercoop22,Ipercoop,Vino,Ribolla Gialla I.G.T. – Villa Folini,750 ml,0.75,al litro,4.79,6.387,2026-10-22,2026-11-04,"−40%, prima 7,99. Solo per i soci Coop. Senza tessera 7,99."
+ipercoop22,Ipercoop,Vino,Spumante Prosecco D.O.C. Treviso – Mionetto,750 ml,0.75,al litro,6.29,8.387,2026-10-22,2026-11-04,Solo per i soci Coop.
+ipercoop22,Ipercoop,Vino,Umbria I.G.T. rosso Vocante o bianco Desiata – Terre della Custodia,2 × 750 ml (1+1),1.5,al litro,5.99,3.993,2026-10-22,2026-11-04,"1+1 gratis. Una confezione sola costa 5,99."
+ipercoop22,Ipercoop,Würstel,Würstel di pollo Wüberone – Wüber,500 g,0.5,al kg,2.80,5.600,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 4,48, 3 pezzi 5,04."
+ipercoop22,Ipercoop,Yogurt,Probiotico LC1 – Nestlé,8 × 90 g,0.72,al kg,2.35,3.264,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Yogurt,Skyr – Mila,150 g,0.15,al kg,0.99,6.600,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Yogurt,Yogurt Activia – Danone,8 × 125 g,1,al kg,2.99,2.990,2026-10-22,2026-11-04,"−30%, prima 4,28. Solo per i soci Coop. Senza tessera 4,28."
+ipercoop22,Ipercoop,Yogurt,Yogurt Merano Latte Fieno – Latteria Merano,150 g,0.15,al kg,0.79,5.267,2026-10-22,2026-11-04,
+ipercoop22,Ipercoop,Yogurt,Yogurt Mix – Müller,120 g,0.12,al kg,0.75,6.250,2026-10-22,2026-11-04,"−40%, prima 1,25."
+ipercoop22,Ipercoop,Yogurt,Yogurt dolce e vellutato – Latteria Vipiteno,500 g,0.5,al kg,1.15,2.300,2026-10-22,2026-11-04,"−20%, prima 1,44."
+ipercoop22,Ipercoop,Yogurt,Yogurt intero frutta assortita – Coop,8 × 125 g,1,al kg,3.75,3.750,2026-10-22,2026-11-04,"Prezzo di 1 pezzo; più ne prendi meno paghi: 2 pezzi 6,00, 3 pezzi 6,75."
 lidlhw01,Lidl,Pasta,"Fantasmini, pasta fresca ripiena alla zucca",250 g,0.25,al kg,1.49,5.960,2026-10-22,2026-10-31,
 lidlhw01,Lidl,Pasta,Gnocchi a forma di pipistrello con carota nera,400 g,0.4,al kg,1.69,4.225,2026-10-22,2026-10-31,
 lidlhw01,Lidl,Pasta,Gnocchi di patata a forma di fantasmini alla zucca,500 g,0.5,al kg,1.79,3.580,2026-10-22,2026-10-31,
 lidlhw01,Lidl,Pasta,"Zucchette, gnocchi ripieni al Gorgonzola",400 g,0.4,al kg,1.99,4.975,2026-10-22,2026-10-31,
+pam22,Pam,Acqua,Acqua Uliveto o Rocchetta,"6 × 1,5 l",9,al litro,2.52,0.280,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Affettati,Roast-beef di sottofesa all'inglese,all'etto,0.1,al kg,2.99,29.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Affettati,"Snello petto di pollo o tacchino, prosciutto cotto – Rovagnati",100 g,0.1,al kg,2.00,20.000,2026-10-22,2026-11-04,"−40%, prima 3,34."
+pam22,Pam,Asciugatutto,Asciugatutto – Arkalia,3 rotoli,3,al rotolo,1.29,0.430,2026-10-22,2026-11-04,
+pam22,Pam,Bagnoschiuma,Bagnodoccia – Vidal,600 ml,0.6,al litro,1.69,2.817,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Bibite,Bevanda alla frutta Zero – Derby,1 l,1,al litro,1.39,1.390,2026-10-22,2026-11-04,
+pam22,Pam,Bibite,Energy drink – Red Bull,25 cl,0.25,al litro,1.08,4.320,2026-10-22,2026-11-04,"−20%, prima 1,35."
+pam22,Pam,Bibite,Pepsi,2 l,2,al litro,1.49,0.745,2026-10-22,2026-11-04,
+pam22,Pam,Birra,Moretti,50 cl,0.5,al litro,0.89,1.780,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Birra,Peroni classica o lemon,3 × 33 cl,0.99,al litro,2.29,2.313,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Birra,Premium – Bavaria,66 cl,0.66,al litro,0.95,1.439,2026-10-22,2026-11-04,
+pam22,Pam,Biscotti,Biscotti di pastafrolla Halloween – Don Carlo,150 g,0.15,al kg,1.99,13.267,2026-10-22,2026-11-04,
+pam22,Pam,Biscotti,Biscotti – Mulino Bianco,700 g,0.7,al kg,2.69,3.843,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus. Formati da 700 e 800 g.
+pam22,Pam,Biscotti,Frollini gocce di cioccolato – Pam,500 g,0.5,al kg,1.49,2.980,2026-10-22,2026-11-04,
+pam22,Pam,Biscotti,Horror Biscuit – Gecchele,165 g,0.165,al kg,2.49,15.091,2026-10-22,2026-11-04,
+pam22,Pam,Biscotti,Wafer – Pam,175 g,0.175,al kg,0.99,5.657,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Burro,Burro – Pam,125 g,0.125,al kg,1.49,11.920,2026-10-22,2026-11-04,
+pam22,Pam,Caffè,Capsule Rossa o Classico/Decaf – Lavazza,30 capsule 171 g,0.171,al kg,9.99,58.421,2026-10-22,2026-11-04,Altri formati con peso maggiore a prezzo uguale.
+pam22,Pam,Caffè,Macinato Classico – Splendid,2 × 250 g,0.5,al kg,5.99,11.980,2026-10-22,2026-11-04,
+pam22,Pam,Carta igienica,Carta igienica profumata – Arkalia,6 rotoli,6,al rotolo,2.99,0.498,2026-10-22,2026-11-04,
+pam22,Pam,Cereali,Special K classici – Kellogg,450 g,0.45,al kg,2.99,6.644,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Cioccolatini Bijou Baci – Perugina,150 g,0.15,al kg,5.99,39.933,2026-10-22,2026-11-04,Formati da 150 e 200 g.
+pam22,Pam,Cioccolato,Cioccolatini al latte Happy Halloween – Sorini,130 g,0.13,al kg,1.69,13.000,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Cioccolato,Praline – Tesori dell'Arca,450 g,0.45,al kg,3.49,7.756,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Snack KitKat – Nestlé,165 g,0.165,al kg,2.19,13.273,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Cioccolato,Snack Lindt o Lindor,35 g,0.035,al kg,1.29,36.857,2026-10-22,2026-11-04,Formati da 35 a 39 g.
+pam22,Pam,Cioccolato,Snack M&M's,176 g,0.176,al kg,2.79,15.852,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus. Formati da 176 e 200 g.
+pam22,Pam,Cioccolato,Tavoletta Gamme Bleue – Lindt,100 g,0.1,al kg,1.99,19.900,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Cioccolato,Tavoletta cremino Cuadro – Novi,110 g,0.11,al kg,2.69,24.455,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Tavolette Excellence – Lindt,100 g,0.1,al kg,2.99,29.900,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Tavolette Mini Mix – Ritter Sport,150 g,0.15,al kg,2.99,19.933,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Tavolette Nero Nero – Novi,75 g,0.075,al kg,2.39,31.867,2026-10-22,2026-11-04,
+pam22,Pam,Cioccolato,Tavolette – Milka,87 g,0.087,al kg,1.49,17.126,2026-10-22,2026-11-04,Formati da 87 a 100 g.
+pam22,Pam,Conserve,Olive nere denocciolate – Pam,125 g,0.125,al kg,0.99,7.920,2026-10-22,2026-11-04,Senza liquido.
+pam22,Pam,Creme,100% crema di nocciole bio,175 g,0.175,al kg,5.99,34.229,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Dentifricio,Dentifricio – Arkalia,75 ml,0.075,al litro,0.99,13.200,2026-10-22,2026-11-04,
+pam22,Pam,Farina,Farina tipo 00 – Pam,1 kg,1,al kg,0.49,0.490,2026-10-22,2026-11-04,
+pam22,Pam,Formaggio,Asiago DOP fresco riserva – Tesori dell'Arca,all'etto,0.1,al kg,1.19,11.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Formaggio,Fiocchi di latte protein senza lattosio – Milk Pro,210 g,0.21,al kg,1.39,6.619,2026-10-22,2026-11-04,
+pam22,Pam,Formaggio,Formaggio fresco Linea – Osella,190 g,0.19,al kg,2.19,11.526,2026-10-22,2026-11-04,
+pam22,Pam,Formaggio,Gorgonzola DOP dolce – Tesori dell'Arca,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Formaggio,Leerdammer,all'etto,0.1,al kg,1.19,11.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Formaggio,Stracchino – Nonno Nanni,200 g,0.2,al kg,2.59,12.950,2026-10-22,2026-11-04,
+pam22,Pam,Formaggio,Stracchino – Tesori dell'Arca,250 g,0.25,al kg,2.79,11.160,2026-10-22,2026-11-04,
+pam22,Pam,Frutta,Arachidi tostate – Pam,750 g,0.75,al kg,3.99,5.320,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Frutta,Datteri Deglet Nour,250 g,0.25,al kg,0.99,3.960,2026-10-22,2026-11-04,
+pam22,Pam,Frutta,Mango – Pam,360 g,0.36,al kg,0.99,2.750,2026-10-22,2026-11-04,
+pam22,Pam,Gamberi,Gambero intero decongelato,all'etto,0.1,al kg,1.79,17.900,2026-10-22,2026-10-28,"Vale solo dal 22 al 28 ottobre, non per tutto il volantino."
+pam22,Pam,Latte,Senza lattosio 1% – Zymil Parmalat,1 l,1,al litro,1.59,1.590,2026-10-22,2026-11-04,
+pam22,Pam,Latte,UHT senza lattosio 1% – +A-,500 ml,0.5,al litro,0.55,1.100,2026-10-22,2026-11-04,"−20%, prima 0,69."
+pam22,Pam,Lavatrice,Detersivo regular – Dash,40 lavaggi,40,a lavaggio,7.90,0.198,2026-10-22,2026-11-04,
+pam22,Pam,Legumi,Legumi in vaso di vetro – Pam,200 g sgocciolato,0.2,al kg,0.65,3.250,2026-10-22,2026-11-04,Peso sgocciolato 200 g (300 g con liquido).
+pam22,Pam,Manzo,Macinato scelto di bovino adulto,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,Confezione risparmio.
+pam22,Pam,Marmellata,Fior di frutta bio – Rigoni di Asiago,330 g,0.33,al kg,3.89,11.788,2026-10-22,2026-11-04,Formati da 330 e 340 g.
+pam22,Pam,Merendine,Cornetti Fibrextra o Dolcesenza – Misura,298 g,0.298,al kg,2.99,10.034,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus. Formati da 298 e 308 g.
+pam22,Pam,Merendine,Kinder Brioss – Ferrero,270 g,0.27,al kg,2.49,9.222,2026-10-22,2026-11-04,Formati da 270 e 280 g.
+pam22,Pam,Merendine,Snack Kinder Bueno – Ferrero,3 pezzi 117 g,0.117,al kg,1.99,17.009,2026-10-22,2026-11-04,Formati da 117 e 129 g.
+pam22,Pam,Merluzzo,2 bistecche I Grigliati – Frosta,250 g,0.25,al kg,3.69,14.760,2026-10-22,2026-11-04,Surgelato.
+pam22,Pam,Mortadella,Mortadella Bologna IGP,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Mozzarella,Ciliegine di mozzarella – Pam,150 g,0.15,al kg,1.49,9.933,2026-10-22,2026-11-04,
+pam22,Pam,Mozzarella,Mozzarella fiordilatte – Tesori dell'Arca,3 × 125 g,0.375,al kg,2.79,7.440,2026-10-22,2026-11-04,
+pam22,Pam,Olio d'oliva,Extra vergine equilibrato – Pam,750 ml,0.75,al litro,3.59,4.787,2026-10-22,2026-11-04,
+pam22,Pam,Olio di semi,Olio di semi di girasole – Pam,1 l,1,al litro,1.89,1.890,2026-10-22,2026-11-04,
+pam22,Pam,Panati,Fishbar nuggets di merluzzo d'Alaska – Findus,240 g,0.24,al kg,3.19,13.292,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus. Surgelato. Formati da 240 e 270 g.
+pam22,Pam,Pancetta,Bacon affumicato – Pam,150 g,0.15,al kg,1.79,11.933,2026-10-22,2026-11-04,
+pam22,Pam,Pane,American Sandwich – Morato,550 g,0.55,al kg,0.99,1.800,2026-10-22,2026-11-04,
+pam22,Pam,Pane,Focaccia al formaggio – Tesori dell'Arca,280 g,0.28,al kg,3.99,14.250,2026-10-22,2026-11-04,Surgelato.
+pam22,Pam,Pane,Piadina integrale – Pam,300 g,0.3,al kg,1.19,3.967,2026-10-22,2026-11-04,
+pam22,Pam,Pane,Taralli – Tesori dell'Arca,250 g,0.25,al kg,1.39,5.560,2026-10-22,2026-11-04,
+pam22,Pam,Pasta,Gnocchi di patate – Tesori dell'Arca,500 g,0.5,al kg,1.99,3.980,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Pasta,Pasta di semola – Rummo,500 g,0.5,al kg,0.76,1.520,2026-10-22,2026-11-04,"−45%, prima 1,39."
+pam22,Pam,Pasta,Sfogliavelo – Giovanni Rana,250 g,0.25,al kg,2.19,8.760,2026-10-22,2026-11-04,Pasta fresca ripiena.
+pam22,Pam,Pasta,Spätzle – I Tesori,350 g,0.35,al kg,1.59,4.543,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Patate,Patatine Kid Smile o Forno Country – McCain,650 g,0.65,al kg,2.19,3.369,2026-10-22,2026-11-04,Surgelato.
+pam22,Pam,Pesce,Cuori di nasello – Ocean 47,300 g,0.3,al kg,3.49,11.633,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus. Surgelato.
+pam22,Pam,Pesce,Filetto di trota iridea – Tesori dell'Arca,all'etto,0.1,al kg,1.59,15.900,2026-10-22,2026-10-28,"Vale solo dal 22 al 28 ottobre, non per tutto il volantino."
+pam22,Pam,Pesce,Misto mare – Tesori dell'Arca,200 g,0.2,al kg,5.90,29.500,2026-10-22,2026-10-28,"Vale solo dal 22 al 28 ottobre, non per tutto il volantino."
+pam22,Pam,Pesce,Orata,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-10-28,"Confezione risparmio, 300/400 g. Vale solo dal 22 al 28 ottobre, non per tutto il volantino."
+pam22,Pam,Pizza,Margherita La Bomba – Italpizza,440 g,0.44,al kg,2.89,6.568,2026-10-22,2026-11-04,
+pam22,Pam,Pollo,Petto di pollo a fette – Aia,all'etto,0.1,al kg,1.09,10.900,2026-10-22,2026-11-04,
+pam22,Pam,Pomodoro,Passata casereccia – Pam,680 g,0.68,al kg,0.85,1.250,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Preparati,Cotoletta di pollo – Pam,220 g,0.22,al kg,1.99,9.045,2026-10-22,2026-11-04,
+pam22,Pam,Prosciutto,Prosciutto cotto alta qualità – Pam,120 g,0.12,al kg,1.79,14.917,2026-10-22,2026-11-04,
+pam22,Pam,Prosciutto,Prosciutto cotto scelto,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,Al banco.
+pam22,Pam,Prosciutto,Prosciutto di San Daniele DOP,all'etto,0.1,al kg,2.99,29.900,2026-10-22,2026-11-04,"−21%, prima 3,79 all'etto. Al banco."
+pam22,Pam,Salame,Salame nostrano – Pam,500 g,0.5,al kg,4.99,9.980,2026-10-22,2026-11-04,
+pam22,Pam,Salmone affumicato,Salmone norvegese affumicato – Tesori dell'Arca,100 g,0.1,al kg,4.49,44.900,2026-10-22,2026-11-04,
+pam22,Pam,Salsiccia,Salsiccia verzino – Pam,720 g,0.72,al kg,6.29,8.736,2026-10-22,2026-11-04,
+pam22,Pam,Shampoo,Shampoo – Head&Shoulders,250 ml,0.25,al litro,2.39,9.560,2026-10-22,2026-11-04,
+pam22,Pam,Spalmabili,Spalmabile fresco Nuvola – Santa Lucia Galbani,180 g,0.18,al kg,1.19,6.611,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Sughi,I Pesti – Barilla,190 g,0.19,al kg,1.69,8.895,2026-10-22,2026-11-04,Formati da 190 e 200 g.
+pam22,Pam,Suino,Costine di suino,all'etto,0.1,al kg,0.72,7.200,2026-10-22,2026-11-04,"−20%, prima 0,90 all'etto."
+pam22,Pam,Suino,Filetto di suino,all'etto,0.1,al kg,0.99,9.900,2026-10-22,2026-11-04,
+pam22,Pam,Tonno,Filetti di tonno in olio d'oliva – Consorcio,180 g,0.18,al kg,3.99,22.167,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Tonno,Tonno all'olio d'oliva – Rio Mare,9 × 65 g,0.585,al kg,7.99,13.658,2026-10-22,2026-11-04,"−41%, prima 13,55."
+pam22,Pam,Uova,Uova fresche – Semplici e Buoni,6 uova,6,all'uovo,1.99,0.332,2026-10-22,2026-11-04,Da galline allevate a terra.
+pam22,Pam,Verdura,Carote – Pam,700 g,0.7,al kg,0.99,1.414,2026-10-22,2026-11-04,
+pam22,Pam,Verdura,Zucca butternut o muscade,al kg,1,al kg,0.99,0.990,2026-10-22,2026-11-04,
+pam22,Pam,Verdure surgelate,Buon Minestrone – Orogel,750 g,0.75,al kg,1.79,2.387,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Verdure surgelate,Cuori di carciofo a spicchi – Pam,300 g,0.3,al kg,2.49,8.300,2026-10-22,2026-11-04,
+pam22,Pam,Verdure surgelate,Fagiolini Primavera – Findus,600 g,0.6,al kg,2.99,4.983,2026-10-22,2026-11-04,
+pam22,Pam,Verdure surgelate,Spinaci Millefoglie – Bonduelle,750 g,0.75,al kg,1.99,2.653,2026-10-22,2026-11-04,
+pam22,Pam,Vino,Barbera Piemonte DOC – Arione Mario,75 cl,0.75,al litro,2.29,3.053,2026-10-22,2026-11-04,
+pam22,Pam,Vino,Chianti DOCG – Bosco ai Salici,75 cl,0.75,al litro,2.89,3.853,2026-10-22,2026-11-04,
+pam22,Pam,Vino,Oltrepò Pavese DOC – Le Cascine,75 cl,0.75,al litro,2.49,3.320,2026-10-22,2026-11-04,
+pam22,Pam,Vino,Spumante Gran Cuvée – Amurabi,75 cl,0.75,al litro,2.99,3.987,2026-10-22,2026-11-04,
+pam22,Pam,Vino,Valpolicella Ripasso DOC – La Poesia degli Alberi,75 cl,0.75,al litro,5.77,7.693,2026-10-22,2026-11-04,"−25%, prima 7,69."
+pam22,Pam,Würstel,Wudy – Aia,100 g,0.1,al kg,0.59,5.900,2026-10-22,2026-11-04,"Solo con l'app Pam Perte Plus. Formati da 100, 125 e 150 g allo stesso prezzo."
+pam22,Pam,Yogurt,Bella Vita Free senza lattosio – Meran,250 g,0.25,al kg,0.89,3.560,2026-10-22,2026-11-04,Solo con l'app Pam Perte Plus.
+pam22,Pam,Yogurt,Biologico bianco magro – Fattoria Scaldasole,500 g,0.5,al kg,1.99,3.980,2026-10-22,2026-11-04,
+pam22,Pam,Yogurt,Crema di yogurt – Müller,8 × 125 g,1,al kg,2.69,2.690,2026-10-22,2026-11-04,
+pam22,Pam,Yogurt,Cremoso – Pam,2 × 125 g,0.25,al kg,0.75,3.000,2026-10-22,2026-11-04,
+pam22,Pam,Yogurt,Greco bianco 0% senza lattosio – +A-,500 g,0.5,al kg,2.23,4.460,2026-10-22,2026-11-04,"−20%, prima 2,79."
+pam22,Pam,Yogurt,Greco bianco 2% – +A-,2 × 150 g,0.3,al kg,1.35,4.500,2026-10-22,2026-11-04,"−20%, prima 1,69."
+pam22,Pam,Yogurt,Greco gusti assortiti – +A-,150 g,0.15,al kg,0.76,5.067,2026-10-22,2026-11-04,"−20%, prima 0,95."
+pam22,Pam,Yogurt,Kefir bianco senza lattosio – +A-,480 g,0.48,al kg,0.95,1.979,2026-10-22,2026-11-04,"−20%, prima 1,19."
 aldi19,Aldi,Biscotti,Frollini con panna – Buon'ora,700 g,0.7,al kg,1.29,1.843,2026-10-23,2026-10-25,"−26%, prima 1,75. Vale solo dal 23 al 25 ottobre, non per tutto il volantino."
 aldi19,Aldi,Caffè,Caffè solubile Gold – Barissimo,200 g,0.2,al kg,3.49,17.450,2026-10-23,2026-10-25,"−36%, prima 5,49. Vale solo dal 23 al 25 ottobre, non per tutto il volantino."
 aldi19,Aldi,Conserve,Olive verdi giganti denocciolate – Cucina,260 g sgocciolato,0.26,al kg,1.69,6.500,2026-10-23,2026-10-25,"−26%, prima 2,29. Peso sgocciolato; il volantino stampa 560 g. Vale solo dal 23 al 25 ottobre, non per tutto il volantino."
@@ -7364,3 +7654,10 @@ carraia29,Carrefour,Preparati,"Valdostana, cotoletta di filetti di pollo impanat
 carraia29,Carrefour,Salsiccia,"Negronetta, salsiccia fresca luganega di suino – Negroni",300 g,0.3,al kg,3.99,13.300,2026-10-23,2026-11-15,"−27%, prima 5,49. Vale solo dal 23 ottobre al 15 novembre."
 carraia29,Carrefour,Salsiccia,"Punta di Coltello, salsiccia fresca di suino – Aia",400 g,0.4,al kg,3.99,9.975,2026-10-23,2026-11-15,"−33%, prima 5,99. Vale solo dal 23 ottobre al 15 novembre."
 carraia29,Carrefour,Würstel,"Wudy Crunchy Pops, 20 mini würstel panati – Aia",280 g,0.28,al kg,1.99,7.107,2026-10-23,2026-11-15,"−39%, prima 3,29. Vale solo dal 23 ottobre al 15 novembre."
+ipercoop22,Ipercoop,Pasta,Pasta di semola da grano duro 100% italiano – Coop,500 g,0.5,al kg,0.62,1.240,2026-10-26,2026-11-01,"Vale solo dal 26 ottobre all'1 novembre, non per tutto il volantino."
+ipercoop22,Ipercoop,Frutta,Banane – Solidal,al kg,1,al kg,1.29,1.290,2026-10-29,2026-11-01,"Vale solo dal 29 ottobre all'1 novembre, non per tutto il volantino."
+pam22,Pam,Calamari,Totano,all'etto,0.1,al kg,0.99,9.900,2026-10-29,2026-11-04,"Vale solo dal 29 ottobre al 4 novembre, non per tutto il volantino."
+pam22,Pam,Conserve,Filetti di acciughe marinate in olio di semi di girasole – Tesori dell'Arca,80 g,0.08,al kg,2.90,36.250,2026-10-29,2026-11-04,"Vale solo dal 29 ottobre al 4 novembre, non per tutto il volantino."
+pam22,Pam,Pesce,Lupini,all'etto,0.1,al kg,0.69,6.900,2026-10-29,2026-11-04,"Vale solo dal 29 ottobre al 4 novembre, non per tutto il volantino."
+pam22,Pam,Salmone,Salmone a trancio,all'etto,0.1,al kg,1.69,16.900,2026-10-29,2026-11-04,"Vale solo dal 29 ottobre al 4 novembre, non per tutto il volantino."
+pam22,Pam,Vino,Novello IGT – Le Rovole,75 cl,0.75,al litro,1.79,2.387,2026-10-30,2026-11-04,"Vale solo dal 30 ottobre al 4 novembre, non per tutto il volantino."
