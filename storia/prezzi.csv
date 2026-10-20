@@ -7133,6 +7133,15 @@ aldi19,Aldi,Vino,Bordeaux rouge – Pierre Jaurant,750 ml,0.75,al litro,3.19,4.2
 aldi19,Aldi,Vino,Pinot grigio delle Venezie DOC – Calle degli Specchi,750 ml,0.75,al litro,1.99,2.653,2026-10-19,2026-10-25,"−33%, prima 2,99."
 aldi19,Aldi,Yogurt,Yogurt magro alla frutta senza lattosio – Yomo,8 × 125 g,1,al kg,2.79,2.790,2026-10-19,2026-10-25,Quantità limitata.
 aldi19,Aldi,Zucchero,Zucchero grezzo di canna – Happy Harvest,500 g,0.5,al kg,1.19,2.380,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Frutta,Cachi,al kg,1,al kg,1.99,1.990,2026-10-19,2026-10-25,Bauletto da 2 kg.
+eurospin19,Eurospin,Frutta,Castagne,1 kg,1,al kg,4.49,4.490,2026-10-19,2026-10-25,Vendute in rete.
+eurospin19,Eurospin,Frutta,Mele Red Delicious,al kg,1,al kg,1.49,1.490,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Frutta,Pere William's,al kg,1,al kg,1.99,1.990,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Frutta,Susine Stanley,al kg,1,al kg,1.49,1.490,2026-10-19,2026-10-25,Bauletto da 2 kg.
+eurospin19,Eurospin,Frutta,Uva Red Globe,al kg,1,al kg,1.99,1.990,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Frutta,Uva nera – Palieri,al kg,1,al kg,1.99,1.990,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Verdura,Spinaci – Foglia Verde,500 g,0.5,al kg,1.29,2.580,2026-10-19,2026-10-25,
+eurospin19,Eurospin,Verdura,Zucca tonda Delica,al kg,1,al kg,1.29,1.290,2026-10-19,2026-10-25,
 lidl15,Lidl,Birra,Birra Blond – Leffe,330 ml lattina,0.33,al litro,0.99,3.000,2026-10-19,2026-10-21,
 lidl15,Lidl,Biscotti,Alfajor – Mardel,150 g,0.15,al kg,2.49,16.600,2026-10-19,2026-10-21,Biscotti ripieni di dulce de leche ricoperti di cioccolato fondente.
 lidl15,Lidl,Biscotti,Biscotti ai cereali Classici o Digestive – Lazzaroni,240 g,0.24,al kg,0.99,4.125,2026-10-19,2026-10-21,"Formati 240/275 g allo stesso prezzo, scelto il più piccolo."
@@ -7271,6 +7280,90 @@ ekom20,Ekom,Vino,Negroamaro Primitivo Salento IGT,750 ml,0.75,al litro,2.99,3.98
 ekom20,Ekom,Vino,Nero d'Avola Sicilia DOC,750 ml,0.75,al litro,2.99,3.987,2026-10-20,2026-11-02,
 ekom20,Ekom,Würstel,Würstel misto,250 g,0.25,al kg,0.79,3.160,2026-10-20,2026-11-02,"−20%, prima 0,99."
 ekom20,Ekom,Yogurt,Mix gusti assortiti – Müller,4 × 150 g,0.6,al kg,2.79,4.650,2026-10-20,2026-11-02,
+md20,MD,Ammorbidente,Ammorbidente al gelsomino – Lindor,67 lavaggi,67,a lavaggio,2.99,0.045,2026-10-20,2026-11-01,"Prima 3,99."
+md20,MD,Ammorbidente,Ammorbidente assortiti – Lenor,87 lavaggi,87,a lavaggio,4.89,0.056,2026-10-20,2026-11-01,"Prima 5,99."
+md20,MD,Asciugatutto,Carta casa – Flou,6 rotoli,6,al rotolo,3.79,0.632,2026-10-20,2026-11-01,"Prima 4,99."
+md20,MD,Asciugatutto,Rotolone multiuso 800 strappi – Flou,1 rotolo,1,al rotolo,4.79,4.790,2026-10-20,2026-11-01,"Prima 7,79."
+md20,MD,Bagnoschiuma,Bagno schiuma argan – Cliosan,2 l,2,al litro,1.99,0.995,2026-10-20,2026-11-01,"Prima 2,29."
+md20,MD,Bibite,Aranciata – Casado,2 l,2,al litro,0.79,0.395,2026-10-20,2026-11-01,"Prima 0,95."
+md20,MD,Bibite,Bevanda cola – Casado,2 l,2,al litro,0.65,0.325,2026-10-20,2026-11-01,"Prima 0,75."
+md20,MD,Bibite,Fanta,lattina 500 ml,0.5,al litro,0.75,1.500,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 1,05."
+md20,MD,Bibite,Original/Zero – Coca-Cola,lattina 500 ml,0.5,al litro,0.75,1.500,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 1,05."
+md20,MD,Bibite,Original/Zero – Pepsi,"2 × 1,75 l",3.5,al litro,1.99,0.569,2026-10-20,2026-11-01,"Il volantino stampa 1,75x2."
+md20,MD,Birra,Birra scura doppio malto in lattina – Oranjeboom,50 cl,0.5,al litro,1.19,2.380,2026-10-20,2026-11-01,"Prima 1,49."
+md20,MD,Biscotti,10 Wafers cacao/nocciola – La Dolce,450 g,0.45,al kg,2.19,4.867,2026-10-20,2026-11-01,"Prima 2,55."
+md20,MD,Biscotti,Frollini cacao e nocciole – Le Bon,700 g,0.7,al kg,1.79,2.557,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 2,19."
+md20,MD,Biscotti,Grisbì limone/nocciola/cioccolato – Grisbì,135 g,0.135,al kg,1.39,10.296,2026-10-20,2026-11-01,"Prima 1,99."
+md20,MD,Biscotti,Oro Saiwa classico,1 kg,1,al kg,2.99,2.990,2026-10-20,2026-11-01,"Prima 3,99."
+md20,MD,Bresaola,Selezione – La Fattoria,80 g,0.08,al kg,2.59,32.375,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 3,69."
+md20,MD,Burro,Burro in panetti – Malga Paradiso,500 g,0.5,al kg,2.89,5.780,2026-10-20,2026-11-01,"Prima 3,69."
+md20,MD,Caffè,Cialde caffè – I Love Coffee,"150 × 7,2 g",1.08,al kg,14.90,13.796,2026-10-20,2026-11-01,"Prima 18,90."
+md20,MD,Carta igienica,Carta igienica Pink profumata – Tenderly,16 rotoli,16,al rotolo,3.99,0.249,2026-10-20,2026-11-01,"Prima 4,99."
+md20,MD,Carta igienica,Regina,4 rotoli,4,al rotolo,2.79,0.698,2026-10-20,2026-11-01,"Prima 3,79."
+md20,MD,Cioccolato,Tavoletta Sport assortita – Ritter,100 g,0.1,al kg,1.79,17.900,2026-10-20,2026-11-01,"Prima 2,19."
+md20,MD,Collutorio,Fresh burst – Listerine,1 l,1,al litro,4.79,4.790,2026-10-20,2026-11-01,"Prima 5,89."
+md20,MD,Conserve,Mais al vapore dolce – Buona Spesa,3 × 140 g,0.42,al kg,1.59,3.786,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 1,99. Peso sgocciolato 140 g x 3."
+md20,MD,Conserve,Olive taggiasche in olio extravergine – Lettere dall'Italia,180 g,0.18,al kg,2.19,12.167,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 2,49."
+md20,MD,Conserve,Patè di olive – Taggiasche,190 g,0.19,al kg,1.39,7.316,2026-10-20,2026-11-01,"Prima 1,79."
+md20,MD,Farina,Farina tipo 00 – Ca' Bianca,5 kg,5,al kg,2.19,0.438,2026-10-20,2026-11-01,"Prima 2,39."
+md20,MD,Formaggio,Formaggio fuso 50 fettine – Malga Paradiso,1 kg,1,al kg,4.39,4.390,2026-10-20,2026-11-01,"Prima 4,69."
+md20,MD,Formaggio,Formaggio grattugiato – Malga Paradiso,300 g,0.3,al kg,1.99,6.633,2026-10-20,2026-11-01,"Prima 2,49."
+md20,MD,Formaggio,Gorgonzola dolce DOP – Lettere dall'Italia,200 g,0.2,al kg,1.99,9.950,2026-10-20,2026-11-01,"Prima 2,39."
+md20,MD,Formaggio,Provola affumicata – Buona Spesa!,500 g,0.5,al kg,4.59,9.180,2026-10-20,2026-11-01,"Prima 5,89."
+md20,MD,Formaggio,Stracchino light – Vivo Meglio,100 g,0.1,al kg,0.79,7.900,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 1,09."
+md20,MD,Frutta,Castagne di Serino IGP – Lettere dall'Italia,1 kg,1,al kg,5.49,5.490,2026-10-20,2026-11-01,
+md20,MD,Frutta,Clementine,al kg,1,al kg,1.99,1.990,2026-10-20,2026-11-01,
+md20,MD,Frutta,Mele Golden DOP,al kg,1,al kg,1.49,1.490,2026-10-20,2026-11-01,
+md20,MD,Insalata,Rucola – Buona Spesa!,125 g,0.125,al kg,0.79,6.320,2026-10-20,2026-11-01,
+md20,MD,Latte,"Latte alta digeribilità parzialmente scremato, senza lattosio",4 × 1 l,4,al litro,3.39,0.848,2026-10-20,2026-11-01,"Prima 4,76."
+md20,MD,Legumi,Lenticchie – Naturali Bontà,300 g,0.3,al kg,1.19,3.967,2026-10-20,2026-11-01,"Prima 1,39."
+md20,MD,Merendine,Pan e Cioc – Kinder,290 g,0.29,al kg,2.49,8.586,2026-10-20,2026-11-01,"Prima 2,79."
+md20,MD,Merluzzo,Filetti di merluzzo Atlantico – Le Specialità di Beppe,1 kg,1,al kg,6.49,6.490,2026-10-20,2026-11-01,"Surgelato. Prima 7,49."
+md20,MD,Miele,Miele – Ambrosoli,250 g,0.25,al kg,2.79,11.160,2026-10-20,2026-11-01,"Prima 3,29."
+md20,MD,Mortadella,Mortadella Bologna IGP affettata,150 g,0.15,al kg,1.39,9.267,2026-10-20,2026-11-01,"Prima 1,59."
+md20,MD,Mortadella,Mortadella Bologna IGP spicchio – Mordenti,350 g,0.35,al kg,2.79,7.971,2026-10-20,2026-11-01,"Prima 3,49."
+md20,MD,Mozzarella,Mozzarelle – Reggia,8 × 125 g,1,al kg,4.49,4.490,2026-10-20,2026-11-01,"Prima 5,49."
+md20,MD,Pancetta,Pancetta affumicata stagionata,300 g,0.3,al kg,3.99,13.300,2026-10-20,2026-11-01,"Prima 4,99."
+md20,MD,Pane,American sandwich classico/integrale – Ca' Bianca,750 g,0.75,al kg,1.19,1.587,2026-10-20,2026-11-01,"Prima 1,49."
+md20,MD,Pane,Crackers salati – Ca' Bianca,750 g,0.75,al kg,1.55,2.067,2026-10-20,2026-11-01,"Prima 1,79."
+md20,MD,Pane,Pinsa fresca cotta su pietra – Alimenta,2 × 230 g,0.46,al kg,2.49,5.413,2026-10-20,2026-11-01,"Prima 2,99."
+md20,MD,Pasta,Lasagne all'uovo – Pasta Reale,500 g,0.5,al kg,1.19,2.380,2026-10-20,2026-11-01,"Prima 1,39."
+md20,MD,Pasta,Pasta fresca di semola di grano duro – Lettere dall'Italia,400 g,0.4,al kg,0.69,1.725,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 0,99."
+md20,MD,Pasta,Tortellini al prosciutto crudo – Ca' Bianca,750 g,0.75,al kg,2.99,3.987,2026-10-20,2026-11-01,"Prima 3,99."
+md20,MD,Patate,Patate prefritte – Le Specialità di Beppe,"2,5 kg",2.5,al kg,2.99,1.196,2026-10-20,2026-11-01,"Surgelato. Prima 3,79."
+md20,MD,Pesce,Vongole Pacifico – Nôs,1 kg,1,al kg,2.99,2.990,2026-10-20,2026-11-01,"Surgelato. Prima 3,99."
+md20,MD,Pizza,Tris di pizze – Trio Italiano,1 kg,1,al kg,4.99,4.990,2026-10-20,2026-11-01,"Prima 6,49."
+md20,MD,Pollo,Petto di pollo intero,al kg,1,al kg,7.90,7.900,2026-10-20,2026-11-01,
+md20,MD,Pomodoro,Passata di pomodoro – Gustato,700 ml,0.7,al kg,0.75,1.071,2026-10-20,2026-11-01,"Prima 0,85."
+md20,MD,Pomodoro,Polpa di pomodoro – Gustato,"2,5 kg",2.5,al kg,2.69,1.076,2026-10-20,2026-11-01,"Prima 3,29."
+md20,MD,Pomodoro,Pomodori pelati – Gustato,"1,53 kg sgocciolato",1.53,al kg,2.69,1.758,2026-10-20,2026-11-01,"Peso sgocciolato 1530 g (totale 2550 g). Prima 4,58."
+md20,MD,Preparati,Cotoletta di pollo – AIA,500 g,0.5,al kg,4.99,9.980,2026-10-20,2026-11-01,
+md20,MD,Preparati,Hamburger di suino,200 g,0.2,al kg,1.80,9.000,2026-10-20,2026-11-01,
+md20,MD,Preparati,Nuggets di pollo – BeFoodie,1 kg,1,al kg,4.99,4.990,2026-10-20,2026-11-01,"Surgelato. Prima 7,99."
+md20,MD,Preparati,Spinacine classiche – AIA,500 g,0.5,al kg,4.99,9.980,2026-10-20,2026-11-01,
+md20,MD,Prosciutto,Prosciutto cotto Praga – Buona Spesa!,100 g,0.1,al kg,1.29,12.900,2026-10-20,2026-11-01,"Prima 1,75."
+md20,MD,Prosciutto,Prosciutto cotto a fette scelto – La Fattoria,200 g,0.2,al kg,1.59,7.950,2026-10-20,2026-11-01,"Prima 2,29."
+md20,MD,Prosciutto,Speck affettato,150 g,0.15,al kg,1.99,13.267,2026-10-20,2026-11-01,"Prima 2,49."
+md20,MD,Riso,Riso Jasmine – Thai Touch,"4,5 kg",4.5,al kg,6.90,1.533,2026-10-20,2026-11-01,"Prima 7,90."
+md20,MD,Salmone affumicato,Salmone affumicato,250 g,0.25,al kg,5.99,23.960,2026-10-20,2026-11-01,"Prima 6,99."
+md20,MD,Spalmabili,Formaggio fresco cremoso classico – Exquisa,300 g,0.3,al kg,1.69,5.633,2026-10-20,2026-11-01,"Prima 1,99."
+md20,MD,Sughi,Pesto peperoni e noci/radicchio e speck – Tigullio,185 g,0.185,al kg,1.79,9.676,2026-10-20,2026-11-01,"Prima 2,19."
+md20,MD,Sughi,Sugo alla bolognese – Buona Spesa!,2 × 190 g,0.38,al kg,1.79,4.711,2026-10-20,2026-11-01,"Prima 2,19."
+md20,MD,Suino,Braciole di coppa di suino,al kg,1,al kg,6.90,6.900,2026-10-20,2026-11-01,
+md20,MD,Tacchino,Ossobuco di tacchino,al kg,1,al kg,3.90,3.900,2026-10-20,2026-11-01,
+md20,MD,Tonno,Tonno all'olio d'oliva – Poseidon,12 × 70 g,0.84,al kg,7.79,9.274,2026-10-20,2026-11-01,"Prima 9,49."
+md20,MD,Verdura,Cavolfiori,al kg,1,al kg,1.69,1.690,2026-10-20,2026-11-01,
+md20,MD,Verdura,Melanzane tonde nere,al kg,1,al kg,1.49,1.490,2026-10-20,2026-11-01,
+md20,MD,Verdura,Pomodoro ramato,al kg,1,al kg,2.49,2.490,2026-10-20,2026-11-01,
+md20,MD,Verdure surgelate,Funghi misti con porcini – Le Specialità di Beppe,1 kg,1,al kg,2.99,2.990,2026-10-20,2026-11-01,"Prima 3,99."
+md20,MD,Verdure surgelate,Minestrone – Greens,1 kg,1,al kg,1.39,1.390,2026-10-20,2026-11-01,"Prima 1,69."
+md20,MD,Vino,Solopaca Sannio DOC bianco,75 cl,0.75,al litro,1.79,2.387,2026-10-20,2026-11-01,"Prima 2,19."
+md20,MD,Vino,Solopaca Sannio DOC rosso,75 cl,0.75,al litro,1.79,2.387,2026-10-20,2026-11-01,"Prima 2,19."
+md20,MD,Vino,Vino rosso/bianco,5 l,5,al litro,4.89,0.978,2026-10-20,2026-11-01,"Prima 5,49."
+md20,MD,Vino,Vulcanico Soave DOC – Terre di Monteforte,75 cl,0.75,al litro,1.99,2.653,2026-10-20,2026-11-01,"Prima 2,69."
+md20,MD,Vino,Vulcanico Veneto IGT rosso – Terre di Monteforte,75 cl,0.75,al litro,1.99,2.653,2026-10-20,2026-11-01,"Prima 2,69."
+md20,MD,Würstel,Würstel Servelade – Wüber,700 g,0.7,al kg,2.99,4.271,2026-10-20,2026-11-01,"Prima 4,19."
+md20,MD,Yogurt,Skyr proteico naturale – Ehrmann,450 g,0.45,al kg,1.59,3.533,2026-10-20,2026-11-01,"Solo con la MD Buona Spesa Card, senza tessera 1,95."
 ins21,IN's,Bagnoschiuma,Bagnoschiuma – Bio Harmon,400 ml,0.4,al litro,2.49,6.225,2026-10-21,2026-11-01,
 ins21,IN's,Bibite,Bevanda al melograno – Bio,500 ml,0.5,al litro,2.19,4.380,2026-10-21,2026-11-01,
 ins21,IN's,Bibite,Bevanda al mirtillo selvatico – Bio,500 ml,0.5,al litro,2.49,4.980,2026-10-21,2026-11-01,
@@ -8082,4 +8175,14 @@ eurospin22,Eurospin,Frutta,Noci di Périgord DOP,al kg,1,al kg,3.99,3.990,2026-1
 eurospin22,Eurospin,Prosciutto,Prosciutto crudo,2 × 100 g,0.2,al kg,2.49,12.450,2026-10-30,2026-11-01,"−30%, prima 3,58. Offerta valida solo su vendita abbinata di 2 confezioni. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
 eurospin22,Eurospin,Suino,Braciole di coppa di suino,al kg,1,al kg,5.99,5.990,2026-10-30,2026-11-01,"Confezione Famiglia. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
 eurospin22,Eurospin,Vino,Vino Novello IGT Veneto,750 ml,0.75,al litro,1.99,2.653,2026-10-30,2026-11-01,"Quantità limitata. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Bibite,Tè zero limone/pesca – Casado,"1,5 l",1.5,al litro,0.55,0.367,2026-10-30,2026-11-01,"Prima 0,79. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Birra,Premium – Bavaria,50 cl,0.5,al litro,0.79,1.580,2026-10-30,2026-11-01,"Prima 0,99. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Dentifricio,Protezione carie/sensitive – Elmex,75 ml,0.075,al litro,2.99,39.867,2026-10-30,2026-11-01,"Prima 4,39. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Frutta,Cachi,al kg,1,al kg,1.65,1.650,2026-10-30,2026-11-01,"Cassetta da 2 kg a 3,30. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Merendine,Play Rolls ricoperti al caramello – Playtime,120 g,0.12,al kg,1.39,11.583,2026-10-30,2026-11-01,"Prima 1,89. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Pane,Piadina romagnola IGP alla riminese – Ca' Bianca,600 g,0.6,al kg,1.19,1.983,2026-10-30,2026-11-01,"Prima 1,69. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Prosciutto,Prosciutto crudo – La Fattoria,100 g,0.1,al kg,1.59,15.900,2026-10-30,2026-11-01,"Prima 1,79. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Suino,Tagliata di coppa marinata – Fiamma & Gusta,250 g,0.25,al kg,2.95,11.800,2026-10-30,2026-11-01,"−24%, prima 3,90. Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Vino,Novello Merlot Veneto IGT – Galadino,75 cl,0.75,al litro,1.99,2.653,2026-10-30,2026-11-01,"Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
+md20,MD,Vino,Novello Negramaro Salento IGT – Galadino,75 cl,0.75,al litro,1.99,2.653,2026-10-30,2026-11-01,"Vale solo dal 30 ottobre al 1° novembre, non per tutto il volantino."
 pam22,Pam,Vino,Novello IGT – Le Rovole,75 cl,0.75,al litro,1.79,2.387,2026-10-30,2026-11-04,"Vale solo dal 30 ottobre al 4 novembre, non per tutto il volantino."
