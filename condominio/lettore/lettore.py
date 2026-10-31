@@ -148,7 +148,8 @@ def _punti(testo):
         return []
     blocco = testo[m.end():]
     stop = FINE_ODG.search(blocco)
-    blocco = re.sub(r"\s+", " ", blocco[: stop.start()] if stop else blocco[:4000])
+    grezzo = blocco[: stop.start()] if stop else blocco[:4000]
+    blocco = re.sub(r"\s+", " ", grezzo)
     trovati, atteso = [], 1
     for n in re.finditer(r"(?:(?<=\s)|^|(?<=[:;.]))(\d{1,2})\s*[.)\-–]\s+", blocco):
         if int(n.group(1)) == atteso:
@@ -160,7 +161,14 @@ def _punti(testo):
         testo_punto = testo_punto.strip(" ;.:–-")
         if testo_punto:
             punti.append({"numero": num, "titolo": testo_punto[:600]})
-    return punti
+    if punti:
+        return punti
+    # Elenco puntato senza numeri: pallini, trattini o lettere a) b) c)
+    # (i PDF scrivono il pallino in molti modi: •, ●, ▪, caratteri dei font Symbol/Wingdings come \x7f o )
+    pallini = "•●▪◦·■►➢‣⁃\x7f"
+    pezzi = re.split(rf"(?:^|\n|(?<=\s))[{pallini}]\s*|(?:^|\n)\s*(?:[\-–*]|[a-z]\)|o(?=\s+[A-ZÀ-Ý]))\s+", grezzo)
+    voci = [re.sub(r"\s+", " ", v).strip(" ;.:–-") for v in pezzi[1:]]
+    return [{"numero": i + 1, "titolo": v[:600]} for i, v in enumerate(v for v in voci if v)]
 
 
 def _tipo(oggetto, testo):
