@@ -191,6 +191,27 @@ def gestione_da(data_iso, mese_inizio):
     return f"{d.year}/{d.year + 1}" if d.month >= mese_inizio else f"{d.year - 1}/{d.year}"
 
 
+PAROLE_PERIODO = r"(?:gestione|stagione|esercizio|anno|periodo|consuntivo|preventivo|rendiconto|riparto|bilancio)"
+
+
+def gestione_citata(oggetto, testo, mese_inizio):
+    """L'anno di gestione scritto nella lettera (es. "riparto stagione 2025/2026"), se c'è.
+
+    Si guarda prima l'oggetto, poi l'inizio del testo: vale il primo periodo citato."""
+    for fonte in (oggetto, testo[:2500]):
+        fonte = re.sub(r"\s+", " ", fonte)
+        if mese_inizio == 1:
+            m = re.search(PAROLE_PERIODO + r"\D{0,40}?\b(20\d\d)\b(?!\s*[/\-–]\s*\d)", fonte, re.I)
+            if m:
+                return m.group(1)
+            continue
+        for m in re.finditer(PAROLE_PERIODO + r"\D{0,40}?\b(20\d\d)\s*[/\-–]\s*(20\d\d|\d\d)\b", fonte, re.I):
+            inizio, fine = int(m.group(1)), int(m.group(2)[-2:])
+            if fine == (inizio + 1) % 100:
+                return f"{inizio}/{inizio + 1}"
+    return None
+
+
 def analizza_con_regole(oggetto, testo):
     tipo = _tipo(oggetto, testo)
     risultato = {"tipo": tipo, "data_lettera": _data_in(testo[:600]), "assemblea": None}
@@ -298,8 +319,11 @@ def analizza(cfg, oggetto, testo, motore, data_arrivo):
     else:
         risultato = analizza_con_ollama(cfg, oggetto, testo)
     a = risultato["assemblea"]
+    mese = int(cfg["MESE_INIZIO_GESTIONE"])
     riferimento = (a and ((a["seconda"] or a["prima"]) or {}).get("data")) or risultato["data_lettera"] or data_arrivo
-    risultato["gestione"] = gestione_da(riferimento, int(cfg["MESE_INIZIO_GESTIONE"]))
+    # Le assemblee vanno nell'anno in cui si tengono; le lettere di spese nell'anno di cui parlano, se lo scrivono.
+    citata = None if a else gestione_citata(oggetto, testo, mese)
+    risultato["gestione"] = citata or gestione_da(riferimento, mese)
     risultato["motore"] = usato
     return risultato
 
