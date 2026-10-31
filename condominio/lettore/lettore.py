@@ -315,10 +315,9 @@ _CONV = {"type": "object", "additionalProperties": False, "required": ["data", "
          "properties": {"data": {"type": "string"}, "ora": {"type": "string"}, "luogo": {"type": "string"}}}
 SCHEMA_CLAUDE = {
     "type": "object", "additionalProperties": False,
-    "required": ["tipo", "data_lettera", "gestione", "riassunto", "assemblea"],
+    "required": ["tipo", "data_lettera", "gestione", "assemblea"],
     "properties": {
         "tipo": {"type": "string", "enum": list(TIPI)},
-        "riassunto": {"type": "string"},
         "data_lettera": {"type": ["string", "null"]},
         "gestione": {"type": ["string", "null"]},
         "assemblea": {"anyOf": [{"type": "null"}, {
@@ -351,9 +350,6 @@ def analizza_con_claude(cfg, oggetto, testo_email, file):
     contenuto.append({"type": "text", "text": ISTRUZIONI.replace("LETTERA:\n", "") +
         f"- gestione: l'anno di gestione nel formato {formato}. Per una convocazione è l'anno in cui si tiene l'assemblea; "
         "per le spese è il periodo di cui parlano (es. un riparto della stagione 2025/2026 è 2025/2026); se non è scritto, usa la data della lettera.\n"
-        "- riassunto: 1-3 frasi in italiano semplice per i condomini: che cosa comunica la lettera, con gli importi totali e le scadenze "
-        "se ci sono (date scritte per esteso, es. 15 dicembre 2026). Usa solo informazioni scritte nella lettera, senza aggiungere commenti. "
-        "Per una convocazione basta dire tipo e data dell'assemblea: i punti sono già elencati a parte.\n"
         "Gli allegati sono qui sopra, il testo dell'email qui sotto.\n\n"
         f"Oggetto: {oggetto}\n\nTesto dell'email:\n{testo_email[:20000] or '(vuoto)'}"})
     client = anthropic.Anthropic(api_key=cfg["ANTHROPIC_API_KEY"], timeout=180.0, max_retries=2)
@@ -365,7 +361,6 @@ def analizza_con_claude(cfg, oggetto, testo_email, file):
         raise RuntimeError(f"Claude non ha completato la risposta ({risposta.stop_reason})")
     dati = json.loads(next(b.text for b in risposta.content if b.type == "text"))
     risultato = _pulisci(dati)
-    risultato["riassunto"] = str(dati.get("riassunto") or "").strip()[:800]
     g = dati.get("gestione")
     if isinstance(g, str) and re.fullmatch(r"\d{4}" if mese == 1 else r"(\d{4})/(\d{4})", g.strip()) and (mese == 1 or int(g[5:]) == int(g[:4]) + 1):
         risultato["gestione_ai"] = g.strip()
@@ -492,17 +487,10 @@ def pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, fil
     if mancanti:
         oggetto = DA_CONTROLLARE + oggetto
         testo_email += "\n\n[Allegati che non è stato possibile pubblicare: " + ", ".join(mancanti) + ". Sono nella casella Gmail del condominio.]"
-    riga = {
+    lettera = sb.inserisci("lettere", {
         "message_id": message_id or None, "arrivata": data_arrivo, "data_lettera": risultato["data_lettera"],
         "oggetto": oggetto, "testo_email": testo_email[:20000], "tipo": risultato["tipo"],
-        "gestione": risultato["gestione"], "allegati": allegati}
-    extra = {"riassunto": risultato.get("riassunto") or None, "letta_con": risultato.get("motore")}
-    try:
-        lettera = sb.inserisci("lettere", {**riga, **extra})
-    except RuntimeError as e:
-        if not any(k in str(e) for k in ("riassunto", "letta_con", "PGRST204")):
-            raise
-        lettera = sb.inserisci("lettere", riga)  # database senza le colonne nuove: si pubblica lo stesso
+        "gestione": risultato["gestione"], "allegati": allegati})
     a = risultato["assemblea"]
     if risultato["tipo"] == "convocazione" and a:
         riferimento = (a["seconda"] or a["prima"])["data"]
@@ -602,7 +590,7 @@ def lettera_di_riserva(cfg, message_id, oggetto, data_arrivo, msg, errore):
     except Exception:
         file = []
     testo_email += f"\n\n[Pubblicata in automatico senza analisi: {str(errore)[:200]}]"
-    risultato = {"tipo": "altro", "data_lettera": None, "assemblea": None, "motore": "riserva",
+    risultato = {"tipo": "altro", "data_lettera": None, "assemblea": None,
                  "gestione": gestione_da(data_arrivo, int(cfg["MESE_INIZIO_GESTIONE"]))}
     return pubblica_su_supabase(cfg, message_id, DA_CONTROLLARE + (oggetto or "lettera senza oggetto"),
                                 data_arrivo, testo_email.strip(), file, "", risultato)

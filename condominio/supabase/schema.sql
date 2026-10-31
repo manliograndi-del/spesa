@@ -36,8 +36,6 @@ create table public.lettere (
   tipo text not null default 'altro' check (tipo in ('convocazione', 'ordinaria', 'riscaldamento', 'verbale', 'altro')),
   gestione text not null,
   allegati jsonb not null default '[]',      -- [{"nome": ..., "percorso": ...}]
-  riassunto text,                            -- scritto da Claude, se c'è la chiave
-  letta_con text,                            -- claude, regole o riserva
   creata_il timestamptz not null default now()
 );
 
