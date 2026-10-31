@@ -4,7 +4,7 @@ Va usato dal gestore sul proprio computer, con la chiave segreta di Supabase
 (Project Settings > API Keys > secret / service_role). La chiave non va mai
 pubblicata né messa nel sito.
 
-    python prepara.py alloggi --scala1 20 --scala2 20     # crea gli alloggi e le password
+    python prepara.py alloggi --scale 1:20,2:20           # crea gli alloggi e le password (scala:quanti)
     python prepara.py nuova-password S1-07                # password nuova per un alloggio
     python prepara.py gestore S1-07                       # dà a un alloggio il ruolo di gestore
     python prepara.py nome "Condominio dei Tigli"         # nome del condominio
@@ -60,7 +60,7 @@ class Supabase:
         return {a["id"]: a for a in self.chiama("GET", "/rest/v1/alloggi?select=*")}
 
 
-def salva_password(cartella, righe, nome, indirizzo):
+def salva_password(cartella, righe, nome, indirizzo, et_scala="Scala", et_alloggio="Interno"):
     """Aggiorna password.csv e rigenera i bigliettini da stampare."""
     cartella.mkdir(exist_ok=True)
     csv_path = cartella / "password.csv"
@@ -76,7 +76,7 @@ def salva_password(cartella, righe, nome, indirizzo):
         w.writeheader()
         w.writerows(ordinate)
     carte = "".join(f"""<div class="c"><b>{html.escape(nome)}</b><span>Sito del condominio</span>
-<p>{html.escape(indirizzo)}</p><dl><dt>Scala</dt><dd>{r['scala']}</dd><dt>Interno</dt><dd>{html.escape(r['interno'])}</dd>
+<p>{html.escape(indirizzo)}</p><dl><dt>{html.escape(et_scala)}</dt><dd>{r['scala']}</dd><dt>{html.escape(et_alloggio)}</dt><dd>{html.escape(r['interno'])}</dd>
 <dt>Password</dt><dd class="p">{html.escape(r['password'])}</dd></dl><small>Personale per il tuo alloggio: non darla ad altri.</small></div>"""
                     for r in ordinate)
     (cartella / "bigliettini.html").write_text(f"""<!doctype html><html lang="it"><meta charset="utf-8"><title>Bigliettini</title>
@@ -91,7 +91,8 @@ def salva_password(cartella, righe, nome, indirizzo):
 def crea_alloggi(sb, args):
     esistenti = sb.alloggi()
     nuovi = []
-    for scala, quanti in ((1, args.scala1), (2, args.scala2)):
+    for parte in args.scale.split(","):
+        scala, quanti = (int(x) for x in parte.split(":"))
         for n in range(1, quanti + 1):
             alloggio = f"S{scala}-{n:02d}"
             if alloggio in esistenti:
@@ -105,7 +106,7 @@ def crea_alloggi(sb, args):
     if not nuovi:
         print("Gli alloggi esistono già: niente da fare.")
         return
-    print("Bigliettini:", salva_password(Path(args.cartella), nuovi, args.nome_bigliettini, args.indirizzo))
+    print("Bigliettini:", salva_password(Path(args.cartella), nuovi, args.nome_bigliettini, args.indirizzo, args.etichetta_scala, args.etichetta_alloggio))
 
 
 def cambia_password(sb, args):
@@ -117,7 +118,7 @@ def cambia_password(sb, args):
     sb.chiama("PUT", f"/auth/v1/admin/users/{a['user_id']}", {"password": password})
     print(f"Nuova password per {alloggio}: {password}")
     salva_password(Path(args.cartella), [{"alloggio": alloggio, "scala": str(a["scala"]), "interno": a["interno"], "password": password}],
-                   args.nome_bigliettini, args.indirizzo)
+                   args.nome_bigliettini, args.indirizzo, args.etichetta_scala, args.etichetta_alloggio)
 
 
 def imposta_gestore(sb, args):
@@ -138,10 +139,11 @@ def main():
     p.add_argument("--cartella", default="riservato", help="dove salvare password e bigliettini")
     p.add_argument("--nome-bigliettini", default="Condominio")
     p.add_argument("--indirizzo", default="spesato.it/condominio")
+    p.add_argument("--etichetta-scala", default="Scala", help='come si chiamano i blocchi, es. "Interno"')
+    p.add_argument("--etichetta-alloggio", default="Interno", help='come si chiamano gli alloggi, es. "Alloggio"')
     s = p.add_subparsers(dest="comando", required=True)
     a = s.add_parser("alloggi")
-    a.add_argument("--scala1", type=int, default=20)
-    a.add_argument("--scala2", type=int, default=20)
+    a.add_argument("--scale", default="1:20,2:20", help="blocchi e numero di alloggi, es. 2:20,4:20")
     s.add_parser("nuova-password").add_argument("alloggio")
     s.add_parser("gestore").add_argument("alloggio")
     s.add_parser("nome").add_argument("nome")

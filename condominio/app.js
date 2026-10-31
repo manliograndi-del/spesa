@@ -30,6 +30,10 @@ function gestioneDa(d, mese) {
 
 /* ---------- stato ---------- */
 const CFG = window.CONDOMINIO || {};
+// Come si chiamano i blocchi e gli alloggi (es. "Scala 1, interno 7" oppure "Interno 4, alloggio 13"): si cambia in config.js.
+const ET = Object.assign({ scala: "Scala", alloggio: "interno" }, CFG.etichette || {});
+const nomeScala = (s) => `${ET.scala} ${s}`;
+const maiusc = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 let sb = null;
 const S = { pronto: false, nonCollegato: false, accesso: null, utente: null, io: null, imp: null, alloggi: [], lettere: [], assemblee: [], punti: [], oss: [], cond: [], miei: {}, conti: {} };
 const UI = { docGest: null, docTipo: "tutti", tab: "nuove", sharing: null, prep: null, editing: null, confirm: null, files: {}, busy: false, toast: null, erroreAccesso: "", nuovaLettera: false };
@@ -48,7 +52,7 @@ const condDi = (pid) => S.cond.filter((c) => c.punto_id === pid);
 const scalaDi = (alloggioId) => allog(alloggioId)?.scala;
 const bachecaDi = (pid) => S.oss.filter((o) => o.punto_id === pid && modo(scalaDi(o.alloggio_id)) === "automatica");
 const conto = (id) => S.conti[id] || { fav: 0, contr: 0, ns: 0 };
-const etichettaAlloggio = (id) => { const a = allog(id); return a ? `Scala ${a.scala}, interno ${a.interno}` : ""; };
+const etichettaAlloggio = (id) => { const a = allog(id); return a ? `${nomeScala(a.scala)}, ${ET.alloggio} ${a.interno}` : ""; };
 function prossima() {
   const t = oggi();
   return S.assemblee.filter((a) => a.data_riferimento >= t).sort((a, b) => (a.data_riferimento < b.data_riferimento ? -1 : 1))[0] || null;
@@ -149,8 +153,8 @@ function viewAccesso() {
     <ul><li><b>Tutte le lettere, i preventivi e i consuntivi dell'amministratore.</b></li><li><b>Per ogni assemblea: i punti da discutere, con i documenti allegati.</b></li><li><b>La possibilità di dire la propria sui punti e di allegare preventivi.</b></li></ul>
     <p class="note"><b>Non sostituisce niente.</b> Le comunicazioni ufficiali continuano ad arrivare per posta, come sempre.</p>
     ${al.length ? `<form class="form" data-form="accedi">
-      <div class="riga2"><label>Scala<select id="acc-scala" data-change="render">${scale.map((s) => `<option value="${s}">Scala ${s}</option>`).join("")}</select></label>
-      <label>Interno<select id="acc-int">${al.filter((a) => a.scala === scelta).map((a) => `<option value="${esc(a.interno)}">${esc(a.interno)}</option>`).join("")}</select></label></div>
+      <div class="riga2"><label>${esc(ET.scala)}<select id="acc-scala" data-change="render">${scale.map((s) => `<option value="${s}">${esc(nomeScala(s))}</option>`).join("")}</select></label>
+      <label>${esc(maiusc(ET.alloggio))}<select id="acc-int">${al.filter((a) => a.scala === scelta).map((a) => `<option value="${esc(a.interno)}">${esc(a.interno)}</option>`).join("")}</select></label></div>
       <label>Password<input type="password" id="acc-pw" class="password" autocomplete="current-password" autocapitalize="none" autocorrect="off" spellcheck="false" placeholder="come sul bigliettino"></label>
       <label class="check"><input type="checkbox" id="acc-mostra" data-change="mostra-pw"> Mostra la password</label>
       ${UI.erroreAccesso ? `<p class="errore" role="alert">${esc(UI.erroreAccesso)}</p>` : ""}
@@ -170,7 +174,7 @@ function header() {
   const ruoli = [isRapp() && "rappresentante", isGestore() && "gestore"].filter(Boolean).join(" · ");
   return `<header class="top"><div class="in top-in">
     <a href="#home" class="brand-name">${esc(S.imp?.nome || "Condominio")}</a>
-    <div class="who"><span><b>Scala ${S.io.scala}, interno ${esc(S.io.interno)}</b>${ruoli ? ` · ${ruoli}` : ""}</span><button class="btn quiet" data-act="esci">Esci</button></div>
+    <div class="who"><span><b>${esc(etichettaAlloggio(S.io.id))}</b>${ruoli ? ` · ${ruoli}` : ""}</span><button class="btn quiet" data-act="esci">Esci</button></div>
   </div><nav class="nav" aria-label="Sezioni"><div class="in">${tabs.map(([k, l]) => `<a href="#${k}" class="${cur === k ? "on" : ""}"${cur === k ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</div></nav></header>`;
 }
 function view() {
@@ -223,7 +227,7 @@ function condCard(c, conLink) {
   const fut = a && a.data_riferimento >= oggi();
   const mia = isRapp() && c.scala === S.io.scala && fut;
   const mio = S.miei[c.id];
-  let html = `<article class="share"><div class="share-head"><b>${esc(nomeRapp(c.scala))}</b><span>rappresentante Scala ${c.scala}</span><span>${esc(fmtS(c.creata_il))}</span>
+  let html = `<article class="share"><div class="share-head"><b>${esc(nomeRapp(c.scala))}</b><span>rappresentante per ${esc(nomeScala(c.scala))}</span><span>${esc(fmtS(c.creata_il))}</span>
     ${conLink && p ? `<a href="#punto-${p.id}">Punto ${p.numero}: ${esc(short(p.titolo))}</a>` : ""}</div>
     <p class="share-text">${esc(c.testo)}</p>${c.allegati.length ? `<div class="files">${c.allegati.map((f) => fileBtn(f, "allegato da un condomino")).join("")}</div>` : ""}`;
   if (c.domanda) {
@@ -253,7 +257,7 @@ ${c.domanda ? `\nSondaggio tra i proprietari sul sito del condominio (indicativo
 Le chiedo, se possibile, di tenerne conto nella preparazione dell'assemblea.
 
 Cordiali saluti,
-${nomeRapp(c.scala)} – rappresentante Scala ${c.scala}`;
+${nomeRapp(c.scala)} – rappresentante per ${nomeScala(c.scala)}`;
   return { oggetto, corpo };
 }
 function prepBox(c) {
@@ -288,10 +292,10 @@ function ossForm(pid) {
   const k = pid || "x";
   const rapp = rappDi(S.io.scala);
   return `<section class="panel"><h3>${auto ? "Scrivi in bacheca" : isRapp() ? "Aggiungi una tua osservazione" : "Scrivi un'osservazione al tuo rappresentante"}</h3>
-    <p class="small muted">${auto ? "Il messaggio compare subito in bacheca, visibile a tutti i proprietari con la tua scala e il tuo interno."
+    <p class="small muted">${auto ? "Il messaggio compare subito in bacheca, visibile a tutti i proprietari, con l'indicazione del tuo alloggio."
       : isRapp() ? "La trovi tra le osservazioni nuove: da lì puoi condividerla con tutti."
-      : rapp ? `La legge solo ${esc(rapp.nome_rappresentante || "il rappresentante")}, rappresentante della Scala ${S.io.scala}. Se la ritiene di interesse generale la condivide con tutti, senza il tuo nome, e può aprire un sondaggio.`
-      : `La Scala ${S.io.scala} non ha ancora un rappresentante: la tua osservazione verrà letta quando sarà indicato.`}</p>
+      : rapp ? `La legge solo ${esc(rapp.nome_rappresentante || "il rappresentante")}, rappresentante per ${esc(nomeScala(S.io.scala))}. Se la ritiene di interesse generale la condivide con tutti, senza il tuo nome, e può aprire un sondaggio.`
+      : `${esc(nomeScala(S.io.scala))} non ha ancora un rappresentante: la tua osservazione verrà letta quando sarà indicato.`}</p>
     <div class="form">${pid ? "" : `<label>Su quale punto?<select id="os-pt">${puntiDi(a.id).map((p) => `<option value="${p.id}">${p.numero}. ${esc(short(p.titolo, 70))}</option>`).join("")}</select></label>`}
       <label>${auto ? "Il tuo messaggio" : "La tua osservazione"}<textarea id="os-t-${k}" maxlength="4000" placeholder="Una proposta, un dubbio, un'informazione utile…"></textarea></label>
       <label>Allega preventivi o documenti (PDF o foto, facoltativo)<input type="file" id="os-f-${k}" data-file="${k}" accept="application/pdf,image/jpeg,image/png,image/webp" multiple></label>
@@ -313,7 +317,7 @@ function viewHome() {
     if (bacheca.length) extra += `<section><div class="sec-head"><h2>Ultimi messaggi in bacheca</h2>${auto ? `<a class="small" href="#bacheca">Tutta la bacheca</a>` : ""}</div>${bacheca.map((o) => bachecaCard(o, true)).join("")}</section>`;
   }
   const ultimi = S.lettere.slice(0, 4);
-  return `${nuove ? `<div class="note"><b>${nuove} ${nuove === 1 ? "osservazione nuova" : "osservazioni nuove"}</b> dalla Scala ${S.io.scala}. <a href="#osservazioni">Guardale</a>: ti basta scegliere se condividerle.</div>` : ""}
+  return `${nuove ? `<div class="note"><b>${nuove} ${nuove === 1 ? "osservazione nuova" : "osservazioni nuove"}</b> dai proprietari di ${esc(nomeScala(S.io.scala))}. <a href="#osservazioni">Guardale</a>: ti basta scegliere se condividerle.</div>` : ""}
   <section><div class="sec-head"><h2>Prossima assemblea</h2>${a && a.lettera_id ? `<a class="small" href="#doc-${a.lettera_id}">Lettera di convocazione</a>` : ""}</div>
   ${a ? `<div class="panel"><div class="next">${calBlock(a.data_riferimento)}<div class="form" style="gap:10px">
       <div class="row-btns"><span class="chip t-convocazione">Assemblea ${esc(a.tipo)}</span><span class="small muted">${giorni(a.data_riferimento) > 1 ? `tra ${giorni(a.data_riferimento)} giorni` : giorni(a.data_riferimento) === 1 ? "domani" : "oggi"}</span></div>${convRows(a)}</div></div>
@@ -419,7 +423,7 @@ function viewPunto(id) {
   ${cs.length || !auto ? `<section><h2>Osservazioni condivise</h2>${cs.length ? cs.map((c) => condCard(c, false)).join("") : `<div class="empty">Ancora nessuna osservazione condivisa su questo punto.</div>`}</section>` : ""}
   ${bb.length || auto ? `<section><h2>Bacheca</h2>${bb.length ? bb.map((o) => bachecaCard(o, false)).join("") : `<div class="empty">Ancora nessun messaggio su questo punto.</div>`}</section>` : ""}
   ${fut && !(isRapp() && !auto) ? ossForm(id) : ""}
-  ${fut && isRapp() && !auto ? `<div class="note">Le osservazioni della Scala ${S.io.scala} su questo punto le trovi in <a href="#osservazioni">Osservazioni ricevute</a>.</div>` : ""}
+  ${fut && isRapp() && !auto ? `<div class="note">Le osservazioni dei proprietari di ${esc(nomeScala(S.io.scala))} su questo punto le trovi in <a href="#osservazioni">Osservazioni ricevute</a>.</div>` : ""}
   ${isGestore() ? `<section class="panel"><h3>Correzioni (gestore)</h3>${ed ? `<div class="form">
     <div class="grid2"><label>Numero<input type="number" min="1" id="ep-num" value="${p.numero}"></label><label>Esito<select id="ep-esito">${Object.entries(ESITI).map(([k, v]) => `<option value="${k}" ${k === p.esito ? "selected" : ""}>${v}</option>`).join("")}</select></label></div>
     <label>Titolo<textarea id="ep-tit">${esc(p.titolo)}</textarea></label>
@@ -434,7 +438,7 @@ function statoMio(o) {
 }
 function viewMie() {
   const mie = S.oss.filter((o) => o.alloggio_id === S.io.id).reverse();
-  return `<section><h1>Le mie osservazioni</h1><p class="muted">Quello che hai scritto a ${esc(nomeRapp(S.io.scala))}, rappresentante della Scala ${S.io.scala}, e cosa ne ha fatto.</p></section>
+  return `<section><h1>Le mie osservazioni</h1><p class="muted">Quello che hai scritto a ${esc(nomeRapp(S.io.scala))}, rappresentante per ${esc(nomeScala(S.io.scala))}, e cosa ne ha fatto.</p></section>
   <section>${mie.length ? `<div class="list">${mie.map((o) => { const p = puntoById(o.punto_id); return `<div class="obs"><div class="obs-head"><b>Punto ${p?.numero ?? ""}</b><span>${esc(short(p?.titolo || "", 70))}</span><span>${esc(fmtS(o.creata_il))}</span></div><p class="obs-text">${esc(o.testo)}</p>${o.allegati.length ? `<div class="files">${o.allegati.map((f) => fileBtn(f)).join("")}</div>` : ""}<div class="status">${statoMio(o)}</div></div>`; }).join("")}</div>` : `<div class="empty">Non hai ancora scritto osservazioni.</div>`}</section>
   ${ossForm(null)}`;
 }
@@ -444,7 +448,7 @@ function viewRicevute() {
   const nomi = { nuove: "Nuove", condivise: "Condivise", archiviate: "Non condivise" };
   const a = prossima(), pids = new Set(a ? puntiDi(a.id).map((p) => p.id) : []);
   const miei = S.cond.filter((c) => c.scala === S.io.scala && pids.has(c.punto_id));
-  return `<section><h1>Osservazioni ricevute</h1><p class="muted">Le osservazioni dei proprietari della Scala ${S.io.scala}. Le vedi solo tu. Per ognuna scegli se condividerla con tutti (senza nome e interno) o lasciarla dov'è.</p></section>
+  return `<section><h1>Osservazioni ricevute</h1><p class="muted">Le osservazioni dei proprietari di ${esc(nomeScala(S.io.scala))}. Le vedi solo tu. Per ognuna scegli se condividerla con tutti (senza indicare l'alloggio) o lasciarla dov'è.</p></section>
   <section><div class="filters" role="group" aria-label="Stato">${Object.keys(gruppi).map((k) => `<button data-act="tab" data-v="${k}" class="${UI.tab === k ? "on" : ""}">${nomi[k]} (${gruppi[k].length})</button>`).join("")}</div>
   ${gruppi[UI.tab].length ? `<div class="list">${gruppi[UI.tab].map(ossCard).join("")}</div>` : `<div class="empty">${UI.tab === "nuove" ? "Nessuna osservazione nuova. Non devi fare niente." : "Nessuna."}</div>`}</section>
   ${miei.length ? `<section><h2>Le tue condivisioni per la prossima assemblea</h2><p class="small muted">Da qui prepari l'email per l'amministratore: il testo è già scritto.</p>${miei.map((c) => condCard(c, true)).join("")}</section>` : ""}
@@ -456,7 +460,7 @@ function ossCard(o) {
     <p class="obs-text">${esc(o.testo)}</p>${o.allegati.length ? `<div class="files">${o.allegati.map((f) => fileBtn(f)).join("")}</div>` : ""}`;
   if (o.stato === "nuova") {
     html += UI.sharing === o.id ? `<div class="prep"><b>Condividi con tutti i proprietari</b>
-        <label>Testo che vedranno (senza nome e interno; puoi correggerlo)<textarea id="sh-t-${o.id}">${esc(o.testo)}</textarea></label>
+        <label>Testo che vedranno (senza indicare l'alloggio; puoi correggerlo)<textarea id="sh-t-${o.id}">${esc(o.testo)}</textarea></label>
         <label class="check"><input type="checkbox" id="sh-p-${o.id}" checked> Apri un sondaggio (Favorevole / Contrario / Non so)</label>
         <label>Domanda del sondaggio<input type="text" id="sh-q-${o.id}" value="Siete d'accordo con questa proposta?"></label>
         <div class="row-btns"><button class="btn primary" data-act="condividi" data-id="${o.id}" ${UI.busy ? "disabled" : ""}>Condividi</button><button class="btn quiet" data-act="share" data-id="">Annulla</button></div></div>`
@@ -481,9 +485,9 @@ function viewImpostazioni() {
     <p class="small muted">Il sito pubblica solo le email che arrivano da questo indirizzo. Serve anche per inoltrare le osservazioni.</p>
     <label>L'anno di gestione inizia il 1°<select id="im-mese">${MESI.map((m, i) => `<option value="${i + 1}" ${imp.mese_inizio === i + 1 ? "selected" : ""}>${m}</option>`).join("")}</select></label>
   </div></section>
-  ${scale.map((s) => { const r = rappDi(s); return `<section class="panel"><h2>Scala ${s}</h2><div class="form">
+  ${scale.map((s) => { const r = rappDi(s); return `<section class="panel"><h2>${esc(nomeScala(s))}</h2><div class="form">
     <label>Come funzionano le osservazioni<select id="im-modo-${s}"><option value="rappresentante">Con il rappresentante di scala</option><option value="automatica" ${modo(s) === "automatica" ? "selected" : ""}>Bacheca automatica, senza rappresentante</option></select></label>
-    <div class="grid2"><label>Rappresentante<select id="im-rapp-${s}"><option value="">Nessuno</option>${S.alloggi.filter((a) => a.scala === s).sort((x, y) => x.interno.localeCompare(y.interno, "it", { numeric: true })).map((a) => `<option value="${a.id}" ${r?.id === a.id ? "selected" : ""}>Interno ${esc(a.interno)}</option>`).join("")}</select></label>
+    <div class="grid2"><label>Rappresentante<select id="im-rapp-${s}"><option value="">Nessuno</option>${S.alloggi.filter((a) => a.scala === s).sort((x, y) => x.interno.localeCompare(y.interno, "it", { numeric: true })).map((a) => `<option value="${a.id}" ${r?.id === a.id ? "selected" : ""}>${esc(maiusc(ET.alloggio))} ${esc(a.interno)}</option>`).join("")}</select></label>
     <label>Nome da mostrare<input type="text" id="im-nome-${s}" value="${esc(r?.nome_rappresentante || "")}" placeholder="Es. Renzo"></label></div>
   </div></section>`; }).join("")}
   <div class="row-btns"><button class="btn primary" data-act="salva-imp" ${UI.busy ? "disabled" : ""}>Salva le impostazioni</button></div>
@@ -625,7 +629,7 @@ document.addEventListener("submit", async (e) => {
   e.preventDefault();
   const scala = Number(val("acc-scala")), interno = val("acc-int"), pw = val("acc-pw").trim().toLowerCase();
   const a = (S.accesso?.alloggi || []).find((x) => x.scala === scala && x.interno === interno);
-  if (!a || !pw) { UI.erroreAccesso = "Scegli scala e interno e scrivi la password."; render(); return; }
+  if (!a || !pw) { UI.erroreAccesso = `Scegli ${ET.scala.toLowerCase()} e ${ET.alloggio} e scrivi la password.`; render(); return; }
   UI.busy = true; UI.erroreAccesso = ""; render();
   const { data, error } = await sb.auth.signInWithPassword({ email: `${a.id.toLowerCase()}@${DOMINIO_EMAIL}`, password: pw });
   if (error) {

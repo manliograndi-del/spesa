@@ -4,4 +4,6 @@
 window.CONDOMINIO = {
   supabaseUrl: "https://ytfjghvsbslawffhzybg.supabase.co",
   supabaseKey: "sb_publishable_RQ72ZTedPwNgBvp_9tP90A_TzuHlo5K",
+  // Il condominio ha due blocchi, "Interno 2" e "Interno 4", con alloggi numerati da 1 a 20.
+  etichette: { scala: "Interno", alloggio: "alloggio" },
 };
