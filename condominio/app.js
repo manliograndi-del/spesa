@@ -200,7 +200,8 @@ function convRows(a) {
   return `<dl class="conv">${riga("1ª conv.", a.prima)}${riga("2ª conv.", a.seconda)}</dl>`;
 }
 const docChip = (l) => `<span class="chip t-${l.tipo}">${TIPI[l.tipo] || "Altro"}</span>`;
-const fileBtn = (f, da) => `<button class="file" data-act="apri" data-v="${esc(f.percorso)}"><span class="file-ico">${/\.pdf$/i.test(f.nome) ? "PDF" : "FOTO"}</span><span class="file-name">${esc(nomeFile(f.nome))}</span>${da ? `<span class="file-from">${esc(da)}</span>` : ""}</button>`;
+const tipoFile = (nome) => (/\.pdf$/i.test(nome) ? "PDF" : /\.(jpe?g|png|webp|gif|heic|heif|tiff?)$/i.test(nome) ? "FOTO" : /\.(docx?|odt|rtf|txt)$/i.test(nome) ? "TESTO" : /\.(xlsx?|ods|csv)$/i.test(nome) ? "CALC" : "FILE");
+const fileBtn = (f, da) => `<button class="file" data-act="apri" data-v="${esc(f.percorso)}"><span class="file-ico">${tipoFile(f.nome)}</span><span class="file-name">${esc(nomeFile(f.nome))}</span>${da ? `<span class="file-from">${esc(da)}</span>` : ""}</button>`;
 function docItem(l) {
   return `<a class="item" href="#doc-${l.id}"><span class="item-title">${esc(l.oggetto || TIPI[l.tipo])}</span><span class="item-side">${esc(fmtS(l.data_lettera || l.arrivata))}</span>
     <span class="item-meta">${docChip(l)}<span>Gestione ${esc(l.gestione)}</span>${l.allegati.length ? `<span>${l.allegati.length} ${l.allegati.length === 1 ? "allegato" : "allegati"}</span>` : ""}</span></a>`;
@@ -262,7 +263,7 @@ ${nomeRapp(c.scala)} – rappresentante per ${nomeScala(c.scala)}`;
 }
 function prepBox(c) {
   const { oggetto, corpo } = testoAmm(c);
-  const mail = S.imp?.email_amministratore || "";
+  const mail = (S.imp?.email_amministratore || "").split(",")[0].trim();
   const href = `mailto:${encodeURIComponent(mail)}?subject=${encodeURIComponent(oggetto)}&body=${encodeURIComponent(corpo)}`;
   return `<div class="prep"><b>Email per l'amministratore${mail ? ` (${esc(mail)})` : ""}</b>
     <p class="small muted">Il testo è già pronto. Aprilo nella tua email e invialo, oppure copialo. Poi segna l'osservazione come inoltrata.</p>
@@ -317,7 +318,9 @@ function viewHome() {
     if (bacheca.length) extra += `<section><div class="sec-head"><h2>Ultimi messaggi in bacheca</h2>${auto ? `<a class="small" href="#bacheca">Tutta la bacheca</a>` : ""}</div>${bacheca.map((o) => bachecaCard(o, true)).join("")}</section>`;
   }
   const ultimi = S.lettere.slice(0, 4);
-  return `${nuove ? `<div class="note"><b>${nuove} ${nuove === 1 ? "osservazione nuova" : "osservazioni nuove"}</b> dai proprietari di ${esc(nomeScala(S.io.scala))}. <a href="#osservazioni">Guardale</a>: ti basta scegliere se condividerle.</div>` : ""}
+  const daControllare = isGestore() ? S.lettere.filter((l) => l.oggetto.startsWith("⚠")) : [];
+  return `${daControllare.length ? `<div class="note"><b>${daControllare.length === 1 ? "Una lettera è stata pubblicata" : `${daControllare.length} lettere sono state pubblicate`} senza essere letta bene.</b> Aprila, controlla tipo e anno con "Correggi" e togli il segnale ⚠ dall'oggetto: ${daControllare.map((l) => `<a href="#doc-${l.id}">${esc(short(l.oggetto.replace(/^⚠[^–]*–\s*/, ""), 50))}</a>`).join(", ")}.</div>` : ""}
+  ${nuove ? `<div class="note"><b>${nuove} ${nuove === 1 ? "osservazione nuova" : "osservazioni nuove"}</b> dai proprietari di ${esc(nomeScala(S.io.scala))}. <a href="#osservazioni">Guardale</a>: ti basta scegliere se condividerle.</div>` : ""}
   <section><div class="sec-head"><h2>Prossima assemblea</h2>${a && a.lettera_id ? `<a class="small" href="#doc-${a.lettera_id}">Lettera di convocazione</a>` : ""}</div>
   ${a ? `<div class="panel"><div class="next">${calBlock(a.data_riferimento)}<div class="form" style="gap:10px">
       <div class="row-btns"><span class="chip t-convocazione">Assemblea ${esc(a.tipo)}</span><span class="small muted">${giorni(a.data_riferimento) > 1 ? `tra ${giorni(a.data_riferimento)} giorni` : giorni(a.data_riferimento) === 1 ? "domani" : "oggi"}</span></div>${convRows(a)}</div></div>
@@ -481,8 +484,8 @@ function viewImpostazioni() {
   return `<section><h1>Impostazioni</h1><p class="muted">Visibili solo al gestore del sito.</p></section>
   <section class="panel"><h2>Condominio</h2><div class="form">
     <label>Nome<input type="text" id="im-nome" value="${esc(imp.nome || "")}"></label>
-    <label>Email dell'amministratore<input type="email" id="im-mail" value="${esc(imp.email_amministratore || "")}"></label>
-    <p class="small muted">Il sito pubblica solo le email che arrivano da questo indirizzo. Serve anche per inoltrare le osservazioni.</p>
+    <label>Email dell'amministratore<input type="text" id="im-mail" inputmode="email" autocapitalize="none" value="${esc(imp.email_amministratore || "")}"></label>
+    <p class="small muted">Il sito pubblica solo le email che arrivano da questi indirizzi. Se lo studio ne usa più di uno (per esempio la segreteria), scrivili tutti separati da una virgola. Il primo serve anche per inoltrare le osservazioni.</p>
     <label>L'anno di gestione inizia il 1°<select id="im-mese">${MESI.map((m, i) => `<option value="${i + 1}" ${imp.mese_inizio === i + 1 ? "selected" : ""}>${m}</option>`).join("")}</select></label>
   </div></section>
   ${scale.map((s) => { const r = rappDi(s); return `<section class="panel"><h2>${esc(nomeScala(s))}</h2><div class="form">
@@ -555,7 +558,7 @@ const ACT = {
     const modi = {};
     const scale = [...new Set(S.alloggi.map((a) => a.scala))];
     scale.forEach((s) => { modi[s] = val("im-modo-" + s); });
-    await q(sb.from("impostazioni").update({ nome: val("im-nome").trim() || "Condominio", email_amministratore: val("im-mail").trim().toLowerCase(), mese_inizio: +val("im-mese"), modo_scala: modi }).eq("id", 1));
+    await q(sb.from("impostazioni").update({ nome: val("im-nome").trim() || "Condominio", email_amministratore: val("im-mail").toLowerCase().split(/[\s,;]+/).filter(Boolean).join(", "), mese_inizio: +val("im-mese"), modo_scala: modi }).eq("id", 1));
     for (const s of scale) await q(sb.rpc("imposta_rappresentante", { s, alloggio: val("im-rapp-" + s) || null, nome: val("im-nome-" + s) }));
   }, "Impostazioni salvate."),
   "salva-doc": (d) => {

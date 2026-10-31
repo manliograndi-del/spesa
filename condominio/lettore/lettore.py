@@ -20,6 +20,7 @@ import email
 import email.policy
 import imaplib
 import json
+import mimetypes
 import os
 import re
 import shutil
@@ -335,8 +336,8 @@ def salva(cfg, oggetto, mittente, data_arrivo, testo_email, pdf, risultato):
     cartella = base / f"{data_arrivo}_{slug}"
     cartella.mkdir(parents=True, exist_ok=True)
     allegati = []
-    for nome, contenuto in pdf:
-        nome_sicuro = re.sub(r"[^\w.\-]", "_", Path(nome).name) or "allegato.pdf"
+    for nome, contenuto, _tipo in pdf:
+        nome_sicuro = re.sub(r"[^\w.\-]", "_", Path(nome).name) or "allegato"
         (cartella / nome_sicuro).write_bytes(contenuto)
         allegati.append(nome_sicuro)
     scheda = {"oggetto": oggetto, "mittente": mittente, "arrivata": data_arrivo, "testo_email": testo_email,
@@ -384,18 +385,35 @@ def impostazioni_dal_sito(cfg):
     cfg["MESE_INIZIO_GESTIONE"] = str(imp["mese_inizio"])
 
 
-def pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, pdf, testo, risultato):
+DA_CONTROLLARE = "⚠ Da controllare – "
+
+
+def pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, file, testo, risultato):
+    """Pubblica la lettera con tutti i suoi allegati (PDF, foto, Word, Excel…).
+
+    Se un allegato non si carica, la lettera esce lo stesso, con l'oggetto segnato "da controllare"."""
     sb = Supabase(cfg)
     if message_id and sb.righe("lettere", f"select=id&message_id=eq.{urllib.parse.quote(message_id)}"):
         return "già pubblicata"
     slug = re.sub(r"[^a-z0-9]+", "-", oggetto.lower()).strip("-")[:40] or "lettera"
     cartella = f"lettere/{data_arrivo}_{slug}-{os.urandom(3).hex()}"
-    allegati = []
-    for nome, contenuto in pdf:
-        nome_sicuro = re.sub(r"[^\w.\-]", "_", Path(nome).name) or "allegato.pdf"
+    allegati, mancanti, usati = [], [], set()
+    for nome, contenuto, tipo in file:
+        nome_sicuro = re.sub(r"[^\w.\-]", "_", Path(nome).name) or "allegato"
+        while nome_sicuro in usati:  # due allegati con lo stesso nome
+            nome_sicuro = "1-" + nome_sicuro
+        usati.add(nome_sicuro)
         percorso = f"{cartella}/{nome_sicuro}"
-        sb.chiama("POST", f"/storage/v1/object/documenti/{urllib.parse.quote(percorso)}", contenuto, "application/pdf", {"x-upsert": "true"})
-        allegati.append({"nome": nome_sicuro, "percorso": percorso})
+        try:
+            sb.chiama("POST", f"/storage/v1/object/documenti/{urllib.parse.quote(percorso)}", contenuto,
+                      tipo or "application/octet-stream", {"x-upsert": "true"})
+            allegati.append({"nome": nome_sicuro, "percorso": percorso})
+        except RuntimeError as e:
+            print(f"  ! Allegato {nome} non caricato: {e}")
+            mancanti.append(nome)
+    if mancanti:
+        oggetto = DA_CONTROLLARE + oggetto
+        testo_email += "\n\n[Allegati che non è stato possibile pubblicare: " + ", ".join(mancanti) + ". Sono nella casella Gmail del condominio.]"
     lettera = sb.inserisci("lettere", {
         "message_id": message_id or None, "arrivata": data_arrivo, "data_lettera": risultato["data_lettera"],
         "oggetto": oggetto, "testo_email": testo_email[:20000], "tipo": risultato["tipo"],
@@ -454,9 +472,55 @@ def comando_prova(cfg, args):
     risultato = analizza(cfg, oggetto, testo, args.motore, oggi)
     stampa(risultato)
     if args.destinazione == "supabase":
-        print("  Sul sito:", pubblica_su_supabase(cfg, None, oggetto, oggi, "", [(pdf.name, pdf.read_bytes())], testo, risultato))
+        print("  Sul sito:", pubblica_su_supabase(cfg, None, oggetto, oggi, "", [(pdf.name, pdf.read_bytes(), "application/pdf")], testo, risultato))
     elif args.salva:
-        print("  Salvata in", salva(cfg, oggetto, "(prova)", oggi, "", [(pdf.name, pdf.read_bytes())], risultato))
+        print("  Salvata in", salva(cfg, oggetto, "(prova)", oggi, "", [(pdf.name, pdf.read_bytes(), "application/pdf")], risultato))
+
+
+def testo_dell_email(msg):
+    """Il testo dell'email: quello semplice se c'è, altrimenti quello HTML ripulito dai tag."""
+    corpo = msg.get_body(preferencelist=("plain", "html"))
+    if not corpo:
+        return ""
+    testo = corpo.get_content()
+    if corpo.get_content_type() == "text/html":
+        testo = re.sub(r"(?is)<(script|style).*?</\1>", "", testo)
+        testo = re.sub(r"(?i)<br\s*/?>|</p>|</div>|</tr>", "\n", testo)
+        testo = re.sub(r"<[^>]+>", "", testo)
+        testo = re.sub(r"&nbsp;", " ", testo)
+    return re.sub(r"\n{3,}", "\n\n", testo).strip()
+
+
+def allegati_di(msg):
+    """Tutti gli allegati, di qualsiasi tipo. Si saltano solo le immagini piccole dentro il testo (loghi della firma)."""
+    out = []
+    for parte in msg.iter_attachments():
+        dati = parte.get_payload(decode=True)
+        if not dati:
+            continue
+        tipo = parte.get_content_type()
+        if parte.get("Content-ID") and parte.get_content_maintype() == "image" and len(dati) < 30_000:
+            continue
+        nome = parte.get_filename() or "allegato" + (mimetypes.guess_extension(tipo) or "")
+        out.append((nome, dati, tipo))
+    return out
+
+
+def lettera_di_riserva(cfg, message_id, oggetto, data_arrivo, msg, errore):
+    """Se qualcosa va storto, la lettera si pubblica comunque come "Altro", segnata da controllare."""
+    try:
+        testo_email = testo_dell_email(msg)
+    except Exception:
+        testo_email = ""
+    try:
+        file = allegati_di(msg)
+    except Exception:
+        file = []
+    testo_email += f"\n\n[Pubblicata in automatico senza analisi: {str(errore)[:200]}]"
+    risultato = {"tipo": "altro", "data_lettera": None, "assemblea": None,
+                 "gestione": gestione_da(data_arrivo, int(cfg["MESE_INIZIO_GESTIONE"]))}
+    return pubblica_su_supabase(cfg, message_id, DA_CONTROLLARE + (oggetto or "lettera senza oggetto"),
+                                data_arrivo, testo_email.strip(), file, "", risultato)
 
 
 def comando_posta(cfg, args):
@@ -465,7 +529,9 @@ def comando_posta(cfg, args):
     for chiave in ("IMAP_SERVER", "IMAP_UTENTE", "IMAP_PASSWORD", "EMAIL_AMMINISTRATORE"):
         if not cfg.get(chiave):
             sys.exit(f"Manca {chiave} nella configurazione")
-    amministratore = cfg["EMAIL_AMMINISTRATORE"].lower()
+    # anche più indirizzi, separati da virgola (es. lo studio e la segreteria)
+    amministratori = {a.lower() for a in re.split(r"[\s,;]+", cfg["EMAIL_AMMINISTRATORE"]) if a}
+    problemi = 0
     with imaplib.IMAP4_SSL(cfg["IMAP_SERVER"]) as imap:
         imap.login(cfg["IMAP_UTENTE"], cfg["IMAP_PASSWORD"])
         imap.select("INBOX")
@@ -473,11 +539,12 @@ def comando_posta(cfg, args):
         ids = dati[0].split()
         print(f"{len(ids)} email nuove.")
         for num in ids:
-            _, parti = imap.fetch(num, "(RFC822)")
+            # BODY.PEEK non segna l'email come letta: le ignorate restano "non lette" nella casella
+            _, parti = imap.fetch(num, "(BODY.PEEK[])")
             msg = email.message_from_bytes(parti[0][1], policy=email.policy.default)
             mittente = parseaddr(msg.get("From", ""))[1].lower()
             oggetto = str(msg.get("Subject", "")).strip()
-            if mittente != amministratore:
+            if mittente not in amministratori:
                 print(f"- Ignorata (mittente {mittente}): {oggetto}")
                 continue
             autenticazione = str(msg.get("Authentication-Results", "")).lower()
@@ -488,26 +555,42 @@ def comando_posta(cfg, args):
                 data_arrivo = parsedate_to_datetime(msg["Date"]).date().isoformat()
             except (TypeError, ValueError):
                 data_arrivo = date.today().isoformat()
-            corpo = msg.get_body(preferencelist=("plain",))
-            testo_email = corpo.get_content().strip() if corpo else ""
-            pdf = [(p.get_filename() or "allegato.pdf", p.get_payload(decode=True))
-                   for p in msg.iter_attachments() if p.get_content_type() == "application/pdf"]
-            testo = testo_email
-            with tempfile.TemporaryDirectory() as tmp:
-                for nome, contenuto in pdf:
-                    f = Path(tmp) / "a.pdf"
-                    f.write_bytes(contenuto)
-                    testo += "\n\n" + testo_pdf(f)
+            message_id = str(msg.get("Message-ID", "")).strip()
             print(f"- {oggetto}")
-            risultato = analizza(cfg, oggetto, testo, args.motore, data_arrivo)
-            stampa(risultato)
-            if args.destinazione == "supabase":
-                esito = pubblica_su_supabase(cfg, str(msg.get("Message-ID", "")).strip(), oggetto, data_arrivo,
-                                             testo_email, pdf, testo, risultato)
-                print("  Sul sito:", esito)
-            else:
-                print("  Salvata in", salva(cfg, oggetto, mittente, data_arrivo, testo_email, pdf, risultato))
+            try:
+                testo_email = testo_dell_email(msg)
+                file = allegati_di(msg)
+                print(f"  {len(file)} allegati")
+                testo = testo_email
+                with tempfile.TemporaryDirectory() as tmp:
+                    for nome, contenuto, tipo in file:
+                        if tipo == "application/pdf" or nome.lower().endswith(".pdf"):
+                            f = Path(tmp) / "a.pdf"
+                            f.write_bytes(contenuto)
+                            try:
+                                testo += "\n\n" + testo_pdf(f)
+                            except Exception as e:
+                                print(f"  ! PDF {nome} non leggibile: {e}")
+                risultato = analizza(cfg, oggetto, testo, args.motore, data_arrivo)
+                stampa(risultato)
+                if args.destinazione == "supabase":
+                    print("  Sul sito:", pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, file, testo, risultato))
+                else:
+                    print("  Salvata in", salva(cfg, oggetto, mittente, data_arrivo, testo_email, file, risultato))
+            except Exception as e:
+                problemi += 1
+                print(f"  ! Problema: {e}")
+                if args.destinazione != "supabase":
+                    continue
+                try:
+                    print("  Pubblicata comunque, da controllare:", lettera_di_riserva(cfg, message_id, oggetto, data_arrivo, msg, e))
+                except Exception as e2:
+                    print(f"  ! Non pubblicata, riprovo al prossimo giro: {e2}")
+                    continue
             imap.store(num, "+FLAGS", "\\Seen")
+    if problemi:
+        # il giro risulta fallito: GitHub manda un'email a chi gestisce il repository
+        sys.exit(f"{problemi} lettere con problemi: sono sul sito segnate \"da controllare\" (o restano non lette nella casella).")
 
 
 def main():

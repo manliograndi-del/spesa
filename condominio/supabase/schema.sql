@@ -264,7 +264,12 @@ grant execute on function public.pagina_accesso() to anon;
 
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('documenti', 'documenti', false, 20971520,
-        array['application/pdf', 'image/jpeg', 'image/png', 'image/webp']);
+        array['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'image/gif', 'image/heic', 'image/heif', 'image/tiff',
+              'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+              'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+              'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet',
+              'application/rtf', 'text/rtf', 'text/plain', 'text/csv', 'application/zip', 'message/rfc822',
+              'application/octet-stream']);
 
 -- lettere/...                      i PDF dell'amministratore (li carica il lettore)
 -- osservazioni/<alloggio>/...      gli allegati delle osservazioni
