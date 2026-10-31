@@ -2,6 +2,6 @@
 // Sono dati pubblici per natura (la "publishable key" serve proprio al sito):
 // a proteggere i dati sono le password degli alloggi e le regole in supabase/schema.sql.
 window.CONDOMINIO = {
-  supabaseUrl: "",
-  supabaseKey: "",
+  supabaseUrl: "https://ytfjghvsbslawffhzybg.supabase.co",
+  supabaseKey: "sb_publishable_RQ72ZTedPwNgBvp_9tP90A_TzuHlo5K",
 };
