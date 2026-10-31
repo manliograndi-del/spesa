@@ -57,15 +57,12 @@ function prossima() {
   const t = oggi();
   return S.assemblee.filter((a) => a.data_riferimento >= t).sort((a, b) => (a.data_riferimento < b.data_riferimento ? -1 : 1))[0] || null;
 }
-// Documenti utili per un'assemblea: gli allegati della convocazione e le lettere di spese arrivate nei 75 giorni prima.
+// Documenti di un'assemblea: gli allegati della lettera di convocazione, senza doppioni. Le altre lettere stanno in Documenti.
 function documentiDi(a) {
-  const out = [];
   const conv = letteraById(a.lettera_id);
-  if (conv) conv.allegati.forEach((f) => out.push({ lettera: conv, file: f }));
-  const da = new Date(parseD(a.data_riferimento) - 75 * 86400000).toISOString().slice(0, 10);
-  S.lettere.filter((l) => l.id !== a.lettera_id && ["ordinaria", "riscaldamento"].includes(l.tipo) && l.arrivata >= da && l.arrivata <= a.data_riferimento)
-    .forEach((l) => l.allegati.forEach((f) => out.push({ lettera: l, file: f })));
-  return out;
+  if (!conv) return [];
+  const visti = new Set();
+  return conv.allegati.filter((f) => !visti.has(f.nome) && visti.add(f.nome)).map((f) => ({ lettera: conv, file: f }));
 }
 
 /* ---------- dati ---------- */
