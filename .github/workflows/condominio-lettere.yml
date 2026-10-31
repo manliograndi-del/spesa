@@ -1,0 +1,37 @@
+name: Lettere del condominio
+
+# Ogni ora legge la casella Gmail del condominio e pubblica sul sito le lettere dell'amministratore.
+# Finché i segreti non sono impostati (Settings > Secrets and variables > Actions) non fa niente.
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  leggi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: condominio/lettore
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Leggi la posta e pubblica sul sito
+        env:
+          IMAP_SERVER: imap.gmail.com
+          IMAP_UTENTE: ${{ secrets.CONDOMINIO_IMAP_UTENTE }}
+          IMAP_PASSWORD: ${{ secrets.CONDOMINIO_IMAP_PASSWORD }}
+          SUPABASE_URL: ${{ secrets.CONDOMINIO_SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.CONDOMINIO_SUPABASE_SECRET_KEY }}
+        run: |
+          if [ -z "$IMAP_PASSWORD" ] || [ -z "$SUPABASE_SERVICE_KEY" ]; then
+            echo "Non ancora configurato: mancano i segreti del condominio."
+            exit 0
+          fi
+          pip install -r condominio/lettore/requirements.txt
+          python condominio/lettore/lettore.py --config /dev/null --motore regole --destinazione supabase posta

@@ -27,6 +27,7 @@ import subprocess
 import sys
 import tempfile
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import date, datetime
 from email.utils import parseaddr, parsedate_to_datetime
@@ -51,7 +52,8 @@ def carica_config(percorso):
                 k, v = riga.split("=", 1)
                 cfg[k.strip()] = v.strip()
     for k in list(cfg) + ["IMAP_SERVER", "IMAP_UTENTE", "IMAP_PASSWORD", "EMAIL_AMMINISTRATORE",
-                          "MESE_INIZIO_GESTIONE", "OLLAMA_URL", "OLLAMA_MODELLO", "CARTELLA_USCITA"]:
+                          "MESE_INIZIO_GESTIONE", "OLLAMA_URL", "OLLAMA_MODELLO", "CARTELLA_USCITA",
+                          "SUPABASE_URL", "SUPABASE_SERVICE_KEY"]:
         if os.environ.get(k):
             cfg[k] = os.environ[k]
     cfg.setdefault("MESE_INIZIO_GESTIONE", "10")
@@ -315,6 +317,85 @@ def salva(cfg, oggetto, mittente, data_arrivo, testo_email, pdf, risultato):
     return cartella
 
 
+class Supabase:
+    """Scrive nel database del sito con la chiave segreta (che resta su GitHub o sul computer)."""
+
+    def __init__(self, cfg):
+        if not cfg.get("SUPABASE_URL") or not cfg.get("SUPABASE_SERVICE_KEY"):
+            raise RuntimeError("Mancano SUPABASE_URL e SUPABASE_SERVICE_KEY nella configurazione.")
+        self.url, self.chiave = cfg["SUPABASE_URL"].rstrip("/"), cfg["SUPABASE_SERVICE_KEY"]
+
+    def chiama(self, metodo, percorso, corpo=None, tipo="application/json", extra=None):
+        h = {"apikey": self.chiave, "Authorization": f"Bearer {self.chiave}", "Content-Type": tipo}
+        h.update(extra or {})
+        dati = corpo if isinstance(corpo, bytes) else (json.dumps(corpo).encode() if corpo is not None else None)
+        richiesta = urllib.request.Request(self.url + percorso, data=dati, headers=h, method=metodo)
+        try:
+            with urllib.request.urlopen(richiesta, timeout=120) as r:
+                testo = r.read()
+                return json.loads(testo) if testo else None
+        except urllib.error.HTTPError as e:
+            raise RuntimeError(f"Supabase {metodo} {percorso}: {e.code} {e.read().decode(errors='replace')[:300]}") from e
+
+    def righe(self, tabella, filtro=""):
+        return self.chiama("GET", f"/rest/v1/{tabella}?{filtro}")
+
+    def inserisci(self, tabella, riga):
+        return self.chiama("POST", f"/rest/v1/{tabella}", riga, extra={"Prefer": "return=representation"})[0]
+
+
+def impostazioni_dal_sito(cfg):
+    """Email dell'amministratore e mese di inizio gestione si cambiano dal sito (Impostazioni)."""
+    imp = Supabase(cfg).righe("impostazioni", "select=email_amministratore,mese_inizio")[0]
+    if imp["email_amministratore"]:
+        cfg["EMAIL_AMMINISTRATORE"] = imp["email_amministratore"]
+    cfg["MESE_INIZIO_GESTIONE"] = str(imp["mese_inizio"])
+
+
+def pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, pdf, testo, risultato):
+    sb = Supabase(cfg)
+    if message_id and sb.righe("lettere", f"select=id&message_id=eq.{urllib.parse.quote(message_id)}"):
+        return "già pubblicata"
+    slug = re.sub(r"[^a-z0-9]+", "-", oggetto.lower()).strip("-")[:40] or "lettera"
+    cartella = f"lettere/{data_arrivo}_{slug}-{os.urandom(3).hex()}"
+    allegati = []
+    for nome, contenuto in pdf:
+        nome_sicuro = re.sub(r"[^\w.\-]", "_", Path(nome).name) or "allegato.pdf"
+        percorso = f"{cartella}/{nome_sicuro}"
+        sb.chiama("POST", f"/storage/v1/object/documenti/{urllib.parse.quote(percorso)}", contenuto, "application/pdf", {"x-upsert": "true"})
+        allegati.append({"nome": nome_sicuro, "percorso": percorso})
+    lettera = sb.inserisci("lettere", {
+        "message_id": message_id or None, "arrivata": data_arrivo, "data_lettera": risultato["data_lettera"],
+        "oggetto": oggetto, "testo_email": testo_email[:20000], "tipo": risultato["tipo"],
+        "gestione": risultato["gestione"], "allegati": allegati})
+    a = risultato["assemblea"]
+    if risultato["tipo"] == "convocazione" and a:
+        riferimento = (a["seconda"] or a["prima"])["data"]
+        esistente = sb.righe("assemblee", f"select=id&data_riferimento=eq.{riferimento}")
+        if esistente:
+            # stessa data: è un'integrazione dell'ordine del giorno, aggiungo solo i punti nuovi
+            assemblea_id = esistente[0]["id"]
+            gia = {p["numero"] for p in sb.righe("punti", f"select=numero&assemblea_id=eq.{assemblea_id}")}
+            nuovi = [p for p in a["punti"] if p["numero"] not in gia]
+        else:
+            assemblea_id = sb.inserisci("assemblee", {
+                "tipo": a["tipo"], "gestione": risultato["gestione"], "prima": a["prima"], "seconda": a["seconda"],
+                "data_riferimento": riferimento, "lettera_id": lettera["id"]})["id"]
+            nuovi = a["punti"]
+        for p in nuovi:
+            sb.inserisci("punti", {"assemblea_id": assemblea_id, "numero": p["numero"], "titolo": p["titolo"]})
+        return f"pubblicata, con l'assemblea del {riferimento} e {len(nuovi)} punti"
+    if risultato["tipo"] == "verbale":
+        date_citate = {d for d in (_data_in(m.group(0)) for m in re.finditer(
+            r"\d{1,2}\s+(?:" + "|".join(MESI) + r")\s+\d{4}|\d{1,2}[/.\-]\d{1,2}[/.\-]\d{2,4}", testo[:1500], re.I)) if d}
+        for d in sorted(date_citate):
+            trovata = sb.righe("assemblee", f"select=id&or=(data_riferimento.eq.{d},prima->>data.eq.{d})")
+            if trovata:
+                sb.chiama("PATCH", f"/rest/v1/assemblee?id=eq.{trovata[0]['id']}", {"verbale_id": lettera["id"]})
+                return f"pubblicata e collegata all'assemblea del {d}"
+    return "pubblicata"
+
+
 def stampa(risultato):
     print(f"  Tipo: {risultato['tipo']} · Gestione {risultato['gestione']} · letta con: {risultato['motore']}")
     a = risultato["assemblea"]
@@ -335,16 +416,23 @@ def comando_prova(cfg, args):
     pdf = Path(args.pdf)
     testo = testo_pdf(pdf)
     oggi = date.today().isoformat()
-    risultato = analizza(cfg, args.oggetto or pdf.stem, testo, args.motore, oggi)
+    oggetto = args.oggetto or pdf.stem
+    if args.destinazione == "supabase":
+        impostazioni_dal_sito(cfg)
+    risultato = analizza(cfg, oggetto, testo, args.motore, oggi)
     stampa(risultato)
-    if args.salva:
-        print("  Salvata in", salva(cfg, args.oggetto or pdf.stem, "(prova)", oggi, "", [(pdf.name, pdf.read_bytes())], risultato))
+    if args.destinazione == "supabase":
+        print("  Sul sito:", pubblica_su_supabase(cfg, None, oggetto, oggi, "", [(pdf.name, pdf.read_bytes())], testo, risultato))
+    elif args.salva:
+        print("  Salvata in", salva(cfg, oggetto, "(prova)", oggi, "", [(pdf.name, pdf.read_bytes())], risultato))
 
 
 def comando_posta(cfg, args):
+    if args.destinazione == "supabase":
+        impostazioni_dal_sito(cfg)
     for chiave in ("IMAP_SERVER", "IMAP_UTENTE", "IMAP_PASSWORD", "EMAIL_AMMINISTRATORE"):
         if not cfg.get(chiave):
-            sys.exit(f"Manca {chiave} in config.txt")
+            sys.exit(f"Manca {chiave} nella configurazione")
     amministratore = cfg["EMAIL_AMMINISTRATORE"].lower()
     with imaplib.IMAP4_SSL(cfg["IMAP_SERVER"]) as imap:
         imap.login(cfg["IMAP_UTENTE"], cfg["IMAP_PASSWORD"])
@@ -381,7 +469,12 @@ def comando_posta(cfg, args):
             print(f"- {oggetto}")
             risultato = analizza(cfg, oggetto, testo, args.motore, data_arrivo)
             stampa(risultato)
-            print("  Salvata in", salva(cfg, oggetto, mittente, data_arrivo, testo_email, pdf, risultato))
+            if args.destinazione == "supabase":
+                esito = pubblica_su_supabase(cfg, str(msg.get("Message-ID", "")).strip(), oggetto, data_arrivo,
+                                             testo_email, pdf, testo, risultato)
+                print("  Sul sito:", esito)
+            else:
+                print("  Salvata in", salva(cfg, oggetto, mittente, data_arrivo, testo_email, pdf, risultato))
             imap.store(num, "+FLAGS", "\\Seen")
 
 
@@ -390,6 +483,8 @@ def main():
     p.add_argument("--config", default=str(Path(__file__).with_name("config.txt")))
     p.add_argument("--motore", choices=["auto", "regole", "ollama"], default="auto",
                    help="auto = prima le regole, il modello locale solo se servono (predefinito)")
+    p.add_argument("--destinazione", choices=["cartella", "supabase"], default="cartella",
+                   help="cartella = salva in CARTELLA_USCITA; supabase = pubblica sul sito")
     sotto = p.add_subparsers(dest="comando", required=True)
     pr = sotto.add_parser("prova", help="analizza un PDF")
     pr.add_argument("pdf")
