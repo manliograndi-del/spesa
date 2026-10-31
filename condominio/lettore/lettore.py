@@ -16,6 +16,7 @@ Uso:
 """
 
 import argparse
+import base64
 import email
 import email.policy
 import imaplib
@@ -54,7 +55,7 @@ def carica_config(percorso):
                 cfg[k.strip()] = v.strip()
     for k in list(cfg) + ["IMAP_SERVER", "IMAP_UTENTE", "IMAP_PASSWORD", "EMAIL_AMMINISTRATORE",
                           "MESE_INIZIO_GESTIONE", "OLLAMA_URL", "OLLAMA_MODELLO", "CARTELLA_USCITA",
-                          "SUPABASE_URL", "SUPABASE_SERVICE_KEY"]:
+                          "SUPABASE_URL", "SUPABASE_SERVICE_KEY", "ANTHROPIC_API_KEY"]:
         if os.environ.get(k):
             cfg[k] = os.environ[k]
     cfg.setdefault("MESE_INIZIO_GESTIONE", "10")
@@ -307,10 +308,81 @@ def _valida(s):
 
 # ---------- analisi completa ----------
 
-def analizza(cfg, oggetto, testo, motore, data_arrivo):
+# ---------- Claude (facoltativo, con chiave API dedicata al condominio) ----------
+
+MODELLO_CLAUDE = "claude-haiku-5-5"
+_CONV = {"type": "object", "additionalProperties": False, "required": ["data", "ora", "luogo"],
+         "properties": {"data": {"type": "string"}, "ora": {"type": "string"}, "luogo": {"type": "string"}}}
+SCHEMA_CLAUDE = {
+    "type": "object", "additionalProperties": False,
+    "required": ["tipo", "data_lettera", "gestione", "assemblea"],
+    "properties": {
+        "tipo": {"type": "string", "enum": list(TIPI)},
+        "data_lettera": {"type": ["string", "null"]},
+        "gestione": {"type": ["string", "null"]},
+        "assemblea": {"anyOf": [{"type": "null"}, {
+            "type": "object", "additionalProperties": False, "required": ["tipo", "prima", "seconda", "punti"],
+            "properties": {
+                "tipo": {"type": "string", "enum": ["ordinaria", "straordinaria"]},
+                "prima": {"anyOf": [{"type": "null"}, _CONV]},
+                "seconda": {"anyOf": [{"type": "null"}, _CONV]},
+                "punti": {"type": "array", "items": {"type": "object", "additionalProperties": False, "required": ["numero", "titolo"],
+                                                     "properties": {"numero": {"type": "integer"}, "titolo": {"type": "string"}}}},
+            }}]},
+    },
+}
+
+
+def analizza_con_claude(cfg, oggetto, testo_email, file):
+    """Manda a Claude il testo dell'email e i PDF/foto allegati (fino a 5 per tipo) e riceve tipo, gestione e punti."""
+    import anthropic  # serve solo se si usa Claude
+    mese = int(cfg["MESE_INIZIO_GESTIONE"])
+    contenuto, n_pdf, n_foto = [], 0, 0
+    for nome, dati, tipo in file:
+        b64 = base64.standard_b64encode(dati).decode()
+        if (tipo == "application/pdf" or nome.lower().endswith(".pdf")) and n_pdf < 5 and len(dati) < 20_000_000:
+            contenuto.append({"type": "document", "source": {"type": "base64", "media_type": "application/pdf", "data": b64}})
+            n_pdf += 1
+        elif tipo in ("image/jpeg", "image/png", "image/webp", "image/gif") and n_foto < 5 and len(dati) < 5_000_000:
+            contenuto.append({"type": "image", "source": {"type": "base64", "media_type": tipo, "data": b64}})
+            n_foto += 1
+    formato = "AAAA (l'anno solare)" if mese == 1 else f"AAAA/AAAA (la gestione va dal 1° {MESI[mese - 1]} all'anno dopo)"
+    contenuto.append({"type": "text", "text": ISTRUZIONI.replace("LETTERA:\n", "") +
+        f"- gestione: l'anno di gestione nel formato {formato}. Per una convocazione è l'anno in cui si tiene l'assemblea; "
+        "per le spese è il periodo di cui parlano (es. un riparto della stagione 2025/2026 è 2025/2026); se non è scritto, usa la data della lettera.\n"
+        "Gli allegati sono qui sopra, il testo dell'email qui sotto.\n\n"
+        f"Oggetto: {oggetto}\n\nTesto dell'email:\n{testo_email[:20000] or '(vuoto)'}"})
+    client = anthropic.Anthropic(api_key=cfg["ANTHROPIC_API_KEY"], timeout=180.0, max_retries=2)
+    risposta = client.messages.create(
+        model=MODELLO_CLAUDE, max_tokens=8000,
+        output_config={"effort": "low", "format": {"type": "json_schema", "schema": SCHEMA_CLAUDE}},
+        messages=[{"role": "user", "content": contenuto}])
+    if risposta.stop_reason in ("refusal", "max_tokens"):
+        raise RuntimeError(f"Claude non ha completato la risposta ({risposta.stop_reason})")
+    dati = json.loads(next(b.text for b in risposta.content if b.type == "text"))
+    risultato = _pulisci(dati)
+    g = dati.get("gestione")
+    if isinstance(g, str) and re.fullmatch(r"\d{4}" if mese == 1 else r"(\d{4})/(\d{4})", g.strip()) and (mese == 1 or int(g[5:]) == int(g[:4]) + 1):
+        risultato["gestione_ai"] = g.strip()
+    return risultato
+
+
+def analizza(cfg, oggetto, testo, motore, data_arrivo, testo_email="", file=()):
     risultato, usato = None, motore
-    if motore in ("auto", "regole"):
-        risultato, usato = analizza_con_regole(oggetto, testo), "regole"
+    regole = analizza_con_regole(oggetto, testo)
+    if motore == "claude":
+        if cfg.get("ANTHROPIC_API_KEY"):
+            try:
+                risultato, usato = analizza_con_claude(cfg, oggetto, testo_email or testo, list(file)), "claude"
+                # una convocazione senza punti letti da Claude: si prova con quelli trovati dalle regole
+                if risultato["tipo"] == "convocazione" and not (risultato["assemblea"] or {}).get("punti") and regole["assemblea"]:
+                    risultato["assemblea"] = regole["assemblea"]
+            except Exception as e:
+                print(f"  ! Claude non disponibile, uso le regole: {str(e)[:200]}")
+        if risultato is None:
+            risultato, usato = regole, "regole"
+    elif motore in ("auto", "regole"):
+        risultato, usato = regole, "regole"
         if motore == "auto" and not regole_sufficienti(risultato):
             print("  Le regole non bastano: provo con il modello locale.")
             try:
@@ -323,7 +395,8 @@ def analizza(cfg, oggetto, testo, motore, data_arrivo):
     mese = int(cfg["MESE_INIZIO_GESTIONE"])
     riferimento = (a and ((a["seconda"] or a["prima"]) or {}).get("data")) or risultato["data_lettera"] or data_arrivo
     # Le assemblee vanno nell'anno in cui si tengono; le lettere di spese nell'anno di cui parlano, se lo scrivono.
-    citata = None if a else gestione_citata(oggetto, testo, mese)
+    citata = None if a else (risultato.pop("gestione_ai", None) or gestione_citata(oggetto, testo, mese))
+    risultato.pop("gestione_ai", None)
     risultato["gestione"] = citata or gestione_da(riferimento, mese)
     risultato["motore"] = usato
     return risultato
@@ -469,7 +542,7 @@ def comando_prova(cfg, args):
     oggetto = args.oggetto or pdf.stem
     if args.destinazione == "supabase":
         impostazioni_dal_sito(cfg)
-    risultato = analizza(cfg, oggetto, testo, args.motore, oggi)
+    risultato = analizza(cfg, oggetto, testo, args.motore, oggi, "", [(pdf.name, pdf.read_bytes(), "application/pdf")])
     stampa(risultato)
     if args.destinazione == "supabase":
         print("  Sul sito:", pubblica_su_supabase(cfg, None, oggetto, oggi, "", [(pdf.name, pdf.read_bytes(), "application/pdf")], testo, risultato))
@@ -571,7 +644,7 @@ def comando_posta(cfg, args):
                                 testo += "\n\n" + testo_pdf(f)
                             except Exception as e:
                                 print(f"  ! PDF {nome} non leggibile: {e}")
-                risultato = analizza(cfg, oggetto, testo, args.motore, data_arrivo)
+                risultato = analizza(cfg, oggetto, testo, args.motore, data_arrivo, testo_email, file)
                 stampa(risultato)
                 if args.destinazione == "supabase":
                     print("  Sul sito:", pubblica_su_supabase(cfg, message_id, oggetto, data_arrivo, testo_email, file, testo, risultato))
@@ -596,8 +669,9 @@ def comando_posta(cfg, args):
 def main():
     p = argparse.ArgumentParser(description="Legge le lettere dell'amministratore del condominio.")
     p.add_argument("--config", default=str(Path(__file__).with_name("config.txt")))
-    p.add_argument("--motore", choices=["auto", "regole", "ollama"], default="auto",
-                   help="auto = prima le regole, il modello locale solo se servono (predefinito)")
+    p.add_argument("--motore", choices=["auto", "regole", "ollama", "claude"], default="auto",
+                   help="auto = prima le regole, il modello locale solo se servono (predefinito); "
+                        "claude = Claude con ANTHROPIC_API_KEY, e le regole se manca la chiave o Claude non risponde")
     p.add_argument("--destinazione", choices=["cartella", "supabase"], default="cartella",
                    help="cartella = salva in CARTELLA_USCITA; supabase = pubblica sul sito")
     sotto = p.add_subparsers(dest="comando", required=True)

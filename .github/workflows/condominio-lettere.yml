@@ -28,10 +28,12 @@ jobs:
           IMAP_PASSWORD: ${{ secrets.CONDOMINIO_IMAP_PASSWORD }}
           SUPABASE_URL: ${{ secrets.CONDOMINIO_SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.CONDOMINIO_SUPABASE_SECRET_KEY }}
+          # facoltativa: se c'è, le lettere le legge Claude; se manca o il credito è finito, le regole
+          ANTHROPIC_API_KEY: ${{ secrets.CONDOMINIO_ANTHROPIC_KEY }}
         run: |
           if [ -z "$IMAP_PASSWORD" ] || [ -z "$SUPABASE_SERVICE_KEY" ]; then
             echo "Non ancora configurato: mancano i segreti del condominio."
             exit 0
           fi
           pip install -r condominio/lettore/requirements.txt
-          python condominio/lettore/lettore.py --config /dev/null --motore regole --destinazione supabase posta
+          python condominio/lettore/lettore.py --config /dev/null --motore claude --destinazione supabase posta
