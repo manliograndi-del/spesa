@@ -1,0 +1,705 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+</head>
+<body>
+<title>Condominio dei Tigli</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bitter:wght@600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: barra demo in cima, presentazione iniziale a una colonna, poi testata con targa e schede; contenuto max 920px. */
+:root {
+  --bg: #F2F4F1;
+  --surface: #FFFFFF;
+  --ink: #1A2725;
+  --muted: #5B6966;
+  --line: #D6DDD9;
+  --soft: #E5ECE8;
+  --brand: #1E5A50;
+  --brand-ink: #FFFFFF;
+  --brass: #9C6F24;
+  --paper: #FBFBF8;
+  --demo: #2B2F45;
+  --demo-ink: #F4F2FF;
+  --t-conv: #1E5A50;
+  --t-ord: #2C5F8A;
+  --t-risc: #A9481B;
+  --t-verb: #64558F;
+  --t-altro: #66716E;
+  --fav: #2B7A4B;
+  --contr: #AE3535;
+  --ns: #8A8F8D;
+  --warn: #9A6300;
+  --f-display: "Bitter", Georgia, "Times New Roman", serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111816; --surface: #19211F; --ink: #E4EBE8; --muted: #9AA9A5; --line: #2C3835; --soft: #1F2C29;
+    --brand: #62B5A5; --brand-ink: #0C1412; --brass: #D4A658; --paper: #161D1B; --demo: #2A2D44; --demo-ink: #ECEAFF;
+    --t-conv: #62B5A5; --t-ord: #7FB0DE; --t-risc: #F0905F; --t-verb: #AC9EE0; --t-altro: #A3ADAA;
+    --fav: #6CC891; --contr: #EF7F7F; --ns: #8E9895; --warn: #E2AE4F;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111816; --surface: #19211F; --ink: #E4EBE8; --muted: #9AA9A5; --line: #2C3835; --soft: #1F2C29;
+  --brand: #62B5A5; --brand-ink: #0C1412; --brass: #D4A658; --paper: #161D1B; --demo: #2A2D44; --demo-ink: #ECEAFF;
+  --t-conv: #62B5A5; --t-ord: #7FB0DE; --t-risc: #F0905F; --t-verb: #AC9EE0; --t-altro: #A3ADAA;
+  --fav: #6CC891; --contr: #EF7F7F; --ns: #8E9895; --warn: #E2AE4F;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--demo); }
+a { color: var(--brand); }
+h1, h2, h3 { font-family: var(--f-display); line-height: 1.2; text-wrap: balance; margin: 0; }
+h1 { font-size: 1.7rem; } h2 { font-size: 1.28rem; } h3 { font-size: 1.06rem; }
+p { margin: 0; }
+.muted { color: var(--muted); } .small { font-size: .88rem; }
+:focus-visible { outline: 3px solid var(--brass); outline-offset: 2px; border-radius: 4px; }
+.in { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+
+/* Barra demo */
+.demo { background: var(--demo); color: var(--demo-ink); font-size: .9rem; }
+.demo .in { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding-block: 9px; }
+.demo-tag { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .1em; text-transform: uppercase; border: 1px solid currentColor; border-radius: 3px; padding: 1px 6px; }
+.seg { display: inline-flex; flex-wrap: wrap; background: color-mix(in srgb, var(--demo-ink) 14%, transparent); border-radius: 18px; padding: 3px; }
+.seg button { font: inherit; font-weight: 700; font-size: .86rem; border: 0; border-radius: 999px; padding: 6px 12px; background: none; color: var(--demo-ink); cursor: pointer; }
+.seg button.on { background: var(--demo-ink); color: var(--demo); }
+.demo .tool { font: inherit; font-size: .85rem; background: none; color: var(--demo-ink); border: 1px solid color-mix(in srgb, var(--demo-ink) 45%, transparent); border-radius: 6px; padding: 5px 10px; cursor: pointer; }
+.demo .grow { flex: 1; }
+.demo .home-btn { font: inherit; font-weight: 700; font-size: .92rem; background: var(--brass); color: var(--demo); border: 0; border-radius: 999px; padding: 7px 16px; cursor: pointer; box-shadow: 0 0 0 2px color-mix(in srgb, var(--brass) 40%, transparent); }
+.demo .home-btn:hover { filter: brightness(1.08); }
+
+/* Presentazione */
+.intro { padding-block: 28px 64px; }
+.intro-card { max-width: 640px; margin: 0 auto; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 18px; }
+.intro-card h1 { font-size: 1.9rem; }
+.intro-lead { font-size: 1.08rem; }
+.intro ul { margin: 0; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 6px; }
+.intro-box { background: var(--soft); border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.intro-box h2 { font-size: 1rem; font-family: var(--f-body); font-weight: 700; }
+.intro-box dl { margin: 0; display: flex; flex-direction: column; gap: 2px; }
+.intro-box dt { font-weight: 700; }
+.intro-box dd { margin: 0 0 8px; min-width: 0; }
+.intro-box dd:last-child { margin-bottom: 0; }
+.intro-btns { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.intro-btns .btn { border-radius: 22px; padding: 9px 6px; font-size: clamp(11px, 3vw, 16px); line-height: 1.25; flex-direction: column; justify-content: center; gap: 0; text-align: center; }
+.intro-btns .btn span { display: block; white-space: nowrap; }
+
+/* Testata */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-bottom: 1px solid var(--line); }
+.top-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 16px; padding-block: 12px 2px; }
+.brand { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; min-width: 0; }
+.brand-name { font-family: var(--f-display); font-weight: 700; font-size: 1.22rem; color: var(--ink); text-decoration: none; }
+.targa { font-family: var(--f-mono); font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--brass); border: 1px solid currentColor; border-radius: 3px; padding: 1px 7px; }
+.who { font-size: .9rem; color: var(--muted); }
+.who b { color: var(--ink); }
+.nav { overflow-x: auto; scrollbar-width: none; }
+.nav .in { display: flex; gap: 2px; }
+.nav a { flex: none; padding: 10px 12px 9px; color: var(--muted); text-decoration: none; font-weight: 700; font-size: .95rem; border-bottom: 3px solid transparent; display: inline-flex; gap: 6px; align-items: center; }
+.nav a:hover { color: var(--ink); }
+.nav a.on { color: var(--ink); border-bottom-color: var(--brand); }
+.count { background: var(--contr); color: var(--surface); font-size: .74rem; border-radius: 999px; padding: 0 7px; line-height: 1.5; }
+
+main.in { padding-block: 22px 72px; display: flex; flex-direction: column; gap: 26px; }
+section { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.crumbs { font-size: .9rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; }
+.crumbs a { color: var(--muted); }
+
+.chip { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 700; letter-spacing: .02em; padding: 2px 9px; border-radius: 999px; white-space: nowrap; color: var(--c, var(--t-altro)); background: color-mix(in srgb, var(--c, var(--t-altro)) 13%, transparent); }
+.t-convocazione { --c: var(--t-conv); } .t-ordinarie { --c: var(--t-ord); } .t-riscaldamento { --c: var(--t-risc); } .t-verbale { --c: var(--t-verb); } .t-altro { --c: var(--t-altro); }
+.c-ok { --c: var(--fav); } .c-wait { --c: var(--warn); } .c-new { --c: var(--brass); }
+
+.btn { font: inherit; font-weight: 700; font-size: .95rem; border-radius: 8px; padding: 9px 16px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+.btn:hover { border-color: var(--muted); }
+.btn.primary { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
+.btn.quiet { border-color: transparent; background: none; color: var(--brand); padding-inline: 6px; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.filters { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px; }
+.filters button { flex: none; font: inherit; font-size: .9rem; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; }
+.filters button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+label { font-weight: 700; font-size: .92rem; display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 400; }
+input[type=text], select, textarea { font: inherit; font-weight: 400; font-size: 1rem; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 9px 11px; width: 100%; min-width: 0; }
+textarea { min-height: 96px; resize: vertical; }
+.form { display: flex; flex-direction: column; gap: 12px; }
+
+.list { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.item { display: grid; grid-template-columns: 1fr auto; gap: 4px 14px; padding: 13px 2px; border-bottom: 1px solid var(--line); text-decoration: none; color: inherit; align-items: start; }
+a.item:hover .item-title { text-decoration: underline; }
+.item-title { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.item-meta { font-size: .88rem; color: var(--muted); display: flex; gap: 6px 12px; flex-wrap: wrap; align-items: center; grid-column: 1 / -1; }
+.item-side { font-size: .85rem; color: var(--muted); text-align: right; white-space: nowrap; }
+
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.note { font-size: .92rem; color: var(--muted); background: var(--soft); border-radius: 8px; padding: 10px 14px; }
+.note b { color: var(--ink); }
+.empty { border: 1px dashed var(--line); border-radius: 12px; padding: 20px; color: var(--muted); }
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 20; background: var(--ink); color: var(--bg); padding: 11px 18px; border-radius: 10px; font-weight: 700; max-width: min(560px, calc(100vw - 32px)); box-shadow: 0 6px 24px rgb(0 0 0 / .22); }
+
+/* Allegati */
+.files { display: flex; flex-direction: column; gap: 6px; }
+.file { font: inherit; display: flex; align-items: center; gap: 10px; text-align: left; width: 100%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 9px 12px; cursor: pointer; min-width: 0; }
+.file:hover { border-color: var(--muted); }
+.file-ico { flex: none; font-family: var(--f-mono); font-size: .68rem; font-weight: 500; letter-spacing: .05em; color: var(--t-risc); border: 1px solid currentColor; border-radius: 3px; padding: 1px 4px; }
+.file-name { min-width: 0; overflow-wrap: anywhere; font-weight: 700; font-size: .94rem; }
+.file-from { margin-left: auto; flex: none; font-size: .8rem; color: var(--muted); }
+
+/* Assemblea */
+.next { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
+.cal { width: 84px; text-align: center; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--paper); }
+.cal-m { background: var(--brand); color: var(--brand-ink); font-size: .74rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 0; }
+.cal-d { font-family: var(--f-display); font-size: 2.1rem; font-weight: 700; line-height: 1.15; padding-top: 4px; }
+.cal-w { font-size: .76rem; color: var(--muted); padding-bottom: 6px; }
+.conv { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: .95rem; margin: 0; }
+.conv dt { font-family: var(--f-mono); font-size: .8rem; color: var(--muted); padding-top: 2px; }
+.conv dd { margin: 0; min-width: 0; }
+.odg { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.odg li { border-bottom: 1px solid var(--line); }
+.odg a { display: grid; grid-template-columns: 2.2rem 1fr; gap: 4px 8px; padding: 13px 2px; color: inherit; text-decoration: none; align-items: baseline; }
+.odg a:hover .odg-t { text-decoration: underline; }
+.odg-n { font-family: var(--f-display); font-weight: 700; color: var(--brass); font-size: 1.1rem; }
+.odg-t { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
+.odg-d { grid-column: 2; font-size: .88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+
+/* Lettera */
+.letter { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.letter-head { display: grid; grid-template-columns: auto 1fr; gap: 2px 12px; font-size: .9rem; padding-bottom: 12px; border-bottom: 1px solid var(--line); margin: 0; }
+.letter-head dt { color: var(--muted); } .letter-head dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.letter-body { display: flex; flex-direction: column; gap: 12px; max-width: 70ch; }
+.summary { border-top: 1px solid var(--line); padding-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.summary ol { margin: 0; padding-left: 1.4rem; display: flex; flex-direction: column; gap: 4px; }
+.label { font-size: .76rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+
+/* Condivisioni, bacheca e sondaggi */
+.share { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.share-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: .9rem; color: var(--muted); }
+.share-head b { color: var(--ink); }
+.share-text { overflow-wrap: anywhere; max-width: 68ch; }
+.poll { display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid var(--line); }
+.poll-q { font-weight: 700; }
+.bars { display: flex; flex-direction: column; gap: 6px; }
+.bar { display: grid; grid-template-columns: 7.5rem 1fr 4.6rem; gap: 10px; align-items: center; font-size: .92rem; }
+.bar-track { height: 12px; background: var(--soft); border-radius: 6px; overflow: hidden; }
+.bar-fill { display: block; height: 100%; border-radius: 6px; background: var(--c); }
+.bar .num { text-align: right; font-variant-numeric: tabular-nums; color: var(--muted); }
+.v-fav { --c: var(--fav); } .v-contr { --c: var(--contr); } .v-ns { --c: var(--ns); }
+.votes { display: flex; flex-wrap: wrap; gap: 8px; }
+.vote { font: inherit; font-weight: 700; padding: 9px 16px; border-radius: 8px; border: 2px solid var(--c); color: var(--c); background: var(--surface); cursor: pointer; }
+.vote.on { background: var(--c); color: var(--surface); }
+.vote.mini { padding: 5px 12px; font-size: .9rem; }
+.vote .n { font-variant-numeric: tabular-nums; margin-left: 6px; opacity: .85; }
+.status { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: .88rem; color: var(--muted); align-items: center; }
+
+.obs { padding: 16px 2px; border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.obs-head { display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; font-size: .9rem; color: var(--muted); }
+.obs-head b { color: var(--ink); font-size: 1rem; }
+.obs-text { overflow-wrap: anywhere; max-width: 68ch; }
+.prep { background: var(--soft); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.prep textarea { min-height: 220px; font-size: .94rem; }
+
+@media (max-width: 560px) {
+  h1 { font-size: 1.42rem; }
+  .intro-card { padding: 20px 14px; }
+  .intro-card h1 { font-size: 1.55rem; }
+  .next { grid-template-columns: 1fr; }
+  .cal { display: none; }
+  .panel, .letter { padding: 16px; }
+  .bar { grid-template-columns: 6.2rem 1fr 4.2rem; }
+  .file-from { display: none; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div id="app"></div>
+
+<script>
+"use strict";
+/* ---------- dati inventati ---------- */
+const OGGI = "2026-10-28";
+const NOME = "Condominio dei Tigli";
+const AMM = "Studio Amministrazioni Ferraris";
+const AMM_MAIL = "studio@ferraris-amministrazioni.example";
+const IO = { scala: "Scala 1", interno: "7" };
+const RAPP = { "Scala 1": "Renzo", "Scala 2": "Lucia" };
+const TIPI = { convocazione: "Convocazione", ordinarie: "Spese ordinarie", riscaldamento: "Riscaldamento", verbale: "Verbale", altro: "Altro" };
+const MESI = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const parseD = (s) => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const fmtD = (s, o = { day: "numeric", month: "long", year: "numeric" }) => new Intl.DateTimeFormat("it-IT", o).format(parseD(s));
+const fmtS = (s) => fmtD(s, { day: "numeric", month: "short" });
+const fmtL = (s) => fmtD(s, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+const gest = (d) => { const dt = parseD(d), y = dt.getFullYear(); return dt.getMonth() + 1 >= 10 ? `${y}/${y + 1}` : `${y - 1}/${y}`; };
+const giorni = (d) => Math.round((parseD(d) - parseD(OGGI)) / 86400000);
+const P = (...t) => t.map((x) => `<p>${x}</p>`).join("");
+const SALUTI = P("Distinti saluti.", `<i>${AMM}</i>`);
+
+const DOCS = [
+  { id: "d01", data: "2025-10-06", tipo: "ordinarie", titolo: "Piano rate della gestione ordinaria 2025/2026",
+    testo: P("Gentili Condomini,", "si trasmette in allegato il piano rate proposto per la gestione ordinaria 2025/2026, che sarà sottoposto all'approvazione dell'assemblea. La prima rata, in scadenza il 31 ottobre, è in acconto.") + SALUTI,
+    allegati: ["Piano_rate_gestione_2025-2026.pdf"] },
+  { id: "d02", data: "2025-10-13", tipo: "riscaldamento", titolo: "Avvio della stagione di riscaldamento 2025/2026",
+    testo: P("Gentili Condomini,", "l'impianto centralizzato sarà acceso il 15 ottobre 2025 e resterà in funzione fino al 15 aprile 2026. In allegato le scadenze degli acconti della stagione.", "Si ricorda di non coprire i ripartitori di calore installati sui termosifoni.") + SALUTI,
+    allegati: ["Acconti_riscaldamento_2025-2026.pdf"] },
+  { id: "d03", data: "2025-11-03", tipo: "convocazione", ass: "a1", titolo: "Convocazione dell'assemblea ordinaria del 27 novembre 2025",
+    testo: P("Gentili Condomini,", "si trasmette in allegato la convocazione dell'assemblea ordinaria, con i documenti relativi ai punti all'ordine del giorno.") + SALUTI,
+    allegati: ["Convocazione_assemblea_27-11-2025.pdf", "Rendiconto_gestione_2024-2025.pdf", "Preventivo_gestione_2025-2026.pdf", "Modulo_delega.pdf"] },
+  { id: "d04", data: "2025-12-10", tipo: "verbale", ass: "a1", titolo: "Verbale dell'assemblea ordinaria del 27 novembre 2025",
+    testo: P("Gentili Condomini,", "si trasmette in allegato il verbale dell'assemblea ordinaria del 27 novembre 2025.") + SALUTI,
+    allegati: ["Verbale_assemblea_27-11-2025.pdf"] },
+  { id: "d05", data: "2026-03-02", tipo: "convocazione", ass: "a2", titolo: "Convocazione dell'assemblea straordinaria del 26 marzo 2026",
+    testo: P("Gentili Condomini,", "si trasmette in allegato la convocazione dell'assemblea straordinaria.") + SALUTI,
+    allegati: ["Convocazione_assemblea_26-03-2026.pdf", "Modulo_delega.pdf"] },
+  { id: "d06", data: "2026-04-08", tipo: "verbale", ass: "a2", titolo: "Verbale dell'assemblea straordinaria del 26 marzo 2026",
+    testo: P("Gentili Condomini,", "si trasmette in allegato il verbale dell'assemblea straordinaria del 26 marzo 2026.") + SALUTI,
+    allegati: ["Verbale_assemblea_26-03-2026.pdf"] },
+  { id: "d07", data: "2026-05-04", tipo: "riscaldamento", titolo: "Chiusura della stagione di riscaldamento e lettura dei ripartitori",
+    testo: P("Gentili Condomini,", "l'impianto è stato spento il 15 aprile 2026. Le letture dei ripartitori sono state effettuate dal 28 al 30 aprile; chi era assente riceverà un avviso per la lettura di recupero.", "Il riparto della stagione sarà inviato nel mese di ottobre.") + SALUTI,
+    allegati: [] },
+  { id: "d08", data: "2026-07-06", tipo: "ordinarie", titolo: "Promemoria: quarta rata in scadenza il 31 luglio",
+    testo: P("Gentili Condomini,", "si ricorda che il 31 luglio 2026 scade la quarta e ultima rata della gestione ordinaria 2025/2026. Chi avesse già provveduto può ignorare questo promemoria.") + SALUTI,
+    allegati: [] },
+  { id: "d09", data: "2026-10-05", tipo: "ordinarie", titolo: "Rendiconto della gestione ordinaria 2025/2026",
+    testo: P("Gentili Condomini,", "si trasmettono in allegato il rendiconto della gestione ordinaria chiusa il 30 settembre 2026 e il relativo riparto, che saranno sottoposti all'approvazione dell'assemblea.") + SALUTI,
+    allegati: ["Rendiconto_gestione_2025-2026.pdf", "Riparto_gestione_2025-2026.pdf"] },
+  { id: "d10", data: "2026-10-12", tipo: "riscaldamento", titolo: "Riparto del riscaldamento 2025/2026 e acconti 2026/2027",
+    testo: P("Gentili Condomini,", "si trasmettono in allegato il consuntivo e il riparto della stagione di riscaldamento 2025/2026 e la proposta di acconti per la stagione 2026/2027.", "L'eventuale conguaglio a debito andrà versato entro il 15 dicembre 2026.") + SALUTI,
+    allegati: ["Consuntivo_riscaldamento_2025-2026.pdf", "Riparto_riscaldamento_2025-2026.pdf", "Acconti_riscaldamento_2026-2027.pdf"] },
+  { id: "d11", data: "2026-10-20", tipo: "convocazione", ass: "a3", titolo: "Convocazione dell'assemblea ordinaria del 26 novembre 2026",
+    testo: P("Gentili Condomini,", "si trasmette in allegato la convocazione dell'assemblea ordinaria, insieme al preventivo della gestione 2026/2027, ai preventivi per il punto 4 e alla proposta per il punto 5.") + SALUTI,
+    allegati: ["Convocazione_assemblea_26-11-2026.pdf", "Preventivo_gestione_2026-2027.pdf", "Preventivo_terrazzo_Edil_Tetti.pdf", "Preventivo_terrazzo_Impermeabilizzazioni_Nord.pdf", "Proposta_citofoni_Citofonia_Sicura.pdf", "Modulo_delega.pdf"] },
+];
+const DOC_EXTRA = { id: "d12", data: "2026-10-28", tipo: "altro", titolo: "Fermo dell'ascensore della Scala 1 il 4 novembre",
+  testo: P("Gentili Condomini,", "mercoledì 4 novembre 2026, dalle 8:30 alle 17:00, l'ascensore della Scala 1 resterà fermo per un intervento di manutenzione straordinaria.", "Ci scusiamo per il disagio.") + SALUTI, allegati: [] };
+
+const LUOGO1 = "Studio dell'amministratore", LUOGO2 = "Sala comune, piano terra della Scala 1";
+const ASS = [
+  { id: "a1", tipo: "ordinaria", conv: "d03", verbale: "d04", prima: { data: "2025-11-25", ora: "7:00", luogo: LUOGO1 }, seconda: { data: "2025-11-27", ora: "21:00", luogo: LUOGO2 },
+    punti: [
+      { t: "Approvazione del rendiconto della gestione ordinaria 2024/2025 e del relativo riparto", esito: "Approvato" },
+      { t: "Approvazione del preventivo della gestione ordinaria 2025/2026 e del piano rate", esito: "Approvato" },
+      { t: "Riscaldamento: consuntivo della stagione 2024/2025", esito: "Approvato" },
+      { t: "Conferma dell'amministratore e determinazione del compenso", esito: "Approvato" },
+      { t: "Pulizia delle parti comuni: rinnovo del contratto", esito: "Approvato" },
+      { t: "Varie ed eventuali", esito: "" },
+    ] },
+  { id: "a2", tipo: "straordinaria", conv: "d05", verbale: "d06", prima: { data: "2026-03-24", ora: "7:00", luogo: LUOGO1 }, seconda: { data: "2026-03-26", ora: "21:00", luogo: LUOGO2 },
+    punti: [
+      { t: "Infiltrazioni dal terrazzo di copertura della Scala 2: incarico a un tecnico per perizia e capitolato", esito: "Approvato" },
+      { t: "Installazione di punti di ricarica per auto elettriche nel garage condominiale", esito: "Rinviato" },
+      { t: "Varie ed eventuali", esito: "" },
+    ] },
+  { id: "a3", tipo: "ordinaria", conv: "d11", verbale: null, prima: { data: "2026-11-24", ora: "7:00", luogo: LUOGO1 }, seconda: { data: "2026-11-26", ora: "21:00", luogo: LUOGO2 },
+    punti: [
+      { t: "Approvazione del rendiconto della gestione ordinaria 2025/2026 e del relativo riparto", files: [["d09", "Rendiconto_gestione_2025-2026.pdf"], ["d09", "Riparto_gestione_2025-2026.pdf"]] },
+      { t: "Approvazione del preventivo della gestione ordinaria 2026/2027 e del piano rate", files: [["d11", "Preventivo_gestione_2026-2027.pdf"]] },
+      { t: "Riscaldamento: consuntivo della stagione 2025/2026 e preventivo della stagione 2026/2027", files: [["d10", "Consuntivo_riscaldamento_2025-2026.pdf"], ["d10", "Riparto_riscaldamento_2025-2026.pdf"], ["d10", "Acconti_riscaldamento_2026-2027.pdf"]] },
+      { t: "Rifacimento dell'impermeabilizzazione del terrazzo di copertura della Scala 2: esame dei preventivi e delibera", files: [["d11", "Preventivo_terrazzo_Edil_Tetti.pdf"], ["d11", "Preventivo_terrazzo_Impermeabilizzazioni_Nord.pdf"], ["d06", "Verbale_assemblea_26-03-2026.pdf"]] },
+      { t: "Sostituzione dell'impianto citofonico: valutazione delle proposte", files: [["d11", "Proposta_citofoni_Citofonia_Sicura.pdf"]] },
+      { t: "Varie ed eventuali", files: [] },
+    ] },
+];
+
+function seed() {
+  return {
+    docs: DOCS.map((d) => ({ ...d })), extra: false,
+    oss: [
+      { id: "o1", scala: "Scala 1", interno: "7", data: "2026-10-21", ass: "a3", n: 2, testo: "Si può chiedere di spostare la prima rata a gennaio? A fine novembre c'è già il primo acconto del riscaldamento e a metà dicembre il conguaglio.", allegato: "", stato: "condivisa", cond: "c1" },
+      { id: "o2", scala: "Scala 1", interno: "15", data: "2026-10-22", ass: "a3", n: 2, testo: "Sono d'accordo con chi chiede di spostare la rata.", allegato: "", stato: "archiviata" },
+      { id: "o3", scala: "Scala 1", interno: "9", data: "2026-10-25", ass: "a3", n: 5, testo: "Con i videocitofoni non serve più scendere ad aprire ai corrieri. Ho chiesto un preventivo anche a un'altra ditta per confronto: lo allego.", allegato: "Preventivo_videocitofoni_altra_ditta.pdf", stato: "condivisa", cond: "c3" },
+      { id: "o4", scala: "Scala 1", interno: "3", data: "2026-10-27", ass: "a3", n: 3, testo: "Il riparto del riscaldamento è ancora 30% fisso e 70% a consumo. Si potrebbe proporre 20% e 80%? Chi sta attento ai consumi pagherebbe un po' meno.", allegato: "", stato: "nuova" },
+      { id: "o5", scala: "Scala 1", interno: "12", data: "2026-10-27", ass: "a3", n: 5, testo: "Io ho già un videocitofono comprato a mie spese due anni fa. Chi è nella mia situazione deve pagare lo stesso la quota intera?", allegato: "", stato: "nuova" },
+    ],
+    cond: [
+      { id: "c0", ass: "a2", n: 2, scala: "Scala 1", data: "2026-03-12", testo: "Nella Scala 1 almeno sei alloggi sono interessati alla ricarica dell'auto in garage. Proposta: chiedere i preventivi prima di decidere, così l'assemblea vota su cifre vere.", poll: { q: "Siete d'accordo a chiedere i preventivi prima di decidere?", v: { fav: 17, contr: 9, ns: 6 }, aperto: false, mio: "fav" }, inoltrata: "2026-03-20", email: "2026-03-13" },
+      { id: "c1", ass: "a3", n: 2, scala: "Scala 1", data: "2026-10-22", testo: "Più inquilini chiedono di spostare la prima rata dal 30 novembre a gennaio: a fine novembre c'è già il primo acconto del riscaldamento e il 15 dicembre il conguaglio.", poll: { q: "Siete d'accordo a chiedere di spostare la prima rata a gennaio?", v: { fav: 23, contr: 4, ns: 3 }, aperto: false, mio: "fav" }, inoltrata: "2026-10-25", email: "2026-10-22" },
+      { id: "c2", ass: "a3", n: 4, scala: "Scala 2", data: "2026-10-23", testo: "Dalla Scala 2 propongono di chiedere un terzo preventivo per il terrazzo prima di decidere: i due allegati alla convocazione sono molto diversi per garanzia e tempi.", poll: { q: "Chiedere un terzo preventivo prima di decidere?", v: { fav: 15, contr: 7, ns: 4 }, aperto: true, mio: null }, inoltrata: null, email: "2026-10-23" },
+      { id: "c3", ass: "a3", n: 5, scala: "Scala 1", data: "2026-10-26", testo: "Proposta: valutare i videocitofoni con apertura anche da smartphone. Un inquilino ha chiesto un preventivo a un'altra ditta per confronto: è allegato qui sotto.", allegato: "Preventivo_videocitofoni_altra_ditta.pdf", poll: { q: "Siete favorevoli ai videocitofoni?", v: { fav: 9, contr: 11, ns: 5 }, aperto: true, mio: null }, inoltrata: null, email: null },
+      { id: "c4", ass: "a3", n: 3, scala: "Scala 2", data: "2026-10-26", testo: "Per informazione: secondo il consuntivo allegato, il gas della scorsa stagione è costato di più dell'anno prima. Chi vuole capire meglio può chiedere all'amministratore il dettaglio delle bollette prima dell'assemblea.", poll: null, inoltrata: null, email: null },
+    ],
+    bacheca: [
+      { id: "b1", scala: "Scala 1", interno: "15", data: "2026-10-22", n: 2, testo: "Si può chiedere di spostare la prima rata a gennaio? A fine novembre c'è già il primo acconto del riscaldamento.", v: { fav: 18, contr: 3, ns: 2 }, mio: null },
+      { id: "b2", scala: "Scala 2", interno: "4", data: "2026-10-23", n: 4, testo: "Per il terrazzo chiederei un terzo preventivo prima di decidere.", v: { fav: 12, contr: 6, ns: 4 }, mio: null },
+      { id: "b3", scala: "Scala 2", interno: "11", data: "2026-10-24", n: 4, testo: "Le infiltrazioni nel mio soffitto peggiorano: spero si decida in questa assemblea, senza rinviare ancora.", v: { fav: 9, contr: 5, ns: 6 }, mio: null },
+      { id: "b4", scala: "Scala 1", interno: "9", data: "2026-10-25", n: 5, testo: "Con i videocitofoni non serve più scendere ad aprire ai corrieri. Allego il preventivo di un'altra ditta per confronto.", allegato: "Preventivo_videocitofoni_altra_ditta.pdf", v: { fav: 8, contr: 10, ns: 5 }, mio: null },
+      { id: "b5", scala: "Scala 2", interno: "18", data: "2026-10-26", n: 3, testo: "Il gas è costato più dell'anno scorso: chiediamo all'amministratore il dettaglio delle bollette.", v: { fav: 14, contr: 1, ns: 3 }, mio: null },
+      { id: "b6", scala: "Scala 1", interno: "3", data: "2026-10-27", n: 3, testo: "Si potrebbe passare al riparto 20% fisso e 80% a consumo?", v: { fav: 6, contr: 7, ns: 8 }, mio: null },
+      { id: "b7", scala: "Scala 1", interno: "12", data: "2026-10-27", n: 5, testo: "Io ho già un videocitofono comprato a mie spese: devo pagare lo stesso?", v: { fav: 4, contr: 2, ns: 9 }, mio: null },
+    ],
+  };
+}
+
+/* ---------- stato ---------- */
+let D = seed();
+const UI = { modo: null, docGest: null, docTipo: "tutti", tab: "nuove", sharing: null, prep: null, toast: null };
+const NEXT = "a3";
+const assById = (id) => ASS.find((a) => a.id === id);
+const docById = (id) => D.docs.find((d) => d.id === id);
+const puntoOf = (aid, n) => assById(aid)?.punti[n - 1];
+const condDi = (aid, n) => D.cond.filter((c) => c.ass === aid && c.n === n);
+const isRapp = () => UI.modo === "rappresentante";
+const isAuto = () => UI.modo === "auto";
+const nuove = () => D.oss.filter((o) => o.scala === IO.scala && o.stato === "nuova").length;
+const tot = (v, mio) => v.fav + v.contr + v.ns + (mio ? 1 : 0);
+const cnt = (v, mio, k) => v[k] + (mio === k ? 1 : 0);
+const short = (t, n = 60) => (t.length > n ? t.slice(0, n - 2) + "…" : t);
+function toast(t) { UI.toast = t; render(); clearTimeout(toast.h); toast.h = setTimeout(() => { UI.toast = null; render(); }, 4500); }
+const newId = (p) => p + Math.random().toString(36).slice(2, 8);
+
+/* ---------- routing e render ---------- */
+function route() {
+  const h = location.hash.slice(1); let m;
+  if ((m = h.match(/^doc-(d\d+)$/))) return { name: "doc", id: m[1] };
+  if ((m = h.match(/^ass-(a\d+)$/))) return { name: "ass", id: m[1] };
+  if ((m = h.match(/^punto-(a\d+)-(\d+)$/))) return { name: "punto", id: m[1], n: +m[2] };
+  return { name: ["documenti", "assemblee", "osservazioni", "bacheca"].includes(h) ? h : "home" };
+}
+function render() {
+  const saved = {};
+  document.querySelectorAll("#app input[id], #app textarea[id], #app select[id]").forEach((el) => { if (el.type !== "file") saved[el.id] = el.type === "checkbox" ? el.checked : el.value; });
+  const act = document.activeElement?.id;
+  document.getElementById("app").innerHTML = demoBar() + (UI.modo ? header() + `<main class="in">${view()}</main>` : intro()) + (UI.toast ? `<div class="toast" role="status">${esc(UI.toast)}</div>` : "");
+  for (const [id, v] of Object.entries(saved)) { const el = document.getElementById(id); if (el) { if (el.type === "checkbox") el.checked = v; else el.value = v; } }
+  if (act) document.getElementById(act)?.focus({ preventScroll: true });
+}
+function demoBar() {
+  const modi = [["inquilino", "Inquilino"], ["rappresentante", "Rappresentante"], ["auto", "Versione automatica"]];
+  return `<div class="demo"><div class="in"><span class="demo-tag">Demo</span><span>Nomi, date e documenti sono inventati</span><span class="grow"></span>
+    ${UI.modo ? `<div class="seg" role="group" aria-label="Cambia vista">${modi.map(([k, l]) => `<button data-act="modo" data-v="${k}" class="${UI.modo === k ? "on" : ""}">${l}</button>`).join("")}</div>
+    ${D.extra || !isRapp() ? "" : `<button class="tool" data-act="arrivo">Simula: arriva una lettera</button>`}<button class="home-btn" data-act="intro">← Torna alla presentazione</button>` : ""}</div></div>`;
+}
+function intro() {
+  return `<div class="in intro"><div class="intro-card">
+    <div class="brand"><span class="brand-name">${NOME}</span></div>
+    <p class="intro-lead">Uno spazio privato del condominio: ogni inquilino entra con la propria password.</p>
+    <ul><li><b>Tutte le lettere, i preventivi e i consuntivi dell'amministratore.</b></li><li><b>Per ogni assemblea: i punti da discutere, con i documenti e i preventivi allegati.</b></li><li><b>La possibilità, per tutti i condomini, di dire la propria sui punti e di allegare preventivi.</b></li></ul>
+    <div class="intro-btns"><button class="btn primary" data-act="modo" data-v="inquilino"><span>Accedi come</span><span>inquilino</span></button><button class="btn" data-act="modo" data-v="rappresentante"><span>Accedi come</span><span>rappresentante</span></button><button class="btn" data-act="modo" data-v="auto"><span>Versione senza</span><span>rappresentante</span></button></div>
+    <p class="note"><b>Non sostituisce niente.</b> Le comunicazioni ufficiali continuano ad arrivare per posta, come sempre.</p>
+    <div class="intro-box"><h2>Cosa serve per farlo funzionare</h2><dl>
+      <dt>Amministratore</dt><dd>Oltre alla posta, invia ogni lettera anche via email all'indirizzo del sito. Il sito la pubblica da solo.</dd>
+      <dt>Rappresentante di scala</dt><dd>Condivide le osservazioni degli inquilini che ritiene di interesse generale, se vuole con un sondaggio.</dd></dl></div>
+    <div class="intro-box"><h2>Se il rappresentante non c'è o preferisce di no</h2><p>Versione automatica: le osservazioni compaiono subito in una bacheca, senza filtro.</p></div>
+  </div></div>`;
+}
+function header() {
+  const r = route().name;
+  const cur = { doc: "documenti", ass: "assemblee", punto: "home" }[r] || r;
+  const n = nuove();
+  const ultima = isAuto() ? ["bacheca", "Bacheca"] : ["osservazioni", isRapp() ? `Osservazioni ricevute${n ? ` <span class="count">${n}</span>` : ""}` : "Le mie osservazioni"];
+  const tabs = [["home", "Prossima assemblea"], ["documenti", "Documenti"], ["assemblee", "Assemblee"], ultima];
+  return `<header class="top"><div class="in top-in">
+    <div class="brand"><a href="#home" class="brand-name">${NOME}</a></div>
+    <div class="who">${isRapp() ? `<b>${RAPP[IO.scala]}</b> · rappresentante ${IO.scala}` : `<b>Tu</b> · ${IO.scala}, interno ${IO.interno}`}</div>
+  </div><nav class="nav" aria-label="Sezioni"><div class="in">${tabs.map(([k, l]) => `<a href="#${k}" class="${cur === k ? "on" : ""}"${cur === k ? ' aria-current="page"' : ""}>${l}</a>`).join("")}</div></nav></header>`;
+}
+function view() {
+  const r = route();
+  if (r.name === "doc") return viewDoc(r.id);
+  if (r.name === "ass") return viewAss(r.id);
+  if (r.name === "punto") return viewPunto(r.id, r.n);
+  if (r.name === "documenti") return viewDocumenti();
+  if (r.name === "assemblee") return viewAssemblee();
+  if (r.name === "bacheca" && isAuto()) return viewBacheca();
+  if (r.name === "osservazioni" && !isAuto()) return isRapp() ? viewRicevute() : viewMie();
+  return viewHome();
+}
+
+/* ---------- pezzi comuni ---------- */
+function calBlock(d) {
+  const dt = parseD(d);
+  return `<div class="cal" aria-hidden="true"><div class="cal-m">${MESI[dt.getMonth()].slice(0, 3)}</div><div class="cal-d">${dt.getDate()}</div><div class="cal-w">${new Intl.DateTimeFormat("it-IT", { weekday: "short" }).format(dt)}</div></div>`;
+}
+const convRows = (a) => `<dl class="conv"><dt>1ª conv.</dt><dd>${fmtL(a.prima.data)}, ore ${a.prima.ora} — ${a.prima.luogo}</dd><dt>2ª conv.</dt><dd>${fmtL(a.seconda.data)}, ore ${a.seconda.ora} — ${a.seconda.luogo}</dd></dl>`;
+const docChip = (d) => `<span class="chip t-${d.tipo}">${TIPI[d.tipo]}</span>`;
+const fileBtn = (name, from) => `<button class="file" data-act="pdf" data-v="${esc(name)}"><span class="file-ico">PDF</span><span class="file-name">${esc(name.replace(/\.pdf$/, "").replace(/_/g, " "))}</span>${from ? `<span class="file-from">${esc(from)}</span>` : ""}</button>`;
+function docItem(d) {
+  return `<a class="item" href="#doc-${d.id}"><span class="item-title">${esc(d.titolo)}</span><span class="item-side">${fmtD(d.data, { day: "numeric", month: "short", year: "numeric" })}</span>
+    <span class="item-meta">${docChip(d)}<span>Gestione ${gest(d.data)}</span>${d.allegati.length ? `<span>${d.allegati.length} ${d.allegati.length === 1 ? "allegato" : "allegati"}</span>` : ""}${d.nuova ? `<span class="chip c-new">Nuova</span>` : ""}</span></a>`;
+}
+function odgList(a) {
+  return `<ol class="odg">${a.punti.map((p, i) => {
+    const n = i + 1, bits = [];
+    if (p.esito) bits.push(`<span class="chip ${p.esito === "Approvato" ? "c-ok" : "c-wait"}">${p.esito}</span>`);
+    if (p.files?.length) bits.push(`<span>${p.files.length} ${p.files.length === 1 ? "allegato" : "allegati"}</span>`);
+    if (isAuto()) { const m = a.id === NEXT ? D.bacheca.filter((b) => b.n === n).length : 0; if (m) bits.push(`<span>${m} ${m === 1 ? "messaggio" : "messaggi"} in bacheca</span>`); }
+    else {
+      const cs = condDi(a.id, n);
+      if (cs.length) bits.push(`<span>${cs.length} ${cs.length === 1 ? "osservazione condivisa" : "osservazioni condivise"}</span>`);
+      if (cs.some((c) => c.poll?.aperto)) bits.push(`<span class="chip c-new">Sondaggio aperto</span>`);
+    }
+    return `<li><a href="#punto-${a.id}-${n}"><span class="odg-n">${n}.</span><span class="odg-t">${esc(p.t)}</span>${bits.length ? `<span class="odg-d">${bits.join("")}</span>` : ""}</a></li>`;
+  }).join("")}</ol>`;
+}
+function bars(v, mio) {
+  const t = tot(v, mio);
+  const bar = (k, lab) => { const n = cnt(v, mio, k), pc = t ? Math.round((n / t) * 100) : 0; return `<div class="bar v-${k}"><span>${lab}</span><span class="bar-track"><span class="bar-fill" style="width:${pc}%"></span></span><span class="num">${n} · ${pc}%</span></div>`; };
+  return `<div class="bars">${bar("fav", "Favorevoli")}${bar("contr", "Contrari")}${bar("ns", "Non so")}</div>`;
+}
+const VOTI = [["fav", "Favorevole"], ["contr", "Contrario"], ["ns", "Non so"]];
+function shareCard(c, withLink) {
+  const p = c.poll; const mine = isRapp() && c.scala === IO.scala && c.ass === NEXT;
+  const pt = puntoOf(c.ass, c.n);
+  let html = `<article class="share"><div class="share-head"><b>${RAPP[c.scala]}</b><span>rappresentante ${c.scala}</span><span>${fmtS(c.data)}</span>
+    ${withLink ? `<a href="#punto-${c.ass}-${c.n}">Punto ${c.n}: ${esc(short(pt.t))}</a>` : ""}</div>
+    <p class="share-text">${esc(c.testo)}</p>${c.allegato ? `<div class="files">${fileBtn(c.allegato, "allegato da un inquilino")}</div>` : ""}`;
+  if (p) {
+    html += `<div class="poll"><div class="poll-q">${esc(p.q)}</div>
+      ${p.aperto ? `<div class="votes" role="group" aria-label="Il tuo voto">${VOTI.map(([k, l]) => `<button class="vote v-${k} ${p.mio === k ? "on" : ""}" data-act="voto" data-id="${c.id}" data-v="${k}" aria-pressed="${p.mio === k}">${l}</button>`).join("")}</div>
+        <p class="small muted">${p.mio ? "Hai votato per il tuo alloggio. Puoi cambiare il voto finché il sondaggio è aperto." : "Un voto per alloggio. Non è un voto ufficiale: serve a capire cosa ne pensano gli inquilini."}</p>` : ""}
+      ${bars(p.v, p.mio)}<div class="status"><span>${tot(p.v, p.mio)} alloggi su 40 hanno risposto</span>${p.aperto ? `<span class="chip c-new">Aperto</span>` : `<span class="chip">Chiuso</span>`}</div></div>`;
+  }
+  const st = [];
+  if (c.email) st.push(`<span>Inquilini avvisati via email il ${fmtS(c.email)}</span>`);
+  if (c.inoltrata) st.push(`<span class="chip c-ok">Inoltrata all'amministratore il ${fmtS(c.inoltrata)}</span>`);
+  if (st.length) html += `<div class="status">${st.join("")}</div>`;
+  if (mine) {
+    html += `<div class="row-btns">${!c.email ? `<button class="btn" data-act="prep" data-id="${c.id}" data-v="inquilini">Avvisa gli inquilini via email</button>` : ""}${!c.inoltrata ? `<button class="btn primary" data-act="prep" data-id="${c.id}" data-v="amm">Prepara per l'amministratore</button>` : ""}${p?.aperto ? `<button class="btn quiet" data-act="chiudi" data-id="${c.id}">Chiudi il sondaggio</button>` : ""}</div>`;
+    if (UI.prep?.id === c.id) html += prepBox(c, UI.prep.kind);
+  }
+  return html + `</article>`;
+}
+function prepText(c, kind) {
+  const a = assById(c.ass), pt = puntoOf(c.ass, c.n), p = c.poll;
+  const sond = p ? `${cnt(p.v, p.mio, "fav")} favorevoli, ${cnt(p.v, p.mio, "contr")} contrari, ${cnt(p.v, p.mio, "ns")} non so, su ${tot(p.v, p.mio)} alloggi che hanno risposto` : "";
+  const firma = `${RAPP[c.scala]} – rappresentante ${c.scala}`;
+  if (kind === "amm") return `Oggetto: Assemblea del ${fmtD(a.seconda.data)} – osservazione degli inquilini sul punto ${c.n}
+
+Gentile Amministratore,
+
+in vista dell'assemblea del ${fmtD(a.seconda.data)}, Le segnalo un'osservazione degli inquilini sul punto ${c.n} dell'ordine del giorno ("${pt.t}"):
+
+${c.testo}
+${p ? `\nSondaggio tra gli inquilini sul sito del condominio (indicativo, non vincolante): "${p.q}" — ${sond}.\n` : ""}
+Le chiedo, se possibile, di tenerne conto nella preparazione dell'assemblea.
+
+Cordiali saluti,
+${firma}`;
+  return `Oggetto: Assemblea del ${fmtD(a.seconda.data)} – punto ${c.n}${p ? ": c'è un sondaggio" : ""}
+
+Ciao a tutti,
+
+in vista dell'assemblea del ${fmtD(a.seconda.data)} ho condiviso sul sito del condominio questa osservazione sul punto ${c.n} ("${pt.t}"):
+
+${c.testo}
+${p ? `\nPotete dire la vostra nel sondaggio sul sito: "${p.q}". Serve solo a capire l'orientamento: si decide sempre in assemblea.\n` : ""}
+${firma}`;
+}
+function prepBox(c, kind) {
+  return `<div class="prep"><b>${kind === "amm" ? `Email per l'amministratore (${AMM_MAIL})` : "Email per tutti gli inquilini"}</b>
+    <p class="small muted">Il testo è già pronto: non devi scrivere niente. Puoi correggerlo se vuoi.</p>
+    <textarea id="prep-${c.id}-${kind}">${esc(prepText(c, kind))}</textarea>
+    <div class="row-btns"><button class="btn primary" data-act="invia" data-id="${c.id}" data-v="${kind}">${kind === "amm" ? "Invia all'amministratore" : "Invia agli inquilini"}</button><button class="btn" data-act="copia" data-id="${c.id}" data-v="${kind}">Copia il testo</button><button class="btn quiet" data-act="prep-chiudi">Annulla</button></div></div>`;
+}
+function ossForm(n) {
+  const key = n ?? "x";
+  const dest = isAuto() ? "Scrivi in bacheca" : "Scrivi un'osservazione al tuo rappresentante";
+  const spiega = isAuto() ? "Il messaggio compare subito in bacheca, visibile a tutti gli inquilini con la tua scala e il tuo interno." : `La legge solo ${RAPP[IO.scala]}, rappresentante della ${IO.scala}. Se la ritiene di interesse generale la condivide con tutti, senza il tuo nome, e può aprire un sondaggio.`;
+  return `<section class="panel"><h3>${dest}</h3><p class="small muted">${spiega}</p>
+    <div class="form">${n == null ? `<label>Su quale punto?<select id="os-pt-${key}">${assById(NEXT).punti.map((p, i) => `<option value="${i + 1}">${i + 1}. ${esc(short(p.t, 70))}</option>`).join("")}</select></label>` : ""}
+      <label>${isAuto() ? "Il tuo messaggio" : "La tua osservazione"}<textarea id="os-t-${key}" placeholder="Una proposta, un dubbio, un'informazione utile…"></textarea></label>
+      <label>Allega un documento, per esempio un preventivo (facoltativo)<input type="file" id="os-f-${key}" accept="application/pdf,image/*"></label>
+      <div class="row-btns"><button class="btn primary" data-act="oss" data-v="${n ?? ""}">${isAuto() ? "Pubblica in bacheca" : `Invia a ${RAPP[IO.scala]}`}</button></div></div></section>`;
+}
+function msgCard(b, withLink) {
+  return `<article class="share"><div class="share-head"><b>${b.scala}, interno ${b.interno}${b.scala === IO.scala && b.interno === IO.interno ? " (tu)" : ""}</b><span>${fmtS(b.data)}</span>${withLink ? `<a href="#punto-${NEXT}-${b.n}">Punto ${b.n}: ${esc(short(puntoOf(NEXT, b.n).t))}</a>` : ""}</div>
+    <p class="share-text">${esc(b.testo)}</p>${b.allegato ? `<div class="files">${fileBtn(b.allegato, "allegato da un inquilino")}</div>` : ""}
+    <div class="votes" role="group" aria-label="Il tuo parere">${VOTI.map(([k, l]) => `<button class="vote mini v-${k} ${b.mio === k ? "on" : ""}" data-act="voto-b" data-id="${b.id}" data-v="${k}" aria-pressed="${b.mio === k}">${l}<span class="n">${cnt(b.v, b.mio, k)}</span></button>`).join("")}</div></article>`;
+}
+
+/* ---------- pagine ---------- */
+function viewHome() {
+  const a = assById(NEXT); const g = giorni(a.seconda.data);
+  const ultimi = [...D.docs].sort((x, y) => (x.data < y.data ? 1 : -1)).slice(0, 4);
+  const n = nuove();
+  let extra = "";
+  if (isAuto()) {
+    const ms = [...D.bacheca].sort((x, y) => (x.data < y.data ? 1 : -1)).slice(0, 3);
+    extra = `<section><div class="sec-head"><h2>Ultimi messaggi in bacheca</h2><a class="small" href="#bacheca">Tutta la bacheca</a></div>${ms.map((b) => msgCard(b, true)).join("")}</section>`;
+  } else {
+    const aperti = D.cond.filter((c) => c.ass === NEXT && c.poll?.aperto);
+    if (aperti.length) extra = `<section><h2>Sondaggi aperti</h2>${aperti.map((c) => shareCard(c, true)).join("")}</section>`;
+  }
+  return `${isRapp() && n ? `<div class="note"><b>${n} ${n === 1 ? "osservazione nuova" : "osservazioni nuove"}</b> dagli inquilini della ${IO.scala}. <a href="#osservazioni">Guardale</a>: ti basta scegliere se condividerle.</div>` : ""}
+  <section><div class="sec-head"><h2>Prossima assemblea</h2><a class="small" href="#doc-${a.conv}">Lettera di convocazione</a></div>
+    <div class="panel"><div class="next">${calBlock(a.seconda.data)}<div class="form" style="gap:10px">
+      <div class="row-btns"><span class="chip t-convocazione">Assemblea ${a.tipo}</span><span class="small muted">${g > 1 ? `tra ${g} giorni` : g === 1 ? "domani" : "oggi"}</span></div>${convRows(a)}</div></div>
+      <div><h3 style="margin-bottom:8px">Ordine del giorno</h3>${odgList(a)}</div>
+      <p class="small muted">Riassunto dei punti ricavato in automatico dalla lettera. Fa fede la convocazione arrivata per posta.</p></div></section>
+  ${extra}
+  <section><div class="sec-head"><h2>Ultimi documenti arrivati</h2><a class="small" href="#documenti">Tutti i documenti</a></div><div class="list">${ultimi.map(docItem).join("")}</div></section>`;
+}
+function viewDocumenti() {
+  const gs = [...new Set(D.docs.map((d) => gest(d.data)))].sort().reverse();
+  const g = gs.includes(UI.docGest) ? UI.docGest : gs[0];
+  const inG = D.docs.filter((d) => gest(d.data) === g).sort((x, y) => (x.data < y.data ? 1 : -1));
+  const list = UI.docTipo === "tutti" ? inG : inG.filter((d) => d.tipo === UI.docTipo);
+  return `<section><h1>Documenti</h1><p class="muted">Le lettere dell'amministratore con i loro allegati, divise per anno di gestione (da ottobre a settembre).</p></section>
+  <section><div class="filters" role="group" aria-label="Anno di gestione">${gs.map((x) => `<button data-act="dgest" data-v="${x}" class="${x === g ? "on" : ""}">Gestione ${x}</button>`).join("")}</div>
+  <div class="filters" role="group" aria-label="Tipo">${["tutti", ...Object.keys(TIPI)].map((t) => { const n = t === "tutti" ? inG.length : inG.filter((d) => d.tipo === t).length; return n || t === "tutti" ? `<button data-act="dtipo" data-v="${t}" class="${t === UI.docTipo ? "on" : ""}">${t === "tutti" ? "Tutti" : TIPI[t]} (${n})</button>` : ""; }).join("")}</div>
+  ${list.length ? `<div class="list">${list.map(docItem).join("")}</div>` : `<div class="empty">Nessun documento di questo tipo nella gestione ${g}.</div>`}</section>`;
+}
+function viewDoc(id) {
+  const d = docById(id); if (!d) return `<div class="empty">Documento non trovato. <a href="#documenti">Torna ai documenti</a></div>`;
+  const a = d.ass && assById(d.ass);
+  const legati = assById(NEXT).punti.map((p, i) => (p.files?.some(([doc]) => doc === id) ? i + 1 : null)).filter(Boolean);
+  const sintesi = d.tipo === "convocazione" ? `<div class="summary"><span class="label">In sintesi (ricavato in automatico dalla lettera)</span>${convRows(a)}<ol>${a.punti.map((p) => `<li>${esc(p.t)}</li>`).join("")}</ol></div>` : "";
+  return `<div class="crumbs"><a href="#documenti">Documenti</a><span>›</span><span>Gestione ${gest(d.data)}</span></div>
+  <section><div class="row-btns">${docChip(d)}${d.nuova ? `<span class="chip c-new">Nuova</span>` : ""}</div><h1>${esc(d.titolo)}</h1></section>
+  ${a ? `<div class="note">${d.tipo === "verbale" ? "Verbale" : "Convocazione"} dell'assemblea del ${fmtD(a.seconda.data)}. <a href="#${a.id === NEXT ? "home" : "ass-" + a.id}">Vai all'assemblea</a></div>` : ""}
+  ${legati.length ? `<div class="note">Allegati utili per ${legati.length === 1 ? "il punto" : "i punti"} ${legati.map((n) => `<a href="#punto-${NEXT}-${n}">${n}</a>`).join(", ")} della prossima assemblea.</div>` : ""}
+  <article class="letter"><dl class="letter-head"><dt>Da</dt><dd>${AMM}</dd><dt>Data</dt><dd>${fmtD(d.data)}</dd><dt>Arrivo</dt><dd>Pubblicata automaticamente dall'email inviata al sito</dd></dl>
+    <div class="letter-body">${d.testo}</div>
+    ${d.allegati.length ? `<div class="files"><span class="label">Allegati</span>${d.allegati.map((f) => fileBtn(f)).join("")}</div>` : ""}
+    ${sintesi}</article>`;
+}
+function viewAssemblee() {
+  const list = [...ASS].sort((x, y) => (x.seconda.data < y.seconda.data ? 1 : -1));
+  const gs = [...new Set(list.map((a) => gest(a.seconda.data)))];
+  return `<section><h1>Assemblee</h1><p class="muted">Per ogni anno di gestione, le riunioni con la data e i punti. Per quelle passate trovi l'esito dei punti e il verbale.</p></section>` +
+    gs.map((g) => `<section><h2>Gestione ${g}</h2><div class="list">${list.filter((a) => gest(a.seconda.data) === g).map((a) => {
+      const fut = a.id === NEXT;
+      return `<a class="item" href="#${fut ? "home" : "ass-" + a.id}"><span class="item-title">Assemblea ${a.tipo} del ${fmtD(a.seconda.data)}</span><span class="item-side">${fut ? `tra ${giorni(a.seconda.data)} giorni` : ""}</span>
+        <span class="item-meta"><span>${a.punti.length} punti</span>${fut ? `<span class="chip c-new">Prossima</span>` : a.verbale ? `<span class="chip t-verbale">Verbale disponibile</span>` : ""}</span></a>`;
+    }).join("")}</div></section>`).join("");
+}
+function viewAss(id) {
+  const a = assById(id); if (!a) return `<div class="empty">Assemblea non trovata.</div>`;
+  if (id === NEXT) { location.hash = "home"; return ""; }
+  const cs = isAuto() ? [] : D.cond.filter((c) => c.ass === id);
+  return `<div class="crumbs"><a href="#assemblee">Assemblee</a><span>›</span><span>Gestione ${gest(a.seconda.data)}</span></div>
+  <section><h1>Assemblea ${a.tipo} del ${fmtD(a.seconda.data)}</h1>${convRows(a)}
+  <div class="row-btns"><a class="btn" href="#doc-${a.conv}">Lettera di convocazione</a>${a.verbale ? `<a class="btn" href="#doc-${a.verbale}">Verbale</a>` : ""}</div></section>
+  <section><h2>Punti ed esito</h2>${odgList(a)}<p class="small muted">Esito ricavato dal verbale. Fa fede il verbale allegato.</p></section>
+  ${cs.length ? `<section><h2>Osservazioni condivise prima dell'assemblea</h2>${cs.map((c) => shareCard(c, true)).join("")}</section>` : ""}`;
+}
+function viewPunto(aid, n) {
+  const a = assById(aid), p = puntoOf(aid, n);
+  if (!p) return `<div class="empty">Punto non trovato.</div>`;
+  const fut = aid === NEXT;
+  const files = p.files || [];
+  let parte;
+  if (isAuto()) {
+    const ms = fut ? D.bacheca.filter((b) => b.n === n) : [];
+    parte = `<section><h2>Bacheca di questo punto</h2>${ms.length ? ms.map((b) => msgCard(b, false)).join("") : `<div class="empty">Ancora nessun messaggio su questo punto.</div>`}</section>${fut ? ossForm(n) : ""}`;
+  } else {
+    const cs = condDi(aid, n);
+    parte = `<section><h2>Osservazioni condivise</h2>${cs.length ? cs.map((c) => shareCard(c, false)).join("") : `<div class="empty">Ancora nessuna osservazione condivisa su questo punto.</div>`}</section>
+      ${fut && !isRapp() ? ossForm(n) : ""}${fut && isRapp() ? `<div class="note">Le osservazioni degli inquilini della ${IO.scala} su questo punto le trovi in <a href="#osservazioni">Osservazioni ricevute</a>.</div>` : ""}`;
+  }
+  return `<div class="crumbs"><a href="#${fut ? "home" : "ass-" + aid}">Assemblea del ${fmtD(a.seconda.data)}</a><span>›</span><span>Punto ${n}</span></div>
+  <section><div class="row-btns"><span class="odg-n">Punto ${n}</span>${p.esito ? `<span class="chip ${p.esito === "Approvato" ? "c-ok" : "c-wait"}">${p.esito}</span>` : ""}</div><h1>${esc(p.t)}</h1></section>
+  ${files.length ? `<section><h2>Documenti e preventivi allegati</h2><div class="files">${files.map(([doc, f]) => fileBtn(f, "lettera del " + fmtS(docById(doc).data))).join("")}</div></section>` : ""}
+  ${parte}`;
+}
+function statoMio(o) {
+  if (o.stato === "nuova") return `<span class="chip c-wait">Inviata a ${RAPP[o.scala]}</span>`;
+  if (o.stato === "archiviata") return `<span class="chip">Letta, non condivisa</span>`;
+  const c = D.cond.find((x) => x.id === o.cond);
+  return `<span class="chip c-ok">Condivisa con tutti</span>${c?.inoltrata ? `<span class="chip c-ok">Inoltrata all'amministratore</span>` : ""}${c ? `<a href="#punto-${c.ass}-${c.n}">Vedi</a>` : ""}`;
+}
+function viewMie() {
+  const mie = D.oss.filter((o) => o.scala === IO.scala && o.interno === IO.interno).sort((x, y) => (x.data < y.data ? 1 : -1));
+  return `<section><h1>Le mie osservazioni</h1><p class="muted">Quello che hai scritto a ${RAPP[IO.scala]}, rappresentante della ${IO.scala}, e cosa ne ha fatto.</p></section>
+  <section>${mie.length ? `<div class="list">${mie.map((o) => `<div class="obs"><div class="obs-head"><b>Punto ${o.n}</b><span>${esc(short(puntoOf(o.ass, o.n).t, 70))}</span><span>${fmtS(o.data)}</span></div><p class="obs-text">${esc(o.testo)}</p>${o.allegato ? `<div class="files">${fileBtn(o.allegato)}</div>` : ""}<div class="status">${statoMio(o)}</div></div>`).join("")}</div>` : `<div class="empty">Non hai ancora scritto osservazioni.</div>`}</section>
+  ${ossForm(null)}`;
+}
+function viewRicevute() {
+  const mie = D.oss.filter((o) => o.scala === IO.scala).sort((x, y) => (x.data < y.data ? 1 : -1));
+  const groups = { nuove: mie.filter((o) => o.stato === "nuova"), condivise: mie.filter((o) => o.stato === "condivisa"), archiviate: mie.filter((o) => o.stato === "archiviata") };
+  const labels = { nuove: "Nuove", condivise: "Condivise", archiviate: "Non condivise" };
+  const list = groups[UI.tab];
+  const miei = D.cond.filter((c) => c.scala === IO.scala && c.ass === NEXT);
+  return `<section><h1>Osservazioni ricevute</h1><p class="muted">Le osservazioni degli inquilini della ${IO.scala}. Le vedi solo tu. Per ognuna scegli se condividerla con tutti (senza nome e interno) o lasciarla dov'è.</p></section>
+  <section><div class="filters" role="group" aria-label="Stato">${Object.keys(groups).map((k) => `<button data-act="tab" data-v="${k}" class="${UI.tab === k ? "on" : ""}">${labels[k]} (${groups[k].length})</button>`).join("")}</div>
+  ${list.length ? `<div class="list">${list.map(obsCard).join("")}</div>` : `<div class="empty">${UI.tab === "nuove" ? "Nessuna osservazione nuova. Non devi fare niente." : "Nessuna."}</div>`}</section>
+  ${miei.length ? `<section><h2>Le tue condivisioni per la prossima assemblea</h2><p class="small muted">Da qui avvisi gli inquilini o prepari l'email per l'amministratore: il testo è già scritto.</p>${miei.map((c) => shareCard(c, true)).join("")}</section>` : ""}`;
+}
+function obsCard(o) {
+  const pt = puntoOf(o.ass, o.n);
+  let html = `<div class="obs"><div class="obs-head"><b>${o.scala}, interno ${o.interno}</b><span>${fmtS(o.data)}</span><a href="#punto-${o.ass}-${o.n}">Punto ${o.n}: ${esc(short(pt.t, 55))}</a></div>
+    <p class="obs-text">${esc(o.testo)}</p>${o.allegato ? `<div class="files">${fileBtn(o.allegato)}</div>` : ""}`;
+  if (o.stato === "nuova") {
+    if (UI.sharing === o.id) {
+      html += `<div class="prep"><b>Condividi con tutti gli inquilini</b>
+        <label>Testo che vedranno (senza nome e interno; puoi correggerlo)<textarea id="sh-t-${o.id}">${esc(o.testo)}</textarea></label>
+        <label class="check"><input type="checkbox" id="sh-p-${o.id}" checked> Apri un sondaggio (Favorevole / Contrario / Non so)</label>
+        <label>Domanda del sondaggio<input type="text" id="sh-q-${o.id}" value="Siete d'accordo con questa proposta?"></label>
+        <div class="row-btns"><button class="btn primary" data-act="condividi" data-id="${o.id}">Condividi</button><button class="btn quiet" data-act="share-chiudi">Annulla</button></div></div>`;
+    } else html += `<div class="row-btns"><button class="btn primary" data-act="share-apri" data-id="${o.id}">Condividi con tutti</button><button class="btn" data-act="archivia" data-id="${o.id}">Non condividere</button></div>`;
+  } else html += `<div class="status">${o.stato === "condivisa" ? `<span class="chip c-ok">Condivisa</span><a href="#punto-${o.ass}-${o.n}">Vedi</a>` : `<span class="chip">Non condivisa</span><button class="btn quiet" data-act="ripristina" data-id="${o.id}">Rimetti tra le nuove</button>`}</div>`;
+  return html + `</div>`;
+}
+function viewBacheca() {
+  const ms = [...D.bacheca].sort((x, y) => (x.data < y.data ? 1 : -1));
+  return `<section><h1>Bacheca</h1><p class="muted">Versione automatica, senza rappresentante: ogni messaggio degli inquilini compare subito, visibile a tutti. Su ogni messaggio puoi dire se sei favorevole.</p></section>
+  <section>${ms.map((b) => msgCard(b, true)).join("")}</section>${ossForm(null)}`;
+}
+
+/* ---------- azioni ---------- */
+const val = (id) => document.getElementById(id)?.value ?? "";
+const ACT = {
+  modo: (d) => { UI.modo = d.v; UI.sharing = null; UI.prep = null; const r = route().name; if ((r === "bacheca" && d.v !== "auto") || (r === "osservazioni" && d.v === "auto")) location.hash = "home"; render(); window.scrollTo(0, 0); },
+  intro: () => { D = seed(); Object.assign(UI, { modo: null, docGest: null, docTipo: "tutti", tab: "nuove", sharing: null, prep: null }); if (location.hash) location.hash = ""; render(); window.scrollTo(0, 0); },
+  arrivo: () => { D.docs.push({ ...DOC_EXTRA, nuova: true }); D.extra = true; UI.docGest = null; UI.docTipo = "tutti"; toast("L'amministratore ha inviato una lettera: è già pubblicata in Documenti."); },
+  dgest: (d) => { UI.docGest = d.v; UI.docTipo = "tutti"; render(); },
+  dtipo: (d) => { UI.docTipo = d.v; render(); },
+  tab: (d) => { UI.tab = d.v; render(); },
+  pdf: () => toast("Nel sito vero qui si apre il PDF. Nella demo i file non esistono."),
+  voto: (d) => { const p = D.cond.find((c) => c.id === d.id).poll; p.mio = p.mio === d.v ? null : d.v; toast(p.mio ? "Voto registrato per il tuo alloggio." : "Voto tolto."); },
+  "voto-b": (d) => { const b = D.bacheca.find((x) => x.id === d.id); b.mio = b.mio === d.v ? null : d.v; render(); },
+  chiudi: (d) => { D.cond.find((c) => c.id === d.id).poll.aperto = false; toast("Sondaggio chiuso: i risultati restano visibili a tutti."); },
+  prep: (d) => { UI.prep = { id: d.id, kind: d.v }; render(); },
+  "prep-chiudi": () => { UI.prep = null; render(); },
+  copia: async (d) => {
+    const id = `prep-${d.id}-${d.v}`;
+    try { await navigator.clipboard.writeText(val(id)); toast("Testo copiato: puoi incollarlo nella tua email."); }
+    catch { document.getElementById(id)?.select(); toast("Testo selezionato: copialo con Ctrl+C o tenendo premuto."); }
+  },
+  invia: (d) => {
+    const c = D.cond.find((x) => x.id === d.id);
+    if (d.v === "amm") c.inoltrata = OGGI; else c.email = OGGI;
+    UI.prep = null;
+    toast(d.v === "amm" ? "Inviata all'amministratore (nella demo non parte nessuna email)." : "Inviata a tutti gli inquilini (nella demo non parte nessuna email).");
+  },
+  "share-apri": (d) => { UI.sharing = d.id; render(); },
+  "share-chiudi": () => { UI.sharing = null; render(); },
+  archivia: (d) => { D.oss.find((o) => o.id === d.id).stato = "archiviata"; toast("Lasciata da parte. L'inquilino vede che l'hai letta."); },
+  ripristina: (d) => { D.oss.find((o) => o.id === d.id).stato = "nuova"; UI.tab = "nuove"; render(); },
+  condividi: (d) => {
+    const o = D.oss.find((x) => x.id === d.id);
+    const testo = val("sh-t-" + o.id).trim() || o.testo;
+    const conPoll = document.getElementById("sh-p-" + o.id)?.checked;
+    const q = val("sh-q-" + o.id).trim() || "Siete d'accordo con questa proposta?";
+    const c = { id: newId("c"), ass: o.ass, n: o.n, scala: o.scala, data: OGGI, testo, allegato: o.allegato, poll: conPoll ? { q, v: { fav: 0, contr: 0, ns: 0 }, aperto: true, mio: null } : null, inoltrata: null, email: null };
+    D.cond.push(c); o.stato = "condivisa"; o.cond = c.id; UI.sharing = null;
+    toast(conPoll ? "Condivisa con tutti, con il sondaggio aperto." : "Condivisa con tutti.");
+  },
+  oss: (d) => {
+    const key = d.v || "x";
+    const n = d.v ? +d.v : +val("os-pt-" + key);
+    const testo = val("os-t-" + key).trim();
+    if (!testo) return toast("Scrivi il testo prima di inviarlo.");
+    const f = document.getElementById("os-f-" + key)?.files?.[0];
+    const base = { id: newId("o"), scala: IO.scala, interno: IO.interno, data: OGGI, n, testo, allegato: f ? f.name : "" };
+    document.getElementById("os-t-" + key).value = "";
+    if (isAuto()) { D.bacheca.push({ ...base, v: { fav: 0, contr: 0, ns: 0 }, mio: null }); toast("Pubblicato in bacheca: lo vedono subito tutti."); }
+    else { D.oss.push({ ...base, ass: NEXT, stato: "nuova" }); toast(`Inviata a ${RAPP[IO.scala]}. Passa alla vista Rappresentante per vederla arrivare.`); }
+  },
+};
+document.addEventListener("click", (e) => { const b = e.target.closest("[data-act]"); if (!b) return; e.preventDefault(); ACT[b.dataset.act]?.(b.dataset, b); });
+window.addEventListener("hashchange", () => { UI.sharing = null; UI.prep = null; render(); window.scrollTo(0, 0); });
+render();
+</script>
+
+</body></html>
