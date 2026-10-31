@@ -204,6 +204,7 @@ const tipoFile = (nome) => (/\.pdf$/i.test(nome) ? "PDF" : /\.(jpe?g|png|webp|gi
 const fileBtn = (f, da) => `<button class="file" data-act="apri" data-v="${esc(f.percorso)}"><span class="file-ico">${tipoFile(f.nome)}</span><span class="file-name">${esc(nomeFile(f.nome))}</span>${da ? `<span class="file-from">${esc(da)}</span>` : ""}</button>`;
 function docItem(l) {
   return `<a class="item" href="#doc-${l.id}"><span class="item-title">${esc(l.oggetto || TIPI[l.tipo])}</span><span class="item-side">${esc(fmtS(l.data_lettera || l.arrivata))}</span>
+    ${l.riassunto ? `<span class="item-meta">${esc(short(l.riassunto, 140))}</span>` : ""}
     <span class="item-meta">${docChip(l)}<span>Gestione ${esc(l.gestione)}</span>${l.allegati.length ? `<span>${l.allegati.length} ${l.allegati.length === 1 ? "allegato" : "allegati"}</span>` : ""}</span></a>`;
 }
 function odgList(a) {
@@ -370,7 +371,8 @@ function viewDoc(id) {
   return `<div class="crumbs"><a href="#documenti">Documenti</a><span>›</span><span>Gestione ${esc(l.gestione)}</span></div>
   <section><div class="row-btns">${docChip(l)}</div><h1>${esc(l.oggetto || TIPI[l.tipo])}</h1></section>
   ${a ? `<div class="note">${l.tipo === "verbale" ? "Verbale" : "Convocazione"} dell'assemblea del ${esc(fmtD(a.data_riferimento))}. <a href="#ass-${a.id}">Vai all'assemblea</a></div>` : ""}
-  <article class="letter"><dl class="letter-head"><dt>Data</dt><dd>${esc(fmtD(l.data_lettera || l.arrivata))}</dd><dt>Arrivo</dt><dd>${esc(fmtD(l.arrivata))}</dd></dl>
+  ${l.riassunto ? `<section class="panel"><span class="label">Riassunto automatico</span><p>${esc(l.riassunto)}</p><p class="small muted">Scritto dall'intelligenza artificiale leggendo la lettera. Fa fede la lettera originale qui sotto.</p></section>` : ""}
+  <article class="letter"><dl class="letter-head"><dt>Data</dt><dd>${esc(fmtD(l.data_lettera || l.arrivata))}</dd><dt>Arrivo</dt><dd>${esc(fmtD(l.arrivata))}</dd>${isGestore() && l.letta_con ? `<dt>Letta</dt><dd>${{ claude: "dall'intelligenza artificiale (Claude)", regole: "con le regole automatiche", riserva: "senza analisi: da controllare" }[l.letta_con] || esc(l.letta_con)}</dd>` : ""}</dl>
     ${l.testo_email ? `<div class="letter-body">${esc(l.testo_email)}</div>` : ""}
     ${l.allegati.length ? `<div class="files"><span class="label">Allegati</span>${l.allegati.map((f) => fileBtn(f)).join("")}</div>` : ""}
     ${sintesi}</article>
