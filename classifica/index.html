@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Hit Parade Italia</title>
+<meta name="description" content="Bar chart race animata dei dieci artisti più venduti in Italia, anno per anno dal 1980 al 2026.">
+<link rel="icon" href="../favicon-32.png" sizes="32x32">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one broadcast "stage" panel — fixed rank rail, name column, bar track — with the year watermark dropping in behind the bars; transport controls and an era timeline underneath. */
+:root {
+  --bg: #f2f4f7;
+  --panel: #ffffff;
+  --fg: #13161b;
+  --fg2: #4a5260;
+  --fg3: #7a8291;
+  --line: #e1e5ec;
+  --track: #eef1f5;
+  --it: #eb6834;
+  --int: #2a78d6;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --row: 50px;
+  --label: 210px;
+  --rail: 34px;
+  --valroom: 86px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+    --line: #2a2f38; --track: #1f232a; --it: #d95926; --int: #3987e5; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+  --line: #2a2f38; --track: #1f232a; --it: #d95926; --int: #3987e5; color-scheme: dark;
+}
+@media (max-width: 680px) {
+  :root { --row: 52px; --label: 0px; --rail: 22px; --valroom: 64px; }
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 40px;
+}
+#app { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+
+/* Header */
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
+.head-text { min-width: 0; display: grid; gap: 4px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 7vw, 68px); line-height: .9; letter-spacing: .005em; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--fg2); max-width: 62ch; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 10px; border-radius: 0 3px 3px 0; display: inline-block; }
+.sw.it { background: var(--it); } .sw.int { background: var(--int); }
+
+/* Stage */
+.stage {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px 18px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.stage-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.stage-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg3); }
+.leader { font-size: 13px; color: var(--fg2); }
+.leader b { color: var(--fg); font-weight: 600; }
+
+.wm-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.wm {
+  position: absolute; left: 50%; top: 56%;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(150px, 31vw, 400px); line-height: .8;
+  letter-spacing: -.01em; color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  opacity: .1;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: 50% 50%;
+  animation: yearDrop 1050ms cubic-bezier(.2, .85, .25, 1) both;
+  white-space: nowrap;
+}
+@keyframes yearDrop {
+  0%   { transform: translate(-50%, -260%) scale(4.6); opacity: 0; }
+  10%  { opacity: .5; }
+  40%  { transform: translate(-50%, -50%) scale(.84); opacity: .24; }
+  62%  { transform: translate(-50%, -50%) scale(1.045); opacity: .14; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: .1; }
+}
+
+.cols { display: grid; grid-template-columns: var(--rail) var(--label) minmax(0, 1fr); }
+.plotin { position: relative; height: 100%; margin-right: var(--valroom); }
+
+.axis { position: relative; z-index: 1; height: 22px; }
+.axis .tick { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.axis .tick:first-child { transform: none; }
+
+.rows { position: relative; z-index: 1; height: calc(var(--row) * 10); }
+.gridlayer { position: absolute; inset: 0; pointer-events: none; }
+.gridlayer .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.ranks { display: grid; grid-template-rows: repeat(10, var(--row)); }
+.ranks span { display: flex; align-items: center; font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+
+.row {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: var(--row);
+  transition: transform 1100ms cubic-bezier(.45, 0, .2, 1), opacity 700ms ease;
+  will-change: transform;
+  outline: none;
+}
+.row.off { opacity: 0; pointer-events: none; }
+.label { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding-right: 12px; }
+.name { font-weight: 600; font-size: 15px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub { font-size: 11.5px; color: var(--fg3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.bar {
+  position: absolute; left: 0; top: 50%;
+  height: 62%; transform: translateY(-50%);
+  border-radius: 0 4px 4px 0;
+  transition: width 500ms linear;
+}
+.bar.it { background: var(--it); }
+.bar.int { background: var(--int); }
+.bar.over { border-radius: 0; background-image: linear-gradient(90deg, transparent calc(100% - 9px), var(--panel) calc(100% - 9px), var(--panel) calc(100% - 6px), transparent calc(100% - 6px)); }
+.val {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  padding-left: 8px; font-size: 13px; font-weight: 600; color: var(--fg2);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  transition: left 500ms linear;
+}
+.row:hover .bar, .row:focus-visible .bar { filter: brightness(1.08); }
+.row:focus-visible .name { text-decoration: underline; text-underline-offset: 3px; }
+
+.tip {
+  position: absolute; z-index: 5; left: calc(var(--rail) + var(--label) - 4px); top: calc(100% - 4px);
+  background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgb(0 0 0 / .14);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; min-width: 210px; max-width: min(320px, 80vw);
+  display: none; pointer-events: none;
+}
+.row:hover .tip, .row:focus .tip { display: grid; gap: 2px; }
+.row.low .tip { top: auto; bottom: calc(100% - 4px); }
+.tip .t-name { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.tip .t-val { font-variant-numeric: tabular-nums; }
+.tip .t-muted { color: var(--fg3); font-size: 12px; }
+
+/* Controls */
+.controls { display: grid; gap: 10px; }
+.transport { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn {
+  appearance: none; border: 1px solid var(--line); background: var(--panel); color: var(--fg);
+  font: 600 14px/1 var(--body); height: 40px; padding: 0 16px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+}
+.btn:hover { border-color: var(--fg3); }
+.btn:focus-visible, .scrub:focus-visible { outline: 2px solid var(--int); outline-offset: 2px; }
+.btn.primary { background: var(--fg); color: var(--panel); border-color: var(--fg); min-width: 116px; justify-content: center; }
+.btn svg { width: 14px; height: 14px; fill: currentColor; }
+.readout { margin-left: auto; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.readout .when { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.era-chip { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+.timeline { position: relative; display: grid; gap: 6px; }
+.scrub { width: 100%; margin: 0; accent-color: var(--fg); cursor: pointer; }
+.eras { display: flex; height: 22px; border-radius: 6px; overflow: hidden; gap: 2px; }
+.eras div { min-width: 0; background: var(--track); color: var(--fg3); font-size: 11px; font-weight: 600; letter-spacing: .04em; display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background .3s, color .3s; }
+.eras div.on { background: var(--fg); color: var(--panel); }
+.decades { position: relative; height: 16px; font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+.decades span { position: absolute; transform: translateX(-50%); }
+.decades span:first-child { transform: none; }
+.decades span:last-child { transform: translateX(-100%); }
+
+details { border-top: 1px solid var(--line); padding-top: 12px; }
+summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--fg2); }
+.tbl-wrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; max-width: 640px; font-size: 13.5px; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+th { color: var(--fg3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+
+.note { color: var(--fg3); font-size: 12.5px; max-width: 80ch; margin: 0; }
+
+.eras .short { display: none; }
+@media (max-width: 680px) {
+  body { padding-block: 18px 32px; font-size: 14px; }
+  .lede { font-size: 14px; }
+  /* Su telefono: nome sopra, barra a tutta larghezza sotto */
+  .cols { grid-template-columns: var(--rail) minmax(0, 1fr); }
+  .axis > span:nth-child(2), .gridlayer > span { display: none; }
+  .row.cols { grid-template-rows: 22px minmax(0, 1fr); padding-bottom: 6px; }
+  .row > span:first-child { grid-row: 1 / 3; }
+  .row .label { grid-column: 2; grid-row: 1; flex-direction: row; align-items: baseline; justify-content: flex-start; gap: 6px; padding-right: 0; }
+  .row .plotin { grid-column: 2; grid-row: 2; }
+  .name { font-size: 13px; flex: 0 0 auto; max-width: 100%; }
+  .sub { font-size: 10.5px; flex: 1 1 0; min-width: 0; }
+  .bar { height: 16px; }
+  .row .label { align-items: flex-end; }
+  .val { font-size: 11.5px; padding-left: 5px; }
+  .ranks span { font-size: 16px; }
+  .tip { left: var(--rail); right: 0; min-width: 0; }
+  .wm { font-size: clamp(110px, 34vw, 400px); }
+  .stage { padding: 12px 10px 14px; border-radius: 12px; }
+  .stage-top { flex-direction: column; gap: 2px; }
+  .transport { gap: 8px; }
+  .btn { height: 44px; padding: 0 14px; }
+  .btn.primary { flex: 1 1 auto; }
+  .readout { margin-left: 0; width: 100%; justify-content: space-between; order: -1; }
+  .readout .when { font-size: 24px; }
+  .eras div { font-size: 10.5px; padding: 0 5px; }
+  .eras .long { display: none; }
+  .eras .short { display: inline; }
+  .scrub { height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .row, .bar, .val { transition: none; }
+  .wm { animation: none; }
+}
+</style>
+<style>
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+/* ------------------------------------------------------------------
+   DATI — unità vendute nell'anno in Italia (migliaia), NON cumulative.
+   s = primo anno della serie, v = valori anno per anno da s in poi,
+   x = punti isolati (ritorni in classifica). Ogni anno non indicato vale 0,
+   quindi la barra si restringe progressivamente verso lo zero.
+   a = album/brano di punta per anno (mostrato per l'anno e il successivo).
+   Valori stimati e ricostruiti: vedi nota in fondo alla pagina.
+------------------------------------------------------------------- */
+const ARTISTS = [
+  { n: "Vasco Rossi", c: "it", s: 1980, v: [120,180,450,1100,600,700,500,900,550,1000, 900,550,500,1300,700,600,1500,900,1100,1000, 600,1300,800,650,1200,700,600,650,1100,750, 650,900,550,500,650,550,600,900,600,650, 450,600,750,650,600,550,480],
+    a: {1982:"Vado al massimo",1983:"Bollicine",1985:"Cosa succede in città",1987:"C'è chi dice no",1989:"Liberi liberi",1990:"Fronte del palco",1993:"Gli spari sopra",1996:"Nessun pericolo… per te",1998:"Canzoni per me",1999:"Rewind",2001:"Stupido hotel",2004:"Buoni o cattivi",2008:"Il mondo che vorrei",2011:"Vivere o niente",2014:"Sono innocente",2017:"Vasco Modena Park"} },
+  { n: "Lucio Dalla", c: "it", s: 1980, v: [1300,700,450,500,400,350,800,500,1200,500, 900,600,400,350,300,250,500,400,250,300, 200,350,200,250,150,120,150,100,90,140, 100,120,800,200,120,100,90,70],
+    a: {1980:"Dalla",1986:"DallAmeriCaruso",1988:"Dalla/Morandi",1990:"Cambio",1996:"Canzoni",2001:"Luna Matana"} },
+  { n: "Lucio Battisti", c: "it", s: 1980, v: [900,400,600,250,200,150,450,250,350,200, 300,150,250,150,300,120,100,100,900,400, 200,150,100,100,80],
+    a: {1980:"Una giornata uggiosa",1982:"E già",1986:"Don Giovanni",1988:"L'apparenza",1994:"Hegel"} },
+  { n: "Pink Floyd", c: "int", s: 1980, v: [1600,500,300,600,200,150,120,700,600,200, 150,120,100,150,900,600,200,150,120,100, 120,300,150,150,100,250,120,100,100,90, 90,250,120,100,400,120],
+    a: {1980:"The Wall",1983:"The Final Cut",1987:"A Momentary Lapse of Reason",1988:"Delicate Sound of Thunder",1994:"The Division Bell",1995:"P·U·L·S·E",2001:"Echoes",2014:"The Endless River"} },
+  { n: "Michael Jackson", c: "int", s: 1980, v: [200,150,300,1800,1200,300,200,1500,1100,300, 150,1000,900,400,200,900,500,400,150,120, 100,500,200,300,150,150,120,150,200,1400, 500,300,150,120,200,100],
+    a: {1983:"Thriller",1987:"Bad",1991:"Dangerous",1995:"HIStory",2001:"Invincible",2009:"This Is It"} },
+  { n: "Madonna", c: "int", s: 1983, v: [150,400,900,1500,900,300,1000, 900,400,500,250,450,300,300,250,800,300, 700,300,150,350,150,650,400,150,450,300, 120,100,250,100,80,150],
+    a: {1985:"Like a Virgin",1986:"True Blue",1989:"Like a Prayer",1990:"The Immaculate Collection",1992:"Erotica",1994:"Bedtime Stories",1998:"Ray of Light",2000:"Music",2005:"Confessions on a Dance Floor",2008:"Hard Candy",2009:"Celebration",2012:"MDNA",2015:"Rebel Heart"} },
+  { n: "U2", c: "int", s: 1983, v: [200,400,300,150,1300,800,300, 150,900,600,700,200,150,120,650,500,200, 700,400,450,150,900,700,300,120,100,600, 200,120,80,80,300,100,80,250,80],
+    a: {1984:"The Unforgettable Fire",1987:"The Joshua Tree",1988:"Rattle and Hum",1991:"Achtung Baby",1993:"Zooropa",1997:"Pop",1998:"The Best of 1980–1990",2000:"All That You Can't Leave Behind",2004:"How to Dismantle an Atomic Bomb",2009:"No Line on the Horizon",2014:"Songs of Innocence",2017:"Songs of Experience"} },
+  { n: "Dire Straits", c: "int", s: 1980, v: [300,250,400,200,300,1600,900,200,500,150, 100,600,400,200,120,80],
+    a: {1982:"Love over Gold",1985:"Brothers in Arms",1988:"Money for Nothing",1991:"On Every Street"} },
+  { n: "Queen", c: "int", s: 1980, v: [400,600,250,100,500,300,900,300,150,400, 200,1000,1300,300,200,600,300,150,100,150, 100,100,80], x: {2018:500,2019:450,2020:150},
+    a: {1980:"The Game",1981:"Greatest Hits",1984:"The Works",1986:"A Kind of Magic",1989:"The Miracle",1991:"Innuendo",1995:"Made in Heaven",2018:"Bohemian Rhapsody (colonna sonora)"} },
+  { n: "Zucchero", c: "it", s: 1985, v: [150,400,1100,600,1600, 600,700,400,300,300,1000,800,300,600,200, 150,600,200,200,600,300,450,400,150,100, 350,150,120,100,80,150,400,150,100,200, 80],
+    a: {1987:"Blue's",1989:"Oro incenso & birra",1991:"Live at the Kremlin",1995:"Spirito DiVino",1996:"The Best of",1998:"Bluesugar",2001:"Shake",2004:"Zu & Co.",2006:"Fly",2010:"Chocabeck",2016:"Black Cat",2019:"D.O.C."} },
+  { n: "Eros Ramazzotti", c: "it", s: 1984, v: [100,300,700,800,400,300, 1300,500,200,1200,600,300,1100,900,400,200, 700,300,150,650,250,600,300,500,200,450, 200,150,400,150,120,300,120,100,250,120, 60],
+    a: {1986:"Nuovi eroi",1987:"In certi momenti",1990:"In ogni senso",1993:"Tutte storie",1996:"Dove c'è musica",1997:"Eros",2000:"Stilelibero",2003:"9",2005:"Calma apparente",2007:"e²",2009:"Ali e radici",2012:"Noi",2015:"Perfetto",2018:"Vita ce n'è"} },
+  { n: "Laura Pausini", c: "it", s: 1993, v: [600,800,300,900,400,700,300, 500,600,250,150,650,400,300,300,550,300, 150,450,200,400,150,350,150,80,250,100, 60,80,60,120,50],
+    a: {1993:"Laura Pausini",1994:"Laura",1996:"Le cose che vivi",1998:"La mia risposta",2000:"Tra te e il mare",2001:"E ritorno da te",2004:"Resta in ascolto",2006:"Io canto",2008:"Primavera in anticipo",2011:"Inedito",2013:"20 – The Greatest Hits",2015:"Simili",2018:"Fatti sentire",2023:"Anime parallele"} },
+  { n: "Claudio Baglioni", c: "it", s: 1980, v: [300,900,700,300,200,2000,1000,300,250,150, 900,600,400,200,150,800,300,150,500,600, 200,150,100,500,200,300,200,100,80],
+    a: {1981:"Strada facendo",1982:"Alé-oó",1985:"La vita è adesso",1990:"Oltre",1992:"Assolo",1995:"Io sono qui",1998:"Da me a te",1999:"Viaggiatore sulla coda del tempo",2003:"Sono io",2005:"Tutti qui"} },
+  { n: "Antonello Venditti", c: "it", s: 1982, v: [350,250,900,400,650,300,600,400, 300,1100,500,300,350,500,200,450,150,400, 150,200,150,300,100],
+    a: {1982:"Sotto la pioggia",1984:"Cuore",1986:"Venditti e segreti",1988:"In questo mondo di ladri",1991:"Benvenuti in paradiso",1995:"Prendilo tu questo frutto amaro",1997:"Antonello nel paese delle meraviglie",1999:"Goodbye Novecento",2003:"Che fantastica storia è la vita"} },
+  { n: "Gianna Nannini", c: "it", s: 1982, v: [300,200,400,300,700,400,500,300, 450,200,150,100], x: {2006:600,2007:500,2008:150,2009:200,2010:350,2011:150},
+    a: {1982:"Latin Lover",1984:"Puzzle",1986:"Profumo",1988:"Malafemmina",1990:"Scandalo",2006:"Grazie",2010:"Io e te"} },
+  { n: "Renato Zero", c: "it", s: 1980, v: [600,400,500,350,200,100,100,80,80,100, 120,300,150,400,450,400,200,150,1000,600, 300,400,150,550,200,300,150,100,100,300, 100,80,80,200,80],
+    a: {1980:"Tregua",1981:"Artide Antartide",1982:"Via Tagliamento 1965/1970",1991:"La coscienza di Zero",1993:"Quando non sei più di nessuno",1994:"L'imperfetto",1998:"Amore dopo amore",2001:"La curva dell'angelo",2003:"Cattura",2005:"Il dono",2009:"Presente",2013:"Amo – Capitolo I"} },
+  { n: "Pino Daniele", c: "it", s: 1980, v: [500,600,500,300,250,200,150,100,150,200, 350,400,200,500,300,650,300,600,400,450, 200,150,100], x: {2015:650,2016:100},
+    a: {1980:"Nero a metà",1981:"Vai mò",1982:"Bella 'mbriana",1991:"Un uomo in blues",1993:"Che Dio ti benedica",1995:"Non calpestare i fiori nel deserto",1997:"Dimmi cosa succede sulla terra",1998:"Yes I Know My Way",1999:"Come un gelato all'equatore"} },
+  { n: "Fabrizio De André", c: "it", s: 1980, v: [100,300,150,120,400,150,100,80,80,100, 300,150,100,80,80,90,350,150,120,900, 400,150,100],
+    a: {1981:"L'indiano",1984:"Crêuza de mä",1990:"Le nuvole",1996:"Anime salve"} },
+  { n: "Mina", c: "it", s: 1980, v: [400,300,300,250,300,250,200,250,200,200, 200,200,200,250,200,200,250,300,1000,400, 250,300,200,150],
+    a: {1984:"Catene",1998:"Mina Celentano"} },
+  { n: "Adriano Celentano", c: "it", s: 1997, v: [100,1000,1600,1200,900,500,300,400,200],
+    a: {1998:"Mina Celentano",1999:"Io non so parlar d'amore",2000:"Esco di rado e parlo ancora meno",2002:"Per sempre",2004:"C'è sempre un motivo"} },
+  { n: "Al Bano & Romina Power", c: "it", s: 1981, v: [300,700,400,600,500,300,650,200,150,100],
+    a: {1982:"Felicità",1987:"Libertà!"} },
+  { n: "Ricchi e Poveri", c: "it", s: 1981, v: [600,400,300,200,500,200,100],
+    a: {1981:"Sarà perché ti amo",1985:"Se m'innamoro"} },
+  { n: "883 / Max Pezzali", c: "it", s: 1992, v: [600,1200,400,900,300,600,300,450, 200,300,150,100,350,250,100,250,100,100, 80,200,300,150,100,200,100,80,80,100, 80,100,300,350,300,250,200],
+    a: {1992:"Hanno ucciso l'Uomo Ragno",1993:"Nord sud ovest est",1995:"La donna il sogno & il grande incubo",1997:"La dura legge del gol!",1999:"Grazie mille",2001:"Uno in più",2004:"Il mondo insieme a te",2005:"TuttoMax",2011:"Terraferma"} },
+  { n: "Ligabue", c: "it", s: 1990, v: [300,400,200,250,200,600,1200,900,300,800, 300,200,600,300,250,500,400,300,500,300, 600,300,200,400,300,400,300,400,200,200, 150,100,200,100,80],
+    a: {1990:"Ligabue",1991:"Lambrusco coltelli rose & pop corn",1995:"Buon compleanno Elvis",1997:"Su e giù da un palco",1999:"Miss Mondo",2002:"Fuori come va?",2005:"Nome e cognome",2008:"Primo tempo",2010:"Arrivederci, mostro!",2013:"Mondovisione",2015:"Giro del mondo",2017:"Made in Italy"} },
+  { n: "Jovanotti", c: "it", s: 1988, v: [300,400, 200,250,300,200,700,400,200,600,400,300, 200,200,550,300,200,600,400,250,900,400, 200,700,500,300,200,600,300,400,300,400, 150,150,300,150,100,250,150],
+    a: {1988:"Jovanotti for President",1992:"Lorenzo 1992",1994:"Lorenzo 1994",1997:"L'albero",2002:"Il quinto mondo",2005:"Buon sangue",2008:"Safari",2011:"Ora",2012:"Backup 1987–2012",2015:"Lorenzo 2015 CC.",2017:"Oh, vita!",2019:"Jova Beach Party"} },
+  { n: "Tiziano Ferro", c: "it", s: 2001, v: [600,400,650,300,150,650,450,600,300, 200,500,300,150,500,400,500,400,200,300, 200,150,300,200,100,200,120],
+    a: {2001:"Rosso relativo",2003:"111",2006:"Nessuno è solo",2008:"Alla mia età",2011:"L'amore è una cosa semplice",2014:"TZN – The Best of",2016:"Il mestiere della vita",2019:"Accetto miracoli",2022:"Il mondo è nostro"} },
+  { n: "Andrea Bocelli", c: "it", s: 1994, v: [200,400,600,900,500,600, 300,250,200,150,400,200,300,200,300,250, 120,100,100,100,80,100,100,80,150,80],
+    a: {1996:"Bocelli",1997:"Romanza",1998:"Aria",1999:"Sogno",2004:"Andrea",2006:"Amore",2008:"Incanto",2009:"My Christmas",2018:"Sì"} },
+  { n: "Nek", c: "it", s: 1997, v: [500,500,300,150,100], a: {1997:"Lei, gli amici e tutto il resto"} },
+  { n: "Negramaro", c: "it", s: 2005, v: [400,700,600,450,300, 350,150,300,150,100],
+    a: {2005:"Mentre tutto scorre",2007:"La finestra",2010:"Casa 69",2012:"Una storia semplice"} },
+  { n: "Modà", c: "it", s: 2010, v: [350,900,500,600,300,250,300,150,80],
+    a: {2011:"Viva i romantici",2013:"Gioia",2016:"Passione maledetta"} },
+  { n: "Marco Mengoni", c: "it", s: 2009, v: [200, 300,200,200,600,300,650,450,300,500,350, 250,400,450,650,400,350,250],
+    a: {2013:"#prontoacorrere",2015:"Parole in circolo",2018:"Atlantico",2021:"Materia (Terra)",2022:"Materia (Pelle)",2023:"Materia (Prisma)"} },
+  { n: "Fedez", c: "it", s: 2013, v: [300,500,400,300,450,350,350, 250,400,250,150,100],
+    a: {2014:"Pop-Hoolista",2017:"Comunisti col Rolex",2019:"Paranoia Airlines",2021:"Disumano"} },
+  { n: "Måneskin", c: "it", s: 2017, v: [300,400,250, 300,1000,650,450,200,120],
+    a: {2017:"Chosen",2018:"Il ballo della vita",2021:"Teatro d'ira – Vol. I",2023:"Rush!"} },
+  { n: "Ultimo", c: "it", s: 2018, v: [450,750, 450,450,550,400,450,400,550],
+    a: {2018:"Peter Pan",2019:"Colpa delle favole",2021:"Solo",2023:"Alba",2024:"Altrove"} },
+  { n: "Sfera Ebbasta", c: "it", s: 2015, v: [150,350,500,1300,900, 900,700,500,800,650,550,500],
+    a: {2016:"Sfera Ebbasta",2018:"Rockstar",2020:"Famoso",2023:"X2VR"} },
+  { n: "Geolier", c: "it", s: 2019, v: [150, 300,350,300,1100,1500,1000,850],
+    a: {2020:"Emanuele",2023:"Il coraggio dei bambini",2024:"Dio lo sa"} },
+  { n: "Lazza", c: "it", s: 2019, v: [200, 300,300,900,900,600,450,350],
+    a: {2019:"Re Mida",2022:"Sirio",2024:"Locura"} },
+  { n: "Anna", c: "it", s: 2020, v: [250,300,400,350,800,900,650] },
+  { n: "Olly", c: "it", s: 2023, v: [100,400,1300,900], a: {2025:"Balorda nostalgia"} },
+  { n: "Tedua", c: "it", s: 2018, v: [300,200, 250,300,250,200,300,750,450], a: {2018:"Mowgli",2020:"Vita vera"} },
+  { n: "Shiva", c: "it", s: 2021, v: [300,400,450,400,500,350], a: {2021:"Dolce vita",2023:"Milano Demons"} },
+  { n: "Annalisa", c: "it", s: 2022, v: [250,600,550,350,250], a: {2023:"Mon amour",2024:"E poi siamo finiti nel vortice"} },
+  { n: "Tony Effe", c: "it", s: 2024, v: [450,600,350] },
+  { n: "Phil Collins", c: "int", s: 1985, v: [500,250,100,150,600, 500,150,100,300,100],
+    a: {1985:"No Jacket Required",1990:"…But Seriously",1993:"Both Sides"} },
+  { n: "George Michael", c: "int", s: 1987, v: [600,500,200, 400,200,100,100,100,100,500,300,300,150],
+    a: {1987:"Faith",1990:"Listen Without Prejudice Vol. 1",1996:"Older",1998:"Ladies & Gentlemen"} },
+  { n: "Bon Jovi", c: "int", s: 1986, v: [300,500,300,150, 100,100,300,200,500,400,200],
+    a: {1986:"Slippery When Wet",1988:"New Jersey",1992:"Keep the Faith",1994:"Cross Road",1995:"These Days"} },
+  { n: "Céline Dion", c: "int", s: 1996, v: [300,500,600,200,150], a: {1996:"Falling into You",1997:"Let's Talk About Love"} },
+  { n: "Backstreet Boys", c: "int", s: 1996, v: [200,450,300,700, 500,300,100], a: {1999:"Millennium",2000:"Black & Blue"} },
+  { n: "Eminem", c: "int", s: 2000, v: [500,300,700,300,400,400,200,100,80,150, 300,150,80,200,100,80],
+    a: {2000:"The Marshall Mathers LP",2002:"The Eminem Show",2004:"Encore",2005:"Curtain Call",2010:"Recovery",2013:"The Marshall Mathers LP 2"} },
+  { n: "Robbie Williams", c: "int", s: 1998, v: [300,300, 400,500,600,400,500,600,400,150,80,200],
+    a: {2001:"Swing When You're Winning",2002:"Escapology",2004:"Greatest Hits",2005:"Intensive Care",2006:"Rudebox"} },
+  { n: "Coldplay", c: "int", s: 2002, v: [250,300,150,700,300,150,800,300, 150,500,300,100,300,400,400,300,150,200, 150,250,300,450,300,200,120],
+    a: {2002:"A Rush of Blood to the Head",2005:"X&Y",2008:"Viva la Vida",2011:"Mylo Xyloto",2014:"Ghost Stories",2015:"A Head Full of Dreams",2021:"Music of the Spheres",2024:"Moon Music"} },
+  { n: "Adele", c: "int", s: 2008, v: [100,100, 100,900,800,200,100,500,600,200,100,100, 80,300,200,120,80],
+    a: {2011:"21",2015:"25",2021:"30"} },
+  { n: "Lady Gaga", c: "int", s: 2009, v: [400, 500,450,200,200,100], x: {2024:250,2025:300,2026:150},
+    a: {2009:"The Fame",2011:"Born This Way",2013:"Artpop",2025:"Mayhem"} },
+  { n: "Ed Sheeran", c: "int", s: 2012, v: [150,150,400,400,250,750,550,450, 200,400,400,300,200,250,150],
+    a: {2014:"x",2017:"÷",2019:"No.6 Collaborations Project",2021:"=",2023:"−",2025:"Play"} },
+  { n: "Taylor Swift", c: "int", s: 2009, v: [50, 50,50,100,100,200,250,100,250,150,200, 300,300,450,700,900,800,550],
+    a: {2014:"1989",2017:"Reputation",2019:"Lover",2020:"Folklore",2022:"Midnights",2024:"The Tortured Poets Department",2025:"The Life of a Showgirl"} },
+  { n: "Billie Eilish", c: "int", s: 2019, v: [400, 300,300,250,200,400,350,200],
+    a: {2019:"When We All Fall Asleep, Where Do We Go?",2021:"Happier Than Ever",2024:"Hit Me Hard and Soft"} },
+];
+
+const Y0 = 1980, Y1 = 2026;
+const FRAMES = (Y1 - Y0) * 12;         // un frame per mese: 552
+const MS_PER_FRAME = 6000 / 12;        // 6000 ms per anno → 500 ms per mese
+const X_MAX = 2500000;                 // scala fissa su schermi larghi
+const X_MAX_PHONE = 1500000;           // su telefono: barre più lunghe, i picchi oltre scala vengono tagliati
+const PHONE_MQ = "(max-width: 680px)";
+const VISIBLE = 10;
+const MONTHS = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const ERAS = [
+  { from: 1980, to: 1988, label: "Vinile e musicassetta", short: "Vinile" },
+  { from: 1988, to: 2004, label: "Compact disc", short: "CD" },
+  { from: 2004, to: 2014, label: "Download digitale", short: "Download" },
+  { from: 2014, to: 2026, label: "Streaming", short: "Streaming" },
+];
+const TICKS_ALL = [0, 500000, 1000000, 1500000, 2000000, 2500000];
+const fmt = new Intl.NumberFormat("it-IT");
+const tickLabel = v => v === 0 ? "0" : v < 1e6 ? `${v / 1000} mila` : `${fmt.format(v / 1e6)} mln`;
+
+// Tabella valori annuali (unità): VAL[i][anno - Y0], con un anno extra a 0 in coda.
+const VAL = ARTISTS.map(a => {
+  const row = new Array(Y1 - Y0 + 2).fill(0);
+  a.v.forEach((k, j) => { const y = a.s + j; if (y >= Y0 && y <= Y1) row[y - Y0] = k * 1000; });
+  if (a.x) for (const y in a.x) row[+y - Y0] = a.x[y] * 1000;
+  return row;
+});
+
+function albumFor(a, y) {
+  if (!a.a) return null;
+  let best = null;
+  for (const k in a.a) { const ky = +k; if (ky <= y && y - ky <= 1 && (best === null || ky > best)) best = ky; }
+  return best === null ? null : { title: a.a[best], year: best };
+}
+
+// Interpolazione mese per mese tra i keyframe annuali.
+function frameState(f) {
+  const yi = Math.floor(f / 12), m = f % 12, t = m / 12;
+  const list = ARTISTS.map((a, i) => {
+    const v0 = VAL[i][yi], v1 = VAL[i][yi + 1];
+    return { i, v: v0 + (v1 - v0) * t };
+  });
+  const sorted = list.slice().sort((p, q) => q.v - p.v || p.i - q.i);
+  const rank = new Array(ARTISTS.length);
+  sorted.forEach((d, r) => { rank[d.i] = r; });
+  return { year: Y0 + yi, month: m, list, rank, sorted };
+}
+
+const html = htm.bind(React.createElement);
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+const PlayIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z"/></svg>`;
+const PauseIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 1.5h3.2v11H2.5zM8.3 1.5h3.2v11H8.3z"/></svg>`;
+const RestartIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5a5.5 5.5 0 1 1-5.2 3.7l1.6.6A3.8 3.8 0 1 0 7 3.2V5L3.8 2.4 7 0z"/></svg>`;
+
+function App() {
+  const [frame, setFrame] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const frameRef = useRef(0);
+  const [phone, setPhone] = useState(() => window.matchMedia(PHONE_MQ).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(PHONE_MQ);
+    const on = () => setPhone(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const X_MAX_NOW = phone ? X_MAX_PHONE : X_MAX;
+  const TICKS = TICKS_ALL.filter(t => t <= X_MAX_NOW);
+
+  useEffect(() => {
+    if (!playing) return;
+    let raf, t0 = performance.now() - frameRef.current * MS_PER_FRAME, last = performance.now();
+    const tick = now => {
+      const gap = now - last; last = now;
+      if (gap > 500) t0 += gap - 16;            // scheda in background: non saltare anni
+      const f = Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME));
+      if (f !== frameRef.current) { frameRef.current = f; setFrame(f); }
+      if (f >= FRAMES) { setPlaying(false); return; }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [playing]);
+
+  const toggle = useCallback(() => {
+    if (!playing && frameRef.current >= FRAMES) { frameRef.current = 0; setFrame(0); }
+    setPlaying(p => !p);
+  }, [playing]);
+  const restart = () => { frameRef.current = 0; setFrame(0); setPlaying(true); };
+  const scrub = e => { const f = +e.target.value; setPlaying(false); frameRef.current = f; setFrame(f); };
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.code === "Space" && !["INPUT","BUTTON","SUMMARY"].includes(document.activeElement?.tagName)) { e.preventDefault(); toggle(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [toggle]);
+
+  const st = useMemo(() => frameState(frame), [frame]);
+  const era = ERAS.find(e => st.year >= e.from && st.year < e.to) || ERAS[ERAS.length - 1];
+  const leader = st.sorted[0];
+  const yearRows = useMemo(() => ARTISTS.map((a, i) => ({ a, v: VAL[i][st.year - Y0] }))
+    .filter(d => d.v > 0).sort((p, q) => q.v - p.v).slice(0, VISIBLE), [st.year]);
+  const when = `${MONTHS[st.month]} ${st.year}`;
+  const partial = st.year === 2026;
+
+  return html`
+    <header class="head">
+      <div class="head-text">
+        <span class="eyebrow">Mercato discografico italiano · 1980–2026</span>
+        <h1>Hit Parade Italia</h1>
+        <p class="lede">I dieci artisti con più unità vendute in Italia, anno per anno. Dischi fisici, download e, dal 2014, stream convertiti in album equivalenti. I valori sono annuali, non cumulativi.</p>
+      </div>
+      <div class="legend" aria-label="Legenda">
+        <span><i class="sw it"></i>Artisti italiani</span>
+        <span><i class="sw int"></i>Artisti internazionali</span>
+      </div>
+    </header>
+
+    <section class="stage" aria-label="Classifica animata">
+      <div class="wm-wrap" aria-hidden="true"><div class="wm" key=${st.year}>${st.year}</div></div>
+
+      <div class="stage-top">
+        <span class="stage-title">Top 10 · unità vendute nell'anno</span>
+        <span class="leader">In testa: <b>${ARTISTS[leader.i].n}</b> · ${fmt.format(Math.round(leader.v / 1000) * 1000)}</span>
+      </div>
+
+      <div class="axis cols" aria-hidden="true">
+        <span></span><span></span>
+        <div class="plotin">
+          ${TICKS.map(t => html`<span class="tick" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}>${tickLabel(t)}</span>`)}
+        </div>
+      </div>
+
+      <div class="rows">
+        <div class="gridlayer cols" aria-hidden="true">
+          <div class="ranks">${Array.from({ length: VISIBLE }, (_, r) => html`<span key=${r}>${r + 1}</span>`)}</div>
+          <span></span>
+          <div class="plotin">${TICKS.map(t => html`<i class="gl" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}></i>`)}</div>
+        </div>
+
+        ${ARTISTS.map((a, i) => {
+          const r = st.rank[i];
+          const v = st.list[i].v;
+          const on = r < VISIBLE && v > 0;
+          const pos = on ? r : VISIBLE;
+          const pct = Math.min(100, (v / X_MAX_NOW) * 100);
+          const alb = albumFor(a, st.year);
+          const shown = fmt.format(Math.round(v / 1000) * 1000);
+          return html`
+            <div key=${a.n} class=${`row cols${on ? "" : " off"}${r >= 6 ? " low" : ""}`}
+                 style=${{ transform: `translateY(calc(${pos} * var(--row)))` }}
+                 tabindex=${on ? 0 : -1} aria-hidden=${on ? "false" : "true"}
+                 aria-label=${`${r + 1}°, ${a.n}, ${shown} unità`}>
+              <span></span>
+              <div class="label">
+                <span class="name">${a.n}</span>
+                ${alb && html`<span class="sub">${alb.title}</span>`}
+              </div>
+              <div class="plotin">
+                <div class=${`bar ${a.c}${v > X_MAX_NOW ? " over" : ""}`} style=${{ width: `${pct}%` }}></div>
+                <span class="val" style=${{ left: `${pct}%` }}>${shown}</span>
+              </div>
+              <div class="tip" role="tooltip">
+                <span class="t-name"><i class=${`sw ${a.c}`}></i>${a.n}</span>
+                <span class="t-val">${shown} unità · ${r + 1}° posto</span>
+                <span class="t-muted">${a.c === "it" ? "Italia" : "Internazionale"} · ${when}</span>
+                ${alb && html`<span class="t-muted">Di punta: ${alb.title} (${alb.year})</span>`}
+              </div>
+            </div>`;
+        })}
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Controlli">
+      <div class="transport">
+        <button class="btn primary" id="play" onClick=${toggle} aria-label=${playing ? "Metti in pausa" : "Riproduci"}>
+          ${playing ? html`<${PauseIcon}/>` : html`<${PlayIcon}/>`}${playing ? "Pausa" : frame >= FRAMES ? "Rivedi" : "Riproduci"}
+        </button>
+        <button class="btn" id="restart" onClick=${restart}><${RestartIcon}/>Dal 1980</button>
+        <div class="readout">
+          <span class="when">${when}${partial ? "*" : ""}</span>
+          <span class="era-chip">${era.label}</span>
+        </div>
+      </div>
+      <div class="timeline">
+        <input class="scrub" id="scrub" type="range" min="0" max=${FRAMES} step="1" value=${frame}
+               onInput=${scrub} onChange=${scrub}
+               aria-label="Posizione nel tempo" aria-valuetext=${when} />
+        <div class="eras" aria-hidden="true">
+          ${ERAS.map(e => html`<div key=${e.label} class=${e === era ? "on" : ""} style=${{ flex: `${e.to - e.from} 1 0` }} title=${e.label}><span class="long">${e.label}</span><span class="short">${e.short}</span></div>`)}
+        </div>
+        <div class="decades" aria-hidden="true">
+          ${[1980, 1990, 2000, 2010, 2020, 2026].map(y => html`<span key=${y} style=${{ left: `${((y - Y0) * 12 / FRAMES) * 100}%` }}>${y}</span>`)}
+        </div>
+      </div>
+    </section>
+
+    <details>
+      <summary>Tabella dei valori ${st.year}</summary>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Pos.</th><th>Artista</th><th>Provenienza</th><th class="num">Unità ${st.year}</th></tr></thead>
+          <tbody>
+            ${yearRows.map((d, r) => html`<tr key=${d.a.n}><td>${r + 1}</td><td>${d.a.n}</td><td>${d.a.c === "it" ? "Italia" : "Internazionale"}</td><td class="num">${fmt.format(d.v)}</td></tr>`)}
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <p class="note">Nota sui dati: FIMI pubblica le vendite per artista solo in forma di certificazioni e classifiche, quindi i valori sono stime ricostruite a partire da certificazioni, classifiche di fine anno e cronache di settore, arrotondate al migliaio. Dal 2014 gli stream sono convertiti in unità equivalenti. Il titolo sotto il nome è l'album o il brano di punta dell'anno o di quello precedente. Sul telefono la scala arriva a 1,5 milioni: le barre più lunghe vengono tagliate, ma il valore resta indicato. *Il 2026 è una proiezione a fine anno.</p>
+  `;
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(html`<${App} />`);
+</script>
+</body>
+</html>
