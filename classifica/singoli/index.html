@@ -939,7 +939,7 @@ function App() {
     const tick = now => {
       const gap = now - last; last = now;
       if (gap > 500) t0 += gap - 16;
-      const f = Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME));
+      const f = Math.max(0, Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME)));
       if (f !== frameRef.current) { frameRef.current = f; setFrame(f); }
       if (f >= FRAMES) { setPlaying(false); return; }
       raf = requestAnimationFrame(tick);

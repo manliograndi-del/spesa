@@ -333,7 +333,7 @@ function App() {
     const tick = now => {
       const gap = now - last; last = now;
       if (gap > 500) t0 += gap - 16;
-      const f = Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME));
+      const f = Math.max(0, Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME)));
       if (f !== frameRef.current) { frameRef.current = f; setFrame(f); }
       if (f >= FRAMES) { setPlaying(false); return; }
       raf = requestAnimationFrame(tick);
@@ -361,7 +361,7 @@ function App() {
   const era = ERAS.find(e => st.year >= e.from && st.year < e.to) || ERAS[ERAS.length - 1];
   const leader = SONGS[st.sorted[0].i];
   const yearRows = useMemo(() => SONGS.filter(s => s.score[st.year]).sort((p, q) => q.score[st.year] - p.score[st.year]).slice(0, 10), [st.year]);
-  const w = WEIGHTS[st.year];
+  const w = WEIGHTS[st.year] || WEIGHTS[Y0];
   const when = `${MONTHS[st.month]} ${st.year}`;
   const mounted = st.sorted.slice(0, RENDER).map(d => d.i).sort((a, b) => a - b);
 
