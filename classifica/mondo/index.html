@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Hit Parade Mondiale</title>
+<meta name="description" content="Bar chart race dei singoli di maggior successo dal 1966 al 2025, combinando le classifiche annuali di USA, Regno Unito, Germania e Italia.">
+<link rel="icon" href="../../favicon-32.png" sizes="32x32">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one broadcast "stage" panel — fixed rank rail, song column, bar track — with the year watermark dropping in behind the bars; transport controls and a format timeline underneath. */
+:root {
+  --bg: #f2f4f7;
+  --panel: #ffffff;
+  --fg: #13161b;
+  --fg2: #4a5260;
+  --fg3: #7a8291;
+  --line: #e1e5ec;
+  --track: #eef1f5;
+  --both: #2a78d6;
+  --us: #eb6834;
+  --eu: #1baf7a;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --row: 50px;
+  --label: 250px;
+  --rail: 34px;
+  --valroom: 80px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+    --line: #2a2f38; --track: #1f232a; --both: #3987e5; --us: #d95926; --eu: #199e70; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+  --line: #2a2f38; --track: #1f232a; --both: #3987e5; --us: #d95926; --eu: #199e70; color-scheme: dark;
+}
+@media (max-width: 680px) {
+  :root { --row: 52px; --label: 0px; --rail: 22px; --valroom: 60px; }
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 40px;
+}
+#app { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
+.head-text { min-width: 0; display: grid; gap: 4px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 7vw, 68px); line-height: .9; letter-spacing: .005em; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--fg2); max-width: 62ch; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 10px; border-radius: 0 3px 3px 0; display: inline-block; flex: none; }
+.sw.both { background: var(--both); } .sw.us { background: var(--us); } .sw.eu { background: var(--eu); }
+
+.stage {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px 18px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.stage-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.stage-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg3); }
+.leader { font-size: 13px; color: var(--fg2); min-width: 0; }
+.leader b { color: var(--fg); font-weight: 600; }
+
+.wm-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.wm {
+  position: absolute; left: 50%; top: 56%;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(150px, 31vw, 400px); line-height: .8;
+  letter-spacing: -.01em; color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  opacity: .1;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: 50% 50%;
+  animation: yearDrop 1050ms cubic-bezier(.2, .85, .25, 1) both;
+  white-space: nowrap;
+}
+@keyframes yearDrop {
+  0%   { transform: translate(-50%, -260%) scale(4.6); opacity: 0; }
+  10%  { opacity: .5; }
+  40%  { transform: translate(-50%, -50%) scale(.84); opacity: .24; }
+  62%  { transform: translate(-50%, -50%) scale(1.045); opacity: .14; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: .1; }
+}
+
+.cols { display: grid; grid-template-columns: var(--rail) var(--label) minmax(0, 1fr); }
+.plotin { position: relative; height: 100%; margin-right: var(--valroom); }
+
+.axis { position: relative; z-index: 1; height: 22px; }
+.axis .tick { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.axis .tick:first-child { transform: none; }
+
+.rows { position: relative; z-index: 1; height: calc(var(--row) * 10); }
+.gridlayer { position: absolute; inset: 0; pointer-events: none; }
+.gridlayer .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.ranks { display: grid; grid-template-rows: repeat(10, var(--row)); }
+.ranks span { display: flex; align-items: center; font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+
+.row {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: var(--row);
+  transition: transform 1100ms cubic-bezier(.45, 0, .2, 1), opacity 700ms ease;
+  will-change: transform;
+  outline: none;
+}
+.row.off { opacity: 0; pointer-events: none; }
+.label { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding-right: 12px; }
+.name { font-weight: 600; font-size: 15px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub { font-size: 11.5px; color: var(--fg3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.bar {
+  position: absolute; left: 0; top: 50%;
+  height: 62%; transform: translateY(-50%);
+  border-radius: 0 4px 4px 0;
+  transition: width 500ms linear;
+}
+.bar.both { background: var(--both); }
+.bar.us { background: var(--us); }
+.bar.eu { background: var(--eu); }
+.bar.over { border-radius: 0; background-image: linear-gradient(90deg, transparent calc(100% - 9px), var(--panel) calc(100% - 9px), var(--panel) calc(100% - 6px), transparent calc(100% - 6px)); }
+.val {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  padding-left: 8px; font-size: 13px; font-weight: 600; color: var(--fg2);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  transition: left 500ms linear;
+}
+.row:hover .bar, .row:focus-visible .bar { filter: brightness(1.08); }
+.row:focus-visible .name { text-decoration: underline; text-underline-offset: 3px; }
+
+.tip {
+  position: absolute; z-index: 5; left: calc(var(--rail) + var(--label) - 4px); top: calc(100% - 4px);
+  background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgb(0 0 0 / .14);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; min-width: 210px; max-width: min(340px, 80vw);
+  display: none; pointer-events: none;
+}
+.row:hover .tip, .row:focus .tip { display: grid; gap: 2px; }
+.row.low .tip { top: auto; bottom: calc(100% - 4px); }
+.tip .t-name { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.tip .t-val { font-variant-numeric: tabular-nums; }
+.tip .t-muted { color: var(--fg3); font-size: 12px; }
+
+.controls { display: grid; gap: 10px; }
+.transport { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn {
+  appearance: none; border: 1px solid var(--line); background: var(--panel); color: var(--fg);
+  font: 600 14px/1 var(--body); height: 40px; padding: 0 16px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+}
+.btn:hover { border-color: var(--fg3); }
+.btn:focus-visible, .scrub:focus-visible { outline: 2px solid var(--both); outline-offset: 2px; }
+.btn.primary { background: var(--fg); color: var(--panel); border-color: var(--fg); min-width: 116px; justify-content: center; }
+.btn svg { width: 14px; height: 14px; fill: currentColor; }
+.readout { margin-left: auto; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.readout .when { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.era-chip { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+.timeline { position: relative; display: grid; gap: 6px; }
+.scrub { width: 100%; margin: 0; accent-color: var(--fg); cursor: pointer; }
+.eras { display: flex; height: 22px; border-radius: 6px; overflow: hidden; gap: 2px; }
+.eras div { min-width: 0; background: var(--track); color: var(--fg3); font-size: 11px; font-weight: 600; letter-spacing: .04em; display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background .3s, color .3s; }
+.eras div.on { background: var(--fg); color: var(--panel); }
+.eras .short { display: none; }
+.decades { position: relative; height: 16px; font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+.decades span { position: absolute; transform: translateX(-50%); }
+.decades span:first-child { transform: none; }
+.decades span:last-child { transform: translateX(-100%); }
+
+details { border-top: 1px solid var(--line); padding-top: 12px; }
+summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--fg2); }
+.tbl-wrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; max-width: 760px; font-size: 13.5px; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+th { color: var(--fg3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+
+.note { color: var(--fg3); font-size: 12.5px; max-width: 80ch; margin: 0; }
+.note + .note { margin-top: -8px; }
+.t-ranks { display: flex; flex-wrap: wrap; gap: 4px 10px; font-variant-numeric: tabular-nums; }
+.t-ranks b { font-weight: 700; }
+td.dim { color: var(--fg3); }
+
+@media (max-width: 680px) {
+  body { padding-block: 18px 32px; font-size: 14px; }
+  .lede { font-size: 14px; }
+  .cols { grid-template-columns: var(--rail) minmax(0, 1fr); }
+  .axis > span:nth-child(2), .gridlayer > span { display: none; }
+  .row.cols { grid-template-rows: 22px minmax(0, 1fr); padding-bottom: 6px; }
+  .row > span:first-child { grid-row: 1 / 3; }
+  .row .label { grid-column: 2; grid-row: 1; flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: 6px; padding-right: 0; }
+  .row .plotin { grid-column: 2; grid-row: 2; }
+  .name { font-size: 13px; flex: 0 1 auto; max-width: 72%; }
+  .sub { font-size: 10.5px; flex: 1 1 0; min-width: 0; }
+  .bar { height: 16px; }
+  .val { font-size: 11.5px; padding-left: 5px; }
+  .ranks span { font-size: 16px; }
+  .tip { left: var(--rail); right: 0; min-width: 0; }
+  .wm { font-size: clamp(110px, 34vw, 400px); }
+  .stage { padding: 12px 10px 14px; border-radius: 12px; }
+  .stage-top { flex-direction: column; gap: 2px; }
+  .transport { gap: 8px; }
+  .btn { height: 44px; padding: 0 14px; }
+  .btn.primary { flex: 1 1 auto; }
+  .readout { margin-left: 0; width: 100%; justify-content: space-between; order: -1; }
+  .readout .when { font-size: 24px; }
+  .eras div { font-size: 10.5px; padding: 0 5px; }
+  .eras .long { display: none; }
+  .eras .short { display: inline; }
+  .scrub { height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .row, .bar, .val { transition: none; }
+  .wm { animation: none; }
+}
+</style>
+<style>
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+/* DATI — classifiche annuali (top 10) di USA, Regno Unito, Germania e Italia, 1966–2025.
+   Formato: [titolo, artista, categoria, [[anno, punteggio, [pos. USA, UK, DE, IT (0 = assente)]], ...]]
+   Punteggio = somma su ogni paese di peso% x posizione^-0.55 (n. 1 = 1). */
+const DATA = [["California Dreamin'","The Mamas & the Papas","us",[[1966,54.8,[1,0,0,0]]]],["96 Tears","? and the Mysterians","us",[[1966,37.4,[2,0,0,0]]]],["What Becomes of the Brokenhearted","Jimmy Ruffin","us",[[1966,29.9,[3,0,0,0]]]],["Last Train to Clarksville","The Monkees","us",[[1966,25.6,[4,0,0,0]]]],["Reach Out I'll Be There","Four Tops","us",[[1966,22.6,[5,0,0,0]]]],["These Boots Are Made for Walkin'","Nancy Sinatra","both",[[1966,37.9,[6,6,3,0]]]],["Cherish","The Association","us",[[1966,18.8,[7,0,0,0]]]],["Strangers in the Night","Frank Sinatra","both",[[1966,52.3,[8,2,1,5]]]],["Kicks","Paul Revere & the Raiders","us",[[1966,16.4,[9,0,0,0]]]],["The Ballad of the Green Berets","Barry Sadler","us",[[1966,15.4,[10,0,0,0]]]],["Distant Drums","Jim Reeves","eu",[[1966,18.9,[0,1,0,0]]]],["Spanish Flea","Herb Alpert","eu",[[1966,10.3,[0,3,0,0]]]],["Sloop John B","The Beach Boys","eu",[[1966,13.5,[0,5,9,0]]]],["Hundert Mann und ein Befehl","Freddy Quinn","eu",[[1966,12.9,[0,0,2,0]]]],["To Sir With Love","Lulu","us",[[1967,54.5,[1,0,0,0]]]],["The Letter","The Box Tops","us",[[1967,37.2,[2,0,0,0]]]],["Ode to Billie Joe","Bobbie Gentry","us",[[1967,29.8,[3,0,0,0]]]],["Windy","The Association","us",[[1967,25.4,[4,0,0,0]]]],["I'm a Believer","The Monkees","both",[[1967,34.7,[5,8,8,0]]]],["Light My Fire","The Doors","us",[[1967,20.3,[6,0,0,0]]]],["Somethin' Stupid","Frank & Nancy Sinatra","us",[[1967,18.7,[7,0,0,0]]]],["Happy Together","The Turtles","us",[[1967,17.4,[8,0,0,0]]]],["Groovin'","The Young Rascals","us",[[1967,16.3,[9,0,0,0]]]],["Can't Take My Eyes Off You","Frankie Valli","us",[[1967,15.3,[10,0,0,0]]]],["Release Me (And Let Me Love Again)","Engelbert Humperdinck","eu",[[1967,19.0,[0,1,0,0]]]],["There Goes My Everything","Engelbert Humperdinck","eu",[[1967,13.0,[0,2,0,0]]]],["Puppet on a String","Sandie Shaw","eu",[[1967,20.2,[0,6,2,0]]]],["I’ll Never Fall in Love Again","Tom Jones","both",[[1967,5.7,[0,9,0,0]],[1969,17.1,[8,0,0,0]]]],["Schiwago-Melodie (Lara’s Theme)","Maurice Jarre Orchester","eu",[[1967,19.2,[0,0,1,0]]]],["Hey Jude","The Beatles","both",[[1968,59.5,[1,10,0,0]]]],["Love is Blue","Paul Mauriat","both",[[1968,39.1,[2,0,0,9]]]],["Honey","Bobby Goldsboro","us",[[1968,29.6,[3,0,0,0]]]],["(Sittin' On) The Dock of the Bay","Otis Redding","us",[[1968,25.2,[4,0,0,0]]]],["People Got to Be Free","The Rascals","us",[[1968,22.3,[5,0,0,0]]]],["Sunshine of Your Love","Cream","us",[[1968,20.2,[6,0,0,0]]]],["This Guy's in Love with You","Herb Alpert","us",[[1968,18.6,[7,0,0,0]]]],["The Good, the Bad and the Ugly","Hugo Montenegro","both",[[1968,22.9,[8,9,0,0]]]],["Mrs. Robinson","Simon & Garfunkel","us",[[1968,16.2,[9,0,0,0]]]],["Tighten Up","Archie Bell & the Drells","us",[[1968,15.3,[10,0,0,0]]]],["What a Wonderful World / Cabaret","Louis Armstrong","eu",[[1968,19.1,[0,1,0,0]]]],["Help Yourself","Tom Jones","eu",[[1968,16.2,[0,4,6,0]]]],["Delilah","Tom Jones","eu",[[1968,20.3,[0,6,3,7]]]],["Mama","Heintje","eu",[[1968,19.6,[0,0,1,0]]]],["Sugar, Sugar","The Archies","us",[[1969,53.8,[1,0,0,0]]]],["Aquarius/Let the Sunshine In","The 5th Dimension","us",[[1969,36.8,[2,0,0,0]]]],["I Can't Get Next to You","The Temptations","us",[[1969,29.4,[3,0,0,0]]]],["Honky Tonk Women","The Rolling Stones","both",[[1969,34.0,[4,4,0,0]]]],["Everyday People","Sly and the Family Stone","us",[[1969,22.2,[5,0,0,0]]]],["Dizzy","Tommy Roe","both",[[1969,25.5,[6,10,0,0]]]],["Hot Fun in the Summertime","Sly and the Family Stone","us",[[1969,18.4,[7,0,0,0]]]],["Build Me Up Buttercup","The Foundations","us",[[1969,16.1,[9,0,0,0]]]],["Crimson and Clover","Tommy James and the Shondells","us",[[1969,15.2,[10,0,0,0]]]],["My Way","Frank Sinatra","eu",[[1969,19.2,[0,1,0,0]]]],["Je t’aime … moi non plus","Jane Birkin & Serge Gainsbourg","eu",[[1969,13.1,[0,2,0,0]]]],["Eloise","Barry Ryan","eu",[[1969,23.2,[0,0,1,4]]]],["Oh Happy Day","Edwin Hawkins Singers","eu",[[1969,13.6,[0,0,2,0]]]],["Bridge Over Troubled Water","Simon & Garfunkel","both",[[1970,59.6,[1,8,0,0]]]],["(They Long to Be) Close to You","The Carpenters","us",[[1970,36.5,[2,0,0,0]]]],["American Woman","The Guess Who","us",[[1970,29.2,[3,0,0,0]]]],["Raindrops Keep Fallin' on My Head","B.J. Thomas","us",[[1970,24.9,[4,0,0,0]]]],["War","Edwin Starr","us",[[1970,22.1,[5,0,0,0]]]],["Ain't No Mountain High Enough","Diana Ross","us",[[1970,20.0,[6,0,0,0]]]],["I'll Be There","The Jackson 5","us",[[1970,18.3,[7,0,0,0]]]],["Get Ready","Rare Earth","us",[[1970,17.0,[8,0,0,0]]]],["Let It Be","The Beatles","both",[[1970,26.4,[9,0,6,5]]]],["Band of Gold","Freda Payne","both",[[1970,24.1,[10,4,0,0]]]],["The Wonder of You","Elvis Presley","eu",[[1970,19.2,[0,1,0,0]]]],["Yellow River","Christie","eu",[[1970,19.2,[0,2,9,0]]]],["In the Summertime","Mungo Jerry","eu",[[1970,22.2,[0,3,5,4]]]],["El Condor Pasa (If I Could)","Simon & Garfunkel","eu",[[1970,20.2,[0,0,1,0]]]],["Joy to the World","Three Dog Night","us",[[1971,53.1,[1,0,0,0]]]],["Maggie May/Reason to Believe","Rod Stewart","us",[[1971,36.3,[2,0,0,0]]]],["It's Too Late/I Feel the Earth Move","Carole King","us",[[1971,29.0,[3,0,0,0]]]],["One Bad Apple","The Osmonds","us",[[1971,24.8,[4,0,0,0]]]],["How Can You Mend a Broken Heart","Bee Gees","us",[[1971,21.9,[5,0,0,0]]]],["Indian Reservation (The Lament of the Cherokee Reservation Indian)","Raiders","us",[[1971,19.8,[6,0,0,0]]]],["Go Away Little Girl","Donny Osmond","us",[[1971,18.2,[7,0,0,0]]]],["Take Me Home, Country Roads","John Denver","us",[[1971,16.9,[8,0,0,0]]]],["Just My Imagination (Running Away with Me)","The Temptations","us",[[1971,15.9,[9,0,0,0]]]],["Knock Three Times","Tony Orlando and Dawn","both",[[1971,24.0,[10,4,0,0]]]],["My Sweet Lord","George Harrison","eu",[[1971,29.3,[0,1,7,5]]]],["Maggie May / Reason to Believe","Rod Stewart","eu",[[1971,13.2,[0,2,0,0]]]],["Chirpy Chirpy Cheep Cheep","Middle of the Road","eu",[[1971,24.6,[0,3,2,0]]]],["Butterfly","Danyel Gérard","eu",[[1971,20.5,[0,0,1,0]]]],["The First Time Ever I Saw Your Face","Roberta Flack","us",[[1972,52.8,[1,0,0,0]]]],["Alone Again (Naturally)","Gilbert O'Sullivan","us",[[1972,36.1,[2,0,0,0]]]],["American Pie","Don McLean","both",[[1972,34.3,[3,10,0,0]]]],["Without You","Harry Nilsson","both",[[1972,35.8,[4,4,0,9]]]],["The Candy Man","Sammy Davis Jr.","us",[[1972,21.8,[5,0,0,0]]]],["I Gotcha","Joe Tex","us",[[1972,19.7,[6,0,0,0]]]],["Lean on Me","Bill Withers","us",[[1972,18.1,[7,0,0,0]]]],["Baby, Don't Get Hooked on Me","Mac Davis","us",[[1972,16.8,[8,0,0,0]]]],["Brand New Key","Melanie","us",[[1972,15.8,[9,0,0,0]]]],["Daddy Don't You Walk So Fast","Wayne Newton","us",[[1972,14.9,[10,0,0,0]]]],["Amazing Grace","The Pipes and Drums and Military Band of the Royal Scots Dragoon Guards","eu",[[1972,19.4,[0,1,0,0]]]],["Mouldy Old Dough","Lieutenant Pigeon","eu",[[1972,13.2,[0,2,0,0]]]],["Komm gib mir deine Hand","Tony Marshall","eu",[[1972,20.9,[0,0,1,0]]]],["One Way Wind","The Cats","eu",[[1972,14.2,[0,0,2,0]]]],["Tie a Yellow Ribbon Round the Ole Oak Tree","Tony Orlando and Dawn","both",[[1973,71.9,[1,1,0,0]]]],["Bad, Bad Leroy Brown","Jim Croce","us",[[1973,35.8,[2,0,0,0]]]],["Killing Me Softly with His Song","Roberta Flack","us",[[1973,28.7,[3,0,0,0]]]],["Let's Get It On","Marvin Gaye","us",[[1973,24.5,[4,0,0,0]]]],["My Love","Paul McCartney & Wings","both",[[1973,24.2,[5,0,0,6]]]],["Why Me","Kris Kristofferson","us",[[1973,19.6,[6,0,0,0]]]],["Crocodile Rock","Elton John","both",[[1973,24.9,[7,0,0,1]]]],["Will It Go Round in Circles","Billy Preston","us",[[1973,16.7,[8,0,0,0]]]],["You're So Vain","Carly Simon","us",[[1973,15.7,[9,0,0,0]]]],["Touch Me in the Morning","Diana Ross","us",[[1973,14.8,[10,0,0,0]]]],["Eye Level","Simon Park Orchestra","eu",[[1973,13.3,[0,2,0,0]]]],["Goodbye, My Love, Goodbye","Demis Roussos","eu",[[1973,21.2,[0,0,1,0]]]],["Get Down","Gilbert O’Sullivan","eu",[[1973,14.5,[0,0,2,0]]]],["Dreams Are Ten a Penny (Jenny Jenny)","Kincade","eu",[[1973,11.6,[0,0,3,0]]]],["The Way We Were","Barbra Streisand","us",[[1974,52.1,[1,0,0,0]]]],["Seasons in the Sun","Terry Jacks","both",[[1974,59.0,[2,2,4,0]]]],["Love's Theme","Love Unlimited Orchestra","us",[[1974,28.5,[3,0,0,0]]]],["Come and Get Your Love","Redbone","us",[[1974,24.3,[4,0,0,0]]]],["Dancing Machine","The Jackson 5","us",[[1974,21.5,[5,0,0,0]]]],["The Loco-Motion","Grand Funk Railroad","us",[[1974,19.4,[6,0,0,0]]]],["TSOP (The Sound of Philadelphia)","MFSB & The Three Degrees","both",[[1974,24.3,[7,0,9,0]]]],["The Streak","Ray Stevens","us",[[1974,16.6,[8,0,0,0]]]],["Bennie and the Jets","Elton John","us",[[1974,15.6,[9,0,0,0]]]],["One Hell of a Woman","Mac Davis","us",[[1974,14.7,[10,0,0,0]]]],["Tiger Feet","Mud","eu",[[1974,19.6,[0,1,0,0]]]],["Sugar Baby Love","The Rubettes","eu",[[1974,27.4,[0,9,1,0]]]],["Dan the Banjo Man","Dan the Banjo Man","eu",[[1974,14.7,[0,0,2,0]]]],["Theo, wir fahr’n nach Lodz","Vicky Leandros","eu",[[1974,11.8,[0,0,3,0]]]],["Love Will Keep Us Together","Captain & Tennille","us",[[1975,51.8,[1,0,0,0]]]],["Rhinestone Cowboy","Glen Campbell","us",[[1975,35.4,[2,0,0,0]]]],["Philadelphia Freedom","Elton John","us",[[1975,28.3,[3,0,0,0]]]],["Before the Next Teardrop Falls","Freddy Fender","us",[[1975,24.1,[4,0,0,0]]]],["My Eyes Adored You","Frankie Valli","us",[[1975,21.4,[5,0,0,0]]]],["Some Kind of Wonderful","Grand Funk Railroad","us",[[1975,19.3,[6,0,0,0]]]],["Shining Star","Earth, Wind & Fire","us",[[1975,17.8,[7,0,0,0]]]],["Fame","David Bowie","us",[[1975,16.5,[8,0,0,0]]]],["Laughter in the Rain","Neil Sedaka","us",[[1975,15.5,[9,0,0,0]]]],["One of These Nights","Eagles","us",[[1975,14.6,[10,0,0,0]]]],["Bye Bye Baby","Bay City Rollers","eu",[[1975,19.6,[0,1,0,0]]]],["Sailing","Rod Stewart","eu",[[1975,13.4,[0,2,0,0]]]],["Paloma Blanca","George Baker Selection","eu",[[1975,21.9,[0,0,1,0]]]],["Griechischer Wein","Udo Jürgens","eu",[[1975,15.0,[0,0,2,0]]]],["Silly Love Songs","Wings","us",[[1976,51.4,[1,0,0,0]]]],["Don't Go Breaking My Heart","Elton John & Kiki Dee","both",[[1976,48.6,[2,2,0,0]]]],["Disco Lady","Johnnie Taylor","us",[[1976,28.1,[3,0,0,0]]]],["December, 1963 (Oh, What a Night)","The Four Seasons","us",[[1976,24.0,[4,0,0,0]]]],["Play That Funky Music","Wild Cherry","us",[[1976,21.2,[5,0,0,0]]]],["Kiss and Say Goodbye","The Manhattans","us",[[1976,19.2,[6,0,0,0]]]],["Love Machine","The Miracles","us",[[1976,17.6,[7,0,0,0]]]],["50 Ways to Leave Your Lover","Paul Simon","us",[[1976,16.4,[8,0,0,0]]]],["Love Is Alive","Gary Wright","us",[[1976,15.3,[9,0,0,0]]]],["A Fifth of Beethoven","Walter Murphy & The Big Apple Band","us",[[1976,14.5,[10,0,0,0]]]],["Save Your Kisses for Me","Brotherhood of Man","eu",[[1976,19.7,[0,1,0,0]]]],["Mississippi","Pussycat","eu",[[1976,26.0,[0,3,2,0]]]],["Fernando","ABBA","eu",[[1976,17.1,[0,7,4,0]]]],["Die kleine Kneipe","Peter Alexander","eu",[[1976,22.3,[0,0,1,0]]]],["Tonight's the Night (Gonna Be Alright)","Rod Stewart","us",[[1977,51.1,[1,0,0,0]]]],["I Just Want to Be Your Everything","Andy Gibb","us",[[1977,34.9,[2,0,0,0]]]],["Best of My Love","The Emotions","us",[[1977,27.9,[3,0,0,0]]]],["Evergreen (Love Theme from A Star Is Born)","Barbra Streisand","us",[[1977,23.8,[4,0,0,0]]]],["Angel in Your Arms","Hot","us",[[1977,21.1,[5,0,0,0]]]],["I Like Dreamin'","Kenny Nolan","us",[[1977,19.1,[6,0,0,0]]]],["Don't Leave Me This Way","Thelma Houston","us",[[1977,17.5,[7,0,0,0]]]],["(Your Love Has Lifted Me) Higher and Higher","Rita Coolidge","us",[[1977,16.3,[8,0,0,0]]]],["Undercover Angel","Alan O'Day","us",[[1977,15.2,[9,0,0,0]]]],["Torn Between Two Lovers","Mary MacGregor","us",[[1977,14.4,[10,0,0,0]]]],["Mull of Kintyre / Girls’ School","Wings","eu",[[1977,19.8,[0,1,0,0]]]],["Don’t Cry for Me Argentina","Julie Covington","eu",[[1977,33.4,[0,3,1,0]]]],["Knowing Me, Knowing You","ABBA","eu",[[1977,14.1,[0,6,9,0]]]],["Ma Baker","Boney M.","eu",[[1977,15.4,[0,0,2,0]]]],["Shadow Dancing","Andy Gibb","us",[[1978,50.7,[1,0,0,0]]]],["Night Fever","Bee Gees","both",[[1978,50.7,[2,5,7,0]]]],["You Light Up My Life","Debby Boone","us",[[1978,27.7,[3,0,0,0]]]],["Stayin' Alive","Bee Gees","both",[[1978,35.5,[4,0,5,6]]]],["Kiss You All Over","Exile","us",[[1978,20.9,[5,0,0,0]]]],["How Deep Is Your Love","Bee Gees","us",[[1978,18.9,[6,0,0,0]]]],["Baby Come Back","Player","us",[[1978,17.4,[7,0,0,0]]]],["(Love Is) Thicker Than Water","Andy Gibb","us",[[1978,16.2,[8,0,0,0]]]],["Boogie Oogie Oogie","A Taste of Honey","us",[[1978,15.1,[9,0,0,0]]]],["Three Times a Lady","Commodores","both",[[1978,23.6,[10,4,0,0]]]],["Rivers of Babylon / Brown Girl in the Ring","Boney M.","eu",[[1978,19.9,[0,1,0,0]]]],["You’re the One That I Want","John Travolta & Olivia Newton-John","eu",[[1978,26.9,[0,2,4,5]]]],["Das Lied der Schlümpfe","Vader Abraham","eu",[[1978,23.0,[0,0,1,0]]]],["Rivers of Babylon","Boney M.","eu",[[1978,15.7,[0,0,2,0]]]],["My Sharona","The Knack","both",[[1979,50.4,[1,0,0,0]],[1980,1.9,[0,0,0,9]]]],["Bad Girls","Donna Summer","us",[[1979,34.4,[2,0,0,0]]]],["Le Freak","Chic","us",[[1979,27.5,[3,0,0,0]]]],["Da Ya Think I'm Sexy?","Rod Stewart","us",[[1979,23.5,[4,0,0,0]]]],["Reunited","Peaches & Herb","us",[[1979,20.8,[5,0,0,0]]]],["I Will Survive","Gloria Gaynor","both",[[1979,26.2,[6,6,0,0]]]],["Hot Stuff","Donna Summer","us",[[1979,17.3,[7,0,0,0]]]],["Y.M.C.A.","Village People","both",[[1979,28.8,[8,0,3,0]]]],["Ring My Bell","Anita Ward","us",[[1979,15.0,[9,0,0,0]]]],["Sad Eyes","Robert John","us",[[1979,14.2,[10,0,0,0]]]],["Bright Eyes","Art Garfunkel","eu",[[1979,29.6,[0,1,5,0]]]],["Heart of Glass","Blondie","eu",[[1979,24.5,[0,2,4,0]]]],["So bist du","Peter Maffay","eu",[[1979,23.4,[0,0,1,0]]]],["Born to Be Alive","Patrick Hernandez","eu",[[1979,16.0,[0,0,2,0]]]],["Call Me","Blondie","us",[[1980,50.0,[1,0,0,0]]]],["Another Brick in the Wall, Part II","Pink Floyd","us",[[1980,34.1,[2,0,0,0]]]],["Magic","Olivia Newton-John","us",[[1980,27.3,[3,0,0,0]]]],["Rock with You","Michael Jackson","us",[[1980,23.3,[4,0,0,0]]]],["Do That to Me One More Time","Captain & Tennille","us",[[1980,20.6,[5,0,0,0]]]],["Crazy Little Thing Called Love","Queen","us",[[1980,18.7,[6,0,0,0]]]],["Coming Up","Paul McCartney","us",[[1980,17.1,[7,0,0,0]]]],["Funkytown","Lipps Inc.","us",[[1980,15.9,[8,0,0,0]]]],["It's Still Rock and Roll to Me","Billy Joel","us",[[1980,14.9,[9,0,0,0]]]],["The Rose","Bette Midler","us",[[1980,14.1,[10,0,0,0]]]],["Don’t Stand So Close to Me","The Police","eu",[[1980,20.0,[0,1,0,0]]]],["Woman in Love","Barbra Streisand","eu",[[1980,13.7,[0,2,0,0]],[1981,3.5,[0,0,0,3]]]],["(Just Like) Starting Over","John Lennon","both",[[1980,5.6,[0,10,0,0]],[1981,23.2,[4,0,0,0]]]],["Sun of Jamaica","Goombay Dance Band","eu",[[1980,23.8,[0,0,1,0]]]],["Another Brick in the Wall, Pt. 2","Pink Floyd","eu",[[1980,16.2,[0,0,2,0]]]],["Bette Davis Eyes","Kim Carnes","both",[[1981,58.5,[1,0,10,7]]]],["Endless Love","Diana Ross & Lionel Richie","us",[[1981,33.9,[2,0,0,0]]]],["Lady","Kenny Rogers","us",[[1981,27.1,[3,0,0,0]]]],["Jessie's Girl","Rick Springfield","us",[[1981,20.5,[5,0,0,0]]]],["Celebration","Kool & the Gang","us",[[1981,18.5,[6,0,0,0]]]],["Kiss on My List","Daryl Hall & John Oates","us",[[1981,17.0,[7,0,0,0]]]],["I Love a Rainy Night","Eddie Rabbitt","us",[[1981,15.8,[8,0,0,0]]]],["9 To 5","Dolly Parton","us",[[1981,14.8,[9,0,0,0]]]],["Keep on Loving You","REO Speedwagon","us",[[1981,14.0,[10,0,0,0]]]],["Tainted Love","Soft Cell","eu",[[1981,20.2,[0,1,0,0]]]],["Stand and Deliver","Adam & the Ants","eu",[[1981,13.8,[0,2,0,0]]]],["Dance Little Bird (Ententanz)","Electronica’s","eu",[[1981,23.9,[0,0,1,0]]]],["Stars on 45","Stars on 45","eu",[[1981,16.3,[0,0,2,0]]]],["Physical","Olivia Newton-John","us",[[1982,49.3,[1,0,0,0]]]],["Eye of the Tiger","Survivor","both",[[1982,44.8,[2,3,0,0]]]],["I Love Rock 'n Roll","Joan Jett & The Blackhearts","us",[[1982,26.9,[3,0,0,0]]]],["Ebony and Ivory","Paul McCartney and Stevie Wonder","both",[[1982,30.9,[4,9,0,10]]]],["Centerfold","The J. Geils Band","us",[[1982,20.3,[5,0,0,0]]]],["Don't You Want Me","The Human League","us",[[1982,18.4,[6,0,0,0]]]],["Jack & Diane","John Cougar","us",[[1982,16.9,[7,0,0,0]]]],["Hurts So Good","John Cougar","us",[[1982,15.7,[8,0,0,0]]]],["Abracadabra","Steve Miller Band","us",[[1982,14.7,[9,0,0,0]]]],["Hard to Say I'm Sorry","Chicago","both",[[1982,16.5,[10,0,0,5]]]],["Come On Eileen","Dexys Midnight Runners & the Emerald Express","eu",[[1982,20.3,[0,1,0,0]]]],["Maid of Orleans","OMD (Orchestral Manoeuvres in the Dark)","eu",[[1982,23.9,[0,0,1,0]]]],["Skandal im Sperrbezirk","Spider Murphy Gang","eu",[[1982,16.4,[0,0,2,0]]]],["Der Kommissar","Falco","eu",[[1982,16.3,[0,0,5,1]]]],["Every Breath You Take","The Police","both",[[1983,50.9,[1,0,0,9]]]],["Billie Jean","Michael Jackson","both",[[1983,42.5,[2,7,0,8]]]],["Flashdance... What a Feeling","Irene Cara","both",[[1983,41.5,[3,0,7,1]]]],["Down Under","Men at Work","both",[[1983,30.5,[4,6,0,0]]]],["Beat It","Michael Jackson","us",[[1983,20.2,[5,0,0,0]]]],["Total Eclipse of the Heart","Bonnie Tyler","both",[[1983,26.7,[6,5,0,0]]]],["Maneater","Daryl Hall & John Oates","us",[[1983,16.8,[7,0,0,0]]]],["Baby, Come to Me","Patti Austin and James Ingram","us",[[1983,15.6,[8,0,0,0]]]],["Maniac","Michael Sembello","us",[[1983,14.6,[9,0,0,0]]]],["Karma Chameleon","Culture Club","both",[[1983,20.5,[0,1,0,0]],[1984,13.7,[10,0,0,0]]]],["Uptown Girl","Billy Joel","eu",[[1983,14.0,[0,2,0,0]]]],["Major Tom (völlig losgelöst)","Peter Schilling","eu",[[1983,24.0,[0,0,1,0]]]],["99 Luftballons","Nena","eu",[[1983,16.4,[0,0,2,0]]]],["Moonlight Shadow","Mike Oldfield","eu",[[1983,15.6,[0,0,3,6]]]],["When Doves Cry","Prince","us",[[1984,48.5,[1,0,0,0]]]],["What's Love Got to Do with It","Tina Turner","us",[[1984,33.2,[2,0,0,0]]]],["Say, Say, Say","Paul McCartney and Michael Jackson","both",[[1984,28.8,[3,0,0,7]]]],["Footloose","Kenny Loggins","us",[[1984,22.6,[4,0,0,0]]]],["Against All Odds (Take a Look at Me Now)","Phil Collins","both",[[1984,21.9,[5,0,0,10]]]],["Jump","Van Halen","us",[[1984,18.1,[6,0,0,0]]]],["Hello","Lionel Richie","both",[[1984,23.7,[7,7,0,0]]]],["Ghostbusters","Ray Parker Jr.","both",[[1984,20.3,[9,10,0,0]]]],["Do They Know It’s Christmas?","Band Aid","eu",[[1984,20.7,[0,1,0,0]],[1989,6.5,[0,9,0,0]],[2004,24.1,[0,1,0,0]]]],["I Just Called to Say I Love You","Stevie Wonder","eu",[[1984,29.8,[0,2,6,1]]]],["Relax","Frankie Goes to Hollywood","eu",[[1984,24.5,[0,3,3,0]]]],["Two Tribes","Frankie Goes to Hollywood","eu",[[1984,16.4,[0,4,10,0]]]],["Careless Whisper","George Michael & Wham!","both",[[1984,13.1,[0,5,0,2]],[1985,48.2,[1,0,0,0]]]],["Self Control","Laura Branigan","eu",[[1984,24.1,[0,0,1,0]]]],["Jenseits von Eden","Nino de Angelo","eu",[[1984,16.5,[0,0,2,0]]]],["Like a Virgin","Madonna","us",[[1985,32.9,[2,0,0,0]]]],["Wake Me Up Before You Go-Go","Wham!","us",[[1985,26.3,[3,0,0,0]]]],["I Want to Know What Love Is","Foreigner","both",[[1985,28.4,[4,10,0,0]]]],["I Feel for You","Chaka Khan","us",[[1985,19.9,[5,0,0,0]]]],["Out of Touch","Daryl Hall & John Oates","us",[[1985,18.0,[6,0,0,0]]]],["Everybody Wants to Rule the World","Tears for Fears","us",[[1985,16.5,[7,0,0,0]]]],["Money for Nothing","Dire Straits","us",[[1985,15.3,[8,0,0,0]]]],["Take On Me","a-ha","both",[[1985,20.2,[10,8,0,0]],[1986,2.2,[0,0,0,8]]]],["The Power of Love","Jennifer Rush","eu",[[1985,20.9,[0,1,0,0]]]],["Into the Groove","Madonna","eu",[[1985,16.0,[0,3,0,2]]]],["19","Paul Hardcastle","eu",[[1985,23.0,[0,4,3,0]]]],["Live Is Life","Opus","eu",[[1985,24.2,[0,0,1,0]]]],["You’re My Heart, You’re My Soul","Modern Talking","eu",[[1985,16.6,[0,0,2,0]]]],["That's What Friends Are For","Dionne and Friends (Dionne Warwick, Gladys Knight, Elton John and Stevie Wonder)","us",[[1986,47.8,[1,0,0,0]]]],["Say You, Say Me","Lionel Richie","us",[[1986,32.6,[2,0,0,0]]]],["I Miss You","Klymaxx","us",[[1986,26.1,[3,0,0,0]]]],["On My Own","Patti LaBelle and Michael McDonald","us",[[1986,22.3,[4,0,0,0]]]],["Broken Wings","Mr. Mister","us",[[1986,19.7,[5,0,0,0]]]],["How Will I Know","Whitney Houston","us",[[1986,17.8,[6,0,0,0]]]],["Party All the Time","Eddie Murphy","us",[[1986,16.4,[7,0,0,0]]]],["Burning Heart","Survivor","us",[[1986,15.2,[8,0,0,0]]]],["Kyrie","Mr. Mister","us",[[1986,14.3,[9,0,0,0]]]],["Don’t Leave Me This Way","The Communards feat. Sarah Jane Morris","eu",[[1986,21.0,[0,1,0,0]]]],["Every Loser Wins","Nick Berry","eu",[[1986,14.4,[0,2,0,0]]]],["Jeanny, Part I","Falco","eu",[[1986,24.3,[0,0,1,0]]]],["Midnight Lady","Chris Norman","eu",[[1986,16.6,[0,0,2,0]]]],["The Final Countdown","Europe","eu",[[1986,14.1,[0,0,9,1]]]],["Walk Like an Egyptian","The Bangles","us",[[1987,47.4,[1,0,0,0]]]],["Alone","Heart","us",[[1987,32.4,[2,0,0,0]]]],["Shake You Down","Gregory Abbott","us",[[1987,25.9,[3,0,0,0]]]],["I Wanna Dance with Somebody (Who Loves Me)","Whitney Houston","both",[[1987,45.8,[4,3,5,10]]]],["Nothing's Gonna Stop Us Now","Starship","both",[[1987,34.1,[5,2,0,0]]]],["C'est la Vie","Robbie Nevil","us",[[1987,17.7,[6,0,0,0]]]],["Here I Go Again","Whitesnake","us",[[1987,16.3,[7,0,0,0]]]],["The Way It Is","Bruce Hornsby and the Range","us",[[1987,15.1,[8,0,0,0]]]],["Shakedown","Bob Seger","us",[[1987,14.2,[9,0,0,0]]]],["Livin' on a Prayer","Bon Jovi","us",[[1987,13.4,[10,0,0,0]]]],["Never Gonna Give You Up","Rick Astley","both",[[1987,21.2,[0,1,0,0]],[1988,21.9,[4,0,0,0]]]],["It’s a Sin","Pet Shop Boys","eu",[[1987,20.1,[0,8,3,0]]]],["Voyage, voyage","Desireless","eu",[[1987,24.4,[0,0,1,0]]]],["La Isla Bonita","Madonna","eu",[[1987,16.7,[0,0,2,0]]]],["Faith","George Michael","both",[[1987,2.4,[0,0,0,7]],[1988,47.0,[1,0,0,0]]]],["Need You Tonight","INXS","us",[[1988,32.1,[2,0,0,0]]]],["Got My Mind Set on You","George Harrison","us",[[1988,25.7,[3,0,0,0]]]],["Sweet Child o' Mine","Guns N' Roses","us",[[1988,19.4,[5,0,0,0]]]],["So Emotional","Whitney Houston","us",[[1988,17.6,[6,0,0,0]]]],["Heaven Is a Place on Earth","Belinda Carlisle","us",[[1988,16.1,[7,0,0,0]]]],["Could've Been","Tiffany","us",[[1988,15.0,[8,0,0,0]]]],["Hands to Heaven","Breathe","us",[[1988,14.1,[9,0,0,0]]]],["Mistletoe and Wine","Cliff Richard","eu",[[1988,21.4,[0,1,0,0]]]],["The Only Way Is Up","Yazz and the Plastic Population","eu",[[1988,14.6,[0,2,0,0]]]],["Girl You Know It’s True","Milli Vanilli","both",[[1988,24.5,[0,0,1,0]],[1989,14.9,[8,0,0,0]]]],["Im Nin’alu","Ofra Haza","eu",[[1988,16.7,[0,0,2,0]]]],["Okay","Okay","eu",[[1988,13.4,[0,0,3,0]]]],["Look Away","Chicago","us",[[1989,46.7,[1,0,0,0]]]],["My Prerogative","Bobby Brown","us",[[1989,31.9,[2,0,0,0]]]],["Every Rose Has Its Thorn","Poison","us",[[1989,25.5,[3,0,0,0]]]],["Straight Up","Paula Abdul","us",[[1989,21.8,[4,0,0,0]]]],["Miss You Much","Janet Jackson","us",[[1989,19.2,[5,0,0,0]]]],["Cold Hearted","Paula Abdul","us",[[1989,17.4,[6,0,0,0]]]],["Wind Beneath My Wings","Bette Midler","us",[[1989,16.0,[7,0,0,0]]]],["Ride on Time","Black Box","eu",[[1989,21.6,[0,1,0,0]]]],["Something’s Gotten Hold of My Heart","Marc Almond & Gene Pitney","eu",[[1989,15.0,[0,6,10,0]]]],["Like a Prayer","Madonna","eu",[[1989,17.9,[0,10,6,6]]]],["Looking for Freedom","David Hasselhoff","eu",[[1989,24.6,[0,0,1,0]]]],["Das Omen (Teil 1)","Mysterious Art","eu",[[1989,16.8,[0,0,2,0]]]],["Lambada","Kaoma","eu",[[1989,17.3,[0,0,5,1]]]],["Another Day in Paradise","Phil Collins","both",[[1989,3.9,[0,0,0,3]],[1990,29.4,[7,0,3,0]]]],["Hold On","Wilson Phillips","us",[[1990,46.3,[1,0,0,0]]]],["It Must Have Been Love","Roxette","us",[[1990,31.6,[2,0,0,0]]]],["Nothing Compares 2 U","Sinéad O'Connor","both",[[1990,59.3,[3,2,2,8]]]],["Poison","Bell Biv DeVoe","us",[[1990,21.6,[4,0,0,0]]]],["Vogue","Madonna","both",[[1990,29.0,[5,8,0,5]]]],["Vision of Love","Mariah Carey","us",[[1990,17.3,[6,0,0,0]]]],["Hold On","En Vogue","us",[[1990,14.7,[8,0,0,0]]]],["Cradle of Love","Billy Idol","us",[[1990,13.8,[9,0,0,0]]]],["Blaze of Glory","Jon Bon Jovi","us",[[1990,13.0,[10,0,0,0]]]],["Unchained Melody","The Righteous Brothers","eu",[[1990,21.8,[0,1,0,0]]]],["Sacrifice / Healing Hands","Elton John","eu",[[1990,11.9,[0,3,0,0]]]],["The Power","SNAP!","eu",[[1990,17.7,[0,10,4,0]]]],["Verdammt, ich lieb’ Dich","Matthias Reim","eu",[[1990,24.7,[0,0,1,0]]]],["(Everything I Do) I Do It for You","Bryan Adams","both",[[1991,87.4,[1,1,2,9]]]],["I Wanna Sex You Up","Color Me Badd","us",[[1991,32.0,[2,0,0,0]]]],["Gonna Make You Sweat (Everybody Dance Now)","C+C Music Factory","us",[[1991,25.6,[3,0,0,0]]]],["Rush Rush","Paula Abdul","us",[[1991,21.8,[4,0,0,0]]]],["One More Try","Timmy T","us",[[1991,19.3,[5,0,0,0]]]],["Unbelievable","EMF","us",[[1991,17.5,[6,0,0,0]]]],["More Than Words","Extreme","us",[[1991,16.1,[7,0,0,0]]]],["I Like the Way (The Kissing Game)","Hi-Five","us",[[1991,14.9,[8,0,0,0]]]],["The First Time","Surface","us",[[1991,14.0,[9,0,0,0]]]],["Baby Baby","Amy Grant","us",[[1991,13.2,[10,0,0,0]]]],["Bohemian Rhapsody / These Are the Days of Our Lives","Queen","eu",[[1991,15.1,[0,2,0,0]]]],["The Shoop Shoop Song (It’s in His Kiss)","Cher","eu",[[1991,19.7,[0,3,8,0]]]],["Wind of Change","Scorpions","eu",[[1991,24.1,[0,0,1,0]]]],["Sadeness (Part I)","Enigma","eu",[[1991,15.6,[0,0,3,7]]]],["End of the Road","Boyz II Men","both",[[1992,54.0,[1,9,0,0]]]],["Baby Got Back","Sir Mix-a-Lot","us",[[1992,32.3,[2,0,0,0]]]],["Jump","Kris Kross","us",[[1992,25.9,[3,0,0,0]]]],["Save the Best for Last","Vanessa Williams","us",[[1992,22.1,[4,0,0,0]]]],["Baby-Baby-Baby","TLC","us",[[1992,19.5,[5,0,0,0]]]],["Tears in Heaven","Eric Clapton","us",[[1992,17.7,[6,0,0,0]]]],["My Lovin' (You're Never Gonna Get It)","En Vogue","us",[[1992,16.2,[7,0,0,0]]]],["Under the Bridge","Red Hot Chili Peppers","us",[[1992,15.1,[8,0,0,0]]]],["All 4 Love","Color Me Badd","us",[[1992,14.1,[9,0,0,0]]]],["Just Another Day","Jon Secada","us",[[1992,13.3,[10,0,0,0]]]],["I Will Always Love You","Whitney Houston","both",[[1992,24.4,[0,1,0,9]],[1993,62.5,[1,9,7,0]]]],["Rhythm Is a Dancer","Snap!","eu",[[1992,45.6,[0,2,1,1]]]],["ABBA-esque (EP)","Erasure","eu",[[1992,18.0,[0,6,5,0]]]],["It’s My Life","Dr. Alban","eu",[[1992,16.1,[0,0,2,0]]]],["Whoomp! (There It Is)","Tag Team","us",[[1993,32.7,[2,0,0,0]]]],["Can't Help Falling in Love","UB40","us",[[1993,26.1,[3,0,0,0]]]],["That's the Way Love Goes","Janet Jackson","us",[[1993,22.3,[4,0,0,0]]]],["Freak Me","Silk","us",[[1993,19.7,[5,0,0,0]]]],["Weak","SWV","us",[[1993,17.9,[6,0,0,0]]]],["If I Ever Fall in Love","Shai","us",[[1993,16.4,[7,0,0,0]]]],["Informer","Snow","both",[[1993,22.0,[10,0,6,0]]]],["I’d Do Anything for Love (But I Won’t Do That)","Meat Loaf","eu",[[1993,22.6,[0,1,0,0]]]],["(I Can’ Help) Falling in Love with You","UB40","eu",[[1993,22.3,[0,2,9,0]]]],["All That She Wants","Ace of Base","both",[[1993,38.0,[0,3,1,5]],[1994,14.4,[9,0,0,0]]]],["No Limit","2 Unlimited","eu",[[1993,20.0,[0,4,5,0]]]],["What Is Love","Haddaway","eu",[[1993,24.8,[0,8,2,9]]]],["Mr. Vain","Culture Beat","eu",[[1993,17.1,[0,10,4,0]]]],["The Sign","Ace of Base","both",[[1994,54.8,[1,10,0,0]]]],["I Swear","All-4-One","both",[[1994,57.7,[2,5,2,0]]]],["I'll Make Love to You","Boyz II Men","us",[[1994,26.4,[3,0,0,0]]]],["The Power of Love","Celine Dion","us",[[1994,22.6,[4,0,0,0]]]],["Hero","Mariah Carey","us",[[1994,20.0,[5,0,0,0]]]],["Stay (I Missed You)","Lisa Loeb and Nine Stories","us",[[1994,18.1,[6,0,0,0]]]],["Breathe Again","Toni Braxton","us",[[1994,16.6,[7,0,0,0]]]],["All for Love","Bryan Adams, Rod Stewart and Sting","both",[[1994,24.0,[8,0,9,9]]]],["Don't Turn Around","Ace of Base","us",[[1994,13.6,[10,0,0,0]]]],["Love Is All Around","Wet Wet Wet","eu",[[1994,30.5,[0,1,7,0]]]],["Saturday Night","Whigfield","eu",[[1994,15.6,[0,2,0,0]]]],["Without You","Mariah Carey","eu",[[1994,30.9,[0,6,1,0]]]],["Streets of Philadelphia","Bruce Springsteen","eu",[[1994,16.6,[0,0,3,2]]]],["Gangsta's Paradise","Coolio feat. L.V.","both",[[1995,85.8,[1,2,2,1]]]],["Waterfalls","TLC","us",[[1995,33.4,[2,0,0,0]]]],["Creep","TLC","us",[[1995,26.7,[3,0,0,0]]]],["Kiss from a Rose","Seal","us",[[1995,22.8,[4,0,0,0]]]],["On Bended Knee","Boyz II Men","us",[[1995,20.2,[5,0,0,0]]]],["Another Night","Real McCoy","us",[[1995,18.2,[6,0,0,0]]]],["Fantasy","Mariah Carey","us",[[1995,16.8,[7,0,0,0]]]],["Take a Bow","Madonna","us",[[1995,15.6,[8,0,0,0]]]],["Don't Take It Personal (Just One of Dem Days)","Monica","us",[[1995,14.6,[9,0,0,0]]]],["This Is How We Do It","Montell Jordan","us",[[1995,13.8,[10,0,0,0]]]],["Unchained Melody / The White Cliffs of Dover","Robson & Jerome","eu",[[1995,23.2,[0,1,0,0]]]],["I Believe / Up on the Roof","Robson & Jerome","eu",[[1995,12.7,[0,3,0,0]]]],["Back for Good","Take That","eu",[[1995,18.3,[0,4,7,0]]]],["Conquest of Paradise","Vangelis","eu",[[1995,21.7,[0,0,1,0]]]],["Macarena (Bayside Boys Mix)","Los del Río","both",[[1996,61.0,[1,0,3,0]]]],["One Sweet Day","Mariah Carey and Boyz II Men","us",[[1996,33.8,[2,0,0,0]]]],["Because You Loved Me","Celine Dion","us",[[1996,27.0,[3,0,0,0]]]],["Nobody Knows","The Tony Rich Project","us",[[1996,23.1,[4,0,0,0]]]],["Always Be My Baby","Mariah Carey","us",[[1996,20.4,[5,0,0,0]]]],["Give Me One Reason","Tracy Chapman","us",[[1996,18.4,[6,0,0,0]]]],["Tha Crossroads","Bone Thugs-n-Harmony","us",[[1996,16.9,[7,0,0,0]]]],["I Love You Always Forever","Donna Lewis","us",[[1996,15.7,[8,0,0,0]]]],["You're Makin' Me High / Let It Flow","Toni Braxton","us",[[1996,14.8,[9,0,0,0]]]],["Twisted","Keith Sweat","us",[[1996,13.9,[10,0,0,0]]]],["Killing Me Softly","The Fugees","eu",[[1996,46.8,[0,1,1,6]]]],["Wannabe","Spice Girls","both",[[1996,22.0,[0,2,10,0]],[1997,14.1,[10,0,0,0]]]],["Spaceman","Babylon Zoo","eu",[[1996,12.8,[0,3,0,0]]]],["Return of the Mack","Mark Morrison","both",[[1996,9.7,[0,5,0,0]],[1997,15.9,[8,0,0,0]]]],["Children","Robert Miles","eu",[[1996,26.0,[0,8,2,2]]]],["Candle in the Wind 1997 / Something About the Way You Look Tonight","Elton John","us",[[1997,49.9,[1,0,0,0]],[1998,16.1,[8,0,0,0]]]],["You Were Meant for Me / Foolish Games","Jewel","us",[[1997,34.1,[2,0,0,0]]]],["I'll Be Missing You","Puff Daddy and Faith Evans feat. 112","both",[[1997,60.1,[3,3,2,1]]]],["Un-Break My Heart","Toni Braxton","us",[[1997,23.3,[4,0,0,0]]]],["Can't Nobody Hold Me Down","Puff Daddy feat. Mase","us",[[1997,20.6,[5,0,0,0]]]],["I Believe I Can Fly","R. Kelly","us",[[1997,18.6,[6,0,0,0]]]],["Don't Let Go (Love)","En Vogue","us",[[1997,17.1,[7,0,0,0]]]],["How Do I Live","LeAnn Rimes","both",[[1997,14.9,[9,0,0,0]],[1998,29.8,[5,6,0,0]]]],["Candle in the Wind ’97 / Something About The Way You Look Tonight","Elton John","eu",[[1997,23.7,[0,1,0,0]]]],["Barbie Girl","Aqua","eu",[[1997,26.7,[0,2,8,2]]]],["Men in Black","Will Smith","eu",[[1997,18.4,[0,6,4,0]]]],["Don’t Speak","No Doubt","eu",[[1997,15.8,[0,7,6,0]]]],["Time to Say Goodbye (Con te partiró)","Sarah Brightman & Andrea Bocelli","eu",[[1997,20.5,[0,0,1,0]]]],["Too Close","Next","us",[[1998,50.4,[1,0,0,0]]]],["The Boy Is Mine","Brandy and Monica","us",[[1998,34.5,[2,0,0,0]]]],["You're Still the One","Shania Twain","us",[[1998,27.6,[3,0,0,0]]]],["Truly Madly Deeply","Savage Garden","both",[[1998,30.3,[4,10,0,0]]]],["Together Again","Janet","us",[[1998,18.8,[6,0,0,0]]]],["All My Life","K-Ci & JoJo","us",[[1998,17.3,[7,0,0,0]]]],["Nice & Slow","Usher","us",[[1998,15.1,[9,0,0,0]]]],["I Don't Want to Wait","Paula Cole","us",[[1998,14.2,[10,0,0,0]]]],["Believe","Cher","both",[[1998,29.6,[0,1,0,1]],[1999,51.0,[1,0,0,0]]]],["My Heart Will Go On","Céline Dion","eu",[[1998,38.4,[0,2,1,6]]]],["It’s Like That","Run-D.M.C. vs. Jason Nevins","eu",[[1998,20.6,[0,3,6,0]]]],["Flugzeuge im Bauch","Oli.P","eu",[[1998,13.6,[0,0,2,0]]]],["No Scrubs","TLC","us",[[1999,34.8,[2,0,0,0]]]],["Angel of Mine","Monica","us",[[1999,27.9,[3,0,0,0]]]],["Heartbreak Hotel","Whitney Houston feat. Faith Evans and Kelly Price","us",[[1999,23.8,[4,0,0,0]]]],["...Baby One More Time","Britney Spears","both",[[1999,57.7,[5,1,3,7]]]],["Kiss Me","Sixpence None the Richer","us",[[1999,19.0,[6,0,0,0]]]],["Genie in a Bottle","Christina Aguilera","both",[[1999,24.1,[7,0,7,0]]]],["Every Morning","Sugar Ray","us",[[1999,16.2,[8,0,0,0]]]],["Nobody's Supposed to Be Here","Deborah Cox","us",[[1999,15.2,[9,0,0,0]]]],["Livin' la Vida Loca","Ricky Martin","both",[[1999,23.4,[10,6,0,0]]]],["Blue (Da Ba Dee)","Eiffel 65","eu",[[1999,29.8,[0,2,2,0]]]],["The Millennium Prayer","Cliff Richard","eu",[[1999,13.3,[0,3,0,0]]]],["Mambo No. 5 (A Little Bit Of …)","Lou Bega","eu",[[1999,34.4,[0,4,1,2]]]],["9 PM (Till I Come)","ATB","eu",[[1999,10.0,[0,5,0,0]]]],["Breathe","Faith Hill","us",[[2000,51.5,[1,0,0,0]]]],["Smooth","Santana feat. Rob Thomas","us",[[2000,35.2,[2,0,0,0]]]],["Maria Maria","Santana feat. The Product G&B","both",[[2000,34.6,[3,0,7,0]]]],["I Wanna Know","Joe","us",[[2000,24.0,[4,0,0,0]]]],["Everything You Want","Vertical Horizon","us",[[2000,21.2,[5,0,0,0]]]],["Say My Name","Destiny's Child","us",[[2000,19.2,[6,0,0,0]]]],["I Knew I Loved You","Savage Garden","us",[[2000,17.6,[7,0,0,0]]]],["Amazed","Lonestar","us",[[2000,16.4,[8,0,0,0]]]],["Bent","Matchbox Twenty","us",[[2000,15.4,[9,0,0,0]]]],["He Wasn't Man Enough","Toni Braxton","us",[[2000,14.5,[10,0,0,0]]]],["Can We Fix It","Bob the Builder","eu",[[2000,24.6,[0,1,0,0]]]],["Pure Shores","All Saints","eu",[[2000,16.8,[0,2,0,0]]]],["It Feels so Good","Sonique","eu",[[2000,13.4,[0,3,0,0]]]],["Anton aus Tirol","Anton feat. DJ Ötzi","eu",[[2000,18.8,[0,0,1,0]]]],["Hanging by a Moment","Lifehouse","us",[[2001,51.6,[1,0,0,0]]]],["Fallin'","Alicia Keys","both",[[2001,36.8,[2,0,0,8]]]],["All for You","Janet","us",[[2001,28.2,[3,0,0,0]]]],["Drops of Jupiter (Tell Me)","Train","us",[[2001,24.1,[4,0,0,0]]]],["I'm Real (Murder Remix)","Jennifer Lopez feat. Ja Rule","us",[[2001,21.3,[5,0,0,0]]]],["If You're Gone","Matchbox Twenty","us",[[2001,19.2,[6,0,0,0]]]],["Let Me Blow Ya Mind","Eve feat. Gwen Stefani","us",[[2001,17.7,[7,0,0,0]]]],["Thank You","Dido","us",[[2001,16.4,[8,0,0,0]]]],["Again","Lenny Kravitz","us",[[2001,15.4,[9,0,0,0]]]],["It Wasn’t Me","Shaggy feat. Ricardo 'RikRok' Ducent","eu",[[2001,24.4,[0,1,0,0]]]],["Pure and Simple","Hear’Say","eu",[[2001,16.7,[0,2,0,0]]]],["Can’t Get You Out of My Head","Kylie Minogue","eu",[[2001,27.2,[0,3,4,1]]]],["Whole Again","Atomic Kitten","eu",[[2001,18.5,[0,4,6,0]]]],["Daylight in Your Eyes","No Angels","eu",[[2001,18.9,[0,0,1,0]]]],["In the End","Linkin Park","both",[[2001,1.4,[0,0,0,10]],[2002,17.7,[7,0,0,0]]]],["How You Remind Me","Nickelback","us",[[2002,51.7,[1,0,0,0]]]],["Foolish","Ashanti","us",[[2002,35.3,[2,0,0,0]]]],["Hot in Herre","Nelly","us",[[2002,28.2,[3,0,0,0]]]],["Dilemma","Nelly feat. Kelly Rowland","both",[[2002,35.5,[4,4,0,0]]]],["Wherever You Will Go","The Calling","both",[[2002,22.8,[5,0,0,9]]]],["A Thousand Miles","Vanessa Carlton","us",[[2002,19.3,[6,0,0,0]]]],["What's Luv?","Fat Joe feat. Ashanti","us",[[2002,16.5,[8,0,0,0]]]],["U Got It Bad","Usher","us",[[2002,15.4,[9,0,0,0]]]],["Anything Is Possible / Evergreen","Will Young","eu",[[2002,24.3,[0,1,0,0]]]],["Unchained Melody","Gareth Gates","eu",[[2002,16.6,[0,2,0,0]]]],["Whenever, Wherever","Shakira","eu",[[2002,24.7,[0,7,2,2]]]],["The Ketchup Song (Aserejé)","Las Ketchup","eu",[[2002,26.9,[0,8,1,0]]]],["Without Me","Eminem","eu",[[2002,15.8,[0,10,4,0]]]],["All the Things She Said","t.A.T.u.","eu",[[2002,2.7,[0,0,0,3]],[2003,17.0,[0,6,5,0]]]],["In da Club","50 Cent","us",[[2003,51.8,[1,0,0,0]]]],["Ignition (Remix)","R. Kelly","us",[[2003,35.4,[2,0,0,0]]]],["Get Busy","Sean Paul","both",[[2003,30.5,[3,0,0,4]]]],["Crazy in Love","Beyoncé feat. Jay-Z","us",[[2003,24.2,[4,0,0,0]]]],["When I'm Gone","3 Doors Down","us",[[2003,21.4,[5,0,0,0]]]],["Unwell","Matchbox Twenty","us",[[2003,19.3,[6,0,0,0]]]],["Right Thurr","Chingy","us",[[2003,17.8,[7,0,0,0]]]],["Miss You","Aaliyah","us",[[2003,16.5,[8,0,0,0]]]],["Picture","Kid Rock feat. Sheryl Crow or Allison Moorer","us",[[2003,15.5,[9,0,0,0]]]],["Bring Me to Life","Evanescence feat. Paul McCoy","both",[[2003,17.2,[10,0,0,3]]]],["Where Is the Love?","The Black Eyed Peas","eu",[[2003,30.3,[0,1,8,0]]]],["Spirit in the Sky","Gareth Gates & the Kumars","eu",[[2003,16.5,[0,2,0,0]]]],["We Have a Dream","Deutschland sucht den Superstar","eu",[[2003,19.3,[0,0,1,0]]]],["Yeah!","Usher feat. Lil Jon and Ludacris","both",[[2004,74.2,[1,5,3,6]]]],["Burn","Usher","us",[[2004,35.4,[2,0,0,0]]]],["If I Ain't Got You","Alicia Keys","us",[[2004,28.4,[3,0,0,0]]]],["This Love","Maroon 5","us",[[2004,24.2,[4,0,0,0]]]],["The Way You Move","OutKast feat. Sleepy Brown","us",[[2004,21.4,[5,0,0,0]]]],["The Reason","Hoobastank","us",[[2004,19.4,[6,0,0,0]]]],["I Don't Wanna Know","Mario Winans feat. Enya and P. Diddy","both",[[2004,23.3,[7,0,10,0]]]],["Hey Ya!","OutKast","us",[[2004,16.5,[8,0,0,0]]]],["Goodies","Ciara feat. Petey Pablo","us",[[2004,15.5,[9,0,0,0]]]],["Lean Back","Terror Squad feat. Fat Joe and Remy Ma","us",[[2004,14.6,[10,0,0,0]]]],["F**k It (I Don’t Want You Back)","Eamon","eu",[[2004,28.7,[0,2,4,2]]]],["Dragostea din tei","O-Zone","eu",[[2004,19.4,[0,0,1,0]]]],["Lebt denn dr alte Holzmichl noch?","De Randfichten","eu",[[2004,13.3,[0,0,2,0]]]],["We Belong Together","Mariah Carey","us",[[2005,52.0,[1,0,0,0]]]],["Hollaback Girl","Gwen Stefani","us",[[2005,35.5,[2,0,0,0]]]],["Let Me Love You","Mario","us",[[2005,28.4,[3,0,0,0]]]],["Since U Been Gone","Kelly Clarkson","us",[[2005,24.3,[4,0,0,0]]]],["1, 2 Step","Ciara feat. Missy Elliott","us",[[2005,21.5,[5,0,0,0]]]],["Gold Digger","Kanye West feat. Jamie Foxx","us",[[2005,19.4,[6,0,0,0]]]],["Boulevard of Broken Dreams","Green Day","us",[[2005,17.8,[7,0,0,0]]]],["Candy Shop","50 Cent feat. Olivia","both",[[2005,23.3,[8,0,7,0]]]],["Don't Cha","The Pussycat Dolls feat. Busta Rhymes","both",[[2005,31.6,[9,5,8,0]]]],["Behind These Hazel Eyes","Kelly Clarkson","us",[[2005,14.7,[10,0,0,0]]]],["(Is This the Way To) Amarillo?","Tony Christie & Peter Kay","eu",[[2005,23.9,[0,1,0,0]]]],["That’s My Goal","Shayne Ward","eu",[[2005,16.3,[0,2,0,0]]]],["You’re Beautiful","James Blunt","both",[[2005,11.2,[0,4,0,0]],[2006,24.3,[4,0,0,0]]]],["Lonely","Akon","eu",[[2005,18.9,[0,7,3,0]]]],["Schnappi","Schnappi, das kleine Krokodil","eu",[[2005,19.6,[0,0,1,0]]]],["Bad Day","Daniel Powter","us",[[2006,52.1,[1,0,0,0]]]],["Temperature","Sean Paul","us",[[2006,35.6,[2,0,0,0]]]],["Promiscuous","Nelly Furtado feat. Timbaland","us",[[2006,28.5,[3,0,0,0]]]],["Hips Don't Lie","Shakira feat. Wyclef Jean","both",[[2006,48.3,[5,3,3,2]]]],["Unwritten","Natasha Bedingfield","us",[[2006,19.4,[6,0,0,0]]]],["Crazy","Gnarls Barkley","both",[[2006,52.7,[7,1,4,5]]]],["Ridin'","Chamillionaire feat. Krayzie Bone","us",[[2006,16.6,[8,0,0,0]]]],["SexyBack","Justin Timberlake feat. Timbaland","both",[[2006,22.3,[9,10,0,0]]]],["Check on It","Beyoncé feat. Slim Thug","us",[[2006,14.7,[10,0,0,0]]]],["A Moment Like This","Leona Lewis","eu",[[2006,16.2,[0,2,0,0]]]],["I Don’t Feel Like Dancin’","Scissor Sisters","eu",[[2006,11.1,[0,4,0,0]]]],["Love Generation","Bob Sinclar presents Goleo VI feat. Gary „Nesta Pine","eu",[[2006,19.7,[0,0,1,0]]]],["No No Never","Texas Lightning","eu",[[2006,13.5,[0,0,2,0]]]],["Irreplaceable","Beyoncé","us",[[2007,52.2,[1,0,0,0]]]],["Umbrella","Rihanna feat. Jay-Z","both",[[2007,60.0,[2,2,5,0]]]],["The Sweet Escape","Gwen Stefani feat. Akon","us",[[2007,28.6,[3,0,0,0]]]],["Big Girls Don't Cry","Fergie","us",[[2007,24.4,[4,0,0,0]]]],["Buy U a Drank (Shawty Snappin')","T-Pain feat. Yung Joc","us",[[2007,21.6,[5,0,0,0]]]],["Before He Cheats","Carrie Underwood","us",[[2007,19.5,[6,0,0,0]]]],["Hey There Delilah","Plain White T's","us",[[2007,17.9,[7,0,0,0]]]],["I Wanna Love You","Akon feat. Snoop Dogg","us",[[2007,16.6,[8,0,0,0]]]],["Say It Right","Nelly Furtado","both",[[2007,26.5,[9,0,3,0]]]],["Glamorous","Fergie feat. Ludacris","us",[[2007,14.7,[10,0,0,0]]]],["Bleeding Love","Leona Lewis","both",[[2007,23.7,[0,1,0,0]],[2008,49.5,[2,0,2,0]]]],["Grace Kelly","Mika","eu",[[2007,14.7,[0,3,0,5]]]],["Ein Stern (… der deinen Namen trägt)","DJ Ötzi & Nik P.","eu",[[2007,19.9,[0,0,1,0]]]],["All Good Things (Come to an End)","Nelly Furtado","eu",[[2007,13.6,[0,0,2,0]]]],["Low","Flo Rida feat. T-Pain","us",[[2008,52.4,[1,0,0,0]]]],["No One","Alicia Keys","us",[[2008,28.6,[3,0,0,0]]]],["Lollipop","Lil Wayne feat. Static Major","us",[[2008,24.4,[4,0,0,0]]]],["Apologize","OneRepublic","both",[[2008,42.9,[5,0,1,8]]]],["No Air","Jordin Sparks and Chris Brown","us",[[2008,19.6,[6,0,0,0]]]],["Love Song","Sara Bareilles","us",[[2008,18.0,[7,0,0,0]]]],["Love in This Club","Usher feat. Young Jeezy","us",[[2008,16.7,[8,0,0,0]]]],["With You","Chris Brown","us",[[2008,15.6,[9,0,0,0]]]],["Forever","Chris Brown","us",[[2008,14.8,[10,0,0,0]]]],["Hallelujah","Alexandra Burke","eu",[[2008,23.5,[0,1,0,0]]]],["Hero","X Factor Finalists","eu",[[2008,16.1,[0,2,0,0]]]],["Mercy","Duffy","eu",[[2008,20.3,[0,3,6,0]]]],["I Kissed a Girl","Katy Perry","eu",[[2008,20.8,[0,4,5,6]]]],["Boom Boom Pow","The Black Eyed Peas","both",[[2009,60.5,[1,7,0,0]]]],["Poker Face","Lady Gaga","both",[[2009,81.3,[2,1,1,4]]]],["Just Dance","Lady Gaga feat. Colby O'Donis","both",[[2009,41.5,[3,3,0,0]]]],["I Gotta Feeling","The Black Eyed Peas","both",[[2009,48.6,[4,2,9,3]]]],["Love Story","Taylor Swift","us",[[2009,21.7,[5,0,0,0]]]],["Right Round","Flo Rida","us",[[2009,19.6,[6,0,0,0]]]],["I'm Yours","Jason Mraz","us",[[2009,18.0,[7,0,0,0]]]],["Single Ladies (Put a Ring on It)","Beyoncé","us",[[2009,16.7,[8,0,0,0]]]],["Heartless","Kanye West","us",[[2009,15.7,[9,0,0,0]]]],["Gives You Hell","The All-American Rejects","us",[[2009,14.8,[10,0,0,0]]]],["Fight for This Love","Cheryl Cole","eu",[[2009,10.9,[0,4,0,0]]]],["The Climb","Joe McElderry","eu",[[2009,9.7,[0,5,0,0]]]],["Jungle Drum","Emilíana Torrini","eu",[[2009,13.8,[0,0,2,0]]]],["Ayo Technology","Milow","eu",[[2009,11.0,[0,0,3,0]]]],["Tik Tok","Kesha","both",[[2010,60.4,[1,0,10,3]]]],["Need You Now","Lady Antebellum","us",[[2010,36.0,[2,0,0,0]]]],["Hey, Soul Sister","Train","us",[[2010,28.8,[3,0,0,0]]]],["California Gurls","Katy Perry feat. Snoop Dogg","both",[[2010,32.0,[4,8,0,0]]]],["OMG","Usher feat. will.i.am","both",[[2010,31.3,[5,5,0,0]]]],["Airplanes","B.o.B feat. Hayley Williams","both",[[2010,27.6,[6,7,0,0]]]],["Love the Way You Lie","Eminem feat. Rihanna","both",[[2010,41.3,[7,1,0,0]]]],["Bad Romance","Lady Gaga","both",[[2010,17.9,[8,0,0,9]]]],["Dynamite","Taio Cruz","us",[[2010,15.7,[9,0,0,0]]]],["Break Your Heart","Taio Cruz feat. Ludacris","us",[[2010,14.8,[10,0,0,0]]]],["When We Collide","Matt Cardle","eu",[[2010,15.9,[0,2,0,0]]]],["We No Speak Americano!","Yolanda Be Cool vs. DCUP","eu",[[2010,15.3,[0,9,5,0]]]],["Somewhere over the Rainbow / What a Wonderful World","Israel Kamakawiwoʻole","eu",[[2010,20.3,[0,0,1,0]]]],["Waka Waka (This Time for Africa)","Shakira feat. Freshlyground","eu",[[2010,17.7,[0,0,2,1]]]],["Rolling in the Deep","Adele","both",[[2011,71.2,[1,9,4,5]]]],["Party Rock Anthem","LMFAO feat. Lauren Bennett and GoonRock","both",[[2011,55.3,[2,3,8,0]]]],["Firework","Katy Perry","us",[[2011,29.2,[3,0,0,0]]]],["E.T.","Katy Perry feat. Kanye West","us",[[2011,24.9,[4,0,0,0]]]],["Give Me Everything","Pitbull feat. Ne-Yo, Afrojack and Nayer","both",[[2011,36.5,[5,6,9,0]]]],["Grenade","Bruno Mars","both",[[2011,38.7,[6,7,3,0]]]],["Fuck You (Forget You)","CeeLo Green","us",[[2011,18.3,[7,0,0,0]]]],["Super Bass","Nicki Minaj","us",[[2011,17.0,[8,0,0,0]]]],["Moves like Jagger","Maroon 5 feat. Christina Aguilera","both",[[2011,32.6,[9,2,0,9]]]],["Just Can't Get Enough","The Black Eyed Peas","us",[[2011,15.1,[10,0,0,0]]]],["Someone like You","Adele","eu",[[2011,26.5,[0,1,0,1]]]],["Price Tag","Jessie J feat. B.o.B","eu",[[2011,10.6,[0,4,0,0]]]],["We Found Love","Rihanna feat. Calvin Harris","both",[[2011,9.4,[0,5,0,0]],[2012,17.3,[8,0,0,0]]]],["On the Floor","Jennifer Lopez feat. Pitbull","eu",[[2011,28.2,[0,10,1,4]]]],["Mr. Saxobeat","Alexandra Stan","eu",[[2011,16.2,[0,0,2,2]]]],["Ai Se Eu Te Pego!","Michel Teló","eu",[[2011,1.2,[0,0,0,8]],[2012,23.5,[0,0,1,1]]]],["Somebody That I Used to Know","Gotye feat. Kimbra","both",[[2012,87.5,[1,1,4,4]]]],["Call Me Maybe","Carly Rae Jepsen","both",[[2012,60.9,[2,2,6,7]]]],["We Are Young","Fun feat. Janelle Monáe","both",[[2012,41.8,[3,3,0,0]]]],["Payphone","Maroon 5 feat. Wiz Khalifa","both",[[2012,32.0,[4,9,0,0]]]],["Lights","Ellie Goulding","us",[[2012,22.4,[5,0,0,0]]]],["Glad You Came","The Wanted","us",[[2012,20.3,[6,0,0,0]]]],["Stronger (What Doesn't Kill You)","Kelly Clarkson","us",[[2012,18.6,[7,0,0,0]]]],["Starships","Nicki Minaj","both",[[2012,23.8,[9,7,0,0]]]],["What Makes You Beautiful","One Direction","us",[[2012,15.3,[10,0,0,0]]]],["Titanium","David Guetta feat. Sia","eu",[[2012,11.6,[0,4,0,8]]]],["Gangnam Style","Psy","eu",[[2012,14.6,[0,6,8,0]]]],["Tage wie diese","Die Toten Hosen","eu",[[2012,13.4,[0,0,2,0]]]],["Thrift Shop","Macklemore & Ryan Lewis feat. Wanz","both",[[2013,69.2,[1,7,7,0]]]],["Blurred Lines","Robin Thicke feat. T.I. and Pharrell Williams","both",[[2013,74.3,[2,1,2,4]]]],["Radioactive","Imagine Dragons","both",[[2013,35.9,[3,0,9,0]]]],["Harlem Shake","Baauer","us",[[2013,25.7,[4,0,0,0]]]],["Can't Hold Us","Macklemore & Ryan Lewis feat. Ray Dalton","both",[[2013,30.0,[5,0,6,0]]]],["Mirrors","Justin Timberlake","both",[[2013,26.7,[6,10,0,0]]]],["Just Give Me a Reason","Pink feat. Nate Ruess","both",[[2013,27.4,[7,8,0,5]]]],["When I Was Your Man","Bruno Mars","us",[[2013,17.6,[8,0,0,0]]]],["Cruise","Florida Georgia Line feat. Nelly","us",[[2013,16.5,[9,0,0,0]]]],["Roar","Katy Perry","both",[[2013,23.6,[10,6,0,0]]]],["Get Lucky","Daft Punk feat. Pharrell Williams","eu",[[2013,27.7,[0,2,4,1]]]],["Wake Me Up","Avicii","eu",[[2013,33.8,[0,3,1,2]]]],["Let Her Go","Passenger","eu",[[2013,18.1,[0,4,5,0]],[2014,1.2,[0,0,0,8]]]],["La La La","Naughty Boy feat. Sam Smith","eu",[[2013,14.4,[0,5,10,0]]]],["Counting Stars","OneRepublic","both",[[2013,6.5,[0,9,0,0]],[2014,23.1,[5,0,0,0]]]],["Happy","Pharrell Williams","both",[[2014,92.8,[1,1,2,2]]]],["Dark Horse","Katy Perry feat. Juicy J","us",[[2014,38.2,[2,0,0,0]]]],["All of Me","John Legend","both",[[2014,42.2,[3,3,0,0]]]],["Fancy","Iggy Azalea feat. Charli XCX","us",[[2014,26.1,[4,0,0,0]]]],["Talk Dirty","Jason Derulo feat. 2 Chainz","us",[[2014,20.9,[6,0,0,0]]]],["Rude","Magic!","us",[[2014,19.2,[7,0,0,0]]]],["All About That Bass","Meghan Trainor","both",[[2014,24.6,[8,8,0,0]]]],["Problem","Ariana Grande feat. Iggy Azalea","us",[[2014,16.7,[9,0,0,0]]]],["Stay with Me","Sam Smith","both",[[2014,23.1,[10,7,0,0]]]],["Rather Be","Clean Bandit feat. Jess Glynne","eu",[[2014,22.8,[0,2,7,4]]]],["Waves (Robin Schulz Remix)","Mr. Probz","eu",[[2014,21.4,[0,4,3,10]]]],["Thinking Out Loud","Ed Sheeran","both",[[2014,8.8,[0,5,0,0]],[2015,38.8,[2,0,0,0]]]],["Atemlos durch die Nacht","Helene Fischer","eu",[[2014,19.0,[0,0,1,0]]]],["Auf uns","Andreas Bourani","eu",[[2014,8.8,[0,0,4,0]]]],["Uptown Funk","Mark Ronson feat. Bruno Mars","both",[[2015,77.5,[1,1,0,0]]]],["See You Again","Wiz Khalifa feat. Charlie Puth","both",[[2015,46.4,[3,5,9,8]]]],["Trap Queen","Fetty Wap","us",[[2015,26.5,[4,0,0,0]]]],["Sugar","Maroon 5","us",[[2015,23.4,[5,0,0,0]]]],["Shut Up and Dance","Walk the Moon","us",[[2015,21.2,[6,0,0,0]]]],["Blank Space","Taylor Swift","us",[[2015,19.5,[7,0,0,0]]]],["Watch Me","Silentó","us",[[2015,18.1,[8,0,0,0]]]],["Earned It","The Weeknd","us",[[2015,17.0,[9,0,0,0]]]],["The Hills","The Weeknd","us",[[2015,16.0,[10,0,0,0]]]],["Cheerleader (Felix Jaehn Remix)","Omi","eu",[[2015,34.9,[0,2,1,3]]]],["Love Me like You Do","Ellie Goulding","eu",[[2015,19.4,[0,4,4,10]]]],["Hello","Adele","both",[[2015,14.1,[0,6,7,0]],[2016,19.7,[7,0,0,0]]]],["Lean On","Major Lazer & DJ Snake feat. Mø","eu",[[2015,16.4,[0,7,5,5]]]],["Sorry","Justin Bieber","both",[[2015,5.8,[0,10,0,0]],[2016,39.3,[2,0,0,0]]]],["Love Yourself","Justin Bieber","both",[[2016,64.0,[1,8,0,0]]]],["One Dance","Drake feat. Wizkid and Kyla","both",[[2016,60.5,[3,1,5,8]]]],["Work","Rihanna feat. Drake","both",[[2016,32.9,[4,9,0,0]]]],["Stressed Out","Twenty One Pilots","both",[[2016,29.6,[5,0,8,0]]]],["Panda","Desiigner","us",[[2016,21.5,[6,0,0,0]]]],["Don't Let Me Down","The Chainsmokers feat. Daya","both",[[2016,24.6,[8,0,7,0]]]],["Can't Stop the Feeling!","Justin Timberlake","both",[[2016,28.1,[9,10,10,0]]]],["Closer","The Chainsmokers feat. Halsey","both",[[2016,23.2,[10,7,0,0]],[2017,20.0,[7,0,0,0]]]],["7 Years","Lukas Graham","eu",[[2016,15.0,[0,2,0,9]]]],["Cheap Thrills","Sia feat. Sean Paul","eu",[[2016,24.9,[0,3,3,1]]]],["Faded","Alan Walker","eu",[[2016,21.0,[0,0,1,2]]]],["Die immer lacht","Stereoact feat. Kerstin Ott","eu",[[2016,12.5,[0,0,2,0]]]],["Shape of You","Ed Sheeran","both",[[2017,98.8,[1,1,1,2]]]],["Despacito (Remix)","Luis Fonsi and Daddy Yankee feat. Justin Bieber","both",[[2017,69.5,[2,2,2,1]]]],["That's What I Like","Bruno Mars","us",[[2017,31.9,[3,0,0,0]]]],["Humble","Kendrick Lamar","us",[[2017,27.2,[4,0,0,0]]]],["Something Just Like This","The Chainsmokers and Coldplay","both",[[2017,41.6,[5,9,3,4]]]],["Bad and Boujee","Migos feat. Lil Uzi Vert","us",[[2017,21.8,[6,0,0,0]]]],["Body Like a Back Road","Sam Hunt","us",[[2017,18.6,[8,0,0,0]]]],["Believer","Imagine Dragons","both",[[2017,18.5,[9,0,0,10]]]],["Congratulations","Post Malone feat. Quavo","us",[[2017,16.4,[10,0,0,0]]]],["Castle on the Hill","Ed Sheeran","eu",[[2017,10.8,[0,3,0,0]]]],["Unforgettable","French Montana feat. Swae Lee","eu",[[2017,14.6,[0,4,9,0]]]],["Galway Girl","Ed Sheeran","eu",[[2017,13.2,[0,5,10,0]]]],["Perfect","Ed Sheeran","both",[[2017,8.5,[0,6,0,9]],[2018,62.3,[2,6,2,2]]]],["Was du Liebe nennst","Bausa","eu",[[2017,5.7,[0,0,8,0]],[2018,9.7,[0,0,3,0]]]],["God's Plan","Drake","both",[[2018,72.3,[1,2,0,0]]]],["Meant to Be","Bebe Rexha feat. Florida Georgia Line","us",[[2018,32.3,[3,0,0,0]]]],["Havana","Camila Cabello feat. Young Thug","us",[[2018,27.6,[4,0,0,0]]]],["Rockstar","Post Malone feat. 21 Savage","us",[[2018,24.4,[5,0,0,0]]]],["Psycho","Post Malone feat. Ty Dolla Sign","us",[[2018,22.1,[6,0,0,0]]]],["I Like It","Cardi B, Bad Bunny and J Balvin","us",[[2018,20.3,[7,0,0,0]]]],["The Middle","Zedd, Maren Morris and Grey","us",[[2018,18.8,[8,0,0,0]]]],["In My Feelings","Drake","us",[[2018,17.7,[9,0,0,0]]]],["Girls Like You","Maroon 5 feat. Cardi B","us",[[2018,16.7,[10,0,0,0]]]],["One Kiss","Calvin Harris & Dua Lipa","eu",[[2018,27.5,[0,1,4,0]]]],["Shotgun","George Ezra","eu",[[2018,10.5,[0,3,0,0]]]],["In My Mind","Dynoro & Gigi D’Agostino","eu",[[2018,17.7,[0,0,1,0]]]],["Old Town Road","Lil Nas X feat. Billy Ray Cyrus","both",[[2019,90.1,[1,2,1,0]]]],["Sunflower","Post Malone and Swae Lee","us",[[2019,40.9,[2,0,0,0]]]],["Without Me","Halsey","us",[[2019,32.7,[3,0,0,0]]]],["Bad Guy","Billie Eilish","both",[[2019,43.2,[4,4,6,0]]]],["Wow","Post Malone","us",[[2019,24.7,[5,0,0,0]]]],["Happier","Marshmello and Bastille","us",[[2019,22.4,[6,0,0,0]]]],["7 Rings","Ariana Grande","us",[[2019,20.5,[7,0,0,0]]]],["Talk","Khalid","us",[[2019,19.1,[8,0,0,0]]]],["Sicko Mode","Travis Scott","us",[[2019,17.9,[9,0,0,0]]]],["Sucker","Jonas Brothers","us",[[2019,16.9,[10,0,0,0]]]],["Someone You Loved","Lewis Capaldi","both",[[2019,18.8,[0,1,0,0]],[2020,22.9,[10,8,0,0]]]],["I Don’t Care","Ed Sheeran & Justin Bieber","eu",[[2019,15.8,[0,3,8,0]]]],["Sweet but Psycho","Ava Max","eu",[[2019,14.2,[0,6,5,0]]]],["Dance Monkey","Tones and I","eu",[[2019,17.9,[0,8,2,0]],[2020,24.2,[0,2,2,0]]]],["Roller","Apache 207","eu",[[2019,9.5,[0,0,3,0]],[2020,9.3,[0,0,3,0]]]],["Blinding Lights","The Weeknd","both",[[2020,97.3,[1,1,1,8]],[2021,43.7,[3,9,9,0]]]],["Circles","Post Malone","us",[[2020,41.4,[2,0,0,0]]]],["The Box","Roddy Ricch","us",[[2020,33.1,[3,0,0,0]]]],["Don't Start Now","Dua Lipa","both",[[2020,35.1,[4,6,0,0]]]],["Rockstar","DaBaby feat. Roddy Ricch","both",[[2020,36.8,[5,7,8,0]]]],["Adore You","Harry Styles","us",[[2020,22.6,[6,0,0,0]]]],["Life Is Good","Future feat. Drake","us",[[2020,20.8,[7,0,0,0]]]],["Memories","Maroon 5","us",[[2020,19.3,[8,0,0,0]]]],["The Bones","Maren Morris","us",[[2020,18.1,[9,0,0,0]]]],["Roses","Saint Jhn","eu",[[2020,19.2,[0,3,4,9]]]],["Before You Go","Lewis Capaldi","eu",[[2020,8.6,[0,4,0,0]]]],["Levitating","Dua Lipa","both",[[2021,67.6,[1,6,0,0]]]],["Save Your Tears","The Weeknd and Ariana Grande","both",[[2021,57.0,[2,4,5,0]]]],["Mood","24kGoldn feat. Iann Dior","us",[[2021,28.4,[4,0,0,0]]]],["Good 4 U","Olivia Rodrigo","both",[[2021,42.3,[5,2,10,0]]]],["Kiss Me More","Doja Cat feat. SZA","us",[[2021,22.7,[6,0,0,0]]]],["Leave the Door Open","Silk Sonic (Bruno Mars and Anderson .Paak)","us",[[2021,20.8,[7,0,0,0]]]],["Drivers License","Olivia Rodrigo","both",[[2021,29.4,[8,3,0,0]]]],["Montero (Call Me by Your Name)","Lil Nas X","both",[[2021,25.7,[9,5,0,0]]]],["Peaches","Justin Bieber feat. Daniel Caesar and Giveon","us",[[2021,17.1,[10,0,0,0]]]],["Bad Habits","Ed Sheeran","eu",[[2021,29.8,[0,1,2,0]],[2022,12.4,[0,2,0,0]]]],["Stay","The Kid Laroi & Justin Bieber","both",[[2021,12.6,[0,7,6,0]],[2022,33.3,[3,0,0,0]]]],["Heat Waves","Glass Animals","both",[[2021,5.8,[0,8,0,0]],[2022,78.6,[1,7,2,0]]]],["Wellerman","Nathan Evans","eu",[[2021,16.9,[0,0,1,0]]]],["The Business","Tiësto","eu",[[2021,9.2,[0,0,3,0]]]],["As It Was","Harry Styles","both",[[2022,66.0,[2,1,6,0]],[2023,5.4,[0,9,0,0]]]],["Easy on Me","Adele","us",[[2022,28.4,[4,0,0,0]]]],["Shivers","Ed Sheeran","both",[[2022,39.6,[5,5,5,0]]]],["First Class","Jack Harlow","us",[[2022,22.7,[6,0,0,0]]]],["Big Energy","Latto","us",[[2022,20.9,[7,0,0,0]]]],["Ghost","Justin Bieber","us",[[2022,19.4,[8,0,0,0]]]],["Super Gremlin","Kodak Black","us",[[2022,18.2,[9,0,0,0]]]],["Cold Heart (Pnau Remix)","Elton John and Dua Lipa","both",[[2022,22.2,[10,0,9,0]]]],["Peru","Fireboy DML feat. Ed Sheeran","eu",[[2022,9.9,[0,3,0,0]]]],["Where Are You Now","Lost Frequencies feat. Calum Scott","eu",[[2022,11.6,[0,8,7,0]]]],["Layla","DJ Robin & Schürze","eu",[[2022,16.8,[0,0,1,0]]]],["Last Night","Morgan Wallen","us",[[2023,61.0,[1,0,0,0]]]],["Flowers","Miley Cyrus","both",[[2023,71.2,[2,1,2,0]]]],["Kill Bill","SZA","both",[[2023,39.5,[3,7,0,0]]]],["Anti-Hero","Taylor Swift","both",[[2023,36.9,[4,4,0,0]]]],["Creepin","Metro Boomin, the Weeknd and 21 Savage","us",[[2023,25.2,[5,0,0,0]]]],["Calm Down","Rema and Selena Gomez","both",[[2023,29.5,[6,6,0,0]]]],["Die for You","The Weeknd and Ariana Grande","us",[[2023,20.9,[7,0,0,0]]]],["Fast Car","Luke Combs","us",[[2023,19.4,[8,0,0,0]]]],["Snooze","SZA","us",[[2023,18.2,[9,0,0,0]]]],["I'm Good (Blue)","David Guetta and Bebe Rexha","both",[[2023,24.1,[10,0,5,0]]]],["Sprinter","Dave & Central Cee","eu",[[2023,12.3,[0,2,0,0]]]],["Escapism","Raye feat. 070 Shake","eu",[[2023,9.9,[0,3,0,0]]]],["Komet","Udo Lindenberg & Apache 207","eu",[[2023,16.7,[0,0,1,0]],[2024,5.3,[0,0,8,0]]]],["Sie weiß","Ayliva feat. Mero","eu",[[2023,9.1,[0,0,3,0]]]],["Lose Control","Teddy Swims","both",[[2024,69.5,[1,4,0,0]],[2025,28.6,[4,0,0,0]]]],["A Bar Song (Tipsy)","Shaboozey","both",[[2024,48.5,[2,6,0,0]],[2025,33.5,[3,0,0,0]]]],["Beautiful Things","Benson Boone","both",[[2024,54.8,[3,2,3,0]],[2025,29.0,[6,7,0,0]]]],["I Had Some Help","Post Malone feat. Morgan Wallen","us",[[2024,28.5,[4,0,0,0]],[2025,19.5,[8,0,0,0]]]],["Lovin on Me","Jack Harlow","us",[[2024,25.2,[5,0,0,0]]]],["Not Like Us","Kendrick Lamar","us",[[2024,22.8,[6,0,0,0]]]],["Espresso","Sabrina Carpenter","both",[[2024,30.8,[7,3,0,0]]]],["Million Dollar Baby","Tommy Richman","us",[[2024,19.5,[8,0,0,0]]]],["I Remember Everything","Zach Bryan feat. Kacey Musgraves","us",[[2024,18.3,[9,0,0,0]]]],["Too Sweet","Hozier","both",[[2024,24.6,[10,5,0,0]]]],["Stick Season","Noah Kahan","eu",[[2024,17.9,[0,1,0,0]]]],["Birds of a Feather","Billie Eilish","both",[[2024,6.2,[0,7,0,0]],[2025,25.3,[5,0,0,0]]]],["I Like the Way You Kiss Me","Artemas","eu",[[2024,16.6,[0,0,1,0]]]],["Wunder","Ayliva feat. Apache 207","eu",[[2024,11.3,[0,0,2,0]]]],["Stumblin’ In","Cyril","eu",[[2024,7.7,[0,0,4,0]]]],["Die with a Smile","Lady Gaga and Bruno Mars","both",[[2025,66.3,[1,10,0,0]]]],["Luther","Kendrick Lamar and SZA","us",[[2025,41.9,[2,0,0,0]]]],["Ordinary","Alex Warren","both",[[2025,46.5,[7,1,4,0]]]],["APT.","Rosé and Bruno Mars","both",[[2025,36.9,[9,5,2,0]]]],["Pink Pony Club","Chappell Roan","both",[[2025,27.0,[10,3,0,0]]]],["Messy","Lola Young","eu",[[2025,16.8,[0,2,10,0]]]],["Golden","Huntr/x feat. Ejae, Audrey Nuna & Rei Ami","eu",[[2025,15.1,[0,4,5,0]]]],["That’s So True","Gracie Abrams","eu",[[2025,11.9,[0,6,8,0]]]],["Wackelkontakt","Oimara","eu",[[2025,16.5,[0,0,1,0]]]]];
+const WEIGHTS = {"1966":[54.8,18.9,18.9,7.4],"1967":[54.5,19.0,19.2,7.3],"1968":[54.1,19.1,19.5,7.2],"1969":[53.8,19.2,19.9,7.2],"1970":[53.5,19.2,20.2,7.1],"1971":[53.1,19.3,20.5,7.0],"1972":[52.8,19.4,20.9,7.0],"1973":[52.4,19.5,21.2,6.9],"1974":[52.1,19.6,21.5,6.8],"1975":[51.8,19.6,21.9,6.7],"1976":[51.4,19.7,22.3,6.6],"1977":[51.1,19.8,22.6,6.5],"1978":[50.7,19.9,23.0,6.4],"1979":[50.4,19.9,23.4,6.3],"1980":[50.0,20.0,23.8,6.2],"1981":[49.6,20.2,23.8,6.3],"1982":[49.3,20.3,23.9,6.4],"1983":[48.9,20.5,24.0,6.5],"1984":[48.5,20.7,24.1,6.6],"1985":[48.2,20.9,24.2,6.7],"1986":[47.8,21.0,24.3,6.8],"1987":[47.4,21.2,24.4,6.9],"1988":[47.0,21.4,24.5,7.0],"1989":[46.7,21.6,24.6,7.2],"1990":[46.3,21.8,24.7,7.3],"1991":[46.8,22.1,24.1,7.1],"1992":[47.3,22.3,23.5,6.8],"1993":[47.8,22.6,22.9,6.6],"1994":[48.4,22.9,22.3,6.4],"1995":[48.9,23.2,21.7,6.2],"1996":[49.4,23.4,21.1,6.0],"1997":[49.9,23.7,20.5,5.8],"1998":[50.4,24.0,20.0,5.6],"1999":[51.0,24.3,19.4,5.4],"2000":[51.5,24.6,18.8,5.2],"2001":[51.6,24.4,18.9,5.1],"2002":[51.7,24.3,19.1,4.9],"2003":[51.8,24.2,19.3,4.8],"2004":[51.9,24.1,19.4,4.6],"2005":[52.0,23.9,19.6,4.5],"2006":[52.1,23.8,19.7,4.4],"2007":[52.2,23.7,19.9,4.2],"2008":[52.4,23.5,20.0,4.1],"2009":[52.5,23.4,20.2,3.9],"2010":[52.6,23.2,20.3,3.8],"2011":[53.5,22.7,20.0,3.8],"2012":[54.3,22.2,19.6,3.8],"2013":[55.2,21.7,19.3,3.8],"2014":[56.0,21.2,19.0,3.9],"2015":[56.8,20.7,18.6,3.9],"2016":[57.6,20.2,18.3,3.9],"2017":[58.4,19.8,18.0,3.9],"2018":[59.1,19.3,17.7,3.9],"2019":[59.9,18.8,17.4,3.9],"2020":[60.7,18.4,17.0,3.9],"2021":[60.8,18.3,16.9,4.0],"2022":[60.9,18.2,16.8,4.1],"2023":[61.0,18.1,16.7,4.2],"2024":[61.2,17.9,16.6,4.3],"2025":[61.3,17.8,16.5,4.4]};
+const IT_SRC = {"1966":"M&D/FIMI","1967":"M&D/FIMI","1968":"M&D/FIMI","1969":"M&D/FIMI","1970":"M&D/FIMI","1971":"M&D/FIMI","1972":"M&D/FIMI","1973":"M&D/FIMI","1974":"M&D/FIMI","1975":"M&D/FIMI","1976":"HPI","1977":"HPI","1978":"HPI","1979":"HPI","1980":"HPI","1981":"HPI","1982":"HPI","1983":"HPI","1984":"HPI","1985":"HPI","1986":"HPI","1987":"HPI","1988":"HPI","1989":"HPI","1990":"HPI","1991":"HPI","1992":"HPI","1993":"HPI","1994":"HPI","1995":"HPI","1996":"HPI","1997":"HPI","1998":"HPI","1999":"HPI","2000":"HPI","2001":"HPI","2002":"M&D/FIMI","2003":"M&D/FIMI","2004":"M&D/FIMI","2005":"M&D/FIMI","2006":"M&D/FIMI","2007":"M&D/FIMI","2008":"M&D/FIMI","2009":"M&D/FIMI","2010":"M&D/FIMI","2011":"M&D/FIMI","2012":"M&D/FIMI","2013":"M&D/FIMI","2014":"M&D/FIMI","2015":"M&D/FIMI","2016":"M&D/FIMI","2017":"M&D/FIMI","2018":"M&D/FIMI","2019":"M&D/FIMI","2020":"M&D/FIMI","2021":"M&D/FIMI","2022":"M&D/FIMI","2023":"M&D/FIMI","2024":"M&D/FIMI","2025":"M&D/FIMI"};
+
+const Y0 = 1966, Y1 = 2025;
+const COUNTRIES = [
+  { k: "us", name: "USA", long: "Stati Uniti" },
+  { k: "uk", name: "UK", long: "Regno Unito" },
+  { k: "de", name: "Germania", long: "Germania" },
+  { k: "it", name: "Italia", long: "Italia" },
+];
+const CATS = {
+  both: "Successo in USA ed Europa",
+  us: "Solo negli Stati Uniti",
+  eu: "Solo in Europa",
+};
+
+const SONGS = DATA.map(([t, ar, c, yrs], i) => {
+  const ranks = {}, score = {};
+  yrs.forEach(([y, s, r]) => { score[y] = s; ranks[y] = r; });
+  return { t, ar, c, id: i, ranks, score };
+});
+const VAL = SONGS.map(s => {
+  const row = new Array(Y1 - Y0 + 2).fill(0);
+  for (const y in s.score) row[+y - Y0] = s.score[y];
+  return row;
+});
+
+const FRAMES = (Y1 - Y0) * 12;          // un frame per mese
+const MS_PER_FRAME = 10000 / 12;        // 10 secondi per anno
+const X_MAX = 80;
+const X_MAX_PHONE = 60;
+const PHONE_MQ = "(max-width: 680px)";
+const VISIBLE = 10;
+const RENDER = 14;                       // righe montate: le prime 10 più quelle in arrivo
+const MONTHS = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const ERAS = [
+  { from: 1966, to: 1990, label: "Vinile 45 giri", short: "45 giri" },
+  { from: 1990, to: 2004, label: "CD singolo e cassetta", short: "CD" },
+  { from: 2004, to: 2014, label: "Download digitale", short: "Download" },
+  { from: 2014, to: 2025, label: "Streaming", short: "Streaming" },
+];
+const TICKS_ALL = [0, 20, 40, 60, 80];
+const TICKS_PHONE = [0, 20, 40, 60];
+const fmt1 = new Intl.NumberFormat("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+const rankText = (r, y) => COUNTRIES.map((c, k) => r[k] ? `${c.name} ${r[k]}` : null).filter(Boolean).join(" · ");
+
+function frameState(f) {
+  const yi = Math.floor(f / 12), m = f % 12, t = m / 12;
+  const list = SONGS.map((a, i) => {
+    const v0 = VAL[i][yi], v1 = VAL[i][yi + 1];
+    return { i, v: v0 + (v1 - v0) * t };
+  });
+  const sorted = list.slice().sort((p, q) => q.v - p.v || p.i - q.i);
+  const rank = new Array(SONGS.length);
+  sorted.forEach((d, r) => { rank[d.i] = r; });
+  return { year: Math.min(Y1, Y0 + yi), month: f >= FRAMES ? 11 : m, list, rank, sorted };
+}
+
+const html = htm.bind(React.createElement);
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+const PlayIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z"/></svg>`;
+const PauseIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 1.5h3.2v11H2.5zM8.3 1.5h3.2v11H8.3z"/></svg>`;
+const RestartIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5a5.5 5.5 0 1 1-5.2 3.7l1.6.6A3.8 3.8 0 1 0 7 3.2V5L3.8 2.4 7 0z"/></svg>`;
+
+function App() {
+  const [frame, setFrame] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const frameRef = useRef(0);
+  const [phone, setPhone] = useState(() => window.matchMedia(PHONE_MQ).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(PHONE_MQ);
+    const on = () => setPhone(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const X_MAX_NOW = phone ? X_MAX_PHONE : X_MAX;
+  const TICKS = phone ? TICKS_PHONE : TICKS_ALL;
+
+  useEffect(() => {
+    if (!playing) return;
+    let raf, t0 = performance.now() - frameRef.current * MS_PER_FRAME, last = performance.now();
+    const tick = now => {
+      const gap = now - last; last = now;
+      if (gap > 500) t0 += gap - 16;
+      const f = Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME));
+      if (f !== frameRef.current) { frameRef.current = f; setFrame(f); }
+      if (f >= FRAMES) { setPlaying(false); return; }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [playing]);
+
+  const toggle = useCallback(() => {
+    if (!playing && frameRef.current >= FRAMES) { frameRef.current = 0; setFrame(0); }
+    setPlaying(p => !p);
+  }, [playing]);
+  const restart = () => { frameRef.current = 0; setFrame(0); setPlaying(true); };
+  const scrub = e => { const f = +e.target.value; setPlaying(false); frameRef.current = f; setFrame(f); };
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.code === "Space" && !["INPUT","BUTTON","SUMMARY"].includes(document.activeElement?.tagName)) { e.preventDefault(); toggle(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [toggle]);
+
+  const st = useMemo(() => frameState(frame), [frame]);
+  const era = ERAS.find(e => st.year >= e.from && st.year < e.to) || ERAS[ERAS.length - 1];
+  const leader = SONGS[st.sorted[0].i];
+  const yearRows = useMemo(() => SONGS.filter(s => s.score[st.year]).sort((p, q) => q.score[st.year] - p.score[st.year]).slice(0, 10), [st.year]);
+  const w = WEIGHTS[st.year];
+  const when = `${MONTHS[st.month]} ${st.year}`;
+  const mounted = st.sorted.slice(0, RENDER).map(d => d.i).sort((a, b) => a - b);
+
+  return html`
+    <header class="head">
+      <div class="head-text">
+        <span class="eyebrow">Singoli · USA, Regno Unito, Germania, Italia · 1966–2025</span>
+        <h1>Hit Parade Mondiale</h1>
+        <p class="lede">Le canzoni di maggior successo di ogni anno, unendo le classifiche annuali vere di quattro grandi mercati. Ogni paese pesa in base alla grandezza del suo mercato discografico: 100 punti vuol dire n. 1 in tutti e quattro.</p>
+      </div>
+      <div class="legend" aria-label="Legenda">
+        ${Object.entries(CATS).map(([k, l]) => html`<span key=${k}><i class=${`sw ${k}`}></i>${l}</span>`)}
+      </div>
+    </header>
+
+    <section class="stage" aria-label="Classifica mondiale animata dei singoli">
+      <div class="wm-wrap" aria-hidden="true"><div class="wm" key=${st.year}>${st.year}</div></div>
+
+      <div class="stage-top">
+        <span class="stage-title">Classifica annuale · punteggio mondiale (0–100)</span>
+        <span class="leader">In testa: <b>${leader.t}</b> · ${leader.ar}</span>
+      </div>
+
+      <div class="axis cols" aria-hidden="true">
+        <span></span><span></span>
+        <div class="plotin">
+          ${TICKS.map(t => html`<span class="tick" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}>${t}</span>`)}
+        </div>
+      </div>
+
+      <div class="rows">
+        <div class="gridlayer cols" aria-hidden="true">
+          <div class="ranks">${Array.from({ length: VISIBLE }, (_, r) => html`<span key=${r}>${r + 1}</span>`)}</div>
+          <span></span>
+          <div class="plotin">${TICKS.map(t => html`<i class="gl" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}></i>`)}</div>
+        </div>
+
+        ${mounted.map(i => {
+          const a = SONGS[i];
+          const r = st.rank[i];
+          const v = st.list[i].v;
+          const on = r < VISIBLE && v > 0;
+          const pos = on ? r : VISIBLE;
+          const pct = Math.min(100, (v / X_MAX_NOW) * 100);
+          const shown = fmt1.format(v);
+          const real = a.ranks[st.year];
+          const yrs = Object.keys(a.ranks);
+          return html`
+            <div key=${a.id} class=${`row cols${on ? "" : " off"}${r >= 6 ? " low" : ""}`}
+                 style=${{ transform: `translateY(calc(${pos} * var(--row)))` }}
+                 tabindex=${on ? 0 : -1} aria-hidden=${on ? "false" : "true"}
+                 aria-label=${`${a.t} di ${a.ar}${real ? `, ${st.year}: ${rankText(real)}` : ""}`}>
+              <span></span>
+              <div class="label">
+                <span class="name">${a.t}</span>
+                <span class="sub">${a.ar}</span>
+              </div>
+              <div class="plotin">
+                <div class=${`bar ${a.c}${v > X_MAX_NOW ? " over" : ""}`} style=${{ width: `${pct}%` }}></div>
+                <span class="val" style=${{ left: `${pct}%` }}>${shown}</span>
+              </div>
+              <div class="tip" role="tooltip">
+                <span class="t-name"><i class=${`sw ${a.c}`}></i>${a.t}</span>
+                <span class="t-muted">${a.ar}</span>
+                ${real
+                  ? html`<span class="t-val">Classifiche annuali ${st.year}:</span>
+                         <span class="t-ranks">${COUNTRIES.map((c, k) => html`<span key=${c.k}>${c.name} <b>${real[k] ? `n. ${real[k]}` : "—"}</b></span>`)}</span>`
+                  : html`<span class="t-val">Fuori dalle classifiche annuali ${st.year}</span>`}
+                <span class="t-muted">Anni in classifica: ${yrs.join(", ")}</span>
+                <span class="t-muted">Punteggio in questo momento: ${shown}</span>
+              </div>
+            </div>`;
+        })}
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Controlli">
+      <div class="transport">
+        <button class="btn primary" id="play" onClick=${toggle} aria-label=${playing ? "Metti in pausa" : "Riproduci"}>
+          ${playing ? html`<${PauseIcon}/>` : html`<${PlayIcon}/>`}${playing ? "Pausa" : frame >= FRAMES ? "Rivedi" : "Riproduci"}
+        </button>
+        <button class="btn" id="restart" onClick=${restart}><${RestartIcon}/>Dal 1966</button>
+        <div class="readout">
+          <span class="when">${when}</span>
+          <span class="era-chip">${era.label}</span>
+        </div>
+      </div>
+      <div class="timeline">
+        <input class="scrub" id="scrub" type="range" min="0" max=${FRAMES} step="1" value=${frame}
+               onInput=${scrub} onChange=${scrub}
+               aria-label="Posizione nel tempo" aria-valuetext=${when} />
+        <div class="eras" aria-hidden="true">
+          ${ERAS.map(e => html`<div key=${e.label} class=${e === era ? "on" : ""} style=${{ flex: `${e.to - e.from} 1 0` }} title=${e.label}><span class="long">${e.label}</span><span class="short">${e.short}</span></div>`)}
+        </div>
+        <div class="decades" aria-hidden="true">
+          ${[1966, 1980, 1990, 2000, 2010, 2025].map(y => html`<span key=${y} style=${{ left: `${((y - Y0) * 12 / FRAMES) * 100}%` }}>${y}</span>`)}
+        </div>
+      </div>
+    </section>
+
+    <details>
+      <summary>Classifica mondiale ${st.year} e posizioni nei quattro paesi</summary>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Pos.</th><th>Canzone</th><th>Artista</th>${COUNTRIES.map(c => html`<th class="num" key=${c.k}>${c.name}</th>`)}<th class="num">Punti</th></tr></thead>
+          <tbody>
+            ${yearRows.map((s, n) => html`<tr key=${s.id}><td>${n + 1}</td><td>${s.t}</td><td>${s.ar}</td>${s.ranks[st.year].map((r, k) => html`<td class=${`num${r ? "" : " dim"}`} key=${k}>${r || "—"}</td>`)}<td class="num">${fmt1.format(s.score[st.year])}</td></tr>`)}
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style=${{ marginTop: "10px" }}>Peso di ogni paese nel ${st.year}: ${COUNTRIES.map((c, k) => `${c.long} ${fmt1.format(w[k])}%`).join(" · ")}. Classifica italiana: ${IT_SRC[st.year] === "HPI" ? "Hit Parade Italia" : "Musica e dischi / FIMI"}.</p>
+    </details>
+
+    <p class="note">Come è fatta: per ogni anno si prendono le prime 10 delle classifiche annuali ufficiali di Stati Uniti (Billboard Year-End Hot 100), Regno Unito, Germania e Italia, così come riportate da Wikipedia (e, per l'Italia dal 1976 al 2001, da Hit Parade Italia). Una canzone prende punti in ogni paese dove è in classifica: di più se è in alto, di meno se è in basso. I punti di ogni paese sono pesati in base alla grandezza del suo mercato: gli Stati Uniti valgono circa un terzo del mercato mondiale; Regno Unito, Germania e Italia rappresentano insieme l'Europa, che vale quasi quanto gli USA. Il totale va da 0 a 100: 100 significa n. 1 in tutti e quattro i paesi. Fra un anno e l'altro i valori cambiano gradualmente, e una canzone che esce dalle classifiche scende fino a zero.</p>
+    <p class="note">Limiti: non esiste una classifica mondiale ufficiale prima del 2013, quindi questa è una ricostruzione con un metodo dichiarato. Giappone e Francia non sono inclusi perché per molti anni non c'è una classifica annuale completa e verificabile. Per l'Italia, in alcuni anni la posizione n. 4 non è disponibile. I pesi dei paesi sono approssimati.</p>
+  `;
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(html`<${App} />`);
+</script>
+</body>
+</html>
