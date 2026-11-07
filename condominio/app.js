@@ -212,6 +212,7 @@ function odgList(a) {
     if (cs.length) bits.push(`<span>${cs.length} ${cs.length === 1 ? "osservazione condivisa" : "osservazioni condivise"}</span>`);
     if (bb.length) bits.push(`<span>${bb.length} ${bb.length === 1 ? "messaggio" : "messaggi"} in bacheca</span>`);
     if (fut && cs.some((c) => c.domanda && c.aperto)) bits.push(`<span class="chip c-new">Sondaggio aperto</span>`);
+    if (fut) bits.push(`<span class="odg-scrivi">Scrivi un'osservazione ›</span>`);
     return `<li><a href="#punto-${p.id}"><span class="odg-n">${p.numero}.</span><span class="odg-t">${esc(p.titolo)}</span>${bits.length ? `<span class="odg-d">${bits.join("")}</span>` : ""}</a></li>`;
   }).join("") || `<li class="empty">Nessun punto.</li>`}</ol>`;
 }
@@ -422,7 +423,7 @@ function viewPunto(id) {
   ${docs.length ? `<section><h2>Documenti e preventivi</h2><div class="files">${docs.map((d) => fileBtn(d.file, "lettera del " + fmtS(d.lettera.data_lettera || d.lettera.arrivata))).join("")}</div></section>` : ""}
   ${cs.length || !auto ? `<section><h2>Osservazioni condivise</h2>${cs.length ? cs.map((c) => condCard(c, false)).join("") : `<div class="empty">Ancora nessuna osservazione condivisa su questo punto.</div>`}</section>` : ""}
   ${bb.length || auto ? `<section><h2>Bacheca</h2>${bb.length ? bb.map((o) => bachecaCard(o, false)).join("") : `<div class="empty">Ancora nessun messaggio su questo punto.</div>`}</section>` : ""}
-  ${fut && !(isRapp() && !auto) ? ossForm(id) : ""}
+  ${fut ? ossForm(id) : ""}
   ${fut && isRapp() && !auto ? `<div class="note">Le osservazioni dei proprietari di ${esc(nomeScala(S.io.scala))} su questo punto le trovi in <a href="#osservazioni">Osservazioni ricevute</a>.</div>` : ""}
   ${isGestore() ? `<section class="panel"><h3>Correzioni (gestore)</h3>${ed ? `<div class="form">
     <div class="grid2"><label>Numero<input type="number" min="1" id="ep-num" value="${p.numero}"></label><label>Esito<select id="ep-esito">${Object.entries(ESITI).map(([k, v]) => `<option value="${k}" ${k === p.esito ? "selected" : ""}>${v}</option>`).join("")}</select></label></div>

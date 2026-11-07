@@ -137,6 +137,7 @@ a.item:hover .item-title { text-decoration: underline; }
 .odg-n { font-family: var(--f-display); font-weight: 700; color: var(--brass); font-size: 1.1rem; }
 .odg-t { font-weight: 700; min-width: 0; overflow-wrap: anywhere; }
 .odg-d { grid-column: 2; font-size: .88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+.odg-scrivi { color: var(--brand); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
 
 /* Lettera */
 .letter { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 24px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
