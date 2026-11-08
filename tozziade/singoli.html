@@ -1,0 +1,1091 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Hit Parade Singoli</title>
+<meta name="description" content="Bar chart race dei singoli più venduti in Italia dal 1970 al 2025, dalle classifiche annuali di Hit Parade Italia.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one broadcast "stage" panel — fixed rank rail, song column, bar track — with the year watermark dropping in behind the bars; transport controls and a format timeline underneath. */
+:root {
+  --bg: #f2f4f7;
+  --panel: #ffffff;
+  --fg: #13161b;
+  --fg2: #4a5260;
+  --fg3: #7a8291;
+  --line: #e1e5ec;
+  --track: #eef1f5;
+  --it: #eb6834;
+  --int: #2a78d6;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --row: 50px;
+  --label: 250px;
+  --rail: 34px;
+  --valroom: 80px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+    --line: #2a2f38; --track: #1f232a; --it: #d95926; --int: #3987e5; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #7f8796;
+  --line: #2a2f38; --track: #1f232a; --it: #d95926; --int: #3987e5; color-scheme: dark;
+}
+@media (max-width: 680px) {
+  :root { --row: 52px; --label: 0px; --rail: 22px; --valroom: 60px; }
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 40px;
+}
+#app { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+
+.head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; }
+.head-text { min-width: 0; display: grid; gap: 4px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 7vw, 68px); line-height: .9; letter-spacing: .005em; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 6px 0 0; color: var(--fg2); max-width: 62ch; }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--fg2); }
+.legend span { display: inline-flex; align-items: center; gap: 7px; }
+.sw { width: 14px; height: 10px; border-radius: 0 3px 3px 0; display: inline-block; flex: none; }
+.sw.it { background: var(--it); } .sw.int { background: var(--int); }
+
+.stage {
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px 16px 18px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.stage-top { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 6px; }
+.stage-title { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg3); }
+.leader { font-size: 13px; color: var(--fg2); min-width: 0; }
+.leader b { color: var(--fg); font-weight: 600; }
+
+.wm-wrap { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 0; }
+.wm {
+  position: absolute; left: 50%; top: 56%;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(150px, 31vw, 400px); line-height: .8;
+  letter-spacing: -.01em; color: var(--fg);
+  font-variant-numeric: tabular-nums;
+  opacity: .1;
+  transform: translate(-50%, -50%) scale(1);
+  transform-origin: 50% 50%;
+  animation: yearDrop 1050ms cubic-bezier(.2, .85, .25, 1) both;
+  white-space: nowrap;
+}
+@keyframes yearDrop {
+  0%   { transform: translate(-50%, -260%) scale(4.6); opacity: 0; }
+  10%  { opacity: .5; }
+  40%  { transform: translate(-50%, -50%) scale(.84); opacity: .24; }
+  62%  { transform: translate(-50%, -50%) scale(1.045); opacity: .14; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: .1; }
+}
+
+.cols { display: grid; grid-template-columns: var(--rail) var(--label) minmax(0, 1fr); }
+.plotin { position: relative; height: 100%; margin-right: var(--valroom); }
+
+.axis { position: relative; z-index: 1; height: 22px; }
+.axis .tick { position: absolute; bottom: 4px; transform: translateX(-50%); font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.axis .tick:first-child { transform: none; }
+
+.rows { position: relative; z-index: 1; height: calc(var(--row) * 10); }
+.gridlayer { position: absolute; inset: 0; pointer-events: none; }
+.gridlayer .gl { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--line); }
+.ranks { display: grid; grid-template-rows: repeat(10, var(--row)); }
+.ranks span { display: flex; align-items: center; font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+
+.row {
+  position: absolute; left: 0; right: 0; top: 0;
+  height: var(--row);
+  transition: transform 1100ms cubic-bezier(.45, 0, .2, 1), opacity 700ms ease;
+  will-change: transform;
+  outline: none;
+}
+.row.off { opacity: 0; pointer-events: none; }
+.label { display: flex; flex-direction: column; justify-content: center; min-width: 0; padding-right: 12px; }
+.name { font-weight: 600; font-size: 15px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sub { font-size: 11.5px; color: var(--fg3); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3; }
+.bar {
+  position: absolute; left: 0; top: 50%;
+  height: 62%; transform: translateY(-50%);
+  border-radius: 0 4px 4px 0;
+  transition: width 500ms linear;
+}
+.bar.it { background: var(--it); }
+.bar.int { background: var(--int); }
+.bar.over { border-radius: 0; background-image: linear-gradient(90deg, transparent calc(100% - 9px), var(--panel) calc(100% - 9px), var(--panel) calc(100% - 6px), transparent calc(100% - 6px)); }
+.val {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  padding-left: 8px; font-size: 13px; font-weight: 600; color: var(--fg2);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+  transition: left 500ms linear;
+}
+.row:hover .bar, .row:focus-visible .bar { filter: brightness(1.08); }
+.row:focus-visible .name { text-decoration: underline; text-underline-offset: 3px; }
+
+.tip {
+  position: absolute; z-index: 5; left: calc(var(--rail) + var(--label) - 4px); top: calc(100% - 4px);
+  background: var(--panel); color: var(--fg); border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgb(0 0 0 / .14);
+  border-radius: 10px; padding: 10px 12px; font-size: 13px; min-width: 210px; max-width: min(340px, 80vw);
+  display: none; pointer-events: none;
+}
+.row:hover .tip, .row:focus .tip { display: grid; gap: 2px; }
+.row.low .tip { top: auto; bottom: calc(100% - 4px); }
+.tip .t-name { font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.tip .t-val { font-variant-numeric: tabular-nums; }
+.tip .t-muted { color: var(--fg3); font-size: 12px; }
+
+.controls { display: grid; gap: 10px; }
+.transport { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.btn {
+  appearance: none; border: 1px solid var(--line); background: var(--panel); color: var(--fg);
+  font: 600 14px/1 var(--body); height: 40px; padding: 0 16px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+}
+.btn:hover { border-color: var(--fg3); }
+.btn:focus-visible, .scrub:focus-visible { outline: 2px solid var(--int); outline-offset: 2px; }
+.btn.primary { background: var(--fg); color: var(--panel); border-color: var(--fg); min-width: 116px; justify-content: center; }
+.btn svg { width: 14px; height: 14px; fill: currentColor; }
+.readout { margin-left: auto; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.readout .when { font-family: var(--display); font-weight: 800; font-size: 26px; letter-spacing: .02em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.era-chip { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg2); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; }
+
+.timeline { position: relative; display: grid; gap: 6px; }
+.scrub { width: 100%; margin: 0; accent-color: var(--fg); cursor: pointer; }
+.eras { display: flex; height: 22px; border-radius: 6px; overflow: hidden; gap: 2px; }
+.eras div { min-width: 0; background: var(--track); color: var(--fg3); font-size: 11px; font-weight: 600; letter-spacing: .04em; display: flex; align-items: center; padding: 0 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; transition: background .3s, color .3s; }
+.eras div.on { background: var(--fg); color: var(--panel); }
+.eras .short { display: none; }
+.decades { position: relative; height: 16px; font-size: 11px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+.decades span { position: absolute; transform: translateX(-50%); }
+.decades span:first-child { transform: none; }
+.decades span:last-child { transform: translateX(-100%); }
+
+details { border-top: 1px solid var(--line); padding-top: 12px; }
+summary { cursor: pointer; font-weight: 600; font-size: 14px; color: var(--fg2); }
+.tbl-wrap { overflow-x: auto; margin-top: 10px; }
+table { border-collapse: collapse; width: 100%; max-width: 760px; font-size: 13.5px; }
+th, td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--line); }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+th { color: var(--fg3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+
+.note { color: var(--fg3); font-size: 12.5px; max-width: 80ch; margin: 0; }
+
+@media (max-width: 680px) {
+  body { padding-block: 18px 32px; font-size: 14px; }
+  .lede { font-size: 14px; }
+  .cols { grid-template-columns: var(--rail) minmax(0, 1fr); }
+  .axis > span:nth-child(2), .gridlayer > span { display: none; }
+  .row.cols { grid-template-rows: 22px minmax(0, 1fr); padding-bottom: 6px; }
+  .row > span:first-child { grid-row: 1 / 3; }
+  .row .label { grid-column: 2; grid-row: 1; flex-direction: row; align-items: flex-end; justify-content: flex-start; gap: 6px; padding-right: 0; }
+  .row .plotin { grid-column: 2; grid-row: 2; }
+  .name { font-size: 13px; flex: 0 1 auto; max-width: 72%; }
+  .sub { font-size: 10.5px; flex: 1 1 0; min-width: 0; }
+  .bar { height: 16px; }
+  .val { font-size: 11.5px; padding-left: 5px; }
+  .ranks span { font-size: 16px; }
+  .tip { left: var(--rail); right: 0; min-width: 0; }
+  .wm { font-size: clamp(110px, 34vw, 400px); }
+  .stage { padding: 12px 10px 14px; border-radius: 12px; }
+  .stage-top { flex-direction: column; gap: 2px; }
+  .transport { gap: 8px; }
+  .btn { height: 44px; padding: 0 14px; }
+  .btn.primary { flex: 1 1 auto; }
+  .readout { margin-left: 0; width: 100%; justify-content: space-between; order: -1; }
+  .readout .when { font-size: 24px; }
+  .eras div { font-size: 10.5px; padding: 0 5px; }
+  .eras .long { display: none; }
+  .eras .short { display: inline; }
+  .scrub { height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .row, .bar, .val { transition: none; }
+  .wm { animation: none; }
+}
+</style>
+<style>
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+<div id="app"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+/* ------------------------------------------------------------------
+   DATI — classifiche annuali reali dei singoli in Italia
+   Fonte: Hit Parade Italia, "Top Annuale Singoli" (hitparadeitalia.it/hp_yends/hpe{ANNO}.htm).
+   Formato: ANNO|POSIZIONE|TITOLO|ARTISTA|it/int (provenienza dell'artista).
+   Numerazione verificata sulla copia della fonte conservata da web.archive.org.
+   Le copie vendute per brano non sono pubbliche: la lunghezza della barra è una stima
+   ricavata dalla posizione e dalla dimensione del mercato dei singoli in quell'anno.
+------------------------------------------------------------------- */
+const RAW = `
+1970|1|Insieme|Mina|it
+1970|2|La lontananza|Domenico Modugno|it
+1970|3|In the Summertime|Mungo Jerry|int
+1970|4|Anna|Lucio Battisti|it
+1970|5|Venus|The Shocking Blue|int
+1970|6|La prima cosa bella|Nicola Di Bari|it
+1970|7|Let It Be|The Beatles|int
+1970|8|Spring, Summer, Winter and Fall|Aphrodite's Child|int
+1970|9|L'appuntamento|Ornella Vanoni|it
+1970|10|L'isola di Wight|Michel Delpech|int
+1970|11|It's Five O'Clock|Aphrodite's Child|int
+1970|12|Sympathy|Rare Bird|int
+1971|1|Pensieri e parole|Lucio Battisti|it
+1971|2|Tanta voglia di lei|Pooh|it
+1971|3|Un fiume amaro|Iva Zanicchi|it
+1971|4|Amor mio|Mina|it
+1971|5|Amore caro amore bello|Bruno Lauzi|it
+1971|6|Pensiero|Pooh|it
+1971|7|Love Story|Francis Lai|int
+1971|8|My Sweet Lord|George Harrison|int
+1971|9|Sinfonia n. 40 (Mozart)|Waldo De Los Rios|int
+1971|10|4/3/1943|Lucio Dalla|it
+1971|11|La riva bianca, la riva nera|Iva Zanicchi|it
+1971|12|We Shall Dance|Demis Roussos|int
+1972|1|Il padrino|Santo & Johnny|int
+1972|2|Questo piccolo grande amore|Claudio Baglioni|it
+1972|3|Grande grande grande|Mina|it
+1972|4|La canzone del sole|Lucio Battisti|it
+1972|5|Imagine|John Lennon|int
+1972|6|Il gabbiano infelice|Il Guardiano del Faro|it
+1972|7|I giardini di marzo|Lucio Battisti|it
+1972|8|Jesahel|Delirium|it
+1972|9|Alone Again (Naturally)|Gilbert O'Sullivan|int
+1972|10|Viaggio di un poeta|Dik Dik|it
+1972|11|Un albero di trenta piani|Adriano Celentano|it
+1972|12|Vieni via con me (Taratapunzi-e)|Loretta Goggi|it
+1973|1|E poi...|Mina|it
+1973|2|La collina dei ciliegi|Lucio Battisti|it
+1973|3|Il mio canto libero|Lucio Battisti|it
+1973|4|Pazza idea|Patty Pravo|it
+1973|5|Crocodile Rock|Elton John|int
+1973|6|Vincent|Don McLean|int
+1973|7|Io e te per altri giorni|Pooh|it
+1973|8|He|Today's People|int
+1973|9|Minuetto|Mia Martini|it
+1973|10|Perché ti amo|I Camaleonti|it
+1974|1|E tu...|Claudio Baglioni|it
+1974|2|A Blue Shadow|Berto Pisano|it
+1974|3|Anima mia|I Cugini di Campagna|it
+1974|4|Bella senz'anima|Riccardo Cocciante|it
+1974|5|Bellissima|Adriano Celentano|it
+1974|6|Angie|The Rolling Stones|int
+1974|7|Piccola e fragile|Drupi|it
+1974|8|Soleado|Daniel Sentacruz Ensemble|it
+1974|9|Prisencolinensinainciusol|Adriano Celentano|it
+1974|10|E la vita, la vita|Cochi e Renato|it
+1975|1|Sabato pomeriggio|Claudio Baglioni|it
+1975|2|L'importante è finire|Mina|it
+1975|3|La tartaruga|Bruno Lauzi|it
+1975|4|Piange il telefono|Domenico Modugno|it
+1975|5|Profondo rosso|Goblin|it
+1975|6|Bella dentro|Paolo Frescura|it
+1975|7|Un corpo e un'anima|Wess & Dori Ghezzi|it
+1975|8|Tornerò|I Santo California|it
+1975|9|Sereno è|Drupi|it
+1975|10|Amore grande, amore libero|Il Guardiano del Faro|it
+1976|1|Ancora tu|Lucio Battisti|it
+1976|2|Non si può morire dentro|Gianni Bella|it
+1976|3|Margherita|Riccardo Cocciante|it
+1976|4|Sandokan|Oliver Onions|it
+1976|5|S.O.S.|ABBA|int
+1976|6|Sei forte papà|Gianni Morandi|it
+1976|7|Ramaya|Afric Simone|int
+1976|8|Europa|Santana|int
+1976|9|Linda bella Linda|Daniel Sentacruz Ensemble|it
+1976|10|Johnny Bassotto|Lino Toffolo|it
+1976|11|Linda|Pooh|it
+1976|12|Fly, Robin, Fly|Silver Convention|int
+1977|1|Amarsi un po'|Lucio Battisti|it
+1977|2|Ti amo|Umberto Tozzi|it
+1977|3|Solo tu|Matia Bazar|it
+1977|4|L'angelo azzurro|Umberto Balsamo|it
+1977|5|Honky Tonk Train Blues|Keith Emerson|int
+1977|6|Don't Let Me Be Misunderstood|Santa Esmeralda|int
+1977|7|I Feel Love|Donna Summer|int
+1977|8|Solo|Claudio Baglioni|it
+1977|9|Samarcanda|Roberto Vecchioni|it
+1977|10|Tu mi rubi l'anima|Collage|it
+1978|1|Una donna per amico|Lucio Battisti|it
+1978|2|Tu|Umberto Tozzi|it
+1978|3|Wuthering Heights|Kate Bush|int
+1978|4|You're the One That I Want|John Travolta & Olivia Newton-John|int
+1978|5|Stayin' Alive|Bee Gees|int
+1978|6|Sotto il segno dei pesci|Antonello Venditti|it
+1978|7|Triangolo|Renato Zero|it
+1978|8|Grease|Frankie Valli|int
+1978|9|Liù|Alunni del Sole|it
+1978|10|Ti avrò|Adriano Celentano|it
+1979|1|Tu sei l'unica donna per me|Alan Sorrenti|it
+1979|2|Se tornassi|Julio Iglesias|int
+1979|3|Soli|Adriano Celentano|it
+1979|4|Super Superman|Miguel Bosé|int
+1979|5|Rémi, le sue avventure|I Ragazzi di Rémi|it
+1979|6|Tragedy|Bee Gees|int
+1979|7|Too Much Heaven|Bee Gees|int
+1979|8|Pensami|Julio Iglesias|int
+1979|9|Disco bambina|Heather Parisi|it
+1979|10|Buona domenica|Antonello Venditti|it
+1980|1|Video Killed the Radio Star|The Buggles|int
+1980|2|Upside Down|Diana Ross|int
+1980|3|Luna|Gianni Togni|it
+1980|4|Olympic Games|Miguel Bosé|int
+1980|5|Amico|Renato Zero|it
+1980|6|Master Blaster (Jammin')|Stevie Wonder|int
+1980|7|Non so che darei|Alan Sorrenti|it
+1980|8|You and Me|Spargo|int
+1980|9|My Sharona|The Knack|int
+1980|10|Il tempo se ne va|Adriano Celentano|it
+1980|11|Another Brick in the Wall, Part 2|Pink Floyd|int
+1980|12|Don't Stand So Close to Me|The Police|int
+1981|1|(Out Here) On My Own|Nikka Costa|int
+1981|2|Enola Gay|Orchestral Manoeuvres in the Dark|int
+1981|3|Woman in Love|Barbra Streisand|int
+1981|4|Reality|Richard Sanderson|int
+1981|5|Amoureux solitaires|Lio|int
+1981|6|Bette Davis Eyes|Kim Carnes|int
+1981|7|Sarà perché ti amo|Ricchi e Poveri|it
+1981|8|Gioca jouer|Claudio Cecchetto|it
+1981|9|Maledetta primavera|Loretta Goggi|it
+1981|10|Tunnel of Love|Dire Straits|int
+1982|1|Der Kommissar|Falco|int
+1982|2|Theme from Paradise|Phoebe Cates|int
+1982|3|Bravi ragazzi|Miguel Bosé|int
+1982|4|Hard to Say I'm Sorry|Chicago|int
+1982|5|Avrai|Claudio Baglioni|it
+1982|6|Il ballo del qua qua|Romina Power|it
+1982|7|Words|F.R. David|int
+1982|8|Ebony and Ivory|Paul McCartney & Stevie Wonder|int
+1982|9|Carletto|Corrado & Simone Jurgens|it
+1982|10|Masterpiece|Gazebo|it
+1983|1|Flashdance... What a Feeling|Irene Cara|int
+1983|2|I Like Chopin|Gazebo|it
+1983|3|Vamos a la playa|Righeira|it
+1983|4|Vacanze romane|Matia Bazar|it
+1983|5|Moonlight Shadow|Mike Oldfield & Maggie Reilly|int
+1983|6|Juliet|Robin Gibb|int
+1983|7|Billie Jean|Michael Jackson|int
+1983|8|Every Breath You Take|The Police|int
+1983|9|Paris latino|Bandolero|int
+1983|10|Rocking Rolling|Scialpi|it
+1984|1|I Just Called to Say I Love You|Stevie Wonder|int
+1984|2|Careless Whisper|George Michael|int
+1984|3|Self Control|Raf|it
+1984|4|Fotoromanza|Gianna Nannini|it
+1984|5|Love of the Common People|Paul Young|int
+1984|6|Say Say Say|Paul McCartney & Michael Jackson|int
+1984|7|All Night Long (All Night)|Lionel Richie|int
+1984|8|Smalltown Boy|Bronski Beat|int
+1984|9|Against All Odds|Phil Collins|int
+1984|10|Sounds Like a Melody|Alphaville|int
+1985|1|We Are the World|USA for Africa|int
+1985|2|Into the Groove|Madonna|int
+1985|3|The Wild Boys|Duran Duran|int
+1985|4|A View to a Kill|Duran Duran|int
+1985|5|Election Day|Arcadia|int
+1985|6|Don't You (Forget About Me)|Simple Minds|int
+1985|7|Noi, ragazzi di oggi|Luis Miguel|int
+1985|8|Una storia importante|Eros Ramazzotti|it
+1985|9|L'estate sta finendo|Righeira|it
+1985|10|19|Paul Hardcastle|int
+1986|1|The Final Countdown|Europe|int
+1986|2|Papa Don't Preach|Madonna|int
+1986|3|Run to Me|Tracy Spencer|int
+1986|4|Easy Lady|Spagna|it
+1986|5|Notorious|Duran Duran|int
+1986|6|Live to Tell|Madonna|int
+1986|7|You Can Leave Your Hat On|Joe Cocker|int
+1986|8|Take On Me|a-ha|int
+1986|9|Bello e impossibile|Gianna Nannini|it
+1986|10|Through the Barricades|Spandau Ballet|int
+1986|11|Lessons in Love|Level 42|int
+1986|12|Adesso tu|Eros Ramazzotti|it
+1987|1|La Bamba|Los Lobos|int
+1987|2|Who's That Girl|Madonna|int
+1987|3|Let It Be|Ferry Aid|int
+1987|4|Bad|Michael Jackson|int
+1987|5|Si può dare di più|Umberto Tozzi, Gianni Morandi & Enrico Ruggeri|it
+1987|6|Faith|George Michael|int
+1987|7|I Want Your Sex|George Michael|int
+1987|8|I Just Can't Stop Loving You|Michael Jackson & Siedah Garrett|int
+1987|9|I Wanna Dance with Somebody|Whitney Houston|int
+1987|10|Call Me|Spagna|it
+1988|1|I Don't Want Your Love|Duran Duran|int
+1988|2|A Groovy Kind of Love|Phil Collins|int
+1988|3|C'è da spostare una macchina|Francesco Salvi|it
+1988|4|Tell Me|Nick Kamen|int
+1988|5|Gimme Five|Jovanotti|it
+1988|6|Pump Up the Volume|M/A/R/R/S|int
+1988|7|Étienne|Guesch Patti|int
+1988|8|Andamento lento|Tullio De Piscopo|it
+1988|9|I'm Not Scared|Eighth Wonder|int
+1988|10|L'amore rubato|Luca Barbarossa|it
+1989|1|Lambada|Kaoma|int
+1989|2|Viva la mamma|Edoardo Bennato|it
+1989|3|Another Day in Paradise|Phil Collins|int
+1989|4|Batdance|Prince|int
+1989|5|Like a Prayer|Madonna|int
+1989|6|Esatto!|Francesco Salvi|it
+1989|7|Sowing the Seeds of Love|Tears for Fears|int
+1989|8|Ti pretendo|Raf|it
+1989|9|The Look|Roxette|int
+1989|10|051/222525|Fabio Concato|it
+1990|1|Un'estate italiana|Edoardo Bennato & Gianna Nannini|it
+1990|2|Vattene amore|Amedeo Minghi & Mietta|it
+1990|3|Sotto questo sole|Francesco Baccini & Ladri di Biciclette|it
+1990|4|Attenti al lupo|Lucio Dalla|it
+1990|5|Vogue|Madonna|int
+1990|6|I Can't Stand It|Twenty 4 Seven|int
+1990|7|I've Been Thinking About You|Londonbeat|int
+1990|8|Nothing Compares 2 U|Sinéad O'Connor|int
+1990|9|I'm Your Baby Tonight|Whitney Houston|int
+1990|10|Disperato|Marco Masini|it
+1990|11|Uomini soli|Pooh|it
+1990|12|Scrivimi|Nino Buonocore|it
+1991|1|Rapput|Claudio Bisio & Rocco Tanica|it
+1991|2|Se stiamo insieme|Riccardo Cocciante|it
+1991|3|Black or White|Michael Jackson|int
+1991|4|Gypsy Woman (She's Homeless)|Crystal Waters|int
+1991|5|Perché lo fai|Marco Masini|it
+1991|6|Sadeness (Part I)|Enigma|int
+1991|7|Let There Be Love|Simple Minds|int
+1991|8|(Everything I Do) I Do It for You|Bryan Adams|int
+1991|9|The Fly|U2|int
+1991|10|Ti spacco la faccia|Il Gabibbo|it
+1992|1|Rhythm Is a Dancer|Snap!|int
+1992|2|Don't Let the Sun Go Down on Me|George Michael & Elton John|int
+1992|3|Why|Annie Lennox|int
+1992|4|It's Probably Me|Sting & Eric Clapton|int
+1992|5|This Used to Be My Playground|Madonna|int
+1992|6|Too Funky|George Michael|int
+1992|7|Dur dur d'être bébé!|Jordy|int
+1992|8|I Will Always Love You|Whitney Houston|int
+1992|9|Non amarmi|Francesca Alotta & Aleandro Baldi|it
+1992|10|Pippero|Elio e le Storie Tese|it
+1993|1|Gli spari sopra|Vasco Rossi|it
+1993|2|Living on My Own|Freddie Mercury|int
+1993|3|Come mai|883|it
+1993|4|All That She Wants|Ace of Base|int
+1993|5|Sei un mito|883|it
+1993|6|Penso positivo|Jovanotti|it
+1993|7|Dur dur d'être bébé!|Jordy|int
+1993|8|What Is Love|Haddaway|int
+1993|9|Delusa|Vasco Rossi|it
+1993|10|What's Up?|4 Non Blondes|int
+1993|11|Sì o no (Please Don't Go)|Fiorello|it
+1994|1|The Rhythm of the Night|Corona|it
+1994|2|Streets of Philadelphia|Bruce Springsteen|int
+1994|3|7 Seconds|Youssou N'Dour & Neneh Cherry|int
+1994|4|Sweet Dreams|La Bouche|int
+1994|5|It's a Rainy Day|Ice MC|int
+1994|6|I'll Remember|Madonna|int
+1994|7|Sure|Take That|int
+1994|8|All for Love|Bryan Adams, Rod Stewart & Sting|int
+1994|9|Il cielo|Fiorello|it
+1994|10|The Rhythm Is Magic|Marie Claire D'Ubaldo|int
+1995|1|Gangsta's Paradise|Coolio|int
+1995|2|Boombastic|Shaggy|int
+1995|3|The Colour Inside|Ti.Pi.Cal.|it
+1995|4|Missing|Everything but the Girl|int
+1995|5|Hideaway|De'Lacy|int
+1995|6|Be My Lover|La Bouche|int
+1995|7|Scatman's World|Scatman John|int
+1995|8|Baby Baby|Corona|it
+1995|9|All I Need Is Love|Indiana|it
+1995|10|Me and You|Alexia & Double You|it
+1996|1|One and One|Robert Miles|it
+1996|2|Children|Robert Miles|it
+1996|3|Born Slippy .NUXX|Underworld|int
+1996|4|Fable|Robert Miles|it
+1996|5|Killing Me Softly|Fugees|int
+1996|6|Summer Is Crazy|Alexia|it
+1996|7|Don't Stop Movin'|Livin' Joy|it
+1996|8|Jesus to a Child|George Michael|int
+1996|9|Profondo rosso|Flexter|it
+1996|10|Killing Me Softly|Regina|int
+1997|1|I'll Be Missing You|Puff Daddy & Faith Evans|int
+1997|2|Barbie Girl|Aqua|int
+1997|3|Around the World|Daft Punk|int
+1997|4|Something About the Way You Look Tonight|Elton John|int
+1997|5|Breathe|Midge Ure|int
+1997|6|Let a Boy Cry|Gala|it
+1997|7|The Ride on the Rhythm|Blackwood|int
+1997|8|Discothèque|U2|int
+1997|9|From: Disco To: Disco|Whirlpool Productions|int
+1997|10|Wanna B Like a Man|Simone Jay|int
+1998|1|Believe|Cher|int
+1998|2|I Don't Want to Miss a Thing|Aerosmith|int
+1998|3|Iris|Goo Goo Dolls|int
+1998|4|La copa de la vida|Ricky Martin|int
+1998|5|My Heart Will Go On|Céline Dion|int
+1998|6|Life|Des'ree|int
+1998|7|Come into My Life|Gala|it
+1998|8|High|Lighthouse Family|int
+1998|9|Frozen|Madonna|int
+1998|10|Torn|Natalie Imbruglia|int
+1999|1|Il mio nome è mai più|LigaJovaPelù|it
+1999|2|Mambo No. 5|Lou Bega|int
+1999|3|Snow on the Sahara|Anggun|int
+1999|4|50 Special|Lùnapop|it
+1999|5|When You Say Nothing at All|Ronan Keating|int
+1999|6|...Baby One More Time|Britney Spears|int
+1999|7|La fine del millennio|Vasco Rossi|it
+1999|8|Pretty Fly (for a White Guy)|The Offspring|int
+1999|9|Unforgivable Sinner|Lene Marlin|int
+1999|10|Genie in a Bottle|Christina Aguilera|int
+2000|1|I'm Outta Love|Anastacia|int
+2000|2|Freestyler|Bomfunk MC's|int
+2000|3|It's My Life|Bon Jovi|int
+2000|4|Goodnight Moon|Shivaree|int
+2000|5|Move Your Body|Eiffel 65|it
+2000|6|Vamos a bailar|Paola e Chiara|it
+2000|7|Too Much of Heaven|Eiffel 65|it
+2000|8|Music|Madonna|int
+2000|9|Sexbomb|Tom Jones & Mousse T.|int
+2000|10|American Pie|Madonna|int
+2001|1|Can't Get You Out of My Head|Kylie Minogue|int
+2001|2|Tre parole|Valeria Rossi|it
+2001|3|Xdono|Tiziano Ferro|it
+2001|4|Infinito|Raf|it
+2001|5|Io sono Francesco|Tricarico|it
+2001|6|Eternity|Robbie Williams|int
+2001|7|Fallin'|Alicia Keys|int
+2001|8|It's Raining Men|Geri Halliwell|int
+2001|9|In the End|Linkin Park|int
+2001|10|Luce (Tramonti a nord est)|Elisa|it
+2002|1|Whenever, Wherever|Shakira|int
+2002|2|Aserejé|Las Ketchup|int
+2002|3|Die Another Day|Madonna|int
+2002|4|Moi... Lolita|Alizée|int
+2002|5|Paid My Dues|Anastacia|int
+2002|6|Complicated|Avril Lavigne|int
+2002|7|Per me è importante|Tiromancino|it
+2002|8|All the Things She Said|t.A.T.u.|int
+2002|9|Without Me|Eminem|int
+2002|10|Le vent nous portera|Noir Désir|int
+2002|11|Wherever You Will Go|The Calling|int
+2002|12|Somethin' Stupid|Robbie Williams & Nicole Kidman|int
+2003|1|Obsesión|Aventura|int
+2003|2|Gocce di memoria|Giorgia|it
+2003|3|Lose Yourself|Eminem|int
+2003|4|Bring Me to Life|Evanescence|int
+2003|5|Get Busy|Sean Paul|int
+2003|6|Dedicato a te|Le Vibrazioni|it
+2003|7|White Flag|Dido|int
+2003|8|Feel|Robbie Williams|int
+2003|9|In the Shadows|The Rasmus|int
+2003|10|Where Is the Love?|The Black Eyed Peas|int
+2004|1|Fuck It (I Don't Want You Back)|Eamon|int
+2004|2|A chi mi dice (Breathe Easy)|Blue|int
+2004|3|Dragostea din tei|Haiducii vs. Gabry Ponte|it
+2004|4|Left Outside Alone|Anastacia|int
+2004|5|Hey Ya!|OutKast|int
+2004|6|Yeah!|Usher|int
+2004|7|Curtain Falls|Blue|int
+2004|8|Sick and Tired|Anastacia|int
+2004|9|Superstar|Jamelia|int
+2004|10|Broken|Elisa|it
+2005|1|I bambini fanno "ooh..."|Povia|it
+2005|2|Hung Up|Madonna|int
+2005|3|Big City Life|Mattafix|int
+2005|4|Cleptomania|Sugarfree|it
+2005|5|Una poesia anche per te|Elisa|it
+2005|6|Semplicemente|Zero Assoluto|it
+2005|7|Incomplete|Backstreet Boys|int
+2005|8|Lascia che io sia|Nek|it
+2005|9|Tripping|Robbie Williams|int
+2005|10|La nostra vita|Eros Ramazzotti|it
+2006|1|Svegliarsi la mattina|Zero Assoluto|it
+2006|2|Sei parte di me|Zero Assoluto|it
+2006|3|Hips Don't Lie|Shakira|int
+2006|4|Io canto|Laura Pausini|it
+2006|5|Crazy|Gnarls Barkley|int
+2006|6|Ed ero contentissimo|Tiziano Ferro|it
+2006|7|Wake Up|Hilary Duff|int
+2006|8|Sorry|Madonna|int
+2006|9|Stop! Dimentica|Tiziano Ferro|it
+2006|10|Sei nell'anima|Gianna Nannini|it
+2007|1|La compagnia|Vasco Rossi|it
+2007|2|No One|Alicia Keys|int
+2007|3|Non siamo soli|Eros Ramazzotti & Ricky Martin|it
+2007|4|Relax, Take It Easy|Mika|int
+2007|5|Living Darfur|Mattafix|int
+2007|6|Umbrella|Rihanna|int
+2007|7|Patience|Take That|int
+2007|8|Don't Stop the Music|Rihanna|int
+2007|9|Basta poco|Vasco Rossi|it
+2007|10|Beautiful Liar|Beyoncé & Shakira|int
+2008|1|A te|Jovanotti|it
+2008|2|Non ti scordar mai di me|Giusy Ferreri|it
+2008|3|Viva la Vida|Coldplay|int
+2008|4|Bleeding Love|Leona Lewis|int
+2008|5|I Kissed a Girl|Katy Perry|int
+2008|6|Novembre|Giusy Ferreri|it
+2008|7|Alla mia età|Tiziano Ferro|it
+2008|8|Apologize|Timbaland & OneRepublic|int
+2008|9|4 Minutes|Madonna & Justin Timberlake|int
+2008|10|Hot n Cold|Katy Perry|int
+2009|1|I Gotta Feeling|The Black Eyed Peas|int
+2009|2|Domani 21/04.2009|Artisti Uniti per l'Abruzzo|it
+2009|3|Poker Face|Lady Gaga|int
+2009|4|Bad Romance|Lady Gaga|int
+2009|5|L'amore si odia|Noemi & Fiorella Mannoia|it
+2009|6|This Is the Life|Amy Macdonald|int
+2009|7|Meraviglioso|Negramaro|it
+2009|8|Salvami|Gianna Nannini & Giorgia|it
+2009|9|Come foglie|Malika Ayane|it
+2009|10|She Wolf (Loba)|Shakira|int
+2010|1|Waka Waka|Shakira|int
+2010|2|Tutto l'amore che ho|Jovanotti|it
+2010|3|Tranne te|Fabri Fibra|it
+2010|4|Tik Tok|Kesha|int
+2010|5|La notte|Modà|it
+2010|6|Baciami ancora|Jovanotti|it
+2010|7|Alejandro|Lady Gaga|int
+2010|8|Sono già solo|Modà|it
+2010|9|Loca|Shakira|int
+2010|10|Alors on danse|Stromae|int
+2011|1|Someone Like You|Adele|int
+2011|2|Ai se eu te pego!|Michel Teló|int
+2011|3|Mr. Saxobeat|Alexandra Stan|int
+2011|4|Danza Kuduro|Don Omar & Lucenzo|int
+2011|5|On the Floor|Jennifer Lopez & Pitbull|int
+2011|6|Rolling in the Deep|Adele|int
+2011|7|Paradise|Coldplay|int
+2011|8|La differenza tra me e te|Tiziano Ferro|it
+2011|9|Set Fire to the Rain|Adele|int
+2011|10|Il più grande spettacolo dopo il Big Bang|Jovanotti|it
+2012|1|Scream & Shout|will.i.am & Britney Spears|int
+2012|2|Try|P!nk|int
+2012|3|Somebody That I Used to Know|Gotye & Kimbra|int
+2012|4|Gangnam Style|PSY|int
+2012|5|One Day / Reckoning Song|Asaf Avidan & the Mojos|int
+2012|6|Skyfall|Adele|int
+2012|7|Diamonds|Rihanna|int
+2012|8|Balada|Gusttavo Lima|int
+2012|9|Titanium|David Guetta & Sia|int
+2012|10|Call Me Maybe|Carly Rae Jepsen|int
+2012|11|Payphone|Maroon 5 & Wiz Khalifa|int
+2012|12|La notte|Arisa|it
+2013|1|Wake Me Up|Avicii|int
+2013|2|Get Lucky|Daft Punk & Pharrell Williams|int
+2013|3|Blurred Lines|Robin Thicke|int
+2013|4|Just Give Me a Reason|P!nk & Nate Ruess|int
+2013|5|L'essenziale|Marco Mengoni|it
+2013|6|I Follow Rivers|Lykke Li|int
+2013|7|You Will Never Know|Imany|int
+2013|8|Let Her Go|Passenger|int
+2013|9|Stardust|Mika & Chiara|int
+2013|10|Locked Out of Heaven|Bruno Mars|int
+2014|1|Bailando|Enrique Iglesias|int
+2014|2|Happy|Pharrell Williams|int
+2014|3|Jubel|Klingande|int
+2014|4|Prayer in C|Lilly Wood and the Prick|int
+2014|5|Magnifico|Fedez & Francesca Michielin|it
+2014|6|A Sky Full of Stars|Coldplay|int
+2014|7|Rather Be|Clean Bandit & Jess Glynne|int
+2014|8|Chandelier|Sia|int
+2014|9|Changes|Faul & Wad Ad|int
+2014|10|Hideaway|Kiesza|int
+2014|11|Geronimo|Sheppard|int
+2014|12|Hey Brother|Avicii|int
+2015|1|Take Me to Church|Hozier|int
+2015|2|Roma-Bangkok|Baby K & Giusy Ferreri|it
+2015|3|El perdón|Nicky Jam & Enrique Iglesias|int
+2015|4|Cheerleader|OMI|int
+2015|5|Hello|Adele|int
+2015|6|What Do You Mean?|Justin Bieber|int
+2015|7|El mismo sol|Álvaro Soler|int
+2015|8|Guerriero|Marco Mengoni|it
+2015|9|Maria Salvador|J-Ax & Il Cile|it
+2015|10|Lean On|Major Lazer & DJ Snake|int
+2015|11|Uptown Funk|Mark Ronson & Bruno Mars|int
+2015|12|Love Me Like You Do|Ellie Goulding|int
+2016|1|Sofia|Álvaro Soler|int
+2016|2|Cheap Thrills|Sia & Sean Paul|int
+2016|3|Faded|Alan Walker|int
+2016|4|Vorrei ma non posto|J-Ax & Fedez|it
+2016|5|Est-ce que tu m'aimes?|Maître Gims|int
+2016|6|Hymn for the Weekend|Coldplay|int
+2016|7|Let Me Love You|DJ Snake & Justin Bieber|int
+2016|8|Closer|The Chainsmokers & Halsey|int
+2016|9|Ginza|J Balvin|int
+2016|10|Sorry|Justin Bieber|int
+2016|11|Human|Rag'n'Bone Man|int
+2016|12|7 Years|Lukas Graham|int
+2017|1|Despacito|Luis Fonsi & Daddy Yankee|int
+2017|2|Shape of You|Ed Sheeran|int
+2017|3|La musica non c'è|Coez|it
+2017|4|Senza pagare|J-Ax & Fedez|it
+2017|5|Rockabye|Clean Bandit|int
+2017|6|Something Just Like This|The Chainsmokers & Coldplay|int
+2017|7|Voglio ballare con te|Baby K & Andrés Dvicio|it
+2017|8|Riccione|Thegiornalisti|it
+2017|9|Mi Gente|J Balvin & Willy William|int
+2017|10|Occidentali's Karma|Francesco Gabbani|it
+2017|11|Súbeme la radio|Enrique Iglesias|int
+2017|12|Thunder|Imagine Dragons|int
+2018|1|Perfect|Ed Sheeran|int
+2018|2|Torna a casa|Måneskin|it
+2018|3|Amore e capoeira|Takagi & Ketra, Giusy Ferreri & Sean Kingston|it
+2018|4|Nera|Irama|it
+2018|5|Tesla|Capo Plaza, Sfera Ebbasta & DrefGold|it
+2018|6|Cara Italia|Ghali|it
+2018|7|Da zero a cento|Baby K|it
+2018|8|Cupido|Sfera Ebbasta & Quavo|it
+2018|9|La cintura|Álvaro Soler|int
+2018|10|Italiana|J-Ax & Fedez|it
+2018|11|Havana|Camila Cabello|int
+2018|12|Malibu|Vegas Jones|it
+2019|1|Una volta ancora|Fred De Palma & Ana Mena|it
+2019|2|Dance Monkey|Tones and I|int
+2019|3|Il cielo nella stanza|Salmo & NSTASIA|it
+2019|4|Dove e quando|Benji & Fede|it
+2019|5|Calma (Remix)|Pedro Capó & Farruko|int
+2019|6|È sempre bello|Coez|it
+2019|7|Calipso|Charlie Charles, Sfera Ebbasta, Mahmood & Fabri Fibra|it
+2019|8|Per un milione|Boomdabash|it
+2019|9|Shallow|Lady Gaga & Bradley Cooper|int
+2019|10|Jambo|Takagi & Ketra, Omi & Giusy Ferreri|it
+2020|1|Destri|Gazzelle|it
+2020|2|Superclassico|Ernia|it
+2020|3|A un passo dalla luna|Rocco Hunt & Ana Mena|it
+2020|4|Blinding Lights|The Weeknd|int
+2020|5|Karaoke|Boomdabash & Alessandra Amoroso|it
+2020|6|Ridere|Pinguini Tattici Nucleari|it
+2020|7|Hypnotized|Purple Disco Machine & Sophie and the Giants|int
+2020|8|M' manc|Shablo, Geolier & Sfera Ebbasta|it
+2020|9|Mediterranea|Irama|it
+2020|10|Good Times|Ghali|it
+2020|11|Crudelia - I nervi|Marracash|it
+2020|12|Breaking Me|Topic & A7S|int
+2021|1|Mi fai impazzire|Blanco & Sfera Ebbasta|it
+2021|2|Malibu|sangiovanni|it
+2021|3|Notti in bianco|Blanco|it
+2021|4|La canzone nostra|Mace, Blanco & Salmo|it
+2021|5|Mille|Fedez, Achille Lauro & Orietta Berti|it
+2021|6|Nuovo range|Rkomi, Sfera Ebbasta & Junior K|it
+2021|7|Zitti e buoni|Måneskin|it
+2021|8|Stay|The Kid Laroi & Justin Bieber|int
+2021|9|Cold Heart (Pnau Remix)|Elton John & Dua Lipa|int
+2021|10|Pepas|Farruko|int
+2021|11|Scrivile scemo|Pinguini Tattici Nucleari|it
+2021|12|Musica leggerissima|Colapesce & Dimartino|it
+2022|1|Pastello bianco|Pinguini Tattici Nucleari|it
+2022|2|Giovani wannabe|Pinguini Tattici Nucleari|it
+2022|3|Shakerando|Rhove|it
+2022|4|Bellissima|Annalisa|it
+2022|5|Ricordi|Pinguini Tattici Nucleari|it
+2022|6|La dolce vita|Fedez, Tananai & Mara Sattei|it
+2022|7|Brividi|Mahmood & Blanco|it
+2022|8|Capri Sun|Capo Plaza|it
+2022|9|La coda del diavolo|Rkomi & Elodie|it
+2022|10|Finché non mi seppelliscono|Blanco|it
+2022|11|Panico|Lazza & Takagi & Ketra|it
+2022|12|5 gocce|Irama & Rkomi|it
+2023|1|Cenere|Lazza|it
+2023|2|Quevedo: Bzrp Music Sessions, Vol. 52|Bizarrap & Quevedo|int
+2023|3|Italodisco|The Kolors|it
+2023|4|Vetri neri|Ava, Anna & Capo Plaza|it
+2023|5|Mon amour|Annalisa|it
+2023|6|Due vite|Marco Mengoni|it
+2023|7|Tango|Tananai|it
+2023|8|Bon ton|Drillionaire, Lazza, Blanco, Sfera Ebbasta & Michelangelo|it
+2023|9|Ci pensiamo domani|Angelina Mango|it
+2023|10|Come vuoi|Geolier|it
+2023|11|Bellissimissima|Alfa|it
+2023|12|Un briciolo di allegria|Blanco & Mina|it
+2024|1|Come un tuono|Rose Villain & Guè|it
+2024|2|Sesso e samba|Tony Effe & Gaia|it
+2024|3|100 messaggi|Lazza|it
+2024|4|L'ultima poesia|Geolier & Ultimo|it
+2024|5|Rossetto e caffè|Sal Da Vinci|it
+2024|6|Storie brevi|Tananai & Annalisa|it
+2024|7|30°C|Anna|it
+2024|8|Si antes te hubiera conocido|Karol G|int
+2024|9|Tuta gold|Mahmood|it
+2024|10|Sinceramente|Annalisa|it
+2024|11|Anche stasera|Sfera Ebbasta & Elodie|it
+2024|12|I p' me, tu p' te|Geolier|it
+2025|1|Per due come noi|Olly, Angelina Mango & JVLI|it
+2025|2|Ora che non ho più te|Cesare Cremonini|it
+2025|3|Balorda nostalgia|Olly|it
+2025|4|Il filo rosso|Alfa|it
+2025|5|Devastante|Olly & JVLI|it
+2025|6|A me mi piace|Alfa & Manu Chao|it
+2025|7|Amore disperato|Achille Lauro|it
+2025|8|Islanda|Pinguini Tattici Nucleari|it
+2025|9|La cura per me|Giorgia|it
+2025|10|Amor|Achille Lauro|it
+2025|11|Bottiglie vuote|Pinguini Tattici Nucleari|it
+2025|12|Neon|Sfera Ebbasta & Shiva|it
+`;
+
+const Y0 = 1970, Y1 = 2025;
+// Stima delle unità del n. 1 dell'anno (migliaia): dimensione del mercato dei singoli in Italia.
+const MARKET = [[1970,900],[1979,900],[1983,800],[1987,700],[1989,600],[1992,350],[1995,250],[2000,180],[2005,130],[2009,110],[2012,160],[2014,250],[2017,450],[2020,550],[2023,700],[2025,800]];
+function marketTop(y) {
+  for (let k = 1; k < MARKET.length; k++) {
+    const [ya, va] = MARKET[k - 1], [yb, vb] = MARKET[k];
+    if (y <= yb) return va + (vb - va) * (y - ya) / (yb - ya);
+  }
+  return MARKET[MARKET.length - 1][1];
+}
+const rankShare = r => Math.pow(r, -0.55);   // n. 1 = 100%, n. 10 ≈ 28%
+
+const SONGS = [];
+const byKey = new Map();
+const MISSING = new Set();
+RAW.trim().split("\n").forEach(line => {
+  const [y, r, t, ar, c] = line.split("|");
+  const key = (t + "|" + ar).toLowerCase();
+  let s = byKey.get(key);
+  if (!s) { s = { t, ar, c, id: key, ranks: {} }; byKey.set(key, s); SONGS.push(s); }
+  s.ranks[+y] = +r;
+});
+for (let y = Y0; y <= Y1; y++) {
+  const have = new Set(SONGS.filter(s => s.ranks[y]).map(s => s.ranks[y]));
+  for (let r = 1; r <= 10; r++) if (!have.has(r)) MISSING.add(`${y}|${r}`);
+}
+
+const VAL = SONGS.map(s => {
+  const row = new Array(Y1 - Y0 + 2).fill(0);
+  for (const y in s.ranks) row[+y - Y0] = Math.round(marketTop(+y) * rankShare(s.ranks[y])) * 1000;
+  return row;
+});
+
+const FRAMES = (Y1 - Y0) * 12;         // un frame per mese
+const MS_PER_FRAME = 6000 / 12;        // 6000 ms per anno → 500 ms per mese
+const X_MAX = 1000000;
+const X_MAX_PHONE = 1000000;
+const PHONE_MQ = "(max-width: 680px)";
+const VISIBLE = 10;
+const MONTHS = ["gennaio","febbraio","marzo","aprile","maggio","giugno","luglio","agosto","settembre","ottobre","novembre","dicembre"];
+const ERAS = [
+  { from: 1970, to: 1990, label: "45 giri", short: "45 giri" },
+  { from: 1990, to: 2004, label: "CD singolo e cassetta", short: "CD" },
+  { from: 2004, to: 2014, label: "Download digitale", short: "Download" },
+  { from: 2014, to: 2025, label: "Streaming", short: "Streaming" },
+];
+const TICKS_ALL = [0, 250000, 500000, 750000, 1000000];
+const fmt = new Intl.NumberFormat("it-IT");
+const tickLabel = v => v === 0 ? "0" : v < 1e6 ? `${v / 1000} mila` : `${fmt.format(v / 1e6)} mln`;
+
+function frameState(f) {
+  const yi = Math.floor(f / 12), m = f % 12, t = m / 12;
+  const list = SONGS.map((a, i) => {
+    const v0 = VAL[i][yi], v1 = VAL[i][yi + 1];
+    return { i, v: v0 + (v1 - v0) * t };
+  });
+  const sorted = list.slice().sort((p, q) => q.v - p.v || p.i - q.i);
+  const rank = new Array(SONGS.length);
+  sorted.forEach((d, r) => { rank[d.i] = r; });
+  return { year: Y0 + yi, month: m, list, rank, sorted };
+}
+
+const html = htm.bind(React.createElement);
+const { useState, useEffect, useRef, useMemo, useCallback } = React;
+
+const PlayIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9-5.5z"/></svg>`;
+const PauseIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M2.5 1.5h3.2v11H2.5zM8.3 1.5h3.2v11H8.3z"/></svg>`;
+const RestartIcon = () => html`<svg viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1.5a5.5 5.5 0 1 1-5.2 3.7l1.6.6A3.8 3.8 0 1 0 7 3.2V5L3.8 2.4 7 0z"/></svg>`;
+
+function App() {
+  const [frame, setFrame] = useState(0);
+  const [playing, setPlaying] = useState(true);
+  const frameRef = useRef(0);
+  const [phone, setPhone] = useState(() => window.matchMedia(PHONE_MQ).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(PHONE_MQ);
+    const on = () => setPhone(mq.matches);
+    mq.addEventListener("change", on);
+    return () => mq.removeEventListener("change", on);
+  }, []);
+  const X_MAX_NOW = phone ? X_MAX_PHONE : X_MAX;
+  const TICKS = TICKS_ALL.filter(t => t <= X_MAX_NOW && (!phone || t % 500000 === 0));
+
+  useEffect(() => {
+    if (!playing) return;
+    let raf, t0 = performance.now() - frameRef.current * MS_PER_FRAME, last = performance.now();
+    const tick = now => {
+      const gap = now - last; last = now;
+      if (gap > 500) t0 += gap - 16;
+      const f = Math.max(0, Math.min(FRAMES, Math.floor((now - t0) / MS_PER_FRAME)));
+      if (f !== frameRef.current) { frameRef.current = f; setFrame(f); }
+      if (f >= FRAMES) { setPlaying(false); return; }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [playing]);
+
+  const toggle = useCallback(() => {
+    if (!playing && frameRef.current >= FRAMES) { frameRef.current = 0; setFrame(0); }
+    setPlaying(p => !p);
+  }, [playing]);
+  const restart = () => { frameRef.current = 0; setFrame(0); setPlaying(true); };
+  const scrub = e => { const f = +e.target.value; setPlaying(false); frameRef.current = f; setFrame(f); };
+
+  useEffect(() => {
+    const onKey = e => {
+      if (e.code === "Space" && !["INPUT","BUTTON","SUMMARY"].includes(document.activeElement?.tagName)) { e.preventDefault(); toggle(); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [toggle]);
+
+  const st = useMemo(() => frameState(frame), [frame]);
+  const era = ERAS.find(e => st.year >= e.from && st.year < e.to) || ERAS[ERAS.length - 1];
+  const leader = SONGS[st.sorted[0].i];
+  const yearRows = useMemo(() => SONGS.filter(s => s.ranks[st.year]).sort((p, q) => p.ranks[st.year] - q.ranks[st.year]), [st.year]);
+  const yearMissing = [...Array(10)].map((_, k) => k + 1).filter(r => MISSING.has(`${st.year}|${r}`));
+  const when = `${MONTHS[st.month]} ${st.year}`;
+
+  return html`
+    <header class="head">
+      <div class="head-text">
+        <span class="eyebrow">Mercato discografico italiano · Singoli · 1970–2025</span>
+        <h1>Hit Parade Singoli</h1>
+        <p class="lede">Le canzoni più vendute in Italia, anno per anno, secondo le classifiche annuali di Hit Parade Italia. L'ordine è quello reale; la lunghezza delle barre è una stima delle unità vendute nell'anno.</p>
+      </div>
+      <div class="legend" aria-label="Legenda">
+        <span><i class="sw it"></i>Artisti italiani</span>
+        <span><i class="sw int"></i>Artisti internazionali</span>
+      </div>
+    </header>
+
+    <section class="stage" aria-label="Classifica animata dei singoli">
+      <div class="wm-wrap" aria-hidden="true"><div class="wm" key=${st.year}>${st.year}</div></div>
+
+      <div class="stage-top">
+        <span class="stage-title">Classifica annuale · unità stimate</span>
+        <span class="leader">In testa: <b>${leader.t}</b> · ${leader.ar}</span>
+      </div>
+
+      <div class="axis cols" aria-hidden="true">
+        <span></span><span></span>
+        <div class="plotin">
+          ${TICKS.map(t => html`<span class="tick" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}>${tickLabel(t)}</span>`)}
+        </div>
+      </div>
+
+      <div class="rows">
+        <div class="gridlayer cols" aria-hidden="true">
+          <div class="ranks">${Array.from({ length: VISIBLE }, (_, r) => html`<span key=${r}>${r + 1}</span>`)}</div>
+          <span></span>
+          <div class="plotin">${TICKS.map(t => html`<i class="gl" key=${t} style=${{ left: `${(t / X_MAX_NOW) * 100}%` }}></i>`)}</div>
+        </div>
+
+        ${SONGS.map((a, i) => {
+          const r = st.rank[i];
+          const v = st.list[i].v;
+          const on = r < VISIBLE && v > 0;
+          const pos = on ? r : VISIBLE;
+          const pct = Math.min(100, (v / X_MAX_NOW) * 100);
+          const shown = fmt.format(Math.round(v / 1000) * 1000);
+          const real = a.ranks[st.year];
+          return html`
+            <div key=${a.id} class=${`row cols${on ? "" : " off"}${r >= 6 ? " low" : ""}`}
+                 style=${{ transform: `translateY(calc(${pos} * var(--row)))` }}
+                 tabindex=${on ? 0 : -1} aria-hidden=${on ? "false" : "true"}
+                 aria-label=${`${a.t} di ${a.ar}${real ? `, n. ${real} nella classifica annuale ${st.year}` : ""}`}>
+              <span></span>
+              <div class="label">
+                <span class="name">${a.t}</span>
+                <span class="sub">${a.ar}</span>
+              </div>
+              <div class="plotin">
+                <div class=${`bar ${a.c}${v > X_MAX_NOW ? " over" : ""}`} style=${{ width: `${pct}%` }}></div>
+                <span class="val" style=${{ left: `${pct}%` }}>${shown}</span>
+              </div>
+              <div class="tip" role="tooltip">
+                <span class="t-name"><i class=${`sw ${a.c}`}></i>${a.t}</span>
+                <span class="t-muted">${a.ar}</span>
+                <span class="t-val">${real ? `N. ${real} nella classifica annuale ${st.year}` : `Fuori dalla classifica annuale ${st.year}`}</span>
+                <span class="t-muted">Anni in classifica: ${Object.keys(a.ranks).map(y => `${y} (n. ${a.ranks[y]})`).join(", ")}</span>
+                <span class="t-muted">Unità stimate in questo momento: ${shown}</span>
+              </div>
+            </div>`;
+        })}
+      </div>
+    </section>
+
+    <section class="controls" aria-label="Controlli">
+      <div class="transport">
+        <button class="btn primary" id="play" onClick=${toggle} aria-label=${playing ? "Metti in pausa" : "Riproduci"}>
+          ${playing ? html`<${PauseIcon}/>` : html`<${PlayIcon}/>`}${playing ? "Pausa" : frame >= FRAMES ? "Rivedi" : "Riproduci"}
+        </button>
+        <button class="btn" id="restart" onClick=${restart}><${RestartIcon}/>Dal 1970</button>
+        <div class="readout">
+          <span class="when">${when}</span>
+          <span class="era-chip">${era.label}</span>
+        </div>
+      </div>
+      <div class="timeline">
+        <input class="scrub" id="scrub" type="range" min="0" max=${FRAMES} step="1" value=${frame}
+               onInput=${scrub} onChange=${scrub}
+               aria-label="Posizione nel tempo" aria-valuetext=${when} />
+        <div class="eras" aria-hidden="true">
+          ${ERAS.map(e => html`<div key=${e.label} class=${e === era ? "on" : ""} style=${{ flex: `${e.to - e.from} 1 0` }} title=${e.label}><span class="long">${e.label}</span><span class="short">${e.short}</span></div>`)}
+        </div>
+        <div class="decades" aria-hidden="true">
+          ${[1970, 1980, 1990, 2000, 2010, 2020, 2025].map(y => html`<span key=${y} style=${{ left: `${((y - Y0) * 12 / FRAMES) * 100}%` }}>${y}</span>`)}
+        </div>
+      </div>
+    </section>
+
+    <details>
+      <summary>Classifica annuale ${st.year} (fonte)</summary>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Pos.</th><th>Canzone</th><th>Artista</th><th class="num">Unità stimate</th></tr></thead>
+          <tbody>
+            ${yearRows.map(s => html`<tr key=${s.id}><td>${s.ranks[st.year]}</td><td>${s.t}</td><td>${s.ar}</td><td class="num">${fmt.format(VAL[SONGS.indexOf(s)][st.year - Y0])}</td></tr>`)}
+            ${yearMissing.map(r => html`<tr key=${"m" + r}><td>${r}</td><td colspan="3" class="t-muted">Posizione non leggibile dalla fonte</td></tr>`)}
+          </tbody>
+        </table>
+      </div>
+    </details>
+
+    <p class="note">Fonte: classifiche "Top Annuale Singoli" di Hit Parade Italia (hitparadeitalia.it), che stimano le vendite di tutto l'anno. Titoli, artisti e ordine sono quelli della fonte. Le copie vendute per singolo brano non sono pubbliche, quindi la lunghezza delle barre è una stima: dipende dalla posizione e da quanto era grande il mercato dei singoli in quell'anno (molto grande negli anni '70, minimo nei primi anni 2000, di nuovo ampio con lo streaming). Il colore indica la provenienza dell'artista.</p>
+  `;
+}
+
+ReactDOM.createRoot(document.getElementById("app")).render(html`<${App} />`);
+</script>
+</body>
+</html>

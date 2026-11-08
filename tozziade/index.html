@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tozziade</title>
+<style>
+/* Layout: the whole home is one theatre marquee. A frame of chasing bulbs; inside, the title on top and, below,
+   each section as a lit line of the same sign with its one-line explanation, in two columns on wide screens. */
+:root { --fg: #fff; --fg2: #e6d9f2; --ora: #fea607; }
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--fg); font-family: "Montserrat", "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: max(28px, env(safe-area-inset-top, 0px)) 48px; }
+main { max-width: 980px; margin: 0 auto; }
+.sign { position: relative; border-radius: 22px; padding: clamp(40px, 6vw, 64px) clamp(26px, 5vw, 58px) clamp(40px, 6vw, 58px);
+  background: radial-gradient(120% 80% at 50% 0%, #4a0b36 0%, #1d0a3c 55%, #0d0a32 100%);
+  box-shadow: inset 0 0 0 3px #7a1a3a, inset 0 0 0 26px #24081f, inset 0 0 0 29px #8a2a1a, 0 0 0 4px #12061a, 0 0 60px rgba(255, 140, 40, .28); }
+/* the ring of bulbs, drawn only inside the frame band */
+.sign::before { content: ""; position: absolute; inset: 3px; border-radius: 19px; padding: 23px; pointer-events: none;
+  background: radial-gradient(circle, #fffbe8 0 2.6px, #ffcf4a 3.6px, rgba(255, 170, 40, .55) 5px, rgba(255, 150, 30, 0) 8px) 0 0 / 23px 23px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+.sign::after { content: ""; position: absolute; inset: 3px; border-radius: 19px; padding: 23px; pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 255, 255, .9) 0 2.6px, rgba(255, 255, 255, 0) 4px) 11.5px 11.5px / 46px 46px;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); }
+@media (prefers-reduced-motion: no-preference) {
+  .sign::after { animation: chase 1.2s steps(2, end) infinite; }
+  @keyframes chase { to { background-position: 34.5px 11.5px; } }
+}
+.sign h1 { margin: 0 auto; text-align: center; font-size: clamp(60px, 14vw, 150px); line-height: 1 !important; }
+.rule { height: 12px; margin: 22px auto 28px; max-width: 520px;
+  background: radial-gradient(circle, #fffbe8 0 2.4px, #ffcf4a 3.4px, rgba(255, 170, 40, 0) 6px) center / 18px 12px repeat-x; }
+.acts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 40px; }
+@media (max-width: 720px) { .acts { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
+.act { display: grid; justify-items: center; text-align: center; gap: 4px; text-decoration: none; color: inherit; padding: 6px 4px; border-radius: 8px; }
+.mq { font-family: "Anton", "Montserrat", sans-serif; font-size: clamp(34px, 5vw, 50px); line-height: 1.05; letter-spacing: .05em; text-transform: uppercase; white-space: nowrap;
+  background: radial-gradient(circle, #fffdf2 0 .016em, rgba(255, 244, 200, .95) .03em, rgba(255, 220, 120, 0) .055em) 0 0 / .13em .13em,
+    linear-gradient(180deg, #ffe066 0%, #ffb21c 45%, #ff7a1a 80%, #f0521a 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 1px #ffcf5a) drop-shadow(0 0 8px rgba(255, 160, 40, .5)) drop-shadow(0 2px 0 #a3271a); transition: filter .15s; }
+.act.gl .mq { background: radial-gradient(circle, #fffdf2 0 .016em, rgba(255, 244, 200, .95) .03em, rgba(255, 220, 120, 0) .055em) 0 0 / .13em .13em,
+    linear-gradient(180deg, #ffd6ea 0%, #ff5c9d 50%, #de0952 100%); -webkit-background-clip: text; background-clip: text;
+  filter: drop-shadow(0 0 1px #ffb3cf) drop-shadow(0 0 9px rgba(255, 60, 140, .55)) drop-shadow(0 2px 0 #6a0628); }
+.act .d { max-width: 30ch; color: var(--fg2); font-size: 13.5px; }
+.act:hover .mq, .act:focus-visible .mq { filter: drop-shadow(0 0 2px #ffe08a) drop-shadow(0 0 16px rgba(255, 190, 70, .85)) drop-shadow(0 2px 0 #a3271a); }
+.act:focus-visible { outline: 2px solid var(--ora); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .mq { transition: none; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<main>
+<div class="sign">
+  <h1>Tozziade</h1>
+  <div class="rule" aria-hidden="true"></div>
+  <nav class="acts" aria-label="Le sezioni">
+    <a class="act" href="tozzi-spotify.html"><span class="mq">Su Spotify</span><span class="d">I dati più precisi: ascoltatori ogni mese dal 2018 e gli ascolti di ogni canzone.</span></a>
+    <a class="act" href="tozzi-mondo.html"><span class="mq">Nel mondo</span><span class="d">Dove lo ascoltano: le 50 città, mese per mese, su una mappa.</span></a>
+    <a class="act" href="tozzi-fonti.html"><span class="mq">In classifica</span><span class="d">Quanto era famoso allora: Ti amo, Tu, Gloria e Stella stai in ogni classifica.</span></a>
+    <a class="act" href="ascolti.html"><span class="mq">Ascolti</span><span class="d">A confronto con la sua epoca: i 20 grandi italiani degli anni '70 e '80.</span></a>
+    <a class="act" href="fanclub.html"><span class="mq">Fan club</span><span class="d">Chi lo segue da sempre: l'U.T.F.C. e il blog Tutto su Tozzi.</span></a>
+    <a class="act gl" href="gloria.html"><span class="mq">Gloria</span><span class="d">La canzone e il musical: classifiche, versioni, film e la tournée.</span></a>
+  </nav>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="I follower su Spotify dal 2018 al 2026 dei 20 artisti italiani di maggior successo degli anni '70 e '80.">
+
+<title>Follower su Spotify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column; a large time chart with all 20 artists (one highlighted, the rest quiet), a row of artist buttons above it, then a 4-column grid of small charts on a shared scale. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --grid: #eceff4;
+  --quiet: #c3c9d3; --hi: #2a78d6; --hi-soft: rgba(42, 120, 214, .12);
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e;
+    --quiet: #454c58; --hi: #3987e5; --hi-soft: rgba(57, 135, 229, .16); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e;
+  --quiet: #454c58; --hi: #3987e5; --hi-soft: rgba(57, 135, 229, .16); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+main { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6.5vw, 64px); line-height: .92; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 68ch; }
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 28px; line-height: 1; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg2); cursor: pointer; }
+.chip:hover { border-color: var(--fg3); color: var(--fg); }
+.chip[aria-pressed="true"] { background: var(--hi); border-color: var(--hi); color: var(--panel); font-weight: 600; }
+.chip:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px 10px; display: grid; gap: 8px; }
+.stage-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; padding: 0 6px; }
+.who { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1; }
+.readout { color: var(--fg2); font-size: 14px; font-variant-numeric: tabular-nums; min-height: 1.45em; }
+.readout b { color: var(--fg); }
+svg { display: block; width: 100%; height: auto; }
+.ax { font-size: 12px; fill: var(--fg3); font-variant-numeric: tabular-nums; }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.base { stroke: var(--line); stroke-width: 1; }
+.q { fill: none; stroke: var(--quiet); stroke-width: 1.25; }
+.qd { fill: var(--quiet); }
+.h { fill: none; stroke: var(--hi); stroke-width: 2.5; stroke-linejoin: round; }
+.hd { fill: var(--hi); stroke: var(--panel); stroke-width: 2; }
+.hit { fill: transparent; cursor: pointer; }
+.endlab { font-size: 12.5px; font-weight: 600; fill: var(--hi); }
+.marker { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 860px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 6px; display: grid; gap: 2px; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.card:hover, .card.on { border-color: var(--hi); }
+.card:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+.card .nm { font-weight: 600; font-size: 14px; }
+.card .meta { font-size: 12px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+.card svg .l { fill: none; stroke: var(--fg2); stroke-width: 1.5; stroke-linejoin: round; }
+.card svg .d { fill: var(--fg2); }
+.card.on svg .l { stroke: var(--hi); } .card.on svg .d { fill: var(--hi); }
+.card svg .gl { stroke: var(--grid); }
+
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.ratio { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 6px; }
+.rr { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr) 3em minmax(0, 13em); gap: 10px; align-items: center; font-size: 14px; }
+.rn { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rt { height: 10px; background: var(--grid); border-radius: 0 4px 4px 0; }
+.rb { display: block; height: 100%; background: var(--hi); border-radius: 0 4px 4px 0; }
+.rv { font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+.rs { color: var(--fg3); font-size: 12px; font-variant-numeric: tabular-nums; }
+@media (max-width: 620px) { .rr { grid-template-columns: minmax(0, 8em) minmax(0, 1fr) 2.6em; } .rs { display: none; } }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+<main>
+<header>
+  <span class="eyebrow">Spotify · follower · 2018–2026</span>
+  <h1>Follower</h1>
+  <p class="lede">Quante persone hanno scelto di seguire ognuno dei 20 artisti: ogni punto è una copia della pagina Spotify salvata da archive.org, l'ultimo è il dato dell'8 novembre 2026.</p>
+</header>
+
+<div class="chips" id="chips" role="group" aria-label="Scegli l'artista da mettere in evidenza"></div>
+
+<section class="stage" aria-label="Grafico dei follower">
+  <div class="stage-top"><span class="who" id="who"></span><span class="readout" id="readout"></span></div>
+  <svg id="main" role="img" aria-label="Follower su Spotify dal 2018 al 2026 per 20 artisti italiani, con un artista in evidenza"></svg>
+</section>
+
+<section style="display:grid;gap:10px">
+  <h2>Uno per uno</h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section style="display:grid;gap:10px">
+  <h2>Quanto è fedele il pubblico</h2>
+  <p class="lede" style="margin:0">Follower ogni 100 ascoltatori mensili, oggi. Un numero alto vuol dire un pubblico che segue l'artista da tempo; un numero basso, molti ascoltatori di passaggio arrivati da una playlist o da una sola canzone.</p>
+  <div class="ratio"><div class="rr"><span class="rn">Vasco Rossi</span><span class="rt"><span class="rb" style="width:100.0%"></span></span><span class="rv">196</span><span class="rs">4.538.800 su 2.316.383</span></div><div class="rr"><span class="rn">Claudio Baglioni</span><span class="rt"><span class="rb" style="width:49.3%"></span></span><span class="rv">97</span><span class="rs">1.213.259 su 1.254.694</span></div><div class="rr"><span class="rn">Renato Zero</span><span class="rt"><span class="rb" style="width:46.3%"></span></span><span class="rv">91</span><span class="rs">1.018.872 su 1.122.562</span></div><div class="rr"><span class="rn">Franco Battiato</span><span class="rt"><span class="rb" style="width:40.8%"></span></span><span class="rv">80</span><span class="rs">995.332 su 1.245.005</span></div><div class="rr"><span class="rn">Francesco De Gregori</span><span class="rt"><span class="rb" style="width:40.8%"></span></span><span class="rv">80</span><span class="rs">964.065 su 1.206.294</span></div><div class="rr"><span class="rn">Lucio Dalla</span><span class="rt"><span class="rb" style="width:37.6%"></span></span><span class="rv">74</span><span class="rs">1.651.628 su 2.244.436</span></div><div class="rr"><span class="rn">Pooh</span><span class="rt"><span class="rb" style="width:35.9%"></span></span><span class="rv">70</span><span class="rs">519.394 su 737.347</span></div><div class="rr"><span class="rn">Lucio Battisti</span><span class="rt"><span class="rb" style="width:34.5%"></span></span><span class="rv">68</span><span class="rs">1.429.991 su 2.115.442</span></div><div class="rr"><span class="rn">Antonello Venditti</span><span class="rt"><span class="rb" style="width:32.7%"></span></span><span class="rv">64</span><span class="rs">1.117.393 su 1.743.391</span></div><div class="rr"><span class="rn">Mina</span><span class="rt"><span class="rb" style="width:28.2%"></span></span><span class="rv">55</span><span class="rs">1.189.810 su 2.154.260</span></div><div class="rr"><span class="rn">Patty Pravo</span><span class="rt"><span class="rb" style="width:27.0%"></span></span><span class="rv">53</span><span class="rs">276.843 su 523.353</span></div><div class="rr"><span class="rn">Gianni Morandi</span><span class="rt"><span class="rb" style="width:27.0%"></span></span><span class="rv">53</span><span class="rs">460.905 su 871.958</span></div><div class="rr"><span class="rn">Gianna Nannini</span><span class="rt"><span class="rb" style="width:24.2%"></span></span><span class="rv">47</span><span class="rs">701.326 su 1.481.533</span></div><div class="rr"><span class="rn">Riccardo Cocciante</span><span class="rt"><span class="rb" style="width:20.6%"></span></span><span class="rv">40</span><span class="rs">433.099 su 1.073.122</span></div><div class="rr"><span class="rn">Zucchero</span><span class="rt"><span class="rb" style="width:19.2%"></span></span><span class="rv">38</span><span class="rs">1.299.862 su 3.460.235</span></div><div class="rr"><span class="rn">Edoardo Bennato</span><span class="rt"><span class="rb" style="width:18.3%"></span></span><span class="rv">36</span><span class="rs">398.200 su 1.111.257</span></div><div class="rr"><span class="rn">Adriano Celentano</span><span class="rt"><span class="rb" style="width:16.5%"></span></span><span class="rv">32</span><span class="rs">1.094.778 su 3.379.840</span></div><div class="rr"><span class="rn">Ornella Vanoni</span><span class="rt"><span class="rb" style="width:9.1%"></span></span><span class="rv">18</span><span class="rs">349.711 su 1.968.849</span></div><div class="rr"><span class="rn">Umberto Tozzi</span><span class="rt"><span class="rb" style="width:8.1%"></span></span><span class="rv">16</span><span class="rs">488.478 su 3.096.352</span></div><div class="rr"><span class="rn">Alan Sorrenti</span><span class="rt"><span class="rb" style="width:3.2%"></span></span><span class="rv">6</span><span class="rs">46.320 su 745.986</span></div></div>
+</section>
+
+<section class="note">
+  <p><b>Da dove vengono i punti.</b> Il numero di follower è scritto sulla pagina Spotify di ogni artista. Spotify non pubblica lo storico, quindi i valori passati vengono dalle copie della pagina conservate da web.archive.org. Le copie del 2018–2021 riportano il numero esatto; dal 2022 la pagina salvata non contiene più i follower, per questo c'è un salto fino al dato di oggi, letto direttamente dalla pagina Spotify l'8 novembre 2026.</p>
+  <p><b>Follower e ascoltatori.</b> I follower sono le persone che hanno premuto "Segui": restano finché non lo tolgono, quindi il numero cresce quasi sempre. Gli ascoltatori mensili sono le persone diverse che hanno ascoltato almeno una canzone negli ultimi 28 giorni. Il rapporto tra i due è calcolato sui valori di oggi.</p>
+</section>
+</main>
+
+<script>
+const RAW = {"Lucio Battisti": [["20191120", 266919], ["20200417", 306101], ["20201001", 356795], ["20210224", 426164], ["20250108", 1091611], ["20261108", 1429991]], "Mina": [["20180310", 96478], ["20190110", 164958], ["20200117", 268037], ["20200415", 307660], ["20200504", 315084], ["20200605", 327236], ["20200706", 342629], ["20201001", 382167], ["20201103", 392864], ["20210301", 447525], ["20210626", 491720], ["20210825", 516168], ["20211009", 533369], ["20211127", 548015], ["20261108", 1189810]], "Claudio Baglioni": [["20180108", 66219], ["20190111", 220262], ["20200118", 380695], ["20200425", 420651], ["20201125", 497376], ["20210822", 622894], ["20261108", 1213259]], "Lucio Dalla": [["20180106", 125695], ["20180316", 142551], ["20180726", 190379], ["20180801", 192339], ["20190112", 276352], ["20190502", 326699], ["20200416", 513528], ["20201023", 594153], ["20201101", 598155], ["20210123", 644772], ["20210206", 651355], ["20210427", 695164], ["20211103", 779884], ["20211230", 809709], ["20230224", 1015220], ["20250108", 1342580], ["20261108", 1651628]], "Antonello Venditti": [["20180108", 76338], ["20190111", 185505], ["20190405", 212506], ["20190814", 254201], ["20191221", 297161], ["20200423", 346498], ["20210417", 460400], ["20210904", 508044], ["20220108", 551586], ["20261108", 1117393]], "Pooh": [["20180315", 39235], ["20190111", 94729], ["20190404", 109347], ["20190718", 125758], ["20200419", 178146], ["20201021", 209889], ["20210426", 251765], ["20210615", 259339], ["20210825", 277903], ["20210927", 284751], ["20261108", 519394]], "Edoardo Bennato": [["20180106", 32826], ["20180316", 39609], ["20180830", 68141], ["20190110", 85472], ["20190507", 96958], ["20200423", 141552], ["20200626", 147865], ["20201013", 159437], ["20210305", 178255], ["20210627", 193082], ["20261108", 398200]], "Vasco Rossi": [["20180726", 480944], ["20180801", 490152], ["20190112", 803474], ["20190405", 940429], ["20191113", 1332554], ["20191221", 1404519], ["20200424", 1630538], ["20210116", 2041718], ["20210314", 2131612], ["20210430", 2201787], ["20240926", 3682177], ["20261108", 4538800]], "Riccardo Cocciante": [["20180108", 30487], ["20190114", 74985], ["20190630", 91286], ["20200419", 128751], ["20200625", 136195], ["20200706", 137368], ["20201017", 148405], ["20210803", 186636], ["20261108", 433099]], "Francesco De Gregori": [["20180106", 91706], ["20180312", 103382], ["20190110", 203489], ["20190705", 255998], ["20191221", 315463], ["20200424", 358645], ["20200503", 361949], ["20200927", 399442], ["20201001", 400383], ["20201103", 409790], ["20210204", 444836], ["20210518", 474895], ["20211027", 523475], ["20250108", 820664], ["20261108", 964065]], "Adriano Celentano": [["20180430", 110508], ["20180611", 120635], ["20180726", 133620], ["20180802", 136484], ["20190111", 195341], ["20190222", 211968], ["20190330", 221333], ["20190819", 266906], ["20200402", 348078], ["20200609", 373135], ["20210116", 462934], ["20210227", 484001], ["20210402", 499131], ["20210820", 561161], ["20211011", 587728], ["20211112", 599352], ["20220102", 620659], ["20261108", 1094778]], "Renato Zero": [["20180101", 57808], ["20180316", 73878], ["20190110", 215039], ["20190407", 252617], ["20190814", 301888], ["20200214", 371864], ["20200501", 402243], ["20210220", 499289], ["20210525", 530214], ["20210824", 556212], ["20230127", 716204], ["20230321", 740931], ["20261108", 1018872]], "Ornella Vanoni": [["20180311", 24479], ["20190110", 43502], ["20190406", 48400], ["20190818", 56321], ["20200416", 73876], ["20200604", 77141], ["20200809", 81524], ["20201031", 87314], ["20210207", 95539], ["20210626", 109912], ["20210927", 119099], ["20211009", 120075], ["20211208", 125522], ["20230228", 164660], ["20261108", 349711]], "Zucchero": [["20180101", 128936], ["20180221", 136603], ["20180310", 139457], ["20180528", 153951], ["20180726", 175242], ["20180801", 177015], ["20181222", 233632], ["20190110", 242918], ["20190220", 257476], ["20190405", 271037], ["20190814", 313600], ["20200214", 381798], ["20200323", 397890], ["20200419", 412077], ["20200706", 447787], ["20210301", 565070], ["20210516", 599142], ["20210616", 614897], ["20211104", 683962], ["20230127", 853398], ["20230316", 871890], ["20261108", 1299862]], "Alan Sorrenti": [["20180203", 3104], ["20191219", 6817], ["20200616", 9189], ["20200923", 10486], ["20201101", 10896], ["20210301", 12514], ["20210401", 12982], ["20211128", 15724], ["20221209", 20632], ["20230307", 21765], ["20261108", 46320]], "Umberto Tozzi": [["20180818", 59761], ["20181206", 73636], ["20190101", 76411], ["20190202", 80544], ["20190302", 83393], ["20190402", 86208], ["20190503", 89463], ["20190814", 101450], ["20200409", 136575], ["20200608", 149722], ["20200804", 158902], ["20210120", 189253], ["20210227", 196416], ["20210607", 213233], ["20211112", 237553], ["20261108", 488478]], "Gianna Nannini": [["20180106", 73336], ["20180317", 87942], ["20190112", 182431], ["20190405", 201637], ["20200503", 291390], ["20200614", 302346], ["20200805", 314985], ["20210222", 371388], ["20210619", 398305], ["20210728", 408121], ["20211107", 430532], ["20250109", 619616], ["20261108", 701326]], "Franco Battiato": [["20180108", 105213], ["20180427", 122810], ["20190110", 180786], ["20190401", 198380], ["20190918", 235857], ["20200411", 287839], ["20200520", 297567], ["20200608", 301674], ["20210117", 359804], ["20211203", 488236], ["20250108", 844744], ["20261108", 995332]], "Gianni Morandi": [["20180108", 28664], ["20180315", 38168], ["20180726", 64370], ["20180801", 65371], ["20190112", 96769], ["20190401", 108858], ["20190814", 129618], ["20191221", 152225], ["20200214", 162909], ["20200411", 174086], ["20200505", 178029], ["20200608", 183526], ["20200706", 189584], ["20201017", 207775], ["20210418", 246745], ["20210822", 268919], ["20211009", 278849], ["20250108", 432352], ["20261108", 460905]], "Patty Pravo": [["20180316", 22637], ["20190112", 55209], ["20190525", 67622], ["20200415", 101905], ["20200504", 103571], ["20210413", 140809], ["20210820", 152138], ["20210928", 156385], ["20211009", 157566], ["20250107", 243308], ["20261108", 276843]]};
+const ORDER = ["Lucio Battisti","Mina","Claudio Baglioni","Lucio Dalla","Antonello Venditti","Pooh","Edoardo Bennato","Vasco Rossi","Riccardo Cocciante","Francesco De Gregori","Adriano Celentano","Renato Zero","Ornella Vanoni","Zucchero","Alan Sorrenti","Umberto Tozzi","Gianna Nannini","Franco Battiato","Gianni Morandi","Patty Pravo"];
+const MONTHS = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const toT = s => { const y = +s.slice(0, 4), m = +s.slice(4, 6) - 1, d = +s.slice(6, 8); return y + (m + (d - 1) / 31) / 12; };
+const label = s => `${+s.slice(6, 8)} ${MONTHS[+s.slice(4, 6) - 1]} ${s.slice(0, 4)}`;
+const fmt = v => v >= 1e6 ? `${(v / 1e6).toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 2 })} mln` : `${Math.round(v / 1000).toLocaleString("it-IT")} mila`;
+const A = ORDER.map(n => ({ n, pts: RAW[n].map(([d, v]) => ({ d, t: toT(d), v })) }));
+const T0 = 2018, T1 = 2027, VMAX = 5e6;
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, txt) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; };
+let sel = "Umberto Tozzi";
+try { const s = localStorage.getItem("follower-sel"); if (s && RAW[s]) sel = s; } catch (e) {}
+
+/* Main chart */
+const svg = document.getElementById("main");
+const W = 1000, H = 440, L = 58, R = 120, TP = 14, B = 34;
+svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+const X = t => L + (t - T0) / (T1 - T0) * (W - L - R);
+const Y = v => TP + (1 - v / VMAX) * (H - TP - B);
+const path = pts => pts.map((p, i) => `${i ? "L" : "M"}${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join("");
+const gAxes = el("g", {}); svg.append(gAxes);
+for (let v = 0; v <= VMAX; v += 1e6) {
+  gAxes.append(el("line", { x1: L, x2: W - R, y1: Y(v), y2: Y(v), class: v ? "gl" : "base" }));
+  gAxes.append(el("text", { x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "ax" }, v ? `${v / 1e6} mln` : "0"));
+}
+for (let y = 2018; y <= 2026; y++) gAxes.append(el("text", { x: X(y + .5), y: H - 10, "text-anchor": "middle", class: "ax" }, y));
+for (let y = 2019; y <= 2026; y++) gAxes.append(el("line", { x1: X(y), x2: X(y), y1: H - B, y2: H - B + 5, class: "base" }));
+const gQ = el("g", {}), gH = el("g", {}), gHit = el("g", {});
+svg.append(gQ, gH, gHit);
+for (const a of A) {
+  const g = el("g", { "data-n": a.n });
+  g.append(el("path", { d: path(a.pts), class: "q" }));
+  for (const p of a.pts) g.append(el("circle", { cx: X(p.t), cy: Y(p.v), r: 1.8, class: "qd" }));
+  gQ.append(g);
+  const hit = el("path", { d: path(a.pts), fill: "none", stroke: "transparent", "stroke-width": 10, style: "cursor:pointer" });
+  hit.addEventListener("click", () => select(a.n));
+  gHit.append(hit);
+}
+const marker = el("circle", { r: 7, class: "marker", visibility: "hidden" });
+svg.append(marker);
+const who = document.getElementById("who"), readout = document.getElementById("readout");
+function drawHi() {
+  gH.replaceChildren();
+  const a = A.find(x => x.n === sel);
+  gH.append(el("path", { d: path(a.pts), class: "h" }));
+  for (const p of a.pts) {
+    const c = el("circle", { cx: X(p.t), cy: Y(p.v), r: 4, class: "hd" });
+    gH.append(c);
+    const hit = el("circle", { cx: X(p.t), cy: Y(p.v), r: 10, class: "hit" });
+    hit.addEventListener("mouseenter", () => showPoint(a, p));
+    hit.addEventListener("click", () => showPoint(a, p));
+    gH.append(hit);
+  }
+  const last = a.pts[a.pts.length - 1];
+  gH.append(el("text", { x: X(last.t) + 10, y: Y(last.v) + 4, class: "endlab" }, fmt(last.v)));
+  who.textContent = a.n;
+  const first = a.pts[0];
+  readout.innerHTML = `${a.pts.length} valori · da <b>${fmt(first.v)}</b> (${label(first.d)}) a <b>${fmt(last.v)}</b> (${label(last.d)})`;
+  marker.setAttribute("visibility", "hidden");
+}
+function showPoint(a, p) {
+  marker.setAttribute("cx", X(p.t)); marker.setAttribute("cy", Y(p.v)); marker.setAttribute("visibility", "visible");
+  readout.innerHTML = `${label(p.d)}: <b>${fmt(p.v)}</b> follower`;
+}
+svg.addEventListener("mouseleave", () => drawHi());
+
+/* Chips */
+const chips = document.getElementById("chips");
+for (const a of A) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.id = "chip-" + ORDER.indexOf(a.n); b.textContent = a.n;
+  b.addEventListener("click", () => select(a.n));
+  chips.append(b);
+}
+
+/* Small multiples */
+const grid = document.getElementById("grid");
+const w = 220, h = 92, l = 4, r = 4, t = 6, bb = 6;
+const sx = tt => l + (tt - T0) / (T1 - T0) * (w - l - r), sy = v => t + (1 - v / VMAX) * (h - t - bb);
+const cards = new Map();
+for (const a of A) {
+  const c = document.createElement("button");
+  c.type = "button"; c.className = "card"; c.id = "card-" + ORDER.indexOf(a.n);
+  const last = a.pts[a.pts.length - 1];
+  c.innerHTML = `<span class="nm">${a.n}</span><span class="meta">${a.pts.length} valori · oggi ${fmt(last.v)}</span>`;
+  const s = el("svg", { viewBox: `0 0 ${w} ${h}`, "aria-hidden": "true" });
+  for (let v = 1e6; v < VMAX; v += 1e6) s.append(el("line", { x1: l, x2: w - r, y1: sy(v), y2: sy(v), class: "gl" }));
+  s.append(el("line", { x1: l, x2: w - r, y1: sy(0), y2: sy(0), class: "gl" }));
+  s.append(el("path", { d: a.pts.map((p, i) => `${i ? "L" : "M"}${sx(p.t).toFixed(1)},${sy(p.v).toFixed(1)}`).join(""), class: "l" }));
+  for (const p of a.pts) s.append(el("circle", { cx: sx(p.t), cy: sy(p.v), r: 2, class: "d" }));
+  c.append(s);
+  c.addEventListener("click", () => { select(a.n); svg.scrollIntoView({ block: "nearest", behavior: "smooth" }); });
+  grid.append(c); cards.set(a.n, c);
+}
+
+function select(n) {
+  sel = n;
+  try { localStorage.setItem("follower-sel", n); } catch (e) {}
+  for (const b of chips.children) b.setAttribute("aria-pressed", b.textContent === n ? "true" : "false");
+  for (const [k, c] of cards) c.classList.toggle("on", k === n);
+  drawHi();
+}
+select(sel);
+</script>
+
+</body>
+</html>

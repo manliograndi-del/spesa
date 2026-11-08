@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Fonti della ricerca</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column; a short index of sections, then one list per kind of source, each entry = name, link, what it gave us and its limits. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --link: #1f63b8; --tag: #eef3fb;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --link: #7db3f5; --tag: #1d2633; color-scheme: dark; }
+}
+:root[data-theme="dark"] { --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --link: #7db3f5; --tag: #1d2633; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+main { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6.5vw, 64px); line-height: .92; text-transform: uppercase; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 66ch; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; }
+nav a { font-size: 13px; padding: 4px 11px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg2); text-decoration: none; }
+nav a:hover { color: var(--fg); border-color: var(--fg3); }
+section { display: grid; gap: 10px; scroll-margin-top: 16px; }
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 28px; line-height: 1; }
+.intro { margin: 0; color: var(--fg2); font-size: 14px; max-width: 70ch; }
+ul.src { list-style: none; margin: 0; padding: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
+ul.src li { padding: 12px 16px; border-bottom: 1px solid var(--line); display: grid; gap: 3px; }
+ul.src li:last-child { border-bottom: 0; }
+.nm { font-weight: 600; }
+a { color: var(--link); text-underline-offset: 2px; overflow-wrap: anywhere; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 3px; }
+.what { color: var(--fg2); font-size: 14px; }
+.lim { color: var(--fg3); font-size: 13px; }
+.tag { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .04em; padding: 1px 8px; border-radius: 99px; background: var(--tag); color: var(--fg2); margin-right: 6px; vertical-align: 1px; }
+code { font-size: 13px; background: var(--tag); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+
+<main>
+<header>
+  <span class="eyebrow">Classifiche, vendite e Spotify · come abbiamo trovato i dati</span>
+  <h1>Fonti della ricerca</h1>
+  <p class="lede">Tutti i siti, gli archivi e gli articoli usati per le classifiche di spesato.it e per le pagine su Tozzi e sugli artisti italiani degli anni '70 e '80. Per ognuno: che cosa ci ha dato e che limiti ha.</p>
+</header>
+
+<nav aria-label="Sezioni">
+  <a href="#pagine">Le nostre pagine</a><a href="#italia">Classifiche italiane</a><a href="#estero">Classifiche estere</a><a href="#mondo">Mondiali</a><a href="#spotify">Spotify</a><a href="#vendite">Vendite e certificazioni</a><a href="#articoli">Articoli</a><a href="#strumenti">Strumenti</a>
+</nav>
+
+<section id="pagine">
+  <h2>Le nostre pagine</h2>
+  <p class="intro">Le prime cinque sono pubbliche su spesato.it. Le altre sono anteprime private: le vedi solo tu finché non le condividi.</p>
+  <ul class="src">
+    <li><span class="nm"><span class="tag">sito</span>Classifica album per artista</span><a href="album.html">spesato.it/classifica</a><span class="what">La prima: album più venduti in Italia per artista, 1980–2026, con valori stimati.</span></li>
+    <li><span class="nm"><span class="tag">sito</span>Singoli italiani 1970–2025</span><a href="singoli.html">spesato.it/classifica/singoli</a><span class="what">Classifiche annuali di Hit Parade Italia, con la numerazione corretta.</span></li>
+    <li><span class="nm"><span class="tag">sito</span>Classifica mondiale delle canzoni</span><a href="mondo.html">spesato.it/classifica/mondo</a><span class="what">Stati Uniti, Regno Unito, Germania e Italia pesati per mercato, 1966–2025.</span></li>
+    <li><span class="nm"><span class="tag">sito</span>Classifica mondiale degli artisti</span><a href="mondo-artisti.html">spesato.it/classifica/mondo/artisti</a><span class="what">Da sostituire con la classifica degli album quando sarà pronta.</span></li>
+    <li><span class="nm"><span class="tag">sito</span>Ascolti mese per mese</span><a href="ascolti.html">spesato.it/classifica/ascolti</a><span class="what">Ascoltatori mensili Spotify dei 20 artisti italiani, 2018–2026.</span></li>
+    <li><span class="nm"><span class="tag">privata</span>Tozzi su Spotify</span><a href="tozzi-spotify.html">claude.ai/artifact/25aBnp8HXr2hn63cvgKLZs</a><span class="what">Ascoltatori, ascolti delle canzoni, Gloria in tutte le versioni, totale della carriera.</span></li>
+    <li><span class="nm"><span class="tag">privata</span>Tozzi nel mondo</span><a href="tozzi-mondo.html">claude.ai/artifact/QD2t7EzvZQjg9fgYaTcgCX</a><span class="what">Mappa delle 50 città con più ascoltatori, mese per mese 2018–2021, più oggi.</span></li>
+    <li><span class="nm"><span class="tag">privata</span>Allora contro oggi</span><a href="allora-oggi.html">claude.ai/artifact/6excPhvXggdFkgyk4yFBuz</a><span class="what">I 20 artisti italiani: classifiche 1970–1989 contro Spotify oggi.</span></li>
+    <li><span class="nm"><span class="tag">privata</span>Tozzi, fonte per fonte</span><a href="tozzi-fonti.html">claude.ai/artifact/AcL8fR24C1BDsC561hbvQM</a><span class="what">Ti amo, Tu, Gloria e Stella stai in tutte le classifiche italiane ed estere.</span></li>
+    <li><span class="nm"><span class="tag">privata</span>Hit Parade Italia contro FIMI</span><a href="hpi-fimi.html">claude.ai/artifact/8Vq7i5Cu7Zd8rRosHQ9ciZ</a><span class="what">Le due classifiche annuali dei singoli a confronto, 2002–2025.</span></li>
+  </ul>
+</section>
+
+<section id="italia">
+  <h2>Classifiche italiane</h2>
+  <ul class="src">
+    <li><span class="nm">Hit Parade Italia, classifiche annuali dei singoli</span><a href="https://www.hitparadeitalia.it/hp_yends/hpe1979.htm" target="_blank" rel="noopener">hitparadeitalia.it/hp_yends/hpe1979.htm</a> <span class="what">Una pagina per anno (<code>hpe</code> + anno) dal 1947. Base della classifica dei singoli italiani.</span><span class="lim">Il sito blocca le letture automatiche: le pagine si leggono dalle copie di archive.org. Le classifiche vengono riviste nel tempo e ogni canzone è contata in un solo anno.</span></li>
+    <li><span class="nm">Hit Parade Italia, classifiche annuali degli album</span><a href="https://web.archive.org/web/2025/https://www.hitparadeitalia.it/hp_yenda/lpe1985.htm" target="_blank" rel="noopener">hitparadeitalia.it/hp_yenda/lpe1985.htm (copia archive.org)</a><span class="what">Gli album più venduti di ogni anno dal 1959 al 2025, italiani e stranieri. Hanno chiuso il buco 1976–1998.</span></li>
+    <li><span class="nm">Hit Parade Italia, metodologia</span><a href="https://web.archive.org/web/20251205214552/https://www.hitparadeitalia.it/classifiche/metodol.htm" target="_blank" rel="noopener">hitparadeitalia.it/classifiche/metodol.htm (copia archive.org)</a><span class="what">Spiega come fanno le classifiche: media di tutte le fonti (Musica e dischi, Sorrisi, Rai, Ciao 2001, FIMI…), punti per posizione, una canzone in un solo anno.</span></li>
+    <li><span class="nm">FIMI, archivio delle classifiche annuali</span><a href="https://www.fimi.it/top-of-the-music/archivio-classifiche-annuali/archivio-classifiche-per-anno/?anno=2012" target="_blank" rel="noopener">fimi.it, archivio classifiche per anno</a><span class="what">Classifiche ufficiali: album dal 1999, singoli dal 2002, fino a 100 posizioni.</span><span class="lim">Solo posizioni, nessun numero di copie. Prima del 2002 niente singoli.</span></li>
+    <li><span class="nm">Musica e dischi</span><a href="https://it.wikipedia.org/wiki/Musica_e_dischi" target="_blank" rel="noopener">Musica e dischi su Wikipedia</a><span class="what">La rivista che faceva le classifiche dal 1960 al 2018. Le sue classifiche annuali 1966–1975 e i n. 1 settimanali li abbiamo presi da Wikipedia in tedesco.</span><span class="lim">L'archivio completo è a pagamento.</span></li>
+    <li><span class="nm">Wikipedia in tedesco, liste dei n. 1 in Italia</span><a href="https://de.wikipedia.org/wiki/Liste_der_Nummer-eins-Hits_in_Italien_(1979)" target="_blank" rel="noopener">de.wikipedia.org, Nummer-eins-Hits in Italien (1979)</a><span class="what">N. 1 settimanali di Musica e dischi e classifiche annuali (1966–1975 e dal 2001).</span></li>
+    <li><span class="nm">Italia Settanta / Italia Ottanta</span><a href="https://italiasettanta.francescocataldo.it/classifiche-70/classifica-1979/annuale-singoli-1979/" target="_blank" rel="noopener">italiasettanta.francescocataldo.it</a><span class="what">Classifiche annuali 1970–1989.</span><span class="lim">Solo canzoni in italiano, fonte non indicata.</span></li>
+  </ul>
+</section>
+
+<section id="estero">
+  <h2>Classifiche estere</h2>
+  <ul class="src">
+    <li><span class="nm">Billboard, classifiche annuali</span><a href="https://www.billboard.com/charts/year-end/1979/top-billboard-200-albums/" target="_blank" rel="noopener">billboard.com/charts/year-end</a><span class="what">Hot 100 e Billboard 200 di fine anno.</span><span class="lim">Per gli album 1970–1998 mancano le colonne sonore e alcune posizioni.</span></li>
+    <li><span class="nm">Billboard, scansioni della rivista</span><a href="https://worldradiohistory.com/Archive-All-Music/Billboard/70s/1979/" target="_blank" rel="noopener">worldradiohistory.com</a><span class="what">Tutti i numeri di Billboard: classifiche di fine anno (es. Saturday Night Fever n. 1 album 1978) e la rubrica "Hits of the World" con l'Italia.</span><span class="lim">Testo delle scansioni sporco; dopo molti download blocca.</span></li>
+    <li><span class="nm">Wikipedia in tedesco, Jahreshitparaden</span><a href="https://de.wikipedia.org/wiki/Liste_der_Nummer-eins-Hits_in_Deutschland_(1979)" target="_blank" rel="noopener">Germania</a> · <a href="https://de.wikipedia.org/wiki/Liste_der_Nummer-eins-Hits_in_den_britischen_Charts_(1979)" target="_blank" rel="noopener">Regno Unito</a><span class="what">Prime 10 annuali di singoli e album per Germania (dal 1971) e Regno Unito (dal 1966).</span></li>
+    <li><span class="nm">Archivi delle classifiche nazionali</span><a href="https://austriancharts.at/artist/Umberto-Tozzi" target="_blank" rel="noopener">austriancharts.at</a> · <a href="https://swedishcharts.com/artist/Umberto-Tozzi" target="_blank" rel="noopener">swedishcharts.com</a> · <a href="https://norwegiancharts.com/artist/Umberto-Tozzi" target="_blank" rel="noopener">norwegiancharts.com</a><span class="what">Posizioni di Tozzi in Austria, Svezia, Norvegia.</span></li>
+    <li><span class="nm">Wikipedia, voci delle canzoni</span><a href="https://en.wikipedia.org/wiki/Gloria_(Umberto_Tozzi_song)" target="_blank" rel="noopener">Gloria</a> · <a href="https://en.wikipedia.org/wiki/Ti_amo" target="_blank" rel="noopener">Ti amo</a> · <a href="https://en.wikipedia.org/wiki/Tu_(Umberto_Tozzi_song)" target="_blank" rel="noopener">Tu</a> · <a href="https://en.wikipedia.org/wiki/Stella_stai" target="_blank" rel="noopener">Stella stai</a><span class="what">Posizioni in tutti i paesi, classifiche di fine anno, certificazioni.</span></li>
+  </ul>
+</section>
+
+<section id="mondo">
+  <h2>Classifiche mondiali</h2>
+  <ul class="src">
+    <li><span class="nm">IFPI, Global Single Award</span><a href="https://www.ifpi.org/harry-styles-wins-ifpi-global-single-award-for-as-it-was/" target="_blank" rel="noopener">ifpi.org, top 20 mondiale 2022</a><span class="what">Classifica mondiale ufficiale dei singoli con le unità vendute (dal 2020 circa).</span><span class="lim">Prima del 2020 per i singoli non c'è; la classifica degli artisti parte dal 2013.</span></li>
+  </ul>
+</section>
+
+<section id="spotify">
+  <h2>Spotify</h2>
+  <ul class="src">
+    <li><span class="nm">Pagine degli artisti su Spotify</span><a href="https://open.spotify.com/artist/00w9sdZ78mWArooTmiSTld" target="_blank" rel="noopener">open.spotify.com/artist/… (Tozzi)</a><span class="what">Oggi: ascoltatori mensili esatti, follower, ascolti delle 5 canzoni più popolari, prime 5 città (nel riquadro Informazioni), discografia.</span></li>
+    <li><span class="nm">Copie delle pagine Spotify su archive.org</span><a href="https://web.archive.org/web/20200608202148/https://open.spotify.com/artist/00w9sdZ78mWArooTmiSTld" target="_blank" rel="noopener">Tozzi, 8 giugno 2020</a> · <a href="https://web.archive.org/web/20210607050348/https://open.spotify.com/artist/00w9sdZ78mWArooTmiSTld" target="_blank" rel="noopener">7 giugno 2021</a><span class="what">2018–2020: ascoltatori esatti, follower, 50 città con i loro ascoltatori, popolarità. 2021: ascolti delle 5 canzoni. 2022–2025: solo ascoltatori arrotondati.</span><span class="lim">Archive.org salva le pagine quando capita: da 13 a 44 mesi su 107 per artista.</span></li>
+    <li><span class="nm">kworb, ascoltatori mensili</span><a href="https://kworb.net/spotify/listeners.html" target="_blank" rel="noopener">kworb.net/spotify/listeners.html</a><span class="what">I 2.500 artisti più ascoltati al mondo.</span><span class="lim">Nessuno dei nostri 20 italiani è sopra la soglia (circa 6 milioni).</span></li>
+    <li><span class="nm">kworb, tutte le canzoni di un artista</span><a href="https://kworb.net/spotify/artist/00w9sdZ78mWArooTmiSTld_songs.html" target="_blank" rel="noopener">Tozzi</a> · <a href="https://kworb.net/spotify/artist/4463nfFMmK1cwAWBQDwT5e_songs.html" target="_blank" rel="noopener">Laura Branigan</a><span class="what">Ascolti di ogni canzone e totale della carriera (Tozzi 714 milioni). Copie archiviate dal 2023–2025.</span></li>
+    <li><span class="nm">kworb, iTunes e streaming oggi</span><a href="https://kworb.net/itunes/artist/umbertotozzi.html" target="_blank" rel="noopener">kworb.net/itunes/artist/umbertotozzi.html</a><span class="what">Posizioni di oggi nelle classifiche iTunes e streaming di ogni paese.</span></li>
+    <li><span class="nm">Spotify Charts</span><a href="https://thenextweb.com/news/spotify-charts-launch-to-showcase-top-50-songs-each-week-with-play-counts-now-available-for-all-songs" target="_blank" rel="noopener">The Next Web, lancio del 2013</a> · <a href="https://www.engadget.com/spotify-charts-website-artists-genres-cities-170046534.html" target="_blank" rel="noopener">Engadget, nuovo sito 2021</a><span class="what">Le classifiche Spotify esistono da maggio 2013.</span></li>
+  </ul>
+</section>
+
+<section id="vendite">
+  <h2>Vendite e certificazioni</h2>
+  <ul class="src">
+    <li><span class="nm">FIMI, certificazioni</span><a href="https://www.fimi.it/top-of-the-music/certificazioni/" target="_blank" rel="noopener">fimi.it/top-of-the-music/certificazioni</a><span class="what">Dischi d'oro e di platino di album e singoli dal 2009 (Ti amo platino 2023, Gloria platino 2024…).</span><span class="lim">La ricerca va fatta anno per anno; il sito a volte risponde "nessun risultato" anche quando i dati ci sono.</span></li>
+    <li><span class="nm">Soglie delle certificazioni</span><a href="https://www.ilpost.it/2022/02/04/fimi-dischi-oro-platino-diamante/" target="_blank" rel="noopener">Il Post</a> · <a href="https://www.panorama.it/classifiche-e-ceritificazioni-fimi-cosa-cambia-dal-2018" target="_blank" rel="noopener">Panorama</a> · <a href="https://mowmag.com/culture/disco-d-oro-e-di-platino-ecco-perche-e-una-rivoluzione-nella-musica-con-le-nuove-soglie-fimi-fuori-tony-effe-e-angelina-mango-fedez-certificazioni-dimezzate-e-il-vincitore-di-sanremo-2025-olly" target="_blank" rel="noopener">Mowmag</a><span class="what">Quante copie valgono oro e platino, e come contano download e streaming.</span></li>
+    <li><span class="nm">FIMI su Wikipedia</span><a href="https://en.wikipedia.org/wiki/Federazione_Industria_Musicale_Italiana" target="_blank" rel="noopener">Federazione Industria Musicale Italiana</a><span class="what">Storia delle classifiche e delle certificazioni ufficiali.</span></li>
+  </ul>
+</section>
+
+<section id="articoli">
+  <h2>Articoli</h2>
+  <ul class="src">
+    <li><span class="nm">Corriere della Sera, 13 febbraio 1980</span><a href="https://it.wikipedia.org/wiki/Ti_amo/Dimentica,_dimentica" target="_blank" rel="noopener">citato da Wikipedia (Ti amo/Dimentica, dimentica)</a><span class="what">Copie dichiarate: Ti amo 8 milioni (oltre 1 milione in Italia), Tu 6,5 milioni, Gloria 8 milioni.</span><span class="lim">Cifre della casa discografica, non verificate.</span></li>
+    <li><span class="nm">Morte di Lucio Dalla e iTunes</span><a href="https://archivio.blitzquotidiano.it/musica-showblitz/lucio-dalla-album-testa-itunes-caruso-1140309" target="_blank" rel="noopener">Blitz Quotidiano</a> · <a href="https://www.panorama.it/tempo-libero/musica/i-15-cantanti-italiani-numeri-uno-in-classifica-nel-2012" target="_blank" rel="noopener">Panorama, numeri uno 2012</a><span class="what">I download esplosi dopo il marzo 2012.</span></li>
+    <li><span class="nm">Musica e dischi chiude</span><a href="http://www.rockol.it/news-597216/musica-e-dischi-chiude-dopo-70-anni-giugno-2014" target="_blank" rel="noopener">Rockol, 2014</a><span class="what">La fine della rivista e delle sue classifiche.</span></li>
+    <li><span class="nm">Sorrisi e Canzoni, classifica annuale 1979</span><a href="https://loredanaberte.it/en/album/e-la-luna-busso-folle-citta" target="_blank" rel="noopener">loredanaberte.it</a><span class="what">Esempio di posizione nella classifica annuale di TV Sorrisi e Canzoni (…E la luna bussò 19ª nel 1979).</span></li>
+  </ul>
+</section>
+
+<section id="strumenti">
+  <h2>Strumenti</h2>
+  <ul class="src">
+    <li><span class="nm">archive.org, Wayback Machine</span><a href="https://web.archive.org/" target="_blank" rel="noopener">web.archive.org</a><span class="what">La fonte che ha reso possibile quasi tutto lo storico: Hit Parade Italia, Spotify e kworb del passato.</span></li>
+    <li><span class="nm">Wikidata e MusicBrainz</span><a href="https://www.wikidata.org/" target="_blank" rel="noopener">wikidata.org</a> · <a href="https://musicbrainz.org/" target="_blank" rel="noopener">musicbrainz.org</a><span class="what">Per trovare il codice Spotify di ogni artista.</span></li>
+    <li><span class="nm">OpenStreetMap Nominatim</span><a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener">nominatim.openstreetmap.org</a><span class="what">Coordinate delle 71 città della mappa di Tozzi.</span></li>
+    <li><span class="nm">Natural Earth / world-atlas</span><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">naturalearthdata.com</a><span class="what">Il disegno del mondo nella mappa.</span></li>
+  </ul>
+</section>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Tozzi su Spotify</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column; three headline numbers, then three time charts (listeners, song plays, total plays) and the full song table. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --grid: #eceff4;
+  --hi: #2a78d6;
+  --c1: #2a78d6; --c2: #eb6834; --c3: #1baf7a; --c4: #8b5cf6; --c5: #c99a1e; --c6: #e0457b; --c7: #2a9db5; --c8: #7a8291;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e; --hi: #3987e5;
+    --c1: #3987e5; --c2: #f07a48; --c3: #2bc48d; --c4: #a07cf8; --c5: #e0b53a; --c6: #f0679a; --c7: #43b8d0; --c8: #9aa2b1; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e; --hi: #3987e5;
+  --c1: #3987e5; --c2: #f07a48; --c3: #2bc48d; --c4: #a07cf8; --c5: #e0b53a; --c6: #f0679a; --c7: #43b8d0; --c8: #9aa2b1; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 48px; }
+main { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6.5vw, 64px); line-height: .92; text-transform: uppercase; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 70ch; }
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 640px) { .tiles { grid-template-columns: minmax(0, 1fr); } }
+.tile { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; }
+.tile .v { font-family: var(--display); font-weight: 800; font-size: 38px; line-height: 1; font-variant-numeric: tabular-nums; }
+.tile .l { color: var(--fg2); font-size: 14px; }
+.tile .s { color: var(--fg3); font-size: 12.5px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 12px 10px; display: grid; gap: 8px; }
+.card h2 { margin: 0 4px; font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1; }
+.card p.sub { margin: 0 4px; color: var(--fg2); font-size: 14px; max-width: 80ch; }
+.readout { margin: 0 4px; min-height: 1.45em; font-size: 14px; color: var(--fg2); font-variant-numeric: tabular-nums; }
+.readout b { color: var(--fg); }
+svg { display: block; width: 100%; height: auto; }
+.ax { font-size: 12px; fill: var(--fg3); font-variant-numeric: tabular-nums; }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.base { stroke: var(--line); stroke-width: 1; }
+.ln { fill: none; stroke-width: 2.25; stroke-linejoin: round; }
+.ln.gap { stroke-dasharray: 4 5; stroke-width: 1.5; opacity: .7; }
+.pt { stroke: var(--panel); stroke-width: 2; }
+.hit { fill: transparent; cursor: pointer; }
+.endlab { font-size: 12.5px; font-weight: 600; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 4px; font-size: 13px; color: var(--fg2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg3); padding: 8px 10px; border-bottom: 1px solid var(--line); }
+td { padding: 6px 10px; border-bottom: 1px solid var(--line); }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.barc { width: 34%; }
+.bar { height: 8px; border-radius: 0 4px 4px 0; background: var(--hi); }
+.more { font: inherit; font-weight: 600; font-size: 14px; padding: 7px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); cursor: pointer; justify-self: start; margin: 4px; }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · Spotify · 2018–2026</span>
+  <h1>Tozzi su Spotify</h1>
+  <p class="lede">Tutti i dati che si conoscono su Umberto Tozzi in Spotify: quante persone lo ascoltano ogni mese, quante volte sono state ascoltate le sue canzoni e il totale di tutta la carriera. Ogni punto è un dato vero, letto da una copia della pagina salvata da archive.org o dalla pagina di oggi; le linee uniscono i punti.</p>
+</header>
+
+<section class="tiles" id="tiles"></section>
+
+<section class="card">
+  <h2>Ascoltatori mensili</h2>
+  <p class="sub">Persone diverse che lo hanno ascoltato negli ultimi 28 giorni, in tutto il mondo.</p>
+  <svg id="c1" role="img" aria-label="Ascoltatori mensili di Tozzi su Spotify dal 2018 al 2026"></svg>
+  <div class="readout" id="r1"></div>
+</section>
+
+<section class="card">
+  <h2>Ascolti delle canzoni</h2>
+  <p class="sub">Ascolti totali di ogni canzone, da quando è su Spotify. Tra novembre 2021 e aprile 2025 non ci sono copie con questi numeri: la linea tratteggiata unisce i due punti senza sapere cosa è successo in mezzo.</p>
+  <div class="legend" id="lg2"></div>
+  <svg id="c2" role="img" aria-label="Ascolti totali delle canzoni più ascoltate di Tozzi dal 2021 al 2026"></svg>
+  <div class="readout" id="r2"></div>
+</section>
+
+<section class="card">
+  <h2>Gloria, tutte le versioni</h2>
+  <p class="sub">"Gloria" l'ha scritta Tozzi con Giancarlo Bigazzi. Oltre alla sua versione e a quella in spagnolo c'è quella in inglese di Laura Branigan (1982), che su Spotify è nella pagina di Branigan ed è la più ascoltata. Qui le tre versioni insieme.</p>
+  <div class="tiles" id="gtiles"></div>
+  <div class="legend" id="lg4"></div>
+  <svg id="c4" role="img" aria-label="Ascolti totali delle tre versioni di Gloria dal 2021 al 2026"></svg>
+  <div class="readout" id="r4"></div>
+  <p class="sub" id="gshare"></p>
+</section>
+
+<section class="card">
+  <h2>Ascolti di tutta la carriera</h2>
+  <p class="sub">Somma degli ascolti di tutte le canzoni di Tozzi su Spotify, secondo kworb.net. Archive.org ha salvato questa pagina solo dal 2025.</p>
+  <svg id="c3" role="img" aria-label="Ascolti totali di Tozzi su Spotify dal 2025 al 2026"></svg>
+  <div class="readout" id="r3"></div>
+</section>
+
+<section class="card">
+  <h2>Tutte le canzoni</h2>
+  <p class="sub" id="tsub"></p>
+  <div class="tw"><table><thead><tr><th>#</th><th>Canzone</th><th class="num">Ascolti</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+  <button class="more" id="more" type="button">Mostra tutte</button>
+</section>
+
+<section class="note">
+  <p><b>Fonti.</b> Ascoltatori mensili e follower: pagina Spotify di Tozzi, copie su web.archive.org (2018–2026) e pagina di oggi; fino al 2021 il numero è esatto, poi Spotify lo arrotonda. Ascolti delle canzoni: copie della pagina Spotify del 2021 e di oggi, e copie della pagina di Tozzi su kworb.net (2025–2026), che riporta tutte le canzoni.</p>
+  <p><b>Versioni.</b> Una canzone può esistere in più versioni (originale, rimasterizzata, dal vivo, in spagnolo): qui per ogni titolo c'è la versione più ascoltata, mentre le versioni in spagnolo sono contate a parte.</p>
+</section>
+</main>
+
+<script>
+const D = {"listeners":[["20180818",480229,1],["20181206",460084,1],["20190101",477982,1],["20190202",499609,1],["20190302",557092,1],["20190402",566616,1],["20190503",600124,1],["20190814",825867,1],["20200409",910562,1],["20200608",1482789,1],["20200804",1479672,1],["20201111",1300000,0],["20210120",1326425,1],["20210607",1541621,1],["20211112",1530763,1],["20230128",1700000,0],["20240106",2000000,0],["20240324",2400000,0],["20240921",2700000,0],["20250124",2600000,0],["20250312",2700000,0],["20250717",3400000,0],["20250803",3400000,0],["20251002",3200000,0],["20251115",3000000,0],["20260214",2900000,0],["20260326",3200000,0],["20260515",3400000,0],["20260715",3400000,0],["20261017",3100000,0],["20261108",3096352,1]],"followers":[["20180818",59761],["20181206",73636],["20190101",76411],["20190202",80544],["20190302",83393],["20190402",86208],["20190503",89463],["20190814",101450],["20200409",136575],["20200608",149722],["20200804",158902],["20210120",189253],["20210227",196416],["20210607",213233],["20211112",237553],["20261108",488478]],"songs":[{"title":"Ti amo","pts":[["20210607",44792923],["20211112",52895533],["20250411",141095114],["20250619",148363757],["20250911",157714143],["20260208",171777229],["20261031",200943205],["20261108",201598286]]},{"title":"Gloria","pts":[["20210607",28535134],["20211112",33908256],["20250411",94322909],["20250619",99596658],["20250911",106597639],["20260208",116680632],["20261031",136897643],["20261108",137334026]]},{"title":"Tu","pts":[["20210607",15793620],["20211112",18980252],["20250411",54451485],["20250619",57392606],["20250911",61411832],["20260208",67383501],["20261031",78228979],["20261108",78462544]]},{"title":"Gente di mare","pts":[["20210607",13851277],["20211112",16529431],["20250411",43936171],["20250619",46316599],["20250911",49587829],["20260208",54244250],["20261031",64509577],["20261108",64722425]]},{"title":"Te Amo (Ti Amo ) - Spanish Version","pts":[["20211112",7184244],["20250411",19338748],["20250619",20650236],["20250911",22231057],["20260208",25041940],["20261031",30177011],["20261108",30279640]]},{"title":"Stella Stai","pts":[["20250411",15846686],["20250619",16419642],["20250911",17233160],["20260208",18616343],["20261031",21187783]]},{"title":"Si può dare di più","pts":[["20210607",4709619],["20250411",12256565],["20250619",12625832],["20250911",13109097],["20260208",14061769],["20261031",15720326]]},{"title":"Gloria - Spanish Version","pts":[["20250411",9041916],["20250619",9459011],["20250911",10016062],["20260208",10822031],["20261031",12280407]]}],"total":[["20250411",495132263],["20250619",519938794],["20250911",554362816],["20260208",607238353],["20261031",714201226]],"all":[["Ti Amo",200943205],["Gloria",136897643],["Tu",78228979],["Gente Di Mare",64509577],["Te Amo (Ti Amo) - Spanish Version",30177011],["Stella Stai",21187783],["Si può dare di più",15720326],["Gloria - Spanish Version",12280407],["Gli altri siamo noi",10185784],["Ti amo (feat. Anastacia)",10063410],["Te amo - Spanish Version",10057590],["Tú - Spanish Version",9927213],["Ti amo",9009463],["Io camminerò",6745477],["Qualcosa qualcuno",6468867],["Rien que des mots",4928089],["Come una danza",4611997],["Claridad (Stella stai) - Spanish Version",4245910],["Se non avessi te (È la verità)",4039607],["Gli innamorati",3893881],["Yo caminaré (Io camminerò) - Spanish Version",3762632],["Gloria",3518538],["Donna amante mia",3172478],["Eva",2840568],["Donna amante mia",2618089],["Nell'Aria C'è",2550960],["Zingaro",2514950],["Notte rosa",2314491],["Mamma Maremma",2280181],["Tu",2242223],["Lei",1741013],["Toi, tù",1724385],["A cosa servono le mani",1651806],["Tu (Tu) - Remix",1590456],["Hei sole",1477287],["Per Angela",1459632],["Io muoio di te",1392273],["Dimentica, dimentica",1312374],["Ti amo (Live)",1288507],["Dimmi di no",1232638],["Gloria",1195679],["Si può dare di più",1105717],["Immensamente - Remix dance",1036153],["Dime que no",898010],["Roma nord",852291],["Perdendo Anna",837320],["Alleluja se",806715],["Immensamente",755202],["Gloria - Version 2001",659183],["Io camminerò",629477],["Gente di mare (Live)",596484],["Notte rosa",546821],["Stella stai",490513],["Il grido",488091],["L'amore e' quando non c'e' piu",423843],["Petite Marie (Stella D'amore)",402126],["De que me sirven estas manos",401108],["Il grido",392438],["Signora America",390772],["Gente di mare",379470],["You and I (Ti amo)",364612],["Hurrah",360403],["Tu vivrai (feat. Eros Ramazzotti, Umberto Tozzi, Enrico Ruggeri, Raf) - 2012 Remaster",350219],["Tu sei di me",349985],["Equivocando",341289],["Non va che volo",320238],["Gloria - English Version",314441],["Tu, domani",312520],["Eva",304050],["Donna amante mia",298778],["Quasi quasi",298163],["Tu piccolo",284987],["Invisibile",283473],["Notte rosa (Live)",282161],["Il battito animale (Live)",280177],["Si può dare di più (feat. Gianni Morandi & Enrico Ruggeri) - Live",276748],["Se non avessi te",270615],["Aria e cielo",255696],["Gli altri siamo noi",251141],["Se tu mi aiuterai",243855],["Tu (Live)",223457],["Io muoio di te",223401],["Tu",220517],["Noche Rocha",218620],["Notte chiara",212729],["Olvidate olvidate",205801],["Le parole",205434],["Ti amo",204456],["Immensamente",201677],["Ciao Lulu'",191468],["Come si fa",187094],["Due (Live)",183846],["Conchiglia di diamante",179335],["Ti amo - Live",170040],["Anima italiana",169805],["Sei la più bella del mondo (Live)",164636],["Donna amante mia (feat. Giuliano Sangiorgi)",163537],["Ti amo",163177],["Ti amo (L'ultima notte rosa - The final tour) - Live",160059],["L'amore è quando non c'è più",158044],["Dimmi di no (Live)",154252],["Donna amante mia",150502],["Love",148422],["Un fiume dentro il mare",148074],["Cerco ancora te",147739],["Gloria - Öwnboss Remix",147479],["Gloria - Live",146449],["Medley: Roma nord, Se non avessi te, Innamorati",145598],["Medley: Ciao Lulu', Qualcosa qualcuno, Brava",143503],["Gente di mare - Live",139136],["Roma Nord / Qualcosa qualcuno / Se non avessi te / Gli innamorati (Live)",134971],["Gli altri siamo noi (Live)",130032],["Mama",127876],["Un'altra vita",125051],["Stella stai (Live)",123446],["Se tu non fossi quì",123365],["Non è mai un errore (Live)",123129],["Gloria",119358],["Mi manca",117191],["Gesu' che prendi il tram",117182],["Si può dare di più (Live)",115418],["Un corpo e un'anima - Live",115145],["Come zucchero",114413],["Fatto cosi",114287],["Al sud",114140],["Un fiume dentro il mare",113304],["Tu - Live",112333],["Presto io e te",111229],["Per darti amore",109717],["Notte rosa - Live",108615],["Gloria (Live)",108385],["Al Sud",103340],["Self control (Live)",101511],["Anche se tu non vuoi",100837]],"all_date":"20261031","gloria":{"branigan":[["20210711",97542827],["20211019",106325979],["20230623",160573427],["20240307",190249591],["20240817",212308832],["20241121",225814009],["20250108",231746388],["20250419",247732796],["20250510",250917904],["20250530",254427360],["20250822",268280133],["20251228",289510035],["20260215",298922926],["20260608",320313098],["20261102",348532957],["20261108",349445320]],"branigan_total":[["20230623",462509208],["20240307",562381998],["20240817",631397523],["20241121",675663541],["20250108",696408218],["20250419",754269315],["20250510",766574299],["20250530",777647919],["20250822",825241042],["20251228",908429394],["20260215",943919553],["20260608",1020643522],["20261102",1115861394]],"tozzi":[["20210607",28535134],["20211112",33908256],["20250411",94322909],["20250619",99596658],["20250911",106597639],["20260208",116680632],["20261031",136897643],["20261108",137334026]],"tozzi_es":[["20250411",9041916],["20250619",9459011],["20250911",10016062],["20260208",10822031],["20261031",12280407]]}};
+const MONTHS = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const toT = s => +s.slice(0, 4) + (+s.slice(4, 6) - 1 + (+s.slice(6, 8) - 1) / 31) / 12;
+const lab = s => `${+s.slice(6, 8)} ${MONTHS[+s.slice(4, 6) - 1]} ${s.slice(0, 4)}`;
+const it = v => v.toLocaleString("it-IT");
+const mln = v => v >= 1e6 ? `${(v / 1e6).toLocaleString("it-IT", { maximumFractionDigits: 1 })} mln` : `${Math.round(v / 1000).toLocaleString("it-IT")} mila`;
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, txt) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; };
+const COLORS = ["--c1","--c2","--c3","--c4","--c5","--c6","--c7","--c8"].map(c => `var(${c})`);
+
+/* tiles */
+const L = D.listeners, last = L[L.length - 1], tot = D.total[D.total.length - 1], topSong = D.songs[0];
+const topLast = topSong.pts[topSong.pts.length - 1];
+document.getElementById("tiles").innerHTML = `
+  <div class="tile"><span class="v">${it(last[1])}</span><span class="l">ascoltatori mensili</span><span class="s">${lab(last[0])} · erano ${it(L[0][1])} ad agosto 2018</span></div>
+  <div class="tile"><span class="v">${mln(tot[1])}</span><span class="l">ascolti di tutte le canzoni</span><span class="s">al ${lab(tot[0])}, fonte kworb</span></div>
+  <div class="tile"><span class="v">${mln(topLast[1])}</span><span class="l">ascolti di "${topSong.title}"</span><span class="s">la sua canzone più ascoltata</span></div>`;
+
+function chart(id, series, opt) {
+  const svg = document.getElementById(id);
+  const W = 1000, H = opt.h || 360, Lm = 64, Rm = opt.rm || 30, Tm = 12, Bm = 32;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.replaceChildren();
+  const X = t => Lm + (t - opt.t0) / (opt.t1 - opt.t0) * (W - Lm - Rm);
+  const Y = v => Tm + (1 - v / opt.vmax) * (H - Tm - Bm);
+  for (const v of opt.ticks) {
+    svg.append(el("line", { x1: Lm, x2: W - Rm, y1: Y(v), y2: Y(v), class: v ? "gl" : "base" }));
+    svg.append(el("text", { x: Lm - 8, y: Y(v) + 4, "text-anchor": "end", class: "ax" }, opt.tickFmt(v)));
+  }
+  for (const [t, txt] of opt.xticks) svg.append(el("text", { x: X(t), y: H - 10, "text-anchor": "middle", class: "ax" }, txt));
+  const readout = document.getElementById(opt.readout);
+  readout.innerHTML = opt.hint;
+  const marker = el("circle", { r: 8, fill: "none", stroke: "var(--fg)", "stroke-width": 1.5, visibility: "hidden" });
+  for (const s of series) {
+    const pts = s.pts.map(([d, v]) => ({ d, v, t: toT(d) }));
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], b = pts[i];
+      const gap = opt.gapYears && (b.t - a.t) > opt.gapYears;
+      svg.append(el("path", { d: `M${X(a.t)},${Y(a.v)}L${X(b.t)},${Y(b.v)}`, class: "ln" + (gap ? " gap" : ""), stroke: s.color }));
+    }
+    for (const p of pts) {
+      svg.append(el("circle", { cx: X(p.t), cy: Y(p.v), r: opt.r || 4, class: "pt", fill: s.color }));
+      const h = el("circle", { cx: X(p.t), cy: Y(p.v), r: 11, class: "hit" });
+      const show = () => { marker.setAttribute("cx", X(p.t)); marker.setAttribute("cy", Y(p.v)); marker.setAttribute("visibility", "visible");
+        readout.innerHTML = `${s.name ? `<b>${s.name}</b> · ` : ""}${lab(p.d)}: <b>${it(p.v)}</b>${opt.unit || ""}`; };
+      h.addEventListener("mouseenter", show); h.addEventListener("click", show);
+      svg.append(h);
+    }
+    if (opt.endLabels) {
+      const e = pts[pts.length - 1];
+      s.endY = Y(e.v); s.endX = X(e.t);
+    }
+  }
+  if (opt.endLabels) {
+    const ss = series.slice().sort((a, b) => a.endY - b.endY);
+    let prev = -99;
+    for (const s of ss) { const y = Math.max(s.endY, prev + 15); prev = y;
+      svg.append(el("text", { x: s.endX + 10, y: y + 4, class: "endlab", fill: s.color }, s.name)); }
+  }
+  svg.append(marker);
+  svg.addEventListener("mouseleave", () => { marker.setAttribute("visibility", "hidden"); readout.innerHTML = opt.hint; });
+}
+
+/* chart 1: listeners */
+chart("c1", [{ pts: L.map(x => [x[0], x[1]]), color: "var(--hi)" }], {
+  t0: 2018.5, t1: 2027, vmax: 3.6e6, ticks: [0, 1e6, 2e6, 3e6], tickFmt: v => v ? `${v / 1e6} mln` : "0",
+  xticks: [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map(y => [y, String(y)]), readout: "r1", unit: " ascoltatori mensili",
+  hint: `${L.length} valori dal ${lab(L[0][0])} al ${lab(last[0])}. Passa sopra un punto per il numero esatto.`, gapYears: 0.9
+});
+
+/* chart 2: songs */
+const S = D.songs.map((s, i) => ({ name: s.title.replace("Te Amo (Ti Amo ) - Spanish Version", "Te amo (in spagnolo)").replace("Gloria - Spanish Version", "Gloria (in spagnolo)"), pts: s.pts, color: COLORS[i] }));
+document.getElementById("lg2").innerHTML = S.map(s => `<span><i style="background:${s.color}"></i>${s.name}</span>`).join("");
+chart("c2", S, {
+  t0: 2021.3, t1: 2027, vmax: 2.1e8, ticks: [0, 5e7, 1e8, 1.5e8, 2e8], tickFmt: v => v ? `${v / 1e6} mln` : "0", h: 420, rm: 170,
+  xticks: [2022, 2023, 2024, 2025, 2026].map(y => [y, String(y)]), readout: "r2", unit: " ascolti", endLabels: true, gapYears: 1,
+  hint: "Passa sopra un punto per il numero esatto."
+});
+
+/* chart 4: Gloria, all versions */
+const G = D.gloria;
+const gl = a => a[a.length - 1];
+const gB = gl(G.branigan), gT = gl(G.tozzi), gE = gl(G.tozzi_es);
+document.getElementById("gtiles").innerHTML = `
+  <div class="tile"><span class="v">${mln(gB[1] + gT[1] + gE[1])}</span><span class="l">ascolti di Gloria, tutte le versioni</span><span class="s">somma dei tre valori più recenti</span></div>
+  <div class="tile"><span class="v">${mln(gB[1])}</span><span class="l">Laura Branigan (inglese)</span><span class="s">${Math.round(gB[1] / (gB[1] + gT[1] + gE[1]) * 100)}% del totale · ${lab(gB[0])}</span></div>
+  <div class="tile"><span class="v">${mln(gT[1] + gE[1])}</span><span class="l">Umberto Tozzi (italiano e spagnolo)</span><span class="s">${mln(gT[1])} + ${mln(gE[1])} in spagnolo</span></div>`;
+const GS = [
+  { name: "Laura Branigan", pts: G.branigan, color: "var(--c2)" },
+  { name: "Tozzi", pts: G.tozzi, color: "var(--c1)" },
+  { name: "Tozzi in spagnolo", pts: G.tozzi_es, color: "var(--c3)" },
+];
+document.getElementById("lg4").innerHTML = GS.map(s => `<span><i style="background:${s.color}"></i>${s.name}</span>`).join("");
+chart("c4", GS, {
+  t0: 2021.3, t1: 2027, vmax: 3.6e8, ticks: [0, 1e8, 2e8, 3e8], tickFmt: v => v ? `${v / 1e6} mln` : "0", h: 360, rm: 150,
+  xticks: [2022, 2023, 2024, 2025, 2026].map(y => [y, String(y)]), readout: "r4", unit: " ascolti", endLabels: true, gapYears: 1,
+  hint: "Passa sopra un punto per il numero esatto."
+});
+const bt = G.branigan_total, b0 = bt[0], b1 = bt[bt.length - 1];
+const share = d => { const g = G.branigan.find(x => x[0] === d); return g ? g[1] : null; };
+document.getElementById("gshare").innerHTML = `Per Laura Branigan, Gloria vale <b>${Math.round(share(b0[0]) / b0[1] * 100)}%</b> di tutti i suoi ascolti a ${lab(b0[0])} e <b>${Math.round(share(b1[0]) / b1[1] * 100)}%</b> a ${lab(b1[0])} (su ${mln(b1[1])} in tutto, secondo kworb): la sua canzone più ascoltata resta "Self Control".`;
+
+/* chart 3: total */
+chart("c3", [{ pts: D.total, color: "var(--hi)" }], {
+  t0: 2025.2, t1: 2026.95, vmax: 8e8, ticks: [0, 2e8, 4e8, 6e8, 8e8], tickFmt: v => v ? `${v / 1e6} mln` : "0", h: 280, r: 5,
+  xticks: [[2025.5, "2025"], [2026.5, "2026"]], readout: "r3", unit: " ascolti",
+  hint: `Da ${mln(D.total[0][1])} (${lab(D.total[0][0])}) a ${mln(tot[1])} (${lab(tot[0])}): ${mln(tot[1] - D.total[0][1])} di ascolti in più in ${Math.round((toT(tot[0]) - toT(D.total[0][0])) * 12)} mesi.`
+});
+
+/* table */
+const tb = document.getElementById("tb"), mx = D.all[0][1];
+document.getElementById("tsub").textContent = `${D.all.length} canzoni e versioni, ascolti al ${lab(D.all_date)} secondo kworb.net.`;
+let showAll = false;
+function table() {
+  const rows = showAll ? D.all : D.all.slice(0, 25);
+  tb.innerHTML = rows.map(([t, v], i) => `<tr><td class="num">${i + 1}</td><td>${t}</td><td class="num">${it(v)}</td><td class="barc"><div class="bar" style="width:${(v / mx * 100).toFixed(2)}%"></div></td></tr>`).join("");
+  document.getElementById("more").textContent = showAll ? "Mostra le prime 25" : `Mostra tutte (${D.all.length})`;
+}
+document.getElementById("more").addEventListener("click", () => { showAll = !showAll; table(); });
+table();
+</script>
+
+</body>
+</html>

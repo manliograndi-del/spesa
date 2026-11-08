@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Gloria</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column; a big title band with the four key facts, then chapters in time order (song, charts, other versions, screen, certifications, Spotify, musical), each a card with a table or a short list. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --soft: #eef1f6;
+  --accent: #c8336b; --link: #1f63b8; --one: #fde8ef; --onefg: #a3164d;
+  --tozzi: #2a78d6; --bran: #eb6834; --es: #1baf7a;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --soft: #1d2129;
+    --accent: #f0679a; --link: #7db3f5; --one: #3a1726; --onefg: #f7a3c3; --tozzi: #3987e5; --bran: #f07a48; --es: #2bc48d; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --soft: #1d2129;
+  --accent: #f0679a; --link: #7db3f5; --one: #3a1726; --onefg: #f7a3c3; --tozzi: #3987e5; --bran: #f07a48; --es: #2bc48d; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+main { max-width: 920px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 8px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(72px, 16vw, 150px); line-height: .82; text-transform: uppercase; color: var(--accent); letter-spacing: .01em; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 66ch; font-size: 16px; }
+.facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 760px) { .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 2px; }
+.fact .v { font-family: var(--display); font-weight: 800; font-size: 34px; line-height: 1; }
+.fact .l { color: var(--fg2); font-size: 13.5px; }
+nav { display: flex; flex-wrap: wrap; gap: 6px; }
+nav a { font-size: 13px; padding: 4px 11px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg2); text-decoration: none; }
+nav a:hover { color: var(--fg); border-color: var(--fg3); }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px 18px 14px; display: grid; gap: 10px; scroll-margin-top: 16px; }
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+.card p { margin: 0; color: var(--fg2); max-width: 72ch; }
+.card p b { color: var(--fg); }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg3); padding: 8px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.one { background: var(--one); color: var(--onefg); font-weight: 700; border-radius: 6px; padding: 1px 8px; }
+.small { color: var(--fg3); font-size: 12.5px; }
+ul.list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+ul.list li { display: grid; grid-template-columns: 74px minmax(0, 1fr); gap: 10px; }
+ul.list .y { font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--accent); line-height: 1.2; }
+ul.list .t { color: var(--fg2); }
+ul.list .t b { color: var(--fg); }
+.bars { display: grid; gap: 8px; }
+.bar { display: grid; grid-template-columns: minmax(0, 12em) minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 14px; }
+.bar .track { height: 14px; background: var(--soft); border-radius: 4px; overflow: hidden; }
+.bar .fill { height: 100%; border-radius: 0 4px 4px 0; }
+.bar .v { font-variant-numeric: tabular-nums; color: var(--fg2); }
+.now { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; padding: 2px 8px; border-radius: 99px; background: var(--accent); color: var(--panel); vertical-align: 2px; margin-left: 6px; }
+tr.past td { color: var(--fg3); }
+tr.cur td { background: var(--one); }
+a { color: var(--link); text-underline-offset: 2px; overflow-wrap: anywhere; }
+a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 3px; }
+.cta { display: inline-block; font-weight: 600; padding: 8px 16px; border-radius: 99px; background: var(--accent); color: var(--panel); text-decoration: none; justify-self: start; }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 6px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · Giancarlo Bigazzi · 1979</span>
+  <h1>Gloria</h1>
+  <p class="lede">La canzone che Umberto Tozzi ha scritto con Giancarlo Bigazzi nel 1979: in Italia arrivò seconda, all'estero fu prima in Svizzera e in Spagna, e nella versione inglese di Laura Branigan diventò un successo mondiale. Oggi è la più ascoltata delle sue canzoni dopo Ti amo e, da ottobre 2026, è anche un musical in tournée.</p>
+  <div class="facts">
+    <div class="fact"><span class="v">2ª</span><span class="l">in Italia nel 1979 (Musica e dischi)</span></div>
+    <div class="fact"><span class="v">1ª</span><span class="l">in Svizzera e in Spagna</span></div>
+    <div class="fact"><span class="v">2ª</span><span class="l">negli Stati Uniti nel 1982, cantata da Laura Branigan</span></div>
+    <div class="fact"><span class="v">499 mln</span><span class="l">ascolti su Spotify, tutte le versioni</span></div>
+  </div>
+</header>
+
+<nav aria-label="Capitoli">
+  <a href="#canzone">La canzone</a><a href="#classifiche">Le classifiche</a><a href="#versioni">Le altre versioni</a><a href="#schermo">Film e stadi</a><a href="#cert">Copie e certificazioni</a><a href="#spotify">Spotify</a><a href="#musical">Il musical</a>
+</nav>
+
+<section class="card" id="canzone">
+  <h2>La canzone</h2>
+  <p>Uscita nel <b>maggio–giugno 1979</b> per la CGD come lato A del 45 giri <b>Gloria / Aria di lei</b> e nell'album <b>Gloria</b>. Parole e musica di <b>Umberto Tozzi e Giancarlo Bigazzi</b>; registrata agli Union Studios di Monaco di Baviera. Nel ritornello riprende il "Gloria" e un frammento di melodia della Missa solemnis di Beethoven.</p>
+  <p>Arriva dopo Ti amo (1977) e Tu (1978) e chiude il trittico dei grandi successi di Tozzi alla fine degli anni '70. Nel 1980 segue Stella stai.</p>
+</section>
+
+<section class="card" id="classifiche">
+  <h2>Le classifiche (versione di Tozzi)</h2>
+  <div class="tw"><table>
+    <thead><tr><th>Paese</th><th class="num">Posizione più alta</th><th class="num">Fine anno 1979</th><th>Note</th></tr></thead>
+    <tbody>
+      <tr><td>Italia (Musica e dischi)</td><td class="num">2</td><td class="num">14</td><td>16 settimane in classifica; mai al n. 1</td></tr>
+      <tr><td>Italia (Hit Parade Italia)</td><td class="num">2</td><td class="num">19</td><td>Classifica annuale ricostruita da più fonti</td></tr>
+      <tr><td>Svizzera</td><td class="num"><span class="one">1</span></td><td class="num">4</td><td>4 settimane al n. 1</td></tr>
+      <tr><td>Spagna</td><td class="num"><span class="one">1</span></td><td class="num">–</td><td>Versione in spagnolo; disco d'oro 1980</td></tr>
+      <tr><td>Portogallo</td><td class="num">3</td><td class="num">–</td><td></td></tr>
+      <tr><td>Austria</td><td class="num">4</td><td class="num">17</td><td></td></tr>
+      <tr><td>Francia (TopFrance)</td><td class="num">4</td><td class="num">–</td><td></td></tr>
+      <tr><td>Belgio (Fiandre)</td><td class="num">5</td><td class="num">40</td><td></td></tr>
+      <tr><td>Sudafrica</td><td class="num">7</td><td class="num">–</td><td>Versione in inglese</td></tr>
+      <tr><td>Germania Ovest</td><td class="num">8</td><td class="num">36</td><td></td></tr>
+      <tr><td>Paesi Bassi</td><td class="num">21</td><td class="num">–</td><td>29 nella Top 100</td></tr>
+      <tr><td>Australia</td><td class="num">46</td><td class="num">–</td><td>Versione in inglese</td></tr>
+    </tbody>
+  </table></div>
+  <p class="small">Fonti: Wikipedia in italiano, inglese, tedesco e francese (voci della canzone), Hit Parade Italia, austriancharts.at.</p>
+</section>
+
+<section class="card" id="versioni">
+  <h2>Le altre versioni</h2>
+  <ul class="list">
+    <li><span class="y">1979</span><span class="t"><b>Jonathan King</b>, autore del primo testo in inglese, la incide a novembre: 65ª nel Regno Unito. Tozzi canterà poi anche questa versione inglese.</span></li>
+    <li><span class="y">1979</span><span class="t"><b>Umberto Tozzi in spagnolo</b>: prima in Spagna e disco d'oro nel 1980.</span></li>
+    <li><span class="y">Francia</span><span class="t"><b>Sheila</b> la porta in Francia con il testo francese <b>Glori Gloria</b>.</span></li>
+    <li><span class="y">1982</span><span class="t"><b>Laura Branigan</b> la incide con un nuovo testo inglese: <b>2ª negli Stati Uniti</b> (Billboard Hot 100, 36 settimane in classifica), 6ª nel Regno Unito, disco di platino negli Stati Uniti. È la versione più famosa nel mondo.</span></li>
+    <li><span class="y">2011</span><span class="t">Nuovi remix house di <b>Alex Gaudino</b> e Jason Rooney, con un video con Umberto e Natasha Tozzi.</span></li>
+    <li><span class="y">2025</span><span class="t">Nuovo singolo <b>Gloria (Öwnboss Remix)</b>.</span></li>
+  </ul>
+</section>
+
+<section class="card" id="schermo">
+  <h2>Film, serie e stadi</h2>
+  <ul class="list">
+    <li><span class="y">2013</span><span class="t">La versione di Tozzi è nella colonna sonora di <b>The Wolf of Wall Street</b> di Martin Scorsese e del film cileno <b>Gloria</b> di Sebastián Lelio.</span></li>
+    <li><span class="y">2018</span><span class="t"><b>Gloria Bell</b>, il remake americano dello stesso film di Lelio.</span></li>
+    <li><span class="y">2019</span><span class="t">Suonata alla sfilata delle nazioni nella cerimonia di apertura delle <b>Universiadi di Napoli</b>, all'ingresso dell'Italia.</span></li>
+    <li><span class="y">2019</span><span class="t">La versione di Laura Branigan diventa l'inno della squadra di hockey <b>St. Louis Blues</b>, che vince la Stanley Cup: la canzone torna nelle classifiche americane.</span></li>
+  </ul>
+</section>
+
+<section class="card" id="cert">
+  <h2>Copie e certificazioni</h2>
+  <p>Nel febbraio 1980 il Corriere della Sera, con le cifre della casa discografica, scriveva di <b>8 milioni di copie nel mondo</b> per Gloria (6,5 milioni per Tu e 8 per Ti amo). È un numero dichiarato, non verificato: in Italia allora non esistevano certificazioni ufficiali.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Paese</th><th>Certificazione</th><th>Cosa conta</th></tr></thead>
+    <tbody>
+      <tr><td>1980</td><td>Spagna</td><td>Oro</td><td>Versione di Tozzi</td></tr>
+      <tr><td>Anni '80</td><td>Stati Uniti</td><td>Platino (RIAA)</td><td>Versione di Laura Branigan</td></tr>
+      <tr><td>2018</td><td>Italia</td><td>Oro (FIMI)</td><td>Vendite e streaming dal 2009</td></tr>
+      <tr><td>2024</td><td>Italia</td><td>Platino (FIMI)</td><td>Vendite e streaming dal 2009</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="card" id="spotify">
+  <h2>Su Spotify oggi</h2>
+  <p>Ascolti totali da quando le canzoni sono su Spotify, novembre 2026.</p>
+  <div class="bars">
+    <div class="bar"><span>Laura Branigan (inglese)</span><span class="track"><span class="fill" style="display:block;width:100%;background:var(--bran)"></span></span><span class="v">349,4 mln</span></div>
+    <div class="bar"><span>Umberto Tozzi (italiano)</span><span class="track"><span class="fill" style="display:block;width:39.3%;background:var(--tozzi)"></span></span><span class="v">137,3 mln</span></div>
+    <div class="bar"><span>Umberto Tozzi (spagnolo)</span><span class="track"><span class="fill" style="display:block;width:3.5%;background:var(--es)"></span></span><span class="v">12,3 mln</span></div>
+  </div>
+  <p>In tutto <b>499 milioni di ascolti</b>. La versione di Branigan prende oggi circa 190.000 ascolti al giorno, quella di Tozzi circa 67.000. Per Branigan, Gloria vale circa un terzo di tutti i suoi ascolti (31% a novembre 2026); la sua canzone più ascoltata resta Self Control.</p>
+  <p>Nella versione di Tozzi, a giugno 2021 Gloria aveva 28,5 milioni di ascolti: in cinque anni sono quasi quintuplicati. Tutti i dati nella pagina <a href="tozzi-spotify.html">Tozzi su Spotify</a>.</p>
+</section>
+
+<section class="card" id="musical">
+  <h2>Gloria, il musical <span class="now">In tournée</span></h2>
+  <p>Il primo spettacolo teatrale costruito sulle canzoni di Umberto Tozzi e Giancarlo Bigazzi. Racconta di <b>Gloria</b>, una ragazza di talento che vuole diventare una cantante di successo: per arrivarci passa tra conflitti familiari, una storia d'amore, tradimenti, complotti e rinunce. Dura circa due ore.</p>
+  <p><b>Umberto Tozzi</b> firma la direzione musicale e ha seguito tutta la produzione, comprese le audizioni per scegliere la protagonista. Produce la <b>Goldenstar AM</b> di <b>Andrea Maia</b>, direttore artistico del Teatro Golden di Roma, che è anche autore e regista con <b>Toni Fornari</b>; <b>Vincenzo Sinopoli</b> è autore e coproduttore.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Città</th><th>Date</th><th>Teatro</th></tr></thead>
+    <tbody id="tour"></tbody>
+  </table></div>
+  <p class="small">Date dal sito ufficiale, lette l'8 novembre 2026. È annunciata anche una serata speciale di Capodanno.</p>
+  <a class="cta" href="https://gloriailmusical.it/" target="_blank" rel="noopener">gloriailmusical.it</a>
+</section>
+
+<section class="note">
+  <p><b>Fonti.</b> <a href="https://en.wikipedia.org/wiki/Gloria_(Umberto_Tozzi_song)" target="_blank" rel="noopener">Wikipedia, Gloria (Umberto Tozzi song)</a>, <a href="https://it.wikipedia.org/wiki/Gloria_(brano_musicale_Umberto_Tozzi)" target="_blank" rel="noopener">voce italiana</a>, <a href="https://de.wikipedia.org/wiki/Gloria_(Umberto-Tozzi-Lied)" target="_blank" rel="noopener">voce tedesca</a> e <a href="https://fr.wikipedia.org/wiki/Gloria_(chanson_d%27Umberto_Tozzi)" target="_blank" rel="noopener">francese</a>; Hit Parade Italia (classifica annuale 1979, copia su archive.org); <a href="https://www.fimi.it/top-of-the-music/certificazioni/" target="_blank" rel="noopener">certificazioni FIMI</a>; Corriere della Sera del 13 febbraio 1980, citato da Wikipedia; pagine Spotify e <a href="https://kworb.net/spotify/artist/4463nfFMmK1cwAWBQDwT5e_songs.html" target="_blank" rel="noopener">kworb.net</a>; <a href="https://gloriailmusical.it/" target="_blank" rel="noopener">sito ufficiale del musical</a>.</p>
+</section>
+</main>
+
+<script>
+const TOUR = [
+  ["Latina", "Anteprime", "2026-10-17", "2026-10-18", "17 e 18 ottobre 2026", "Teatro D'Annunzio"],
+  ["Milano", "Prima nazionale", "2026-10-23", "2026-11-01", "23 ottobre – 1 novembre 2026", "Teatro Arcimboldi"],
+  ["Torino", "", "2026-11-05", "2026-11-08", "5 – 8 novembre 2026", "Teatro Alfieri"],
+  ["Genova", "", "2026-11-11", "2026-11-13", "11, 12 e 13 novembre 2026", "Teatro Ivo Chiesa"],
+  ["Vicenza", "", "2026-11-20", "2026-11-22", "20, 21 e 22 novembre 2026", "Teatro Comunale"],
+  ["Roma", "", "2026-12-16", "2027-01-10", "16 dicembre 2026 – 10 gennaio 2027", "Auditorium della Conciliazione"],
+  ["Bologna", "", "2027-01-22", "2027-01-24", "22 – 24 gennaio 2027", "Teatro EuropAuditorium"],
+  ["Assisi", "", "2027-01-29", "2027-01-30", "29 e 30 gennaio 2027", "Teatro Lyrick"],
+  ["Trieste", "", "2027-02-04", "2027-02-07", "4 – 7 febbraio 2027", "Il Rossetti"],
+  ["Padova", "", "2027-02-10", "2027-02-10", "10 febbraio 2027", "Gran Teatro Geox"],
+  ["Montecatini Terme", "", "2027-02-13", "2027-02-14", "13 – 14 febbraio 2027", "Teatro Verdi"],
+  ["Napoli", "", "2027-02-18", "2027-02-20", "18 – 20 febbraio 2027", "Teatro Palapartenope"],
+  ["Bari", "", "2027-02-27", "2027-02-28", "27 – 28 febbraio 2027", "Teatro Team"],
+  ["Reggio Calabria", "", "2027-03-05", "2027-03-07", "5, 6 e 7 marzo 2027", "Teatro Francesco Cilea"],
+  ["Taormina", "", "2027-03-19", "2027-03-21", "19 – 21 marzo 2027", "Palazzo dei Congressi"],
+  ["Palermo", "", "2027-03-23", "2027-03-25", "23 – 25 marzo 2027", "Teatro Al Massimo"],
+  ["Brescia", "", "2027-04-01", "2027-04-01", "1 aprile 2027", "Teatro Clerici"],
+  ["Firenze", "", "2027-04-09", "2027-04-11", "9 – 11 aprile 2027", "Teatro Verdi"],
+];
+const today = new Date().toISOString().slice(0, 10);
+document.getElementById("tour").innerHTML = TOUR.map(([c, tag, a, b, d, t]) => {
+  const cls = b < today ? "past" : (a <= today && today <= b) ? "cur" : "";
+  const badge = cls === "cur" ? ' <span class="now">Ora</span>' : "";
+  return `<tr class="${cls}"><td><b>${c}</b>${tag ? ` <span class="small">${tag}</span>` : ""}${badge}</td><td>${d}</td><td>${t}</td></tr>`;
+}).join("");
+</script>
+
+</body>
+</html>

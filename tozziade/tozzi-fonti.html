@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Tozzi, fonte per fonte</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column; a single source-by-song matrix (rows = sources, columns = the four songs), grouped by Italy / abroad / sales / our pages, then notes on where sources disagree. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --band: #f6f7fa;
+  --top: #e6f0fb; --topfg: #1d5fae; --warn: #f6ece6; --warnfg: #9a4a1c;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --band: #1c2027;
+    --top: #16273d; --topfg: #8cbcf5; --warn: #33231a; --warnfg: #f0a97c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --band: #1c2027;
+  --top: #16273d; --topfg: #8cbcf5; --warn: #33231a; --warnfg: #f0a97c; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+main { max-width: 1060px; margin: 0 auto; display: grid; gap: 28px; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(38px, 6.5vw, 60px); line-height: .92; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 70ch; }
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+.tw { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+th, td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: top; text-align: left; }
+thead th { font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg3); white-space: nowrap; }
+thead th.song { color: var(--fg); font-family: var(--display); font-size: 22px; letter-spacing: .02em; text-transform: none; font-weight: 800; }
+thead th.song small { display: block; font-family: var(--body); font-size: 12px; color: var(--fg3); font-weight: 500; }
+tbody th { font-weight: 500; width: 31%; }
+tbody th small { display: block; color: var(--fg3); font-size: 12px; font-weight: 400; }
+td { font-variant-numeric: tabular-nums; width: 17%; }
+td small { display: block; color: var(--fg3); font-size: 12px; }
+tr.grp th { background: var(--band); font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg3); }
+td.one { background: var(--top); color: var(--topfg); font-weight: 600; }
+td.na { color: var(--fg3); }
+td.warn { background: var(--warn); color: var(--warnfg); }
+tr:last-child td, tr:last-child th { border-bottom: 0; }
+.key { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--fg2); }
+.key i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: -2px; margin-right: 6px; }
+.key .a { background: var(--top); border: 1px solid var(--topfg); }
+.key .b { background: var(--warn); border: 1px solid var(--warnfg); }
+.notes { display: grid; gap: 12px; max-width: 78ch; }
+.notes p { margin: 0; color: var(--fg2); }
+.notes b { color: var(--fg); }
+.src { font-size: 13px; color: var(--fg3); max-width: 80ch; display: grid; gap: 6px; }
+.src p { margin: 0; }
+a { color: inherit; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · quattro successi · tutte le fonti trovate</span>
+  <h1>Tozzi, fonte per fonte</h1>
+  <p class="lede">Ti amo, Tu, Gloria e Stella stai, messe a confronto in ogni classifica italiana ed estera che si trova, con le vendite dichiarate, le certificazioni e i valori usati nelle nostre pagine.</p>
+  <div class="key"><span><i class="a"></i>Primo posto</span><span><i class="b"></i>Fonti in disaccordo tra loro</span></div>
+</header>
+
+<div class="tw">
+<table>
+<thead><tr><th>Fonte</th>
+<th class="song">Ti amo<small>1977</small></th>
+<th class="song">Tu<small>1978</small></th>
+<th class="song">Gloria<small>1979</small></th>
+<th class="song">Stella stai<small>1980</small></th></tr></thead>
+<tbody>
+<tr class="grp"><th colspan="5">Italia, classifiche settimanali</th></tr>
+<tr><th>Musica e dischi, posizione più alta</th><td class="one">1</td><td class="one">1</td><td>2</td><td>3</td></tr>
+<tr><th>Musica e dischi, settimane al n. 1</th><td>13</td><td>13</td><td class="na">0</td><td class="na">0</td></tr>
+<tr><th>Hit Parade Italia, settimane al n. 1<small>Da Wikipedia in inglese, che usa le settimanali di Hit Parade Italia</small></th><td>13</td><td>13</td><td class="na">0</td><td class="na">0</td></tr>
+
+<tr class="grp"><th colspan="5">Italia, classifiche di fine anno</th></tr>
+<tr><th>Hit Parade Italia, "Top Annuale Singoli"</th><td>2</td><td>2</td><td class="warn">Oltre il 12°<small>Nel 1979 manca il n. 4</small></td><td>Oltre il 12°</td></tr>
+<tr><th>Musica e dischi, annuale</th><td class="na">Non trovata</td><td class="warn">4<small>Wikipedia inglese, fonte non indicata</small></td><td class="warn">14</td><td class="na">Non trovata</td></tr>
+<tr><th>Italia Settanta / Ottanta<small>Solo canzoni in italiano, fonte non indicata</small></th><td>2</td><td>3</td><td class="warn">7</td><td>15</td></tr>
+<tr><th>Prima canzone dell'anno, per confronto</th><td>Amarsi un po', Battisti<small>HPI e Italia Settanta</small></td><td>Una donna per amico, Battisti<small>HPI e Italia Settanta</small></td><td>Tu sei l'unica donna per me, Sorrenti</td><td>Video Killed the Radio Star, Buggles<small>Italia Ottanta: Non so che darei, Sorrenti</small></td></tr>
+
+<tr class="grp"><th colspan="5">Estero, posizione più alta</th></tr>
+<tr><th>Svizzera</th><td class="one">1<small>6 settimane</small></td><td class="one">1</td><td class="one">1<small>4 settimane</small></td><td>3</td></tr>
+<tr><th>Austria</th><td>3</td><td>5</td><td>4</td><td>18</td></tr>
+<tr><th>Germania Ovest</th><td>4</td><td>17</td><td>8</td><td>61</td></tr>
+<tr><th>Francia</th><td class="one">1<small>IFOP</small></td><td class="na">–</td><td>4<small>TopFrance</small></td><td class="na">–</td></tr>
+<tr><th>Spagna</th><td class="na">–</td><td class="one">1</td><td class="one">1<small>Versione spagnola</small></td><td>3</td></tr>
+<tr><th>Svezia</th><td class="one">1</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr>
+<tr><th>Norvegia</th><td>3</td><td class="na">–</td><td class="na">–</td><td class="na">–</td></tr>
+<tr><th>Belgio, Fiandre</th><td class="warn">4 o 15<small>Wikipedia inglese / francese</small></td><td class="na">–</td><td>5</td><td class="na">–</td></tr>
+<tr><th>Paesi Bassi</th><td>15</td><td class="na">–</td><td>21<small>Top 40; 29 nella Top 100</small></td><td class="na">–</td></tr>
+<tr><th>Grecia, Portogallo, Sudafrica, Australia</th><td>Grecia 1, Australia 25</td><td class="na">–</td><td>Portogallo 3, Sudafrica 7, Australia 46<small>Sudafrica e Australia: versione inglese</small></td><td class="na">–</td></tr>
+
+<tr class="grp"><th colspan="5">Estero, classifiche di fine anno</th></tr>
+<tr><th>Svizzera</th><td>3</td><td>3</td><td>4</td><td class="na">–</td></tr>
+<tr><th>Austria</th><td>16</td><td>16</td><td>17</td><td class="na">–</td></tr>
+<tr><th>Germania Ovest</th><td class="na">–</td><td>92</td><td>36</td><td class="na">–</td></tr>
+<tr><th>Belgio, Fiandre</th><td>42<small>Nel 1978</small></td><td class="na">–</td><td>40</td><td class="na">–</td></tr>
+
+<tr class="grp"><th colspan="5">Vendite e certificazioni</th></tr>
+<tr><th>Copie dichiarate nel 1980<small>Corriere della Sera, 13 febbraio 1980, cifre della casa discografica</small></th><td>8 milioni nel mondo<small>Più di 1 milione in Italia</small></td><td>6,5 milioni nel mondo</td><td>8 milioni nel mondo</td><td class="na">–</td></tr>
+<tr><th>Francia</th><td>1,1 milioni<small>Wikipedia inglese</small></td><td>497.000<small>Wikipedia inglese</small></td><td class="na">–</td><td class="na">–</td></tr>
+<tr><th>Certificazioni FIMI di oggi<small>Contano solo vendite e stream dal 2009</small></th><td>Platino (2023)</td><td class="na">–</td><td class="warn">Oro (2018), poi platino (2024)<small>Wikipedia inglese / italiana</small></td><td>Oro (2024)</td></tr>
+<tr><th>Altre certificazioni</th><td>Oro in Australia</td><td class="na">–</td><td>Oro in Spagna (1980)</td><td class="na">–</td></tr>
+
+<tr class="grp"><th colspan="5">Le nostre pagine</th></tr>
+<tr><th>Classifica singoli (spesato.it/classifica/singoli)<small>Fonte Hit Parade Italia, unità stimate dalla posizione</small></th><td>2° nel 1977<small>Circa 615 mila unità stimate</small></td><td>2° nel 1978<small>Circa 615 mila unità stimate</small></td><td class="na">Assente<small>Fuori dalle prime 12</small></td><td class="na">Assente<small>Fuori dalle prime 12</small></td></tr>
+<tr><th>Prima pagina, album per artista (spesato.it/classifica)<small>1980–2026, valori stimati</small></th><td class="na" colspan="4">Tozzi non c'è. La pagina parte dal 1980, conta gli album e non i singoli, e tra gli artisti stimati Tozzi non è stato incluso.</td></tr>
+<tr><th>Classifica mondiale (spesato.it/classifica/mondo)<small>Prime 10 di USA, Regno Unito, Germania, Italia</small></th><td>Presente solo per l'Italia, 2° nel 1977</td><td>Presente solo per l'Italia, 2° nel 1978</td><td class="na">Assente</td><td class="na">Assente</td></tr>
+</tbody>
+</table>
+</div>
+
+<section class="notes">
+  <h2>Cosa dicono i numeri</h2>
+  <p><b>Ti amo e Tu sono i due successi pieni.</b> Primo posto per 13 settimane sia in Musica e dischi sia in Hit Parade Italia, secondo posto nell'anno, primo posto anche all'estero (Svizzera, Francia e Svezia per Ti amo; Svizzera e Spagna per Tu). In tutte e due le annate davanti c'è solo Battisti.</p>
+  <p><b>Gloria in Italia non è mai arrivata prima.</b> Il punto più alto è il 2° posto settimanale e nell'annuale di Musica e dischi è 14ª, quindi fuori dalle prime 12 di Hit Parade Italia. Fuori dall'Italia è andata come Ti amo: prima in Svizzera e in Spagna, ottava in Germania. Il suo grande successo mondiale è arrivato con la versione di Laura Branigan del 1982, che non è di Tozzi e qui non è contata.</p>
+  <p><b>Stella stai ha avuto un successo minore.</b> Terza in Italia, Svizzera e Spagna, 18ª in Austria, 61ª in Germania. Oggi però ha una certificazione FIMI d'oro grazie allo streaming, anche per lo spot TIM cantato da Mina e per Spider-Man.</p>
+  <p><b>Dove le fonti non tornano.</b> Per Tu l'annuale italiana dà 2° (Hit Parade Italia), 3° (Italia Settanta, solo canzoni italiane) o 4° (Wikipedia inglese). Per Gloria il 14° di Musica e dischi è compatibile con il "fuori dalle prime 12" di Hit Parade Italia, mentre il 7° di Italia Settanta conta solo le canzoni in italiano. I milioni di copie dichiarati nel 1980 sono cifre promozionali della casa discografica, non verificate.</p>
+</section>
+
+<section class="src">
+  <p><b>Fonti.</b> Wikipedia in italiano, inglese, tedesco e francese (voci delle quattro canzoni, liste dei n. 1 in Italia di Musica e dischi e di Hit Parade Italia). Hit Parade Italia, Top Annuale Singoli. Italia Settanta e Italia Ottanta (francescocataldo.it), classifiche annuali. Archivi austriancharts.at, swedishcharts.com, norwegiancharts.com. Corriere della Sera del 13 febbraio 1980, citato da Wikipedia italiana. Le nostre pagine su spesato.it.</p>
+  <p>"–" vuol dire che la canzone non è entrata in quella classifica oppure che il dato non si trova.</p>
+</section>
+</main>
+
+</body>
+</html>

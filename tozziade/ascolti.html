@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Gli ascoltatori mensili su Spotify dal 2018 al 2026 dei 20 artisti italiani di maggior successo degli anni '70 e '80, con tutti i valori conosciuti.">
+
+<title>Ascolti mese per mese</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one column; a large time chart with all 20 artists (one highlighted, the rest quiet), a row of artist buttons above it, then a 4-column grid of small charts on a shared scale. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --grid: #eceff4;
+  --quiet: #c3c9d3; --hi: #2a78d6; --hi-soft: rgba(42, 120, 214, .12);
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e;
+    --quiet: #454c58; --hi: #3987e5; --hi-soft: rgba(57, 135, 229, .16); color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --grid: #22262e;
+  --quiet: #454c58; --hi: #3987e5; --hi-soft: rgba(57, 135, 229, .16); color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+main { max-width: 1040px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(40px, 6.5vw, 64px); line-height: .92; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 68ch; }
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 28px; line-height: 1; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font: inherit; font-size: 13px; padding: 5px 11px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg2); cursor: pointer; }
+.chip:hover { border-color: var(--fg3); color: var(--fg); }
+.chip[aria-pressed="true"] { background: var(--hi); border-color: var(--hi); color: var(--panel); font-weight: 600; }
+.chip:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 10px 10px; display: grid; gap: 8px; }
+.stage-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; padding: 0 6px; }
+.who { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1; }
+.readout { color: var(--fg2); font-size: 14px; font-variant-numeric: tabular-nums; min-height: 1.45em; }
+.readout b { color: var(--fg); }
+svg { display: block; width: 100%; height: auto; }
+.ax { font-size: 12px; fill: var(--fg3); font-variant-numeric: tabular-nums; }
+.gl { stroke: var(--grid); stroke-width: 1; }
+.base { stroke: var(--line); stroke-width: 1; }
+.q { fill: none; stroke: var(--quiet); stroke-width: 1.25; }
+.qd { fill: var(--quiet); }
+.h { fill: none; stroke: var(--hi); stroke-width: 2.5; stroke-linejoin: round; }
+.hd { fill: var(--hi); stroke: var(--panel); stroke-width: 2; }
+.hit { fill: transparent; cursor: pointer; }
+.endlab { font-size: 12.5px; font-weight: 600; fill: var(--hi); }
+.marker { fill: none; stroke: var(--fg); stroke-width: 1.5; }
+
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+@media (max-width: 860px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 10px 6px; display: grid; gap: 2px; cursor: pointer; text-align: left; font: inherit; color: inherit; }
+.card:hover, .card.on { border-color: var(--hi); }
+.card:focus-visible { outline: 2px solid var(--hi); outline-offset: 2px; }
+.card .nm { font-weight: 600; font-size: 14px; }
+.card .meta { font-size: 12px; color: var(--fg3); font-variant-numeric: tabular-nums; }
+.card svg .l { fill: none; stroke: var(--fg2); stroke-width: 1.5; stroke-linejoin: round; }
+.card svg .d { fill: var(--fg2); }
+.card.on svg .l { stroke: var(--hi); } .card.on svg .d { fill: var(--hi); }
+.card svg .gl { stroke: var(--grid); }
+
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+<main>
+<header>
+  <span class="eyebrow">Spotify · ascoltatori mensili · 2018–2026</span>
+  <h1>Ascolti mese per mese</h1>
+  <p class="lede">Tutti i valori che si conoscono per i 20 artisti italiani degli anni '70 e '80: ogni punto è una copia della pagina Spotify dell'artista salvata da archive.org, l'ultimo è il dato di novembre 2026. Tra un punto e l'altro la linea unisce semplicemente i due valori: nei mesi senza copia il dato non c'è.</p>
+</header>
+
+<div class="chips" id="chips" role="group" aria-label="Scegli l'artista da mettere in evidenza"></div>
+
+<section class="stage" aria-label="Grafico degli ascoltatori mensili">
+  <div class="stage-top"><span class="who" id="who"></span><span class="readout" id="readout"></span></div>
+  <svg id="main" role="img" aria-label="Ascoltatori mensili su Spotify dal 2018 al 2026 per 20 artisti italiani, con un artista in evidenza"></svg>
+</section>
+
+<section style="display:grid;gap:10px">
+  <h2>Uno per uno</h2>
+  <div class="grid" id="grid"></div>
+</section>
+
+<section class="note">
+  <p><b>Da dove vengono i punti.</b> Spotify mostra sulla pagina di ogni artista quante persone diverse l'hanno ascoltato negli ultimi 28 giorni. Spotify non pubblica lo storico, quindi i valori passati vengono dalle copie della pagina conservate da web.archive.org: al massimo una per mese, e solo nei mesi in cui archive.org l'ha salvata. Fino al 2021 il numero è esatto, poi Spotify lo arrotonda (per esempio 1,2 milioni).</p>
+  <p><b>Perché alcuni artisti hanno pochi punti.</b> Archive.org salva più spesso le pagine più cercate: Zucchero ha più di 40 valori, Alan Sorrenti una dozzina. Lucio Battisti è su Spotify solo da fine settembre 2019. Qualche copia mostra un numero isolato molto più alto o più basso dei vicini: può essere un picco vero di un mese (una ricorrenza, una serie TV, una canzone in un video virale) e l'abbiamo lasciato com'è.</p>
+</section>
+</main>
+
+<script>
+const RAW = {"Lucio Battisti":[["20191120",598225],["20200417",648410],["20201001",727142],["20201112",684900],["20210224",745703],["20231021",1500000],["20240623",1600000],["20240926",1700000],["20241130",1700000],["20250108",1700000],["20250223",1800000],["20250416",1800000],["20250527",1800000],["20250918",1900000],["20251102",1800000],["20251209",1900000],["20260328",2400000],["20260907",2300000],["20261108",2100000]],"Mina":[["20190110",479912],["20190401",506222],["20200117",786187],["20200415",917848],["20200504",966050],["20200605",922461],["20200706",896123],["20200922",916274],["20201001",892542],["20201103",884028],["20201202",895000],["20210301",951057],["20210626",1066314],["20210825",1265076],["20211009",1121788],["20211127",1077345],["20211230",1070744],["20220308",1200000],["20220705",1200000],["20221129",1200000],["20230809",3600000],["20230913",3300000],["20240106",2500000],["20240702",2400000],["20241007",2200000],["20241209",2200000],["20250505",2000000],["20250731",2100000],["20250801",2100000],["20260309",2200000],["20260418",2400000],["20260504",2300000],["20261005",2100000],["20261108",2200000]],"Claudio Baglioni":[["20180316",444930],["20190111",533862],["20190401",580120],["20200118",670669],["20200425",747874],["20201125",746640],["20201202",750600],["20210822",777061],["20220225",729500],["20220321",720700],["20230128",779200],["20230815",785300],["20231005",789000],["20240921",884600],["20241224",1000000],["20250607",994800],["20250729",961600],["20260213",1000000],["20261108",1300000]],"Lucio Dalla":[["20180316",642441],["20180726",608849],["20180801",607820],["20190112",798130],["20190502",781208],["20200416",1101343],["20201023",1086394],["20201101",1084952],["20210123",1142697],["20210206",1105129],["20210322",1200000],["20210427",1259444],["20211103",1337065],["20211230",1404936],["20220119",1400000],["20221209",1600000],["20230224",1700000],["20230404",1800000],["20230813",1800000],["20240106",1800000],["20240919",2000000],["20250108",2100000],["20250307",2100000],["20250517",2100000],["20250810",2100000],["20250918",2100000],["20251103",2000000],["20260308",2300000],["20260806",2300000],["20261001",2200000],["20261108",2200000]],"Antonello Venditti":[["20190111",558265],["20190405",645083],["20190814",693319],["20191221",739580],["20200423",816271],["20201112",835300],["20210417",886325],["20210904",999289],["20220108",893033],["20220304",883000],["20221130",1000000],["20230317",1200000],["20240828",1300000],["20241006",1200000],["20250109",1200000],["20250426",1200000],["20250527",1300000],["20250620",1400000],["20260215",1200000],["20260312",1200000],["20260712",1500000],["20260930",1500000],["20261019",1600000],["20261108",1700000]],"Pooh":[["20180315",151837],["20190111",213775],["20190404",232005],["20190718",235128],["20200419",314182],["20201021",303719],["20201108",306500],["20210426",386459],["20210615",384125],["20210825",386800],["20210927",367230],["20220117",362400],["20221205",367300],["20240205",413600],["20240910",427000],["20250829",428400],["20260310",594500],["20260811",714400],["20261108",737300]],"Edoardo Bennato":[["20180316",284642],["20180830",350607],["20190110",351391],["20190507",415242],["20200423",583833],["20200626",578957],["20201013",582671],["20201111",573200],["20210305",617677],["20210627",863300],["20210723",1634545],["20220612",956100],["20221003",891000],["20221130",1000000],["20240926",1400000],["20250512",1300000],["20250805",1300000],["20260213",1000000],["20260908",1500000],["20261108",1100000]],"Vasco Rossi":[["20180726",920898],["20180801",927735],["20190112",1148416],["20190405",1159673],["20191113",1453735],["20191221",1436181],["20200424",1361255],["20201113",1300000],["20210116",1553952],["20210314",1679233],["20210430",1578201],["20220118",1500000],["20220526",1800000],["20220625",1900000],["20230223",1700000],["20230307",1700000],["20240106",1900000],["20240926",2100000],["20241216",2000000],["20250108",2000000],["20250225",2100000],["20250607",2200000],["20250805",2300000],["20261108",2300000]],"Riccardo Cocciante":[["20190114",306344],["20190630",381344],["20200419",558677],["20200625",544377],["20200706",541961],["20201017",554655],["20201111",552314],["20210803",573886],["20220321",573900],["20230315",766500],["20230428",766300],["20230721",717200],["20230810",711400],["20240921",718900],["20250511",905400],["20260208",982900],["20260526",1000000],["20261108",1100000]],"Francesco De Gregori":[["20190110",614791],["20190705",573361],["20191221",725411],["20200424",771445],["20200503",790677],["20200927",808940],["20201001",794077],["20201103",789454],["20201202",795800],["20210204",806273],["20210518",910277],["20211027",810704],["20220321",889700],["20221210",929000],["20230422",1000000],["20240106",1100000],["20240905",1100000],["20250108",1100000],["20250827",1100000],["20251118",1100000],["20260207",973300],["20260528",994700],["20260623",1000000],["20261108",1200000]],"Adriano Celentano":[["20180430",503364],["20180611",543050],["20180726",557942],["20180802",578510],["20180906",618718],["20190111",650386],["20190222",726252],["20190330",706096],["20190819",896700],["20200402",989647],["20200609",1045803],["20201111",1000000],["20210116",1175599],["20210227",1187128],["20210402",1212130],["20210820",1561094],["20211011",1302373],["20211112",1200192],["20220102",1223271],["20220321",1200000],["20220516",1400000],["20220927",1400000],["20230111",1500000],["20231230",1700000],["20240106",1800000],["20240906",2900000],["20241225",2400000],["20250115",2400000],["20250406",2300000],["20250522",2500000],["20250617",2600000],["20250702",2600000],["20250805",2700000],["20251104",2400000],["20260215",2500000],["20260421",2600000],["20260805",3400000],["20261108",3400000]],"Renato Zero":[["20180316",407738],["20190110",601394],["20190407",625758],["20190814",700164],["20200214",782148],["20200501",937220],["20201202",886400],["20210220",866154],["20210525",889490],["20210824",943062],["20220530",1100000],["20230127",1200000],["20230321",1100000],["20230514",1000000],["20240106",1200000],["20250416",919800],["20250527",893400],["20250802",935900],["20251114",838500],["20260303",946500],["20260504",990000],["20260704",1000000],["20260815",1100000],["20261108",1100000]],"Ornella Vanoni":[["20190110",238013],["20190406",257519],["20190818",336396],["20200416",461824],["20200604",518381],["20200809",524441],["20201031",541317],["20201202",523700],["20210207",605209],["20210626",744378],["20210927",804211],["20211009",772802],["20211208",704848],["20220227",766600],["20221016",724800],["20230228",840100],["20230402",875500],["20240926",1700000],["20241228",2300000],["20250115",2300000],["20250311",1900000],["20250427",1600000],["20250815",1700000],["20251122",1500000],["20260103",2300000],["20260218",2300000],["20260312",2300000],["20260531",2000000],["20261017",2000000],["20261108",2000000]],"Zucchero":[["20180528",826633],["20180726",886427],["20180801",901493],["20181222",1002349],["20190110",1080549],["20190220",1097252],["20190405",1124713],["20190814",1346835],["20200214",1584772],["20200323",1586518],["20200419",1789326],["20200501",1928783],["20200706",1827383],["20201004",1800000],["20201107",1800000],["20201202",1900000],["20210301",2072797],["20210516",2152415],["20210616",2248963],["20210815",2318963],["20211104",2067533],["20220803",2400000],["20221206",2400000],["20230127",2700000],["20230316",2700000],["20230806",2900000],["20240106",2900000],["20240619",3200000],["20241005",3200000],["20241218",2900000],["20250405",3000000],["20250630",3600000],["20250815",3700000],["20251114",3300000],["20260109",3300000],["20260209",3100000],["20260312",3300000],["20260504",3600000],["20260712",3600000],["20260815",3600000],["20261025",3500000],["20261108",3500000]],"Alan Sorrenti":[["20191219",167391],["20200616",252588],["20200923",258598],["20201101",221411],["20210301",227523],["20210401",227798],["20211128",259666],["20220415",273000],["20221209",384000],["20230307",445300],["20250802",847400],["20261108",746000]],"Umberto Tozzi":[["20180818",480229],["20181206",460084],["20190101",477982],["20190202",499609],["20190302",550715],["20190402",566616],["20190503",600124],["20190814",825867],["20200409",910562],["20200608",1482789],["20200804",1479672],["20201111",1300000],["20210120",1326425],["20210227",1424729],["20210607",1541621],["20211112",1530763],["20230128",1700000],["20230508",1900000],["20240106",2000000],["20240324",2400000],["20240921",2700000],["20250124",2600000],["20250312",2700000],["20250717",3400000],["20250803",3400000],["20251002",3200000],["20251115",3000000],["20260214",2900000],["20260326",3200000],["20260515",3400000],["20260715",3400000],["20261017",3100000],["20261108",3100000]],"Gianna Nannini":[["20180317",456630],["20190112",569110],["20190405",660557],["20200503",1044096],["20200614",991432],["20200805",991432],["20201112",938500],["20201207",938500],["20210222",964962],["20210619",1158066],["20210728",1910746],["20211107",1109585],["20220816",1200000],["20221204",1100000],["20230409",1100000],["20230602",1200000],["20240314",1200000],["20241006",1400000],["20241228",1300000],["20250109",1300000],["20250510",1500000],["20250805",1700000],["20260311",1400000],["20260705",1800000],["20261108",1500000]],"Franco Battiato":[["20180427",508945],["20190110",490682],["20190401",515991],["20190918",654007],["20200411",928983],["20200520",1062908],["20200608",985733],["20201111",909900],["20210117",962718],["20210518",988140],["20211203",1097015],["20220308",1200000],["20220401",1200000],["20221218",1100000],["20230130",1100000],["20240522",1300000],["20240906",1400000],["20250108",1200000],["20250402",1200000],["20250525",1200000],["20250810",1200000],["20251030",1100000],["20251117",1100000],["20260503",1400000],["20261108",1200000]],"Gianni Morandi":[["20180315",308115],["20180726",236081],["20180801",239731],["20190112",572156],["20190401",563152],["20190814",613906],["20191221",627975],["20200214",693443],["20200411",773887],["20200505",814039],["20200608",727813],["20200706",742775],["20201017",712454],["20201111",699200],["20210418",753339],["20210607",753339],["20210822",1068043],["20211009",884277],["20220206",1600000],["20220321",1600000],["20220712",1000000],["20230408",1200000],["20230806",1100000],["20231202",951700],["20240106",976400],["20240921",890700],["20250108",1100000],["20250427",902200],["20250607",908300],["20250731",905600],["20250815",933000],["20260806",1000000],["20261108",872000]],"Patty Pravo":[["20180316",182004],["20190112",220745],["20190525",293520],["20191221",297547],["20200415",352620],["20200504",369380],["20201112",323700],["20210221",361526],["20210413",376288],["20210820",423500],["20210928",391826],["20211009",383174],["20221130",423000],["20230417",532400],["20240921",536400],["20241228",513000],["20250107",513000],["20260304",1100000],["20260504",693700],["20261108",523400]]};
+const ORDER = ["Lucio Battisti","Mina","Claudio Baglioni","Lucio Dalla","Antonello Venditti","Pooh","Edoardo Bennato","Vasco Rossi","Riccardo Cocciante","Francesco De Gregori","Adriano Celentano","Renato Zero","Ornella Vanoni","Zucchero","Alan Sorrenti","Umberto Tozzi","Gianna Nannini","Franco Battiato","Gianni Morandi","Patty Pravo"];
+const MONTHS = ["gen","feb","mar","apr","mag","giu","lug","ago","set","ott","nov","dic"];
+const toT = s => { const y = +s.slice(0, 4), m = +s.slice(4, 6) - 1, d = +s.slice(6, 8); return y + (m + (d - 1) / 31) / 12; };
+const label = s => `${+s.slice(6, 8)} ${MONTHS[+s.slice(4, 6) - 1]} ${s.slice(0, 4)}`;
+const fmt = v => v >= 1e6 ? `${(v / 1e6).toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 2 })} mln` : `${Math.round(v / 1000).toLocaleString("it-IT")} mila`;
+const A = ORDER.map(n => ({ n, pts: RAW[n].map(([d, v]) => ({ d, t: toT(d), v })) }));
+const T0 = 2018, T1 = 2027, VMAX = 4e6;
+const NS = "http://www.w3.org/2000/svg";
+const el = (t, a, txt) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (txt != null) e.textContent = txt; return e; };
+let sel = "Umberto Tozzi";
+try { const s = localStorage.getItem("ascolti-sel"); if (s && RAW[s]) sel = s; } catch (e) {}
+
+/* Main chart */
+const svg = document.getElementById("main");
+const W = 1000, H = 440, L = 58, R = 120, TP = 14, B = 34;
+svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+const X = t => L + (t - T0) / (T1 - T0) * (W - L - R);
+const Y = v => TP + (1 - v / VMAX) * (H - TP - B);
+const path = pts => pts.map((p, i) => `${i ? "L" : "M"}${X(p.t).toFixed(1)},${Y(p.v).toFixed(1)}`).join("");
+const gAxes = el("g", {}); svg.append(gAxes);
+for (let v = 0; v <= VMAX; v += 1e6) {
+  gAxes.append(el("line", { x1: L, x2: W - R, y1: Y(v), y2: Y(v), class: v ? "gl" : "base" }));
+  gAxes.append(el("text", { x: L - 8, y: Y(v) + 4, "text-anchor": "end", class: "ax" }, v ? `${v / 1e6} mln` : "0"));
+}
+for (let y = 2018; y <= 2026; y++) gAxes.append(el("text", { x: X(y + .5), y: H - 10, "text-anchor": "middle", class: "ax" }, y));
+for (let y = 2019; y <= 2026; y++) gAxes.append(el("line", { x1: X(y), x2: X(y), y1: H - B, y2: H - B + 5, class: "base" }));
+const gQ = el("g", {}), gH = el("g", {}), gHit = el("g", {});
+svg.append(gQ, gH, gHit);
+for (const a of A) {
+  const g = el("g", { "data-n": a.n });
+  g.append(el("path", { d: path(a.pts), class: "q" }));
+  for (const p of a.pts) g.append(el("circle", { cx: X(p.t), cy: Y(p.v), r: 1.8, class: "qd" }));
+  gQ.append(g);
+  const hit = el("path", { d: path(a.pts), fill: "none", stroke: "transparent", "stroke-width": 10, style: "cursor:pointer" });
+  hit.addEventListener("click", () => select(a.n));
+  gHit.append(hit);
+}
+const marker = el("circle", { r: 7, class: "marker", visibility: "hidden" });
+svg.append(marker);
+const who = document.getElementById("who"), readout = document.getElementById("readout");
+function drawHi() {
+  gH.replaceChildren();
+  const a = A.find(x => x.n === sel);
+  gH.append(el("path", { d: path(a.pts), class: "h" }));
+  for (const p of a.pts) {
+    const c = el("circle", { cx: X(p.t), cy: Y(p.v), r: 4, class: "hd" });
+    gH.append(c);
+    const hit = el("circle", { cx: X(p.t), cy: Y(p.v), r: 10, class: "hit" });
+    hit.addEventListener("mouseenter", () => showPoint(a, p));
+    hit.addEventListener("click", () => showPoint(a, p));
+    gH.append(hit);
+  }
+  const last = a.pts[a.pts.length - 1];
+  gH.append(el("text", { x: X(last.t) + 10, y: Y(last.v) + 4, class: "endlab" }, fmt(last.v)));
+  who.textContent = a.n;
+  const first = a.pts[0];
+  readout.innerHTML = `${a.pts.length} valori · da <b>${fmt(first.v)}</b> (${label(first.d)}) a <b>${fmt(last.v)}</b> (${label(last.d)})`;
+  marker.setAttribute("visibility", "hidden");
+}
+function showPoint(a, p) {
+  marker.setAttribute("cx", X(p.t)); marker.setAttribute("cy", Y(p.v)); marker.setAttribute("visibility", "visible");
+  readout.innerHTML = `${label(p.d)}: <b>${fmt(p.v)}</b> ascoltatori mensili`;
+}
+svg.addEventListener("mouseleave", () => drawHi());
+
+/* Chips */
+const chips = document.getElementById("chips");
+for (const a of A) {
+  const b = document.createElement("button");
+  b.className = "chip"; b.type = "button"; b.id = "chip-" + ORDER.indexOf(a.n); b.textContent = a.n;
+  b.addEventListener("click", () => select(a.n));
+  chips.append(b);
+}
+
+/* Small multiples */
+const grid = document.getElementById("grid");
+const w = 220, h = 92, l = 4, r = 4, t = 6, bb = 6;
+const sx = tt => l + (tt - T0) / (T1 - T0) * (w - l - r), sy = v => t + (1 - v / VMAX) * (h - t - bb);
+const cards = new Map();
+for (const a of A) {
+  const c = document.createElement("button");
+  c.type = "button"; c.className = "card"; c.id = "card-" + ORDER.indexOf(a.n);
+  const last = a.pts[a.pts.length - 1];
+  c.innerHTML = `<span class="nm">${a.n}</span><span class="meta">${a.pts.length} valori · oggi ${fmt(last.v)}</span>`;
+  const s = el("svg", { viewBox: `0 0 ${w} ${h}`, "aria-hidden": "true" });
+  for (let v = 1e6; v < VMAX; v += 1e6) s.append(el("line", { x1: l, x2: w - r, y1: sy(v), y2: sy(v), class: "gl" }));
+  s.append(el("line", { x1: l, x2: w - r, y1: sy(0), y2: sy(0), class: "gl" }));
+  s.append(el("path", { d: a.pts.map((p, i) => `${i ? "L" : "M"}${sx(p.t).toFixed(1)},${sy(p.v).toFixed(1)}`).join(""), class: "l" }));
+  for (const p of a.pts) s.append(el("circle", { cx: sx(p.t), cy: sy(p.v), r: 2, class: "d" }));
+  c.append(s);
+  c.addEventListener("click", () => { select(a.n); svg.scrollIntoView({ block: "nearest", behavior: "smooth" }); });
+  grid.append(c); cards.set(a.n, c);
+}
+
+function select(n) {
+  sel = n;
+  try { localStorage.setItem("ascolti-sel", n); } catch (e) {}
+  for (const b of chips.children) b.setAttribute("aria-pressed", b.textContent === n ? "true" : "false");
+  for (const [k, c] of cards) c.classList.toggle("on", k === n);
+  drawHi();
+}
+select(sel);
+</script>
+
+</body>
+</html>

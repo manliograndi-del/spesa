@@ -1,0 +1,43 @@
+/* Site theme: night-city stage background, marquee-bulb titles, magenta buttons, Montserrat. Loaded after each page's own style so it wins. */
+html:root, html:root[data-theme], html:root:not([data-theme="light"]) {
+  color-scheme: dark !important;
+  --bg: #0a1250 !important; --panel: rgba(8, 12, 62, .88) !important; --fg: #ffffff !important; --fg2: #d4d7f2 !important; --fg3: #a3a7d4 !important;
+  --line: #2b3290 !important; --grid: #1f2575 !important; --track: #161c66 !important; --soft: #161c66 !important; --tag: #1d2378 !important;
+  --link: #ffc24d !important; --accent: #fea607 !important; --hi: #ff3d86 !important; --quiet: #3a4190 !important; --ring: #0a1250 !important;
+  --land: #1d2580 !important; --sea: #070c40 !important;
+  --one: #5a0d30 !important; --onefg: #ffc0d6 !important; --both: #32154f !important; --bothfg: #ff9cc4 !important;
+  --eq: #0f3a2a !important; --eqfg: #86e8b5 !important; --ne: #0c3b5e !important; --nefg: #8fdcff !important; --warn: #0c3b5e !important; --warnfg: #8fdcff !important; --band: rgba(222, 9, 82, .22) !important;
+  --top: #32154f !important; --topfg: #ff9cc4 !important;
+  --display: "Montserrat", "Segoe UI", system-ui, sans-serif !important;
+  --body: "Montserrat", "Segoe UI", system-ui, sans-serif !important;
+}
+html { background: #0a1250 !important; }
+body { background: transparent !important; color: #fff; font-family: "Montserrat", "Segoe UI", system-ui, sans-serif !important; position: relative; }
+/* plain night-blue stage with a soft light from above */
+body::before { content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(1100px 520px at 50% -180px, rgba(222, 9, 82, .28), rgba(222, 9, 82, 0) 70%), linear-gradient(180deg, #0d1660 0%, #0a1250 60%, #080e44 100%); }
+
+/* Marquee titles: tall condensed letters, warm gradient, a grid of light bulbs inside the strokes, a glow around. */
+h1, .hero h1 {
+  font-family: "Anton", "Montserrat", "Segoe UI", system-ui, sans-serif !important; font-weight: 400 !important; font-style: normal !important;
+  text-transform: uppercase; letter-spacing: .03em !important; line-height: 1.02 !important;
+  background:
+    radial-gradient(circle, #fffdf2 0 .016em, rgba(255, 244, 200, .95) .03em, rgba(255, 220, 120, 0) .055em) 0 0 / .13em .13em,
+    linear-gradient(180deg, #ffe066 0%, #ffb21c 45%, #ff7a1a 80%, #f0521a 100%) !important;
+  -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 1px #ffcf5a) drop-shadow(0 0 10px rgba(255, 160, 40, .55)) drop-shadow(0 3px 0 #a3271a);
+  padding: .04em .06em 0 0; width: fit-content; max-width: 100%;
+}
+h1.keep { background: none !important; color: inherit !important; -webkit-text-fill-color: currentColor; filter: none; }
+h2 {
+  font-family: "Anton", "Montserrat", "Segoe UI", system-ui, sans-serif !important; font-weight: 400 !important; text-transform: uppercase; letter-spacing: .04em !important;
+  background: linear-gradient(180deg, #ffe680 0%, #ffb21c 55%, #ff7a1a 100%); -webkit-background-clip: text; background-clip: text; color: transparent !important; -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 6px rgba(255, 160, 40, .45));
+}
+h2 * { -webkit-text-fill-color: initial; }
+h3 { font-family: "Montserrat", "Segoe UI", system-ui, sans-serif !important; font-weight: 800 !important; }
+.eyebrow { color: #ffc24d !important; }
+@media (prefers-reduced-motion: no-preference) {
+  h1 { animation: bulbs 2.4s steps(2, end) infinite; }
+  @keyframes bulbs { 50% { background-position: .065em .065em, 0 0; } }
+}

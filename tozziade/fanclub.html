@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fan club</title>
+<style>
+/* Layout: one column; two club cards side by side (stacked on phones), each with what it is and a link out. */
+:root { --bg: #0a1250; --panel: rgba(8,12,62,.88); --fg: #fff; --fg2: #d4d7f2; --fg3: #a3a7d4; --line: #2b3290; --accent: #fea607; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Montserrat", "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+main { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(44px, 8vw, 80px); }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 68ch; }
+.clubs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 700px) { .clubs { grid-template-columns: minmax(0, 1fr); } }
+.club { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid #de0952; border-radius: 12px; padding: 20px; display: grid; gap: 10px; align-content: start; }
+.club .since { font-size: 11.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.club h2 { margin: 0; font-size: 28px; line-height: 1.05; }
+.club p { margin: 0; color: var(--fg2); }
+.club ul { margin: 0; padding-left: 18px; color: var(--fg2); display: grid; gap: 3px; font-size: 14px; }
+.go { justify-self: start; margin-top: 4px; display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+  padding: 11px 16px; border-radius: 3px; background: #de0952; color: #fff; }
+.go.o { background: var(--accent); color: #00001d; }
+.go:hover { filter: brightness(1.1); }
+.go:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · i fan</span>
+  <h1>Fan club</h1>
+  <p class="lede">Dove si ritrova chi è cresciuto con le canzoni di Tozzi: il fan club storico, nato alla fine degli anni '80, e l'archivio online curato dai fan.</p>
+</header>
+
+<div class="clubs">
+  <article class="club">
+    <span class="since">Dal 1988</span>
+    <h2>U.T.F.C. – Umberto Tozzi Fan's Club</h2>
+    <p>Il fan club storico di Umberto Tozzi, nato nel 1988. Oggi si ritrova soprattutto nel suo gruppo Facebook.</p>
+    <a class="go" href="https://www.facebook.com/groups/134935429322/" target="_blank" rel="noopener">Il gruppo Facebook</a>
+  </article>
+  <article class="club">
+    <span class="since">Il blog dei fan</span>
+    <h2>Tutto su Tozzi</h2>
+    <p>«Per tutti quelli cresciuti a latte e Tozzi»: un blog di fan, curato da Bbelaire, Gnaro e Giuditta, che raccoglie la carriera di Tozzi anno per anno.</p>
+    <ul>
+      <li>rassegna stampa e interviste;</li>
+      <li>discografia, concerti, locandine e manifesti;</li>
+      <li>apparizioni in radio e in TV, video;</li>
+      <li>le pagine sul fan club del 1987, 1988 e 1997.</li>
+    </ul>
+    <a class="go o" href="https://tuttosutozzi.com/" target="_blank" rel="noopener">Vai a Tutto su Tozzi</a>
+  </article>
+</div>
+
+<section class="note">
+  <p><b>Da dove vengono queste informazioni.</b> Nome e anno di fondazione dell'U.T.F.C. sono quelli scritti nel titolo del suo gruppo Facebook, «U.T.F.C. - Umberto Tozzi Fan's Club (Fondato nel 1988)». Le informazioni su Tutto su Tozzi vengono dalla sua home page e dalla pagina «Fan club 1988 – Diario di bordo», controllate l'8 novembre 2026.</p>
+  <p><b>Cosa non abbiamo messo.</b> Il sito ufficiale umbertotozzi.com non rimanda a nessun fan club, e la sezione «Fan club» dello store ufficiale per ora contiene solo due notizie di prova. I nomi dei fondatori dell'U.T.F.C. non compaiono nelle pagine che siamo riusciti a leggere, quindi non li riportiamo.</p>
+</section>
+</main>
+</body>
+</html>

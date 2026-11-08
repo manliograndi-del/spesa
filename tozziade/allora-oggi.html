@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta charset="utf-8">
+<title>Allora contro oggi</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column; a two-column slope chart (classifiche 1970–89 a sinistra, Spotify oggi a destra), a detail strip for the selected artist, then the full table with a 2018–2026 sparkline per row. */
+:root {
+  --bg: #f2f4f7; --panel: #ffffff; --fg: #13161b; --fg2: #4a5260; --fg3: #6f7787; --line: #e1e5ec; --track: #eef1f5;
+  --up: #2a78d6; --down: #eb6834; --flat: #9aa2b1;
+  --display: "Big Shoulders Display", "Arial Narrow", "Roboto Condensed", Impact, sans-serif;
+  --body: "Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --track: #1f232a;
+    --up: #3987e5; --down: #d95926; --flat: #6b7380; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e1014; --panel: #171a20; --fg: #eef0f4; --fg2: #b3b9c4; --fg3: #8a92a1; --line: #2a2f38; --track: #1f232a;
+  --up: #3987e5; --down: #d95926; --flat: #6b7380; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 15px; line-height: 1.45;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 48px;
+}
+main { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--fg3); }
+h1 { margin: 0; font-family: var(--display); font-weight: 900; font-size: clamp(42px, 7vw, 68px); line-height: .9; text-transform: uppercase; text-wrap: balance; }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 66ch; }
+.key { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--fg2); margin-top: 4px; }
+.key span { display: inline-flex; align-items: center; gap: 7px; }
+.key i { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+.k-up { background: var(--up); } .k-down { background: var(--down); } .k-flat { background: var(--flat); }
+
+.stage { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 6px 6px; }
+.chart-wrap { overflow-x: auto; }
+svg.slope { display: block; width: 100%; min-width: 620px; height: auto; }
+.colhead { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; fill: var(--fg3); }
+.rk { font-family: var(--display); font-weight: 800; font-size: 15px; fill: var(--fg3); }
+.nm { font-size: 13.5px; fill: var(--fg); }
+.vl { font-size: 12.5px; fill: var(--fg2); font-variant-numeric: tabular-nums; }
+.ln { fill: none; stroke-width: 2; stroke-linecap: round; transition: opacity .15s, stroke-width .15s; }
+.dot { stroke: var(--panel); stroke-width: 2; }
+.up { stroke: var(--up); } .down { stroke: var(--down); } .flat { stroke: var(--flat); }
+.fup { fill: var(--up); } .fdown { fill: var(--down); } .fflat { fill: var(--flat); }
+.grp { cursor: pointer; outline: none; }
+.grp .hit { fill: transparent; }
+svg.dim .grp { opacity: .18; }
+svg.dim .grp.on { opacity: 1; }
+svg.dim .grp.on .ln { stroke-width: 3.5; }
+.grp:focus-visible .nm { text-decoration: underline; }
+
+.detail { margin: 8px 10px 6px; padding: 12px 14px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 22px; align-items: baseline; min-height: 54px; color: var(--fg2); font-size: 14px; }
+.detail b { color: var(--fg); font-weight: 600; }
+.detail .who { font-family: var(--display); font-weight: 800; font-size: 24px; color: var(--fg); line-height: 1; }
+.pill { display: inline-block; padding: 1px 9px; border-radius: 99px; font-size: 12px; font-weight: 600; color: var(--panel); }
+.pill.up { background: var(--up); } .pill.down { background: var(--down); } .pill.flat { background: var(--flat); }
+
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+.fact { display: grid; gap: 4px; }
+.fact .t { font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--fg3); }
+.fact p { margin: 0; color: var(--fg2); }
+.fact b { color: var(--fg); }
+
+h2 { margin: 0; font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+.tw { overflow-x: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 640px; }
+th { text-align: left; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--fg3); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tr:last-child td { border-bottom: 0; }
+tbody tr { cursor: pointer; }
+tbody tr:hover, tbody tr.on { background: var(--track); }
+.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.mv { font-weight: 600; }
+.mv.up { color: var(--up); } .mv.down { color: var(--down); } .mv.flat { color: var(--fg3); }
+.spark { display: block; }
+.spark path { fill: none; stroke: var(--fg2); stroke-width: 1.5; }
+.spark circle { fill: var(--fg); }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 78ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+@media (prefers-reduced-motion: reduce) { .ln { transition: none; } }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794160992">
+</head>
+<body>
+<script src="nav.js?v=1794160992"></script>
+<script src="critica.js?v=1794160992" defer></script>
+
+
+<main>
+<header>
+  <span class="eyebrow">Artisti italiani · anni '70 e '80 · classifiche dell'epoca e Spotify oggi</span>
+  <h1>Allora contro oggi</h1>
+  <p class="lede">I 20 artisti italiani con più successo nelle classifiche annuali italiane dal 1970 al 1989, singoli e album insieme, messi in ordine una seconda volta in base a quante persone li ascoltano oggi su Spotify ogni mese.</p>
+  <div class="key"><span><i class="k-up"></i>Sale: oggi più in alto di allora</span><span><i class="k-down"></i>Scende</span><span><i class="k-flat"></i>Più o meno uguale (2 posti o meno)</span></div>
+</header>
+
+<section class="stage" aria-label="Confronto tra classifica di allora e Spotify oggi">
+  <div class="chart-wrap"><svg class="slope" id="slope" role="img" aria-label="Grafico a pendenza: posizione nelle classifiche 1970–1989 a sinistra, posizione per ascoltatori mensili su Spotify a destra"></svg></div>
+  <div class="detail" id="detail" aria-live="polite"><span>Passa sopra o tocca un artista per vedere i dettagli.</span></div>
+</section>
+
+<section class="facts">
+  <div class="fact"><span class="t">Chi è salito di più</span><p id="f-up"></p></div>
+  <div class="fact"><span class="t">Chi è sceso di più</span><p id="f-down"></p></div>
+  <div class="fact"><span class="t">Dal 2018 a oggi</span><p id="f-grow"></p></div>
+</section>
+
+<section style="display:grid;gap:10px">
+  <h2>I numeri</h2>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Artista</th><th class="num">Allora</th><th class="num">Punti</th><th class="num">Oggi</th><th class="num">Ascoltatori mensili</th><th>2018 → 2026</th><th class="num">Crescita</th></tr></thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="note">
+  <p><b>Allora.</b> Somma dei punti nelle classifiche annuali italiane di Hit Parade Italia dal 1970 al 1989: prime 10 dei singoli più prime 10 degli album di ogni anno, con più punti a chi è più in alto (il n. 1 vale 1, il n. 10 circa 0,28). Contano solo gli artisti italiani; nei duetti i punti vanno a tutti e due.</p>
+  <p><b>Oggi.</b> Ascoltatori mensili su Spotify a novembre 2026, cioè quante persone diverse hanno ascoltato l'artista negli ultimi 28 giorni, come li mostra la sua pagina Spotify (arrotondati). Gli anni dal 2018 al 2025 vengono dalle pagine Spotify degli artisti salvate su web.archive.org, una copia per anno, la più vicina a luglio; dove manca, l'anno resta vuoto. Lucio Battisti è arrivato su Spotify solo a fine settembre 2019, per questo il suo 2018 manca.</p>
+  <p><b>Da tenere presente.</b> Gli utenti di Spotify sono aumentati molto dal 2018, quindi quasi tutti crescono: conta soprattutto chi cresce più degli altri. Gli ascoltatori mensili sono contati in tutto il mondo, quindi chi ha avuto successo anche all'estero, come Tozzi o Zucchero, parte avvantaggiato.</p>
+</section>
+</main>
+
+<script>
+const DATA = [
+  ["Lucio Battisti", 12.59, [null, 598225, 648410, 746749, null, 1500000, 1600000, 1800000, 2100000]],
+  ["Mina", 9.08, [null, 506222, 896123, 1066314, 1200000, 3600000, 2400000, 2100000, 2200000]],
+  ["Claudio Baglioni", 6.77, [444930, 580120, 747874, 777061, 720700, 785300, 884600, 1000000, 1300000]],
+  ["Lucio Dalla", 4.67, [608849, 781208, 1101343, 1257395, 1600000, 1800000, 2000000, 2100000, 2200000]],
+  ["Antonello Venditti", 3.50, [null, 693319, 816271, 999289, 883000, 1200000, 1300000, 1400000, 1700000]],
+  ["Pooh", 3.30, [151837, 235128, 314182, 384125, 367300, null, 427000, 428400, 737300]],
+  ["Edoardo Bennato", 3.02, [350607, 415242, 578957, 863300, 956100, null, 1400000, 1300000, 1100000]],
+  ["Vasco Rossi", 3.02, [920898, 1159673, 1361255, 1578201, 1900000, 1700000, 2100000, 2300000, 2300000]],
+  ["Riccardo Cocciante", 2.93, [null, 381344, 541961, 573886, 573900, 717200, 718900, 905400, 1100000]],
+  ["Francesco De Gregori", 2.90, [null, 573361, 790677, 910277, 889700, 1000000, 1100000, 1100000, 1200000]],
+  ["Adriano Celentano", 2.68, [550873, 896700, 1057279, 1561094, 1400000, 1500000, 2900000, 2600000, 3400000]],
+  ["Renato Zero", 2.21, [407738, 700164, 937220, 889490, 1100000, 1000000, 1200000, 935900, 1100000]],
+  ["Ornella Vanoni", 2.11, [null, 336396, 518381, 744378, 724800, 875500, 1700000, 1700000, 2000000]],
+  ["Zucchero", 2.00, [886427, 1346835, 1827383, 2222742, 2400000, 2900000, 3200000, 3600000, 3500000]],
+  ["Alan Sorrenti", 1.94, [null, 167391, 252588, 227798, 273000, 445300, null, 847400, 746000]],
+  ["Umberto Tozzi", 1.78, [480229, 825867, 1479073, 1541621, null, 1900000, 2700000, 3400000, 3100000]],
+  ["Gianna Nannini", 1.77, [456630, 660557, 991432, 1158066, 1200000, 1200000, 1400000, 1700000, 1500000]],
+  ["Franco Battiato", 1.68, [508945, 654007, 985733, 988140, 1200000, 1100000, 1300000, 1200000, 1200000]],
+  ["Gianni Morandi", 1.67, [236081, 613906, 742775, 753339, 1000000, 1100000, 1100000, 908300, 872000]],
+  ["Patty Pravo", 1.39, [179953, 293520, 369380, 423500, 423000, 532400, 536400, 536400, 523400]],
+];
+const YEARS = [2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+const fmtM = v => v >= 1e6 ? `${(v / 1e6).toLocaleString("it-IT", { maximumFractionDigits: 1, minimumFractionDigits: 1 })} mln` : `${Math.round(v / 1000).toLocaleString("it-IT")} mila`;
+const fmt1 = v => v.toLocaleString("it-IT", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+const A = DATA.map(([n, pts, ls], i) => {
+  const firstIdx = ls.findIndex(v => v != null);
+  return { n, pts, ls, now: ls[ls.length - 1], then: i + 1, first: ls[firstIdx], firstYear: YEARS[firstIdx] };
+});
+[...A].sort((a, b) => b.now - a.now || a.then - b.then).forEach((a, i) => { a.today = i + 1; });
+A.forEach(a => { a.d = a.then - a.today; a.cls = a.d > 2 ? "up" : a.d < -2 ? "down" : "flat"; a.x = a.now / a.first; });
+
+/* Slope chart */
+const svg = document.getElementById("slope");
+const NS = "http://www.w3.org/2000/svg";
+const W = 760, ROW = 30, TOP = 46, H = TOP + ROW * 20 + 10, XL = 250, XR = 490;
+svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+const el = (t, attrs, txt) => { const e = document.createElementNS(NS, t); for (const k in attrs) e.setAttribute(k, attrs[k]); if (txt != null) e.textContent = txt; return e; };
+const y = r => TOP + (r - 1) * ROW + ROW / 2;
+svg.append(el("text", { x: XL, y: 18, "text-anchor": "end", class: "colhead" }, "Classifiche italiane 1970–1989"));
+svg.append(el("text", { x: XR - 34, y: 18, class: "colhead" }, "Spotify, novembre 2026"));
+svg.append(el("line", { x1: XL + 14, y1: 30, x2: XL + 14, y2: H - 6, stroke: "var(--line)" }));
+svg.append(el("line", { x1: XR - 34, y1: 30, x2: XR - 34, y2: H - 6, stroke: "var(--line)" }));
+const groups = new Map();
+// draw flat first, then down, then up so the highlighted stories sit on top
+const order = [...A].sort((a, b) => ({ flat: 0, down: 1, up: 2 }[a.cls] - { flat: 0, down: 1, up: 2 }[b.cls]));
+for (const a of order) {
+  const g = el("g", { class: `grp`, tabindex: 0, role: "button", "aria-label": `${a.n}: ${a.then}° allora, ${a.today}° oggi` });
+  const x1 = XL + 14, x2 = XR - 34, y1 = y(a.then), y2 = y(a.today);
+  g.append(el("rect", { class: "hit", x: 0, y: Math.min(y1, y2) - ROW / 2, width: W, height: Math.abs(y2 - y1) + ROW }));
+  g.append(el("path", { class: `ln ${a.cls}`, d: `M${x1},${y1} C${x1 + 90},${y1} ${x2 - 90},${y2} ${x2},${y2}` }));
+  g.append(el("circle", { class: `dot f${a.cls}`, cx: x1, cy: y1, r: 5 }));
+  g.append(el("circle", { class: `dot f${a.cls}`, cx: x2, cy: y2, r: 5 }));
+  g.append(el("text", { x: 24, y: y1 + 5, class: "rk", "text-anchor": "end" }, a.then));
+  g.append(el("text", { x: XL, y: y1 + 4.5, class: "nm", "text-anchor": "end" }, a.n));
+  g.append(el("text", { x: XR, y: y2 + 4.5, class: "nm" }, a.n));
+  g.append(el("text", { x: W - 8, y: y2 + 4.5, class: "vl", "text-anchor": "end" }, fmtM(a.now)));
+  g.append(el("text", { x: XR - 6, y: y2 + 5, class: "rk", "text-anchor": "end" }, a.today));
+  svg.append(g); groups.set(a.n, g);
+  const on = () => select(a.n);
+  g.addEventListener("mouseenter", on); g.addEventListener("focus", on); g.addEventListener("click", on);
+}
+svg.addEventListener("mouseleave", () => select(null));
+
+/* Detail strip + table */
+const detail = document.getElementById("detail");
+const tbody = document.getElementById("tbody");
+const rows = new Map();
+function moveText(a) { return a.d > 0 ? `sale di ${a.d}` : a.d < 0 ? `scende di ${-a.d}` : "stessa posizione"; }
+function select(name) {
+  svg.classList.toggle("dim", !!name);
+  for (const [n, g] of groups) g.classList.toggle("on", n === name);
+  for (const [n, r] of rows) r.classList.toggle("on", n === name);
+  if (!name) { detail.innerHTML = "<span>Passa sopra o tocca un artista per vedere i dettagli.</span>"; return; }
+  const a = A.find(x => x.n === name);
+  detail.innerHTML = `<span class="who">${a.n}</span>
+    <span>Allora <b>${a.then}°</b> · oggi <b>${a.today}°</b> <span class="pill ${a.cls}">${moveText(a)}</span></span>
+    <span>Ascoltatori mensili: <b>${fmtM(a.first)}</b> nel ${a.firstYear} → <b>${fmtM(a.now)}</b> oggi (×${fmt1(a.x)})</span>`;
+}
+function spark(ls) {
+  const w = 120, h = 28, mx = Math.max(...ls.filter(v => v != null)), mn = 0;
+  const pts = ls.map((v, i) => v == null ? null : [4 + i * (w - 8) / (ls.length - 1), h - 4 - (v - mn) / (mx - mn) * (h - 8)]).filter(Boolean);
+  const d = pts.map((p, i) => `${i ? "L" : "M"}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join("");
+  const last = pts[pts.length - 1];
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" aria-hidden="true"><path d="${d}"/><circle cx="${last[0]}" cy="${last[1]}" r="2.5"/></svg>`;
+}
+for (const a of A) {
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td>${a.n}</td><td class="num">${a.then}°</td><td class="num">${a.pts.toLocaleString("it-IT", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+    <td class="num">${a.today}° <span class="mv ${a.cls}">${a.d > 0 ? "▲" + a.d : a.d < 0 ? "▼" + (-a.d) : "="}</span></td>
+    <td class="num">${fmtM(a.now)}</td><td>${spark(a.ls)}</td><td class="num">×${fmt1(a.x)}</td>`;
+  tr.addEventListener("mouseenter", () => select(a.n));
+  tr.addEventListener("click", () => { select(a.n); svg.scrollIntoView({ block: "nearest", behavior: "smooth" }); });
+  tbody.append(tr); rows.set(a.n, tr);
+}
+document.querySelector("table").addEventListener("mouseleave", () => select(null));
+
+/* Facts */
+const byD = [...A].sort((a, b) => b.d - a.d);
+const list = arr => arr.map(a => `<b>${a.n}</b> (${a.then}° → ${a.today}°)`).join(", ");
+document.getElementById("f-up").innerHTML = list(byD.slice(0, 3)) + ".";
+document.getElementById("f-down").innerHTML = list(byD.slice(-3).reverse()) + ".";
+const byX = [...A].sort((a, b) => b.x - a.x);
+document.getElementById("f-grow").innerHTML = `Crescono quasi tutti, anche perché Spotify ha molti più utenti. I più rapidi: ${byX.slice(0, 3).map(a => `<b>${a.n}</b> ×${fmt1(a.x)}`).join(", ")}. I più lenti: ${byX.slice(-2).map(a => `<b>${a.n}</b> ×${fmt1(a.x)}`).join(", ")}.`;
+</script>
+
+</body>
+</html>
