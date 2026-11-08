@@ -1,0 +1,17 @@
+# I motori di ricerca possono leggere tutto.
+User-agent: *
+Allow: /
+
+# I programmi che raccolgono testi per addestrare le intelligenze artificiali no.
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: CCBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: PerplexityBot
+User-agent: Bytespider
+User-agent: meta-externalagent
+User-agent: cohere-ai
+Disallow: /
+
+Sitemap: https://spesato.it/sitemap.xml
