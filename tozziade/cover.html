@@ -51,15 +51,21 @@ tr:last-child td { border-bottom: 0; }
 .others { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
 .others h2 { margin: 0; font-size: 30px; }
 .others p { margin: 0; color: var(--fg2); max-width: 72ch; }
+.lk { display: inline-block; font-size: 11.5px; font-weight: 700; letter-spacing: .03em; text-decoration: none; padding: 3px 9px; border-radius: 99px; margin: 0 4px 3px 0; white-space: nowrap; }
+.lk.sp { background: #1ed760; color: #04170a; }
+.lk.yt { background: #ff2a2a; color: #fff; }
+.lk:hover { filter: brightness(1.12); }
+.lk:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.listen { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 6px; font-size: 13px; color: var(--fg3); }
 .note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
 .note p { margin: 0; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
-<link rel="stylesheet" href="theme.css?v=1794262416">
+<link rel="stylesheet" href="theme.css?v=1794263797">
 </head>
 <body>
-<script src="nav.js?v=1794262416"></script>
-<script src="critica.js?v=1794262416" defer></script>
+<script src="nav.js?v=1794263797"></script>
+<script src="critica.js?v=1794263797" defer></script>
 
 <main>
 <header>
@@ -83,16 +89,17 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="ti-amo">
   <h2>Ti amo <span style="color:var(--fg3);font-size:.6em">1977</span></h2>
   <p class="orig">L'originale fu primo in Italia, Svezia, Svizzera e Francia. Le cover hanno cambiato quasi sempre il testo: la storia dell'uomo diviso tra moglie e amante è sparita, è rimasto il ritornello in italiano.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/0gAbf0NL9no1Urk1Wj8Uui" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=wPqZAa-nZTg" target="_blank" rel="noopener" title="Ti Amo - UMBERTO TOZZI - (FESTIVALBAR 1977 e Premiazione) · canale Umberto Tozzi Official" aria-label="Guarda l&#x27;originale su YouTube">YouTube</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr><td>1977</td><td><b>Howard Carpendale</b></td><td>tedesco</td><td>2º in Germania, più in alto dell'originale (4º); 10º in Austria</td></tr>
-      <tr><td>1977</td><td><b>Dalida</b></td><td>francese</td><td>lato B di un 45 giri</td></tr>
-      <tr><td>1984</td><td><b>Laura Branigan</b></td><td>inglese, testo di Diane Warren</td><td>2ª in Australia, 5ª in Canada, 55ª negli Stati Uniti</td></tr>
-      <tr class="own"><td>2002</td><td><b>Tozzi e Lena Ka</b>, «Ti amo (rien que des mots)»</td><td>italiano e francese</td><td>3ª in Francia, 2ª in Vallonia; 393.000 copie in Francia (dato del 2014)</td></tr>
-      <tr class="own"><td>2002</td><td><b>Tozzi e Monica Bellucci</b></td><td>italiano</td><td>nel film Asterix &amp; Obelix: Missione Cleopatra</td></tr>
-      <tr><td>2011</td><td><b>Sergio Dalma</b>, «Te amo»</td><td>spagnolo</td><td>10º in Spagna</td></tr>
-      <tr class="own"><td>2017</td><td><b>Tozzi e Anastacia</b></td><td>italiano e inglese</td><td>per i 40 anni della canzone</td></tr>
+      <tr><td>1977</td><td><b>Howard Carpendale</b></td><td>tedesco</td><td>2º in Germania, più in alto dell'originale (4º); 10º in Austria</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/5EN1kqbfogZx1RoltrtMCw" target="_blank" rel="noopener" aria-label="Ascolta Howard Carpendale su Spotify">Spotify</a></td></tr>
+      <tr><td>1977</td><td><b>Dalida</b></td><td>francese</td><td>lato B di un 45 giri</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/55wKLPV0qyvEzXqz4QTNlh" target="_blank" rel="noopener" aria-label="Ascolta Dalida su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=W_u7W0Syge0" target="_blank" rel="noopener" title="Dalida - Ti Amo (Audio Officiel) · canale Dalida" aria-label="Guarda Dalida su YouTube">YouTube</a></td></tr>
+      <tr><td>1984</td><td><b>Laura Branigan</b></td><td>inglese, testo di Diane Warren</td><td>2ª in Australia, 5ª in Canada, 55ª negli Stati Uniti</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/6eKu0y2P0sMSm3YbEVEwmS" target="_blank" rel="noopener" aria-label="Ascolta Laura Branigan su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=lpMZDk3lX9I" target="_blank" rel="noopener" title="Ti Amo · canale Laura Branigan - Topic" aria-label="Guarda Laura Branigan su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>2002</td><td><b>Tozzi e Lena Ka</b>, «Ti amo (rien que des mots)»</td><td>italiano e francese</td><td>3ª in Francia, 2ª in Vallonia; 393.000 copie in Francia (dato del 2014); 4,9 milioni di ascolti su Spotify; 4,9 milioni di ascolti su Spotify</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/0xebVACRROuZkwUREq6N1F" target="_blank" rel="noopener" aria-label="Ascolta Tozzi e Lena Ka su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=UHo6G7sjp08" target="_blank" rel="noopener" title="Rien que des mots · canale Umberto Tozzi - Topic" aria-label="Guarda Tozzi e Lena Ka su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>2002</td><td><b>Tozzi e Monica Bellucci</b></td><td>italiano</td><td>nel film Asterix &amp; Obelix: Missione Cleopatra</td><td class="ls"></td></tr>
+      <tr><td>2011</td><td><b>Sergio Dalma</b>, «Te amo»</td><td>spagnolo</td><td>10º in Spagna</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/3Pbg1SBJA4xyBqGyu6nU9n" target="_blank" rel="noopener" aria-label="Ascolta Sergio Dalma su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=Vn3ePWQaxUI" target="_blank" rel="noopener" title="Sergio Dalma - Te Amo (Audio) · canale Sergio Dalma" aria-label="Guarda Sergio Dalma su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>2017</td><td><b>Tozzi e Anastacia</b></td><td>italiano e inglese</td><td>per i 40 anni della canzone</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/3MrR8GnsV4aHNnyPx7QZRM" target="_blank" rel="noopener" aria-label="Ascolta Tozzi e Anastacia su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=jaZxVkmN25o" target="_blank" rel="noopener" title="Umberto Tozzi &amp; Anastacia - Ti amo · canale UmbertoTozziVEVO" aria-label="Guarda Tozzi e Anastacia su YouTube">YouTube</a></td></tr>
     </tbody>
   </table></div>
   <div class="bars" role="img" aria-label="Ascolti su Spotify di Ti amo: Tozzi 200,9 milioni, Howard Carpendale 39,4, Sergio Dalma 21,5, Laura Branigan 14,0, Dalida 2,9">
@@ -108,20 +115,21 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="gloria">
   <h2>Gloria <span style="color:var(--fg3);font-size:.6em">1979</span></h2>
   <p class="orig">È la canzone di Tozzi ricantata di più. La cover di Laura Branigan oggi ha più del doppio degli ascolti dell'originale. Tutta la storia è nella pagina <a href="gloria.html" style="color:var(--accent)">Gloria</a>.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/35tzxthMBglBMjmZ7Fn1hj" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=8Zs7VWqNGHg" target="_blank" rel="noopener" title="Umberto Tozzi - Gloria (Official Audio) · canale Warner Music Italy" aria-label="Guarda l&#x27;originale su YouTube">YouTube</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr><td>1979</td><td><b>Jonathan King</b></td><td>inglese, prima traduzione</td><td>65º nel Regno Unito</td></tr>
-      <tr><td>1980</td><td><b>Vítězslav Vávra</b>, «Dívka Gloria»</td><td>ceco</td><td>successo in Cecoslovacchia</td></tr>
-      <tr><td>1982</td><td><b>Laura Branigan</b></td><td>inglese, nuovo testo di Trevor Veitch</td><td>2ª negli Stati Uniti, 1ª in Australia, 6ª nel Regno Unito; disco di platino negli Stati Uniti</td></tr>
-      <tr><td>1982</td><td><b>Lena Valaitis</b></td><td>tedesco, testo di Michael Kunze</td><td>—</td></tr>
-      <tr><td>1982</td><td><b>Sheila</b>, «Glori Gloria»</td><td>francese</td><td>—</td></tr>
-      <tr><td>1983</td><td><b>Carola</b></td><td>svedese</td><td>nell'album Främling, primo in Svezia</td></tr>
-      <tr><td>1983</td><td><b>Mona Carita</b></td><td>finlandese</td><td>—</td></tr>
-      <tr><td>2011</td><td><b>Sergio Dalma</b></td><td>spagnolo</td><td>nell'album Via Dalma II, 5 settimane primo in Spagna</td></tr>
-      <tr><td>2012</td><td><b>Gloria Trevi</b></td><td>spagnolo</td><td>primo singolo del suo album Gloria</td></tr>
-      <tr><td>2021</td><td><b>Angel Olsen</b></td><td>inglese, testo di Branigan</td><td>—</td></tr>
-      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, serata delle cover, insieme a Ti amo e Tu</td></tr>
+      <tr><td>1979</td><td><b>Jonathan King</b></td><td>inglese, prima traduzione</td><td>65º nel Regno Unito</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=3NN4ERS0FMs" target="_blank" rel="noopener" title="Gloria · canale Jonathan King - Topic" aria-label="Guarda Jonathan King su YouTube">YouTube</a></td></tr>
+      <tr><td>1980</td><td><b>Vítězslav Vávra</b>, «Dívka Gloria»</td><td>ceco</td><td>successo in Cecoslovacchia</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=w6tKXRbINUo" target="_blank" rel="noopener" title="Divka Gloria · canale Vítězslav Vávra - Topic" aria-label="Guarda Vítězslav Vávra su YouTube">YouTube</a></td></tr>
+      <tr><td>1982</td><td><b>Laura Branigan</b></td><td>inglese, nuovo testo di Trevor Veitch</td><td>2ª negli Stati Uniti, 1ª in Australia, 6ª nel Regno Unito; disco di platino negli Stati Uniti</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/1mskmld5ZKEhRaNvYVPoqZ" target="_blank" rel="noopener" aria-label="Ascolta Laura Branigan su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=nNEb2k_EmMg" target="_blank" rel="noopener" title="Laura Branigan - Gloria (Official Music Video) · canale RHINO" aria-label="Guarda Laura Branigan su YouTube">YouTube</a></td></tr>
+      <tr><td>1982</td><td><b>Lena Valaitis</b></td><td>tedesco, testo di Michael Kunze</td><td>—</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=dNsuPq9rg6w" target="_blank" rel="noopener" title="Lena Valaitis - Gloria (ZDF Disco 18.10.1982) (VOD) · canale LenaValaitisVEVO" aria-label="Guarda Lena Valaitis su YouTube">YouTube</a></td></tr>
+      <tr><td>1982</td><td><b>Sheila</b>, «Glori Gloria»</td><td>francese</td><td>—</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/2jgXeoOEnikXrY3oEVtkdY" target="_blank" rel="noopener" aria-label="Ascolta Sheila su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=sGEYC6ybrKU" target="_blank" rel="noopener" title="Glori Gloria (Version 45T) · canale Sheila - Topic" aria-label="Guarda Sheila su YouTube">YouTube</a></td></tr>
+      <tr><td>1983</td><td><b>Carola</b></td><td>svedese</td><td>nell'album Främling, primo in Svezia</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/7pMU7BiNFslXAM6T5b0PEY" target="_blank" rel="noopener" aria-label="Ascolta Carola su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=VW-DvalTn_c" target="_blank" rel="noopener" title="Gloria · canale Carola - Topic" aria-label="Guarda Carola su YouTube">YouTube</a></td></tr>
+      <tr><td>1983</td><td><b>Mona Carita</b></td><td>finlandese</td><td>—</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=xtwJNlLHqfA" target="_blank" rel="noopener" title="Gloria · canale Mona Carita - Topic" aria-label="Guarda Mona Carita su YouTube">YouTube</a></td></tr>
+      <tr><td>2011</td><td><b>Sergio Dalma</b></td><td>spagnolo</td><td>nell'album Via Dalma II, 5 settimane primo in Spagna</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/5NKRkzE3JTJa4Zz9STLK1v" target="_blank" rel="noopener" aria-label="Ascolta Sergio Dalma su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=H2MDifSVnno" target="_blank" rel="noopener" title="Sergio Dalma - Gloria. (Audio) · canale Sergio Dalma" aria-label="Guarda Sergio Dalma su YouTube">YouTube</a></td></tr>
+      <tr><td>2012</td><td><b>Gloria Trevi</b></td><td>spagnolo</td><td>primo singolo del suo album Gloria</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/2F6YbtOsiVAxsgreiXWbP7" target="_blank" rel="noopener" aria-label="Ascolta Gloria Trevi su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=kqDsxk1tw7k" target="_blank" rel="noopener" title="Gloria Trevi - Gloria (Audio) · canale GloriaTreviVEVO" aria-label="Guarda Gloria Trevi su YouTube">YouTube</a></td></tr>
+      <tr><td>2021</td><td><b>Angel Olsen</b></td><td>inglese, testo di Branigan</td><td>—</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=Yscy8MZSN1Q" target="_blank" rel="noopener" title="Angel Olsen - Gloria (Official Audio) · canale Angel Olsen" aria-label="Guarda Angel Olsen su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, serata delle cover, insieme a Ti amo e Tu</td><td class="ls"></td></tr>
     </tbody>
   </table></div>
   <div class="bars" role="img" aria-label="Ascolti su Spotify di Gloria: Laura Branigan 348,5 milioni, Tozzi 136,9, Gloria Trevi 11,9, Carola 7,0, Sergio Dalma 3,1">
@@ -137,15 +145,16 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="stella-stai">
   <h2>Stella stai <span style="color:var(--fg3);font-size:.6em">1980</span></h2>
   <p class="orig">Tozzi la incise subito anche in spagnolo, con il titolo «Claridad». In America Latina però è diventata famosa nella versione dei Menudo, il gruppo portoricano in cui più tardi cantò Ricky Martin.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/3i40P0Sxfwgzr5hgPmY80t" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=0ZXgWsoKhk8" target="_blank" rel="noopener" title="Umberto Tozzi - Stella Stai live @ Gran Teatro Geox Padova 01/12/2012 · canale Umberto Tozzi Official" aria-label="Guarda l&#x27;originale su YouTube">YouTube</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr class="own"><td>1980</td><td><b>Umberto Tozzi</b>, «Claridad»</td><td>spagnolo, testo di Óscar Gómez</td><td>la sua versione spagnola</td></tr>
-      <tr><td>1981</td><td><b>Menudo</b>, «Claridad»</td><td>spagnolo</td><td>prima in Colombia, Ecuador, Perù e Venezuela</td></tr>
-      <tr><td>1982</td><td><b>Michal David</b>, «Třetí galaxie»</td><td>ceco, testo di fantascienza</td><td>successo in Cecoslovacchia; nel 2005 finisce nel film Hostel</td></tr>
-      <tr><td>1994</td><td><b>Thelma Houston</b>, «Shining Star»</td><td>inglese</td><td>in un album uscito per il mercato italiano</td></tr>
-      <tr><td>2012</td><td><b>Luis Fonsi</b>, «Claridad»</td><td>spagnolo</td><td>—</td></tr>
-      <tr><td>2019–20</td><td><b>Mina</b></td><td>italiano</td><td>per gli spot TIM, prima il ritornello poi la canzone intera</td></tr>
+      <tr class="own"><td>1980</td><td><b>Umberto Tozzi</b>, «Claridad»</td><td>spagnolo, testo di Óscar Gómez</td><td>la sua versione spagnola</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/0iqEabUsUjCQbn6Cg1MOzm" target="_blank" rel="noopener" aria-label="Ascolta Umberto Tozzi, «Claridad» su Spotify">Spotify</a></td></tr>
+      <tr><td>1981</td><td><b>Menudo</b>, «Claridad»</td><td>spagnolo</td><td>prima in Colombia, Ecuador, Perù e Venezuela</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/2Rh8bcrw6tt8wrRM8NljN0" target="_blank" rel="noopener" aria-label="Ascolta Menudo su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=pUAI-0HWUGU" target="_blank" rel="noopener" title="Claridad · canale Menudo - Topic" aria-label="Guarda Menudo su YouTube">YouTube</a></td></tr>
+      <tr><td>1982</td><td><b>Michal David</b>, «Třetí galaxie»</td><td>ceco, testo di fantascienza</td><td>successo in Cecoslovacchia; nel 2005 finisce nel film Hostel</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=BRWh5KoEXpc" target="_blank" rel="noopener" title="Michal David - Třetí galaxie (oficiální video) · canale SUPRAPHON" aria-label="Guarda Michal David su YouTube">YouTube</a></td></tr>
+      <tr><td>1994</td><td><b>Thelma Houston</b>, «Shining Star»</td><td>inglese</td><td>in un album uscito per il mercato italiano</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=BTpbLN5IplU" target="_blank" rel="noopener" title="Shining Star (stella Stai) · canale Thelma Houston - Topic" aria-label="Guarda Thelma Houston su YouTube">YouTube</a></td></tr>
+      <tr><td>2012</td><td><b>Luis Fonsi</b>, «Claridad»</td><td>spagnolo</td><td>—</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/3vBKmHJIT2I9r1EWOJ6qyX" target="_blank" rel="noopener" aria-label="Ascolta Luis Fonsi su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=MvDaL_D4fZQ" target="_blank" rel="noopener" title="Luis Fonsi - Claridad · canale LuisFonsiVEVO" aria-label="Guarda Luis Fonsi su YouTube">YouTube</a></td></tr>
+      <tr><td>2019–20</td><td><b>Mina</b></td><td>italiano</td><td>per gli spot TIM, prima il ritornello poi la canzone intera</td><td class="ls"></td></tr>
     </tbody>
   </table></div>
   <div class="bars" role="img" aria-label="Ascolti su Spotify di Stella stai: Menudo 119,4 milioni, Tozzi 21,2, Luis Fonsi 6,3, Tozzi in spagnolo 4,2">
@@ -160,13 +169,14 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="eva">
   <h2>Eva <span style="color:var(--fg3);font-size:.6em">1982</span></h2>
   <p class="orig">In Italia fu un successo dell'estate 1982: parla di una coppia che scappa dalla fine del mondo su «l'ultima astronave». In Brasile è diventata un classico, prima in versione rock e poi da festa.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/6eAhefByHucgCeneGIQuhd" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr><td>1983</td><td><b>Rádio Táxi</b></td><td>portoghese</td><td>prima nella classifica di San Paolo, successo in tutto il Brasile</td></tr>
-      <tr class="own"><td>1984</td><td><b>Umberto Tozzi</b></td><td>italiano</td><td>la sua versione è nella telenovela Transas e Caretas di TV Globo</td></tr>
-      <tr><td>1997</td><td><b>Banda Eva</b>, con Ivete Sangalo</td><td>portoghese, dal vivo</td><td>diventa la canzone simbolo del gruppo e di Ivete Sangalo</td></tr>
-      <tr><td>2020</td><td><b>Fresno e Far From Alaska</b></td><td>portoghese</td><td>versione rock ed elettronica</td></tr>
+      <tr><td>1983</td><td><b>Rádio Táxi</b></td><td>portoghese</td><td>prima nella classifica di San Paolo, successo in tutto il Brasile</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=J7N2KNXwtfA" target="_blank" rel="noopener" title="Radio Taxi - Eva (Pseudo Video) · canale RadioTaxiVEVO" aria-label="Guarda Rádio Táxi su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>1984</td><td><b>Umberto Tozzi</b></td><td>italiano</td><td>la sua versione è nella telenovela Transas e Caretas di TV Globo</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/6eAhefByHucgCeneGIQuhd" target="_blank" rel="noopener" aria-label="Ascolta Umberto Tozzi su Spotify">Spotify</a></td></tr>
+      <tr><td>1997</td><td><b>Banda Eva</b>, con Ivete Sangalo</td><td>portoghese, dal vivo</td><td>diventa la canzone simbolo del gruppo e di Ivete Sangalo</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/7EScnp28wyS0UH8Gybs8qq" target="_blank" rel="noopener" aria-label="Ascolta Banda Eva su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=_soaJhvm9TA" target="_blank" rel="noopener" title="Eva (Ao Vivo) · canale Banda Eva - Topic" aria-label="Guarda Banda Eva su YouTube">YouTube</a></td></tr>
+      <tr><td>2020</td><td><b>Fresno e Far From Alaska</b></td><td>portoghese</td><td>versione rock ed elettronica</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=EfyV9-p1msw" target="_blank" rel="noopener" title="Fresno, Far From Alaska - EVA (Visualizer Video) · canale Fresno" aria-label="Guarda Fresno e Far From Alaska su YouTube">YouTube</a></td></tr>
     </tbody>
   </table></div>
   <div class="bars" role="img" aria-label="Ascolti su Spotify di Eva: Banda Eva 38,9 milioni, Ivete Sangalo 12,2, Tozzi 2,8">
@@ -180,13 +190,14 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="tu">
   <h2>Tu <span style="color:var(--fg3);font-size:.6em">1978</span></h2>
   <p class="orig">Prima in Italia e per cinque settimane in Svizzera. Ha meno cover delle altre: la più fortunata è il duetto in francese che Tozzi ha rifatto lui stesso.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/5YVaFPNfPynjL0UY8bRnuK" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=fotaf6QhN4M" target="_blank" rel="noopener" title="TU - UMBERTO TOZZI - FESTIVALBAR 1978 · canale Umberto Tozzi Official" aria-label="Guarda l&#x27;originale su YouTube">YouTube</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr class="own"><td>2003</td><td><b>Tozzi e Cérena</b>, «Toi, tu»</td><td>italiano e francese</td><td>5ª in Francia, 7ª in Vallonia</td></tr>
-      <tr><td>2017</td><td><b>Gabry Ponte e Danti</b>, «Tu sei»</td><td>italiano</td><td>riprende la canzone in chiave dance</td></tr>
-      <tr><td>—</td><td><b>Claudio Capéo</b></td><td>italiano</td><td>1,9 milioni di ascolti su Spotify, contro 78,2 dell'originale</td></tr>
-      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, nel medley con Ti amo e Gloria</td></tr>
+      <tr class="own"><td>2003</td><td><b>Tozzi e Cérena</b>, «Toi, tu»</td><td>italiano e francese</td><td>5ª in Francia, 7ª in Vallonia</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/0wTmifLju0k2oOPnnSjHmQ" target="_blank" rel="noopener" aria-label="Ascolta Tozzi e Cérena su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=nlauB2JrXXQ" target="_blank" rel="noopener" title="Toi, tù · canale Ceréna - Topic" aria-label="Guarda Tozzi e Cérena su YouTube">YouTube</a></td></tr>
+      <tr><td>2017</td><td><b>Gabry Ponte e Danti</b>, «Tu sei»</td><td>italiano</td><td>riprende la canzone in chiave dance</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=g4cy7A6o6KI" target="_blank" rel="noopener" title="Gabry Ponte feat. Danti - Tu Sei · canale Gabry Ponte" aria-label="Guarda Gabry Ponte e Danti su YouTube">YouTube</a></td></tr>
+      <tr><td>—</td><td><b>Claudio Capéo</b></td><td>italiano</td><td>1,9 milioni di ascolti su Spotify, contro 78,2 dell'originale</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/4ZWg7u2NEWgD8RIGGiUfxv" target="_blank" rel="noopener" aria-label="Ascolta Claudio Capéo su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=-hqcgAscm1Q" target="_blank" rel="noopener" title="Tu · canale Claudio Capéo - Topic" aria-label="Guarda Claudio Capéo su YouTube">YouTube</a></td></tr>
+      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, nel medley con Ti amo e Gloria</td><td class="ls"></td></tr>
     </tbody>
   </table></div>
 </section>
@@ -194,13 +205,14 @@ tr:last-child td { border-bottom: 0; }
 <section class="song" id="gente-di-mare">
   <h2>Gente di mare <span style="color:var(--fg3);font-size:.6em">1987</span></h2>
   <p class="orig">Cantata da Tozzi e Raf, terza all'Eurovision 1987 e seconda in Italia. È diventata la sigla di una fiction di Rai 1 e l'inno dei tifosi del Pescara.</p>
+  <p class="listen">L'originale di Tozzi: <a class="lk sp" href="https://open.spotify.com/track/1HFymCj27VAnRzrMOnma8J" target="_blank" rel="noopener" aria-label="Ascolta l&#x27;originale su Spotify">Spotify</a></p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr><td>—</td><td><b>Fábio Jr.</b>, «Felicidade»</td><td>portoghese</td><td>4,1 milioni di ascolti su Spotify per la versione dal vivo</td></tr>
-      <tr><td>1992</td><td><b>Ricchi e Poveri</b></td><td>italiano</td><td>nell'album Allegro italiano</td></tr>
-      <tr><td>2002</td><td><b>Gunnar Ólason</b>, «Komdu um jólin»</td><td>islandese</td><td>diventata una canzone di Natale popolare in Islanda</td></tr>
-      <tr><td>2004</td><td><b>Nino De Angelo</b></td><td>italiano</td><td>nell'album Un momento italiano</td></tr>
+      <tr><td>—</td><td><b>Fábio Jr.</b>, «Felicidade»</td><td>portoghese</td><td>4,1 milioni di ascolti su Spotify per la versione dal vivo</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/19hpIeovJq4nWAfoKA6CxQ" target="_blank" rel="noopener" aria-label="Ascolta Fábio Jr. su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=kVVtynjNPYM" target="_blank" rel="noopener" title="Fábio Jr. - Felicidade (Gente Di Mare) [Ao Vivo] · canale fabiojrVEVO" aria-label="Guarda Fábio Jr. su YouTube">YouTube</a></td></tr>
+      <tr><td>1992</td><td><b>Ricchi e Poveri</b></td><td>italiano</td><td>nell'album Allegro italiano</td><td class="ls"></td></tr>
+      <tr><td>2002</td><td><b>Gunnar Ólason</b>, «Komdu um jólin»</td><td>islandese</td><td>diventata una canzone di Natale popolare in Islanda</td><td class="ls"><a class="lk yt" href="https://www.youtube.com/watch?v=13dbTATkwgE" target="_blank" rel="noopener" title="Komdu um jólin · canale Gunnar Ólason - Topic" aria-label="Guarda Gunnar Ólason su YouTube">YouTube</a></td></tr>
+      <tr><td>2004</td><td><b>Nino De Angelo</b></td><td>italiano</td><td>nell'album Un momento italiano</td><td class="ls"></td></tr>
     </tbody>
   </table></div>
 </section>
@@ -209,17 +221,18 @@ tr:last-child td { border-bottom: 0; }
   <h2>Scritte per altri</h2>
   <p>Prima di diventare famoso come cantante, Tozzi scriveva canzoni per altri. Due sono diventate successi con la voce di altri.</p>
   <div class="tw"><table>
-    <thead><tr><th>Anno</th><th>Canzone</th><th>Chi la cantò</th><th>Com'è andata</th></tr></thead>
+    <thead><tr><th>Anno</th><th>Canzone</th><th>Chi la cantò</th><th>Com'è andata</th><th class="ls">Ascolta</th></tr></thead>
     <tbody>
-      <tr><td>1974</td><td><b>Un corpo e un'anima</b></td><td>Wess e Dori Ghezzi</td><td>vince Canzonissima. La finale del 6 gennaio 1975 non va in onda per uno sciopero: i vincitori vengono annunciati al telegiornale. Nel 2007 è nella colonna sonora di Il 7 e l'8 di Ficarra e Picone.</td></tr>
-      <tr><td>1976</td><td><b>Io camminerò</b></td><td>Fausto Leali, poi Mina nell'album Singolare</td><td>Tozzi la mette nel suo primo album, Donna amante mia. Su Spotify oggi: Tozzi 6,7 milioni, Leali 2,7.</td></tr>
+      <tr><td>1974</td><td><b>Un corpo e un'anima</b></td><td>Wess e Dori Ghezzi</td><td>vince Canzonissima. La finale del 6 gennaio 1975 non va in onda per uno sciopero: i vincitori vengono annunciati al telegiornale. Nel 2007 è nella colonna sonora di Il 7 e l'8 di Ficarra e Picone.</td><td class="ls"></td></tr>
+      <tr><td>1976</td><td><b>Io camminerò</b></td><td>Fausto Leali, poi Mina nell'album Singolare</td><td>Tozzi la mette nel suo primo album, Donna amante mia. Su Spotify oggi: Tozzi 6,7 milioni, Leali 2,7.</td><td class="ls"><a class="lk sp" href="https://open.spotify.com/track/10Pf6DaWnIeVwknJ4JW6R7" target="_blank" rel="noopener" aria-label="Ascolta Io camminerò su Spotify">Spotify</a><a class="lk yt" href="https://www.youtube.com/watch?v=CLRwo25HR3M" target="_blank" rel="noopener" title="Io camminerò · canale Fausto Leali - Topic" aria-label="Guarda Io camminerò su YouTube">YouTube</a><a class="lk yt" href="https://www.youtube.com/watch?v=wzvCLghIItI" target="_blank" rel="noopener" title="Io Camminerò (2001 Remaster) · canale Mina - Topic" aria-label="Guarda Io camminerò su YouTube">YouTube</a></td></tr>
     </tbody>
   </table></div>
 </section>
 
 <section class="note">
   <p><b>Da dove vengono i dati.</b> Cover, anni e classifiche: le voci di Wikipedia in italiano, inglese, tedesco, francese, spagnolo, portoghese e ceco delle singole canzoni e degli artisti; per Hostel la scheda della colonna sonora su IMDb. Ascolti: le pagine di kworb.net con tutte le canzoni di ogni artista su Spotify, aggiornate tra il 29 ottobre e l'8 novembre 2026. Per ogni artista c'è la sua registrazione più ascoltata; le versioni in spagnolo di Tozzi sono contate a parte. La Banda Eva ha anche altre due incisioni di Eva, con 10,0 e 8,8 milioni.</p>
-  <p><b>Cosa non abbiamo messo.</b> Le cover senza una fonte che dica chi, quando e in che lingua, i remix recenti di produttori poco noti e le versioni strumentali caricate su YouTube. Per Michal David alcune fonti danno il 1997: abbiamo seguito Wikipedia in ceco, che mette Třetí galaxie nel suo album del 1982. Il milione di copie dell'album di Carola è dichiarato, non verificato, e non lo riportiamo. Per Lena Ka, Rádio Táxi, Thelma Houston e Michal David non abbiamo trovato gli ascolti della cover, quindi non sono nei grafici.</p>
+  <p><b>I link.</b> Spotify porta alla registrazione esatta di cui contiamo gli ascolti. YouTube porta solo a canali ufficiali: quello dell'artista, della sua casa discografica, oppure i canali «Topic» che YouTube crea da solo con i dischi pubblicati. Dove un canale ufficiale non c'è, il link manca. Passando sopra il pulsante si vede il titolo del video e il canale.</p>
+  <p><b>Cosa non abbiamo messo.</b> Le cover senza una fonte che dica chi, quando e in che lingua, i remix recenti di produttori poco noti e le versioni strumentali caricate su YouTube. Per Michal David alcune fonti danno il 1997: abbiamo seguito Wikipedia in ceco, che mette Třetí galaxie nel suo album del 1982. Il milione di copie dell'album di Carola è dichiarato, non verificato, e non lo riportiamo. Per Rádio Táxi, Thelma Houston e Michal David non abbiamo trovato gli ascolti della cover, quindi non sono nei grafici.</p>
 </section>
 </main>
 </body>

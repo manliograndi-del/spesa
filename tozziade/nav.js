@@ -35,6 +35,7 @@
   #sitebar .sb-in{max-width:1240px;margin:0 auto;display:flex;align-items:center;gap:10px 22px;padding:10px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px));padding-top:calc(10px + env(safe-area-inset-top,0px))}
   #sitebar .sb-logo{display:grid;line-height:1;text-decoration:none;flex:none}
   #sitebar .sb-logo b{font-family:Anton,Montserrat,sans-serif;font-weight:400;font-size:32px;letter-spacing:.05em;text-transform:uppercase;background:radial-gradient(circle,#fffdf2 0 .016em,rgba(255,244,200,.95) .03em,rgba(255,220,120,0) .055em) 0 0/.13em .13em,linear-gradient(180deg,#ffe066,#ffb21c 45%,#f0521a);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 6px rgba(255,160,40,.5))}
+  #sitebar .sb-logo b i.sb-ver{font-style:normal;font-family:Montserrat,sans-serif;font-weight:800;font-size:10px;letter-spacing:.06em;vertical-align:top;margin-left:5px;padding:1px 4px;border:1px solid #ffcf5a;border-radius:3px;-webkit-text-fill-color:#ffe9a6;color:#ffe9a6;position:relative;top:3px}
   #sitebar .sb-logo span{font-size:9.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#a9acd8;margin-top:3px}
   #sitebar .sb-scroll{flex:1;min-width:0;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
   #sitebar .sb-scroll::-webkit-scrollbar,#sitebar .sb-tin::-webkit-scrollbar{display:none}
@@ -101,7 +102,7 @@
   const chev = '<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4z"/></svg>';
   const bar = document.createElement("div");
   bar.id = "sitebar"; bar.setAttribute("role", "banner");
-  bar.innerHTML = `<div class="sb-in"><a class="sb-logo" href="index.html"><b>Tozziade</b><span>Umberto Tozzi in numeri</span></a>
+  bar.innerHTML = `<div class="sb-in"><a class="sb-logo" href="index.html"><b>Tozziade<i class="sb-ver">2.0</i></b><span>Umberto Tozzi in numeri</span></a>
     <div class="sb-scroll"><div class="sb-row" role="navigation" aria-label="Umberto Tozzi">${tozzi}
     <button class="sb-btn sb-ghost" type="button" id="sb-more-btn" aria-expanded="false" aria-controls="sb-more"><span class="sb-long">Classifiche e altri artisti</span><span class="sb-short">Altri artisti</span>${chev}</button></div></div></div>
     <div class="sb-more" id="sb-more"><div class="sb-scroll"><div class="sb-row" role="navigation" aria-label="Classifiche e altri artisti">${more}</div></div></div>`;
