@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sullo schermo</title>
+<style>
+/* Layout: one column. Three counts, then a single table of every use found, in time order, with a coloured tag that says whose voice is heard. */
+:root { --bg: #0a1250; --panel: rgba(8,12,62,.88); --fg: #fff; --fg2: #d4d7f2; --fg3: #a3a7d4; --line: #2b3290; --accent: #fea607; --hi: #de0952; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Montserrat", "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+main { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(44px, 8vw, 80px); }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 70ch; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; }
+.fact .v { font-family: "Anton", "Montserrat", sans-serif; font-size: 40px; line-height: 1.05; color: var(--accent); }
+.fact .l { color: var(--fg2); font-size: 13.5px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 16px 16px 10px; display: grid; gap: 10px; }
+.card .songs { color: var(--fg3); font-size: 13px; }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg3); padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--fg2); }
+td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--fg3); }
+td b { color: #fff; font-weight: 600; }
+td .sub { display: block; font-size: 12.5px; color: var(--fg3); }
+tr:last-child td { border-bottom: 0; }
+.who { display: inline-block; font-size: 12.5px; font-weight: 700; padding: 2px 9px; border-radius: 99px; white-space: nowrap; }
+.who.tozzi { background: var(--accent); color: #1a0a00; }
+.who.branigan { background: var(--hi); color: #fff; }
+.who.altri { background: transparent; color: var(--fg2); box-shadow: inset 0 0 0 1px var(--line); white-space: normal; }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794262416">
+</head>
+<body>
+<script src="nav.js?v=1794262416"></script>
+<script src="critica.js?v=1794262416" defer></script>
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · film, serie, spot e stadi</span>
+  <h1>Sullo schermo</h1>
+  <p class="lede">Ogni volta che una canzone di Tozzi è stata usata in un film, in una serie, in uno spot o in uno stadio, e che abbiamo trovato in una fonte. L'ultima colonna dice di chi è la voce che si sente: spesso non è la sua.</p>
+</header>
+
+<div class="facts">
+  <div class="fact"><span class="v">28</span><span class="l">usi trovati in una fonte, dal 1977 al 2026.</span></div>
+  <div class="fact"><span class="v">13</span><span class="l">con la voce di Tozzi, da solo o in duetto.</span></div>
+  <div class="fact"><span class="v">7</span><span class="l">con la Gloria di Laura Branigan.</span></div>
+</div>
+
+<section class="card">
+  <span class="songs">Per canzone: Gloria 14 · Ti amo 8 · Stella stai 3 · Eva 1 · Gente di mare 1 · Un corpo e un&#x27;anima 1</span>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Dove</th><th>Cosa</th><th>Canzone</th><th>Chi canta</th></tr></thead>
+    <tbody>
+      <tr><td>1977</td><td><b>I nuovi mostri, episodio «Senza parole», di Dino Risi</b></td><td>Film</td><td>Ti amo</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>1983</td><td><b>Flashdance, di Adrian Lyne</b></td><td>Film</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>1984</td><td><b>Transas e Caretas, TV Globo</b><span class="sub">tema del personaggio di José Wilker</span></td><td>Serie</td><td>Eva</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2002</td><td><b>Asterix &amp; Obelix: Missione Cleopatra</b><span class="sub">duetto inciso per il film</span></td><td>Film</td><td>Ti amo</td><td><span class="who tozzi">Tozzi e Monica Bellucci</span></td></tr>
+      <tr><td>2005</td><td><b>Hostel, di Eli Roth</b><span class="sub">la versione ceca, «Třetí galaxie»</span></td><td>Film</td><td>Stella stai</td><td><span class="who altri">Michal David</span></td></tr>
+      <tr><td>2005–07</td><td><b>Gente di mare, Rai 1</b><span class="sub">sigla della fiction</span></td><td>Serie</td><td>Gente di mare</td><td><span class="who tozzi">Tozzi e Raf</span></td></tr>
+      <tr><td>2006</td><td><b>Grand Theft Auto: Vice City Stories</b><span class="sub">alla radio del gioco, ambientato nel 1984</span></td><td>Videogioco</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2007</td><td><b>Il 7 e l&#x27;8, di Ficarra e Picone</b><span class="sub">scritta da Tozzi</span></td><td>Film</td><td>Un corpo e un&#x27;anima</td><td><span class="who altri">Wess e Dori Ghezzi</span></td></tr>
+      <tr><td>—</td><td><b>Glee</b><span class="sub">sulla versione di Branigan</span></td><td>Serie</td><td>Gloria</td><td><span class="who altri">il cast della serie</span></td></tr>
+      <tr><td>2012</td><td><b>La Vérité si je mens ! 3</b></td><td>Film</td><td>Ti amo</td><td><span class="who altri">non indicata</span></td></tr>
+      <tr><td>2013</td><td><b>The Wolf of Wall Street, di Martin Scorsese</b></td><td>Film</td><td>Gloria</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2013</td><td><b>Gloria, di Sebastián Lelio</b><span class="sub">la canzone suona alla festa nel finale</span></td><td>Film</td><td>Gloria</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2015</td><td><b>Metal Gear Solid V: The Phantom Pain</b><span class="sub">ambientato nel 1984</span></td><td>Videogioco</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2015</td><td><b>Vodafone, spot</b><span class="sub">l&#x27;attore la canticchia</span></td><td>Spot</td><td>Ti amo</td><td><span class="who altri">Bruce Willis</span></td></tr>
+      <tr><td>2017</td><td><b>Tonya, di Craig Gillespie</b></td><td>Film</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2018</td><td><b>Gloria Bell, di Sebastián Lelio</b><span class="sub">il remake americano; la canzone suona al matrimonio</span></td><td>Film</td><td>Gloria</td><td><span class="who altri">non indicata con certezza</span></td></tr>
+      <tr><td>2019</td><td><b>Spider-Man: Far From Home</b><span class="sub">nelle scene a Venezia</span></td><td>Film</td><td>Stella stai</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2019</td><td><b>Universiadi di Napoli, cerimonia di apertura</b><span class="sub">all&#x27;ingresso della squadra italiana</span></td><td>Sport</td><td>Gloria</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2019</td><td><b>St. Louis Blues, hockey</b><span class="sub">canzone delle vittorie nella stagione della prima Stanley Cup</span></td><td>Sport</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2019–20</td><td><b>TIM, spot</b><span class="sub">Natale 2019 e Festival di Sanremo 2020</span></td><td>Spot</td><td>Stella stai</td><td><span class="who altri">Mina</span></td></tr>
+      <tr><td>2020</td><td><b>La casa di carta, parte 4</b><span class="sub">la canta al suo matrimonio</span></td><td>Serie</td><td>Ti amo</td><td><span class="who altri">l&#x27;attore che interpreta Berlino</span></td></tr>
+      <tr><td>2021</td><td><b>Narcos: Messico, stagione 3, episodio 1</b><span class="sub">in spagnolo, «Te amo»</span></td><td>Serie</td><td>Ti amo</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2021</td><td><b>Wolf, di Nathalie Biancheri</b></td><td>Film</td><td>Gloria</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2024</td><td><b>Disclaimer, di Alfonso Cuarón, episodio 1</b><span class="sub">sui titoli di coda</span></td><td>Serie</td><td>Ti amo</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2024</td><td><b>Griselda, episodio 3</b><span class="sub">in spagnolo</span></td><td>Serie</td><td>Gloria</td><td><span class="who tozzi">Tozzi</span></td></tr>
+      <tr><td>2024</td><td><b>Eric, episodio 3</b></td><td>Serie</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2024</td><td><b>Speak No Evil, di James Watkins</b></td><td>Film</td><td>Gloria</td><td><span class="who branigan">Laura Branigan</span></td></tr>
+      <tr><td>2026</td><td><b>Olimpiadi di Milano Cortina, spot della campagna</b></td><td>Spot</td><td>Ti amo</td><td><span class="who tozzi">Tozzi</span></td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="note">
+  <p><b>Da dove vengono i dati.</b> Le voci di Wikipedia in italiano, inglese, francese e portoghese delle singole canzoni, dei film e delle colonne sonore; per Hostel la scheda della colonna sonora su IMDb; per Disclaimer Sky TG24 (14 ottobre 2024); per lo spot Vodafone Engage (23 luglio 2015); per lo spot delle Olimpiadi L'Officiel Italia (9 febbraio 2026); per Asterix &amp; Obelix Rockol (27 febbraio 2002); per La casa di carta Movieplayer. Glee è senza anno perché la fonte non lo indica.</p>
+  <p><b>Cosa non abbiamo messo.</b> Gli usi citati da una sola ricerca senza una fonte che li confermi: Book Club 2, la serie Hotel Costiera, il film L'estate assassina, lo spot della compagnia aerea Southwest Airlines e gli spot del latte Gloria in Perù. Per Gloria Bell le fonti dicono che la canzone suona al matrimonio, ma non quale versione: per questo la voce è «non indicata con certezza». Lo stesso vale per La Vérité si je mens ! 3.</p>
+</section>
+</main>
+</body>
+</html>

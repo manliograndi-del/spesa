@@ -70,6 +70,8 @@ main { max-width: 980px; margin: 0 auto; display: grid; gap: 22px; }
     42%  { filter: brightness(1.45) saturate(1) drop-shadow(0 0 2px #ffe08a) drop-shadow(0 0 30px rgba(255, 180, 60, .9)) drop-shadow(0 3px 0 #a3271a); }
     100% { filter: brightness(1) saturate(1) drop-shadow(0 0 1px #ffcf5a) drop-shadow(0 0 10px rgba(255, 160, 40, .55)) drop-shadow(0 3px 0 #a3271a); }
   }
+  /* once the show is on, the lines stay lit even where animations are paused (background tabs) */
+  .sign.lit.done .act, .sign.lit.done .rule { animation: none; filter: none; }
   /* then the lines come on one after the other */
   .sign.lit .rule { animation: line .5s linear .25s both; }
   .sign.lit .act { animation: line .6s linear both; animation-delay: calc(.45s + var(--i) * .12s); }
@@ -85,7 +87,7 @@ main { max-width: 980px; margin: 0 auto; display: grid; gap: 22px; }
 
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
-<link rel="stylesheet" href="theme.css?v=1794251836">
+<link rel="stylesheet" href="theme.css?v=1794262416">
 </head>
 <body>
 
@@ -99,8 +101,10 @@ main { max-width: 980px; margin: 0 auto; display: grid; gap: 22px; }
     <a class="act" style="--i:1" href="tozzi-mondo.html"><span class="mq">Nel mondo</span><span class="d">Dove lo ascoltano: le 50 città, mese per mese, su una mappa.</span></a>
     <a class="act" style="--i:2" href="tozzi-fonti.html"><span class="mq">In classifica</span><span class="d">Quanto era famoso allora: Ti amo, Tu, Gloria e Stella stai in ogni classifica.</span></a>
     <a class="act" style="--i:3" href="ascolti.html"><span class="mq">Ascolti</span><span class="d">A confronto con la sua epoca: i 20 grandi italiani degli anni '70 e '80.</span></a>
-    <a class="act" style="--i:4" href="fanclub.html"><span class="mq">Fan club</span><span class="d">Chi lo segue da sempre: l'U.T.F.C. e il blog Tutto su Tozzi.</span></a>
-    <a class="act gl" style="--i:5" href="gloria.html"><span class="mq">Gloria</span><span class="d">La canzone e il musical: classifiche, versioni, film e la tournée.</span></a>
+    <a class="act" style="--i:4" href="cover.html"><span class="mq">Le cover</span><span class="d">Le sue canzoni cantate da altri, in dieci lingue, e chi oggi ha più ascolti.</span></a>
+    <a class="act" style="--i:5" href="schermo.html"><span class="mq">Sullo schermo</span><span class="d">Film, serie, spot e stadi: 28 volte, e di chi è la voce.</span></a>
+    <a class="act" style="--i:6" href="fanclub.html"><span class="mq">Fan club</span><span class="d">Chi lo segue da sempre: l'U.T.F.C. e il blog Tutto su Tozzi.</span></a>
+    <a class="act gl" style="--i:7" href="gloria.html"><span class="mq">Gloria</span><span class="d">La canzone e il musical: classifiche, versioni, film e la tournée.</span></a>
   </nav>
 </div>
 </main>
@@ -215,7 +219,7 @@ main { max-width: 980px; margin: 0 auto; display: grid; gap: 22px; }
 
   function frame(now) {
     const t = (now - t0) / 1000, dt = Math.min(.05, (now - last) / 1000); last = now;
-    if (!lit && t >= T_FLASH) { lit = true; sign.classList.remove('dark'); sign.classList.add('lit'); }
+    if (!lit && t >= T_FLASH) { lit = true; sign.classList.remove('dark'); sign.classList.add('lit'); setTimeout(() => sign.classList.add('done'), 2600); }
     for (let i = 0; i < N; i++) {
       const b = B[i], w = want(i, t);
       b.c += (w - b.c) * (1 - Math.exp(-(w > b.c ? 24 : 8.5) * dt));   // heats fast, cools slower
@@ -226,10 +230,10 @@ main { max-width: 980px; margin: 0 auto; display: grid; gap: 22px; }
   }
 
   function start() {
-    lit = false; sign.classList.remove('lit'); sign.classList.add('dark');
+    lit = false; sign.classList.remove('lit', 'done'); sign.classList.add('dark');
     void sign.offsetWidth; t0 = last = performance.now();
     clearTimeout(start.safe);                              // never leave the sign unlit if frames do not run
-    start.safe = setTimeout(() => { if (!lit) { lit = true; sign.classList.remove('dark'); sign.classList.add('lit'); } }, 5000);
+    start.safe = setTimeout(() => { if (!lit) { lit = true; sign.classList.remove('dark'); sign.classList.add('lit'); } setTimeout(() => sign.classList.add('done'), 2600); }, 5000);
   }
 
   sign.classList.add('live');

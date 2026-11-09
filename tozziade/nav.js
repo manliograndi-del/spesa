@@ -2,12 +2,14 @@
    A "Classifiche e altri artisti" button opens a second row with the general pages; it is open by itself on those pages.
    Sections that group more than one page get tabs under the header. */
 (function () {
-  const HAVE = ["album.html", "allora-oggi.html", "ascolti.html", "fanclub.html", "follower.html", "fonti.html", "fonti.html", "gloria.html", "gloria.html", "hpi-fimi.html", "index.html", "mondo-artisti.html", "mondo.html", "singoli-fimi.html", "singoli.html", "tozzi-fonti.html", "tozzi-mondo.html", "tozzi-spotify.html", "vendite.html"]; /* filled in by build.py with the pages that exist */
+  const HAVE = ["album.html", "allora-oggi.html", "ascolti.html", "cover.html", "fanclub.html", "follower.html", "fonti.html", "fonti.html", "gloria.html", "gloria.html", "hpi-fimi.html", "index.html", "mondo-artisti.html", "mondo.html", "schermo.html", "singoli-fimi.html", "singoli.html", "tozzi-fonti.html", "tozzi-mondo.html", "tozzi-spotify.html", "vendite.html"]; /* filled in by build.py with the pages that exist */
   const TOZZI = [
     ["Su Spotify", [["tozzi-spotify.html", "Tozzi su Spotify"]]],
     ["Nel mondo", [["tozzi-mondo.html", "Le città che lo ascoltano"]]],
     ["In classifica", [["tozzi-fonti.html", "Tozzi, fonte per fonte"]]],
     ["Ascolti", [["ascolti.html", "Ascoltatori mensili"], ["follower.html", "Follower"]]],
+    ["Le cover", [["cover.html", "Le cover"]]],
+    ["Sullo schermo", [["schermo.html", "Sullo schermo"]]],
     ["Fan club", [["fanclub.html", "Fan club"]]],
   ];
   const MORE = [
@@ -68,6 +70,18 @@
     #sitebar .sb-in > .sb-scroll{flex-basis:100%;margin:0 calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:0 max(16px,env(safe-area-inset-left,0px))}
     #sitebar .sb-in .sb-row{margin-left:0}
   }
+  #sitebar .sb-short{display:none}
+  @media (max-width:640px){
+    #sitebar{position:relative}
+    #sitebar .sb-in > .sb-scroll{overflow:visible;margin:0;padding:0}
+    #sitebar .sb-in .sb-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:auto;gap:6px}
+    #sitebar .sb-in .sb-btn{justify-content:center;text-align:center;white-space:normal;line-height:1.15;min-height:42px;padding:8px 4px;font-size:11px;letter-spacing:.4px}
+    #sitebar .sb-in .sb-btn svg{flex:none}
+    #sitebar .sb-long{display:none}#sitebar .sb-short{display:inline}
+    #sitebar .sb-more .sb-scroll{overflow:visible}
+    #sitebar .sb-more .sb-row{flex-wrap:wrap;width:auto;gap:10px 14px}
+    #sitebar .sb-grp > div{flex-wrap:wrap}
+  }
   @media (prefers-reduced-motion:reduce){#sitebar .sb-btn svg{transition:none}}`;
   const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
   let curTabs = null, inMore = false;
@@ -89,7 +103,7 @@
   bar.id = "sitebar"; bar.setAttribute("role", "banner");
   bar.innerHTML = `<div class="sb-in"><a class="sb-logo" href="index.html"><b>Tozziade</b><span>Umberto Tozzi in numeri</span></a>
     <div class="sb-scroll"><div class="sb-row" role="navigation" aria-label="Umberto Tozzi">${tozzi}
-    <button class="sb-btn sb-ghost" type="button" id="sb-more-btn" aria-expanded="false" aria-controls="sb-more">Classifiche e altri artisti${chev}</button></div></div></div>
+    <button class="sb-btn sb-ghost" type="button" id="sb-more-btn" aria-expanded="false" aria-controls="sb-more"><span class="sb-long">Classifiche e altri artisti</span><span class="sb-short">Altri artisti</span>${chev}</button></div></div></div>
     <div class="sb-more" id="sb-more"><div class="sb-scroll"><div class="sb-row" role="navigation" aria-label="Classifiche e altri artisti">${more}</div></div></div>`;
   if (curTabs) {
     const t = document.createElement("div"); t.className = "sb-tabs";

@@ -28,15 +28,25 @@ h1 { margin: 0; font-size: clamp(44px, 8vw, 80px); }
 .go.o { background: var(--accent); color: #00001d; }
 .go:hover { filter: brightness(1.1); }
 .go:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.books { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: grid; gap: 12px; }
+.books h2 { margin: 0; font-size: 28px; line-height: 1.05; }
+.books p { margin: 0; color: var(--fg2); max-width: 72ch; }
+.tw { overflow-x: auto; }
+.books table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.books th { text-align: left; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg3); padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.books td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--fg2); }
+.books td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--fg3); }
+.books td b { color: #fff; }
+.books tr:last-child td { border-bottom: 0; }
 .note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
 .note p { margin: 0; }
 </style>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
-<link rel="stylesheet" href="theme.css?v=1794160992">
+<link rel="stylesheet" href="theme.css?v=1794262416">
 </head>
 <body>
-<script src="nav.js?v=1794160992"></script>
-<script src="critica.js?v=1794160992" defer></script>
+<script src="nav.js?v=1794262416"></script>
+<script src="critica.js?v=1794262416" defer></script>
 
 <main>
 <header>
@@ -66,8 +76,25 @@ h1 { margin: 0; font-size: clamp(44px, 8vw, 80px); }
   </article>
 </div>
 
+<section class="books" id="libri">
+  <h2>I libri</h2>
+  <p>Su Tozzi si è scritto poco: un'autobiografia, un saggio e qualche libro di chi ha lavorato con lui.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Libro</th><th>Autore ed editore</th><th>Che cos'è</th></tr></thead>
+    <tbody>
+      <tr><td>1989</td><td><b>Umberto Tozzi</b></td><td>Nadia Arduini, Forte Editore</td><td>il primo libro su di lui</td></tr>
+      <tr><td>2009</td><td><b>Non solo io. La mia storia</b></td><td>Umberto Tozzi, Aliberti</td><td>la sua autobiografia, uscita a marzo 2009</td></tr>
+      <tr><td>2009</td><td><b>Quando la musica è poesia. Il mondo di Umberto Tozzi</b></td><td>Stefano Bastianini, InEdition</td><td>un saggio sulle sue canzoni</td></tr>
+      <tr><td>2013</td><td><b>Il venditore di stelle</b></td><td>Rolando D'Angeli, G-TRIP</td><td>le memorie di un manager della canzone italiana, con una testimonianza di Tozzi</td></tr>
+      <tr><td>—</td><td><b>Una vita in levare</b></td><td>Sergio Panno, Historica Edizioni</td><td>le memorie del batterista dei Dik Dik, poi impresario di Tozzi</td></tr>
+      <tr><td>2022</td><td><b>Giancarlo Bigazzi. L'artigiano della canzone</b></td><td>Ciro Castaldo, Edizioni Melagrana</td><td>la vita del paroliere che ha scritto con lui Ti amo, Tu e Gloria</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
 <section class="note">
   <p><b>Da dove vengono queste informazioni.</b> Nome e anno di fondazione dell'U.T.F.C. sono quelli scritti nel titolo del suo gruppo Facebook, «U.T.F.C. - Umberto Tozzi Fan's Club (Fondato nel 1988)». Le informazioni su Tutto su Tozzi vengono dalla sua home page e dalla pagina «Fan club 1988 – Diario di bordo», controllate l'8 novembre 2026.</p>
+  <p><b>I libri.</b> Titoli, autori, editori e anni vengono dalle schede delle librerie online (Hoepli, IBS, Unilibro) e degli editori, e dall'elenco dei libri di Tutto su Tozzi. Il libro di Sergio Panno non ha un anno nella scheda dell'editore. Non abbiamo messo un libro di racconti ispirati alle sue canzoni, perché le fonti danno due anni diversi, né un libro annunciato e non ancora uscito.</p>
   <p><b>Cosa non abbiamo messo.</b> Il sito ufficiale umbertotozzi.com non rimanda a nessun fan club, e la sezione «Fan club» dello store ufficiale per ora contiene solo due notizie di prova. I nomi dei fondatori dell'U.T.F.C. non compaiono nelle pagine che siamo riusciti a leggere, quindi non li riportiamo.</p>
 </section>
 </main>

@@ -49,8 +49,16 @@
     "fanclub.html": ["Il pubblico che c'era", [
       "I numeri di Spotify raccontano chi ascolta Tozzi oggi, spesso per una canzone sola. I fan club raccontano l'altra metà della storia: le persone che lo seguono dagli anni '80, che conservano i ritagli dei giornali, le locandine dei concerti, le apparizioni in TV. È la memoria che nessuna classifica registra, e senza la quale molti dei dati di questo sito non si potrebbero ricostruire."
     ]],
+    "cover.html": ["Quando la cover supera l'originale", [
+      "Le canzoni di Tozzi sono state ricantate in dieci lingue, e quasi sempre il testo è cambiato: la storia dell'uomo diviso tra moglie e amante di Ti amo sparisce, resta il ritornello. Per Ti amo e Tu l'originale resta il più ascoltato. Per Gloria, Stella stai ed Eva no.",
+      "Sono tre storie diverse: Gloria è diventata americana con Laura Branigan, Stella stai latinoamericana con i Menudo, Eva brasiliana con la Banda Eva."
+    ]],
+    "schermo.html": ["La voce degli altri", [
+      "Ventotto usi in cinquant'anni, ma solo in tredici si sente la voce di Tozzi. Gloria da sola vale la metà dell'elenco, e la metà di quei casi è nella versione di Laura Branigan.",
+      "Spesso serve a dire «Italia»: Stella stai nelle scene di Spider-Man a Venezia, Ti amo sui titoli di coda di Disclaimer, dopo una vacanza a Venezia. Ma i casi più curiosi sono altrove: una telenovela brasiliana, un film dell'orrore con Stella stai in ceco, Bruce Willis che canticchia Ti amo in uno spot."
+    ]],
     "gloria.html": ["Una canzone più grande di chi l'ha scritta", [
-      "Gloria è uno di quei rari brani che hanno vissuto più vite. Nata come singolo pop di Tozzi e Bigazzi, con un ritornello che cita Beethoven, è diventata con Laura Branigan un classico della radio americana, poi un inno da stadio, poi la colonna sonora di Scorsese. Ogni generazione l'ha scoperta in una forma diversa.",
+      "Gloria è uno di quei rari brani che hanno vissuto più vite. Nata come singolo pop di Tozzi e Bigazzi, con un ritornello che cita Beethoven, è diventata con Laura Branigan un classico della radio americana, poi la colonna sonora di Scorsese, poi un inno da stadio. Ogni generazione l'ha scoperta in una forma diversa.",
       "Il musical che porta il suo nome è la naturale conclusione di questa storia: Gloria smette di essere una donna immaginata in una canzone e diventa un personaggio in carne e ossa."
     ]],
   };

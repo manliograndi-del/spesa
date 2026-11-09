@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Le cover</title>
+<style>
+/* Layout: one column. Three key facts, then one card per song: who sang it again, where and how it went, and a bar chart
+   comparing Spotify plays of Tozzi's own recording with the best-known covers. Last, the songs he wrote for others. */
+:root { --bg: #0a1250; --panel: rgba(8,12,62,.88); --fg: #fff; --fg2: #d4d7f2; --fg3: #a3a7d4; --line: #2b3290; --soft: #161c66; --accent: #fea607; --hi: #de0952; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Montserrat", "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 28px 56px; }
+main { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+main > * { min-width: 0; }
+header { display: grid; gap: 6px; }
+.eyebrow { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+h1 { margin: 0; font-size: clamp(44px, 8vw, 80px); }
+.lede { margin: 4px 0 0; color: var(--fg2); max-width: 70ch; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 2px; }
+.fact .v { font-family: "Anton", "Montserrat", sans-serif; font-size: 40px; line-height: 1.05; color: var(--accent); }
+.fact .l { color: var(--fg2); font-size: 13.5px; }
+.jump { display: flex; flex-wrap: wrap; gap: 6px; }
+.jump a { font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--line); background: var(--panel); color: var(--fg2); text-decoration: none; }
+.jump a:hover { color: #fff; border-color: var(--accent); }
+.song { background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--hi); border-radius: 12px; padding: 18px 18px 14px; display: grid; gap: 14px; scroll-margin-top: 150px; }
+.song h2 { margin: 0; font-size: 34px; line-height: 1; }
+.song .orig { margin: -6px 0 0; color: var(--fg2); font-size: 14px; max-width: 75ch; }
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th { text-align: left; font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg3); padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--fg2); }
+td:first-child { font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--fg3); }
+td b { color: #fff; }
+tr:last-child td { border-bottom: 0; }
+.own td { background: rgba(254, 166, 7, .07); }
+.bars { display: grid; gap: 7px; }
+.bars .t { font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--fg3); }
+.bar { display: grid; grid-template-columns: minmax(0, 13em) minmax(0, 1fr) 5.2em; gap: 10px; align-items: center; font-size: 13.5px; }
+.bar .n { color: var(--fg2); overflow-wrap: anywhere; }
+.bar .track { display: block; height: 14px; background: var(--soft); border-radius: 4px; overflow: hidden; }
+.bar .fill { display: block; height: 100%; background: var(--hi); border-radius: 0 4px 4px 0; min-width: 2px; }
+.bar.tz .fill { background: var(--accent); }
+.bar.tz .n { color: #fff; font-weight: 700; }
+.bar .v { text-align: right; font-variant-numeric: tabular-nums; color: #fff; font-weight: 600; }
+@media (max-width: 560px) { .bar { grid-template-columns: minmax(0, 1fr) 5em; } .bar .track { grid-column: 1 / -1; grid-row: 2; } }
+.key { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 12.5px; color: var(--fg3); }
+.key i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.others { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: grid; gap: 12px; }
+.others h2 { margin: 0; font-size: 30px; }
+.others p { margin: 0; color: var(--fg2); max-width: 72ch; }
+.note { color: var(--fg2); font-size: 13.5px; max-width: 80ch; display: grid; gap: 8px; }
+.note p { margin: 0; }
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,800;1,900&display=swap">
+<link rel="stylesheet" href="theme.css?v=1794262416">
+</head>
+<body>
+<script src="nav.js?v=1794262416"></script>
+<script src="critica.js?v=1794262416" defer></script>
+
+<main>
+<header>
+  <span class="eyebrow">Umberto Tozzi · le sue canzoni cantate da altri</span>
+  <h1>Le cover</h1>
+  <p class="lede">Chi ha ricantato le canzoni di Tozzi, in quale lingua e con che risultato in classifica. E, per ognuna, un confronto semplice: su Spotify oggi si ascolta di più l'originale o la cover?</p>
+</header>
+
+<div class="facts">
+  <div class="fact"><span class="v">3 su 7</span><span class="l">canzoni in cui una cover ha più ascolti su Spotify dell'originale: Gloria, Stella stai ed Eva.</span></div>
+  <div class="fact"><span class="v">119 milioni</span><span class="l">gli ascolti di «Claridad» dei Menudo, la Stella stai in spagnolo: più di cinque volte la versione di Tozzi.</span></div>
+  <div class="fact"><span class="v">oltre 60</span><span class="l">le cover di Gloria, secondo Wikipedia in tedesco. Qui ci sono solo quelle con una fonte.</span></div>
+</div>
+
+<nav class="jump" aria-label="Le canzoni">
+  <a href="#ti-amo">Ti amo</a><a href="#gloria">Gloria</a><a href="#stella-stai">Stella stai</a><a href="#eva">Eva</a><a href="#tu">Tu</a><a href="#gente-di-mare">Gente di mare</a><a href="#per-altri">Scritte per altri</a>
+</nav>
+
+<div class="key"><span><i style="background:var(--accent)"></i>registrazione di Tozzi</span><span><i style="background:var(--hi)"></i>cover</span><span>Ascolti totali su Spotify, in milioni, fine ottobre 2026.</span></div>
+
+<section class="song" id="ti-amo">
+  <h2>Ti amo <span style="color:var(--fg3);font-size:.6em">1977</span></h2>
+  <p class="orig">L'originale fu primo in Italia, Svezia, Svizzera e Francia. Le cover hanno cambiato quasi sempre il testo: la storia dell'uomo diviso tra moglie e amante è sparita, è rimasto il ritornello in italiano.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr><td>1977</td><td><b>Howard Carpendale</b></td><td>tedesco</td><td>2º in Germania, più in alto dell'originale (4º); 10º in Austria</td></tr>
+      <tr><td>1977</td><td><b>Dalida</b></td><td>francese</td><td>lato B di un 45 giri</td></tr>
+      <tr><td>1984</td><td><b>Laura Branigan</b></td><td>inglese, testo di Diane Warren</td><td>2ª in Australia, 5ª in Canada, 55ª negli Stati Uniti</td></tr>
+      <tr class="own"><td>2002</td><td><b>Tozzi e Lena Ka</b>, «Ti amo (rien que des mots)»</td><td>italiano e francese</td><td>3ª in Francia, 2ª in Vallonia; 393.000 copie in Francia (dato del 2014)</td></tr>
+      <tr class="own"><td>2002</td><td><b>Tozzi e Monica Bellucci</b></td><td>italiano</td><td>nel film Asterix &amp; Obelix: Missione Cleopatra</td></tr>
+      <tr><td>2011</td><td><b>Sergio Dalma</b>, «Te amo»</td><td>spagnolo</td><td>10º in Spagna</td></tr>
+      <tr class="own"><td>2017</td><td><b>Tozzi e Anastacia</b></td><td>italiano e inglese</td><td>per i 40 anni della canzone</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bars" role="img" aria-label="Ascolti su Spotify di Ti amo: Tozzi 200,9 milioni, Howard Carpendale 39,4, Sergio Dalma 21,5, Laura Branigan 14,0, Dalida 2,9">
+    <span class="t">Su Spotify</span>
+    <div class="bar tz"><span class="n">Umberto Tozzi</span><span class="track"><span class="fill" style="width:57.7%"></span></span><span class="v">200,9</span></div>
+    <div class="bar"><span class="n">Howard Carpendale</span><span class="track"><span class="fill" style="width:11.3%"></span></span><span class="v">39,4</span></div>
+    <div class="bar"><span class="n">Sergio Dalma</span><span class="track"><span class="fill" style="width:6.2%"></span></span><span class="v">21,5</span></div>
+    <div class="bar"><span class="n">Laura Branigan</span><span class="track"><span class="fill" style="width:4%"></span></span><span class="v">14,0</span></div>
+    <div class="bar"><span class="n">Dalida</span><span class="track"><span class="fill" style="width:.8%"></span></span><span class="v">2,9</span></div>
+  </div>
+</section>
+
+<section class="song" id="gloria">
+  <h2>Gloria <span style="color:var(--fg3);font-size:.6em">1979</span></h2>
+  <p class="orig">È la canzone di Tozzi ricantata di più. La cover di Laura Branigan oggi ha più del doppio degli ascolti dell'originale. Tutta la storia è nella pagina <a href="gloria.html" style="color:var(--accent)">Gloria</a>.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr><td>1979</td><td><b>Jonathan King</b></td><td>inglese, prima traduzione</td><td>65º nel Regno Unito</td></tr>
+      <tr><td>1980</td><td><b>Vítězslav Vávra</b>, «Dívka Gloria»</td><td>ceco</td><td>successo in Cecoslovacchia</td></tr>
+      <tr><td>1982</td><td><b>Laura Branigan</b></td><td>inglese, nuovo testo di Trevor Veitch</td><td>2ª negli Stati Uniti, 1ª in Australia, 6ª nel Regno Unito; disco di platino negli Stati Uniti</td></tr>
+      <tr><td>1982</td><td><b>Lena Valaitis</b></td><td>tedesco, testo di Michael Kunze</td><td>—</td></tr>
+      <tr><td>1982</td><td><b>Sheila</b>, «Glori Gloria»</td><td>francese</td><td>—</td></tr>
+      <tr><td>1983</td><td><b>Carola</b></td><td>svedese</td><td>nell'album Främling, primo in Svezia</td></tr>
+      <tr><td>1983</td><td><b>Mona Carita</b></td><td>finlandese</td><td>—</td></tr>
+      <tr><td>2011</td><td><b>Sergio Dalma</b></td><td>spagnolo</td><td>nell'album Via Dalma II, 5 settimane primo in Spagna</td></tr>
+      <tr><td>2012</td><td><b>Gloria Trevi</b></td><td>spagnolo</td><td>primo singolo del suo album Gloria</td></tr>
+      <tr><td>2021</td><td><b>Angel Olsen</b></td><td>inglese, testo di Branigan</td><td>—</td></tr>
+      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, serata delle cover, insieme a Ti amo e Tu</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bars" role="img" aria-label="Ascolti su Spotify di Gloria: Laura Branigan 348,5 milioni, Tozzi 136,9, Gloria Trevi 11,9, Carola 7,0, Sergio Dalma 3,1">
+    <span class="t">Su Spotify</span>
+    <div class="bar"><span class="n">Laura Branigan</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">348,5</span></div>
+    <div class="bar tz"><span class="n">Umberto Tozzi</span><span class="track"><span class="fill" style="width:39.3%"></span></span><span class="v">136,9</span></div>
+    <div class="bar"><span class="n">Gloria Trevi</span><span class="track"><span class="fill" style="width:3.4%"></span></span><span class="v">11,9</span></div>
+    <div class="bar"><span class="n">Carola</span><span class="track"><span class="fill" style="width:2%"></span></span><span class="v">7,0</span></div>
+    <div class="bar"><span class="n">Sergio Dalma</span><span class="track"><span class="fill" style="width:.9%"></span></span><span class="v">3,1</span></div>
+  </div>
+</section>
+
+<section class="song" id="stella-stai">
+  <h2>Stella stai <span style="color:var(--fg3);font-size:.6em">1980</span></h2>
+  <p class="orig">Tozzi la incise subito anche in spagnolo, con il titolo «Claridad». In America Latina però è diventata famosa nella versione dei Menudo, il gruppo portoricano in cui più tardi cantò Ricky Martin.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr class="own"><td>1980</td><td><b>Umberto Tozzi</b>, «Claridad»</td><td>spagnolo, testo di Óscar Gómez</td><td>la sua versione spagnola</td></tr>
+      <tr><td>1981</td><td><b>Menudo</b>, «Claridad»</td><td>spagnolo</td><td>prima in Colombia, Ecuador, Perù e Venezuela</td></tr>
+      <tr><td>1982</td><td><b>Michal David</b>, «Třetí galaxie»</td><td>ceco, testo di fantascienza</td><td>successo in Cecoslovacchia; nel 2005 finisce nel film Hostel</td></tr>
+      <tr><td>1994</td><td><b>Thelma Houston</b>, «Shining Star»</td><td>inglese</td><td>in un album uscito per il mercato italiano</td></tr>
+      <tr><td>2012</td><td><b>Luis Fonsi</b>, «Claridad»</td><td>spagnolo</td><td>—</td></tr>
+      <tr><td>2019–20</td><td><b>Mina</b></td><td>italiano</td><td>per gli spot TIM, prima il ritornello poi la canzone intera</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bars" role="img" aria-label="Ascolti su Spotify di Stella stai: Menudo 119,4 milioni, Tozzi 21,2, Luis Fonsi 6,3, Tozzi in spagnolo 4,2">
+    <span class="t">Su Spotify</span>
+    <div class="bar"><span class="n">Menudo, «Claridad»</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">119,4</span></div>
+    <div class="bar tz"><span class="n">Umberto Tozzi</span><span class="track"><span class="fill" style="width:17.7%"></span></span><span class="v">21,2</span></div>
+    <div class="bar"><span class="n">Luis Fonsi, «Claridad»</span><span class="track"><span class="fill" style="width:5.3%"></span></span><span class="v">6,3</span></div>
+    <div class="bar tz"><span class="n">Tozzi, «Claridad»</span><span class="track"><span class="fill" style="width:3.6%"></span></span><span class="v">4,2</span></div>
+  </div>
+</section>
+
+<section class="song" id="eva">
+  <h2>Eva <span style="color:var(--fg3);font-size:.6em">1982</span></h2>
+  <p class="orig">In Italia fu un successo dell'estate 1982: parla di una coppia che scappa dalla fine del mondo su «l'ultima astronave». In Brasile è diventata un classico, prima in versione rock e poi da festa.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr><td>1983</td><td><b>Rádio Táxi</b></td><td>portoghese</td><td>prima nella classifica di San Paolo, successo in tutto il Brasile</td></tr>
+      <tr class="own"><td>1984</td><td><b>Umberto Tozzi</b></td><td>italiano</td><td>la sua versione è nella telenovela Transas e Caretas di TV Globo</td></tr>
+      <tr><td>1997</td><td><b>Banda Eva</b>, con Ivete Sangalo</td><td>portoghese, dal vivo</td><td>diventa la canzone simbolo del gruppo e di Ivete Sangalo</td></tr>
+      <tr><td>2020</td><td><b>Fresno e Far From Alaska</b></td><td>portoghese</td><td>versione rock ed elettronica</td></tr>
+    </tbody>
+  </table></div>
+  <div class="bars" role="img" aria-label="Ascolti su Spotify di Eva: Banda Eva 38,9 milioni, Ivete Sangalo 12,2, Tozzi 2,8">
+    <span class="t">Su Spotify</span>
+    <div class="bar"><span class="n">Banda Eva, dal vivo</span><span class="track"><span class="fill" style="width:100%"></span></span><span class="v">38,9</span></div>
+    <div class="bar"><span class="n">Ivete Sangalo, medley</span><span class="track"><span class="fill" style="width:31.4%"></span></span><span class="v">12,2</span></div>
+    <div class="bar tz"><span class="n">Umberto Tozzi</span><span class="track"><span class="fill" style="width:7.3%"></span></span><span class="v">2,8</span></div>
+  </div>
+</section>
+
+<section class="song" id="tu">
+  <h2>Tu <span style="color:var(--fg3);font-size:.6em">1978</span></h2>
+  <p class="orig">Prima in Italia e per cinque settimane in Svizzera. Ha meno cover delle altre: la più fortunata è il duetto in francese che Tozzi ha rifatto lui stesso.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr class="own"><td>2003</td><td><b>Tozzi e Cérena</b>, «Toi, tu»</td><td>italiano e francese</td><td>5ª in Francia, 7ª in Vallonia</td></tr>
+      <tr><td>2017</td><td><b>Gabry Ponte e Danti</b>, «Tu sei»</td><td>italiano</td><td>riprende la canzone in chiave dance</td></tr>
+      <tr><td>—</td><td><b>Claudio Capéo</b></td><td>italiano</td><td>1,9 milioni di ascolti su Spotify, contro 78,2 dell'originale</td></tr>
+      <tr class="own"><td>2024</td><td><b>The Kolors con Tozzi</b></td><td>italiano</td><td>Sanremo, nel medley con Ti amo e Gloria</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="song" id="gente-di-mare">
+  <h2>Gente di mare <span style="color:var(--fg3);font-size:.6em">1987</span></h2>
+  <p class="orig">Cantata da Tozzi e Raf, terza all'Eurovision 1987 e seconda in Italia. È diventata la sigla di una fiction di Rai 1 e l'inno dei tifosi del Pescara.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Chi</th><th>Lingua</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr><td>—</td><td><b>Fábio Jr.</b>, «Felicidade»</td><td>portoghese</td><td>4,1 milioni di ascolti su Spotify per la versione dal vivo</td></tr>
+      <tr><td>1992</td><td><b>Ricchi e Poveri</b></td><td>italiano</td><td>nell'album Allegro italiano</td></tr>
+      <tr><td>2002</td><td><b>Gunnar Ólason</b>, «Komdu um jólin»</td><td>islandese</td><td>diventata una canzone di Natale popolare in Islanda</td></tr>
+      <tr><td>2004</td><td><b>Nino De Angelo</b></td><td>italiano</td><td>nell'album Un momento italiano</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="others" id="per-altri">
+  <h2>Scritte per altri</h2>
+  <p>Prima di diventare famoso come cantante, Tozzi scriveva canzoni per altri. Due sono diventate successi con la voce di altri.</p>
+  <div class="tw"><table>
+    <thead><tr><th>Anno</th><th>Canzone</th><th>Chi la cantò</th><th>Com'è andata</th></tr></thead>
+    <tbody>
+      <tr><td>1974</td><td><b>Un corpo e un'anima</b></td><td>Wess e Dori Ghezzi</td><td>vince Canzonissima. La finale del 6 gennaio 1975 non va in onda per uno sciopero: i vincitori vengono annunciati al telegiornale. Nel 2007 è nella colonna sonora di Il 7 e l'8 di Ficarra e Picone.</td></tr>
+      <tr><td>1976</td><td><b>Io camminerò</b></td><td>Fausto Leali, poi Mina nell'album Singolare</td><td>Tozzi la mette nel suo primo album, Donna amante mia. Su Spotify oggi: Tozzi 6,7 milioni, Leali 2,7.</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="note">
+  <p><b>Da dove vengono i dati.</b> Cover, anni e classifiche: le voci di Wikipedia in italiano, inglese, tedesco, francese, spagnolo, portoghese e ceco delle singole canzoni e degli artisti; per Hostel la scheda della colonna sonora su IMDb. Ascolti: le pagine di kworb.net con tutte le canzoni di ogni artista su Spotify, aggiornate tra il 29 ottobre e l'8 novembre 2026. Per ogni artista c'è la sua registrazione più ascoltata; le versioni in spagnolo di Tozzi sono contate a parte. La Banda Eva ha anche altre due incisioni di Eva, con 10,0 e 8,8 milioni.</p>
+  <p><b>Cosa non abbiamo messo.</b> Le cover senza una fonte che dica chi, quando e in che lingua, i remix recenti di produttori poco noti e le versioni strumentali caricate su YouTube. Per Michal David alcune fonti danno il 1997: abbiamo seguito Wikipedia in ceco, che mette Třetí galaxie nel suo album del 1982. Il milione di copie dell'album di Carola è dichiarato, non verificato, e non lo riportiamo. Per Lena Ka, Rádio Táxi, Thelma Houston e Michal David non abbiamo trovato gli ascolti della cover, quindi non sono nei grafici.</p>
+</section>
+</main>
+</body>
+</html>
