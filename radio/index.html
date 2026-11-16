@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="it" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05070d">
+<meta name="description" content="Gira il globo e ascolta le radio del mondo: più di ottomila stazioni in diretta, dall'archivio aperto radio-browser.info.">
+<title>Etere · le radio del mondo</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --notte:#05070d;
+  --vetro:rgba(12,16,28,.78);
+  --vetro-forte:rgba(14,19,33,.94);
+  --bordo:rgba(255,255,255,.09);
+  --bordo-forte:rgba(255,255,255,.18);
+  --testo:#eef0f6;
+  --tenue:#9aa1b5;
+  --fioco:#6b7186;
+  --ambra:#ffb547;
+  --ambra-viva:#ffd27a;
+  --ambra-buio:rgba(255,181,71,.14);
+  --rosso:#ff6b6b;
+  --f-titolo:'Fraunces',Georgia,serif;
+  --f-testo:'Manrope',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
+  --raggio:18px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;height:100%;background:var(--notte);color:var(--testo);font-family:var(--f-testo);
+  font-size:15px;line-height:1.4;-webkit-text-size-adjust:100%;overflow:hidden}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2px solid var(--ambra);outline-offset:2px;border-radius:8px}
+
+/* globo */
+#globo{position:fixed;inset:0}
+#globo canvas{display:block}
+.mirino{position:fixed;left:50%;top:50%;width:46px;height:46px;margin:-23px 0 0 -23px;pointer-events:none;z-index:2}
+.mirino::before{content:"";position:absolute;inset:0;border:1.5px solid rgba(255,210,122,.75);border-radius:50%;
+  box-shadow:0 0 18px rgba(255,181,71,.35),inset 0 0 12px rgba(255,181,71,.15)}
+.mirino::after{content:"";position:absolute;left:50%;top:50%;width:5px;height:5px;margin:-2.5px 0 0 -2.5px;border-radius:50%;background:var(--ambra-viva)}
+.mirino.cerca::before{animation:respiro 1.1s ease-in-out infinite}
+@keyframes respiro{50%{transform:scale(1.18);opacity:.55}}
+
+/* testata */
+.testata{position:fixed;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:14px;
+  padding:calc(14px + env(safe-area-inset-top)) 20px 14px;pointer-events:none}
+.testata>*{pointer-events:auto}
+.marchio{display:flex;align-items:baseline;gap:10px;white-space:nowrap;text-decoration:none;color:inherit}
+.marchio b{font-family:var(--f-titolo);font-weight:600;font-size:28px;letter-spacing:-.01em}
+.marchio b i{font-style:normal;color:var(--ambra)}
+.marchio span{color:var(--tenue);font-size:13px}
+.cerca-box{position:relative;margin-left:auto;width:min(380px,100%)}
+.cerca-box input{width:100%;height:44px;border-radius:999px;border:1px solid var(--bordo-forte);background:var(--vetro);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding:0 16px 0 42px;outline:none;font-size:15px}
+.cerca-box input::placeholder{color:var(--fioco)}
+.cerca-box input:focus{border-color:rgba(255,181,71,.6)}
+.cerca-box svg{position:absolute;left:15px;top:13px;width:18px;height:18px;color:var(--tenue)}
+.risultati{position:absolute;top:52px;left:0;right:0;max-height:min(60vh,460px);overflow:auto;border-radius:var(--raggio);
+  background:var(--vetro-forte);border:1px solid var(--bordo);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  padding:6px;display:none;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+.risultati.aperti{display:block}
+.tondo{width:44px;height:44px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid var(--bordo-forte);
+  background:var(--vetro);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .15s,border-color .15s}
+.tondo:hover{border-color:rgba(255,181,71,.6);background:rgba(255,181,71,.12)}
+.tondo svg{width:20px;height:20px}
+
+/* pannello */
+.pannello{position:fixed;z-index:4;left:20px;bottom:20px;width:400px;max-height:calc(100dvh - 110px);display:flex;flex-direction:column;
+  border-radius:24px;background:var(--vetro);border:1px solid var(--bordo);backdrop-filter:blur(20px) saturate(140%);
+  -webkit-backdrop-filter:blur(20px) saturate(140%);box-shadow:0 30px 80px rgba(0,0,0,.55);overflow:hidden}
+.player{display:flex;align-items:center;gap:14px;padding:16px 16px 14px;border-bottom:1px solid var(--bordo)}
+.copertina{width:54px;height:54px;flex:none;border-radius:14px;background:linear-gradient(135deg,#2a2240,#14213a);display:grid;place-items:center;
+  overflow:hidden;position:relative}
+.copertina img{width:100%;height:100%;object-fit:contain;background:#fff;padding:3px}
+.copertina .onde{display:flex;gap:3px;align-items:flex-end;height:22px}
+.copertina .onde i{width:4px;border-radius:2px;background:var(--ambra);height:6px}
+.suona .copertina .onde i{animation:barra .9s ease-in-out infinite}
+.copertina .onde i:nth-child(2){animation-delay:-.3s}.copertina .onde i:nth-child(3){animation-delay:-.6s}.copertina .onde i:nth-child(4){animation-delay:-.15s}
+@keyframes barra{0%,100%{height:5px}50%{height:22px}}
+.ora{min-width:0;flex:1}
+.ora .stato{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ambra);font-weight:700;display:flex;align-items:center;gap:6px}
+.ora .stato::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+.suona .ora .stato::before{animation:lampo 1.4s infinite}
+@keyframes lampo{50%{opacity:.2}}
+.ora .stato.errore{color:var(--rosso)}
+.ora .stato.fermo{color:var(--fioco)}
+.ora h2{margin:2px 0 0;font-family:var(--f-titolo);font-weight:500;font-size:20px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ora p{margin:2px 0 0;color:var(--tenue);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gioca{width:52px;height:52px;flex:none;border-radius:50%;background:var(--ambra);color:#1a1205;display:grid;place-items:center;
+  box-shadow:0 0 0 6px var(--ambra-buio),0 8px 24px rgba(255,181,71,.35);transition:transform .12s}
+.gioca:hover{transform:scale(1.06)}
+.gioca:disabled{background:#3a3f50;color:#8a90a3;box-shadow:none;cursor:default;transform:none}
+.gioca svg{width:22px;height:22px}
+.strumenti{display:flex;align-items:center;gap:6px;padding:10px 16px;border-bottom:1px solid var(--bordo)}
+.piccolo{height:34px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;color:var(--tenue);font-size:13px;font-weight:600;
+  border:1px solid transparent;text-decoration:none;white-space:nowrap}
+.piccolo:hover{color:var(--testo);background:rgba(255,255,255,.06)}
+.piccolo svg{width:16px;height:16px}
+.piccolo.attivo{color:var(--ambra)}
+.piccolo[aria-disabled=true]{opacity:.35;pointer-events:none}
+.volume{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--tenue)}
+.volume svg{width:16px;height:16px}
+.volume input{width:76px;accent-color:var(--ambra)}
+
+.schede{display:flex;gap:4px;padding:12px 16px 4px}
+.scheda{padding:7px 12px;border-radius:999px;font-size:13px;font-weight:600;color:var(--tenue)}
+.scheda[aria-selected=true]{background:rgba(255,255,255,.08);color:var(--testo)}
+.scheda small{color:var(--fioco);font-weight:500;margin-left:4px}
+.luogo{padding:6px 18px 8px;display:flex;align-items:baseline;gap:8px}
+.luogo h3{margin:0;font-family:var(--f-titolo);font-weight:500;font-size:22px}
+.luogo span{color:var(--tenue);font-size:13px}
+.elenco{overflow:auto;padding:0 8px 10px;flex:1;min-height:0;overscroll-behavior:contain}
+.vuoto{padding:14px 12px 18px;color:var(--tenue);font-size:14px}
+.riga{width:100%;display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:12px;text-align:left;transition:background .12s}
+.riga:hover{background:rgba(255,255,255,.06)}
+.riga.in-onda{background:var(--ambra-buio)}
+.riga.in-onda .nome{color:var(--ambra-viva)}
+.ico{width:36px;height:36px;flex:none;border-radius:10px;background:#1b2236;display:grid;place-items:center;overflow:hidden;
+  font-family:var(--f-titolo);font-size:16px;color:var(--ambra)}
+.ico img{width:100%;height:100%;object-fit:contain;background:#fff;padding:2px}
+.riga .testi{min-width:0;flex:1}
+.riga .nome{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.riga .sotto{color:var(--fioco);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.riga .freccia{width:18px;height:18px;color:var(--fioco);flex:none}
+.riga.in-onda .freccia{color:var(--ambra)}
+
+.piede{padding:8px 18px 12px;font-size:11.5px;color:var(--fioco);border-top:1px solid var(--bordo)}
+.piede a{color:var(--tenue)}
+
+.carica{position:fixed;inset:0;z-index:10;display:grid;place-items:center;background:var(--notte);transition:opacity .6s}
+.carica.via{opacity:0;pointer-events:none}
+.carica div{text-align:center}
+.carica b{display:block;font-family:var(--f-titolo);font-weight:500;font-size:40px}
+.carica b i{font-style:normal;color:var(--ambra)}
+.carica span{color:var(--tenue)}
+
+.avviso{position:fixed;z-index:6;left:50%;top:84px;transform:translate(-50%,-10px);opacity:0;pointer-events:none;
+  background:var(--vetro-forte);border:1px solid var(--bordo-forte);padding:10px 16px;border-radius:999px;font-size:14px;transition:.25s;max-width:calc(100% - 32px)}
+.avviso.si{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:720px){
+  .testata{padding:calc(10px + env(safe-area-inset-top)) 16px 10px;gap:8px;flex-wrap:wrap}
+  .marchio b{font-size:24px}
+  .marchio span{display:none}
+  .cerca-box{order:3;width:100%;margin-left:0}
+  .testata .tondo{margin-left:auto}
+  .testata .tondo+.tondo{margin-left:0}
+  #globo{bottom:52dvh}
+  .mirino{top:24dvh}
+  .pannello{left:0;right:0;bottom:0;width:auto;height:52dvh;max-height:none;border-radius:24px 24px 0 0;border-bottom:0;
+    padding-bottom:env(safe-area-inset-bottom)}
+  .player{padding:14px 16px 12px}
+  .volume{display:none}
+  .strumenti{padding:6px 10px}
+  .avviso{top:auto;bottom:calc(52dvh + 14px)}
+}
+/* la scheda */
+.velo{position:fixed;inset:0;z-index:20;background:rgba(3,5,10,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;padding:24px}
+.velo.aperto{display:flex}
+.foglio{position:relative;width:min(680px,100%);max-height:calc(100dvh - 48px);overflow:auto;border-radius:28px;background:#0c1120;
+  border:1px solid var(--bordo-forte);box-shadow:0 40px 120px rgba(0,0,0,.7);overscroll-behavior:contain}
+.foglio .chiudi{position:absolute;top:14px;right:14px;z-index:3;width:40px;height:40px;border-radius:50%;background:rgba(5,7,13,.6);
+  border:1px solid var(--bordo-forte);display:grid;place-items:center;backdrop-filter:blur(8px)}
+.foglio .chiudi svg{width:18px;height:18px}
+.copa{position:relative;height:190px;background:var(--tinta,#2a2240);overflow:hidden}
+.copa img{width:100%;height:100%;object-fit:cover;opacity:.55;filter:saturate(1.1)}
+.copa::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,17,32,0) 20%,#0c1120 98%)}
+.copa .rango{position:absolute;left:24px;top:20px;z-index:2;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  background:rgba(5,7,13,.6);border:1px solid var(--bordo-forte);padding:6px 12px;border-radius:999px;backdrop-filter:blur(8px)}
+.copa .rango b{color:var(--ambra)}
+.testa{display:flex;gap:18px;align-items:flex-end;padding:0 28px;margin-top:-64px;position:relative;z-index:2}
+.logo{width:104px;height:104px;flex:none;border-radius:24px;background:#fff;display:grid;place-items:center;overflow:hidden;
+  box-shadow:0 0 0 4px #0c1120,0 14px 40px rgba(0,0,0,.5);font-family:var(--f-titolo);font-size:44px;color:#1a1205}
+.logo img{width:100%;height:100%;object-fit:contain;padding:10px}
+.testa .chi{min-width:0;padding-bottom:4px}
+.testa h2{margin:0;font-family:var(--f-titolo);font-weight:600;font-size:clamp(24px,4.4vw,34px);line-height:1.05;letter-spacing:-.01em}
+.testa .dove{margin-top:6px;color:var(--tenue);font-size:14px}
+.azioni{display:flex;flex-wrap:wrap;gap:8px;padding:20px 28px 4px}
+.btn{height:42px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;
+  border:1px solid var(--bordo-forte);color:var(--testo);text-decoration:none}
+.btn:hover{border-color:rgba(255,181,71,.6)}
+.btn svg{width:16px;height:16px}
+.btn.primo{background:var(--ambra);color:#1a1205;border-color:var(--ambra)}
+.blocco{padding:18px 28px 0}
+.blocco h4{margin:0 0 8px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--fioco);font-weight:700}
+.racconto{margin:0;font-size:15.5px;line-height:1.6;color:#dfe2ec}
+.racconto.citazione{font-family:var(--f-titolo);font-size:17px;font-style:italic;color:#e9e3d6;border-left:2px solid var(--ambra);padding-left:14px}
+.fonte-testo{margin-top:8px;font-size:12.5px;color:var(--fioco)}
+.fonte-testo a{color:var(--tenue)}
+.dati{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0;background:#0e1426;border:1px solid var(--bordo);border-radius:16px;overflow:hidden}
+.dato{padding:12px 14px;min-width:0;box-shadow:0 0 0 .5px var(--bordo)}
+.traduci{margin-top:8px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--ambra);
+  padding:5px 10px;border-radius:999px;background:var(--ambra-buio)}
+.traduci:hover{background:rgba(255,181,71,.24)}
+a.traduci{text-decoration:none}
+.traduzione{margin:8px 0 0;font-size:15px;line-height:1.55;color:var(--testo)}
+.traduzione small{display:block;color:var(--fioco);font-size:12px;margin-top:3px}
+.dato dt{font-size:11.5px;color:var(--fioco);font-weight:600;margin-bottom:3px}
+.dato dd{margin:0;font-size:14.5px;font-weight:600;overflow-wrap:anywhere}
+.dato dd small{color:var(--tenue);font-weight:500}
+.gettoni{display:flex;flex-wrap:wrap;gap:6px}
+.gettone{padding:6px 11px;border-radius:999px;background:rgba(255,255,255,.06);font-size:13px;color:#d6d9e3}
+.gettone b{color:var(--ambra-viva);font-weight:700}
+.gettone small{color:var(--fioco)}
+a.gettone{text-decoration:none}
+a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
+.piede-scheda{margin:22px 28px 26px;padding-top:16px;border-top:1px solid var(--bordo);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;
+  font-size:12.5px;color:var(--fioco)}
+.barra{width:110px;height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;display:inline-block;vertical-align:middle;margin-left:6px}
+.barra i{display:block;height:100%;background:var(--ambra)}
+.scegli-paese{margin:0 6px 8px;width:calc(100% - 12px);height:40px;border-radius:12px;background:#121829;color:var(--testo);
+  border:1px solid var(--bordo-forte);padding:0 12px;font:inherit;font-weight:600}
+.riga .pos{width:30px;flex:none;text-align:right;font-family:var(--f-titolo);color:var(--fioco);font-size:15px}
+/* sottotitoli */
+.sottotitoli{position:fixed;z-index:5;left:440px;right:24px;bottom:24px;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
+.sub-righe{display:flex;flex-direction:column;align-items:center;gap:4px;max-width:900px}
+.sub-righe p{margin:0;padding:6px 14px;border-radius:10px;background:rgba(3,5,10,.82);color:#fff;font-size:clamp(17px,1.6vw,22px);
+  line-height:1.35;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .6s}
+.sub-righe p.vecchia{opacity:.55;font-size:clamp(15px,1.3vw,18px)}
+.sub-righe p small{display:block;font-size:12px;color:#c9cbd6;margin-top:2px}
+.sub-stato{font-size:12px;color:var(--ambra-viva);background:rgba(3,5,10,.7);padding:4px 10px;border-radius:999px}
+.sub-stato:empty{display:none}
+.sub-barra{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;pointer-events:auto}
+.sub-barra select{height:28px;border-radius:999px;border:1px solid var(--bordo-forte);background:rgba(3,5,10,.8);color:var(--testo);
+  font:inherit;font-size:12px;padding:0 10px}
+.piccolo.attivo-sub{color:#1a1205;background:var(--ambra)}
+@media (max-width:720px){
+  .sottotitoli{left:12px;right:12px;bottom:calc(52dvh + 10px)}
+  .velo{padding:0;align-items:stretch}
+  .foglio{max-height:none;height:100dvh;border-radius:0;border:0}
+  .copa{height:150px}
+  .testa{padding:0 18px;gap:14px;margin-top:-52px}
+  .logo{width:84px;height:84px;border-radius:20px}
+  .azioni,.blocco{padding-left:18px;padding-right:18px}
+  .piede-scheda{margin:22px 18px calc(26px + env(safe-area-inset-bottom))}
+  .dati{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="carica" id="carica"><div><b>Et<i>e</i>re</b><span id="carica-testo">Accendo le radio del mondo…</span></div></div>
+
+<div id="globo" aria-label="Globo con le radio del mondo: trascinalo per esplorare"></div>
+<div class="mirino" id="mirino" aria-hidden="true"></div>
+
+<header class="testata">
+  <a class="marchio" href="./"><b>Et<i>e</i>re</b><span>le radio del mondo</span></a>
+  <div class="cerca-box">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+    <input id="cerca" type="search" placeholder="Cerca una radio, un paese, un genere" autocomplete="off" aria-label="Cerca" aria-controls="risultati">
+    <div class="risultati" id="risultati" role="listbox"></div>
+  </div>
+  <button class="tondo" id="vicino" title="Radio vicino a me" aria-label="Radio vicino a me">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="8"/></svg>
+  </button>
+  <button class="tondo" id="caso" title="Una radio a caso" aria-label="Una radio a caso">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h3.5c2 0 3.2 1 4.3 2.7l2.4 4.6c1.1 1.7 2.3 2.7 4.3 2.7H21M3 17h3.5c1.4 0 2.4-.5 3.2-1.4M14.3 8.4c.8-.9 1.8-1.4 3.2-1.4H21M18 4l3 3-3 3M18 14l3 3-3 3"/></svg>
+  </button>
+</header>
+
+<section class="pannello" id="pannello" aria-label="Radio">
+  <div class="player" id="player">
+    <div class="copertina" id="copertina"><div class="onde"><i></i><i></i><i></i><i></i></div></div>
+    <div class="ora">
+      <div class="stato fermo" id="stato">Scegli una radio</div>
+      <h2 id="titolo">Gira il globo</h2>
+      <p id="sottotitolo">Ogni luce è una radio in diretta</p>
+    </div>
+    <button class="gioca" id="gioca" disabled aria-label="Ascolta">
+      <svg id="ic-gioca" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
+    </button>
+  </div>
+  <div class="strumenti">
+    <button class="piccolo" id="cuore" aria-pressed="false" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.2-9.3C1.7 7.5 3.8 4.5 7 4.5c2 0 3.3 1 5 3 1.7-2 3-3 5-3 3.2 0 5.3 3 4.2 6.2C19.5 15.4 12 20 12 20z"/></svg>
+      <span>Preferita</span></button>
+    <a class="piccolo" id="sito" target="_blank" rel="noopener" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+      <span>Sito</span></a>
+    <button class="piccolo" id="apri-scheda" aria-disabled="true" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg>
+      <span>Scheda</span></button>
+    <button class="piccolo" id="sub" aria-pressed="false" title="Sottotitoli tradotti (prova, per computer)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg>
+      <span>Sottotitoli</span></button>
+    <button class="piccolo" id="condividi" aria-disabled="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
+      <span>Link</span></button>
+    <label class="volume" title="Volume">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/></svg>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.9" aria-label="Volume">
+    </label>
+  </div>
+  <div class="schede" role="tablist">
+    <button class="scheda" role="tab" id="t-qui" aria-selected="true">Qui</button>
+    <button class="scheda" role="tab" id="t-pref" aria-selected="false">Preferite<small id="n-pref"></small></button>
+    <button class="scheda" role="tab" id="t-top" aria-selected="false" hidden>Top 10</button>
+  </div>
+  <div class="luogo" id="luogo"><h3 id="luogo-nome">—</h3><span id="luogo-info"></span></div>
+  <div class="elenco" id="elenco"></div>
+  <div class="piede">Radio dall'archivio aperto <a href="https://www.radio-browser.info/" target="_blank" rel="noopener">radio-browser.info</a>. I flussi sono delle singole emittenti.</div>
+</section>
+
+<div class="velo" id="velo" role="dialog" aria-modal="true" aria-label="Scheda della radio">
+  <article class="foglio" id="foglio"></article>
+</div>
+<div class="avviso" id="avviso" role="status"></div>
+<div class="sottotitoli" id="sottotitoli" aria-live="polite" hidden>
+  <div class="sub-righe" id="sub-righe"></div>
+  <div class="sub-barra"><select id="sub-lingua" aria-label="Lingua che si parla alla radio"></select><span class="sub-stato" id="sub-stato"></span></div>
+</div>
+<audio id="audio" preload="none"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.1/dist/globe.gl.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1.7.2/dist/hls.light.min.js"></script>
+<script>
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+var IMG = 'https://cdn.jsdelivr.net/npm/three-globe@2.45.3/example/img/';
+var paesi = (function(){ try { return new Intl.DisplayNames(['it'], {type:'region'}); } catch(e){ return null; } })();
+function nomePaese(cc){ if(!cc) return ''; try { return (paesi && paesi.of(cc)) || cc; } catch(e){ return cc; } }
+
+var radio = [], radioGeo = [], luoghi = [], perUuid = {}, perPaese = {}, centri = {};
+var attuale = null, luogoAttuale = null, paeseAttuale = null, scheda = 'qui', hls = null;
+var schedeDati = null, schedeData = '', paesiTop = {}, paeseTop = null;
+var audio = $('audio');
+
+/* ---------- memoria locale (solo comodità) ---------- */
+function leggi(k, d){ try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e){ return d; } }
+function scrivi(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+var preferite = leggi('etere.preferite', []);
+audio.volume = leggi('etere.volume', 0.9);
+$('volume').value = audio.volume;
+
+/* ---------- globo ---------- */
+var el = $('globo');
+var globo = new Globe(el, {animateIn: true})
+  .globeImageUrl(IMG + 'earth-night.jpg')
+  .bumpImageUrl(IMG + 'earth-topology.png')
+  .backgroundImageUrl(IMG + 'night-sky.png')
+  .backgroundColor('#05070d')
+  .showAtmosphere(true)
+  .atmosphereColor('#f2a54a')
+  .atmosphereAltitude(0.13)
+  .pointsMerge(true)
+  .pointResolution(6)
+  .pointLat('lat').pointLng('lng')
+  .pointAltitude(function(l){ return 0.002 + Math.min(0.018, l.radio.length * 0.0006); })
+  .pointRadius(function(l){ return 0.1 + Math.min(0.35, Math.sqrt(l.radio.length) * 0.06); })
+  .pointColor(function(l){ return l.radio.length > 8 ? '#ffe2a3' : l.radio.length > 2 ? '#ffc061' : '#ff9d3a'; })
+  .ringColor(function(){ return function(t){ return 'rgba(255,210,122,' + (1 - t) + ')'; }; })
+  .ringMaxRadius(3.2).ringPropagationSpeed(2.2).ringRepeatPeriod(900)
+  .onGlobeClick(function(c){ vola(c.lat, c.lng, null); })
+  .onZoom(function(){ $('mirino').classList.add('cerca'); clearTimeout(attesa); attesa = setTimeout(scegliAlCentro, 260); });
+var attesa = null;
+var ctr = globo.controls();
+ctr.enableDamping = true; ctr.dampingFactor = 0.12; ctr.rotateSpeed = 0.55; ctr.zoomSpeed = 0.9;
+ctr.minDistance = 101.5 + 12; ctr.maxDistance = 650;
+
+function adatta(){ globo.width(el.clientWidth).height(el.clientHeight); }
+adatta();
+if (window.ResizeObserver) new ResizeObserver(adatta).observe(el); else addEventListener('resize', adatta);
+
+function vola(lat, lng, alt){
+  var pov = globo.pointOfView();
+  globo.pointOfView({lat: lat, lng: lng, altitude: alt == null ? Math.min(pov.altitude, 1.6) : alt}, 900);
+}
+
+/* ---------- dati ---------- */
+function daRiga(a){
+  return {nome:a[0], lat:a[1], lng:a[2], url:a[3], paese:a[4], generi:a[5], hls:a[6], uuid:a[7], sito:a[8], icona:a[9], k:a[10] || 0};
+}
+function aggiungi(lista){
+  lista.forEach(function(s){
+    perUuid[s.uuid] = s;
+    (perPaese[s.paese] = perPaese[s.paese] || []).push(s);
+  });
+  radio = radio.concat(lista);
+  Object.keys(perPaese).forEach(function(cc){ perPaese[cc].sort(function(a,b){ return b.k - a.k; }); });
+}
+function mediana(v){ v = v.slice().sort(function(a,b){ return a-b; }); return v[Math.floor(v.length/2)]; }
+function centroPaese(cc){
+  if (centri[cc] !== undefined) return centri[cc];
+  var g = (perPaese[cc] || []).filter(function(s){ return s.lat != null; });
+  return (centri[cc] = g.length ? {lat: mediana(g.map(function(s){return s.lat;})), lng: mediana(g.map(function(s){return s.lng;}))} : null);
+}
+fetch('stazioni.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(d){
+  radioGeo = d.radio.map(daRiga);
+  aggiungi(radioGeo);
+  var mappa = {};
+  radioGeo.forEach(function(s){
+    var k = (Math.round(s.lat * 5) / 5) + ',' + (Math.round(s.lng * 5) / 5);
+    var l = mappa[k];
+    if (!l) { l = mappa[k] = {lat:0, lng:0, radio:[]}; luoghi.push(l); }
+    l.radio.push(s); s.luogo = l;
+  });
+  luoghi.forEach(function(l){
+    l.lat = l.radio.reduce(function(a,s){return a+s.lat;},0) / l.radio.length;
+    l.lng = l.radio.reduce(function(a,s){return a+s.lng;},0) / l.radio.length;
+    var conti = {};
+    l.radio.forEach(function(s){ conti[s.paese] = (conti[s.paese]||0) + 1; });
+    l.paese = Object.keys(conti).sort(function(a,b){ return conti[b]-conti[a]; })[0];
+  });
+  globo.pointsData(luoghi);
+  $('n-pref').textContent = preferite.length ? ' ' + preferite.length : '';
+  $('carica').classList.add('via');
+
+  var h = location.hash.match(/r=([\w-]+)/);
+  var s = h && perUuid[h[1]];
+  if (s) { selezionaLuogo(s.luogo); vola(s.lat, s.lng, 1.2); preparaRadio(s); }
+  else { globo.pointOfView({lat: 43.5, lng: 11.5, altitude: 1.9}, 1600); }
+
+  // poi, con calma, le radio senza posizione esatta
+  fetch('altre.json').then(function(r){ return r.ok ? r.json() : {radio: []}; }).then(function(d){
+    aggiungi(d.radio.map(daRiga));
+    if (h && !s && perUuid[h[1]]) { var t = perUuid[h[1]], c = centroPaese(t.paese); if (c) vola(c.lat, c.lng, 1.4); preparaRadio(t); }
+    if (scheda !== 'pref') disegnaElenco();
+    if ($('cerca').value.trim()) cerca();
+    return fetch('schede.json').then(function(r){ return r.ok ? r.json() : null; }).then(function(d){
+      if (!d) return;
+      schedeDati = d.schede; schedeData = d.aggiornate;
+      Object.keys(schedeDati).forEach(function(u){ var c = schedeDati[u].paese; (paesiTop[c] = paesiTop[c] || []).push(u); });
+      Object.keys(paesiTop).forEach(function(c){ paesiTop[c].sort(function(a,b){ return schedeDati[a].pos_paese - schedeDati[b].pos_paese; }); });
+      $('t-top').hidden = false;
+      if (attuale) aggiornaBottoneScheda();
+    });
+  }).catch(function(){});
+}).catch(function(){ $('carica-testo').textContent = 'Non riesco a caricare l\'elenco delle radio. Riprova tra poco.'; });
+
+/* ---------- scelta del luogo al centro ---------- */
+function distanza(a1, o1, a2, o2){
+  var r = Math.PI / 180, dA = (a2-a1)*r, dO = (o2-o1)*r;
+  var x = Math.sin(dA/2)*Math.sin(dA/2) + Math.cos(a1*r)*Math.cos(a2*r)*Math.sin(dO/2)*Math.sin(dO/2);
+  return 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1-x)) / r;
+}
+function scegliAlCentro(){
+  $('mirino').classList.remove('cerca');
+  if (!luoghi.length) return;
+  var pov = globo.pointOfView(), vicini = [];
+  var raggio = Math.max(0.35, pov.altitude * 2.4), soglia = Math.max(0.6, pov.altitude * 4.5);
+  luoghi.forEach(function(l){ var d = distanza(pov.lat, pov.lng, l.lat, l.lng); if (d <= soglia) vicini.push({l:l, d:d}); });
+  vicini.sort(function(a,b){ return a.d - b.d; });
+  if (!vicini.length) { selezionaLuogo(null); return; }
+  var dentro = vicini.filter(function(v){ return v.d <= raggio; });
+  if (!dentro.length) dentro = [vicini[0]];
+  var lista = [];
+  dentro.forEach(function(v){ lista = lista.concat(v.l.radio); });
+  lista.sort(function(a,b){ return b.k - a.k; });
+  selezionaLuogo({chiave: dentro.map(function(v){ return v.l.lat + ':' + v.l.lng; }).join('|'),
+                  paese: dentro[0].l.paese, radio: lista.slice(0, 250), totale: lista.length});
+}
+function selezionaLuogo(l){
+  if (l && luogoAttuale && l.chiave && l.chiave === luogoAttuale.chiave) return;
+  luogoAttuale = l;
+  if (scheda === 'top' || scheda === 'pref') return;
+  if (scheda !== 'qui') mostraScheda('qui'); else disegnaElenco();
+}
+
+/* ---------- elenco ---------- */
+function icona(s){
+  var d = document.createElement('div'); d.className = 'ico';
+  d.textContent = (s.nome.replace(/[^\p{L}\p{N}]/gu,'')[0] || '♪').toUpperCase();
+  if (s.icona) {
+    var im = new Image(); im.loading = 'lazy'; im.alt = ''; im.referrerPolicy = 'no-referrer';
+    im.onload = function(){ if (im.naturalWidth > 8) { d.textContent = ''; d.appendChild(im); } };
+    im.src = s.icona;
+  }
+  return d;
+}
+function riga(s, conPaese){
+  var b = document.createElement('button'); b.className = 'riga'; b.type = 'button';
+  if (attuale === s) b.classList.add('in-onda');
+  b.appendChild(icona(s));
+  var t = document.createElement('div'); t.className = 'testi';
+  var n = document.createElement('div'); n.className = 'nome'; n.textContent = s.nome;
+  var g = document.createElement('div'); g.className = 'sotto';
+  var parti = [];
+  if (conPaese) parti.push(nomePaese(s.paese));
+  if (s.generi) parti.push(s.generi.split(',').join(' · '));
+  g.textContent = parti.join(' — ') || 'in diretta';
+  t.appendChild(n); t.appendChild(g); b.appendChild(t);
+  b.insertAdjacentHTML('beforeend', '<svg class="freccia" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>');
+  b.onclick = function(){ ascolta(s); };
+  b._s = s;
+  return b;
+}
+function disegnaElenco(){
+  var el = $('elenco'); el.textContent = '';
+  var lista, nome, info;
+  var paeseQui = null;
+  if (scheda === 'pref') {
+    lista = preferite.map(function(u){ return perUuid[u]; }).filter(Boolean);
+    nome = 'Le tue preferite'; info = lista.length ? lista.length + ' radio' : '';
+    if (!lista.length) { el.innerHTML = '<div class="vuoto">Tocca il cuore mentre ascolti una radio per ritrovarla qui.</div>'; }
+  } else if (scheda === 'top' && schedeDati) {
+    var cc = paeseTop || (luogoAttuale && luogoAttuale.paese) || (attuale && attuale.paese) || 'IT';
+    if (!paesiTop[cc]) cc = paesiTop.IT ? 'IT' : Object.keys(paesiTop)[0];
+    paeseTop = cc;
+    lista = paesiTop[cc].map(function(u){ return perUuid[u]; }).filter(Boolean);
+    nome = 'Top 10'; info = 'le più ascoltate, con la scheda';
+    var sel = document.createElement('select'); sel.className = 'scegli-paese'; sel.setAttribute('aria-label', 'Paese');
+    Object.keys(paesiTop).map(function(c){ return [nomePaese(c), c]; })
+      .sort(function(a,b){ return a[0].localeCompare(b[0], 'it'); })
+      .forEach(function(x){ var o = new Option(x[0] + ' (' + paesiTop[x[1]].length + ')', x[1]); if (x[1] === cc) o.selected = true; sel.appendChild(o); });
+    sel.onchange = function(){ paeseTop = sel.value; disegnaElenco(); var c = centroPaese(sel.value); if (c) vola(c.lat, c.lng, 1.6); };
+    el.appendChild(sel);
+  } else if (scheda === 'paese' && paeseAttuale) {
+    var tutte = perPaese[paeseAttuale] || [];
+    lista = tutte.slice(0, 400);
+    nome = nomePaese(paeseAttuale);
+    info = tutte.length + ' radio' + (tutte.length > lista.length ? ', le ' + lista.length + ' più ascoltate' : '');
+    var torna = document.createElement('button'); torna.className = 'piccolo'; torna.type = 'button';
+    torna.textContent = '← Torna al mirino'; torna.style.margin = '0 4px 4px';
+    torna.onclick = function(){ mostraScheda('qui'); };
+    el.appendChild(torna);
+  } else if (luogoAttuale) {
+    paeseQui = luogoAttuale.paese;
+    lista = luogoAttuale.radio;
+    nome = nomePaese(luogoAttuale.paese);
+    var tot = luogoAttuale.totale || lista.length;
+    info = tot === 1 ? '1 radio sotto il mirino' : tot + ' radio sotto il mirino' + (tot > lista.length ? ' (le prime ' + lista.length + ')' : '');
+  } else {
+    lista = []; nome = 'Mare aperto'; info = '';
+    el.innerHTML = '<div class="vuoto">Nessuna radio sotto il mirino. Avvicina una luce al centro, oppure prova <b>a caso</b>.</div>';
+  }
+  $('luogo-nome').textContent = nome; $('luogo-info').textContent = info;
+  var frag = document.createDocumentFragment();
+  lista.forEach(function(s){
+    var r = riga(s, scheda === 'pref' || scheda === 'top');
+    if (scheda === 'top') {
+      var n = document.createElement('span'); n.className = 'pos'; n.textContent = schedeDati[s.uuid].pos_paese;
+      r.insertBefore(n, r.firstChild);
+      r.onclick = function(){ apriScheda(s); };
+    }
+    frag.appendChild(r);
+  });
+  var nPaese = paeseQui && perPaese[paeseQui] ? perPaese[paeseQui].length : 0;
+  if (nPaese > lista.length) {
+    var tutto = document.createElement('button'); tutto.type = 'button'; tutto.className = 'riga tutte';
+    tutto.innerHTML = '<div class="ico">+</div><div class="testi"><div class="nome"></div><div class="sotto">anche quelle senza posizione esatta</div></div>';
+    tutto.querySelector('.nome').textContent = 'Tutte le ' + nPaese + ' radio di ' + nomePaese(paeseQui);
+    tutto.onclick = function(){ paeseAttuale = paeseQui; mostraScheda('paese'); };
+    frag.appendChild(tutto);
+  }
+  el.appendChild(frag); el.scrollTop = 0;
+}
+function mostraScheda(q){
+  scheda = q;
+  $('t-qui').setAttribute('aria-selected', q === 'qui');
+  $('t-pref').setAttribute('aria-selected', q === 'pref');
+  $('t-top').setAttribute('aria-selected', q === 'top');
+  disegnaElenco();
+}
+$('t-top').onclick = function(){ paeseTop = null; mostraScheda('top'); };
+$('t-qui').onclick = function(){ mostraScheda('qui'); };
+$('t-pref').onclick = function(){ mostraScheda('pref'); };
+
+/* ---------- ascolto ---------- */
+function stato(testo, tipo){ var e = $('stato'); e.textContent = testo; e.className = 'stato' + (tipo ? ' ' + tipo : ''); }
+function aggiornaPulsante(){
+  var su = !audio.paused && attuale;
+  $('ic-gioca').innerHTML = su ? '<rect x="6.5" y="5" width="4" height="14" rx="1"/><rect x="13.5" y="5" width="4" height="14" rx="1"/>'
+                                : '<path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/>';
+  $('gioca').setAttribute('aria-label', su ? 'Pausa' : 'Ascolta');
+  $('player').classList.toggle('suona', !!su && !audio.dataset.attesa);
+}
+function preparaRadio(s){
+  attuale = s;
+  $('titolo').textContent = s.nome;
+  $('sottotitolo').textContent = [nomePaese(s.paese)].concat(s.generi ? [s.generi.split(',').join(' · ')] : []).join(' — ');
+  var c = $('copertina'); c.textContent = '';
+  if (s.icona) {
+    var im = new Image(); im.alt = ''; im.referrerPolicy = 'no-referrer';
+    im.onload = function(){ if (im.naturalWidth > 8) { c.textContent = ''; c.appendChild(im); } };
+    im.src = s.icona;
+  }
+  c.insertAdjacentHTML('afterbegin', '<div class="onde"><i></i><i></i><i></i><i></i></div>');
+  $('gioca').disabled = false;
+  ['cuore','condividi','sito'].forEach(function(id){ $(id).setAttribute('aria-disabled', 'false'); });
+  if (s.sito) $('sito').href = s.sito; else { $('sito').removeAttribute('href'); $('sito').setAttribute('aria-disabled','true'); }
+  segnaCuore();
+  aggiornaBottoneScheda();
+  aggiornaLinguaSub();
+  var pos = s.lat != null ? s : centroPaese(s.paese);
+  globo.ringsData(pos ? [{lat: pos.lat, lng: pos.lng}] : []);
+  stato('Pronta', 'fermo');
+  aggiornaRighe();
+  history.replaceState(null, '', '#r=' + s.uuid);
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({title: s.nome, artist: nomePaese(s.paese), album: 'Etere',
+      artwork: s.icona ? [{src: s.icona}] : []});
+  }
+}
+function ascolta(s){
+  if (attuale === s && !audio.paused) return;
+  preparaRadio(s);
+  if (hls) { hls.destroy(); hls = null; }
+  audio.dataset.attesa = '1';
+  stato('Mi sintonizzo…');
+  var nativo = audio.canPlayType('application/vnd.apple.mpegurl');
+  if ((s.hls || /\.m3u8(\?|$)/i.test(s.url)) && !nativo && window.Hls && Hls.isSupported()) {
+    hls = new Hls({enableWorker: true});
+    hls.on(Hls.Events.ERROR, function(e, d){ if (d.fatal) guasto(); });
+    hls.loadSource(s.url); hls.attachMedia(audio);
+  } else {
+    audio.crossOrigin = sub.attivo ? 'anonymous' : null;   // per i sottotitoli la pagina deve poter "sentire" l'audio
+    audio.src = s.url;
+  }
+  var p = audio.play(); if (p && p.catch) p.catch(function(err){ if (err && err.name === 'NotAllowedError') { stato('Tocca play', 'fermo'); delete audio.dataset.attesa; aggiornaPulsante(); } });
+  aggiornaPulsante();
+  try { fetch('https://de1.api.radio-browser.info/json/url/' + s.uuid, {mode:'cors'}).catch(function(){}); } catch(e){}
+}
+function guasto(){
+  delete audio.dataset.attesa;
+  stato('Non risponde', 'errore');
+  avviso('Questa radio ora non trasmette. Provane un\'altra.');
+  aggiornaPulsante();
+}
+audio.addEventListener('playing', function(){ delete audio.dataset.attesa; stato('In diretta'); aggiornaPulsante(); });
+audio.addEventListener('waiting', function(){ if (attuale && !audio.paused) stato('Carico…'); });
+audio.addEventListener('pause', function(){ if (attuale) stato('In pausa', 'fermo'); aggiornaPulsante(); });
+audio.addEventListener('error', function(){
+  if (!attuale || !audio.getAttribute('src')) return;
+  if (audio.crossOrigin && !hls) {           // la radio non permette di "sentire" l'audio: suona lo stesso, senza sottotitoli
+    audio.crossOrigin = null; audio.src = attuale.url; audio.play().catch(function(){});
+    sottotitoliStato('Questa radio non permette i sottotitoli: si sente, ma non posso trascriverla.');
+    return;
+  }
+  guasto();
+});
+$('gioca').onclick = function(){
+  if (!attuale) return;
+  if (audio.paused) {
+    if (!audio.getAttribute('src') && !hls) { ascolta(attuale); return; }
+    if (!hls) { audio.src = attuale.url; } // riprende la diretta, non il buffer vecchio
+    stato('Mi sintonizzo…'); audio.dataset.attesa = '1';
+    audio.play().catch(function(){ guasto(); });
+  } else audio.pause();
+};
+$('volume').oninput = function(){ audio.volume = +this.value; scrivi('etere.volume', audio.volume); };
+if ('mediaSession' in navigator) {
+  navigator.mediaSession.setActionHandler('play', function(){ $('gioca').click(); });
+  navigator.mediaSession.setActionHandler('pause', function(){ audio.pause(); });
+}
+function aggiornaRighe(){
+  Array.prototype.forEach.call(document.querySelectorAll('.riga'), function(r){ r.classList.toggle('in-onda', r._s === attuale); });
+}
+
+/* ---------- la scheda della radio ---------- */
+function aggiornaBottoneScheda(){
+  var c = !!(attuale && schedeDati && schedeDati[attuale.uuid]);
+  $('apri-scheda').hidden = !c;
+  $('apri-scheda').setAttribute('aria-disabled', c ? 'false' : 'true');
+}
+$('apri-scheda').onclick = function(){ if (attuale) apriScheda(attuale); };
+function E(tag, cls, testo){ var e = document.createElement(tag); if (cls) e.className = cls; if (testo != null) e.textContent = testo; return e; }
+function tinta(t){ var h = 0; for (var i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) % 360; return 'linear-gradient(135deg,hsl(' + h + ' 45% 26%),hsl(' + ((h + 50) % 360) + ' 50% 14%))'; }
+var SOC = {
+  instagram: ['Instagram', function(h){ return 'https://www.instagram.com/' + h; }],
+  facebook:  ['Facebook',  function(h){ return 'https://www.facebook.com/' + h; }],
+  x:         ['X',         function(h){ return 'https://x.com/' + h; }],
+  youtube:   ['YouTube',   function(h){ return 'https://www.youtube.com/' + h; }],
+  tiktok:    ['TikTok',    function(h){ return 'https://www.tiktok.com/@' + h; }]
+};
+var NOMI_FONTI = {'radio-browser':'radio-browser.info', wikidata:'Wikidata', wikipedia:'Wikipedia', sito:'sito della radio'};
+function link(href, testo, cls){ var a = E('a', cls || 'gettone', testo); a.href = href; a.target = '_blank'; a.rel = 'noopener'; return a; }
+function immagine(srcs, box, alt){
+  srcs = srcs.filter(Boolean);
+  if (!srcs.length) return;
+  var im = new Image(); im.alt = alt || ''; im.referrerPolicy = 'no-referrer';
+  im.onload = function(){ if (im.naturalWidth > 15) { box.textContent = ''; box.appendChild(im); } else prova(); };
+  im.onerror = prova;
+  function prova(){ srcs.shift(); if (srcs.length) im.src = srcs[0]; }
+  im.src = srcs[0];
+}
+/* tradurre i testi della scheda: prima il traduttore di Chrome sul dispositivo, se c'è; se no Google Traduttore */
+function sembraItaliano(t){
+  var p = (' ' + (t || '').toLowerCase() + ' ').match(/ (il|la|di|che|della|delle|con|per|una|sono|musica|ascolta|notizie|è) /g);
+  return !!p && p.length >= 2;
+}
+function bottoneTraduci(testo, lingua){
+  var box = E('div');
+  var google = 'https://translate.google.com/?sl=' + (lingua || 'auto') + '&tl=it&op=translate&text=' + encodeURIComponent(testo.slice(0, 1500));
+  if (!('Translator' in self)) {                       // nessun traduttore nel browser: link diretto
+    box.appendChild(link(google, 'Traduci in italiano ↗', 'traduci'));
+    return box;
+  }
+  var b = E('button', 'traduci', 'Traduci in italiano'); b.type = 'button';
+  b.onclick = function(){
+    b.disabled = true; b.textContent = 'Traduco…';
+    traduciQui(testo, lingua).then(function(t){
+      b.remove();
+      var p = E('p', 'traduzione', t); p.appendChild(E('small', null, 'Tradotto sul tuo dispositivo dal traduttore del browser'));
+      box.appendChild(p);
+    }).catch(function(){
+      b.remove();
+      box.appendChild(link(google, 'Apri la traduzione in Google Traduttore ↗', 'traduci'));
+    });
+  };
+  box.appendChild(b);
+  return box;
+}
+function traduciQui(testo, lingua){
+  if (!('Translator' in self)) return Promise.reject('assente');
+  var origine = lingua ? Promise.resolve(lingua)
+    : ('LanguageDetector' in self ? LanguageDetector.create().then(function(r){ return r.detect(testo); }).then(function(x){ return x[0].detectedLanguage; })
+                                  : Promise.reject('lingua'));
+  return origine.then(function(l){
+    if (!l || l === 'it' || l === 'und') throw 'lingua';
+    return Translator.availability({sourceLanguage: l, targetLanguage: 'it'}).then(function(a){
+      if (a === 'unavailable') throw 'coppia';
+      return Translator.create({sourceLanguage: l, targetLanguage: 'it'});
+    });
+  }).then(function(tr){ return tr.translate(testo); });
+}
+function apriScheda(s){
+  var d = schedeDati && schedeDati[s.uuid]; if (!d) return;
+  var f = $('foglio'); f.textContent = '';
+  var chiudi = E('button', 'chiudi'); chiudi.setAttribute('aria-label', 'Chiudi');
+  chiudi.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>';
+  chiudi.onclick = chiudiScheda; f.appendChild(chiudi);
+
+  // copertina
+  var copa = E('div', 'copa'); copa.style.setProperty('--tinta', tinta(d.nome));
+  copa.style.background = tinta(d.nome);
+  if (d.immagine) immagine([d.immagine], copa, '');
+  var rango = E('div', 'rango'); rango.innerHTML = 'N° <b></b> in <span></span>';
+  rango.querySelector('b').textContent = d.pos_paese; rango.querySelector('span').textContent = nomePaese(d.paese);
+  copa.appendChild(rango); f.appendChild(copa);
+
+  // testa
+  var testa = E('div', 'testa');
+  var logo = E('div', 'logo', (d.nome.replace(/[^\p{L}\p{N}]/gu,'')[0] || '♪').toUpperCase());
+  immagine([d.logo, d.icona, s.icona], logo, 'Logo di ' + d.nome);
+  var chi = E('div', 'chi');
+  chi.appendChild(E('h2', null, d.nome));
+  var dove = [d.sede, d.regione && d.regione !== d.sede ? d.regione : '', nomePaese(d.paese)].filter(Boolean);
+  chi.appendChild(E('div', 'dove', dove.join(' · ') + (d.breve ? ' — ' + d.breve : '')));
+  testa.appendChild(logo); testa.appendChild(chi); f.appendChild(testa);
+
+  // azioni
+  var az = E('div', 'azioni');
+  var g = E('button', 'btn primo'); g.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg><span>Ascolta in diretta</span>';
+  g.onclick = function(){ chiudiScheda(); if (s.lat != null) { vola(s.lat, s.lng, 1.1); } else { var c = centroPaese(s.paese); if (c) vola(c.lat, c.lng, 1.4); } ascolta(s); };
+  az.appendChild(g);
+  if (d.sito) az.appendChild(link(d.sito, 'Sito ufficiale', 'btn'));
+  if (d.wikipedia) az.appendChild(link(d.wikipedia.url, 'Wikipedia', 'btn'));
+  f.appendChild(az);
+
+  // racconto
+  if (d.wikipedia || d.dal_sito) {
+    var b = E('section', 'blocco');
+    if (d.wikipedia) {
+      b.appendChild(E('h4', null, 'In breve'));
+      b.appendChild(E('p', 'racconto', d.wikipedia.testo));
+      var ft = E('div', 'fonte-testo', 'Da Wikipedia' + (d.wikipedia.lingua !== 'it' ? ' (' + d.wikipedia.lingua + ')' : '') + ', testo con licenza CC BY-SA · ');
+      ft.appendChild(link(d.wikipedia.url, 'leggi la voce', ''));
+      b.appendChild(ft);
+      if (d.wikipedia.lingua !== 'it') b.appendChild(bottoneTraduci(d.wikipedia.testo, d.wikipedia.lingua));
+    }
+    if (d.dal_sito && (!d.wikipedia || d.dal_sito.length > 40)) {
+      var b2 = d.wikipedia ? E('div') : b;
+      if (d.wikipedia) b2.style.marginTop = '18px';
+      b2.appendChild(E('h4', null, 'Come si presenta'));
+      b2.appendChild(E('p', 'racconto citazione', '«' + d.dal_sito + '»'));
+      var fs = E('div', 'fonte-testo', 'Dal sito della radio');
+      b2.appendChild(fs);
+      if (!sembraItaliano(d.dal_sito)) b2.appendChild(bottoneTraduci(d.dal_sito, null));
+      if (b2 !== b) b.appendChild(b2);
+    }
+    f.appendChild(b);
+  }
+
+  // dati
+  var righe = [];
+  function dato(t, v, nota){ if (v) righe.push([t, v, nota]); }
+  dato('Fondata', d.fondata ? String(d.fondata) : '', d.fondata ? (new Date().getFullYear() - d.fondata) + ' anni' : '');
+  if (d.chiusa) dato('Chiusa', String(d.chiusa));
+  dato('Proprietà', d.proprieta.join(', '));
+  dato('Sede', d.sede);
+  dato('Lingua', d.lingue.join(', '));
+  dato('Genere', (d.generi.length ? d.generi : d.tag.slice(0, 3)).join(', '));
+  dato('Streaming', [d.flusso.codec !== 'UNKNOWN' ? d.flusso.codec : '', d.flusso.kbps ? d.flusso.kbps + ' kbps' : '', d.flusso.hls ? 'HLS' : ''].filter(Boolean).join(' · '));
+  dato('Ascolti oggi', d.ascolti.toLocaleString('it-IT'), 'su radio-browser');
+  dato('Voti', d.voti.toLocaleString('it-IT'), 'degli ascoltatori');
+  if (righe.length) {
+    var bd = E('section', 'blocco'); bd.appendChild(E('h4', null, 'La radio in numeri'));
+    var dl = E('dl', 'dati');
+    righe.forEach(function(r){
+      var c = E('div', 'dato'); c.appendChild(E('dt', null, r[0]));
+      var dd = E('dd', null, r[1]); if (r[2]) { dd.appendChild(document.createTextNode(' ')); dd.appendChild(E('small', null, r[2])); }
+      c.appendChild(dd); dl.appendChild(c);
+    });
+    bd.appendChild(dl); f.appendChild(bd);
+  }
+
+  // frequenze
+  if (d.frequenze.length) {
+    var bf = E('section', 'blocco'); bf.appendChild(E('h4', null, 'Dove si sente in FM / AM'));
+    var gf = E('div', 'gettoni');
+    d.frequenze.forEach(function(x){
+      var gt = E('span', 'gettone'); gt.appendChild(E('b', null, x.f));
+      if (x.dove) { gt.appendChild(document.createTextNode(' ')); gt.appendChild(E('small', null, x.dove)); }
+      gf.appendChild(gt);
+    });
+    bf.appendChild(gf); f.appendChild(bf);
+  }
+
+  // generi e social
+  var giaDetti = d.generi.length ? d.generi : d.tag.slice(0, 3);
+  var tags = d.tag.filter(function(t){ return giaDetti.indexOf(t) < 0; });
+  if (tags.length) {
+    var bt = E('section', 'blocco'); bt.appendChild(E('h4', null, 'Parole chiave'));
+    var gt2 = E('div', 'gettoni'); tags.forEach(function(t){ gt2.appendChild(E('span', 'gettone', t)); });
+    bt.appendChild(gt2); f.appendChild(bt);
+  }
+  var soc = Object.keys(SOC).filter(function(k){ return d.social[k]; });
+  if (soc.length) {
+    var bs = E('section', 'blocco'); bs.appendChild(E('h4', null, 'Sui social'));
+    var gs = E('div', 'gettoni');
+    soc.forEach(function(k){ gs.appendChild(link(SOC[k][1](d.social[k]), SOC[k][0])); });
+    bs.appendChild(gs); f.appendChild(bs);
+  }
+
+  // piede: fonti e completezza
+  var p = E('div', 'piede-scheda');
+  p.appendChild(E('span', null, 'Fonti: ' + d.fonti.map(function(x){ return NOMI_FONTI[x] || x; }).join(' · ')));
+  var comp = E('span', null, 'Scheda completa al ' + d.completezza + '%');
+  var barra = E('span', 'barra'); var i = E('i'); i.style.width = d.completezza + '%'; barra.appendChild(i); comp.appendChild(barra);
+  p.appendChild(comp);
+  if (schedeData) p.appendChild(E('span', null, 'Aggiornata il ' + new Date(schedeData).toLocaleDateString('it-IT', {day:'numeric', month:'long', year:'numeric'})));
+  if (d.wikidata) p.appendChild(link('https://www.wikidata.org/wiki/' + d.wikidata, 'Correggi su Wikidata', ''));
+  f.appendChild(p);
+
+  $('velo').classList.add('aperto'); f.scrollTop = 0; chiudi.focus();
+}
+function chiudiScheda(){ $('velo').classList.remove('aperto'); }
+$('velo').addEventListener('click', function(e){ if (e.target === this) chiudiScheda(); });
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && $('velo').classList.contains('aperto')) chiudiScheda(); });
+
+/* ---------- sottotitoli tradotti (prova) ----------
+   La radio suona come sempre; una copia dell'audio va a Whisper, che gira in un worker nel browser
+   (niente server: l'audio non esce dal computer). Whisper riconosce la lingua e traduce in inglese;
+   poi il traduttore di Chrome, se c'è, porta il testo in italiano. */
+var sub = {attivo: false, worker: null, pronto: false, carico: false, ctx: null, sorgente: null, nodo: null,
+           pezzi: [], campioni: 0, occupato: false, traduttore: null, file: {}, motore: ''};
+var SUB_HZ = 16000, SUB_SECONDI = 6;
+var SUB_FANTASMI = /^(\s*(thank you|thanks for watching|please subscribe|subtitles by|you|bye|grazie( a tutti)?|sottotitoli[^.]*|♪+|music|\[[^\]]*\]|\([^)]*\))[.!,\s]*)+$/i;
+
+function sottotitoliStato(t){ $('sub-stato').textContent = t || ''; }
+function sottotitoliRiga(testo, nota){
+  var r = $('sub-righe');
+  Array.prototype.forEach.call(r.children, function(p){ p.classList.add('vecchia'); });
+  while (r.children.length > 1) r.removeChild(r.firstChild);
+  var p = E('p', null, testo); if (nota) p.appendChild(E('small', null, nota));
+  r.appendChild(p);
+}
+
+var SUB_WORKER = [
+  "import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1/dist/transformers.min.js';",
+  "env.allowLocalModels = false;",
+  "let asr = null;",
+  "self.onmessage = async (e) => {",
+  "  const m = e.data;",
+  "  try {",
+  "    if (m.tipo === 'carica') {",
+  "      let gpu = false;",
+  "      try { gpu = !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (x) {}",
+  "      asr = await pipeline('automatic-speech-recognition', 'onnx-community/whisper-base', {",
+  "        device: gpu ? 'webgpu' : 'wasm',",
+  "        dtype: gpu ? { encoder_model: 'fp32', decoder_model_merged: 'q4' } : 'q8',",
+  "        progress_callback: (p) => self.postMessage({ tipo: 'progresso', p })",
+  "      });",
+  "      self.postMessage({ tipo: 'pronto', motore: gpu ? 'WebGPU' : 'processore' });",
+  "    } else if (m.tipo === 'ascolta') {",
+  "      const t0 = performance.now();",
+  "      const out = await asr(m.audio, { task: m.lingua === 'it' ? 'transcribe' : 'translate', language: m.lingua || 'en', return_timestamps: false });",
+  "      self.postMessage({ tipo: 'testo', testo: (out && out.text || '').trim(), ms: Math.round(performance.now() - t0) });",
+  "    }",
+  "  } catch (err) { self.postMessage({ tipo: 'errore', messaggio: String(err && err.message || err) }); }",
+  "};"
+].join('\n');
+
+function avviaWorker(){
+  if (sub.worker) return;
+  sub.worker = new Worker(URL.createObjectURL(new Blob([SUB_WORKER], {type: 'text/javascript'})), {type: 'module'});
+  sub.worker.onmessage = function(e){
+    var m = e.data;
+    if (m.tipo === 'progresso' && m.p && m.p.status === 'progress' && m.p.total) {
+      sub.file[m.p.file] = [m.p.loaded, m.p.total];
+      var l = 0, t = 0; Object.keys(sub.file).forEach(function(k){ l += sub.file[k][0]; t += sub.file[k][1]; });
+      sottotitoliStato('Scarico il modello di ascolto, solo la prima volta: ' + Math.round(l / 1e6) + ' di ' + Math.round(t / 1e6) + ' MB');
+    } else if (m.tipo === 'pronto') {
+      sub.pronto = true; sub.motore = m.motore;
+      sottotitoliStato('Pronto · ascolto la radio…');
+      inviaSeServe();
+    } else if (m.tipo === 'testo') {
+      sub.occupato = false;
+      mostraTesto(m.testo, m.ms);
+      inviaSeServe();
+    } else if (m.tipo === 'errore') {
+      sub.occupato = false;
+      sottotitoliStato('Errore: ' + m.messaggio.slice(0, 120));
+    }
+  };
+  sub.worker.onerror = function(){ sottotitoliStato('Il modello di ascolto non parte in questo browser. Prova con Chrome o Edge sul computer.'); };
+  sottotitoliStato('Preparo il modello di ascolto…');
+  sub.worker.postMessage({tipo: 'carica'});
+}
+
+function mostraTesto(testo, ms){
+  testo = (testo || '').replace(/\s+/g, ' ').trim();
+  if (!testo || SUB_FANTASMI.test(testo) || testo.length < 3) {   // musica o silenzio: Whisper a volte "inventa" frasi
+    sottotitoliStato('Ascolto… (solo musica o silenzio)');
+    return;
+  }
+  var nota = 'Whisper · ' + sub.motore + ' · ' + (ms / 1000).toFixed(1).replace('.', ',') + ' s';
+  if (sub.lingua === 'it') {
+    sottotitoliRiga(testo, nota + ' · trascritto');
+  } else if (sub.traduttore) {
+    sub.traduttore.translate(testo).then(function(it){ sottotitoliRiga(it, nota + ' · tradotto in italiano'); })
+      .catch(function(){ sottotitoliRiga(testo, nota + ' · in inglese'); });
+  } else {
+    sottotitoliRiga(testo, nota + ' · in inglese (il traduttore italiano di Chrome non è disponibile)');
+  }
+  sottotitoliStato('');
+}
+
+// cattura: copia dell'audio dell'elemento <audio>, ricampionata a 16 kHz
+var SUB_WORKLET = "registerProcessor('cattura', class extends AudioWorkletProcessor { process(i){ if (i[0] && i[0][0]) this.port.postMessage(i[0][0].slice(0)); return true; } });";
+function collegaCattura(){
+  if (!sub.attivo || !sub.ctx) return;
+  var flusso;
+  try { flusso = (audio.captureStream || audio.mozCaptureStream).call(audio); } catch (e) { sottotitoliStato('Questa radio non permette i sottotitoli.'); return; }
+  if (!flusso.getAudioTracks().length) { setTimeout(collegaCattura, 500); return; }
+  if (sub.sorgente) try { sub.sorgente.disconnect(); } catch (e) {}
+  sub.sorgente = sub.ctx.createMediaStreamSource(flusso);
+  sub.sorgente.connect(sub.nodo);
+}
+function preparaAudio(){
+  if (sub.ctx) return Promise.resolve();
+  sub.ctx = new (window.AudioContext || window.webkitAudioContext)();
+  return sub.ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([SUB_WORKLET], {type: 'text/javascript'}))).then(function(){
+    sub.nodo = new AudioWorkletNode(sub.ctx, 'cattura');
+    var muto = sub.ctx.createGain(); muto.gain.value = 0;
+    sub.nodo.connect(muto); muto.connect(sub.ctx.destination);   // il nodo deve "tirare" l'audio, ma senza suonarlo due volte
+    var passo = sub.ctx.sampleRate / SUB_HZ;
+    sub.nodo.port.onmessage = function(e){
+      if (!sub.attivo || audio.paused) return;
+      var x = e.data, n = Math.floor(x.length / passo), y = new Float32Array(n);
+      for (var i = 0; i < n; i++) {                               // media dei campioni: ricampiona a 16 kHz
+        var a = Math.floor(i * passo), b = Math.min(x.length, Math.floor((i + 1) * passo)), s = 0;
+        for (var j = a; j < b; j++) s += x[j];
+        y[i] = s / Math.max(1, b - a);
+      }
+      sub.pezzi.push(y); sub.campioni += n;
+      var massimo = SUB_HZ * SUB_SECONDI * 2;                       // se il modello è lento, tiene solo l'audio più recente
+      while (sub.campioni > massimo && sub.pezzi.length > 1) sub.campioni -= sub.pezzi.shift().length;
+      inviaSeServe();
+    };
+  });
+}
+function inviaSeServe(){
+  if (!sub.pronto || sub.occupato || sub.campioni < SUB_HZ * SUB_SECONDI) return;
+  var tutto = new Float32Array(sub.campioni), o = 0;
+  sub.pezzi.forEach(function(p){ tutto.set(p, o); o += p.length; });
+  sub.pezzi = []; sub.campioni = 0;
+  var blocco = tutto.subarray(Math.max(0, tutto.length - SUB_HZ * SUB_SECONDI));
+  var e = 0; for (var i = 0; i < blocco.length; i += 4) e += blocco[i] * blocco[i];
+  if (Math.sqrt(e / (blocco.length / 4)) < 0.004) { sottotitoliStato('Ascolto… (silenzio)'); return; }
+  sub.occupato = true;
+  var copia = new Float32Array(blocco);
+  sub.worker.postMessage({tipo: 'ascolta', audio: copia, lingua: sub.lingua}, [copia.buffer]);
+}
+// la lingua che si parla alla radio, dedotta dal paese (si può cambiare dal menu)
+var LINGUA_PAESE = {IT:'it',SM:'it',VA:'it',CN:'zh',TW:'zh',HK:'zh',SG:'en',JP:'ja',KR:'ko',DE:'de',AT:'de',CH:'de',LI:'de',
+  FR:'fr',BE:'fr',LU:'fr',MC:'fr',SN:'fr',CI:'fr',CM:'fr',ES:'es',MX:'es',AR:'es',CO:'es',CL:'es',PE:'es',VE:'es',EC:'es',
+  GT:'es',CU:'es',BO:'es',DO:'es',HN:'es',PY:'es',SV:'es',NI:'es',CR:'es',PA:'es',UY:'es',PR:'es',BR:'pt',PT:'pt',AO:'pt',MZ:'pt',
+  RU:'ru',BY:'ru',KZ:'ru',UA:'uk',PL:'pl',NL:'nl',SE:'sv',NO:'no',DK:'da',FI:'fi',GR:'el',CY:'el',TR:'tr',CZ:'cs',SK:'sk',
+  HU:'hu',RO:'ro',MD:'ro',BG:'bg',RS:'sr',HR:'hr',SI:'sl',BA:'bs',MK:'mk',AL:'sq',LT:'lt',LV:'lv',EE:'et',IL:'he',IR:'fa',
+  SA:'ar',AE:'ar',EG:'ar',MA:'ar',DZ:'ar',TN:'ar',IQ:'ar',SY:'ar',JO:'ar',LB:'ar',KW:'ar',QA:'ar',OM:'ar',BH:'ar',LY:'ar',
+  IN:'hi',PK:'ur',BD:'bn',ID:'id',MY:'ms',TH:'th',VN:'vi',PH:'tl',KE:'sw',TZ:'sw'};
+var LINGUE_SUB = [['it','italiano'],['en','inglese'],['zh','cinese'],['ja','giapponese'],['ko','coreano'],['fr','francese'],
+  ['de','tedesco'],['es','spagnolo'],['pt','portoghese'],['ru','russo'],['uk','ucraino'],['ar','arabo'],['tr','turco'],
+  ['el','greco'],['pl','polacco'],['nl','olandese'],['sv','svedese'],['no','norvegese'],['da','danese'],['fi','finlandese'],
+  ['cs','ceco'],['sk','slovacco'],['hu','ungherese'],['ro','romeno'],['bg','bulgaro'],['sr','serbo'],['hr','croato'],
+  ['sl','sloveno'],['he','ebraico'],['fa','persiano'],['hi','hindi'],['ur','urdu'],['bn','bengalese'],['id','indonesiano'],
+  ['ms','malese'],['th','thailandese'],['vi','vietnamita'],['tl','filippino'],['sw','swahili'],['sq','albanese'],
+  ['lt','lituano'],['lv','lettone'],['et','estone'],['mk','macedone'],['bs','bosniaco']];
+sub.lingua = 'en';
+function linguaPerRadio(s){
+  var d = schedeDati && schedeDati[s.uuid];
+  var lw = d && d.lingue && d.lingue[0] && d.lingue[0].toLowerCase();
+  var perNome = lw && LINGUE_SUB.filter(function(x){ return x[1] === lw || (lw === 'chinese' && x[0] === 'zh') || lw.indexOf(x[1]) === 0; })[0];
+  return (perNome && perNome[0]) || LINGUA_PAESE[s.paese] || 'en';
+}
+function aggiornaLinguaSub(){
+  if (!attuale) return;
+  sub.lingua = linguaPerRadio(attuale);
+  var sel = $('sub-lingua'); if (sel) sel.value = sub.lingua;
+}
+(function(){
+  var sel = $('sub-lingua');
+  LINGUE_SUB.forEach(function(x){ sel.appendChild(new Option('Si parla ' + x[1], x[0])); });
+  sel.onchange = function(){ sub.lingua = sel.value; sub.pezzi = []; sub.campioni = 0; sottotitoliStato('Ascolto in ' + sel.options[sel.selectedIndex].text.replace('Si parla ', '') + '…'); };
+})();
+function preparaTraduttore(){
+  if (sub.traduttore || !('Translator' in self)) return Promise.resolve();
+  return Translator.availability({sourceLanguage: 'en', targetLanguage: 'it'}).then(function(a){
+    if (a === 'unavailable') return;
+    return Translator.create({sourceLanguage: 'en', targetLanguage: 'it'}).then(function(t){ sub.traduttore = t; });
+  }).catch(function(){});
+}
+function accendiSottotitoli(){
+  if (!(audio.captureStream || audio.mozCaptureStream) || !window.AudioWorkletNode || !window.Worker) {
+    avviso('I sottotitoli per ora funzionano con Chrome o Edge sul computer'); return;
+  }
+  sub.attivo = true;
+  aggiornaLinguaSub();
+  $('sub').classList.add('attivo-sub'); $('sub').setAttribute('aria-pressed', 'true');
+  $('sottotitoli').hidden = false;
+  preparaTraduttore();                                            // chiede il traduttore ora, durante il clic
+  preparaAudio().then(function(){
+    sub.ctx.resume();
+    avviaWorker();
+    if (attuale && !hls && !audio.crossOrigin) {                  // ricollega la radio permettendo di "sentirla"
+      var suonava = !audio.paused;
+      audio.crossOrigin = 'anonymous'; audio.src = attuale.url;
+      if (suonava) audio.play().catch(function(){});
+    }
+    if (!attuale) sottotitoliStato('Scegli una radio parlata (notizie, talk) per vedere i sottotitoli.');
+    collegaCattura();
+  }).catch(function(e){ sottotitoliStato('Non riesco ad attivare l\'ascolto: ' + e); });
+}
+function spegniSottotitoli(){
+  sub.attivo = false; sub.pezzi = []; sub.campioni = 0;
+  $('sub').classList.remove('attivo-sub'); $('sub').setAttribute('aria-pressed', 'false');
+  $('sottotitoli').hidden = true; $('sub-righe').textContent = ''; sottotitoliStato('');
+  if (sub.sorgente) try { sub.sorgente.disconnect(); } catch (e) {}
+}
+$('sub').onclick = function(){ if (sub.attivo) spegniSottotitoli(); else accendiSottotitoli(); };
+audio.addEventListener('playing', function(){ if (sub.attivo) collegaCattura(); });
+
+/* ---------- preferite, link, avvisi ---------- */
+function segnaCuore(){
+  var si = attuale && preferite.indexOf(attuale.uuid) >= 0;
+  $('cuore').classList.toggle('attivo', !!si);
+  $('cuore').setAttribute('aria-pressed', !!si);
+  $('cuore').querySelector('path').setAttribute('fill', si ? 'currentColor' : 'none');
+}
+$('cuore').onclick = function(){
+  if (!attuale) return;
+  var i = preferite.indexOf(attuale.uuid);
+  if (i >= 0) preferite.splice(i, 1); else preferite.unshift(attuale.uuid);
+  scrivi('etere.preferite', preferite);
+  $('n-pref').textContent = preferite.length ? ' ' + preferite.length : '';
+  segnaCuore();
+  avviso(i >= 0 ? 'Tolta dalle preferite' : 'Aggiunta alle preferite');
+  if (scheda === 'pref') disegnaElenco();
+};
+$('condividi').onclick = function(){
+  if (!attuale) return;
+  var url = location.href.split('#')[0] + '#r=' + attuale.uuid;
+  if (navigator.share) { navigator.share({title: attuale.nome, url: url}).catch(function(){}); return; }
+  try { navigator.clipboard.writeText(url).then(function(){ avviso('Link copiato'); }); } catch(e){ prompt('Link alla radio', url); }
+};
+var tAvviso;
+function avviso(t){ var a = $('avviso'); a.textContent = t; a.classList.add('si'); clearTimeout(tAvviso); tAvviso = setTimeout(function(){ a.classList.remove('si'); }, 2200); }
+
+/* ---------- a caso, vicino a me ---------- */
+$('caso').onclick = function(){
+  if (!radioGeo.length) return;
+  var s = radioGeo[Math.floor(Math.random() * Math.min(radioGeo.length, 4000))];
+  luogoAttuale = null; selezionaLuogo(s.luogo);
+  vola(s.lat, s.lng, 1.1);
+  ascolta(s);
+};
+$('vicino').onclick = function(){
+  if (!navigator.geolocation) { avviso('Il browser non sa dove sei'); return; }
+  avviso('Cerco dove sei…');
+  navigator.geolocation.getCurrentPosition(function(p){
+    vola(p.coords.latitude, p.coords.longitude, 0.6);
+  }, function(){ avviso('Posizione non disponibile'); }, {timeout: 10000, maximumAge: 600000});
+};
+
+/* ---------- ricerca ---------- */
+function semplice(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+var tCerca;
+$('cerca').addEventListener('input', function(){ clearTimeout(tCerca); tCerca = setTimeout(cerca, 120); });
+$('cerca').addEventListener('keydown', function(e){
+  if (e.key === 'Escape') { this.value = ''; cerca(); this.blur(); }
+  if (e.key === 'Enter') { clearTimeout(tCerca); cerca(); var p = $('risultati').querySelector('.riga'); if (p) p.click(); }
+});
+document.addEventListener('click', function(e){ if (!e.target.closest('.cerca-box')) $('risultati').classList.remove('aperti'); });
+$('cerca').addEventListener('focus', function(){ if (this.value.trim()) $('risultati').classList.add('aperti'); });
+function cerca(){
+  var q = semplice($('cerca').value.trim()), box = $('risultati');
+  box.textContent = '';
+  if (q.length < 2) { box.classList.remove('aperti'); return; }
+  var parole = q.split(/[^\p{L}\p{N}]+/u).filter(Boolean), trovate = [];
+  function inizia(toks, p){ for (var j = 0; j < toks.length; j++) if (toks[j].indexOf(p) === 0) return true; return false; }
+  for (var i = 0; i < radio.length; i++) {
+    var s = radio[i];
+    if (!s._n) {
+      s._n = semplice(s.nome).split(/[^\p{L}\p{N}]+/u).filter(Boolean);
+      s._t = s._n.concat(semplice(s.generi + ' ' + nomePaese(s.paese) + ' ' + s.paese).split(/[^\p{L}\p{N}]+/u).filter(Boolean));
+    }
+    if (parole.every(function(p){ return inizia(s._t, p); })) {
+      var nelNome = parole.every(function(p){ return inizia(s._n, p); });
+      trovate.push({s: s, voto: (nelNome ? 0 : 1) * 1e9 - s.k});
+    }
+  }
+  trovate = trovate.sort(function(a,b){ return a.voto - b.voto; }).slice(0, 40).map(function(x){ return x.s; });
+  if (!trovate.length) box.innerHTML = '<div class="vuoto">Nessuna radio trovata.</div>';
+  trovate.forEach(function(s){
+    var r = riga(s, true);
+    r.onclick = function(){
+      box.classList.remove('aperti'); $('cerca').blur();
+      if (s.lat != null) { luogoAttuale = null; selezionaLuogo(s.luogo); vola(s.lat, s.lng, 1.1); }
+      else { var c = centroPaese(s.paese); if (c) vola(c.lat, c.lng, 1.4); }
+      ascolta(s);
+    };
+    box.appendChild(r);
+  });
+  box.classList.add('aperti');
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === '/' && document.activeElement !== $('cerca')) { e.preventDefault(); $('cerca').focus(); }
+  if (e.key === ' ' && e.target === document.body && attuale) { e.preventDefault(); $('gioca').click(); }
+});
+})();
+</script>
+</body>
+</html>
