@@ -108,6 +108,9 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .brano .apri{font-size:12.5px;color:var(--tenue);font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:4px}
 .brano .apri svg{width:14px;height:14px;transition:transform .2s}
 .brano[aria-expanded=true] .apri svg{transform:rotate(180deg)}
+.brano.senza{cursor:default;background:none}
+.brano.senza b{color:var(--fioco);font-weight:500;font-style:italic}
+.brano.senza .apri{display:none}
 .brano,.brano-piu,.player,.strumenti,.schede,.luogo{flex:none}
 .brano-piu{padding:2px 16px 12px;border-bottom:1px solid var(--bordo);font-size:13px;max-height:34dvh;overflow:auto}
 .brano-piu h4{margin:8px 0 6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fioco)}
@@ -665,14 +668,15 @@ function aggiornaRighe(){
    Dove il server non lo permette al browser (CORS), semplicemente non mostriamo nulla. */
 var brano = {uuid: null, gen: 0, attivo: false, timer: null, es: null, ac: null, ora: '', storico: []};
 function sospendiBrano(){
-  brano.gen++; brano.attivo = false; clearTimeout(brano.timer); brano.timer = null;
+  brano.gen++; brano.attivo = false; clearTimeout(brano.timer); brano.timer = null; clearTimeout(brano.tAttesa);
+  if (!brano.ora && brano.attesa) { brano.attesa = false; disegnaBrano(); }
   if (brano.es) { brano.es.close(); brano.es = null; }
   if (brano.ac) { try { brano.ac.abort(); } catch(e){} brano.ac = null; }
 }
 function cambiaBrano(s){
   if (brano.uuid === s.uuid) return;
   sospendiBrano();
-  brano.uuid = s.uuid; brano.ora = ''; brano.storico = [];
+  brano.uuid = s.uuid; brano.ora = ''; brano.storico = []; brano.attesa = false;
   $('brano-piu').hidden = true; $('brano').setAttribute('aria-expanded', 'false');
   disegnaBrano();
 }
@@ -708,8 +712,12 @@ function cercaTesto(t){
 }
 function disegnaBrano(){
   var b = $('brano'), piu = $('brano-piu');
-  b.hidden = !brano.ora;
-  if (!brano.ora) { piu.hidden = true; return; }
+  b.hidden = !brano.ora && !brano.attesa;
+  b.classList.toggle('senza', !brano.ora);
+  if (!brano.ora) {
+    $('brano-titolo').textContent = brano.attesa === 'niente' ? 'Questa radio non comunica il titolo' : 'Cerco il titolo…';
+    piu.hidden = true; b.setAttribute('aria-expanded', 'false'); return;
+  }
   $('brano-titolo').textContent = brano.ora;
   $('brano-titolo').title = brano.ora;
   piu.textContent = '';
@@ -730,6 +738,7 @@ function disegnaBrano(){
   piu.appendChild(E('p', 'nota', 'Il titolo lo manda la radio; i testi sono sui siti che li pubblicano, Etere li cerca soltanto.'));
 }
 $('brano').onclick = function(){
+  if (!brano.ora) return;
   var aperto = this.getAttribute('aria-expanded') === 'true';
   this.setAttribute('aria-expanded', aperto ? 'false' : 'true');
   $('brano-piu').hidden = aperto;
@@ -788,6 +797,10 @@ function avviaBrano(){
   cambiaBrano(s);
   brano.attivo = true;
   var g = ++brano.gen, u;
+  if (!brano.ora) {                                          // la riga c'è sempre: prima "cerco", poi "non lo dice"
+    brano.attesa = 'cerco'; disegnaBrano();
+    brano.tAttesa = setTimeout(function(){ if (g === brano.gen && !brano.ora) { brano.attesa = 'niente'; disegnaBrano(); } }, 12000);
+  }
   try { u = new URL(s.url); } catch(e){ return; }
   var h = u.hostname, p = u.pathname.split('/').filter(Boolean), ultimo = p[p.length - 1] || '';
   var dai = function(v){ nuovoBrano(v, g); };
@@ -819,6 +832,27 @@ function avviaBrano(){
   if (/(^|\.)radiojar\.com$/.test(h) && p[0]) {              // Radiojar
     return ripeti(function(){ return prendi('https://www.radiojar.com/api/stations/' + encodeURIComponent(p[0]) + '/now_playing/', 'json').then(function(j){
       dai(insieme(j.artist, j.title)); }); }, 25000, g);
+  }
+  var cc = u.pathname.match(/^\/proxy\/([^/?]+)/);
+  if (cc) {                                                  // Centova Cast (molti piccoli hosting): titolo e ultimi brani
+    var base = u.origin + '/', utente = encodeURIComponent(cc[1]), primo = true;
+    return ripeti(function(){
+      if (primo) { primo = false;
+        prendi(base + 'recentfeed/' + utente + '/json/', 'json').then(function(j){
+          if (g !== brano.gen || brano.storico.length) return;
+          brano.storico = (j.items || []).slice(1, 9).map(function(x){ return pulisciTitolo(x.title, s); }).filter(Boolean);
+          disegnaBrano(); }).catch(function(){});
+      }
+      return prendi(base + 'rpc/' + utente + '/streaminfo.get', 'json').then(function(j){
+        var x = j.data && j.data[0]; if (!x) return;
+        dai(x.track && x.track.title ? insieme(x.track.artist, x.track.title) : x.song); });
+    }, 25000, g);
+  }
+  var rc = /(^|\.)radio\.co$/.test(h) && p[0];
+  if (rc && /^s[0-9a-f]{8,}$/.test(p[0])) {                  // radio.co
+    return ripeti(function(){ return prendi('https://public.radio.co/stations/' + p[0] + '/status', 'json').then(function(j){
+      if (!brano.storico.length && j.history) { brano.storico = j.history.slice(1, 9).map(function(x){ return pulisciTitolo(x.title, s); }).filter(Boolean); }
+      dai(j.current_track && j.current_track.title); }); }, 25000, g);
   }
   if (hls || s.hls || /\.m3u8(\?|$)/i.test(s.url)) return;   // HLS: arrivano i tag ID3 (vedi sotto)
 
