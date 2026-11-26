@@ -110,19 +110,14 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .brano[aria-expanded=true] .apri svg{transform:rotate(180deg)}
 .brano.senza{cursor:default;background:none}
 .brano.senza b{color:var(--fioco);font-weight:500;font-style:italic}
-.brano.senza .apri{display:none}
+.brano.senza .apri,.brano:not(.storico) .apri{display:none}
+.brano:not(.storico){cursor:default}
 .brano,.brano-piu,.player,.strumenti,.schede,.luogo{flex:none}
 .brano-piu{padding:2px 16px 12px;border-bottom:1px solid var(--bordo);font-size:13px;max-height:34dvh;overflow:auto}
 .brano-piu h4{margin:8px 0 6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fioco)}
-.cerca-testo{display:flex;flex-wrap:wrap;gap:6px}
-.cerca-testo a{padding:5px 11px;border-radius:999px;border:1px solid var(--bordo-forte);color:var(--testo);text-decoration:none;font-size:12.5px;font-weight:600}
-.cerca-testo a:hover{border-color:rgba(255,181,71,.6);color:var(--ambra-viva)}
 .brano-piu ol{list-style:none;margin:0;padding:0}
 .brano-piu li{display:flex;gap:10px;align-items:baseline;padding:4px 0;color:var(--tenue)}
 .brano-piu li span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.brano-piu li a{color:var(--fioco);font-size:12px;white-space:nowrap}
-.brano-piu li a:hover{color:var(--ambra)}
-.brano-piu .nota{color:var(--fioco);font-size:11.5px;margin:10px 0 0}
 .strumenti{display:flex;align-items:center;gap:6px;padding:10px 16px;border-bottom:1px solid var(--bordo)}
 .piccolo{height:34px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;color:var(--tenue);font-size:13px;font-weight:600;
   border:1px solid transparent;text-decoration:none;white-space:nowrap}
@@ -293,7 +288,7 @@ a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
   <button class="brano" id="brano" aria-expanded="false" aria-controls="brano-piu" hidden>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
     <span class="bt"><small>Sta suonando</small><b id="brano-titolo"></b></span>
-    <span class="apri">Testo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+    <span class="apri">Prima<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
   </button>
   <div class="brano-piu" id="brano-piu" hidden></div>
   <div class="strumenti">
@@ -676,7 +671,7 @@ function sospendiBrano(){
 function cambiaBrano(s){
   if (brano.uuid === s.uuid) return;
   sospendiBrano();
-  brano.uuid = s.uuid; brano.ora = ''; brano.storico = []; brano.attesa = false;
+  brano.uuid = s.uuid; brano.ora = ''; brano.storico = []; brano.attesa = false; brano.risposto = false;
   $('brano-piu').hidden = true; $('brano').setAttribute('aria-expanded', 'false');
   disegnaBrano();
 }
@@ -694,6 +689,7 @@ function pulisciTitolo(t, s){
 }
 function nuovoBrano(t, g){
   if (g !== brano.gen || !attuale) return;
+  if (!brano.risposto) { brano.risposto = true; if (!brano.ora && brano.attesa === 'niente') disegnaBrano(); }
   t = pulisciTitolo(t, attuale);
   if (!t || t === brano.ora) return;
   if (brano.ora) { brano.storico.unshift(brano.ora); brano.storico = brano.storico.slice(0, 8); }
@@ -704,41 +700,30 @@ function nuovoBrano(t, g){
       artwork: attuale.icona ? [{src: attuale.icona}] : []}); } catch(e){}
   }
 }
-function cercaTesto(t){
-  var q = encodeURIComponent(t);
-  return [['Genius', 'https://genius.com/search?q=' + q],
-          ['Musixmatch', 'https://www.musixmatch.com/search?query=' + q],
-          ['Google', 'https://www.google.com/search?q=' + encodeURIComponent(t + ' testo lyrics')]];
-}
 function disegnaBrano(){
   var b = $('brano'), piu = $('brano-piu');
   b.hidden = !brano.ora && !brano.attesa;
   b.classList.toggle('senza', !brano.ora);
+  b.classList.toggle('storico', !!brano.storico.length);
   if (!brano.ora) {
-    $('brano-titolo').textContent = brano.attesa === 'niente' ? 'Questa radio non comunica il titolo' : 'Cerco il titolo…';
+    $('brano-titolo').textContent = brano.attesa !== 'niente' ? 'Cerco il titolo…'
+      : brano.risposto ? 'In questo momento la radio non indica nessuna canzone' : 'Questa radio non comunica il titolo';
     piu.hidden = true; b.setAttribute('aria-expanded', 'false'); return;
   }
   $('brano-titolo').textContent = brano.ora;
   $('brano-titolo').title = brano.ora;
   piu.textContent = '';
-  piu.appendChild(E('h4', null, 'Cerca il testo'));
-  var c = E('div', 'cerca-testo');
-  cercaTesto(brano.ora).forEach(function(x){ c.appendChild(link(x[1], x[0] + ' ↗', ' ')); });
-  piu.appendChild(c);
-  if (brano.storico.length) {
-    piu.appendChild(E('h4', null, 'Prima'));
-    var ol = E('ol');
-    brano.storico.forEach(function(t){
-      var li = E('li'); li.appendChild(E('span', null, t));
-      li.appendChild(link(cercaTesto(t)[2][1], 'testo ↗', ' '));
-      ol.appendChild(li);
-    });
-    piu.appendChild(ol);
-  }
-  piu.appendChild(E('p', 'nota', 'Il titolo lo manda la radio; i testi sono sui siti che li pubblicano, Etere li cerca soltanto.'));
+  var oraS = semplice(brano.ora);
+  brano.storico = brano.storico.filter(function(t){ return semplice(t) !== oraS; });
+  b.classList.toggle('storico', !!brano.storico.length);
+  if (!brano.storico.length) { piu.hidden = true; b.setAttribute('aria-expanded', 'false'); return; }
+  piu.appendChild(E('h4', null, 'Prima'));
+  var ol = E('ol');
+  brano.storico.forEach(function(t){ var li = E('li'); li.appendChild(E('span', null, t)); ol.appendChild(li); });
+  piu.appendChild(ol);
 }
 $('brano').onclick = function(){
-  if (!brano.ora) return;
+  if (!brano.ora || !brano.storico.length) return;
   var aperto = this.getAttribute('aria-expanded') === 'true';
   this.setAttribute('aria-expanded', aperto ? 'false' : 'true');
   $('brano-piu').hidden = aperto;
@@ -749,16 +734,20 @@ function ripeti(fn, ms, g){
   giro();
 }
 function prendi(url, tipo){
-  var ac = new AbortController(), t = setTimeout(function(){ ac.abort(); }, 8000);
+  var ac = new AbortController(), t = setTimeout(function(){ ac.abort(); }, 6000);
+  // il limite vale anche per il contenuto: certi server, a una pagina che non hanno, rispondono mandando la musica
   return fetch(url, {signal: ac.signal, cache: 'no-store'}).then(function(r){
-    clearTimeout(t); if (!r.ok) throw new Error(r.status); return tipo === 'json' ? r.json() : r.text(); });
+    if (!r.ok) throw new Error(r.status);
+    if (/^audio\//i.test(r.headers.get('content-type') || '')) { ac.abort(); throw new Error('audio'); }
+    return tipo === 'json' ? r.json() : r.text();
+  }).then(function(v){ clearTimeout(t); return v; }, function(e){ clearTimeout(t); throw e; });
 }
 function insieme(artista, titolo){ return [artista, titolo].filter(Boolean).join(' – '); }
 
 // metadati ICY: apriamo un secondo collegamento al flusso, leggiamo il primo blocco e chiudiamo
 function leggiIcy(url, g){
   var ac = new AbortController(); brano.ac = ac;
-  var t = setTimeout(function(){ ac.abort(); }, 9000);
+  var t = setTimeout(function(){ ac.abort(); }, 6000);
   return fetch(url, {headers: {'Icy-MetaData': '1'}, signal: ac.signal, cache: 'no-store'}).then(function(r){
     var mi = +r.headers.get('icy-metaint');
     if (!mi || !r.body) { ac.abort(); return null; }
@@ -780,16 +769,35 @@ function leggiIcy(url, g){
     return giro();
   }).catch(function(){ return null; }).then(function(v){ clearTimeout(t); if (brano.ac === ac) brano.ac = null; return v; });
 }
-// pagina di stato di Icecast sullo stesso server
-function leggiIcecast(u){
-  return prendi(u.origin + '/status-json.xsl', 'json').then(function(j){
+// le pagine di stato standard dei server di streaming (Icecast, Shoutcast v1 e v2, AzuraCast):
+// le proviamo in ordine e ricordiamo quale ha risposto
+var porteServer = {
+  icecast: function(u){ return prendi(u.origin + '/status-json.xsl', 'json').then(function(j){
     var src = j && j.icestats && j.icestats.source; if (!src) return null;
     src = [].concat(src);
     var giusta = src.filter(function(x){ return x && x.listenurl && x.listenurl.replace(/^.*?\/\/[^/]+/, '') === u.pathname; })[0]
               || (src.length === 1 ? src[0] : null);
     if (!giusta) return null;
     return giusta.artist && giusta.title ? insieme(giusta.artist, giusta.title) : (giusta.title || giusta.yp_currently_playing || '');
-  }).catch(function(){ return null; });
+  }); },
+  shoutcast2: function(u){ return prendi(u.origin + '/stats?sid=1&json=1', 'json').then(function(j){ return j && j.songtitle != null ? j.songtitle : null; }); },
+  shoutcast1: function(u){ return prendi(u.origin + '/7.html').then(function(t){
+    var c = t.replace(/<[^>]*>/g, '').split(','); return c.length >= 7 ? c.slice(6).join(',') : null; }); },
+  azuracast: function(u){ return prendi(u.origin + '/api/nowplaying', 'json').then(function(j){
+    j = [].concat(j || []);
+    var giusta = j.filter(function(x){ return x.station && [x.station.listen_url].concat((x.station.mounts || []).map(function(m){ return m.url; }))
+      .some(function(l){ return l && l.replace(/^.*?\/\/[^/]+/, '') === u.pathname; }); })[0] || (j.length === 1 ? j[0] : null);
+    var so = giusta && giusta.now_playing && giusta.now_playing.song;
+    return so ? (so.artist && so.title ? insieme(so.artist, so.title) : so.text || '') : null;
+  }); }
+};
+function leggiServer(u, metodo){
+  var nomi = metodo ? [metodo] : Object.keys(porteServer);
+  // tutte insieme (alcuni server lasciano appese le porte che non hanno), vince la prima dell'elenco che risponde
+  return Promise.all(nomi.map(function(n){ return porteServer[n](u).catch(function(){ return null; }); })).then(function(r){
+    for (var i = 0; i < r.length; i++) if (r[i] !== null && r[i] !== undefined) return {t: r[i], metodo: nomi[i]};
+    return null;
+  });
 }
 
 function avviaBrano(){
@@ -799,7 +807,7 @@ function avviaBrano(){
   var g = ++brano.gen, u;
   if (!brano.ora) {                                          // la riga c'è sempre: prima "cerco", poi "non lo dice"
     brano.attesa = 'cerco'; disegnaBrano();
-    brano.tAttesa = setTimeout(function(){ if (g === brano.gen && !brano.ora) { brano.attesa = 'niente'; disegnaBrano(); } }, 12000);
+    brano.tAttesa = setTimeout(function(){ if (g === brano.gen && !brano.ora) { brano.attesa = 'niente'; disegnaBrano(); } }, 16000);
   }
   try { u = new URL(s.url); } catch(e){ return; }
   var h = u.hostname, p = u.pathname.split('/').filter(Boolean), ultimo = p[p.length - 1] || '';
@@ -856,15 +864,16 @@ function avviaBrano(){
   }
   if (hls || s.hls || /\.m3u8(\?|$)/i.test(s.url)) return;   // HLS: arrivano i tag ID3 (vedi sotto)
 
-  // flusso classico: prima ICY, poi la pagina di stato di Icecast
+  // flusso classico: i metadati ICY e le pagine di stato del server, chiesti insieme; ICY ha la precedenza
+  var dalServer = leggiServer(u);
   leggiIcy(s.url, g).then(function(t){
     if (g !== brano.gen) return;
     if (t !== null) { dai(t); brano.timer = setTimeout(function(){ ripeti(function(){
       return leggiIcy(s.url, g).then(function(t2){ if (t2 === null) return false; dai(t2); }); }, 20000, g); }, 20000); return; }
-    leggiIcecast(u).then(function(t3){
-      if (g !== brano.gen || t3 === null) return;
-      dai(t3);
-      brano.timer = setTimeout(function(){ ripeti(function(){ return leggiIcecast(u).then(function(t4){ if (t4 === null) return false; dai(t4); }); }, 20000, g); }, 20000);
+    dalServer.then(function(r3){
+      if (g !== brano.gen || r3 === null) return;
+      dai(r3.t);
+      brano.timer = setTimeout(function(){ ripeti(function(){ return leggiServer(u, r3.metodo).then(function(r4){ if (r4 === null) return false; dai(r4.t); }); }, 20000, g); }, 20000);
     });
   });
 }
