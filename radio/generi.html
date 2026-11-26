@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="it" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05070d">
+<meta name="robots" content="noindex">
+<title>Etere · i generi delle radio</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --notte:#05070d; --carta:#0b1020; --bordo:rgba(255,255,255,.09); --bordo-forte:rgba(255,255,255,.18);
+  --testo:#eef0f6; --tenue:#9aa1b5; --fioco:#6b7186; --ambra:#ffb547; --ambra-viva:#ffd27a; --ambra-buio:rgba(255,181,71,.14);
+  --f-titolo:'Fraunces',Georgia,serif; --f-testo:'Manrope',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--notte);color:var(--testo);font-family:var(--f-testo);font-size:15px;line-height:1.45}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ambra);outline-offset:2px;border-radius:8px}
+.pagina{max-width:1080px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px 60px}
+.testata{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.marchio{text-decoration:none;font-family:var(--f-titolo);font-weight:600;font-size:26px}
+.marchio i{font-style:normal;color:var(--ambra)}
+.testata span{color:var(--tenue)}
+.testata .torna{margin-left:auto;color:var(--tenue);font-size:14px}
+h1{font-family:var(--f-titolo);font-weight:500;font-size:clamp(28px,5vw,40px);margin:22px 0 4px;line-height:1.1}
+.sotto{color:var(--tenue);margin:0 0 18px;max-width:720px}
+.comandi{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+select,input[type=search]{height:40px;border-radius:999px;border:1px solid var(--bordo-forte);background:var(--carta);padding:0 14px;outline:none}
+input[type=search]{flex:1;min-width:180px}
+.conta{color:var(--tenue);font-size:14px}
+.generi{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.gen{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;border:1px solid var(--bordo-forte);font-size:13px;font-weight:600;white-space:nowrap}
+.gen i{width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.gen small{color:var(--tenue);font-weight:500}
+button.gen:hover{border-color:var(--c)}
+button.gen[aria-pressed=true]{background:color-mix(in srgb,var(--c) 22%,transparent);border-color:var(--c)}
+.barra{display:flex;height:10px;border-radius:999px;overflow:hidden;margin:0 0 10px;background:var(--carta)}
+.barra span{background:var(--c)}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fioco);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--bordo-forte);position:sticky;top:0;background:var(--notte)}
+td{padding:9px 10px;border-bottom:1px solid var(--bordo);vertical-align:top}
+td.n{color:var(--fioco);font-size:13px;width:46px;text-align:right;font-variant-numeric:tabular-nums}
+td.nome{width:34%}
+td.nome b{font-weight:600}
+td.nome a{display:inline-block;margin-top:2px;font-size:12.5px;color:var(--ambra);text-decoration:none}
+td.nome a:hover{text-decoration:underline}
+.chips{display:flex;flex-wrap:wrap;gap:5px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;
+  background:color-mix(in srgb,var(--c) 20%,transparent);border:1px solid color-mix(in srgb,var(--c) 55%,transparent)}
+.chip.dedotto{background:none;border-style:dashed;font-weight:500}
+.curata{font-size:11px;color:var(--ambra);letter-spacing:.06em;text-transform:uppercase;font-weight:700;align-self:center;margin-left:2px}
+.chip.nessuno{--c:#6b7186;background:none;color:var(--fioco);font-weight:500}
+.etichette{color:var(--fioco);font-size:12px;margin-top:4px}
+.nota{color:var(--tenue);font-size:13.5px;margin-top:28px;border-top:1px solid var(--bordo);padding-top:16px;max-width:780px}
+.nota b{color:var(--testo)}
+.carica{color:var(--tenue);padding:40px 0}
+@media (max-width:640px){
+  thead{display:none}
+  tr{display:block;padding:10px 0;border-bottom:1px solid var(--bordo)}
+  td{display:block;border:0;padding:2px 4px}
+  td.n{display:none}
+  td.nome{width:auto}
+}
+</style>
+</head>
+<body>
+<div class="pagina">
+  <header class="testata">
+    <a class="marchio" href="./">Et<i>e</i>re</a><span>i generi delle radio</span>
+    <a class="torna" href="./">← torna al globo</a>
+  </header>
+  <h1 id="titolo">Le radio e i loro generi</h1>
+  <p class="sotto" id="sotto">Carico le radio…</p>
+  <div class="comandi">
+    <select id="paese" aria-label="Paese"></select>
+    <input type="search" id="cerca" placeholder="Cerca una radio o un genere" aria-label="Cerca">
+    <span class="conta" id="conta"></span>
+  </div>
+  <div class="barra" id="barra" aria-hidden="true"></div>
+  <div class="generi" id="generi"></div>
+  <table>
+    <thead><tr><th>#</th><th>Radio</th><th>Generi</th></tr></thead>
+    <tbody id="righe"><tr><td colspan="3" class="carica">Carico…</td></tr></tbody>
+  </table>
+  <div class="nota">
+    <p><b>Come sono classificate.</b> I generi vengono dalle etichette dell'archivio aperto
+      <a href="https://www.radio-browser.info" target="_blank" rel="noopener">radio-browser.info</a>, scritte dalle radio
+      o dagli ascoltatori (le vedi in grigio sotto ogni riga), raggruppate in famiglie. Quando una radio non ha etichette,
+      il genere è <b>dedotto dal nome</b> (riquadro tratteggiato), per esempio «Jazz» o «Radio Maria».
+      Per una trentina di grandi radio nazionali italiane, dove le etichette mancano o sono parziali, i generi li ha
+      assegnati Etere (segno <span class="curata">scheda Etere</span>).</p>
+    <p><b>Generalista</b> vuol dire musica di più famiglie insieme a notizie e intrattenimento, come fanno le grandi radio
+      nazionali; la stessa etichetta la danno le radio che si dicono «varied» o «mixed».
+      L'ordine è per ascolti su radio-browser; le radio con lo stesso nome sono riunite in una riga.</p>
+  </div>
+</div>
+<script>
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+var paesi = (function(){ try { return new Intl.DisplayNames(['it'], {type:'region'}); } catch(e){ return null; } })();
+function nomePaese(cc){ try { return (paesi && paesi.of(cc)) || cc; } catch(e){ return cc; } }
+
+// le famiglie di generi: [chiave, nome, colore, regola sulle etichette, regola sul nome]
+var FAMIGLIE = [
+  ['generalista', 'Generalista', '#ffb547', /\b(varied|variety|mixed|generalist\w*|generalista|varie|various|full service)\b/, null],
+  ['pop', 'Pop e successi', '#ff8fb1', /\b(pop|hits?|top ?40|top ?hits|chart\w*|contemporary|adult contemporary|love songs|happy music|mainstream|cover)\b/, /\b(hits?|pop)\b/],
+  ['italiana', 'Musica italiana', '#7bd88f', /(italian pop|musica italiana|italian music|\bitaliana\b|classic italian|cantautor\w*|napoletan\w*|neomelodic\w*|canzone)/, /(musica italiana|cantautor|napoletan|neomelod)/],
+  ['dance', 'Dance ed elettronica', '#5ec8ff', /\b(dance|edm|house|techno|trance|electro\w*|elettronic\w*|club\w*|disco|hands up|jungle|breakbeat|drum|dubstep|eurodance|italo disco|hardstyle|deep house)\b/, /\b(dance|disco|house|techno|club|edm)\b/],
+  ['rock', 'Rock e metal', '#ff6b6b', /\b(rock|metal|punk|grunge|alternative|indie|hard rock|bluesrock)\b/, /\b(rock|metal|punk|indie)\b/],
+  ['anni', 'Successi del passato', '#c9a7ff', /(oldies|\b(19)?[5-9]0'?s\b|\b2000s\b|\b(19)?[5-9]0's\b|anni ?[5-9]0|classic hits|evergreen\w*|goldies|golden|revival|retro|nostalgi\w*|\b70 80\b)/, /(anni ?[5-9]0|\b[5-9]0s\b|oldies|evergreen|revival|nostalgi|retro)/],
+  ['jazz', 'Jazz, blues e soul', '#f2c14e', /\b(jazz|blues|soul|funk|funky|groove|swing|bossa)\w*/, /\b(jazz|blues|soul|funk|swing)\b/],
+  ['hiphop', 'Hip hop e R&B', '#ff9f43', /\b(hip[ -]?hop|rap|trap|r&b|rnb|urban)\b/, /\b(hip ?hop|rap|trap|r&b)\b/],
+  ['classica', 'Classica e lirica', '#a3e4d7', /\b(classical|classica|opera|lirica|baroque|barocc\w*|symphon\w*|sinfonic\w*|chamber)\b/, /\b(classica|classical|lirica|opera|sinfonia)\b/],
+  ['chill', 'Chill e lounge', '#82b1ff', /\b(ambient|lounge|chill\w*|relax\w*|easy listening|smooth|new age|meditation|instrumental)\b/, /\b(lounge|chill|relax|ambient|smooth)\b/],
+  ['world', 'Latina, reggae e world', '#4ee1a0', /\b(latin\w*|reggaeton|salsa|reggae|dancehall|dub|world|afro\w*|brazil\w*|balearic|bachata|cumbia|flamenco)\b/, /\b(latin\w*|reggae|salsa|afro|tropical)\b/],
+  ['folk', 'Folk, liscio e popolare', '#d4a373', /\b(folk|liscio|balera|popolare|tradizional\w*|traditional|country|schlager|polka|bluegrass)\b/, /\b(liscio|folk|balera|country)\b/],
+  ['notizie', 'Notizie e parlato', '#b0bec5', /\b(news|notizie|talk|information|informazione|culture|cultura|cultural|politic\w*|discussion|chat|audiobooks?|health|giornale|radio giornale|documentar\w*|education|educativ\w*)\b/, /\b(news|notizie|giornale|parlamento|cultura|informazione)\b/],
+  ['sport', 'Sport', '#9ccc65', /\b(sports?|calcio|football|soccer)\b/, /\b(sport|calcio|stadio)\b/],
+  ['religiosa', 'Religiosa', '#e6c9a8', /\b(christian|catholic|cattolic\w*|religio\w*|spiritual|gospel|church|chiesa|islam\w*|quran|coran\w*|worship|bible|bibbia|evangel\w*|vatican\w*)\b/, /\b(maria|vatican\w*|cattolic\w*|parrocchi\w*|evangel\w*|christian|gospel|chiesa|missione|santuario|diocesi|inblu|radio mater)\b/],
+  ['locale', 'Locale e comunitaria', '#8d99ae', /\b(local|locale|local news|local radio|community|comunitari\w*|regional|regionale|university|universit\w*|college|student\w*)\b/, /\b(universit\w*|campus|comunit\w*)\b/]
+];
+var PER_CHIAVE = {}; FAMIGLIE.forEach(function(f){ PER_CHIAVE[f[0]] = f; });
+// regole sul nome in più, oltre a quelle delle famiglie
+PER_CHIAVE.sport[4] = /sport|calcio|stadio/;
+PER_CHIAVE.classica[4] = /\b(classica|classical|lirica|opera|sinfonia)\b|classic radio|radio classic\b/;
+PER_CHIAVE.anni[4] = /(anni ?[5-9]0|\b[5-9]0s\b|oldies|evergreen|revival|nostalgi|retro|grandi successi)/;
+
+// le grandi radio nazionali italiane: classificazione curata da Etere (le etichette dell'archivio mancano o sono parziali)
+var CURATE = {
+  rtl1025: ['generalista', 'pop', 'notizie'], rds: ['generalista', 'pop', 'italiana', 'notizie'], rdsradiodimensionesuono: ['generalista', 'pop', 'italiana', 'notizie'],
+  radio105: ['pop', 'dance', 'hiphop'], radio105network: ['pop', 'dance', 'hiphop'], radiodeejay: ['generalista', 'pop', 'dance'],
+  radiocapital: ['anni', 'rock', 'notizie'], radiokisskiss: ['pop', 'dance'], radioitalia: ['italiana', 'pop'], radioitaliasolomusicaitaliana: ['italiana', 'pop'],
+  radiosubasio: ['italiana', 'pop'], r101: ['pop', 'anni'], radiomontecarlo: ['pop', 'chill'], radiomontecarlofm: ['pop', 'chill'],
+  radiofreccia: ['rock'], radiozeta: ['pop', 'hiphop'], radio24: ['notizie'], radioradicale: ['notizie'], radiomaria: ['religiosa'],
+  radiosportiva: ['sport'], rairadio1: ['notizie', 'sport'], rairadio2: ['generalista', 'pop'], rairadio3: ['classica', 'notizie'],
+  raiisoradio: ['notizie'], raigrparlamento: ['notizie'], rairadiotuttaitaliana: ['italiana'], rairadioclassica: ['classica'],
+  radioinblu: ['religiosa', 'notizie'], radiovaticana: ['religiosa', 'notizie'], vaticannews: ['religiosa', 'notizie']
+};
+
+function classifica(etichette, nome, paese){
+  var cur = paese === 'IT' && CURATE[norma(nome)];
+  if (cur) return {trovate: cur.slice(), dedotte: [], curata: true};
+  var testo = etichette.join(' | ').toLowerCase(), trovate = [], dedotte = [];
+  if (etichette.length) {
+    FAMIGLIE.forEach(function(f){ if (f[3].test(testo)) trovate.push(f[0]); });
+  }
+  if (!trovate.length && nome) {
+    var n = nome.toLowerCase();
+    FAMIGLIE.forEach(function(f){ if (f[4] && f[4].test(n)) dedotte.push(f[0]); });
+  }
+  // generalista: più famiglie musicali insieme all'informazione, oppure tante famiglie diverse
+  var musicali = trovate.filter(function(k){ return ['notizie','sport','religiosa','locale','generalista'].indexOf(k) < 0; });
+  if (trovate.indexOf('generalista') < 0 && ((musicali.length >= 1 && trovate.indexOf('notizie') >= 0 && trovate.indexOf('pop') >= 0) || musicali.length >= 4))
+    trovate.unshift('generalista');
+  return {trovate: trovate, dedotte: dedotte};
+}
+function norma(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ''); }
+
+var tutte = [], perPaese = {}, filtro = null;
+Promise.all(['stazioni.json', 'altre.json'].map(function(f){ return fetch(f).then(function(r){ return r.json(); }); })).then(function(js){
+  js.forEach(function(j){ (j.radio || []).forEach(function(a){
+    var r = {nome: a[0], url: a[3], paese: a[4], etichette: (a[5] || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean), uuid: a[7], k: a[10] || 0};
+    if (!r.paese) return;
+    var chiave = norma(r.nome) || r.uuid;
+    var g = perPaese[r.paese] || (perPaese[r.paese] = {});
+    var gia = g[chiave];
+    if (gia) {                              // stessa radio con più flussi: una riga sola
+      r.etichette.forEach(function(t){ if (gia.etichette.indexOf(t) < 0) gia.etichette.push(t); });
+      if (r.k > gia.k) { gia.k = r.k; gia.uuid = r.uuid; gia.nome = r.nome; }
+      gia.flussi++;
+    } else { r.flussi = 1; g[chiave] = r; }
+  }); });
+  var cc = Object.keys(perPaese).map(function(c){ return [c, Object.keys(perPaese[c]).length]; })
+    .sort(function(a, b){ return nomePaese(a[0]).localeCompare(nomePaese(b[0]), 'it'); });
+  var sel = $('paese');
+  cc.forEach(function(x){ var o = document.createElement('option'); o.value = x[0]; o.textContent = nomePaese(x[0]) + ' (' + x[1] + ')'; sel.appendChild(o); });
+  var iniziale = (location.hash.match(/p=([A-Z]{2})/) || [])[1] || 'IT';
+  sel.value = perPaese[iniziale] ? iniziale : 'IT';
+  sel.onchange = function(){ filtro = null; history.replaceState(null, '', '#p=' + sel.value); mostraPaese(); };
+  mostraPaese();
+}).catch(function(){ $('sotto').textContent = 'Non riesco a caricare le radio. Riprova più tardi.'; });
+
+function mostraPaese(){
+  var cc = $('paese').value;
+  tutte = Object.keys(perPaese[cc]).map(function(k){ var r = perPaese[cc][k]; r.g = classifica(r.etichette, r.nome, cc); return r; })
+    .sort(function(a, b){ return b.k - a.k; });
+  $('titolo').textContent = 'Le radio ' + (cc === 'IT' ? 'italiane' : 'di ' + nomePaese(cc)) + ' e i loro generi';
+  var conGen = tutte.filter(function(r){ return r.g.trovate.length; }).length, dedotte = tutte.filter(function(r){ return !r.g.trovate.length && r.g.dedotte.length; }).length;
+  $('sotto').textContent = tutte.length + ' radio. ' + conGen + ' hanno un genere dalle etichette, ' + dedotte +
+    ' dal nome, ' + (tutte.length - conGen - dedotte) + ' non dicono nulla.';
+  // conteggi per famiglia
+  var conti = {}; FAMIGLIE.forEach(function(f){ conti[f[0]] = 0; });
+  var nessuno = 0;
+  tutte.forEach(function(r){ var l = r.g.trovate.concat(r.g.dedotte); if (!l.length) nessuno++; l.forEach(function(k){ conti[k]++; }); });
+  var gen = $('generi'); gen.textContent = '';
+  var ord = FAMIGLIE.slice().sort(function(a, b){ return conti[b[0]] - conti[a[0]]; }).filter(function(f){ return conti[f[0]]; });
+  ord.forEach(function(f){
+    var b = document.createElement('button'); b.className = 'gen'; b.style.setProperty('--c', f[2]);
+    b.setAttribute('aria-pressed', filtro === f[0] ? 'true' : 'false');
+    b.innerHTML = '<i></i>'; b.appendChild(document.createTextNode(f[1] + ' ')); var s = document.createElement('small'); s.textContent = conti[f[0]]; b.appendChild(s);
+    b.onclick = function(){ filtro = filtro === f[0] ? null : f[0]; mostraPaese(); };
+    gen.appendChild(b);
+  });
+  if (nessuno) { var x = document.createElement('button'); x.className = 'gen'; x.style.setProperty('--c', '#6b7186');
+    x.setAttribute('aria-pressed', filtro === '-' ? 'true' : 'false'); x.innerHTML = '<i></i>Non indicato <small>' + nessuno + '</small>';
+    x.onclick = function(){ filtro = filtro === '-' ? null : '-'; mostraPaese(); }; gen.appendChild(x); }
+  // barra delle proporzioni
+  var barra = $('barra'); barra.textContent = ''; var tot = ord.reduce(function(s, f){ return s + conti[f[0]]; }, 0) + nessuno;
+  ord.forEach(function(f){ var s = document.createElement('span'); s.style.setProperty('--c', f[2]); s.style.width = (100 * conti[f[0]] / tot) + '%'; s.title = f[1]; barra.appendChild(s); });
+  disegna();
+}
+function disegna(){
+  var q = $('cerca').value.trim().toLowerCase();
+  var corpo = $('righe'); corpo.textContent = '';
+  var n = 0, frag = document.createDocumentFragment();
+  tutte.forEach(function(r, i){
+    var tutteK = r.g.trovate.concat(r.g.dedotte);
+    if (filtro === '-' && tutteK.length) return;
+    if (filtro && filtro !== '-' && tutteK.indexOf(filtro) < 0) return;
+    if (q) {
+      var dove = (r.nome + ' ' + r.etichette.join(' ') + ' ' + tutteK.map(function(k){ return PER_CHIAVE[k][1]; }).join(' ')).toLowerCase();
+      if (dove.indexOf(q) < 0) return;
+    }
+    n++;
+    var tr = document.createElement('tr');
+    var td0 = document.createElement('td'); td0.className = 'n'; td0.textContent = i + 1; tr.appendChild(td0);
+    var td1 = document.createElement('td'); td1.className = 'nome';
+    var b = document.createElement('b'); b.textContent = r.nome; td1.appendChild(b); td1.appendChild(document.createElement('br'));
+    var a = document.createElement('a'); a.href = './#r=' + r.uuid; a.textContent = '▶ Ascolta su Etere'; td1.appendChild(a);
+    tr.appendChild(td1);
+    var td2 = document.createElement('td'); var ch = document.createElement('div'); ch.className = 'chips';
+    r.g.trovate.forEach(function(k){ var f = PER_CHIAVE[k]; var c = document.createElement('span'); c.className = 'chip'; c.style.setProperty('--c', f[2]); c.textContent = f[1];
+      if (r.g.curata) c.title = 'Classificazione di Etere'; ch.appendChild(c); });
+    if (r.g.curata) { var m = document.createElement('span'); m.className = 'curata'; m.textContent = 'scheda Etere'; m.title = 'Generi assegnati da Etere: nell’archivio le etichette mancano o sono parziali'; ch.appendChild(m); }
+    r.g.dedotte.forEach(function(k){ var f = PER_CHIAVE[k]; var c = document.createElement('span'); c.className = 'chip dedotto'; c.style.setProperty('--c', f[2]); c.textContent = f[1]; c.title = 'Dedotto dal nome'; ch.appendChild(c); });
+    if (!tutteK.length) { var c0 = document.createElement('span'); c0.className = 'chip nessuno'; c0.textContent = 'Non indicato'; ch.appendChild(c0); }
+    td2.appendChild(ch);
+    if (r.etichette.length) { var e = document.createElement('div'); e.className = 'etichette'; e.textContent = r.etichette.slice(0, 10).join(' · '); td2.appendChild(e); }
+    tr.appendChild(td2);
+    frag.appendChild(tr);
+  });
+  corpo.appendChild(frag);
+  $('conta').textContent = n === tutte.length ? '' : n + ' di ' + tutte.length;
+}
+var tCerca; $('cerca').oninput = function(){ clearTimeout(tCerca); tCerca = setTimeout(disegna, 120); };
+})();
+</script>
+</body>
+</html>
