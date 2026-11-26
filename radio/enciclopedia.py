@@ -28,9 +28,14 @@ def chiavi(titolo):
 
 indice = leggi('.cache/wiki_indice.json')
 italiane = []
-for f in ('stazioni.json', 'altre.json'):          # il globo carica entrambi i file
+gia = set()
+for f in ('stazioni.json', 'altre.json', 'aggiunte.json'):   # il globo carica tutti e tre i file
     st = leggi(f); C = st['campi']
-    italiane += [dict(zip(C, r)) for r in st['radio'] if r[C.index('paese')] == 'IT']
+    for r in st['radio']:
+        r = dict(zip(C, r))
+        if r['paese'] == 'IT' and r['uuid'] not in gia: italiane.append(r); gia.add(r['uuid'])
+# radio aggiunte a mano (aggiunte.json): uuid -> voce di Wikipedia
+PER_VOCE = {t: u for u, t in leggi('aggiunte.json').get('voci', {}).items()}
 schede = leggi('schede.json')['schede']
 per_qid, per_wiki = {}, {}
 for uuid, s in schede.items():
@@ -51,21 +56,24 @@ def migliore(uuids):
 # correzioni a mano dopo un controllo: voce -> nome esatto della radio su Etere (None = nessun flusso giusto)
 A_MANO = {'Controradio (Bari)': None, 'Controradio (Firenze)': 'Controradio',   # controradio.it è quella di Firenze
           'Rai Radio 2': 'RAI 2', 'Rai Radio 1 Sport': 'Radio RaiSport', 'Radio Kiss Kiss': 'Radio Kiss Kiss + 1',
-          'Rai Radio 3': None, 'Radio Padova': None}
+          'Radio Padova': None}
 per_nome_esatto = {}
 for r in italiane: per_nome_esatto.setdefault(r['nome'], []).append(r['uuid'])
 
 usate, out, come = set(), [], {'wikidata': 0, 'wikipedia': 0, 'nome': 0, 'inizio': 0, 'nessuno': 0}
 for t, q, anno, fine, area, sede, chiusa, web, editore, motto in indice:
     u, via = None, 'nessuno'
-    if t in A_MANO:
+    if t in PER_VOCE:
+        u, via = PER_VOCE[t], 'aggiunta'; come.setdefault(via, 0)
+        q_, chiusa_ = q, True
+    elif t in A_MANO:
         u = migliore(per_nome_esatto.get(A_MANO[t], [])) if A_MANO[t] else None
         via = 'a mano'; come.setdefault(via, 0)
         q_, chiusa_ = q, True                         # salta le ricerche automatiche
     else: q_, chiusa_ = q, chiusa
     from urllib.parse import unquote
-    if t not in A_MANO and q and per_qid.get(q): u, via = migliore(per_qid[q]), 'wikidata'
-    if t not in A_MANO and not u and per_wiki.get(t): u, via = migliore(per_wiki[t]), 'wikipedia'
+    if t not in A_MANO and t not in PER_VOCE and q and per_qid.get(q): u, via = migliore(per_qid[q]), 'wikidata'
+    if t not in A_MANO and t not in PER_VOCE and not u and per_wiki.get(t): u, via = migliore(per_wiki[t]), 'wikipedia'
     if not u and not chiusa_:
         cand = [x for k in chiavi(t) for x in per_nome.get(k, [])]
         if cand: u, via = migliore(cand), 'nome'
@@ -73,7 +81,7 @@ for t, q, anno, fine, area, sede, chiusa, web, editore, motto in indice:
         ks = [k for k in chiavi(t) if len(k) >= 7]
         cand = [x for n, uu in per_nome.items() for k in ks if n.startswith(k) and not n[len(k):len(k)+1].isdigit() for x in uu]
         if cand: u, via = migliore(cand), 'inizio'
-    if not u and via != 'a mano': via = 'nessuno'
+    if not u and via not in ('a mano', 'aggiunta'): via = 'nessuno'
     come[via] += 1
     voce = {'t': t, 'nome': re.sub(r'\s*\(.*?\)\s*$', '', t), 'q': q, 'dal': anno, 'al': fine, 'area': area, 'sede': sede,
             'chiusa': chiusa, 'web': web, 'editore': editore, 'motto': motto}

@@ -174,7 +174,7 @@ var VOCI = {};   // radio con una scheda nell'enciclopedia: uuid -> titolo della
 fetch('enciclopedia_it.json').then(function(r){ return r.json(); }).then(function(j){
   j.radio.forEach(function(v){ if (v.uuid) VOCI[v.uuid] = v.t; }); if (tutte.length) disegna();
 }).catch(function(){});
-Promise.all(['stazioni.json', 'altre.json'].map(function(f){ return fetch(f).then(function(r){ return r.json(); }); })).then(function(js){
+Promise.all(['stazioni.json', 'altre.json', 'aggiunte.json'].map(function(f){ return fetch(f).then(function(r){ return r.ok ? r.json() : {radio: []}; }).catch(function(){ return {radio: []}; }); })).then(function(js){
   js.forEach(function(j){ (j.radio || []).forEach(function(a){
     var r = {nome: a[0], url: a[3], paese: a[4], etichette: (a[5] || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean), uuid: a[7], k: a[10] || 0};
     if (!r.paese) return;

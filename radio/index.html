@@ -427,7 +427,9 @@ fetch('stazioni.json').then(function(r){ if(!r.ok) throw 0; return r.json(); }).
   else { globo.pointOfView({lat: 43.5, lng: 11.5, altitude: 1.9}, 1600); }
 
   // poi, con calma, le radio senza posizione esatta
-  fetch('altre.json').then(function(r){ return r.ok ? r.json() : {radio: []}; }).then(function(d){
+  // altre.json dall'archivio; aggiunte.json: radio aggiunte a mano per l'enciclopedia
+  Promise.all(['altre.json', 'aggiunte.json'].map(function(f){ return fetch(f).then(function(r){ return r.ok ? r.json() : {radio: []}; }).catch(function(){ return {radio: []}; }); })).then(function(dd){
+    var d = {radio: dd[0].radio.concat(dd[1].radio.filter(function(a){ return !perUuid[a[7]] && !dd[0].radio.some(function(b){ return b[7] === a[7]; }); }))};
     aggiungi(d.radio.map(daRiga));
     if (h && !s && perUuid[h[1]]) { var t = perUuid[h[1]], c = centroPaese(t.paese); if (c) vola(c.lat, c.lng, 1.4); preparaRadio(t); }
     if (scheda !== 'pref') disegnaElenco();
