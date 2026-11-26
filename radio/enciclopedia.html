@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="it" translate="no">
+<head>
+<meta charset="utf-8">
+<meta name="google" content="notranslate">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#05070d">
+<meta name="robots" content="noindex">
+<title>Etere · enciclopedia delle radio italiane</title>
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --notte:#05070d; --carta:#0b1020; --carta-2:#111830; --bordo:rgba(255,255,255,.09); --bordo-forte:rgba(255,255,255,.18);
+  --testo:#eef0f6; --tenue:#9aa1b5; --fioco:#6b7186; --ambra:#ffb547; --ambra-viva:#ffd27a; --ambra-buio:rgba(255,181,71,.14);
+  --f-titolo:'Fraunces',Georgia,serif; --f-testo:'Manrope',ui-sans-serif,system-ui,'Segoe UI',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0;background:var(--notte);color:var(--testo);font-family:var(--f-testo);font-size:15px;line-height:1.5}
+body.bloccato{overflow:hidden}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ambra);outline-offset:2px;border-radius:8px}
+.pagina{max-width:1080px;margin:0 auto;padding:calc(18px + env(safe-area-inset-top)) 16px 60px}
+.testata{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.marchio{text-decoration:none;font-family:var(--f-titolo);font-weight:600;font-size:26px}
+.marchio i{font-style:normal;color:var(--ambra)}
+.testata span{color:var(--tenue)}
+.testata nav{margin-left:auto;display:flex;gap:14px;font-size:14px}
+.testata nav a{color:var(--tenue);text-decoration:none}
+.testata nav a:hover{color:var(--testo)}
+h1{font-family:var(--f-titolo);font-weight:500;font-size:clamp(28px,5vw,40px);margin:22px 0 4px;line-height:1.1}
+.sotto{color:var(--tenue);margin:0 0 18px;max-width:760px}
+.comandi{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+select,input[type=search]{height:40px;border-radius:999px;border:1px solid var(--bordo-forte);background:var(--carta);padding:0 14px;outline:none;max-width:100%}
+input[type=search]{flex:1;min-width:180px}
+.conta{color:var(--tenue);font-size:14px}
+.filtri{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 18px}
+.filtro{padding:6px 12px;border-radius:999px;border:1px solid var(--bordo-forte);font-size:13px;font-weight:600;white-space:nowrap}
+.filtro small{color:var(--tenue);font-weight:500;margin-left:4px}
+.filtro:hover{border-color:var(--ambra)}
+.filtro[aria-pressed=true]{background:var(--ambra-buio);border-color:var(--ambra)}
+.lettera{font-family:var(--f-titolo);font-size:22px;color:var(--ambra);margin:22px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--bordo)}
+.voci{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:8px}
+.voce{display:block;text-align:left;width:100%;padding:12px 14px;border-radius:14px;background:var(--carta);border:1px solid var(--bordo);transition:border-color .15s}
+.voce:hover{border-color:var(--bordo-forte)}
+.voce b{font-weight:700;font-size:15.5px}
+.voce .chiusa-seg{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--fioco);font-weight:700;margin-left:6px}
+.voce .meta{color:var(--tenue);font-size:13px;margin-top:2px}
+.voce .chips{margin-top:7px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.chip{display:inline-flex;align-items:center;padding:1px 8px;border-radius:999px;font-size:12px;font-weight:600;
+  background:color-mix(in srgb,var(--c) 20%,transparent);border:1px solid color-mix(in srgb,var(--c) 55%,transparent)}
+.chip.dedotto{background:none;border-style:dashed;font-weight:500}
+.suona{font-size:12px;color:var(--ambra);font-weight:700;margin-left:auto}
+.nota{color:var(--tenue);font-size:13.5px;margin-top:32px;border-top:1px solid var(--bordo);padding-top:16px;max-width:780px}
+.nota b{color:var(--testo)}
+.vuoto,.carica{color:var(--tenue);padding:30px 0}
+
+/* scheda */
+.velo{position:fixed;inset:0;background:rgba(2,3,8,.66);backdrop-filter:blur(3px);z-index:10;display:flex;justify-content:flex-end}
+.scheda{width:min(620px,100%);height:100%;overflow-y:auto;background:var(--carta);border-left:1px solid var(--bordo-forte);
+  padding:calc(18px + env(safe-area-inset-top)) 22px 40px;box-shadow:-20px 0 60px rgba(0,0,0,.5)}
+.scheda .chiudi{float:right;width:38px;height:38px;border-radius:50%;border:1px solid var(--bordo-forte);font-size:18px;line-height:1}
+.scheda .chiudi:hover{border-color:var(--ambra)}
+.scheda h2{font-family:var(--f-titolo);font-weight:500;font-size:clamp(26px,5vw,34px);margin:8px 50px 2px 0;line-height:1.15}
+.scheda .sopra{color:var(--tenue);font-size:14px;margin:0 0 14px}
+.scheda .motto{font-family:var(--f-titolo);font-style:italic;color:var(--ambra-viva);font-size:17px;margin:0 0 16px}
+.azioni{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.bottone{display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 16px;border-radius:999px;border:1px solid var(--bordo-forte);
+  text-decoration:none;font-weight:600;font-size:14px}
+.bottone.primo{background:var(--ambra);color:#1a1205;border-color:var(--ambra)}
+.bottone:hover{border-color:var(--ambra)}
+.scheda h3{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fioco);font-weight:700;margin:22px 0 8px}
+.scheda .testo p{margin:0 0 10px}
+dl.dati{display:grid;grid-template-columns:150px 1fr;gap:8px 14px;margin:0}
+dl.dati dt{color:var(--tenue);font-size:13.5px}
+dl.dati dd{margin:0;font-size:14.5px}
+dl.dati ul{margin:0;padding-left:18px}
+.fonte{margin-top:24px;padding:12px 14px;border-radius:12px;background:var(--carta-2);color:var(--tenue);font-size:13px}
+.fonte a{color:var(--ambra)}
+.attesa{color:var(--tenue)}
+@media (max-width:640px){
+  .voci{grid-template-columns:1fr}
+  dl.dati{grid-template-columns:1fr;gap:2px}
+  dl.dati dd{margin-bottom:8px}
+  .scheda{border-left:0}
+  .testata nav{margin-left:0;width:100%}
+}
+</style>
+</head>
+<body>
+<div class="pagina">
+  <header class="testata">
+    <a class="marchio" href="./">Et<i>e</i>re</a><span>enciclopedia delle radio</span>
+    <nav><a href="generi.html">I generi</a><a href="./">← torna al globo</a></nav>
+  </header>
+  <h1>Le radio italiane</h1>
+  <p class="sotto" id="sotto">Carico le schede…</p>
+  <div class="comandi">
+    <input type="search" id="cerca" placeholder="Cerca una radio, una città, un editore" aria-label="Cerca">
+    <select id="regione" aria-label="Regione"><option value="">Tutta Italia</option></select>
+    <span class="conta" id="conta"></span>
+  </div>
+  <div class="filtri" id="filtri"></div>
+  <div id="elenco"><p class="carica">Carico…</p></div>
+  <div class="nota">
+    <p><b>Da dove vengono le schede.</b> L'elenco comprende le emittenti italiane che hanno una voce
+      sull'<a href="https://it.wikipedia.org/wiki/Categoria:Emittenti_radiofoniche_italiane" target="_blank" rel="noopener">enciclopedia Wikipedia in italiano</a>,
+      escluse le voci sui singoli programmi. Quando apri una scheda, il testo e i dati (nascita, editore, ascolti, frequenze)
+      vengono letti in quel momento da Wikipedia, quindi sono sempre aggiornati, e in fondo c'è il collegamento alla voce completa.
+      I testi di Wikipedia sono sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it" target="_blank" rel="noopener">CC BY-SA 4.0</a>.</p>
+    <p><b>Ascolto e generi.</b> «▶ Ascolta» compare quando Etere ha il flusso ufficiale di quella radio; l'abbinamento è fatto sul nome
+      e controllato a mano per i casi dubbi. I generi sono gli stessi della <a href="generi.html">pagina dei generi</a>:
+      dalle etichette dell'archivio radio-browser, o dedotti dal nome (riquadro tratteggiato).</p>
+    <p><b>Cosa manca.</b> In Italia le radio sono molte di più: Wikipedia racconta soprattutto le nazionali, le grandi locali e le radio libere storiche.
+      Etere ne fa ascoltare oltre 500, ma la maggior parte non ha ancora una voce.</p>
+  </div>
+</div>
+
+<div class="velo" id="velo" hidden>
+  <article class="scheda" id="scheda" role="dialog" aria-modal="true" aria-labelledby="s-nome" tabindex="-1">
+    <button class="chiudi" id="chiudi" aria-label="Chiudi la scheda">✕</button>
+    <h2 id="s-nome"></h2>
+    <p class="sopra" id="s-sopra"></p>
+    <p class="motto" id="s-motto" hidden></p>
+    <div class="azioni" id="s-azioni"></div>
+    <div class="chips" id="s-generi"></div>
+    <h3>In breve</h3>
+    <div class="testo" id="s-testo"><p class="attesa">Leggo la voce su Wikipedia…</p></div>
+    <h3 id="s-dati-t" hidden>I dati</h3>
+    <dl class="dati" id="s-dati"></dl>
+    <div class="fonte" id="s-fonte"></div>
+  </article>
+</div>
+
+<script>
+(function(){
+'use strict';
+var $ = function(id){ return document.getElementById(id); };
+
+// --- generi: stesse regole della pagina generi.html ---
+var FAMIGLIE = [
+  ['generalista', 'Generalista', '#ffb547', /\b(varied|variety|mixed|generalist\w*|generalista|varie|various|full service)\b/, null],
+  ['pop', 'Pop e successi', '#ff8fb1', /\b(pop|hits?|top ?40|top ?hits|chart\w*|contemporary|adult contemporary|love songs|happy music|mainstream|cover)\b/, /\b(hits?|pop)\b/],
+  ['italiana', 'Musica italiana', '#7bd88f', /(italian pop|musica italiana|italian music|\bitaliana\b|classic italian|cantautor\w*|napoletan\w*|neomelodic\w*|canzone)/, /(musica italiana|cantautor|napoletan|neomelod)/],
+  ['dance', 'Dance ed elettronica', '#5ec8ff', /\b(dance|edm|house|techno|trance|electro\w*|elettronic\w*|club\w*|disco|hands up|jungle|breakbeat|drum|dubstep|eurodance|italo disco|hardstyle|deep house)\b/, /\b(dance|disco|house|techno|club|edm)\b/],
+  ['rock', 'Rock e metal', '#ff6b6b', /\b(rock|metal|punk|grunge|alternative|indie|hard rock|bluesrock)\b/, /\b(rock|metal|punk|indie)\b/],
+  ['anni', 'Successi del passato', '#c9a7ff', /(oldies|\b(19)?[5-9]0'?s\b|\b2000s\b|\b(19)?[5-9]0's\b|anni ?[5-9]0|classic hits|evergreen\w*|goldies|golden|revival|retro|nostalgi\w*|\b70 80\b)/, /(anni ?[5-9]0|\b[5-9]0s\b|oldies|evergreen|revival|nostalgi|retro|grandi successi)/],
+  ['jazz', 'Jazz, blues e soul', '#f2c14e', /\b(jazz|blues|soul|funk|funky|groove|swing|bossa)\w*/, /\b(jazz|blues|soul|funk|swing)\b/],
+  ['hiphop', 'Hip hop e R&B', '#ff9f43', /\b(hip[ -]?hop|rap|trap|r&b|rnb|urban)\b/, /\b(hip ?hop|rap|trap|r&b)\b/],
+  ['classica', 'Classica e lirica', '#a3e4d7', /\b(classical|classica|opera|lirica|baroque|barocc\w*|symphon\w*|sinfonic\w*|chamber)\b/, /\b(classica|classical|lirica|opera|sinfonia)\b|classic radio|radio classic\b/],
+  ['chill', 'Chill e lounge', '#82b1ff', /\b(ambient|lounge|chill\w*|relax\w*|easy listening|smooth|new age|meditation|instrumental)\b/, /\b(lounge|chill|relax|ambient|smooth)\b/],
+  ['world', 'Latina, reggae e world', '#4ee1a0', /\b(latin\w*|reggaeton|salsa|reggae|dancehall|dub|world|afro\w*|brazil\w*|balearic|bachata|cumbia|flamenco)\b/, /\b(latin\w*|reggae|salsa|afro|tropical)\b/],
+  ['folk', 'Folk, liscio e popolare', '#d4a373', /\b(folk|liscio|balera|popolare|tradizional\w*|traditional|country|schlager|polka|bluegrass)\b/, /\b(liscio|folk|balera|country)\b/],
+  ['notizie', 'Notizie e parlato', '#b0bec5', /\b(news|notizie|talk|information|informazione|culture|cultura|cultural|politic\w*|discussion|chat|audiobooks?|health|giornale|radio giornale|documentar\w*|education|educativ\w*)\b/, /\b(news|notizie|giornale|parlamento|cultura|informazione)\b/],
+  ['sport', 'Sport', '#9ccc65', /\b(sports?|calcio|football|soccer)\b/, /sport|calcio|stadio/],
+  ['religiosa', 'Religiosa', '#e6c9a8', /\b(christian|catholic|cattolic\w*|religio\w*|spiritual|gospel|church|chiesa|islam\w*|quran|coran\w*|worship|bible|bibbia|evangel\w*|vatican\w*)\b/, /\b(maria|vatican\w*|cattolic\w*|parrocchi\w*|evangel\w*|christian|gospel|chiesa|missione|santuario|diocesi|inblu|radio mater)\b/],
+  ['locale', 'Locale e comunitaria', '#8d99ae', /\b(local|locale|local news|local radio|community|comunitari\w*|regional|regionale|university|universit\w*|college|student\w*)\b/, /\b(universit\w*|campus|comunit\w*)\b/]
+];
+var PER_CHIAVE = {}; FAMIGLIE.forEach(function(f){ PER_CHIAVE[f[0]] = f; });
+var CURATE = {
+  rtl1025: ['generalista', 'pop', 'notizie'], rds: ['generalista', 'pop', 'italiana', 'notizie'],
+  radio105: ['pop', 'dance', 'hiphop'], radiodeejay: ['generalista', 'pop', 'dance'],
+  radiocapital: ['anni', 'rock', 'notizie'], radiokisskiss: ['pop', 'dance'], radioitalia: ['italiana', 'pop'],
+  radiosubasio: ['italiana', 'pop'], r101: ['pop', 'anni'], radiomontecarlo: ['pop', 'chill'],
+  radiofreccia: ['rock'], radiozeta: ['pop', 'hiphop'], radio24: ['notizie'], radioradicale: ['notizie'], radiomaria: ['religiosa'],
+  radiosportiva: ['sport'], rairadio1: ['notizie', 'sport'], rairadio2: ['generalista', 'pop'], rairadio3: ['classica', 'notizie'],
+  raiisoradio: ['notizie'], raigrparlamento: ['notizie'], rairadiotuttaitaliana: ['italiana'], rairadio3classica: ['classica'],
+  inblu: ['religiosa', 'notizie'], radiom2o: ['dance'], virginradio: ['rock'], radiomater: ['religiosa'], rairadio1sport: ['sport']
+};
+function norma(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ''); }
+function classifica(etichette, nome){
+  var cur = CURATE[norma(nome)];
+  if (cur) return {trovate: cur.slice(), dedotte: []};
+  var testo = etichette.join(' | ').toLowerCase(), trovate = [], dedotte = [];
+  if (etichette.length) FAMIGLIE.forEach(function(f){ if (f[3].test(testo)) trovate.push(f[0]); });
+  if (!trovate.length && nome) { var n = nome.toLowerCase(); FAMIGLIE.forEach(function(f){ if (f[4] && f[4].test(n)) dedotte.push(f[0]); }); }
+  var musicali = trovate.filter(function(k){ return ['notizie','sport','religiosa','locale','generalista'].indexOf(k) < 0; });
+  if (trovate.indexOf('generalista') < 0 && ((musicali.length >= 1 && trovate.indexOf('notizie') >= 0 && trovate.indexOf('pop') >= 0) || musicali.length >= 4))
+    trovate.unshift('generalista');
+  return {trovate: trovate, dedotte: dedotte};
+}
+function chipGeneri(g){
+  var frag = document.createDocumentFragment();
+  g.trovate.forEach(function(k){ var f = PER_CHIAVE[k]; var c = document.createElement('span'); c.className = 'chip'; c.style.setProperty('--c', f[2]); c.textContent = f[1]; frag.appendChild(c); });
+  g.dedotte.forEach(function(k){ var f = PER_CHIAVE[k]; var c = document.createElement('span'); c.className = 'chip dedotto'; c.style.setProperty('--c', f[2]); c.textContent = f[1]; c.title = 'Dedotto dal nome'; frag.appendChild(c); });
+  return frag;
+}
+
+// --- elenco ---
+var tutte = [], filtro = 'tutte';
+var FILTRI = [
+  ['tutte', 'Tutte', function(){ return true; }],
+  ['nazionali', 'Nazionali', function(r){ return r.area === 'N'; }],
+  ['locali', 'Locali', function(r){ return r.area && r.area !== 'N'; }],
+  ['attive', 'Ancora attive', function(r){ return !r.chiusa; }],
+  ['storiche', 'Chiuse, storiche', function(r){ return !!r.chiusa; }],
+  ['ascolta', 'Si ascoltano su Etere', function(r){ return !!r.uuid; }]
+];
+fetch('enciclopedia_it.json').then(function(r){ return r.json(); }).then(function(j){
+  var conta = {}; j.radio.forEach(function(r){ conta[r.nome] = (conta[r.nome] || 0) + 1; });
+  tutte = j.radio.map(function(r){
+    if (conta[r.nome] > 1) r.nome = r.t;              // due Controradio: Bari e Firenze
+    r.chiave = norma(r.nome.replace(/^radio\s*/i, '')) || norma(r.nome);
+    r.g = classifica((r.etichette || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean), r.nome);
+    r.cerca = norma([r.nome, r.t, r.sede, r.area === 'N' ? 'nazionale' : r.area, r.editore, r.motto].join(' '));
+    return r;
+  }).sort(function(a, b){ return a.chiave < b.chiave ? -1 : a.chiave > b.chiave ? 1 : 0; });
+  var nAsc = tutte.filter(function(r){ return r.uuid; }).length, nChiuse = tutte.filter(function(r){ return r.chiusa; }).length;
+  $('sotto').textContent = tutte.length + ' emittenti con una scheda: storia, editore, ascolti e frequenze. ' +
+    nAsc + ' si possono ascoltare subito su Etere; ' + nChiuse + ' non trasmettono più e restano per la loro storia.';
+  var reg = {}; tutte.forEach(function(r){ if (r.area && r.area !== 'N') reg[r.area] = (reg[r.area] || 0) + 1; });
+  Object.keys(reg).sort(function(a, b){ return a.localeCompare(b, 'it'); }).forEach(function(k){
+    var o = document.createElement('option'); o.value = k; o.textContent = k + ' (' + reg[k] + ')'; $('regione').appendChild(o); });
+  $('regione').onchange = disegna;
+  disegna();
+  apriDaIndirizzo();
+}).catch(function(){ $('sotto').textContent = 'Non riesco a caricare le schede. Riprova più tardi.'; $('elenco').textContent = ''; });
+
+function disegna(){
+  var q = norma($('cerca').value), regione = $('regione').value;
+  var base = tutte.filter(function(r){ return (!regione || r.area === regione) && (!q || r.cerca.indexOf(q) >= 0); });
+  var fl = $('filtri'); fl.textContent = '';
+  FILTRI.forEach(function(f){
+    var b = document.createElement('button'); b.className = 'filtro'; b.setAttribute('aria-pressed', filtro === f[0] ? 'true' : 'false');
+    b.appendChild(document.createTextNode(f[1])); var s = document.createElement('small'); s.textContent = base.filter(f[2]).length; b.appendChild(s);
+    b.onclick = function(){ filtro = f[0]; disegna(); }; fl.appendChild(b);
+  });
+  var prova = FILTRI.filter(function(f){ return f[0] === filtro; })[0][2];
+  var vis = base.filter(prova);
+  $('conta').textContent = vis.length === tutte.length ? '' : vis.length + ' di ' + tutte.length;
+  var el = $('elenco'); el.textContent = '';
+  if (!vis.length) { var p = document.createElement('p'); p.className = 'vuoto'; p.textContent = 'Nessuna radio corrisponde.'; el.appendChild(p); return; }
+  var lettera = null, griglia = null;
+  vis.forEach(function(r){
+    var l = r.chiave.charAt(0).toUpperCase() || '#';
+    if (/[0-9]/.test(l)) l = '0–9';
+    if (l !== lettera) {
+      lettera = l; var h = document.createElement('h2'); h.className = 'lettera'; h.textContent = l; el.appendChild(h);
+      griglia = document.createElement('div'); griglia.className = 'voci'; el.appendChild(griglia);
+    }
+    var b = document.createElement('button'); b.className = 'voce'; b.type = 'button';
+    var n = document.createElement('b'); n.textContent = r.nome; b.appendChild(n);
+    if (r.chiusa) { var c = document.createElement('span'); c.className = 'chiusa-seg'; c.textContent = 'chiusa'; b.appendChild(c); }
+    var m = document.createElement('div'); m.className = 'meta'; m.textContent = riga(r); b.appendChild(m);
+    var ch = document.createElement('div'); ch.className = 'chips'; ch.appendChild(chipGeneri(r.g));
+    if (r.uuid) { var s = document.createElement('span'); s.className = 'suona'; s.textContent = '▶ si ascolta'; ch.appendChild(s); }
+    if (ch.childNodes.length) b.appendChild(ch);
+    b.onclick = function(){ apri(r, true); };
+    griglia.appendChild(b);
+  });
+}
+function anni(r){
+  if (r.dal && r.al) return r.dal + '–' + r.al;
+  if (r.dal) return 'dal ' + r.dal;
+  if (r.al) return 'fino al ' + r.al;
+  return '';
+}
+function dove(r){ return r.area === 'N' ? 'nazionale' : [r.sede, r.area].filter(Boolean).join(', '); }
+function riga(r){ return [anni(r), dove(r), r.editore].filter(Boolean).join(' · '); }
+var tCerca; $('cerca').oninput = function(){ clearTimeout(tCerca); tCerca = setTimeout(disegna, 120); };
+
+// --- scheda: si legge dal vivo da Wikipedia ---
+var aperta = null, ultimoFuoco = null;
+function apri(r, scrivi){
+  aperta = r; ultimoFuoco = document.activeElement;
+  if (scrivi) history.replaceState(null, '', '#v=' + encodeURIComponent(r.t));
+  $('s-nome').textContent = r.nome;
+  $('s-sopra').textContent = [anni(r), dove(r)].filter(Boolean).join(' · ') + (r.chiusa ? ' · non trasmette più' : '');
+  $('s-motto').hidden = !r.motto; $('s-motto').textContent = r.motto ? '«' + r.motto.replace(/^["«]|["»]$/g, '') + '»' : '';
+  var az = $('s-azioni'); az.textContent = '';
+  if (r.uuid) az.appendChild(bottone('./#r=' + r.uuid, '▶ Ascolta su Etere', true));
+  if (r.sito) az.appendChild(bottone(r.sito, 'Sito ufficiale ↗', false, true));
+  az.appendChild(bottone('https://it.wikipedia.org/wiki/' + encodeURIComponent(r.t.replace(/ /g, '_')), 'Voce su Wikipedia ↗', false, true));
+  var g = $('s-generi'); g.textContent = ''; g.appendChild(chipGeneri(r.g));
+  $('s-testo').innerHTML = '<p class="attesa">Leggo la voce su Wikipedia…</p>';
+  $('s-dati').textContent = ''; $('s-dati-t').hidden = true; $('s-fonte').textContent = '';
+  $('velo').hidden = false; document.body.classList.add('bloccato'); $('scheda').scrollTop = 0; $('scheda').focus();
+  leggiWikipedia(r);
+}
+function bottone(href, testo, primo, fuori){
+  var a = document.createElement('a'); a.className = 'bottone' + (primo ? ' primo' : ''); a.href = href; a.textContent = testo;
+  if (fuori) { a.target = '_blank'; a.rel = 'noopener'; }
+  return a;
+}
+function chiudi(){
+  $('velo').hidden = true; document.body.classList.remove('bloccato'); aperta = null;
+  history.replaceState(null, '', location.pathname + location.search);
+  if (ultimoFuoco && ultimoFuoco.focus) ultimoFuoco.focus();
+}
+$('chiudi').onclick = chiudi;
+$('velo').onclick = function(e){ if (e.target === $('velo')) chiudi(); };
+document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && aperta) chiudi(); });
+function apriDaIndirizzo(){
+  var m = location.hash.match(/v=([^&]+)/); if (!m) return;
+  var t = decodeURIComponent(m[1]); var r = tutte.filter(function(x){ return x.t === t; })[0];
+  if (r) apri(r, false);
+}
+window.addEventListener('hashchange', function(){ if (/v=/.test(location.hash)) apriDaIndirizzo(); });
+
+function pulisci(s){
+  if (!s) return '';
+  s = s.replace(/<ref[^>]*\/>/g, '').replace(/<ref[\s\S]*?<\/ref>/g, '').replace(/<!--[\s\S]*?-->/g, '');
+  s = s.replace(/\{\{\s*bandiera\|[^}]*\}\}/gi, '').replace(/\{\{\s*,\s*\}\}/g, ', ').replace(/\{\{[A-Z]{3}\}\}/g, '');
+  s = s.replace(/\{\{\s*Lista\s*\|([^{}]*)\}\}/gi, function(_, x){ return x.split('|').join('; '); });
+  for (var k = 0; k < 3; k++) s = s.replace(/\{\{[^{}]*\}\}/g, '');
+  s = s.replace(/\[\[(?:File|Immagine):[^\]]*\]\]/gi, '').replace(/\[\[([^|\]]*)\|([^\]]*)\]\]/g, '$2').replace(/\[\[([^\]]*)\]\]/g, '$1')
+       .replace(/\[https?:\/\/\S+\s+([^\]]*)\]/g, '$1').replace(/\[https?:\/\/[^\]]*\]/g, '');
+  s = s.replace(/<br\s*\/?>/gi, '; ').replace(/<[^>]+>/g, '').replace(/'''?/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ')
+       .replace(/^[;,\s*]+|[;,\s]+$/g, '').trim();
+  return s;
+}
+function campi(t){
+  var m = t.match(/\{\{\s*Canale radio([\s\S]*?)\n\}\}/i) || t.match(/\{\{\s*(?:Emittente ?TV|EmittenteTV|ReteTV|Azienda)([\s\S]*?)\n\}\}/i);
+  var o = {}; if (!m) return o; var cur = null;
+  m[1].split('\n').forEach(function(riga){
+    var x = riga.match(/^\s*\|\s*([^=]+?)\s*=\s*(.*)$/);
+    if (x) { cur = x[1].trim(); o[cur] = x[2]; } else if (cur) o[cur] += '\n' + riga;
+  });
+  return o;
+}
+function leggiWikipedia(r){
+  var url = 'https://it.wikipedia.org/w/api.php?' + new URLSearchParams({action: 'query', prop: 'extracts|revisions', exintro: 1, explaintext: 1,
+    rvprop: 'content', rvslots: 'main', titles: r.t, redirects: 1, format: 'json', formatversion: 2, origin: '*'});
+  fetch(url).then(function(x){ return x.json(); }).then(function(j){
+    if (aperta !== r) return;
+    var p = j.query.pages[0] || {};
+    var testo = (p.extract || '').trim();
+    var box = $('s-testo'); box.textContent = '';
+    var paragrafi = testo ? testo.split(/\n+/).filter(function(s){ return s.trim(); }) : [];
+    if (!paragrafi.length) { box.innerHTML = '<p class="attesa">La voce non ha un riassunto iniziale.</p>'; }
+    paragrafi.slice(0, 5).forEach(function(s){ var e = document.createElement('p'); e.textContent = s; box.appendChild(e); });
+    var c = campi(((p.revisions || [])[0] || {}).slots ? p.revisions[0].slots.main.content : '');
+    var g = function(k){ return pulisci(c[k] || ''); };
+    var righe = [];
+    var nasc = g('lancio'), fine = g('chiusura');
+    if (nasc) righe.push(['Nascita', nasc]);
+    if (fine) righe.push(['Chiusura', fine]);
+    if (g('editore')) righe.push(['Editore', g('editore')]);
+    var nomi = g('nome precedente') || g('nomi precedenti'); if (nomi) righe.push(['Nomi precedenti', nomi]);
+    if (g('share')) righe.push(['Ascoltatori', g('share') + (g('data share') ? ' (' + g('data share') + ')' : '') +
+      (/^[\d.\s]+$/.test(g('share')) ? ' nel giorno medio' : '')]);
+    if (g('lingua')) righe.push(['Lingua', g('lingua')]);
+    if (g('frequenze')) righe.push(['Frequenze', g('frequenze')]);
+    var mezzi = [];
+    for (var i = 1; i < 9; i++) ['terr', 'sat', 'web', 'mobile'].forEach(function(tp){
+      var s = g('serv ' + tp + ' ' + i), cn = g('can ' + tp + ' ' + i);
+      if (s || cn) mezzi.push((s + (cn ? ': ' + cn : '')).replace(/^[:\s]+/, ''));
+    });
+    if (mezzi.length) righe.push(['Come si riceve', mezzi.slice(0, 6)]);
+    if (g('canali gemellati')) righe.push(['Radio sorelle', g('canali gemellati')]);
+    var dl = $('s-dati'); dl.textContent = '';
+    righe.forEach(function(x){
+      var dt = document.createElement('dt'); dt.textContent = x[0]; var dd = document.createElement('dd');
+      if (Array.isArray(x[1])) { var ul = document.createElement('ul'); x[1].forEach(function(v){ var li = document.createElement('li'); li.textContent = v; ul.appendChild(li); }); dd.appendChild(ul); }
+      else dd.textContent = x[1];
+      dl.appendChild(dt); dl.appendChild(dd);
+    });
+    $('s-dati-t').hidden = !righe.length;
+    fonte(r, p.title || r.t, true);
+  }).catch(function(){
+    if (aperta !== r) return;
+    $('s-testo').innerHTML = '<p class="attesa">Wikipedia non risponde in questo momento. Puoi leggere la voce con il collegamento qui sopra.</p>';
+    fonte(r, r.t, false);
+  });
+}
+function fonte(r, titolo, letta){
+  var f = $('s-fonte'); f.textContent = '';
+  var oggi = new Date().toLocaleDateString('it-IT', {day: 'numeric', month: 'long', year: 'numeric'});
+  f.appendChild(document.createTextNode(letta ? 'Testo e dati letti oggi, ' + oggi + ', dalla voce ' : 'Fonte: la voce '));
+  var a = document.createElement('a'); a.href = 'https://it.wikipedia.org/wiki/' + encodeURIComponent(titolo.replace(/ /g, '_'));
+  a.target = '_blank'; a.rel = 'noopener'; a.textContent = '«' + titolo + '»'; f.appendChild(a);
+  f.appendChild(document.createTextNode(' di Wikipedia, scritta dai suoi volontari, licenza '));
+  var l = document.createElement('a'); l.href = 'https://creativecommons.org/licenses/by-sa/4.0/deed.it'; l.target = '_blank'; l.rel = 'noopener';
+  l.textContent = 'CC BY-SA 4.0'; f.appendChild(l);
+  f.appendChild(document.createTextNode('. ' + (r.uuid ? 'Generi e ascolto: catalogo di Etere (radio-browser).' : 'Etere non ha ancora il flusso di questa radio.')));
+}
+})();
+</script>
+</body>
+</html>

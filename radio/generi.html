@@ -30,7 +30,8 @@ a{color:inherit}
 .marchio{text-decoration:none;font-family:var(--f-titolo);font-weight:600;font-size:26px}
 .marchio i{font-style:normal;color:var(--ambra)}
 .testata span{color:var(--tenue)}
-.testata .torna{margin-left:auto;color:var(--tenue);font-size:14px}
+.testata .torna{margin-left:auto;color:var(--tenue);font-size:14px;text-decoration:none}
+.testata .torna2{color:var(--tenue);font-size:14px;text-decoration:none}
 h1{font-family:var(--f-titolo);font-weight:500;font-size:clamp(28px,5vw,40px);margin:22px 0 4px;line-height:1.1}
 .sotto{color:var(--tenue);margin:0 0 18px;max-width:720px}
 .comandi{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
@@ -53,6 +54,7 @@ td.nome{width:34%}
 td.nome b{font-weight:600}
 td.nome a{display:inline-block;margin-top:2px;font-size:12.5px;color:var(--ambra);text-decoration:none}
 td.nome a:hover{text-decoration:underline}
+td.nome a.voce{margin-left:12px;color:var(--tenue)}
 .chips{display:flex;flex-wrap:wrap;gap:5px}
 .chip{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;font-size:12.5px;font-weight:600;
   background:color-mix(in srgb,var(--c) 20%,transparent);border:1px solid color-mix(in srgb,var(--c) 55%,transparent)}
@@ -76,7 +78,8 @@ td.nome a:hover{text-decoration:underline}
 <div class="pagina">
   <header class="testata">
     <a class="marchio" href="./">Et<i>e</i>re</a><span>i generi delle radio</span>
-    <a class="torna" href="./">← torna al globo</a>
+    <a class="torna" href="enciclopedia.html">Enciclopedia</a>
+    <a class="torna2" href="./">← torna al globo</a>
   </header>
   <h1 id="titolo">Le radio e i loro generi</h1>
   <p class="sotto" id="sotto">Carico le radio…</p>
@@ -167,6 +170,10 @@ function classifica(etichette, nome, paese){
 function norma(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ''); }
 
 var tutte = [], perPaese = {}, filtro = null;
+var VOCI = {};   // radio con una scheda nell'enciclopedia: uuid -> titolo della voce
+fetch('enciclopedia_it.json').then(function(r){ return r.json(); }).then(function(j){
+  j.radio.forEach(function(v){ if (v.uuid) VOCI[v.uuid] = v.t; }); if (tutte.length) disegna();
+}).catch(function(){});
 Promise.all(['stazioni.json', 'altre.json'].map(function(f){ return fetch(f).then(function(r){ return r.json(); }); })).then(function(js){
   js.forEach(function(j){ (j.radio || []).forEach(function(a){
     var r = {nome: a[0], url: a[3], paese: a[4], etichette: (a[5] || '').split(',').map(function(t){ return t.trim(); }).filter(Boolean), uuid: a[7], k: a[10] || 0};
@@ -237,6 +244,7 @@ function disegna(){
     var td1 = document.createElement('td'); td1.className = 'nome';
     var b = document.createElement('b'); b.textContent = r.nome; td1.appendChild(b); td1.appendChild(document.createElement('br'));
     var a = document.createElement('a'); a.href = './#r=' + r.uuid; a.textContent = '▶ Ascolta su Etere'; td1.appendChild(a);
+    if (VOCI[r.uuid]) { var v = document.createElement('a'); v.href = 'enciclopedia.html#v=' + encodeURIComponent(VOCI[r.uuid]); v.textContent = 'Scheda'; v.className = 'voce'; td1.appendChild(v); }
     tr.appendChild(td1);
     var td2 = document.createElement('td'); var ch = document.createElement('div'); ch.className = 'chips';
     r.g.trovate.forEach(function(k){ var f = PER_CHIAVE[k]; var c = document.createElement('span'); c.className = 'chip'; c.style.setProperty('--c', f[2]); c.textContent = f[1];
