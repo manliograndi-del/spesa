@@ -98,6 +98,28 @@ button{cursor:pointer;background:none;border:0;padding:0}
 .gioca:hover{transform:scale(1.06)}
 .gioca:disabled{background:#3a3f50;color:#8a90a3;box-shadow:none;cursor:default;transform:none}
 .gioca svg{width:22px;height:22px}
+/* il brano in onda */
+.brano{width:100%;display:flex;align-items:center;gap:11px;padding:9px 16px;border-bottom:1px solid var(--bordo);background:rgba(255,181,71,.05);text-align:left}
+.brano:hover{background:rgba(255,181,71,.09)}
+.brano>svg{width:18px;height:18px;color:var(--ambra);flex:none}
+.brano .bt{min-width:0;flex:1}
+.brano small{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--fioco);font-weight:700}
+.brano b{display:block;font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brano .apri{font-size:12.5px;color:var(--tenue);font-weight:600;white-space:nowrap;display:flex;align-items:center;gap:4px}
+.brano .apri svg{width:14px;height:14px;transition:transform .2s}
+.brano[aria-expanded=true] .apri svg{transform:rotate(180deg)}
+.brano,.brano-piu,.player,.strumenti,.schede,.luogo{flex:none}
+.brano-piu{padding:2px 16px 12px;border-bottom:1px solid var(--bordo);font-size:13px;max-height:34dvh;overflow:auto}
+.brano-piu h4{margin:8px 0 6px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fioco)}
+.cerca-testo{display:flex;flex-wrap:wrap;gap:6px}
+.cerca-testo a{padding:5px 11px;border-radius:999px;border:1px solid var(--bordo-forte);color:var(--testo);text-decoration:none;font-size:12.5px;font-weight:600}
+.cerca-testo a:hover{border-color:rgba(255,181,71,.6);color:var(--ambra-viva)}
+.brano-piu ol{list-style:none;margin:0;padding:0}
+.brano-piu li{display:flex;gap:10px;align-items:baseline;padding:4px 0;color:var(--tenue)}
+.brano-piu li span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brano-piu li a{color:var(--fioco);font-size:12px;white-space:nowrap}
+.brano-piu li a:hover{color:var(--ambra)}
+.brano-piu .nota{color:var(--fioco);font-size:11.5px;margin:10px 0 0}
 .strumenti{display:flex;align-items:center;gap:6px;padding:10px 16px;border-bottom:1px solid var(--bordo)}
 .piccolo{height:34px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:7px;color:var(--tenue);font-size:13px;font-weight:600;
   border:1px solid transparent;text-decoration:none;white-space:nowrap}
@@ -219,21 +241,7 @@ a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
 .scegli-paese{margin:0 6px 8px;width:calc(100% - 12px);height:40px;border-radius:12px;background:#121829;color:var(--testo);
   border:1px solid var(--bordo-forte);padding:0 12px;font:inherit;font-weight:600}
 .riga .pos{width:30px;flex:none;text-align:right;font-family:var(--f-titolo);color:var(--fioco);font-size:15px}
-/* sottotitoli */
-.sottotitoli{position:fixed;z-index:5;left:440px;right:24px;bottom:24px;display:flex;flex-direction:column;align-items:center;gap:6px;pointer-events:none}
-.sub-righe{display:flex;flex-direction:column;align-items:center;gap:4px;max-width:900px}
-.sub-righe p{margin:0;padding:6px 14px;border-radius:10px;background:rgba(3,5,10,.82);color:#fff;font-size:clamp(17px,1.6vw,22px);
-  line-height:1.35;text-align:center;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .6s}
-.sub-righe p.vecchia{opacity:.55;font-size:clamp(15px,1.3vw,18px)}
-.sub-righe p small{display:block;font-size:12px;color:#c9cbd6;margin-top:2px}
-.sub-stato{font-size:12px;color:var(--ambra-viva);background:rgba(3,5,10,.7);padding:4px 10px;border-radius:999px}
-.sub-stato:empty{display:none}
-.sub-barra{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;pointer-events:auto}
-.sub-barra select{height:28px;border-radius:999px;border:1px solid var(--bordo-forte);background:rgba(3,5,10,.8);color:var(--testo);
-  font:inherit;font-size:12px;padding:0 10px}
-.piccolo.attivo-sub{color:#1a1205;background:var(--ambra)}
 @media (max-width:720px){
-  .sottotitoli{left:12px;right:12px;bottom:calc(52dvh + 10px)}
   .velo{padding:0;align-items:stretch}
   .foglio{max-height:none;height:100dvh;border-radius:0;border:0}
   .copa{height:150px}
@@ -279,6 +287,12 @@ a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
       <svg id="ic-gioca" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg>
     </button>
   </div>
+  <button class="brano" id="brano" aria-expanded="false" aria-controls="brano-piu" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+    <span class="bt"><small>Sta suonando</small><b id="brano-titolo"></b></span>
+    <span class="apri">Testo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></span>
+  </button>
+  <div class="brano-piu" id="brano-piu" hidden></div>
   <div class="strumenti">
     <button class="piccolo" id="cuore" aria-pressed="false" aria-disabled="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-9.2-9.3C1.7 7.5 3.8 4.5 7 4.5c2 0 3.3 1 5 3 1.7-2 3-3 5-3 3.2 0 5.3 3 4.2 6.2C19.5 15.4 12 20 12 20z"/></svg>
@@ -289,9 +303,6 @@ a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
     <button class="piccolo" id="apri-scheda" aria-disabled="true" hidden>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/></svg>
       <span>Scheda</span></button>
-    <button class="piccolo" id="sub" aria-pressed="false" title="Sottotitoli tradotti (prova, per computer)">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg>
-      <span>Sottotitoli</span></button>
     <button class="piccolo" id="condividi" aria-disabled="true">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg>
       <span>Link</span></button>
@@ -314,10 +325,7 @@ a.gettone:hover{background:rgba(255,181,71,.16);color:var(--testo)}
   <article class="foglio" id="foglio"></article>
 </div>
 <div class="avviso" id="avviso" role="status"></div>
-<div class="sottotitoli" id="sottotitoli" aria-live="polite" hidden>
-  <div class="sub-righe" id="sub-righe"></div>
-  <div class="sub-barra"><select id="sub-lingua" aria-label="Lingua che si parla alla radio"></select><span class="sub-stato" id="sub-stato"></span></div>
-</div>
+
 <audio id="audio" preload="none"></audio>
 
 <script src="https://cdn.jsdelivr.net/npm/globe.gl@2.46.1/dist/globe.gl.min.js"></script>
@@ -576,6 +584,7 @@ function aggiornaPulsante(){
 }
 function preparaRadio(s){
   attuale = s;
+  cambiaBrano(s);
   $('titolo').textContent = s.nome;
   $('sottotitolo').textContent = [nomePaese(s.paese)].concat(s.generi ? [s.generi.split(',').join(' · ')] : []).join(' — ');
   var c = $('copertina'); c.textContent = '';
@@ -590,7 +599,6 @@ function preparaRadio(s){
   if (s.sito) $('sito').href = s.sito; else { $('sito').removeAttribute('href'); $('sito').setAttribute('aria-disabled','true'); }
   segnaCuore();
   aggiornaBottoneScheda();
-  aggiornaLinguaSub();
   var pos = s.lat != null ? s : centroPaese(s.paese);
   globo.ringsData(pos ? [{lat: pos.lat, lng: pos.lng}] : []);
   stato('Pronta', 'fermo');
@@ -607,13 +615,16 @@ function ascolta(s){
   if (hls) { hls.destroy(); hls = null; }
   audio.dataset.attesa = '1';
   stato('Mi sintonizzo…');
-  var nativo = audio.canPlayType('application/vnd.apple.mpegurl');
-  if ((s.hls || /\.m3u8(\?|$)/i.test(s.url)) && !nativo && window.Hls && Hls.isSupported()) {
+  // hls.js anche dove il browser saprebbe fare da sé: solo così leggiamo i titoli (tag ID3)
+  if ((s.hls || /\.m3u8(\?|$)/i.test(s.url)) && window.Hls && Hls.isSupported()) {
     hls = new Hls({enableWorker: true});
     hls.on(Hls.Events.ERROR, function(e, d){ if (d.fatal) guasto(); });
+    hls.on(Hls.Events.FRAG_PARSING_METADATA, function(e, d){
+      if (brano.uuid !== s.uuid) return;    // i tag arrivano già mentre il flusso si carica
+      (d.samples || []).forEach(function(x){ var t = x.data && leggiId3(x.data); if (t) nuovoBrano(t, brano.gen); });
+    });
     hls.loadSource(s.url); hls.attachMedia(audio);
   } else {
-    audio.crossOrigin = sub.attivo ? 'anonymous' : null;   // per i sottotitoli la pagina deve poter "sentire" l'audio
     audio.src = s.url;
   }
   var p = audio.play(); if (p && p.catch) p.catch(function(err){ if (err && err.name === 'NotAllowedError') { stato('Tocca play', 'fermo'); delete audio.dataset.attesa; aggiornaPulsante(); } });
@@ -626,18 +637,10 @@ function guasto(){
   avviso('Questa radio ora non trasmette. Provane un\'altra.');
   aggiornaPulsante();
 }
-audio.addEventListener('playing', function(){ delete audio.dataset.attesa; stato('In diretta'); aggiornaPulsante(); });
+audio.addEventListener('playing', function(){ delete audio.dataset.attesa; stato('In diretta'); aggiornaPulsante(); avviaBrano(); });
 audio.addEventListener('waiting', function(){ if (attuale && !audio.paused) stato('Carico…'); });
-audio.addEventListener('pause', function(){ if (attuale) stato('In pausa', 'fermo'); aggiornaPulsante(); });
-audio.addEventListener('error', function(){
-  if (!attuale || !audio.getAttribute('src')) return;
-  if (audio.crossOrigin && !hls) {           // la radio non permette di "sentire" l'audio: suona lo stesso, senza sottotitoli
-    audio.crossOrigin = null; audio.src = attuale.url; audio.play().catch(function(){});
-    sottotitoliStato('Questa radio non permette i sottotitoli: si sente, ma non posso trascriverla.');
-    return;
-  }
-  guasto();
-});
+audio.addEventListener('pause', function(){ if (attuale && !$('stato').classList.contains('errore')) stato('In pausa', 'fermo'); aggiornaPulsante(); sospendiBrano(); });
+audio.addEventListener('error', function(){ if (attuale && audio.getAttribute('src')) guasto(); });
 $('gioca').onclick = function(){
   if (!attuale) return;
   if (audio.paused) {
@@ -654,6 +657,208 @@ if ('mediaSession' in navigator) {
 }
 function aggiornaRighe(){
   Array.prototype.forEach.call(document.querySelectorAll('.riga'), function(r){ r.classList.toggle('in-onda', r._s === attuale); });
+}
+
+/* ---------- il brano in onda ----------
+   Le radio mandano il titolo in modi diversi: chiediamo prima alla piattaforma che le ospita,
+   poi al flusso stesso (metadati ICY), poi alla pagina di stato Icecast; per l'HLS leggiamo i tag ID3.
+   Dove il server non lo permette al browser (CORS), semplicemente non mostriamo nulla. */
+var brano = {uuid: null, gen: 0, attivo: false, timer: null, es: null, ac: null, ora: '', storico: []};
+function sospendiBrano(){
+  brano.gen++; brano.attivo = false; clearTimeout(brano.timer); brano.timer = null;
+  if (brano.es) { brano.es.close(); brano.es = null; }
+  if (brano.ac) { try { brano.ac.abort(); } catch(e){} brano.ac = null; }
+}
+function cambiaBrano(s){
+  if (brano.uuid === s.uuid) return;
+  sospendiBrano();
+  brano.uuid = s.uuid; brano.ora = ''; brano.storico = [];
+  $('brano-piu').hidden = true; $('brano').setAttribute('aria-expanded', 'false');
+  disegnaBrano();
+}
+function semplice(t){ return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^\p{L}\p{N}]+/gu, ' ').trim(); }
+function pulisciTitolo(t, s){
+  t = String(t || '').replace(/[\u0000-\u001f]/g, '').replace(/\s+/g, ' ').trim()
+        .replace(/\.(mp3|m4a|aac|ogg|flac|wav)$/i, '').replace(/^[-–|:\s]+|[-–|:\s]+$/g, '');
+  if (t.length < 3 || t.length > 160) return '';
+  if (!/\p{L}{2}/u.test(t)) return '';                                   // solo numeri o codici
+  if (/https?:|www\.|\.(com|net|org|info|ru|de)\b/i.test(t)) return '';  // pubblicità del sito
+  if (/^(unknown|untitled|live|on ?air|in diretta|advert\w*|ad ?break|spot|jingle|news|-)$/i.test(t)) return '';
+  var n = semplice(s && s.nome), x = semplice(t);
+  if (!x || x === n || (n && (n.indexOf(x) === 0 || x.indexOf(n) === 0) && Math.abs(n.length - x.length) < 12)) return ''; // è solo il nome della radio
+  return t;
+}
+function nuovoBrano(t, g){
+  if (g !== brano.gen || !attuale) return;
+  t = pulisciTitolo(t, attuale);
+  if (!t || t === brano.ora) return;
+  if (brano.ora) { brano.storico.unshift(brano.ora); brano.storico = brano.storico.slice(0, 8); }
+  brano.ora = t;
+  disegnaBrano();
+  if ('mediaSession' in navigator) {
+    try { navigator.mediaSession.metadata = new MediaMetadata({title: t, artist: attuale.nome, album: 'Etere',
+      artwork: attuale.icona ? [{src: attuale.icona}] : []}); } catch(e){}
+  }
+}
+function cercaTesto(t){
+  var q = encodeURIComponent(t);
+  return [['Genius', 'https://genius.com/search?q=' + q],
+          ['Musixmatch', 'https://www.musixmatch.com/search?query=' + q],
+          ['Google', 'https://www.google.com/search?q=' + encodeURIComponent(t + ' testo lyrics')]];
+}
+function disegnaBrano(){
+  var b = $('brano'), piu = $('brano-piu');
+  b.hidden = !brano.ora;
+  if (!brano.ora) { piu.hidden = true; return; }
+  $('brano-titolo').textContent = brano.ora;
+  $('brano-titolo').title = brano.ora;
+  piu.textContent = '';
+  piu.appendChild(E('h4', null, 'Cerca il testo'));
+  var c = E('div', 'cerca-testo');
+  cercaTesto(brano.ora).forEach(function(x){ c.appendChild(link(x[1], x[0] + ' ↗', ' ')); });
+  piu.appendChild(c);
+  if (brano.storico.length) {
+    piu.appendChild(E('h4', null, 'Prima'));
+    var ol = E('ol');
+    brano.storico.forEach(function(t){
+      var li = E('li'); li.appendChild(E('span', null, t));
+      li.appendChild(link(cercaTesto(t)[2][1], 'testo ↗', ' '));
+      ol.appendChild(li);
+    });
+    piu.appendChild(ol);
+  }
+  piu.appendChild(E('p', 'nota', 'Il titolo lo manda la radio; i testi sono sui siti che li pubblicano, Etere li cerca soltanto.'));
+}
+$('brano').onclick = function(){
+  var aperto = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', aperto ? 'false' : 'true');
+  $('brano-piu').hidden = aperto;
+};
+function ripeti(fn, ms, g){
+  function giro(){ if (g !== brano.gen) return; Promise.resolve(fn()).then(function(ok){
+    if (g === brano.gen && ok !== false) brano.timer = setTimeout(giro, ms); }, function(){}); }
+  giro();
+}
+function prendi(url, tipo){
+  var ac = new AbortController(), t = setTimeout(function(){ ac.abort(); }, 8000);
+  return fetch(url, {signal: ac.signal, cache: 'no-store'}).then(function(r){
+    clearTimeout(t); if (!r.ok) throw new Error(r.status); return tipo === 'json' ? r.json() : r.text(); });
+}
+function insieme(artista, titolo){ return [artista, titolo].filter(Boolean).join(' – '); }
+
+// metadati ICY: apriamo un secondo collegamento al flusso, leggiamo il primo blocco e chiudiamo
+function leggiIcy(url, g){
+  var ac = new AbortController(); brano.ac = ac;
+  var t = setTimeout(function(){ ac.abort(); }, 9000);
+  return fetch(url, {headers: {'Icy-MetaData': '1'}, signal: ac.signal, cache: 'no-store'}).then(function(r){
+    var mi = +r.headers.get('icy-metaint');
+    if (!mi || !r.body) { ac.abort(); return null; }
+    var rd = r.body.getReader(), buf = new Uint8Array(0);
+    function giro(){
+      return rd.read().then(function(x){
+        if (x.value) { var n = new Uint8Array(buf.length + x.value.length); n.set(buf); n.set(x.value, buf.length); buf = n; }
+        if (buf.length > mi && buf.length >= mi + 1 + buf[mi] * 16) {
+          ac.abort();
+          var pezzo = buf.subarray(mi + 1, mi + 1 + buf[mi] * 16), s;
+          try { s = new TextDecoder('utf-8', {fatal: true}).decode(pezzo); } catch(e){ s = new TextDecoder('latin1').decode(pezzo); }
+          var m = s.match(/StreamTitle='(.*?)';/);
+          return m ? m[1] : '';
+        }
+        if (x.done || buf.length > mi + 5000) { ac.abort(); return null; }
+        return giro();
+      });
+    }
+    return giro();
+  }).catch(function(){ return null; }).then(function(v){ clearTimeout(t); if (brano.ac === ac) brano.ac = null; return v; });
+}
+// pagina di stato di Icecast sullo stesso server
+function leggiIcecast(u){
+  return prendi(u.origin + '/status-json.xsl', 'json').then(function(j){
+    var src = j && j.icestats && j.icestats.source; if (!src) return null;
+    src = [].concat(src);
+    var giusta = src.filter(function(x){ return x && x.listenurl && x.listenurl.replace(/^.*?\/\/[^/]+/, '') === u.pathname; })[0]
+              || (src.length === 1 ? src[0] : null);
+    if (!giusta) return null;
+    return giusta.artist && giusta.title ? insieme(giusta.artist, giusta.title) : (giusta.title || giusta.yp_currently_playing || '');
+  }).catch(function(){ return null; });
+}
+
+function avviaBrano(){
+  var s = attuale; if (!s || brano.attivo) return;
+  cambiaBrano(s);
+  brano.attivo = true;
+  var g = ++brano.gen, u;
+  try { u = new URL(s.url); } catch(e){ return; }
+  var h = u.hostname, p = u.pathname.split('/').filter(Boolean), ultimo = p[p.length - 1] || '';
+  var dai = function(v){ nuovoBrano(v, g); };
+
+  if (/(^|\.)zeno\.fm$/.test(h) && ultimo) {                 // Zeno: ci avvisa lui a ogni cambio
+    var es = new EventSource('https://api.zeno.fm/mounts/metadata/subscribe/' + encodeURIComponent(ultimo));
+    es.onmessage = function(e){ try { dai(JSON.parse(e.data).streamTitle); } catch(x){} };
+    brano.es = es; return;
+  }
+  if (/streamtheworld\.com$/.test(h) && ultimo) {            // Triton
+    var mount = ultimo.replace(/\.\w+$/, '').replace(/(_?SC|_?AAC|_?MP3)+$/i, '');
+    return ripeti(function(){
+      return prendi('https://np.tritondigital.com/public/nowplaying?mountName=' + encodeURIComponent(mount) + '&numberToFetch=1&eventType=track').then(function(x){
+        var d = new DOMParser().parseFromString(x, 'text/xml');
+        var v = function(n){ var e = d.querySelector('property[name="' + n + '"]'); return e ? e.textContent.trim() : ''; };
+        dai(insieme(v('track_artist_name'), v('cue_title')));
+      });
+    }, 25000, g);
+  }
+  if (/(^|\.)somafm\.com$/.test(h) && ultimo) {              // SomaFM
+    var canale = ultimo.split('-')[0].replace(/\d+$/, '');
+    return ripeti(function(){ return prendi('https://somafm.com/songs/' + canale + '.json', 'json').then(function(j){
+      var x = j.songs && j.songs[0]; if (x) dai(insieme(x.artist, x.title)); }); }, 25000, g);
+  }
+  if (/(^|\.)laut\.fm$/.test(h) && p[0]) {                   // laut.fm
+    return ripeti(function(){ return prendi('https://api.laut.fm/station/' + encodeURIComponent(p[0]) + '/current_song', 'json').then(function(j){
+      dai(insieme(j.artist && j.artist.name, j.title)); }); }, 25000, g);
+  }
+  if (/(^|\.)radiojar\.com$/.test(h) && p[0]) {              // Radiojar
+    return ripeti(function(){ return prendi('https://www.radiojar.com/api/stations/' + encodeURIComponent(p[0]) + '/now_playing/', 'json').then(function(j){
+      dai(insieme(j.artist, j.title)); }); }, 25000, g);
+  }
+  if (hls || s.hls || /\.m3u8(\?|$)/i.test(s.url)) return;   // HLS: arrivano i tag ID3 (vedi sotto)
+
+  // flusso classico: prima ICY, poi la pagina di stato di Icecast
+  leggiIcy(s.url, g).then(function(t){
+    if (g !== brano.gen) return;
+    if (t !== null) { dai(t); brano.timer = setTimeout(function(){ ripeti(function(){
+      return leggiIcy(s.url, g).then(function(t2){ if (t2 === null) return false; dai(t2); }); }, 20000, g); }, 20000); return; }
+    leggiIcecast(u).then(function(t3){
+      if (g !== brano.gen || t3 === null) return;
+      dai(t3);
+      brano.timer = setTimeout(function(){ ripeti(function(){ return leggiIcecast(u).then(function(t4){ if (t4 === null) return false; dai(t4); }); }, 20000, g); }, 20000);
+    });
+  });
+}
+
+// tag ID3 dentro i flussi HLS (TIT2 = titolo, TPE1 = artista, TXXX = testo libero)
+function leggiId3(dati){
+  var out = {}, i = 0;
+  function testo(b){
+    var enc = b[0], r = b.subarray(1);
+    var dec = enc === 3 ? 'utf-8' : enc === 1 ? 'utf-16' : enc === 2 ? 'utf-16be' : 'latin1';
+    try { return new TextDecoder(dec).decode(r).replace(/\u0000+$/g, ''); } catch(e){ return ''; }
+  }
+  while (i + 10 <= dati.length && dati[i] === 0x49 && dati[i+1] === 0x44 && dati[i+2] === 0x33) {
+    var ver = dati[i+3], tot = (dati[i+6] << 21) | (dati[i+7] << 14) | (dati[i+8] << 7) | dati[i+9], j = i + 10, fine = j + tot;
+    while (j + 10 <= fine) {
+      var id = String.fromCharCode(dati[j], dati[j+1], dati[j+2], dati[j+3]);
+      var sz = ver === 4 ? (dati[j+4] << 21) | (dati[j+5] << 14) | (dati[j+6] << 7) | dati[j+7]
+                         : ((dati[j+4] << 24) | (dati[j+5] << 16) | (dati[j+6] << 8) | dati[j+7]) >>> 0;
+      if (!/^[A-Z0-9]{4}$/.test(id) || !sz) break;
+      var corpo = dati.subarray(j + 10, j + 10 + sz);
+      if (id === 'TIT2') out.titolo = testo(corpo);
+      else if (id === 'TPE1') out.artista = testo(corpo);
+      else if (id === 'TXXX') { var v = testo(corpo).split('\u0000').pop(); var m = v.match(/(?:StreamTitle|title)="?'?([^"';]+)/i); if (m) out.libero = m[1]; }
+      j += 10 + sz;
+    }
+    i = fine;
+  }
+  return out.titolo ? insieme(out.artista, out.titolo) : (out.libero || '');
 }
 
 /* ---------- la scheda della radio ---------- */
@@ -847,209 +1052,6 @@ function apriScheda(s){
 function chiudiScheda(){ $('velo').classList.remove('aperto'); }
 $('velo').addEventListener('click', function(e){ if (e.target === this) chiudiScheda(); });
 document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && $('velo').classList.contains('aperto')) chiudiScheda(); });
-
-/* ---------- sottotitoli tradotti (prova) ----------
-   La radio suona come sempre; una copia dell'audio va a Whisper, che gira in un worker nel browser
-   (niente server: l'audio non esce dal computer). Whisper riconosce la lingua e traduce in inglese;
-   poi il traduttore di Chrome, se c'è, porta il testo in italiano. */
-var sub = {attivo: false, worker: null, pronto: false, carico: false, ctx: null, sorgente: null, nodo: null,
-           pezzi: [], campioni: 0, occupato: false, traduttore: null, file: {}, motore: ''};
-var SUB_HZ = 16000, SUB_SECONDI = 6;
-var SUB_FANTASMI = /^(\s*(thank you|thanks for watching|please subscribe|subtitles by|you|bye|grazie( a tutti)?|sottotitoli[^.]*|♪+|music|\[[^\]]*\]|\([^)]*\))[.!,\s]*)+$/i;
-
-function sottotitoliStato(t){ $('sub-stato').textContent = t || ''; }
-function sottotitoliRiga(testo, nota){
-  var r = $('sub-righe');
-  Array.prototype.forEach.call(r.children, function(p){ p.classList.add('vecchia'); });
-  while (r.children.length > 1) r.removeChild(r.firstChild);
-  var p = E('p', null, testo); if (nota) p.appendChild(E('small', null, nota));
-  r.appendChild(p);
-}
-
-var SUB_WORKER = [
-  "import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.8.1/dist/transformers.min.js';",
-  "env.allowLocalModels = false;",
-  "let asr = null;",
-  "self.onmessage = async (e) => {",
-  "  const m = e.data;",
-  "  try {",
-  "    if (m.tipo === 'carica') {",
-  "      let gpu = false;",
-  "      try { gpu = !!(navigator.gpu && await navigator.gpu.requestAdapter()); } catch (x) {}",
-  "      asr = await pipeline('automatic-speech-recognition', 'onnx-community/whisper-base', {",
-  "        device: gpu ? 'webgpu' : 'wasm',",
-  "        dtype: gpu ? { encoder_model: 'fp32', decoder_model_merged: 'q4' } : 'q8',",
-  "        progress_callback: (p) => self.postMessage({ tipo: 'progresso', p })",
-  "      });",
-  "      self.postMessage({ tipo: 'pronto', motore: gpu ? 'WebGPU' : 'processore' });",
-  "    } else if (m.tipo === 'ascolta') {",
-  "      const t0 = performance.now();",
-  "      const out = await asr(m.audio, { task: m.lingua === 'it' ? 'transcribe' : 'translate', language: m.lingua || 'en', return_timestamps: false });",
-  "      self.postMessage({ tipo: 'testo', testo: (out && out.text || '').trim(), ms: Math.round(performance.now() - t0) });",
-  "    }",
-  "  } catch (err) { self.postMessage({ tipo: 'errore', messaggio: String(err && err.message || err) }); }",
-  "};"
-].join('\n');
-
-function avviaWorker(){
-  if (sub.worker) return;
-  sub.worker = new Worker(URL.createObjectURL(new Blob([SUB_WORKER], {type: 'text/javascript'})), {type: 'module'});
-  sub.worker.onmessage = function(e){
-    var m = e.data;
-    if (m.tipo === 'progresso' && m.p && m.p.status === 'progress' && m.p.total) {
-      sub.file[m.p.file] = [m.p.loaded, m.p.total];
-      var l = 0, t = 0; Object.keys(sub.file).forEach(function(k){ l += sub.file[k][0]; t += sub.file[k][1]; });
-      sottotitoliStato('Scarico il modello di ascolto, solo la prima volta: ' + Math.round(l / 1e6) + ' di ' + Math.round(t / 1e6) + ' MB');
-    } else if (m.tipo === 'pronto') {
-      sub.pronto = true; sub.motore = m.motore;
-      sottotitoliStato('Pronto · ascolto la radio…');
-      inviaSeServe();
-    } else if (m.tipo === 'testo') {
-      sub.occupato = false;
-      mostraTesto(m.testo, m.ms);
-      inviaSeServe();
-    } else if (m.tipo === 'errore') {
-      sub.occupato = false;
-      sottotitoliStato('Errore: ' + m.messaggio.slice(0, 120));
-    }
-  };
-  sub.worker.onerror = function(){ sottotitoliStato('Il modello di ascolto non parte in questo browser. Prova con Chrome o Edge sul computer.'); };
-  sottotitoliStato('Preparo il modello di ascolto…');
-  sub.worker.postMessage({tipo: 'carica'});
-}
-
-function mostraTesto(testo, ms){
-  testo = (testo || '').replace(/\s+/g, ' ').trim();
-  if (!testo || SUB_FANTASMI.test(testo) || testo.length < 3) {   // musica o silenzio: Whisper a volte "inventa" frasi
-    sottotitoliStato('Ascolto… (solo musica o silenzio)');
-    return;
-  }
-  var nota = 'Whisper · ' + sub.motore + ' · ' + (ms / 1000).toFixed(1).replace('.', ',') + ' s';
-  if (sub.lingua === 'it') {
-    sottotitoliRiga(testo, nota + ' · trascritto');
-  } else if (sub.traduttore) {
-    sub.traduttore.translate(testo).then(function(it){ sottotitoliRiga(it, nota + ' · tradotto in italiano'); })
-      .catch(function(){ sottotitoliRiga(testo, nota + ' · in inglese'); });
-  } else {
-    sottotitoliRiga(testo, nota + ' · in inglese (il traduttore italiano di Chrome non è disponibile)');
-  }
-  sottotitoliStato('');
-}
-
-// cattura: copia dell'audio dell'elemento <audio>, ricampionata a 16 kHz
-var SUB_WORKLET = "registerProcessor('cattura', class extends AudioWorkletProcessor { process(i){ if (i[0] && i[0][0]) this.port.postMessage(i[0][0].slice(0)); return true; } });";
-function collegaCattura(){
-  if (!sub.attivo || !sub.ctx) return;
-  var flusso;
-  try { flusso = (audio.captureStream || audio.mozCaptureStream).call(audio); } catch (e) { sottotitoliStato('Questa radio non permette i sottotitoli.'); return; }
-  if (!flusso.getAudioTracks().length) { setTimeout(collegaCattura, 500); return; }
-  if (sub.sorgente) try { sub.sorgente.disconnect(); } catch (e) {}
-  sub.sorgente = sub.ctx.createMediaStreamSource(flusso);
-  sub.sorgente.connect(sub.nodo);
-}
-function preparaAudio(){
-  if (sub.ctx) return Promise.resolve();
-  sub.ctx = new (window.AudioContext || window.webkitAudioContext)();
-  return sub.ctx.audioWorklet.addModule(URL.createObjectURL(new Blob([SUB_WORKLET], {type: 'text/javascript'}))).then(function(){
-    sub.nodo = new AudioWorkletNode(sub.ctx, 'cattura');
-    var muto = sub.ctx.createGain(); muto.gain.value = 0;
-    sub.nodo.connect(muto); muto.connect(sub.ctx.destination);   // il nodo deve "tirare" l'audio, ma senza suonarlo due volte
-    var passo = sub.ctx.sampleRate / SUB_HZ;
-    sub.nodo.port.onmessage = function(e){
-      if (!sub.attivo || audio.paused) return;
-      var x = e.data, n = Math.floor(x.length / passo), y = new Float32Array(n);
-      for (var i = 0; i < n; i++) {                               // media dei campioni: ricampiona a 16 kHz
-        var a = Math.floor(i * passo), b = Math.min(x.length, Math.floor((i + 1) * passo)), s = 0;
-        for (var j = a; j < b; j++) s += x[j];
-        y[i] = s / Math.max(1, b - a);
-      }
-      sub.pezzi.push(y); sub.campioni += n;
-      var massimo = SUB_HZ * SUB_SECONDI * 2;                       // se il modello è lento, tiene solo l'audio più recente
-      while (sub.campioni > massimo && sub.pezzi.length > 1) sub.campioni -= sub.pezzi.shift().length;
-      inviaSeServe();
-    };
-  });
-}
-function inviaSeServe(){
-  if (!sub.pronto || sub.occupato || sub.campioni < SUB_HZ * SUB_SECONDI) return;
-  var tutto = new Float32Array(sub.campioni), o = 0;
-  sub.pezzi.forEach(function(p){ tutto.set(p, o); o += p.length; });
-  sub.pezzi = []; sub.campioni = 0;
-  var blocco = tutto.subarray(Math.max(0, tutto.length - SUB_HZ * SUB_SECONDI));
-  var e = 0; for (var i = 0; i < blocco.length; i += 4) e += blocco[i] * blocco[i];
-  if (Math.sqrt(e / (blocco.length / 4)) < 0.004) { sottotitoliStato('Ascolto… (silenzio)'); return; }
-  sub.occupato = true;
-  var copia = new Float32Array(blocco);
-  sub.worker.postMessage({tipo: 'ascolta', audio: copia, lingua: sub.lingua}, [copia.buffer]);
-}
-// la lingua che si parla alla radio, dedotta dal paese (si può cambiare dal menu)
-var LINGUA_PAESE = {IT:'it',SM:'it',VA:'it',CN:'zh',TW:'zh',HK:'zh',SG:'en',JP:'ja',KR:'ko',DE:'de',AT:'de',CH:'de',LI:'de',
-  FR:'fr',BE:'fr',LU:'fr',MC:'fr',SN:'fr',CI:'fr',CM:'fr',ES:'es',MX:'es',AR:'es',CO:'es',CL:'es',PE:'es',VE:'es',EC:'es',
-  GT:'es',CU:'es',BO:'es',DO:'es',HN:'es',PY:'es',SV:'es',NI:'es',CR:'es',PA:'es',UY:'es',PR:'es',BR:'pt',PT:'pt',AO:'pt',MZ:'pt',
-  RU:'ru',BY:'ru',KZ:'ru',UA:'uk',PL:'pl',NL:'nl',SE:'sv',NO:'no',DK:'da',FI:'fi',GR:'el',CY:'el',TR:'tr',CZ:'cs',SK:'sk',
-  HU:'hu',RO:'ro',MD:'ro',BG:'bg',RS:'sr',HR:'hr',SI:'sl',BA:'bs',MK:'mk',AL:'sq',LT:'lt',LV:'lv',EE:'et',IL:'he',IR:'fa',
-  SA:'ar',AE:'ar',EG:'ar',MA:'ar',DZ:'ar',TN:'ar',IQ:'ar',SY:'ar',JO:'ar',LB:'ar',KW:'ar',QA:'ar',OM:'ar',BH:'ar',LY:'ar',
-  IN:'hi',PK:'ur',BD:'bn',ID:'id',MY:'ms',TH:'th',VN:'vi',PH:'tl',KE:'sw',TZ:'sw'};
-var LINGUE_SUB = [['it','italiano'],['en','inglese'],['zh','cinese'],['ja','giapponese'],['ko','coreano'],['fr','francese'],
-  ['de','tedesco'],['es','spagnolo'],['pt','portoghese'],['ru','russo'],['uk','ucraino'],['ar','arabo'],['tr','turco'],
-  ['el','greco'],['pl','polacco'],['nl','olandese'],['sv','svedese'],['no','norvegese'],['da','danese'],['fi','finlandese'],
-  ['cs','ceco'],['sk','slovacco'],['hu','ungherese'],['ro','romeno'],['bg','bulgaro'],['sr','serbo'],['hr','croato'],
-  ['sl','sloveno'],['he','ebraico'],['fa','persiano'],['hi','hindi'],['ur','urdu'],['bn','bengalese'],['id','indonesiano'],
-  ['ms','malese'],['th','thailandese'],['vi','vietnamita'],['tl','filippino'],['sw','swahili'],['sq','albanese'],
-  ['lt','lituano'],['lv','lettone'],['et','estone'],['mk','macedone'],['bs','bosniaco']];
-sub.lingua = 'en';
-function linguaPerRadio(s){
-  var d = schedeDati && schedeDati[s.uuid];
-  var lw = d && d.lingue && d.lingue[0] && d.lingue[0].toLowerCase();
-  var perNome = lw && LINGUE_SUB.filter(function(x){ return x[1] === lw || (lw === 'chinese' && x[0] === 'zh') || lw.indexOf(x[1]) === 0; })[0];
-  return (perNome && perNome[0]) || LINGUA_PAESE[s.paese] || 'en';
-}
-function aggiornaLinguaSub(){
-  if (!attuale) return;
-  sub.lingua = linguaPerRadio(attuale);
-  var sel = $('sub-lingua'); if (sel) sel.value = sub.lingua;
-}
-(function(){
-  var sel = $('sub-lingua');
-  LINGUE_SUB.forEach(function(x){ sel.appendChild(new Option('Si parla ' + x[1], x[0])); });
-  sel.onchange = function(){ sub.lingua = sel.value; sub.pezzi = []; sub.campioni = 0; sottotitoliStato('Ascolto in ' + sel.options[sel.selectedIndex].text.replace('Si parla ', '') + '…'); };
-})();
-function preparaTraduttore(){
-  if (sub.traduttore || !('Translator' in self)) return Promise.resolve();
-  return Translator.availability({sourceLanguage: 'en', targetLanguage: 'it'}).then(function(a){
-    if (a === 'unavailable') return;
-    return Translator.create({sourceLanguage: 'en', targetLanguage: 'it'}).then(function(t){ sub.traduttore = t; });
-  }).catch(function(){});
-}
-function accendiSottotitoli(){
-  if (!(audio.captureStream || audio.mozCaptureStream) || !window.AudioWorkletNode || !window.Worker) {
-    avviso('I sottotitoli per ora funzionano con Chrome o Edge sul computer'); return;
-  }
-  sub.attivo = true;
-  aggiornaLinguaSub();
-  $('sub').classList.add('attivo-sub'); $('sub').setAttribute('aria-pressed', 'true');
-  $('sottotitoli').hidden = false;
-  preparaTraduttore();                                            // chiede il traduttore ora, durante il clic
-  preparaAudio().then(function(){
-    sub.ctx.resume();
-    avviaWorker();
-    if (attuale && !hls && !audio.crossOrigin) {                  // ricollega la radio permettendo di "sentirla"
-      var suonava = !audio.paused;
-      audio.crossOrigin = 'anonymous'; audio.src = attuale.url;
-      if (suonava) audio.play().catch(function(){});
-    }
-    if (!attuale) sottotitoliStato('Scegli una radio parlata (notizie, talk) per vedere i sottotitoli.');
-    collegaCattura();
-  }).catch(function(e){ sottotitoliStato('Non riesco ad attivare l\'ascolto: ' + e); });
-}
-function spegniSottotitoli(){
-  sub.attivo = false; sub.pezzi = []; sub.campioni = 0;
-  $('sub').classList.remove('attivo-sub'); $('sub').setAttribute('aria-pressed', 'false');
-  $('sottotitoli').hidden = true; $('sub-righe').textContent = ''; sottotitoliStato('');
-  if (sub.sorgente) try { sub.sorgente.disconnect(); } catch (e) {}
-}
-$('sub').onclick = function(){ if (sub.attivo) spegniSottotitoli(); else accendiSottotitoli(); };
-audio.addEventListener('playing', function(){ if (sub.attivo) collegaCattura(); });
 
 /* ---------- preferite, link, avvisi ---------- */
 function segnaCuore(){
