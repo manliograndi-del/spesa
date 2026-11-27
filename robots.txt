@@ -6,7 +6,6 @@ Allow: /
 User-agent: GPTBot
 User-agent: ChatGPT-User
 User-agent: CCBot
-User-agent: Google-Extended
 User-agent: Applebot-Extended
 User-agent: PerplexityBot
 User-agent: Bytespider
